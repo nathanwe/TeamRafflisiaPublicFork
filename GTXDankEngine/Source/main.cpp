@@ -1,3 +1,7 @@
+#include"imgui.h"
+#include"imgui_impl_glfw.h"
+#include"imgui_impl_opengl3.h"
+
 #include "Model.h"
 #include "utils/Log.h"
 
@@ -207,6 +211,19 @@ int main() {
 		Texture("Assets/Textures/planksSpec.png", "specular", 1)
 	};
 
+
+	// ImGUI
+	IMGUI_CHECKVERSION();
+	ImGui::CreateContext();
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImGui::StyleColorsDark();
+	ImGui_ImplGlfw_InitForOpenGL(pWindow, true);
+	ImGui_ImplOpenGL3_Init("#version 330");
+
+	// ImGUI Variables
+	bool drawObject = true;
+
+
 	// Creates Shader class
 	Shader shaderProgram("Source/Shaders/basic.vert", "Source/Shaders/basic.frag");
 
@@ -254,16 +271,46 @@ int main() {
 		// pick a pretty color
 		glClearColor(0.106f, 0.204f, 0.002f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
+		// Tell OpenGL a new frame is about to begin
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+
+
 		// use the shader program
 		shaderProgram.Activate();
 
 		camera.Inputs(pWindow);
 		camera.updateMatrix(45.0f, 0.1f, 100.0f);
 
-		model.Draw(shaderProgram, camera);
+		if (drawObject)
+		{
+			model.Draw(shaderProgram, camera);
+		}
 
 		//floor.Draw(shaderProgram, camera);
 		//light.Draw(lightShader, camera);
+
+		// ImGUI window creation
+		ImGui::Begin("ImGUI Window");
+		// Text that appears in the window
+		ImGui::Text("Sample Text");
+		// Checkbox that appears in the window
+		ImGui::Checkbox("Draw Object", &drawObject);
+		// Slider that appears in the window
+		// ImGui::SliderFloat("Size", &size, 0.5f, 2.0f);
+		// ImGui::SliderFloat("Rotation", &rotation, 0.0f, 360.0f);
+		// color editor
+		// ImGui::ColorEdit4("Color", color);
+		// Ends the window
+		ImGui::End();
+
+
+		// Renders the ImGUI elements
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 		
 		
 		glfwSwapBuffers(pWindow);

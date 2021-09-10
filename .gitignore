@@ -10,4 +10,6 @@ x86/
 
 # Visual Studio cache/options directory
 .vs/
+Drbug/
+Release/
 
