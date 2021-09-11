@@ -89,7 +89,7 @@ vec4 spotLight() {
 }
 
 void main() {
-	//FragColor = pointLight();
-	FragColor = directionLight();
+	FragColor = pointLight();
+	// FragColor = directionLight();
 	//FragColor = spotLight();
 }
