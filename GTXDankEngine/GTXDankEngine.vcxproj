@@ -109,6 +109,7 @@
     <ClInclude Include="Libraries\include\imgui\imstb_truetype.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\EBO.h" />
+    <ClInclude Include="Source\GameObject.h" />
     <ClInclude Include="Source\Mesh.h" />
     <ClInclude Include="Source\Model.h" />
     <ClInclude Include="Source\Shader.h" />
@@ -127,6 +128,7 @@
     <ClCompile Include="Libraries\include\imgui\imgui_widgets.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\EBO.cpp" />
+    <ClCompile Include="Source\GameObject.cpp" />
     <ClCompile Include="Source\glad.c" />
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Mesh.cpp" />
