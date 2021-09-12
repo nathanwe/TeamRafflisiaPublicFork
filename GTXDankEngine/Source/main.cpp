@@ -2,6 +2,7 @@
 #include"imgui_impl_glfw.h"
 #include"imgui_impl_opengl3.h"
 
+
 #include "Model.h"
 #include "utils/Log.h"
 
@@ -300,12 +301,15 @@ int main() {
 		// Checkbox that appears in the window
 		ImGui::Checkbox("Draw Object", &drawObject);
 		// Slider that appears in the window
-		// ImGui::SliderFloat("Size", &size, 0.5f, 2.0f);
-		// ImGui::SliderFloat("Rotation", &rotation, 0.0f, 360.0f);
+		ImGui::SliderFloat("Light X", &lightPos.x, -1.0f, 1.0f);
+		ImGui::SliderFloat("Light Y", &lightPos.y, -1.0f, 1.0f);
+		ImGui::SliderFloat("Light Z", &lightPos.z, -1.0f, 1.0f);
 		// color editor
 		// ImGui::ColorEdit4("Color", color);
 		// Ends the window
 		ImGui::End();
+
+		glUniform3f(glGetUniformLocation(shaderProgram.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
 
 
 		// Renders the ImGUI elements
