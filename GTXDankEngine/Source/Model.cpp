@@ -1,4 +1,5 @@
 #include"Model.h"
+#include "utils/Log.h"
 
 Model::Model(const char* file) {
 	// Make a JSON object
@@ -34,6 +35,15 @@ void Model::LoadMesh(unsigned int indMesh) {
 	std::vector<glm::vec3> normals = GroupFloatsVec3(normalVec);
 	std::vector<float> texVec = GetFloats(JSON["accessors"][texAccInd]);
 	std::vector<glm::vec2> texUVs = GroupFloatsVec2(texVec);
+
+	//for (float position : posVec)
+		//LOG_INFO("Position: {}", position);
+
+	LOG_INFO("Pos ind: {}", posAccInd);
+	LOG_INFO("normal ind: {}", normalAccInd);
+
+	//for (glm::vec3 position : positions)
+		//LOG_INFO("Position: ({0}, {1}, {2})", position.x, position.y, position.z);
 
 	// Combine all the vertex components and also get the indices and textures
 	std::vector<Vertex> vertices = AssembleVertices(positions, normals, texUVs);
@@ -255,7 +265,6 @@ std::vector<Vertex> Model::AssembleVertices(std::vector<glm::vec3> positions, st
 		vertices.push_back(Vertex {
 				positions[i],
 				normals[i],
-				glm::vec3(1.0f, 1.0f, 1.0f),
 				texUVs[i]
 			}
 		);
@@ -265,23 +274,39 @@ std::vector<Vertex> Model::AssembleVertices(std::vector<glm::vec3> positions, st
 
 std::vector<glm::vec2> Model::GroupFloatsVec2(std::vector<float> floatVec) {
 	std::vector<glm::vec2> vectors;
-	for (int i = 0; i < floatVec.size(); i) {
-		vectors.push_back(glm::vec2(floatVec[i++], floatVec[i++]));
+	//for (int i = 0; i < floatVec.size(); i) {
+		//vectors.push_back(glm::vec2(floatVec[i++], floatVec[i++]));
+	//}
+	for (int i = 0; i < floatVec.size(); i+=2) {
+		vectors.push_back(glm::vec2(floatVec[i], floatVec[i+1]));
 	}
+
 	return vectors;
 }
 std::vector<glm::vec3> Model::GroupFloatsVec3(std::vector<float> floatVec) {
 	std::vector<glm::vec3> vectors;
-	for (int i = 0; i < floatVec.size(); i)
+
+	// ROOT OF EVIL!
+	//for (int i = 0; i < floatVec.size(); i)
+//	{
+	//	vectors.push_back(glm::vec3(floatVec[i++], floatVec[i++], floatVec[i++]));
+	//}
+
+	for (int i = 0; i < floatVec.size(); i+=3)
 	{
-		vectors.push_back(glm::vec3(floatVec[i++], floatVec[i++], floatVec[i++]));
+		vectors.push_back(glm::vec3(floatVec[i], floatVec[i+1], floatVec[i+2]));
 	}
+
 	return vectors;
 }
 std::vector<glm::vec4> Model::GroupFloatsVec4(std::vector<float> floatVec) {
 	std::vector<glm::vec4> vectors;
+	//for (int i = 0; i < floatVec.size(); i) {
+		//vectors.push_back(glm::vec4(floatVec[i++], floatVec[i++], floatVec[i++], floatVec[i++]));
+	//}
 	for (int i = 0; i < floatVec.size(); i) {
-		vectors.push_back(glm::vec4(floatVec[i++], floatVec[i++], floatVec[i++], floatVec[i++]));
+		vectors.push_back(glm::vec4(floatVec[i], floatVec[i+1], floatVec[i+2], floatVec[i+3]));
 	}
+
 	return vectors;
 }

@@ -207,10 +207,10 @@ int main() {
 	// tell the viewport
 	glViewport(0, 0, WIDTH, HEIGHT);
 
-	Texture textures[]{
-		Texture("Assets/Textures/planks.png", "diffuse", 0),
-		Texture("Assets/Textures/planksSpec.png", "specular", 1)
-	};
+	//Texture textures[]{
+		//Texture("Assets/Textures/planks.png", "diffuse", 0),
+		//Texture("Assets/Textures/planksSpec.png", "specular", 1)
+	//};
 
 
 	// ImGUI

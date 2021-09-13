@@ -13,6 +13,8 @@ Texture::Texture(const char* image, const char* texType, GLuint slot) {
 
 	if (!bytes) LOG_ERROR("Loading texture failed");
 
+	LOG_INFO("Texture data loaded", image);
+
 	// initialize texture
 	glGenTextures(1, &ID);
 	// Activate and bind the texture
@@ -41,6 +43,8 @@ Texture::Texture(const char* image, const char* texType, GLuint slot) {
 	}
 
 	glGenerateMipmap(GL_TEXTURE_2D);
+
+	LOG_INFO("Texture data loading succeed", image);
 
 	stbi_image_free(bytes);
 	glBindTexture(GL_TEXTURE_2D, 0);
