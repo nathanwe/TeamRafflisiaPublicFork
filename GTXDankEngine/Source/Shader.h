@@ -1,7 +1,7 @@
 #ifndef SHADER_H
 #define SHADER_H
 
-#include <glad/glad.h>
+
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -12,7 +12,7 @@ std::string GetFile(const char* filename);
 
 class Shader {
 	public:
-		GLuint ID;
+		unsigned int ID;
 		Shader(const char* vertexFile, const char* fragmentFile);
 
 		void Activate();

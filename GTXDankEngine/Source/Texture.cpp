@@ -1,7 +1,8 @@
 #include "Texture.h"
 #include "utils/Log.h"
 #include <stb/stb_image.h>
-#include <glad/glad.h>
+
+
 
 // Texture Constructor
 Texture::Texture(const char* path)

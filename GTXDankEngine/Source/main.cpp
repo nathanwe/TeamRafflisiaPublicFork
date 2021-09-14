@@ -3,6 +3,8 @@
 #include"imgui_impl_opengl3.h"
 
 
+#include "Texture.h"
+
 #include "Model.h"
 #include "Profiler.h"
 #include "utils/Log.h"

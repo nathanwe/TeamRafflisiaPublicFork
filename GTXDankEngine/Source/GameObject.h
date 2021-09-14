@@ -1,8 +1,9 @@
-#ifndef GAMEOBJECT_H
-#define GAMEOBJECT_H
+#pragma once
 
 #include <string>
-#include "Model.h"
+
+// forward declearation
+class Model;
 
 class GameObject
 {
@@ -13,5 +14,5 @@ private:
 	Model *tempModelUntillItsAComponent;
 };
 
-#endif
+
 

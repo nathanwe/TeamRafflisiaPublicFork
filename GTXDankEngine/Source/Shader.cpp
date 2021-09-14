@@ -1,6 +1,9 @@
 #include "Shader.h"
 #include "utils/Log.h"
 
+
+#include <glad/glad.h>
+
 // function to extract info from shader files
 std::string GetFile(const char* filename) 
 {

@@ -2,6 +2,8 @@
 
 #include "Shader.h"
 
+#include <glad/glad.h>
+
 class Texture {
 	private:
 		GLuint ID;
