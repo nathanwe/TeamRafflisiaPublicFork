@@ -8,6 +8,9 @@
 #include "Model.h"
 #include "Profiler.h"
 #include "utils/Log.h"
+#include "GameObject.h"
+#include "BlackBoxModelComponent.h"
+#include "Enums.h"
 
 const unsigned int WIDTH = 800;
 const unsigned int HEIGHT = 800;
@@ -94,11 +97,18 @@ int main()
 
 	Camera camera(WIDTH, HEIGHT, glm::vec3(0.0f, 0.0f, 2.0f));
 
+
+	GameObject gameObject;
+	BlackBoxModelComponent blackBoxModel;
+	gameObject.AddComponent(static_cast<AbstractComponent*>(&blackBoxModel));
+	
+
 	Model model("Assets/models/scroll/scene.gltf");
 	Texture texture("Assets/models/scroll/textures/lambert4SG_baseColor.png");
 
 	texture.texUnit(shaderProgram, "diffuse0", 1);
 	texture.Bind(1);
+
 
 	// big loop
 	while (!glfwWindowShouldClose(pWindow)) 
@@ -123,7 +133,11 @@ int main()
 
 		if (drawObject)
 		{
-			model.Draw(shaderProgram, camera);
+			BlackBoxModelComponent* modelPtr = dynamic_cast<BlackBoxModelComponent*>(gameObject.getComponentPointer(ComponentType::BLACK_BOX_MODEL));
+			if (modelPtr != nullptr)
+			{
+				modelPtr->Draw(shaderProgram, camera);
+			}
 		}
 
 
