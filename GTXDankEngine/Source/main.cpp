@@ -101,7 +101,7 @@ int main()
 	GameObject gameObject;
 	BlackBoxModelComponent blackBoxModel;
 	gameObject.AddComponent(static_cast<AbstractComponent*>(&blackBoxModel));
-	
+
 
 	Model model("Assets/models/scroll/scene.gltf");
 	Texture texture("Assets/models/scroll/textures/lambert4SG_baseColor.png");
