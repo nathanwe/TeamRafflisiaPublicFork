@@ -2,9 +2,11 @@
 #include "utils/Log.h"
 
 // function to extract info from shader files
-std::string GetFile(const char* filename) {
+std::string GetFile(const char* filename) 
+{
 	std::ifstream in(filename, std::ios::binary);
-	if (in) {
+	if (in) 
+	{
 		std::string contents;
 		in.seekg(0, std::ios::end);
 		contents.resize(in.tellg());
@@ -17,7 +19,8 @@ std::string GetFile(const char* filename) {
 }
 
 // shader constructor, uses GetFile to find shader code
-Shader::Shader(const char* vertexFile, const char* fragmentFile) {
+Shader::Shader(const char* vertexFile, const char* fragmentFile) 
+{
 	std::string vertexCode = GetFile(vertexFile);
 	std::string fragmentCode = GetFile(fragmentFile);
 
@@ -50,29 +53,36 @@ Shader::Shader(const char* vertexFile, const char* fragmentFile) {
 }
 
 // use the shader program
-void Shader::Activate() {
+void Shader::Activate() 
+{
 	glUseProgram(ID);
 }
 
 // deletes shader program
-void Shader::Delete() {
+void Shader::Delete() 
+{
 	glDeleteProgram(ID);
 }
 
 // Debugging for the Shader class to make sure everything compiles nicely
-void Shader::CompileErrors(unsigned int shader, const char* type) {
+void Shader::CompileErrors(unsigned int shader, const char* type) 
+{
 	GLint hasCompiled;
 	char infoLog[1024];
-	if (type != "PROGRAM") {
+	if (type != "PROGRAM") 
+	{
 		glGetShaderiv(shader, GL_COMPILE_STATUS, &hasCompiled);
-		if (hasCompiled == GL_FALSE) {
+		if (hasCompiled == GL_FALSE) 
+		{
 			glGetShaderInfoLog(shader, 1024, NULL, infoLog);
 			LOG_ERROR("SHADER_COMPILATION_ERROR for: {0}", type);
 		}
 	}
-	else {
+	else 
+	{
 		glGetProgramiv(shader, GL_COMPILE_STATUS, &hasCompiled);
-		if (hasCompiled == GL_FALSE) {
+		if (hasCompiled == GL_FALSE) 
+		{
 			glGetProgramInfoLog(shader, 1024, NULL, infoLog);
 			LOG_ERROR("SHADER_LINKING_ERROR: {0}", type);
 		}

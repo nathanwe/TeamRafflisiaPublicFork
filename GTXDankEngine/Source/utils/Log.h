@@ -19,9 +19,9 @@
 class Log
 {
 public:
-	static std::shared_ptr<spdlog::logger>& getLogger();
-	static void init(const std::string& name = "GTXDank Engine", const std::string& format = "%^[%T] %n: %v%$");
-	static void shutdown();
+	static std::shared_ptr<spdlog::logger>& GetLogger();
+	static void Init(const std::string& name = "GTXDank Engine", const std::string& format = "%^[%T] %n: %v%$");
+	static void ShutDown();
 
 private:
 	static std::shared_ptr<spdlog::logger> mLogger;
@@ -30,10 +30,10 @@ private:
 
 
 
-#define LOG_ERROR(...)	Log::getLogger()->error(__VA_ARGS__);
-#define LOG_WARN(...)	Log::getLogger()->warn(__VA_ARGS__);
-#define LOG_INFO(...)	Log::getLogger()->info(__VA_ARGS__);
-#define LOG_TRACE(...)	Log::getLogger()->trace(__VA_ARGS__);
+#define LOG_ERROR(...)	Log::GetLogger()->error(__VA_ARGS__);
+#define LOG_WARN(...)	Log::GetLogger()->warn(__VA_ARGS__);
+#define LOG_INFO(...)	Log::GetLogger()->info(__VA_ARGS__);
+#define LOG_TRACE(...)	Log::GetLogger()->trace(__VA_ARGS__);
 
 
 
