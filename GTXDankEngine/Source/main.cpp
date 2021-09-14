@@ -94,7 +94,10 @@ int main()
 
 	Model model("Assets/models/scroll/scene.gltf");
 
+	Texture texture("Assets/models/scroll/textures/lambert4SG_baseColor.png", "", 1);
 	
+	texture.texUnit(shaderProgram, "diffuse0", 1);
+	texture.Bind();
 
 	// big loop
 	while (!glfwWindowShouldClose(pWindow)) 

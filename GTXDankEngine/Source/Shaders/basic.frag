@@ -38,7 +38,7 @@ vec4 pointLight() {
 	float specAmount = pow(max(dot(viewDirection, reflectionDirection), 0.0f), 16);
 	float specular = specAmount * specLight;
 
-	return (texture(diffuse0, texCoord) * (diffuse * inten + ambient) + texture(specular0, texCoord).r * specular * inten) * lightColor;
+	return (texture(diffuse0, texCoord) * (diffuse * inten + ambient)) +  specular * inten * lightColor;	
 }
 
 // light comes down from a large far away source, rays are basically parallel

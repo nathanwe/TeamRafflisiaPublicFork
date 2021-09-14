@@ -40,22 +40,12 @@ void Model::LoadMesh(unsigned int indMesh)
 	std::vector<float> texVec = GetFloats(JSON["accessors"][texAccInd]);
 	std::vector<glm::vec2> texUVs = GroupFloatsVec2(texVec);
 
-	//for (float position : posVec)
-		//LOG_INFO("Position: {}", position);
-
-	LOG_INFO("Pos ind: {}", posAccInd);
-	LOG_INFO("normal ind: {}", normalAccInd);
-
-	//for (glm::vec3 position : positions)
-		//LOG_INFO("Position: ({0}, {1}, {2})", position.x, position.y, position.z);
-
 	// Combine all the vertex components and also get the indices and textures
 	std::vector<Vertex> vertices = AssembleVertices(positions, normals, texUVs);
 	std::vector<GLuint> indices = GetIndices(JSON["accessors"][indAccInd]);
-	std::vector<Texture> textures = GetTextures();
 
 	// Combine the vertices, indices, and textures into a mesh
-	meshes.push_back(Mesh(vertices, indices, textures));
+	meshes.push_back(Mesh(vertices, indices));
 }
 
 void Model::TraverseNode(unsigned int nextNode, glm::mat4 matrix) 
@@ -237,55 +227,7 @@ std::vector<GLuint> Model::GetIndices(json accessor)
 	return indices;
 }
 
-std::vector<Texture> Model::GetTextures() 
-{
-	std::vector<Texture> textures;
 
-	std::string fileStr = std::string(file);
-	std::string fileDirectory = fileStr.substr(0, fileStr.find_last_of('/') + 1);
-
-	// Go over all images
-	for (unsigned int i = 0; i < JSON["images"].size(); i++) 
-	{
-		// uri of current texture
-		std::string texPath = JSON["images"][i]["uri"];
-
-		// Check if the texture has already been loaded
-		bool skip = false;
-		for (unsigned int j = 0; j < loadedTexName.size(); j++) 
-		{
-			if (loadedTexName[j] == texPath) 
-			{
-				textures.push_back(loadedTex[j]);
-				skip = true;
-				break;
-			}
-		}
-
-		// If the texture has been loaded, skip this
-		if (!skip) 
-		{
-			// Load diffuse texture
-			if (texPath.find("baseColor") != std::string::npos) 
-			{
-				Texture diffuse = Texture((fileDirectory + texPath).c_str(), "diffuse", loadedTex.size());
-				textures.push_back(diffuse);
-				loadedTex.push_back(diffuse);
-				loadedTexName.push_back(texPath);
-			}
-			// Load specular texture
-			else if (texPath.find("metallicRoughness") != std::string::npos) 
-			{
-				Texture specular = Texture((fileDirectory + texPath).c_str(), "specular", loadedTex.size());
-				textures.push_back(specular);
-				loadedTex.push_back(specular);
-				loadedTexName.push_back(texPath);
-			}
-		}
-	}
-
-	return textures;
-}
 
 std::vector<Vertex> Model::AssembleVertices(std::vector<glm::vec3> positions, std::vector<glm::vec3> normals, std::vector<glm::vec2> texUVs) 
 {
