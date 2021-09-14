@@ -4,12 +4,11 @@
 
 
 #include "Model.h"
+#include "Profiler.h"
 #include "utils/Log.h"
 
 const unsigned int WIDTH = 800;
 const unsigned int HEIGHT = 800;
-
-
 
 // triangle vertices
 //GLfloat vertices[] =
@@ -167,6 +166,8 @@ Vertex lightVertices[] = {
 //	4, 6, 7
 //};
 
+Profiler* profiler = new Profiler();
+
 int main() {
 	// begin
 	Log::init();
@@ -266,6 +267,8 @@ int main() {
 
 	Model model("Assets/models/scroll/scene.gltf");
 
+	
+
 	// big loop
 	while (!glfwWindowShouldClose(pWindow)) {
 		// draw a triangle
@@ -307,6 +310,11 @@ int main() {
 		// color editor
 		// ImGui::ColorEdit4("Color", color);
 		// Ends the window
+		// Plot some values
+		const float my_values[] = { 60, 20, 10, 40, 100, 40 };
+		ImGui::PlotLines("Frame Times", my_values, IM_ARRAYSIZE(my_values));
+		ImGui::Text("Hooray 60 FPS?");
+
 		ImGui::End();
 
 		glUniform3f(glGetUniformLocation(shaderProgram.ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
