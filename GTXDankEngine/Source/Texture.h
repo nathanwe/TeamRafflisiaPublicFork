@@ -1,21 +1,18 @@
-#ifndef TEXTURE_H
-#define TEXTURE_H
-
-#include <glad/glad.h>
-#include <stb/stb_image.h>
+#pragma once
 
 #include "Shader.h"
+
 class Texture {
-	public:
+	private:
 		GLuint ID;
-		const char* type;
-		GLuint unit;
-		Texture(const char* image, const char* texType, GLuint slot);
 
-		void texUnit(Shader& shader, const char* uniform, GLuint unit);
-		void Bind();
+	public:
+
+		Texture(const char* path);
+		inline ~Texture() { glDeleteTextures(1, &ID); }
+
+		void texUnit(Shader& shader, const char* uniform, unsigned int unit);
+		void Bind(unsigned int unit);
 		void Unbind();
-		void Delete();
+		
 };
-
-#endif

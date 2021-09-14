@@ -93,11 +93,10 @@ int main()
 	Camera camera(WIDTH, HEIGHT, glm::vec3(0.0f, 0.0f, 2.0f));
 
 	Model model("Assets/models/scroll/scene.gltf");
+	Texture texture("Assets/models/scroll/textures/lambert4SG_baseColor.png");
 
-	Texture texture("Assets/models/scroll/textures/lambert4SG_baseColor.png", "", 1);
-	
 	texture.texUnit(shaderProgram, "diffuse0", 1);
-	texture.Bind();
+	texture.Bind(1);
 
 	// big loop
 	while (!glfwWindowShouldClose(pWindow)) 

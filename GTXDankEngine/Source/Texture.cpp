@@ -1,26 +1,22 @@
 #include "Texture.h"
 #include "utils/Log.h"
+#include <stb/stb_image.h>
+#include <glad/glad.h>
 
 // Texture Constructor
-Texture::Texture(const char* image, const char* texType, GLuint slot) 
+Texture::Texture(const char* path)
 {
-	LOG_INFO("Loading texture: {0}", image);
+	LOG_INFO("Loading texture: {0}", path);
 
-	// Texture time
-	type = texType;
 	int widthImg, heightImg, numColCh;
 	stbi_set_flip_vertically_on_load(true);
-	unsigned char* bytes = stbi_load(image, &widthImg, &heightImg, &numColCh, 0);
+	unsigned char* bytes = stbi_load(path, &widthImg, &heightImg, &numColCh, 0);
 
 	if (!bytes) LOG_ERROR("Loading texture failed");
 
-	LOG_INFO("Texture data loaded", image);
-
 	// initialize texture
 	glGenTextures(1, &ID);
-	// Activate and bind the texture
-	glActiveTexture(GL_TEXTURE0 + slot);
-	unit = slot;
+
 	glBindTexture(GL_TEXTURE_2D, ID);
 
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
@@ -49,14 +45,14 @@ Texture::Texture(const char* image, const char* texType, GLuint slot)
 
 	glGenerateMipmap(GL_TEXTURE_2D);
 
-	LOG_INFO("Texture data loading succeed", image);
+	LOG_INFO("Texture data loading succeed", path);
 
 	stbi_image_free(bytes);
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 // Sets up uniform variable for shaders to read textures
-void Texture::texUnit(Shader& shader, const char* uniform, GLuint unit) 
+void Texture::texUnit(Shader& shader, const char* uniform, unsigned int unit) 
 {
 	GLuint texUni = glGetUniformLocation(shader.ID, uniform);
 	shader.Activate();
@@ -64,7 +60,7 @@ void Texture::texUnit(Shader& shader, const char* uniform, GLuint unit)
 }
 
 // Bind texture
-void Texture::Bind() 
+void Texture::Bind(unsigned int unit)
 {
 	glActiveTexture(GL_TEXTURE0 + unit);
 	glBindTexture(GL_TEXTURE_2D, ID);
@@ -74,10 +70,4 @@ void Texture::Bind()
 void Texture::Unbind() 
 {
 	glBindTexture(GL_TEXTURE_2D, 0);
-}
-
-// Delete texture
-void Texture::Delete() 
-{
-	glDeleteTextures(1, &ID);
 }
