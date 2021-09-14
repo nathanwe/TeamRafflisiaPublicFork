@@ -1,7 +1,7 @@
 #version 330 core
 out vec4 FragColor;
 
-in vec3 color;
+
 
 in vec2 texCoord;
 
@@ -38,7 +38,7 @@ vec4 pointLight() {
 	float specAmount = pow(max(dot(viewDirection, reflectionDirection), 0.0f), 16);
 	float specular = specAmount * specLight;
 
-	return (texture(diffuse0, texCoord) * (diffuse * inten + ambient) + texture(specular0, texCoord).r * specular * inten) * lightColor;
+	return (texture(diffuse0, texCoord) * (diffuse * inten + ambient)) +  specular * inten * lightColor;	
 }
 
 // light comes down from a large far away source, rays are basically parallel
@@ -89,6 +89,7 @@ vec4 spotLight() {
 }
 
 void main() {
+	//FragColor = vec4(color, 1.0);
 	FragColor = pointLight();
 	// FragColor = directionLight();
 	//FragColor = spotLight();

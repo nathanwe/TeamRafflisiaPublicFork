@@ -76,6 +76,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)Libraries\include\imgui\;$(SolutionDir)Libraries\include\spdlog\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -107,16 +108,20 @@
     <ClInclude Include="Libraries\include\imgui\imstb_rectpack.h" />
     <ClInclude Include="Libraries\include\imgui\imstb_textedit.h" />
     <ClInclude Include="Libraries\include\imgui\imstb_truetype.h" />
+    <ClInclude Include="Source\BlackBoxModelComponent.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\EBO.h" />
+    <ClInclude Include="Source\Enums.h" />
     <ClInclude Include="Source\GameObject.h" />
     <ClInclude Include="Source\Mesh.h" />
     <ClInclude Include="Source\Model.h" />
+    <ClInclude Include="Source\Profiler.h" />
     <ClInclude Include="Source\Shader.h" />
     <ClInclude Include="Source\Texture.h" />
     <ClInclude Include="Source\utils\Log.h" />
     <ClInclude Include="Source\VAO.h" />
     <ClInclude Include="Source\VBO.h" />
+    <ClInclude Include="Source\AbstractComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Libraries\include\imgui\imgui.cpp" />
@@ -126,6 +131,7 @@
     <ClCompile Include="Libraries\include\imgui\imgui_impl_opengl3.cpp" />
     <ClCompile Include="Libraries\include\imgui\imgui_tables.cpp" />
     <ClCompile Include="Libraries\include\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Source\BlackBoxModelComponent.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\EBO.cpp" />
     <ClCompile Include="Source\GameObject.cpp" />
@@ -133,12 +139,14 @@
     <ClCompile Include="Source\main.cpp" />
     <ClCompile Include="Source\Mesh.cpp" />
     <ClCompile Include="Source\Model.cpp" />
+    <ClCompile Include="Source\Profiler.cpp" />
     <ClCompile Include="Source\Shader.cpp" />
     <ClCompile Include="Source\stb.cpp" />
     <ClCompile Include="Source\Texture.cpp" />
     <ClCompile Include="Source\utils\Log.cpp" />
     <ClCompile Include="Source\VAO.cpp" />
     <ClCompile Include="Source\VBO.cpp" />
+    <ClCompile Include="Source\AbstractComponent.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

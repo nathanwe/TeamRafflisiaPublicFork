@@ -1,7 +1,6 @@
-#ifndef MODEL_H
-#define MODEL_H
-
+#pragma once
 #include <json/json.h>
+
 
 #include "Mesh.h"
 
@@ -24,9 +23,6 @@ class Model {
 		std::vector<glm::vec3> scalesMeshes;
 		std::vector<glm::mat4> matricesMeshes;
 
-		std::vector<std::string> loadedTexName;
-		std::vector<Texture> loadedTex;
-
 		void LoadMesh(unsigned int indMesh);
 
 		void TraverseNode(unsigned int nextNode, glm::mat4 matrix = glm::mat4(1.0f));
@@ -34,7 +30,6 @@ class Model {
 		std::vector<unsigned char> GetData();
 		std::vector<float> GetFloats(json accessor);
 		std::vector<GLuint> GetIndices(json accessor);
-		std::vector<Texture> GetTextures();
 
 		std::vector<Vertex> AssembleVertices(
 			std::vector<glm::vec3> positions,
@@ -47,4 +42,3 @@ class Model {
 		std::vector<glm::vec4> GroupFloatsVec4(std::vector<float> floatVec);
 };
 
-#endif
