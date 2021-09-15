@@ -7,6 +7,7 @@
 
 #include "Model.h"
 #include "Profiler.h"
+#include "FramerateController.h"
 #include "utils/Log.h"
 #include "GameObject.h"
 #include "BlackBoxModelComponent.h"
@@ -23,6 +24,8 @@ int main()
 {
 	// begin
 	Log::Init();
+	FramerateController framerateController(60);
+	framerateController.BeginTotal();
 
 	if (!glfwInit())
 	{
@@ -113,6 +116,8 @@ int main()
 	// big loop
 	while (!glfwWindowShouldClose(pWindow)) 
 	{
+		framerateController.StartFrame();
+
 		// draw a triangle
 		// pick a pretty color
 		glClearColor(0.106f, 0.204f, 0.002f, 1.0f);
@@ -174,6 +179,8 @@ int main()
 
 		// do GLFW stuff
 		glfwPollEvents();
+
+		framerateController.EndFrame();
 	}
 	// delete everything we don't need anymore
 	shaderProgram.Delete();

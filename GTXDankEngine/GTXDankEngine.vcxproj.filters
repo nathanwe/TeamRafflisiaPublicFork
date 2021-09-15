@@ -130,6 +130,12 @@
     <ClInclude Include="Source\Profiler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RunningAverage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FramerateController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Camera.cpp">
@@ -199,6 +205,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Profiler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\FramerateController.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
