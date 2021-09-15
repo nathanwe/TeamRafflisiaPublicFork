@@ -108,6 +108,8 @@
     <ClInclude Include="Libraries\include\imgui\imstb_rectpack.h" />
     <ClInclude Include="Libraries\include\imgui\imstb_textedit.h" />
     <ClInclude Include="Libraries\include\imgui\imstb_truetype.h" />
+    <ClInclude Include="RunningAverage.h" />
+    <ClInclude Include="Source\FramerateController.h" />
     <ClInclude Include="Source\BlackBoxModelComponent.h" />
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\EBO.h" />
@@ -134,6 +136,7 @@
     <ClCompile Include="Source\BlackBoxModelComponent.cpp" />
     <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\EBO.cpp" />
+    <ClCompile Include="Source\FramerateController.cpp" />
     <ClCompile Include="Source\GameObject.cpp" />
     <ClCompile Include="Source\glad.c" />
     <ClCompile Include="Source\main.cpp" />
