@@ -1,6 +1,6 @@
 #include "BlackBoxModelComponent.h"
 
-BlackBoxModelComponent::BlackBoxModelComponent() : model(Model("Assets/models/scroll/scene.gltf"))
+BlackBoxModelComponent::BlackBoxModelComponent(std::shared_ptr<Model> _model) : model(_model)// Model("Assets/models/scroll/scene.gltf"))
 {
 }
 
@@ -24,5 +24,5 @@ ComponentType BlackBoxModelComponent::GetType()
 
 void BlackBoxModelComponent::Draw(Shader shaderProgram, Camera camera)
 {
-	model.Draw(shaderProgram, camera);
+	model->Draw(shaderProgram, camera);
 }

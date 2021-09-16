@@ -8,13 +8,14 @@
 #include "Shader.h"
 #include "Camera.h"
 #include "AbstractComponent.h"
+#include <memory>
 
 
 
 class BlackBoxModelComponent : public AbstractComponent
 {
 public:
-	BlackBoxModelComponent();
+	BlackBoxModelComponent(std::shared_ptr<Model> _model);
 	~BlackBoxModelComponent();
 	void Update(std::chrono::milliseconds dt);
 	void HandleEvent(Event& event);
@@ -22,7 +23,7 @@ public:
 	void Draw(Shader shaderProgram, Camera camera);
 
 private:
-	Model model;
+	std::shared_ptr<Model> model;
 };
 
 

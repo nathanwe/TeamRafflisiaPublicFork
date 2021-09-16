@@ -12,6 +12,7 @@
 #include "GameObject.h"
 #include "BlackBoxModelComponent.h"
 #include "Enums.h"
+#include "ResourceManager.h"
 
 const unsigned int WIDTH = 800;
 const unsigned int HEIGHT = 800;
@@ -26,6 +27,9 @@ int main()
 	Log::Init();
 	FramerateController framerateController(60);
 	framerateController.BeginTotal();
+
+	ResourceManager resourceManager;
+
 
 	if (!glfwInit())
 	{
@@ -102,7 +106,7 @@ int main()
 
 
 	GameObject gameObject;
-	BlackBoxModelComponent blackBoxModel;
+	BlackBoxModelComponent blackBoxModel(resourceManager.GetBlackBoxModel("Assets/models/scroll/scene.gltf"));
 	gameObject.AddComponent(static_cast<AbstractComponent*>(&blackBoxModel));
 
 
