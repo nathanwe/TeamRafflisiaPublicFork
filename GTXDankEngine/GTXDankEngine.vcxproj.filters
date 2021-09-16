@@ -136,7 +136,11 @@
     <ClInclude Include="Source\FramerateController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="Source\ResourceManager.h">
+=======
+    <ClInclude Include="InputManager.h">
+>>>>>>> 036d730431ba93c88c09a37742ef0ae7a5b9e221
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -214,6 +218,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\ResourceManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
