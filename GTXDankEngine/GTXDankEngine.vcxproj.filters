@@ -1,227 +1,72 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Resource Files\Shaders">
-      <UniqueIdentifier>{52c38847-f4b6-46be-981e-94da2c25e118}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Resource Files\Textures">
-      <UniqueIdentifier>{6ba63ae1-136f-42c2-ad06-5933792f7306}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\utils">
-      <UniqueIdentifier>{f4707167-4efc-4b11-adeb-383dc43b6923}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\utils">
-      <UniqueIdentifier>{b6fcc36b-d0e2-4176-a46e-1fedf30e1e41}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries">
-      <UniqueIdentifier>{822eb44d-758b-4375-a5f4-1a79a09107ce}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Libraries\imgui">
-      <UniqueIdentifier>{8b9a45a1-fd00-4a39-b77a-62689ae172d1}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="Libraries\include\imgui\imgui.cpp" />
+    <ClCompile Include="Libraries\include\imgui\imgui_demo.cpp" />
+    <ClCompile Include="Libraries\include\imgui\imgui_draw.cpp" />
+    <ClCompile Include="Libraries\include\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="Libraries\include\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="Libraries\include\imgui\imgui_tables.cpp" />
+    <ClCompile Include="Libraries\include\imgui\imgui_widgets.cpp" />
+    <ClCompile Include="Source\BlackBoxModelComponent.cpp" />
+    <ClCompile Include="Source\Camera.cpp" />
+    <ClCompile Include="Source\EBO.cpp" />
+    <ClCompile Include="Source\FramerateController.cpp" />
+    <ClCompile Include="Source\GameObject.cpp" />
+    <ClCompile Include="Source\glad.c" />
+    <ClCompile Include="Source\main.cpp" />
+    <ClCompile Include="Source\Mesh.cpp" />
+    <ClCompile Include="Source\Model.cpp" />
+    <ClCompile Include="Source\Profiler.cpp" />
+    <ClCompile Include="Source\ResourceManager.cpp" />
+    <ClCompile Include="Source\Shader.cpp" />
+    <ClCompile Include="Source\stb.cpp" />
+    <ClCompile Include="Source\Texture.cpp" />
+    <ClCompile Include="Source\utils\Log.cpp" />
+    <ClCompile Include="Source\VAO.cpp" />
+    <ClCompile Include="Source\VBO.cpp" />
+    <ClCompile Include="Source\AbstractComponent.cpp" />
+    <ClCompile Include="Source\InputManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\Textures\brick.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-    <Image Include="Assets\Textures\planks.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-    <Image Include="Assets\Textures\planksSpec.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-    <Image Include="Assets\Textures\popcat.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
+    <ClInclude Include="Libraries\include\imgui\imconfig.h" />
+    <ClInclude Include="Libraries\include\imgui\imgui.h" />
+    <ClInclude Include="Libraries\include\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="Libraries\include\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="Libraries\include\imgui\imgui_impl_opengl3_loader.h" />
+    <ClInclude Include="Libraries\include\imgui\imgui_internal.h" />
+    <ClInclude Include="Libraries\include\imgui\imstb_rectpack.h" />
+    <ClInclude Include="Libraries\include\imgui\imstb_textedit.h" />
+    <ClInclude Include="Libraries\include\imgui\imstb_truetype.h" />
+    <ClInclude Include="RunningAverage.h" />
+    <ClInclude Include="Source\FramerateController.h" />
+    <ClInclude Include="Source\BlackBoxModelComponent.h" />
+    <ClInclude Include="Source\Camera.h" />
+    <ClInclude Include="Source\EBO.h" />
+    <ClInclude Include="Source\Enums.h" />
+    <ClInclude Include="Source\GameObject.h" />
+    <ClInclude Include="Source\Mesh.h" />
+    <ClInclude Include="Source\Model.h" />
+    <ClInclude Include="Source\Profiler.h" />
+    <ClInclude Include="Source\ResourceManager.h" />
+    <ClInclude Include="Source\Shader.h" />
+    <ClInclude Include="Source\Texture.h" />
+    <ClInclude Include="Source\utils\Log.h" />
+    <ClInclude Include="Source\VAO.h" />
+    <ClInclude Include="Source\VBO.h" />
+    <ClInclude Include="Source\AbstractComponent.h" />
+    <ClInclude Include="Source\InputManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\Shaders\basic.frag">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="Source\Shaders\basic.vert">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="Source\Shaders\lighting.frag">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="Source\Shaders\lighting.vert">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
+    <Image Include="Assets\Textures\brick.png" />
+    <Image Include="Assets\Textures\planks.png" />
+    <Image Include="Assets\Textures\planksSpec.png" />
+    <Image Include="Assets\Textures\popcat.png" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Source\Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EBO.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Mesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Model.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\VAO.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\VBO.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\utils\Log.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\include\imgui\imstb_truetype.h">
-      <Filter>Libraries\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\include\imgui\imconfig.h">
-      <Filter>Libraries\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\include\imgui\imgui.h">
-      <Filter>Libraries\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\include\imgui\imgui_impl_glfw.h">
-      <Filter>Libraries\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\include\imgui\imgui_impl_opengl3.h">
-      <Filter>Libraries\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\include\imgui\imgui_impl_opengl3_loader.h">
-      <Filter>Libraries\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\include\imgui\imgui_internal.h">
-      <Filter>Libraries\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\include\imgui\imstb_rectpack.h">
-      <Filter>Libraries\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Libraries\include\imgui\imstb_textedit.h">
-      <Filter>Libraries\imgui</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\GameObject.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\AbstractComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\BlackBoxModelComponent.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Enums.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Profiler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RunningAverage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\FramerateController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="Source\ResourceManager.h">
-=======
-    <ClInclude Include="InputManager.h">
->>>>>>> 036d730431ba93c88c09a37742ef0ae7a5b9e221
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Source\Camera.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EBO.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\glad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Mesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Shader.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\stb.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\VAO.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\VBO.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\utils\Log.cpp">
-      <Filter>Source Files\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Libraries\include\imgui\imgui.cpp">
-      <Filter>Libraries\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="Libraries\include\imgui\imgui_demo.cpp">
-      <Filter>Libraries\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="Libraries\include\imgui\imgui_draw.cpp">
-      <Filter>Libraries\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="Libraries\include\imgui\imgui_impl_glfw.cpp">
-      <Filter>Libraries\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="Libraries\include\imgui\imgui_impl_opengl3.cpp">
-      <Filter>Libraries\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="Libraries\include\imgui\imgui_tables.cpp">
-      <Filter>Libraries\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="Libraries\include\imgui\imgui_widgets.cpp">
-      <Filter>Libraries\imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\GameObject.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\AbstractComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\BlackBoxModelComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Profiler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\FramerateController.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\ResourceManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="InputManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <None Include="Source\Shaders\basic.frag" />
+    <None Include="Source\Shaders\basic.vert" />
+    <None Include="Source\Shaders\lighting.frag" />
+    <None Include="Source\Shaders\lighting.vert" />
   </ItemGroup>
 </Project>

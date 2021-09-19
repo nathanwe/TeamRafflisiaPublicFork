@@ -16,7 +16,7 @@ Authors: Dylan Washburne
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "../GTXDankEngine/Source/Camera.h"
+#include "Camera.h"
 
 class InputManager
 {
