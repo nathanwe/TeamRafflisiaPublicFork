@@ -1,72 +1,256 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="Libraries\include\imgui\imgui.cpp" />
-    <ClCompile Include="Libraries\include\imgui\imgui_demo.cpp" />
-    <ClCompile Include="Libraries\include\imgui\imgui_draw.cpp" />
-    <ClCompile Include="Libraries\include\imgui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="Libraries\include\imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="Libraries\include\imgui\imgui_tables.cpp" />
-    <ClCompile Include="Libraries\include\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="Source\BlackBoxModelComponent.cpp" />
-    <ClCompile Include="Source\Camera.cpp" />
-    <ClCompile Include="Source\EBO.cpp" />
-    <ClCompile Include="Source\FramerateController.cpp" />
-    <ClCompile Include="Source\GameObject.cpp" />
-    <ClCompile Include="Source\glad.c" />
-    <ClCompile Include="Source\main.cpp" />
-    <ClCompile Include="Source\Mesh.cpp" />
-    <ClCompile Include="Source\Model.cpp" />
-    <ClCompile Include="Source\Profiler.cpp" />
-    <ClCompile Include="Source\ResourceManager.cpp" />
-    <ClCompile Include="Source\Shader.cpp" />
-    <ClCompile Include="Source\stb.cpp" />
-    <ClCompile Include="Source\Texture.cpp" />
-    <ClCompile Include="Source\utils\Log.cpp" />
-    <ClCompile Include="Source\VAO.cpp" />
-    <ClCompile Include="Source\VBO.cpp" />
-    <ClCompile Include="Source\AbstractComponent.cpp" />
-    <ClCompile Include="Source\InputManager.cpp" />
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Resource Files\Shaders">
+      <UniqueIdentifier>{52c38847-f4b6-46be-981e-94da2c25e118}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Textures">
+      <UniqueIdentifier>{6ba63ae1-136f-42c2-ad06-5933792f7306}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\utils">
+      <UniqueIdentifier>{f4707167-4efc-4b11-adeb-383dc43b6923}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\utils">
+      <UniqueIdentifier>{b6fcc36b-d0e2-4176-a46e-1fedf30e1e41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries">
+      <UniqueIdentifier>{822eb44d-758b-4375-a5f4-1a79a09107ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Libraries\imgui">
+      <UniqueIdentifier>{8b9a45a1-fd00-4a39-b77a-62689ae172d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{1a239f22-450c-4dd1-8747-b3a8081ec797}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{303f769e-afdf-43fe-948d-5bc3e238d817}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems">
+      <UniqueIdentifier>{eb91a3d1-952b-43e0-8ce7-e5e05a5f28a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems">
+      <UniqueIdentifier>{8f51e4b8-8a13-46be-aea2-cf3b7ba98888}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components">
+      <UniqueIdentifier>{5fde2697-8a95-49f7-9ec1-8b8103f0f0ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components">
+      <UniqueIdentifier>{ec0b5e49-571b-42d0-84cd-fa70d9bc390c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems\GraphicsSystem">
+      <UniqueIdentifier>{71070843-7977-4454-8cd4-4b468f6cc39a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\GraphicsSystem">
+      <UniqueIdentifier>{fd8404e3-0466-46eb-8922-bceaea6e7d3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components\ModelComponent">
+      <UniqueIdentifier>{ce4434d4-a60b-48b3-86b6-59a3464baa26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components\TranformComponent">
+      <UniqueIdentifier>{407ed63e-b777-43ac-abe0-2e06a78fc7c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\ModelComponent">
+      <UniqueIdentifier>{47ac4824-200f-4a94-b3b7-78334ee02c82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\TransformComponent">
+      <UniqueIdentifier>{c7cc940f-1b78-4601-9ad5-4252aa171215}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="pch">
+      <UniqueIdentifier>{58100f30-f7f0-4803-a31b-f1808e52c055}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Libraries\include\imgui\imconfig.h" />
-    <ClInclude Include="Libraries\include\imgui\imgui.h" />
-    <ClInclude Include="Libraries\include\imgui\imgui_impl_glfw.h" />
-    <ClInclude Include="Libraries\include\imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="Libraries\include\imgui\imgui_impl_opengl3_loader.h" />
-    <ClInclude Include="Libraries\include\imgui\imgui_internal.h" />
-    <ClInclude Include="Libraries\include\imgui\imstb_rectpack.h" />
-    <ClInclude Include="Libraries\include\imgui\imstb_textedit.h" />
-    <ClInclude Include="Libraries\include\imgui\imstb_truetype.h" />
-    <ClInclude Include="RunningAverage.h" />
-    <ClInclude Include="Source\FramerateController.h" />
-    <ClInclude Include="Source\BlackBoxModelComponent.h" />
-    <ClInclude Include="Source\Camera.h" />
-    <ClInclude Include="Source\EBO.h" />
-    <ClInclude Include="Source\Enums.h" />
-    <ClInclude Include="Source\GameObject.h" />
-    <ClInclude Include="Source\Mesh.h" />
-    <ClInclude Include="Source\Model.h" />
-    <ClInclude Include="Source\Profiler.h" />
-    <ClInclude Include="Source\ResourceManager.h" />
-    <ClInclude Include="Source\Shader.h" />
-    <ClInclude Include="Source\Texture.h" />
-    <ClInclude Include="Source\utils\Log.h" />
-    <ClInclude Include="Source\VAO.h" />
-    <ClInclude Include="Source\VBO.h" />
-    <ClInclude Include="Source\AbstractComponent.h" />
-    <ClInclude Include="Source\InputManager.h" />
+    <Image Include="Assets\Textures\brick.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Assets\Textures\planks.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Assets\Textures\planksSpec.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
+    <Image Include="Assets\Textures\popcat.png">
+      <Filter>Resource Files\Textures</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Assets\Textures\brick.png" />
-    <Image Include="Assets\Textures\planks.png" />
-    <Image Include="Assets\Textures\planksSpec.png" />
-    <Image Include="Assets\Textures\popcat.png" />
+    <None Include="Source\Shaders\basic.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Source\Shaders\basic.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Source\Shaders\lighting.frag">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Source\Shaders\lighting.vert">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\Shaders\basic.frag" />
-    <None Include="Source\Shaders\basic.vert" />
-    <None Include="Source\Shaders\lighting.frag" />
-    <None Include="Source\Shaders\lighting.vert" />
+    <ClInclude Include="Source\utils\Log.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Profiler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VQS.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Engine.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\System.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\GraphicsSystem\GraphicsSystem.h">
+      <Filter>Header Files\Systems\GraphicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\ModelComponent\EBO.h">
+      <Filter>Header Files\Components\ModelComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\ModelComponent\Mesh.h">
+      <Filter>Header Files\Components\ModelComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\ModelComponent\Model.h">
+      <Filter>Header Files\Components\ModelComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\ModelComponent\VAO.h">
+      <Filter>Header Files\Components\ModelComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\ModelComponent\VBO.h">
+      <Filter>Header Files\Components\ModelComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Shader.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Texture.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Camera.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\pch\pch.h">
+      <Filter>pch</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\include\imgui\imconfig.h">
+      <Filter>Libraries\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\include\imgui\imgui.h">
+      <Filter>Libraries\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\include\imgui\imgui_impl_glfw.h">
+      <Filter>Libraries\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\include\imgui\imgui_impl_opengl3.h">
+      <Filter>Libraries\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\include\imgui\imgui_impl_opengl3_loader.h">
+      <Filter>Libraries\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\include\imgui\imgui_internal.h">
+      <Filter>Libraries\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\include\imgui\imstb_rectpack.h">
+      <Filter>Libraries\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\include\imgui\imstb_textedit.h">
+      <Filter>Libraries\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="Libraries\include\imgui\imstb_truetype.h">
+      <Filter>Libraries\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="RunningAverage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\FramerateController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResourceManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source\utils\Log.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Profiler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Engine.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\main.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\GraphicsSystem\GraphicsSystem.cpp">
+      <Filter>Source Files\Systems\GraphicsSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\ModelComponent\EBO.cpp">
+      <Filter>Source Files\Components\ModelComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\ModelComponent\Mesh.cpp">
+      <Filter>Source Files\Components\ModelComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\ModelComponent\Model.cpp">
+      <Filter>Source Files\Components\ModelComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\ModelComponent\VAO.cpp">
+      <Filter>Source Files\Components\ModelComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\ModelComponent\VBO.cpp">
+      <Filter>Source Files\Components\ModelComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Shader.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Texture.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Camera.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\pch\pch.cpp">
+      <Filter>pch</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\glad.c">
+      <Filter>Libraries</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\stb.cpp">
+      <Filter>Libraries</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\include\imgui\imgui.cpp">
+      <Filter>Libraries\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\include\imgui\imgui_demo.cpp">
+      <Filter>Libraries\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\include\imgui\imgui_draw.cpp">
+      <Filter>Libraries\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\include\imgui\imgui_impl_glfw.cpp">
+      <Filter>Libraries\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\include\imgui\imgui_impl_opengl3.cpp">
+      <Filter>Libraries\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\include\imgui\imgui_tables.cpp">
+      <Filter>Libraries\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Libraries\include\imgui\imgui_widgets.cpp">
+      <Filter>Libraries\imgui</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

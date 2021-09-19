@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "BlackBoxModelComponent.h"
 
 BlackBoxModelComponent::BlackBoxModelComponent(std::shared_ptr<Model> _model) : model(_model)// Model("Assets/models/scroll/scene.gltf"))
