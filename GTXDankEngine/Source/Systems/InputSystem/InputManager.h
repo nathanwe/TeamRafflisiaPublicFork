@@ -10,13 +10,10 @@ Project: GAM541 Final Project
 Authors: Dylan Washburne
 - End Header --------------------------------------------------------*/
 
-#ifndef INPUT_MANAGER_H
-#define INPUT_MANAGER_H
+#pragma once
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-
-#include "Camera.h"
+#include "pch.h"
+#include "../Core/Camera.h"
 
 class InputManager
 {
@@ -47,4 +44,3 @@ private:
 
 };
 
-#endif

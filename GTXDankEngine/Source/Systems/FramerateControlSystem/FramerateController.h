@@ -1,12 +1,9 @@
 #ifndef FRAMERATECONTROLLER_H
 #define FRAMERATECONTROLLER_H
 
-#include <cstdint>
-#include <chrono>
-#include <string>
-#include <thread>
+#include "pch.h"
 #include "RunningAverage.h"
-#include "utils/Log.h"
+#include "../utils/Log.h"
 
 using precision = std::chrono::nanoseconds;
 

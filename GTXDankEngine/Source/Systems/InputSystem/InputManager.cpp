@@ -9,7 +9,7 @@ Platform : Microsoft Visual Studio for Windows 10
 Project: GAM541 Final Project
 Authors: Dylan Washburne
 - End Header --------------------------------------------------------*/
-
+#include "pch.h"
 #include "InputManager.h"
 
 InputManager::InputManager() {

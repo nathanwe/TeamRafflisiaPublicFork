@@ -1,5 +1,5 @@
-#ifndef PROFILER_H
-#define PROFILER_H
+#pragma once
+#include "pch.h"
 
 class Profiler
 {
@@ -22,4 +22,3 @@ private:
 
 
 
-#endif

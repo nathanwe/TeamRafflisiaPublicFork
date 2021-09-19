@@ -1,8 +1,7 @@
 #ifndef RUNNING_AVERAGE_H
 #define RUNNING_AVERAGE_H
 
-#include <cstdint>
-#include <queue>
+#include "pch.h"
 
 template <typename T, typename TDivisor = std::uint32_t>
 class RunningAverage

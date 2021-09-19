@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "FramerateController.h"
 
 using float_seconds = std::chrono::duration<float>;

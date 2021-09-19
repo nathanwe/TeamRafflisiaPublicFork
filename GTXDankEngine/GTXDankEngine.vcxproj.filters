@@ -70,6 +70,24 @@
     <Filter Include="pch">
       <UniqueIdentifier>{58100f30-f7f0-4803-a31b-f1808e52c055}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Systems\ProfileSystem">
+      <UniqueIdentifier>{059d2f0c-954f-4836-871b-6751bc96f9d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems\FramerateControlSystem">
+      <UniqueIdentifier>{961d484c-1132-4369-bf6b-db1434790d04}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\FramerateControlSystem">
+      <UniqueIdentifier>{a5d6a727-e287-439f-b469-0b9b8267b84d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\ProfileSystem">
+      <UniqueIdentifier>{655826a7-2d22-45cc-8e97-f7123033b29c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems\InputSystem">
+      <UniqueIdentifier>{2a99729d-8391-4fcd-aa9f-9a88c6de7ede}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\InputSystem">
+      <UniqueIdentifier>{d551e3a1-2a37-40ef-b728-a322870aa267}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\brick.png">
@@ -102,9 +120,6 @@
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">
       <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Profiler.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VQS.h">
       <Filter>Header Files\utils</Filter>
@@ -172,22 +187,22 @@
     <ClInclude Include="Libraries\include\imgui\imstb_truetype.h">
       <Filter>Libraries\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="RunningAverage.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Source\Systems\FramerateControlSystem\FramerateController.h">
+      <Filter>Header Files\Systems\FramerateControlSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\FramerateController.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Source\Systems\FramerateControlSystem\RunningAverage.h">
+      <Filter>Header Files\Systems\FramerateControlSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\ResourceManager.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Source\Systems\InputSystem\InputManager.h">
+      <Filter>Header Files\Systems\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\ProfileSystem\Profiler.h">
+      <Filter>Header Files\Systems\ProfileSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
       <Filter>Source Files\utils</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Profiler.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\Engine.cpp">
       <Filter>Source Files\Core</Filter>
@@ -251,6 +266,15 @@
     </ClCompile>
     <ClCompile Include="Libraries\include\imgui\imgui_widgets.cpp">
       <Filter>Libraries\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\InputSystem\InputManager.cpp">
+      <Filter>Source Files\Systems\InputSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\FramerateControlSystem\FramerateController.cpp">
+      <Filter>Source Files\Systems\FramerateControlSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\ProfileSystem\Profiler.cpp">
+      <Filter>Source Files\Systems\ProfileSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
