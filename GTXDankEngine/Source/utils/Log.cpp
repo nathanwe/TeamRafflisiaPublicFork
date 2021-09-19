@@ -1,3 +1,4 @@
+#include "pch.h"
 #include "Log.h"
 
 std::shared_ptr<spdlog::logger> Log::mLogger;

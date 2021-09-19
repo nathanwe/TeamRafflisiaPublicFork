@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include "Model.h"
+#include "../Components/ModelComponent/Model.h"
 #include <vector>
 #include <chrono>
 
