@@ -33,6 +33,13 @@ public:
 	bool Destroy();
 
 	GLFWwindow* pWindow;
+
+private:
+	void InitGLFW();
+	void InitWindow();
+		
+
+
 private:
 	Shader* shaderProgram;
 

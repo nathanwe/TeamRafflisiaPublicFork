@@ -4,7 +4,8 @@
 
 using json = nlohmann::json;
 
-class Model {
+class Model
+{
 	public:
 		Model(const char* file);
 

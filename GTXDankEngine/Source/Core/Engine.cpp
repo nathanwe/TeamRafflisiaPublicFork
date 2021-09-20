@@ -2,6 +2,7 @@
 #include "Engine.h"
 #include "../utils/Log.h"
 
+std::vector<Entity> EntityList;
 
 bool Engine::Init()
 {

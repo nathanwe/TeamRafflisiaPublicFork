@@ -199,6 +199,12 @@
     <ClInclude Include="Source\Systems\ProfileSystem\Profiler.h">
       <Filter>Header Files\Systems\ProfileSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Components\ModelComponent\ModelComponent.h">
+      <Filter>Header Files\Components\ModelComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\ComponentPool.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -275,6 +281,12 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\ProfileSystem\Profiler.cpp">
       <Filter>Source Files\Systems\ProfileSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\ComponentPool.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\ModelComponent\ModelComponent.cpp">
+      <Filter>Source Files\Components\ModelComponent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,50 +2,68 @@
 
 #include "GraphicsSystem.h"
 #include "../../utils/Log.h"
+#include "../Components/ModelComponent/ModelComponent.h"
+#include "../Core/Engine.h"
+#include "../Core/ComponentPool.cpp"
+
+//#include <yaml/yaml.h>
 
 
+extern std::vector<Entity> EntityList;
 
-
-
-bool GraphicsSystem::Init()
+void GraphicsSystem::InitGLFW()
 {
-	if (!glfwInit())
-	{
-		LOG_ERROR("Failed to init the GLFW");
-		return false;
-	}
+	if (!glfwInit()) LOG_ERROR("Failed to init the GLFW");
+
 	LOG_INFO("GLFW init successfully");
+}
 
 
-	// tell GLFW what it doesn't know, we're using 3.3
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-	// we're also using the CORE profile, keepin' it modern
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	// make the window
+void GraphicsSystem::InitWindow()
+{
 	pWindow = glfwCreateWindow(WIDTH, HEIGHT, "GTX Dank AF Engine", NULL, NULL);
-	// Check if the window failed
+
 	if (pWindow == NULL)
 	{
 		LOG_ERROR("Failed to create the GLFW window");
 
 		glfwTerminate();
-		return -1;
 	}
 
 	LOG_INFO("GLFW window init successfully");
 
-	// tell GLFW that yes, we'd like to use the window we just made
 	glfwMakeContextCurrent(pWindow);
+}
+
+
+
+bool GraphicsSystem::Init()
+{
+	InitGLFW();
+
+	InitWindow();
 
 	// use glad
 	gladLoadGL();
+
+	// test if yaml lib is linked properly
+	YAML::Emitter out;
+	
 
 	model = new Model("Assets/models/scroll/scene.gltf" );
 	texture = new Texture("Assets/models/scroll/textures/lambert4SG_baseColor.png" );
 	shaderProgram = new Shader("Source/Shaders/basic.vert", "Source/Shaders/basic.frag" );
 
+
+	Entity a;
+	Entity entity = 1;
+	EntityList.push_back(a);
+	EntityList.push_back(entity);
+
+
+	ModelComponent modelComponent(entity, model);
+	ModelComponentPool.Add(entity, modelComponent);
 
 
 	// tell the viewport
@@ -55,14 +73,10 @@ bool GraphicsSystem::Init()
 	glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
 	lightPos = glm::vec3(0.5f, 0.5f, 0.5f);
-	glm::mat4 lightModel = glm::mat4(1.0f);
-	lightModel = glm::translate(lightModel, lightPos);
+	glm::mat4 lightModel = glm::translate(glm::mat4(1.0f), lightPos);
 
 	shaderProgram->Activate();
-	//glUniformMatrix4fv(glGetUniformLocation(shaderProgram.ID, "model"), 1, GL_FALSE, glm::value_ptr(pyramidModel));
 	glUniform4f(glGetUniformLocation(shaderProgram->ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-	glUniform3f(glGetUniformLocation(shaderProgram->ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
-
 
 	// Enable Depth Buffer
 	glEnable(GL_DEPTH_TEST);
@@ -78,6 +92,10 @@ bool GraphicsSystem::Init()
 
 void GraphicsSystem::Update(float timeStamp)
 {
+	// update camera
+	camera.Inputs(pWindow);
+	camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
+
 	// draw a triangle
 	// pick a pretty color
 	glClearColor(0.106f, 0.204f, 0.002f, 1.0f);
@@ -86,18 +104,16 @@ void GraphicsSystem::Update(float timeStamp)
 	
 	// use the shader program
 	shaderProgram->Activate();
-
-	camera.Inputs(pWindow);
-	camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
-
-	model->Draw(*shaderProgram, camera);
-
 	glUniform3f(glGetUniformLocation(shaderProgram->ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
-	
+
+
+	for (const auto& [entity, modelComponent] : ModelComponentPool.ComponentList) {
+		modelComponent.model->Draw(*shaderProgram, camera);
+	}
+
 
 	glfwSwapBuffers(pWindow);
 
-	// do GLFW stuff
 	glfwPollEvents();
 }
 

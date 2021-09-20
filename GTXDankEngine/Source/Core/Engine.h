@@ -4,7 +4,7 @@
 
 typedef uint32_t Entity;
 
-
+extern std::vector<Entity> EntityList;
 
 // Abstract base class for all components
 class Component
@@ -23,19 +23,7 @@ public:
 };
 
 
-// Abstract base class for all component managers
-template <class T>
-class ComponentManager
-{
-public:
-	virtual ~ComponentManager() {}
 
-protected:
-	// Component pointer instead or handle instead?
-	// Map Entity and component handle
-	std::unordered_map<Entity, T> ComponentList;
-
-};
 
 class Engine
 {
