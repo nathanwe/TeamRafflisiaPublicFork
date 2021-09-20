@@ -48,7 +48,7 @@ bool GraphicsSystem::Init()
 	gladLoadGL();
 
 	// test if yaml lib is linked properly
-	YAML::Emitter out;
+	//YAML::Emitter out;
 	
 
 	model = new Model("Assets/models/scroll/scene.gltf" );
