@@ -73,6 +73,9 @@
     <Filter Include="Header Files\Systems\ProfileSystem">
       <UniqueIdentifier>{059d2f0c-954f-4836-871b-6751bc96f9d7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Systems\FramerateControlSystem">
+      <UniqueIdentifier>{961d484c-1132-4369-bf6b-db1434790d04}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\Systems\FramerateControlSystem">
       <UniqueIdentifier>{a5d6a727-e287-439f-b469-0b9b8267b84d}</UniqueIdentifier>
     </Filter>
@@ -84,15 +87,6 @@
     </Filter>
     <Filter Include="Source Files\Systems\InputSystem">
       <UniqueIdentifier>{d551e3a1-2a37-40ef-b728-a322870aa267}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Core\FramerateControlSystem">
-      <UniqueIdentifier>{961d484c-1132-4369-bf6b-db1434790d04}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Systems\UISystem">
-      <UniqueIdentifier>{29aff84a-a343-444e-b8cc-45e351509757}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Systems\UISystem">
-      <UniqueIdentifier>{eedac892-c5eb-4e8f-a908-71e928764f35}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +119,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="VQS.h">
       <Filter>Header Files\utils</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\Engine.h">
@@ -190,28 +187,18 @@
     <ClInclude Include="Libraries\include\imgui\imstb_truetype.h">
       <Filter>Libraries\imgui</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Core\FramerateControlSystem\FramerateController.h">
-      <Filter>Header Files\Core\FramerateControlSystem</Filter>
+    <ClInclude Include="Source\Systems\FramerateControlSystem\FramerateController.h">
+      <Filter>Header Files\Systems\FramerateControlSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Core\FramerateControlSystem\RunningAverage.h">
-      <Filter>Header Files\Core\FramerateControlSystem</Filter>
+    <ClInclude Include="Source\Systems\FramerateControlSystem\RunningAverage.h">
+      <Filter>Header Files\Systems\FramerateControlSystem</Filter>
     </ClInclude>
     <ClInclude Include="Source\Systems\InputSystem\InputManager.h">
       <Filter>Header Files\Systems\InputSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Systems\ProfileSystem\ProfileSystem.h">
+    <ClInclude Include="Source\Systems\ProfileSystem\Profiler.h">
       <Filter>Header Files\Systems\ProfileSystem</Filter>
     </ClInclude>
-
-    <ClInclude Include="Source\Systems\UISystem\UISystem.h">
-      <Filter>Header Files\Systems\UISystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\utils\VQS.h">
-      <Filter>Header Files\utils</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\utils\Timer.h">
-      <Filter>Header Files\utils</Filter>
-
     <ClInclude Include="Source\Components\ModelComponent\ModelComponent.h">
       <Filter>Header Files\Components\ModelComponent</Filter>
     </ClInclude>
@@ -226,7 +213,6 @@
     </ClInclude>
     <ClInclude Include="Source\Core\Enums.h">
       <Filter>Header Files\Core</Filter>
-
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -299,25 +285,17 @@
     <ClCompile Include="Source\Systems\InputSystem\InputManager.cpp">
       <Filter>Source Files\Systems\InputSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Core\FramerateControlSystem\FramerateController.cpp">
+    <ClCompile Include="Source\Systems\FramerateControlSystem\FramerateController.cpp">
       <Filter>Source Files\Systems\FramerateControlSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Systems\ProfileSystem\ProfileSystem.cpp">
+    <ClCompile Include="Source\Systems\ProfileSystem\Profiler.cpp">
       <Filter>Source Files\Systems\ProfileSystem</Filter>
     </ClCompile>
-
-    <ClCompile Include="Source\Systems\UISystem\UISystem.cpp">
-      <Filter>Source Files\Systems\UISystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\utils\Timer.cpp">
-      <Filter>Source Files\utils</Filter>
-
     <ClCompile Include="Source\Core\ComponentPool.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\Components\ModelComponent\ModelComponent.cpp">
       <Filter>Source Files\Components\ModelComponent</Filter>
-
     </ClCompile>
   </ItemGroup>
 </Project>

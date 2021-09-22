@@ -24,15 +24,8 @@ bool Engine::Init()
 	if (!PhysicsSystem.Init()) LOG_ERROR("Physics System failed to init.");
 
 	*/
-	
-	
 
 	if (!GraphicsSys.Init()) LOG_ERROR("Graphics System failed to init.");
-	UISys.GrabWindow(GraphicsSys.pWindow);
-	if (!UISys.Init()) LOG_ERROR("UI System failed to init.");
-
-	Framerate = std::make_shared<FramerateController>();
-	Framerate->Init(60);
 
 	LOG_INFO("Engine init.");
 	return true;
@@ -41,12 +34,8 @@ bool Engine::Init()
 // Game loop
 void Engine::Run()
 {
-	Framerate->BeginTotal();
-	
 	while (!glfwWindowShouldClose(GraphicsSys.pWindow))
 	{
-		Framerate->StartFrame();
-
 		// Game loop format
 		// TODO: Profiler records time spent for each update()
 
@@ -57,6 +46,8 @@ void Engine::Run()
 
 		EntitySystem.Update();
 
+		FrameRateSystem.Update();
+
 		float timeStamp = FrameRateSystem.GetTimeStamp();
 
 			......
@@ -65,12 +56,8 @@ void Engine::Run()
 
 		*/
 
-
 		// hard code timestamp to 0 for now
 		GraphicsSys.Update(0);
-		
-		
-		Framerate->EndFrame();
 	}
 }
 
@@ -78,11 +65,8 @@ void Engine::Run()
 void Engine::Destroy()
 {
 	// Destroy all systems in reverse order
-	if (!UISys.Destroy()) LOG_ERROR("Graphics System failed to destory properly.");
 
 	if (!GraphicsSys.Destroy()) LOG_ERROR("Graphics System failed to destory properly.");
-
-
 
 	
 	/*
@@ -101,12 +85,6 @@ void Engine::Destroy()
 
 	*/
 
-
 	Log::ShutDown();
 
-}
-
-inline float Engine::DeltaTime()
-{
-	return this->Framerate->DeltaSeconds();
 }

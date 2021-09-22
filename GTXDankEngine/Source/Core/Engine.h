@@ -1,8 +1,6 @@
 #pragma once
 #include "pch.h"
 #include "../Systems/GraphicsSystem/GraphicsSystem.h"
-#include "../Systems/UISystem/UISystem.h"
-#include "FramerateControlSystem/FramerateController.h"
 
 typedef uint32_t Entity;
 
@@ -45,9 +43,6 @@ public:
 
 	void Destroy();
 
-	float DeltaTime();
-
-	std::shared_ptr<FramerateController> Framerate;
 
 private:
 	// List all Systems
@@ -70,8 +65,6 @@ private:
 
 	GraphicsSystem GraphicsSys;
 	*/
-
-	UISystem UISys;
 
 	GraphicsSystem GraphicsSys;
 };
