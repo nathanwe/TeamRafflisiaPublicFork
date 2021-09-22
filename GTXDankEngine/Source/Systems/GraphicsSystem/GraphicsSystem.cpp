@@ -46,7 +46,20 @@ bool GraphicsSystem::Init()
 
 	// use glad
 	gladLoadGL();
+	
+	std::vector<std::string> faces
+	{
+			"Assets/Textures/Skybox/sky/right.jpg",
+			"Assets/Textures/Skybox/sky/left.jpg",
+			"Assets/Textures/Skybox/sky/top.jpg",
+			"Assets/Textures/Skybox/sky/bottom.jpg",
+			"Assets/Textures/Skybox/sky/front.jpg",
+			"Assets/Textures/Skybox/sky/back.jpg"
+	};
 
+	skybox.Init(faces);
+	
+	
 	// test if yaml lib is linked properly
 	//YAML::Emitter out;
 	
@@ -54,6 +67,7 @@ bool GraphicsSystem::Init()
 	model = new Model("Assets/models/scroll/scene.gltf" );
 	texture = new Texture("Assets/models/scroll/textures/lambert4SG_baseColor.png" );
 	shaderProgram = new Shader("Source/Shaders/basic.vert", "Source/Shaders/basic.frag" );
+	skyboxShader = new Shader("Source/Shaders/Skybox/SkyboxBasic.vert", "Source/Shaders/Skybox/SkyboxBasic.frag");
 
 
 	Entity a;
@@ -84,6 +98,7 @@ bool GraphicsSystem::Init()
 	texture->texUnit(*shaderProgram, "diffuse0", 1);
 	texture->Bind(1);
 
+	
 	return true;
 }
 
@@ -92,15 +107,30 @@ bool GraphicsSystem::Init()
 
 void GraphicsSystem::Update(float timeStamp)
 {
-	// update camera
-	camera.Inputs(pWindow);
-	camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
-
 	// draw a triangle
 	// pick a pretty color
 	glClearColor(0.106f, 0.204f, 0.002f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+	// update camera
+	camera.Inputs(pWindow);
+	camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
+
+	// Render for graphics
+	Render();
+
+	// render UI
+	// UISystem.Update();
+
+	glfwSwapBuffers(pWindow);
+
+	glfwPollEvents();
+}
+
+
+
+void GraphicsSystem::Render()
+{
 	
 	// use the shader program
 	shaderProgram->Activate();
@@ -110,19 +140,19 @@ void GraphicsSystem::Update(float timeStamp)
 	for (const auto& [entity, modelComponent] : ModelComponentPool.ComponentList) {
 		modelComponent.model->Draw(*shaderProgram, camera);
 	}
-
-
-	glfwSwapBuffers(pWindow);
-
-	glfwPollEvents();
+	shaderProgram->Unbind();
+	
+	skybox.Render(skyboxShader, camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f));
 }
 
 
 
 bool GraphicsSystem::Destroy()
 {
+	skybox.Destroy();
 	glfwDestroyWindow(pWindow);
 	glfwTerminate();
 	return true;
 }
+
 

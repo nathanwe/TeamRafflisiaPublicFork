@@ -105,6 +105,8 @@
     <None Include="Source\Shaders\basic.vert" />
     <None Include="Source\Shaders\lighting.frag" />
     <None Include="Source\Shaders\lighting.vert" />
+    <None Include="Source\Shaders\Skybox\SkyboxBasic.frag" />
+    <None Include="Source\Shaders\Skybox\SkyboxBasic.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Libraries\include\imgui\imconfig.h" />
@@ -135,6 +137,7 @@
     <ClInclude Include="Source\Systems\FramerateControlSystem\FramerateController.h" />
     <ClInclude Include="Source\Systems\FramerateControlSystem\RunningAverage.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\GraphicsSystem.h" />
+    <ClInclude Include="Source\Systems\GraphicsSystem\Skybox\Skybox.h" />
     <ClInclude Include="Source\Systems\InputSystem\InputManager.h" />
     <ClInclude Include="Source\Systems\ProfileSystem\Profiler.h" />
     <ClInclude Include="Source\utils\Log.h" />
@@ -199,6 +202,7 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\FramerateControlSystem\FramerateController.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\GraphicsSystem.cpp" />
+    <ClCompile Include="Source\Systems\GraphicsSystem\Skybox\Skybox.cpp" />
     <ClCompile Include="Source\Systems\InputSystem\InputManager.cpp" />
     <ClCompile Include="Source\Systems\ProfileSystem\Profiler.cpp" />
     <ClCompile Include="Source\utils\Log.cpp" />

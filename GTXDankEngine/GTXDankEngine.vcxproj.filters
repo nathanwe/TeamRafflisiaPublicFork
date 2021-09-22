@@ -88,6 +88,15 @@
     <Filter Include="Source Files\Systems\InputSystem">
       <UniqueIdentifier>{d551e3a1-2a37-40ef-b728-a322870aa267}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Shaders\Skybox">
+      <UniqueIdentifier>{080e58ef-a4dc-4af7-bff2-9093e452e1df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems\GraphicsSystem\Skybox">
+      <UniqueIdentifier>{18301ecd-167d-48d6-824b-56afc235fd06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\GraphicsSystem\Skybox">
+      <UniqueIdentifier>{e68b0caa-9ccd-4b68-8df5-4322316fac56}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\brick.png">
@@ -115,6 +124,12 @@
     </None>
     <None Include="Source\Shaders\lighting.vert">
       <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Source\Shaders\Skybox\SkyboxBasic.vert">
+      <Filter>Resource Files\Shaders\Skybox</Filter>
+    </None>
+    <None Include="Source\Shaders\Skybox\SkyboxBasic.frag">
+      <Filter>Resource Files\Shaders\Skybox</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -214,6 +229,9 @@
     <ClInclude Include="Source\Core\Enums.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\GraphicsSystem\Skybox\Skybox.h">
+      <Filter>Header Files\Systems\GraphicsSystem\Skybox</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -296,6 +314,9 @@
     </ClCompile>
     <ClCompile Include="Source\Components\ModelComponent\ModelComponent.cpp">
       <Filter>Source Files\Components\ModelComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\GraphicsSystem\Skybox\Skybox.cpp">
+      <Filter>Source Files\Systems\GraphicsSystem\Skybox</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
