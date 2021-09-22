@@ -14,7 +14,6 @@ public:
 	void BeginTotal();
 	void StartFrame();
 	void EndFrame();
-	void SetFramerate(std::uint32_t targetFramerate);
 
 	std::chrono::nanoseconds DeltaTime() const;
 	std::chrono::nanoseconds SmoothedDeltaTime() const;
