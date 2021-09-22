@@ -31,8 +31,17 @@ void FramerateController::EndFrame()
 	deltaTime = end - start;
 	smoothedDeltaTime = frameAverage.Update(deltaTime);
 
-	LOG_INFO(FrameInfo());
+	//LOG_INFO(FrameInfo());
 }
+
+
+void FramerateController::SetFramerate(std::uint32_t targetFramerate)
+{
+	this->targetFramerate = targetFramerate;
+	auto frameTime = std::chrono::duration<double>(1) / targetFramerate;
+	this->targetFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(frameTime);
+}
+
 
 std::chrono::nanoseconds FramerateController::DeltaTime() const
 {
