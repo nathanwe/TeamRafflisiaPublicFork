@@ -217,7 +217,6 @@
     <ClInclude Include="Source\Systems\ProfileSystem\ProfileSystem.h">
       <Filter>Header Files\Systems\ProfileSystem</Filter>
     </ClInclude>
-
     <ClInclude Include="Source\Systems\UISystem\UISystem.h">
       <Filter>Header Files\Systems\UISystem</Filter>
     </ClInclude>
@@ -226,7 +225,7 @@
     </ClInclude>
     <ClInclude Include="Source\utils\Timer.h">
       <Filter>Header Files\utils</Filter>
-
+    </ClInclude>
     <ClInclude Include="Source\Components\ModelComponent\ModelComponent.h">
       <Filter>Header Files\Components\ModelComponent</Filter>
     </ClInclude>
@@ -241,7 +240,6 @@
     </ClInclude>
     <ClInclude Include="Source\Core\Enums.h">
       <Filter>Header Files\Core</Filter>
-
     </ClInclude>
     <ClInclude Include="Source\Systems\GraphicsSystem\Skybox\Skybox.h">
       <Filter>Header Files\Systems\GraphicsSystem\Skybox</Filter>
@@ -323,19 +321,17 @@
     <ClCompile Include="Source\Systems\ProfileSystem\ProfileSystem.cpp">
       <Filter>Source Files\Systems\ProfileSystem</Filter>
     </ClCompile>
-
     <ClCompile Include="Source\Systems\UISystem\UISystem.cpp">
       <Filter>Source Files\Systems\UISystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\utils\Timer.cpp">
       <Filter>Source Files\utils</Filter>
-
+    </ClCompile>
     <ClCompile Include="Source\Core\ComponentPool.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\Components\ModelComponent\ModelComponent.cpp">
       <Filter>Source Files\Components\ModelComponent</Filter>
-
     </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\Skybox\Skybox.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\Skybox</Filter>
