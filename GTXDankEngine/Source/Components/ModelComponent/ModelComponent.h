@@ -18,4 +18,4 @@ public:
 };
 
 
-extern ComponentPool<ModelComponent> ModelComponentPool;
+extern AbstractComponentPool<ModelComponent> ModelComponentPool;

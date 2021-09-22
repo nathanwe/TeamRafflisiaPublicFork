@@ -23,7 +23,7 @@ public:
 	bool Init();
 	void Update(std::chrono::milliseconds timeStamp = 0);
 	bool Destory();
-private:
+
 	std::map<Entity, Component*> components
 };
 //.cpp stuff in header for template reasons.

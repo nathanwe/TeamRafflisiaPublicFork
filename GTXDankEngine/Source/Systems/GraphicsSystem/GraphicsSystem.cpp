@@ -75,9 +75,7 @@ bool GraphicsSystem::Init()
 	EntityList.push_back(a);
 	EntityList.push_back(entity);
 
-
-	ModelComponent modelComponent(entity, model);
-	ModelComponentPool.Add(entity, modelComponent);
+	ModelComponentPool.Add(entity, ( model ));
 
 
 	// tell the viewport
@@ -137,8 +135,8 @@ void GraphicsSystem::Render()
 	glUniform3f(glGetUniformLocation(shaderProgram->ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
 
 
-	for (const auto& [entity, modelComponent] : ModelComponentPool.ComponentList) {
-		modelComponent.model->Draw(*shaderProgram, camera);
+	for (const auto& [entity, modelComponent] : ModelComponentPool.componentList) {
+		modelComponent->model->Draw(*shaderProgram, camera);
 	}
 	shaderProgram->Unbind();
 	

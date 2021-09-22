@@ -5,7 +5,7 @@
 
 #include "ModelComponent.h"
 
-ComponentPool<ModelComponent> ModelComponentPool;
+AbstractComponentPool<ModelComponent> ModelComponentPool;
 
 ModelComponent::ModelComponent(Entity entity, Model* m)
 	:AbstractComponent{entity}, model(m)
