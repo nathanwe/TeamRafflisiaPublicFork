@@ -93,6 +93,7 @@
     </Filter>
     <Filter Include="Source Files\Systems\GraphicsSystem\Skybox">
       <UniqueIdentifier>{e68b0caa-9ccd-4b68-8df5-4322316fac56}</UniqueIdentifier>
+	</Filter>
     <Filter Include="Header Files\Core\FramerateControlSystem">
       <UniqueIdentifier>{961d484c-1132-4369-bf6b-db1434790d04}</UniqueIdentifier>
     </Filter>
