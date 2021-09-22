@@ -6,12 +6,20 @@
 #include "../Core/Engine.h"
 #include "../Core/ComponentPool.cpp"
 
+
+#include "../UISystem/UISystem.h"
+#include "../ProfileSystem/ProfileSystem.h"
+
+extern UISystem UISys;
+extern ProfileSystem ProfileSys;
+
 //#include <yaml/yaml.h>
 
 
 extern std::vector<Entity> EntityList;
 
 void GraphicsSystem::InitGLFW()
+
 {
 	if (!glfwInit()) LOG_ERROR("Failed to init the GLFW");
 
@@ -141,6 +149,12 @@ void GraphicsSystem::Render()
 	shaderProgram->Unbind();
 	
 	skybox.Render(skyboxShader, camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f));
+
+
+	glUniform3f(glGetUniformLocation(shaderProgram->ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
+	
+	UISys.Update(0);
+
 }
 
 

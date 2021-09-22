@@ -30,6 +30,7 @@
 #include <fstream>
 #include <sstream>
 #include <iostream>
+#include <iomanip>
 #include <cerrno>
 #include <unordered_map>
 #include <cstdint>
@@ -40,3 +41,5 @@
 
 // UI
 #include "imgui.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"

@@ -3,12 +3,16 @@
 
 using float_seconds = std::chrono::duration<float>;
 
-FramerateController::FramerateController(std::uint32_t targetFramerate) :
-	targetFramerate(targetFramerate),
+FramerateController::FramerateController() :
 	frameAverage(10, precision(0)),
 	smoothedDeltaTime(precision(0)),
 	deltaTime(precision(0))
 {
+}
+
+void FramerateController::Init(std::uint32_t targetFramerate)
+{
+	this->targetFramerate = targetFramerate;
 	auto frameTime = std::chrono::duration<double>(1) / targetFramerate;
 	targetFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(frameTime);
 }
@@ -31,8 +35,17 @@ void FramerateController::EndFrame()
 	deltaTime = end - start;
 	smoothedDeltaTime = frameAverage.Update(deltaTime);
 
-	LOG_INFO(FrameInfo());
+	//LOG_INFO(FrameInfo());
 }
+
+
+void FramerateController::SetFramerate(std::uint32_t targetFramerate)
+{
+	this->targetFramerate = targetFramerate;
+	auto frameTime = std::chrono::duration<double>(1) / targetFramerate;
+	this->targetFrameTime = std::chrono::duration_cast<std::chrono::nanoseconds>(frameTime);
+}
+
 
 std::chrono::nanoseconds FramerateController::DeltaTime() const
 {

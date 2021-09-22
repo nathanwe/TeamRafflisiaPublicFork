@@ -10,10 +10,12 @@ using precision = std::chrono::nanoseconds;
 class FramerateController
 {
 public:
-	FramerateController(std::uint32_t targetFramerate);
+	FramerateController();
+	void Init(std::uint32_t targetFramerate);
 	void BeginTotal();
 	void StartFrame();
 	void EndFrame();
+	void SetFramerate(std::uint32_t targetFramerate);
 
 	std::chrono::nanoseconds DeltaTime() const;
 	std::chrono::nanoseconds SmoothedDeltaTime() const;
