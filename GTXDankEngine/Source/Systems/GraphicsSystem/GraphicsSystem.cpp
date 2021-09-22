@@ -6,12 +6,20 @@
 #include "../Core/Engine.h"
 #include "../Core/ComponentPool.cpp"
 
+
+#include "../UISystem/UISystem.h"
+#include "../ProfileSystem/ProfileSystem.h"
+
+extern UISystem UISys;
+extern ProfileSystem ProfileSys;
+
 //#include <yaml/yaml.h>
 
 
 extern std::vector<Entity> EntityList;
 
 void GraphicsSystem::InitGLFW()
+
 {
 	if (!glfwInit()) LOG_ERROR("Failed to init the GLFW");
 
@@ -110,6 +118,11 @@ void GraphicsSystem::Update(float timeStamp)
 	for (const auto& [entity, modelComponent] : ModelComponentPool.ComponentList) {
 		modelComponent.model->Draw(*shaderProgram, camera);
 	}
+
+
+	glUniform3f(glGetUniformLocation(shaderProgram->ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
+	
+	UISys.Update(0);
 
 
 	glfwSwapBuffers(pWindow);

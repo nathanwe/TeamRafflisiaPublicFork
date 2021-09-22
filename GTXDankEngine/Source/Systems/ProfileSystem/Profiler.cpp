@@ -1,8 +1,6 @@
 #include "pch.h"
 #include "Profiler.h"
 
-
-
 Profiler::Profiler() 
 {
 	frameRate = 60;
@@ -19,7 +17,8 @@ void Profiler::Pause()
 
 void Profiler::PrintStuff() 
 {
-	ImGui::LogText("%d", &frameRate);
+	frameRate = engine.Framerate->CurrentFramerate();
+	ImGui::LogText("%d", frameRate);
 }
 
 

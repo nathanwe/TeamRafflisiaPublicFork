@@ -10,7 +10,8 @@ using precision = std::chrono::nanoseconds;
 class FramerateController
 {
 public:
-	FramerateController(std::uint32_t targetFramerate);
+	FramerateController();
+	void Init(std::uint32_t targetFramerate);
 	void BeginTotal();
 	void StartFrame();
 	void EndFrame();
