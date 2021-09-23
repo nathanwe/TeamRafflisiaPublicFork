@@ -1,4 +1,7 @@
-#pragma once
+#ifndef TEXTURE_H
+#define TEXTURE_H
+
+
 
 #include "Shader.h"
 
@@ -18,3 +21,4 @@ class Texture {
 		void Unbind();
 		
 };
+#endif // !TEXTURE_H

@@ -10,7 +10,10 @@ Project: GAM541 Final Project
 Authors: Dylan Washburne
 - End Header --------------------------------------------------------*/
 
-#pragma once
+#ifndef INPUTMANAGER_H
+#define INPUTMANAGER_H
+
+
 
 #include "pch.h"
 #include "../Core/Camera.h"
@@ -43,4 +46,4 @@ private:
 	bool mPreviousMouse;
 
 };
-
+#endif // !INPUTMANAGER_H

@@ -1,4 +1,6 @@
-#pragma once
+#ifndef PROFILESYSTEM_H
+#define PROFILESYSTEM_H
+
 #include "../../Core/System.h"
 #include "../utils/Timer.h"
 
@@ -37,6 +39,6 @@ private:
 };
 
 
-
+#endif
 
 

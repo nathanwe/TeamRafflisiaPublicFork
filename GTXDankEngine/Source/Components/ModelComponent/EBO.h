@@ -1,4 +1,5 @@
-#pragma once
+#ifndef EBO_H
+#define EBO_H
 #include "pch.h"
 
 
@@ -11,3 +12,4 @@ class EBO {
 		void Unbind();
 		void Delete();
 };
+#endif

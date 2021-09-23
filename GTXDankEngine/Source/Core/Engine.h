@@ -1,4 +1,8 @@
-#pragma once
+#ifndef ENGINE_H
+#define ENGINE_H
+
+
+
 #include "pch.h"
 #include "../Systems/GraphicsSystem/GraphicsSystem.h"
 #include "../Systems/UISystem/UISystem.h"
@@ -75,4 +79,4 @@ private:
 
 	GraphicsSystem GraphicsSys;
 };
-
+#endif // !ENGINE_H

@@ -1,4 +1,7 @@
-#pragma once
+#ifndef UISYSTEM_H
+#define UISYSTEM_H
+
+
 #include "pch.h"
 
 #include "../../Core/System.h"
@@ -28,3 +31,4 @@ private:
 	GLFWwindow* openGLwindow;
 
 };
+#endif // !UISYSTEM_H

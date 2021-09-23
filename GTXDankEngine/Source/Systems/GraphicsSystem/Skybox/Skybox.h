@@ -1,4 +1,7 @@
-#pragma once
+#ifndef SKYBOX_H
+#define SKYOX_H
+
+
 
 #include "pch.h"
 #include "../Core/Shader.h"
@@ -36,3 +39,4 @@ private:
 
 
 };
+#endif // !SKYBOX_H

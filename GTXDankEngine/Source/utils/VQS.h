@@ -1,4 +1,6 @@
-#pragma once
+#ifndef VQS_H
+#define VQS_H
+
 #include <glm/glm.hpp>
 #include <glm/gtx/quaternion.hpp>
 
@@ -11,3 +13,4 @@ struct VQS
 	float scale;
 	glm::quat rotation;
 };
+#endif // !VQS_H

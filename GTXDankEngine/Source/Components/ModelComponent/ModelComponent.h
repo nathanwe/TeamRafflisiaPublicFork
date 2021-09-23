@@ -1,5 +1,8 @@
+#ifndef MODELCOMPONENT_H
+#define MODELCOMPONENT_H
 
-#pragma once
+
+
 #include "pch.h"
 #include "../Core/ComponentPool.h"
 
@@ -19,3 +22,5 @@ public:
 
 
 extern AbstractComponentPool<ModelComponent> ModelComponentPool;
+
+#endif // !MODELCOMPONENT_H

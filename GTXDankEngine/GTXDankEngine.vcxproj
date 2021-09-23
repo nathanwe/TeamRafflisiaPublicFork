@@ -126,7 +126,6 @@
     <ClInclude Include="Source\Components\ModelComponent\VBO.h" />
     <ClInclude Include="Source\Core\Camera.h" />
     <ClInclude Include="Source\Core\ComponentPool.h" />
-    <ClInclude Include="Source\Core\ComponentPool2.h" />
     <ClInclude Include="Source\Core\Engine.h" />
     <ClInclude Include="Source\Core\Enums.h" />
     <ClInclude Include="Source\Core\MemoryPool.h" />
