@@ -59,7 +59,7 @@ AbstractComponentPool<T>::AbstractComponentPool()
 template <class T>
 bool AbstractComponentPool<T>::Delete(Entity e)
 {
-
+	//TODO
 }
 
 #endif // !COMPONENTPOOL_H
