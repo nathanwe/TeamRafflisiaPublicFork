@@ -1,4 +1,6 @@
-#pragma once
+#ifndef CAMERA_H
+#define CAMERA_H
+
 #include "pch.h"
 
 #include "Shader.h"
@@ -29,4 +31,4 @@ class Camera {
 
 	
 };
-
+#endif

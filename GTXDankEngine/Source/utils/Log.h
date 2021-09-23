@@ -1,4 +1,5 @@
-#pragma once
+#ifndef LOG_H
+#define LOG_H
 
 #include "pch.h"
 
@@ -32,5 +33,5 @@ private:
 #define LOG_INFO(...)	Log::GetLogger()->info(__VA_ARGS__);
 #define LOG_TRACE(...)	Log::GetLogger()->trace(__VA_ARGS__);
 
-
+#endif
 

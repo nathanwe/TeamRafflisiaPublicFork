@@ -1,4 +1,8 @@
-#pragma once
+#ifndef SHADER_H
+#define SHADER_H
+
+
+
 
 #include "pch.h"
 
@@ -22,3 +26,4 @@ class Shader {
 		void CompileErrors(unsigned int shader, const char* type);
 };
 
+#endif

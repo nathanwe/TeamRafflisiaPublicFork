@@ -1,4 +1,7 @@
-#pragma once
+#ifndef TIMER_H
+#define TIMER_H
+
+
 
 class Timer 
 {
@@ -14,3 +17,4 @@ private:
 	bool isTimerStopped;
 
 };
+#endif // !TIMER_H

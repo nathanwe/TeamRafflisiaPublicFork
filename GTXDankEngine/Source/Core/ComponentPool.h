@@ -1,4 +1,3 @@
-
 #ifndef COMPONENTPOOL_H
 #define COMPONENTPOOL_H
 

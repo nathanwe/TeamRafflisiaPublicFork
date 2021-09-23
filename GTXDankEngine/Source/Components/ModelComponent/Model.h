@@ -1,4 +1,7 @@
-#pragma once
+#ifndef MODEL_H
+#define MODEL_H
+
+
 
 #include "Mesh.h"
 
@@ -40,4 +43,4 @@ class Model
 		std::vector<glm::vec3> GroupFloatsVec3(std::vector<float> floatVec);
 		std::vector<glm::vec4> GroupFloatsVec4(std::vector<float> floatVec);
 };
-
+#endif // !MODEL_H

@@ -1,4 +1,7 @@
-#pragma once
+#ifndef GRAPHICSSYSTEM_H
+#define GRAPHICSSYSTEM_H
+
+
 
 
 #include "pch.h"
@@ -59,3 +62,4 @@ private:
 
 	glm::vec3 lightPos;	
 };
+#endif // !GRAPHICSSYSTEM_H

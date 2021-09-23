@@ -1,4 +1,7 @@
-#pragma once
+#ifndef VBO_H
+#define VBO_H
+
+
 
 #include "pch.h"
 
@@ -17,4 +20,4 @@ class VBO {
 		void Unbind();
 		void Delete();
 };
-
+#endif // !VBO_H
