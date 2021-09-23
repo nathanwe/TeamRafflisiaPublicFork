@@ -18,11 +18,13 @@ public:
 	};
 	void* GetFreeBlock();
 	void FreeUsedBlock(void* blockToFree);
+	int getMemoryGotten() { return memoryGotten; }
 
 
 private:
 	ErrorEnum AquireNewPage();
 	std::list<Block*> freeBlocks;
+	int memoryGotten = 0;
 };
 //.cpp file stuff that needs to be in the header for template reasons
 
@@ -65,6 +67,7 @@ inline ErrorEnum MemoryPool<blockSize, blocksPerPage>::AquireNewPage()
 		{
 			freeBlocks.push_back(firstBlock + i);
 		}
+		memoryGotten += blockSize * blocksPerPage;
 		return ErrorEnum::SUCCESS;
 	}
 	catch (std::bad_alloc&)

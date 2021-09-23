@@ -24,6 +24,11 @@ public:
 
 	bool Delete(Entity e);
 
+	int getUsedMemory()
+	{
+		return memory.getMemoryGotten();
+	}
+
 
 	// AbstractComponent pointer instead or handle instead?
 	// Map Entity and component handle
