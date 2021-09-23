@@ -18,18 +18,25 @@ Authors: Dylan Washburne
 #include "pch.h"
 #include "../Core/Camera.h"
 
+#include <thread>
+#include<mutex>
+#include<condition_variable>
+
 class InputManager
 {
 public:
-	InputManager();
+	InputManager() = default;
 	~InputManager();
 
-	void UpdateCamera(Camera camera, GLFWwindow* pWindow);
+	bool Init(GLFWwindow* pWindow);
+
+	void Update();
+	void UpdateCamera(Camera camera, GLFWwindow* pWindow, InputManager* im);
 	bool IsKeyPressed(unsigned int KeyScanCode);
 	bool IsKeyTriggered(unsigned int KeyScanCode);
 	bool IsKeyReleased(unsigned int KeyScanCode);
 
-	int mMouseX, mMouseY;
+	double mouseX, mouseY;
 	bool IsMousePressed();
 	bool IsMouseTriggered();
 	bool IsMouseReleased();
@@ -38,12 +45,34 @@ public:
 
 
 private:
-private:
-	unsigned int mCurrentState[512];
-	unsigned int mPreviousState[512];
+	static const int input_buffer_size = 512;
 
-	bool mCurrentMouse;
-	bool mPreviousMouse;
+private:
+	bool mCurrentState[input_buffer_size];
+	bool mPreviousState[input_buffer_size];
+
+	bool mCurrentStateThread[input_buffer_size];
+	// unsigned int mPreviousStateThread[input_buffer_size];
+
+
+	struct mouseButton {
+		bool left = false;
+		bool middle = false;
+		bool right = false;
+	};
+
+	mouseButton mCurrentMouse, mPreviousMouse, mMouseThread;
+
+	double mouseXThread, mouseYThread;
+	double mouseXPrev, mouseYPrev;
+
+	std::thread updateThread;
+	std::mutex mtx;
+	std::condition_variable cv;
+
+	bool threadRunning = true;
+
+	void UpdateThread(GLFWwindow* pWindow);
 
 };
 #endif // !INPUTMANAGER_H

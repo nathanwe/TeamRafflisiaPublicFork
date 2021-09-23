@@ -30,6 +30,7 @@ bool Engine::Init()
 	if (!GraphicsSys.Init()) LOG_ERROR("Graphics System failed to init.");
 	UISys.GrabWindow(GraphicsSys.pWindow);
 	if (!UISys.Init()) LOG_ERROR("UI System failed to init.");
+	if (!InputSys.Init(GraphicsSys.pWindow)) LOG_ERROR("Input System failed to init.");
 
 	Framerate = std::make_shared<FramerateController>();
 	Framerate->Init(60);
@@ -46,6 +47,7 @@ void Engine::Run()
 	while (!glfwWindowShouldClose(GraphicsSys.pWindow))
 	{
 		Framerate->StartFrame();
+		InputSys.Update();
 
 		// Game loop format
 		// TODO: Profiler records time spent for each update()

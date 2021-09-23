@@ -12,17 +12,75 @@ Authors: Dylan Washburne
 #include "pch.h"
 #include "InputManager.h"
 
-InputManager::InputManager() {
-	memset(mCurrentState, 0, 512 * sizeof(unsigned int));
-	memset(mPreviousState, 0, 512 * sizeof(unsigned int));
-	mCurrentMouse = mPreviousMouse = false;
+
+
+bool InputManager::Init(GLFWwindow* pWindow) {
+	memset(mCurrentState, 0, 512 * sizeof(bool));
+	memset(mPreviousState, 0, 512 * sizeof(bool));
+	memset(mCurrentStateThread, 0, 512 * sizeof(bool));
+
+	mouseX = mouseY = mouseXPrev = mouseYPrev = 0.0f;
+
+	updateThread = std::thread(&InputManager::UpdateThread, this, pWindow);
+	return true;
 }
 
 InputManager::~InputManager() {
-	//
+	threadRunning = false;
+	std::unique_lock<std::mutex> inputUpdateLock(mtx);
+	cv.notify_one();
+	updateThread.join();
 }
 
-void InputManager::UpdateCamera(Camera camera, GLFWwindow* pWindow) {
+void InputManager::Update() 
+{
+
+	mouseXPrev = mouseX;
+	mouseYPrev = mouseY;
+	mouseX = mouseXThread;
+	mouseY = mouseYThread;
+
+	mPreviousMouse = mCurrentMouse;
+	mCurrentMouse = mMouseThread;
+
+	memcpy(mPreviousState, mCurrentState, input_buffer_size * sizeof(bool));
+	std::swap(mCurrentState, mCurrentStateThread);
+
+	std::unique_lock<std::mutex> inputUpdateLock(mtx);
+	cv.notify_one();
+
+}
+
+
+
+void InputManager::UpdateThread(GLFWwindow* pWindow)
+{
+	// glfwSetKeyCallback(pWindow, KeyCallback);
+
+	while (threadRunning) {
+
+		for (int i = 0; i < input_buffer_size; i++) {
+			if (glfwGetKey(pWindow, i) == GLFW_PRESS) {
+				mCurrentStateThread[i] = 1;
+			}
+			else if (glfwGetKey(pWindow, i) == GLFW_RELEASE) {
+				mCurrentStateThread[i] = 0;
+			}
+		}
+
+		glfwGetCursorPos(pWindow, &mouseXThread, &mouseYThread);
+
+		mMouseThread.left = (glfwGetMouseButton(pWindow, GLFW_MOUSE_BUTTON_LEFT) == GLFW_PRESS);
+		mMouseThread.middle = (glfwGetMouseButton(pWindow, GLFW_MOUSE_BUTTON_MIDDLE) == GLFW_PRESS);
+		mMouseThread.right = (glfwGetMouseButton(pWindow, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS);
+
+		std::unique_lock<std::mutex> inputUpdateLock(mtx);
+		cv.wait(inputUpdateLock);
+
+	}
+}
+
+void InputManager::UpdateCamera(Camera camera, GLFWwindow* pWindow, InputManager* im) {
 	camera.Inputs(pWindow);
 }
 
@@ -54,13 +112,13 @@ bool InputManager::IsKeyReleased(unsigned int KeyScanCode) {
 }
 
 bool InputManager::IsMousePressed() {
-	return mCurrentMouse;
+	return mCurrentMouse.left;
 }
 
 bool InputManager::IsMouseTriggered() {
-	return (mCurrentMouse && !mPreviousMouse);
+	return (mCurrentMouse.left && !mPreviousMouse.left);
 }
 
 bool InputManager::IsMouseReleased() {
-	return (!mCurrentMouse && mPreviousMouse);
+	return (!mCurrentMouse.left && mPreviousMouse.left);
 }

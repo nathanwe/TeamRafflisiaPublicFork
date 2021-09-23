@@ -7,6 +7,7 @@
 #include "../Systems/GraphicsSystem/GraphicsSystem.h"
 #include "../Systems/UISystem/UISystem.h"
 #include "FramerateControlSystem/FramerateController.h"
+#include "../Systems/InputSystem/InputManager.h"
 
 typedef uint32_t Entity;
 
@@ -78,5 +79,7 @@ private:
 	UISystem UISys;
 
 	GraphicsSystem GraphicsSys;
+
+	InputManager InputSys;
 };
 #endif // !ENGINE_H
