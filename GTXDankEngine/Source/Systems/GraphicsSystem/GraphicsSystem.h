@@ -10,8 +10,8 @@
 #include "Skybox/Skybox.h"
 
 
-const unsigned int WIDTH = 800;
-const unsigned int HEIGHT = 800;
+const unsigned int WIDTH = 1200;
+const unsigned int HEIGHT = 1200;
 
 
 
