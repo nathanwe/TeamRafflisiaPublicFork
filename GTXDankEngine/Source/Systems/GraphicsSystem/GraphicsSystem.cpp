@@ -71,9 +71,19 @@ bool GraphicsSystem::Init()
 	// test if yaml lib is linked properly
 	//YAML::Emitter out;
 	
-
+	// scroll
 	model = new Model("Assets/models/scroll/scene.gltf" );
 	texture = new Texture("Assets/models/scroll/textures/lambert4SG_baseColor.png" );
+	
+	// map
+	//model = new Model("Assets/models/map/scene.gltf");
+	//texture = new Texture("Assets/models/map/textures/Material.001_baseColor.png");
+
+	// grindstone
+	//model = new Model("Assets/models/grindstone/scene.gltf");
+	//texture = new Texture("Assets/models/grindstone/textures/Main_baseColor.jpeg");
+
+
 	shaderProgram = new Shader("Source/Shaders/basic.vert", "Source/Shaders/basic.frag" );
 	skyboxShader = new Shader("Source/Shaders/Skybox/SkyboxBasic.vert", "Source/Shaders/Skybox/SkyboxBasic.frag");
 
@@ -126,7 +136,7 @@ void GraphicsSystem::Update(float timeStamp)
 	Render();
 
 	// render UI
-	// UISystem.Update();
+	UISys.Update(0);
 
 	glfwSwapBuffers(pWindow);
 
@@ -149,11 +159,6 @@ void GraphicsSystem::Render()
 	shaderProgram->Unbind();
 	
 	skybox.Render(skyboxShader, camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f));
-
-
-	glUniform3f(glGetUniformLocation(shaderProgram->ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
-	
-	UISys.Update(0);
 
 }
 

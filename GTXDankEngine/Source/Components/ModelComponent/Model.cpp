@@ -264,11 +264,12 @@ std::vector<glm::vec3> Model::GroupFloatsVec3(std::vector<float> floatVec)
 
 	return vectors;
 }
+
 std::vector<glm::vec4> Model::GroupFloatsVec4(std::vector<float> floatVec) 
 {
 	std::vector<glm::vec4> vectors;
 
-	for (int i = 0; i < floatVec.size(); i) 
+	for (int i = 0; i < floatVec.size(); i+=4) 
 		vectors.push_back(glm::vec4(floatVec[i], floatVec[i+1], floatVec[i+2], floatVec[i+3]));
 
 	return vectors;

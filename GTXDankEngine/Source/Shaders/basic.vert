@@ -26,7 +26,7 @@ void main() {
 
 	normal = aNormal;
 	//texCoord = mat2(0.0, -1.0, 1.0, 0.0) * aTex;
-	texCoord =  aTex;
+	texCoord =  vec2(aTex.x, -aTex.y);
 
 	gl_Position = camMatrix * vec4(currentPos, 1.0);
 
