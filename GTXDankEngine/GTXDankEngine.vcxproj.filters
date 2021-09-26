@@ -119,24 +119,6 @@
     </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Source\Shaders\basic.frag">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="Source\Shaders\basic.vert">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="Source\Shaders\lighting.frag">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="Source\Shaders\lighting.vert">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="Source\Shaders\Skybox\SkyboxBasic.vert">
-      <Filter>Resource Files\Shaders\Skybox</Filter>
-    </None>
-    <None Include="Source\Shaders\Skybox\SkyboxBasic.frag">
-      <Filter>Resource Files\Shaders\Skybox</Filter>
-    </None>
     <None Include="Skybox.shader">
       <Filter>Resource Files\Shaders\Skybox</Filter>
     </None>

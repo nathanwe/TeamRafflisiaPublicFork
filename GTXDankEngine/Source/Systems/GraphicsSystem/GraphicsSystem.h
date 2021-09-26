@@ -53,8 +53,8 @@ private:
 
 	Camera camera{ WIDTH, HEIGHT, glm::vec3(0.0f, 0.0f, 8.0f) };
 	
-	Model *model;
-	Texture *texture;
+	//Model *model;
+	//Texture *texture;
 
 	glm::vec3 lightPos;	
 };

@@ -102,13 +102,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Skybox.shader" />
-    <None Include="Source\Shaders\basic.frag" />
     <None Include="Source\Shaders\basic.shader" />
-    <None Include="Source\Shaders\basic.vert" />
-    <None Include="Source\Shaders\lighting.frag" />
-    <None Include="Source\Shaders\lighting.vert" />
-    <None Include="Source\Shaders\Skybox\SkyboxBasic.frag" />
-    <None Include="Source\Shaders\Skybox\SkyboxBasic.vert" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Libraries\include\imgui\imconfig.h" />

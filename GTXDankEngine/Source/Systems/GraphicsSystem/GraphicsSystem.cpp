@@ -57,6 +57,9 @@ bool GraphicsSystem::Init()
 
 	// Enable Depth Buffer
 	glEnable(GL_DEPTH_TEST);
+
+	// tell the viewport
+	glViewport(0, 0, WIDTH, HEIGHT);
 	
 	std::vector<std::string> faces
 	{
@@ -70,32 +73,29 @@ bool GraphicsSystem::Init()
 
 	skybox.Init(faces);
 	
-
-	//shaderProgram = new Shader("Source/Shaders/basic.vert", "Source/Shaders/basic.frag");
 	shaderProgram = new Shader("Source/Shaders/basic.shader");
 	skyboxShader = new Shader("Source/Shaders/Skybox/Skybox.shader");
 	
 	// test if yaml lib is linked properly
 	//YAML::Emitter out;
 	
+
 	//
-	model = new Model("Assets/models/PokemonBall/model.obj" );
-	texture = new Texture("Assets/models/PokemonBall/albedo.jpg" );
+	Model* model = new Model("Assets/models/PokemonBall/model.obj" );
+	Texture* texture = new Texture("Assets/models/PokemonBall/albedo.jpg" );
 	
 
-	//Entity a;
-	//Entity entity = 1;
-	//EntityList.push_back(a);
-	//EntityList.push_back(entity);
+	// Add model component
+	Entity a;
+	Entity entity = 1;
+	EntityList.push_back(a);
+	EntityList.push_back(entity);
 
-	//ModelComponentPool.Add(entity, ( model ));
-
-
-	// tell the viewport
-	glViewport(0, 0, WIDTH, HEIGHT);
+	ModelComponentPool.Add(entity, ( model ));
 
 
-	lightPos = glm::vec3(0.5f, 0.5f, 0.5f);
+	// Pass uniforms to shader
+	lightPos = glm::vec3(1.0f, 1.0f, 1.0f);
 
 	shaderProgram->setVec3("lightColor", glm::vec3(1.0f));
 	shaderProgram->setTexture("diffuse0", texture->GetID());
@@ -138,14 +138,10 @@ void GraphicsSystem::Render()
 
 	shaderProgram->setMat4("view", camera.GetViewMat());
 	shaderProgram->setMat4("projection", camera.GetProjMat(45.0f, 0.1f, 300.0f));
-
-	model->Draw(*shaderProgram);
-
-	/*
-	for (const auto& [entity, modelComponent] : ModelComponentPool.componentList) {
-		modelComponent->model->Draw(*shaderProgram, camera);
-	}*/
 	
+	for (const auto& [entity, modelComponent] : ModelComponentPool.componentList) {
+		modelComponent->model->Draw(*shaderProgram);
+	}
 	
 	skybox.Render(skyboxShader, camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f));
 }
