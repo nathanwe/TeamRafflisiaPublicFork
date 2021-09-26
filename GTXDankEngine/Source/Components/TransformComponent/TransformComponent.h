@@ -1,24 +1,21 @@
-#pragma once
+#ifndef TRANS_COMPONENT_H
+#define TRANS_COMPONENT_H
 
-#include "Engine.h"
-#include "VQS.h"
+#include "pch.h"
+#include "../utils/VQS.h"
+#include "../Core/ComponentPool.h"
 
-class TransformComponent : public Component
+class TransformComponent : public AbstractComponent
 {
 public:
-	TransformComponent(Entity e, VQS transform) : Component(e), transform(transform) {}
-	~TransformComponent() {}
+	TransformComponent(Entity e, VQS* transform);
 
-	VQS transform;	
+	VQS* transform;	
 };
 
+extern AbstractComponentPool<TransformComponent> TransformComponentPool;
+
+#endif 
 
 
-class TransformComponentMgr : public ComponentManager<TransformComponent>
-{
-public:
-	// Add()
-	// Delete()
-	// Get();
-};
 

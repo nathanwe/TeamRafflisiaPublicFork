@@ -58,9 +58,6 @@
     <Filter Include="Header Files\Components\ModelComponent">
       <UniqueIdentifier>{ce4434d4-a60b-48b3-86b6-59a3464baa26}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Components\TranformComponent">
-      <UniqueIdentifier>{407ed63e-b777-43ac-abe0-2e06a78fc7c7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Components\ModelComponent">
       <UniqueIdentifier>{47ac4824-200f-4a94-b3b7-78334ee02c82}</UniqueIdentifier>
     </Filter>
@@ -102,6 +99,9 @@
     </Filter>
     <Filter Include="Header Files\Systems\UISystem">
       <UniqueIdentifier>{eedac892-c5eb-4e8f-a908-71e928764f35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components\TransformComponent">
+      <UniqueIdentifier>{2b4889c9-fcd9-4b3b-8d86-a6696199246e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +226,9 @@
     <ClInclude Include="Source\Core\Model.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Components\TransformComponent\TransformComponent.h">
+      <Filter>Header Files\Components\TransformComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -314,6 +317,12 @@
     </ClCompile>
     <ClCompile Include="Source\Core\Model.cpp">
       <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\utils\VQS.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\TransformComponent\TransformComponent.cpp">
+      <Filter>Source Files\Components\TransformComponent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

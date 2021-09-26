@@ -115,6 +115,7 @@
     <ClInclude Include="Libraries\include\imgui\imstb_textedit.h" />
     <ClInclude Include="Libraries\include\imgui\imstb_truetype.h" />
     <ClInclude Include="Source\Components\ModelComponent\ModelComponent.h" />
+    <ClInclude Include="Source\Components\TransformComponent\TransformComponent.h" />
     <ClInclude Include="Source\Core\Camera.h" />
     <ClInclude Include="Source\Core\ComponentPool.h" />
     <ClInclude Include="Source\Core\Engine.h" />
@@ -169,6 +170,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\Components\ModelComponent\ModelComponent.cpp" />
+    <ClCompile Include="Source\Components\TransformComponent\TransformComponent.cpp" />
     <ClCompile Include="Source\Core\Camera.cpp" />
     <ClCompile Include="Source\Core\ComponentPool.cpp" />
     <ClCompile Include="Source\Core\Engine.cpp" />
@@ -203,6 +205,7 @@
     <ClCompile Include="Source\Systems\UISystem\UISystem.cpp" />
     <ClCompile Include="Source\utils\Log.cpp" />
     <ClCompile Include="Source\utils\Timer.cpp" />
+    <ClCompile Include="Source\utils\VQS.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

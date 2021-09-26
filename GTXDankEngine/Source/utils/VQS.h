@@ -1,16 +1,28 @@
 #ifndef VQS_H
 #define VQS_H
 
-#include <glm/glm.hpp>
-#include <glm/gtx/quaternion.hpp>
+#include "pch.h"
 
-struct VQS
+
+class VQS
 {
-	// quaternion get normalized automatically
-	VQS(glm::vec3 t, float s, glm::quat r) : translation(t), scale(s), rotation(glm::normalize(r)) {}
-
-	glm::vec3 translation;
+public:
+	glm::vec3 position;
 	float scale;
 	glm::quat rotation;
+
+
+	// Default constructor
+	// position: origin, scale: 1.0, rotation: zero rotation
+	VQS(void) : position(glm::vec3(0.0)), scale(1.0), rotation(glm::quat(1.0, 0.0, 0.0, 0.0)) {}
+
+	// quaternion get normalized automatically
+	VQS(glm::vec3 v, glm::quat q, float s) : position(v), scale(s), rotation(glm::normalize(q)) {}
+
+	// quaternion will be set to zero rotation
+	VQS(glm::vec3 v, float s) : position(v), scale(s), rotation(glm::quat(1.0, 0.0, 0.0, 0.0)) {}
+
+
+	glm::mat4 Matrix(void) const;
 };
 #endif // !VQS_H

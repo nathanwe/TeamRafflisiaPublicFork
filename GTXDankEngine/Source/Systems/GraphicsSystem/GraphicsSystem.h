@@ -1,14 +1,10 @@
 #ifndef GRAPHICSSYSTEM_H
 #define GRAPHICSSYSTEM_H
 
-
-
-
 #include "pch.h"
-#include "../../Core/Shader.h"
+
 #include "../../Core/Camera.h"
 #include "../../Core/Model.h"
-#include "../../Core/Texture.h"
 #include "../../Core/System.h"
 #include "Skybox/Skybox.h"
 
@@ -52,9 +48,6 @@ private:
 	Skybox skybox;
 
 	Camera camera{ WIDTH, HEIGHT, glm::vec3(0.0f, 0.0f, 8.0f) };
-	
-	//Model *model;
-	//Texture *texture;
 
 	glm::vec3 lightPos;	
 };

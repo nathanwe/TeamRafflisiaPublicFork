@@ -1,14 +1,14 @@
 #include "pch.h"
 
 #include "GraphicsSystem.h"
-#include "../../utils/Log.h"
-#include "../Components/ModelComponent/ModelComponent.h"
-#include "../Core/Engine.h"
-#include "../Core/ComponentPool.cpp"
 
+#include "../Components/ModelComponent/ModelComponent.h"
+#include "../Components/TransformComponent/TransformComponent.h"
 
 #include "../UISystem/UISystem.h"
 #include "../ProfileSystem/ProfileSystem.h"
+
+#include "../../Core/Texture.h"
 
 extern UISystem UISys;
 extern ProfileSystem ProfileSys;
@@ -78,30 +78,27 @@ bool GraphicsSystem::Init()
 	
 	// test if yaml lib is linked properly
 	//YAML::Emitter out;
-	
 
-	//
-	Model* model = new Model("Assets/models/PokemonBall/model.obj" );
-	Texture* texture = new Texture("Assets/models/PokemonBall/albedo.jpg" );
-	
-
-	// Add model component
+	// new entity
 	Entity a;
-	Entity entity = 1;
+	Entity pokemonBall = 1;
 	EntityList.push_back(a);
-	EntityList.push_back(entity);
-
-	ModelComponentPool.Add(entity, ( model ));
-
+	EntityList.push_back(pokemonBall);
+	
+	// model component
+	Model* pokemonBallModel = new Model("Assets/models/PokemonBall/model.obj" );
+	Texture* pokemonBallDiffuse = new Texture("Assets/models/PokemonBall/albedo.jpg" );
+	ModelComponentPool.Add(pokemonBall, (pokemonBallModel));
+	
+	// Transform component
+	VQS* pokemonBallTransform = new VQS(glm::vec3(0.0), 0.01f);
+	TransformComponentPool.Add(pokemonBall, (pokemonBallTransform));
 
 	// Pass uniforms to shader
 	lightPos = glm::vec3(1.0f, 1.0f, 1.0f);
 
 	shaderProgram->setVec3("lightColor", glm::vec3(1.0f));
-	shaderProgram->setTexture("diffuse0", texture->GetID());
-	
-	glm::mat4 modelMat = glm::scale(glm::mat4(1.0f), glm::vec3(0.01));
-	shaderProgram->setMat4("model", modelMat);
+	shaderProgram->setTexture("diffuse0", pokemonBallDiffuse->GetID());
 
 	return true;
 }
@@ -139,8 +136,16 @@ void GraphicsSystem::Render()
 	shaderProgram->setMat4("view", camera.GetViewMat());
 	shaderProgram->setMat4("projection", camera.GetProjMat(45.0f, 0.1f, 300.0f));
 	
-	for (const auto& [entity, modelComponent] : ModelComponentPool.componentList) {
-		modelComponent->model->Draw(*shaderProgram);
+	for (const auto& [modelEntity, modelComponent] : ModelComponentPool.componentList) {
+
+		for (const auto& [transEntity, transformComponent] : TransformComponentPool.componentList)
+		{
+			if (modelEntity == transEntity)
+			{
+				shaderProgram->setMat4("model", transformComponent->transform->Matrix());
+				modelComponent->model->Draw(*shaderProgram);
+			}
+		}
 	}
 	
 	skybox.Render(skyboxShader, camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f));

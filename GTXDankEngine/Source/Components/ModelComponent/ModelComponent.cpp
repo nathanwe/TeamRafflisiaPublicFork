@@ -1,7 +1,5 @@
-#pragma once
 #include "pch.h"
 #include "../utils/Log.h"
-
 
 #include "ModelComponent.h"
 

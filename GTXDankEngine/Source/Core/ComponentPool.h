@@ -29,6 +29,7 @@ public:
 	}
 
 
+
 	// AbstractComponent pointer instead or handle instead?
 	// Map Entity and component handle
 	std::unordered_map<Entity, T*> componentList;
