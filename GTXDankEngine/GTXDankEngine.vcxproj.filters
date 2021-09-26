@@ -93,7 +93,7 @@
     </Filter>
     <Filter Include="Source Files\Systems\GraphicsSystem\Skybox">
       <UniqueIdentifier>{e68b0caa-9ccd-4b68-8df5-4322316fac56}</UniqueIdentifier>
-	</Filter>
+    </Filter>
     <Filter Include="Header Files\Core\FramerateControlSystem">
       <UniqueIdentifier>{961d484c-1132-4369-bf6b-db1434790d04}</UniqueIdentifier>
     </Filter>
@@ -137,6 +137,12 @@
     <None Include="Source\Shaders\Skybox\SkyboxBasic.frag">
       <Filter>Resource Files\Shaders\Skybox</Filter>
     </None>
+    <None Include="Skybox.shader">
+      <Filter>Resource Files\Shaders\Skybox</Filter>
+    </None>
+    <None Include="Source\Shaders\basic.shader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">
@@ -150,21 +156,6 @@
     </ClInclude>
     <ClInclude Include="Source\Systems\GraphicsSystem\GraphicsSystem.h">
       <Filter>Header Files\Systems\GraphicsSystem</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Components\ModelComponent\EBO.h">
-      <Filter>Header Files\Components\ModelComponent</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Components\ModelComponent\Mesh.h">
-      <Filter>Header Files\Components\ModelComponent</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Components\ModelComponent\Model.h">
-      <Filter>Header Files\Components\ModelComponent</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Components\ModelComponent\VAO.h">
-      <Filter>Header Files\Components\ModelComponent</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Components\ModelComponent\VBO.h">
-      <Filter>Header Files\Components\ModelComponent</Filter>
     </ClInclude>
     <ClInclude Include="Source\Core\Shader.h">
       <Filter>Header Files\Core</Filter>
@@ -232,9 +223,6 @@
     <ClInclude Include="Source\Core\ComponentPool.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Core\ComponentPool2.h">
-      <Filter>Header Files\Core</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Core\MemoryPool.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
@@ -243,6 +231,18 @@
     </ClInclude>
     <ClInclude Include="Source\Systems\GraphicsSystem\Skybox\Skybox.h">
       <Filter>Header Files\Systems\GraphicsSystem\Skybox</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\IndexBuffer.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Mesh.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\VertexBuffer.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\Model.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -257,21 +257,6 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\GraphicsSystem.cpp">
       <Filter>Source Files\Systems\GraphicsSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Components\ModelComponent\EBO.cpp">
-      <Filter>Source Files\Components\ModelComponent</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Components\ModelComponent\Mesh.cpp">
-      <Filter>Source Files\Components\ModelComponent</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Components\ModelComponent\Model.cpp">
-      <Filter>Source Files\Components\ModelComponent</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Components\ModelComponent\VAO.cpp">
-      <Filter>Source Files\Components\ModelComponent</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Components\ModelComponent\VBO.cpp">
-      <Filter>Source Files\Components\ModelComponent</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\Shader.cpp">
       <Filter>Source Files\Core</Filter>
@@ -335,6 +320,18 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\Skybox\Skybox.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\Skybox</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\IndexBuffer.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Mesh.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\VertexBuffer.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Model.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

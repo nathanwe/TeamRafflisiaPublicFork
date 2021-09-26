@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Camera.h"
+#include "../utils/Log.h"
 
 Camera::Camera(int width, int height, glm::vec3 position) 
 {
@@ -21,7 +22,7 @@ void Camera::UpdateMatrix(float FOVdeg, float nearPlane, float farPlane)
 
 void Camera::Matrix(Shader& shader, const char* uniform) 
 {
-	glUniformMatrix4fv(glGetUniformLocation(shader.ID, uniform), 1, GL_FALSE, glm::value_ptr(cameraMatrix));
+	glUniformMatrix4fv(shader.getUniformLocation(uniform), 1, GL_FALSE, glm::value_ptr(cameraMatrix));
 }
 
 void Camera::Inputs(GLFWwindow* window)
@@ -76,7 +77,7 @@ void Camera::Inputs(GLFWwindow* window)
 		glfwGetCursorPos(window, &mouseX, &mouseY);
 
 		float rotX = sensitivity * (float)(mouseY - (height / 2)) / height;
-		float rotY = sensitivity * (float)(mouseX - (height / 2)) / height;
+		float rotY = sensitivity * (float)(mouseX - (width / 2)) / width;
 
 		glm::vec3 newOrientation = glm::rotate(Orientation, glm::radians(-rotX), glm::normalize(glm::cross(Orientation, Up)));
 
@@ -95,4 +96,6 @@ void Camera::Inputs(GLFWwindow* window)
 
 		firstClick = true;
 	}
+
+	//LOG_INFO("camera position: {0}, {1}, {2}", Position.x, Position.y, Position.z);
 }

@@ -9,7 +9,7 @@
 
 
 
-
+/*
 
 class ModelComponent : public AbstractComponent
 {
@@ -22,5 +22,5 @@ public:
 
 
 extern AbstractComponentPool<ModelComponent> ModelComponentPool;
-
+*/
 #endif // !MODELCOMPONENT_H

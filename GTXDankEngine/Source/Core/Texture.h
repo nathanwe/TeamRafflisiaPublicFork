@@ -1,11 +1,7 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
-
-
 #include "Shader.h"
-
-#include <glad/glad.h>
 
 class Texture {
 	private:
@@ -19,6 +15,6 @@ class Texture {
 		void texUnit(Shader& shader, const char* uniform, unsigned int unit);
 		void Bind(unsigned int unit);
 		void Unbind();
-		
+		inline GLuint GetID() const { return ID; };
 };
 #endif // !TEXTURE_H

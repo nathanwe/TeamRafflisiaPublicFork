@@ -27,7 +27,7 @@ class Camera {
 		void Inputs(GLFWwindow* window);
 
 		inline glm::mat4 GetViewMat() { return glm::lookAt(Position, Position + Orientation, Up);}
-		inline glm::mat4 GetProjMat(float FOV, float n, float f) { return glm::perspective(glm::radians(FOV), (float)(width / height), n, f); }
+		inline glm::mat4 GetProjMat(float FOV, float n, float f) { return glm::perspective(glm::radians(FOV), (float)(width) / (height), n, f); }
 
 	
 };

@@ -57,9 +57,9 @@ Texture::Texture(const char* path)
 // Sets up uniform variable for shaders to read textures
 void Texture::texUnit(Shader& shader, const char* uniform, unsigned int unit) 
 {
-	GLuint texUni = glGetUniformLocation(shader.ID, uniform);
-	shader.Activate();
-	glUniform1i(texUni, unit);
+	//GLuint texUni = glGetUniformLocation(shader.ID, uniform);
+	//shader.Activate();
+	//glUniform1i(texUni, unit);
 }
 
 // Bind texture

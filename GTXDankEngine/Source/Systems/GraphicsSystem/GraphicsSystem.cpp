@@ -54,6 +54,9 @@ bool GraphicsSystem::Init()
 
 	// use glad
 	gladLoadGL();
+
+	// Enable Depth Buffer
+	glEnable(GL_DEPTH_TEST);
 	
 	std::vector<std::string> faces
 	{
@@ -67,54 +70,39 @@ bool GraphicsSystem::Init()
 
 	skybox.Init(faces);
 	
+
+	//shaderProgram = new Shader("Source/Shaders/basic.vert", "Source/Shaders/basic.frag");
+	shaderProgram = new Shader("Source/Shaders/basic.shader");
+	skyboxShader = new Shader("Source/Shaders/Skybox/Skybox.shader");
 	
 	// test if yaml lib is linked properly
 	//YAML::Emitter out;
 	
-	// scroll
-	model = new Model("Assets/models/scroll/scene.gltf" );
-	texture = new Texture("Assets/models/scroll/textures/lambert4SG_baseColor.png" );
+	//
+	model = new Model("Assets/models/PokemonBall/model.obj" );
+	texture = new Texture("Assets/models/PokemonBall/albedo.jpg" );
 	
-	// map
-	//model = new Model("Assets/models/map/scene.gltf");
-	//texture = new Texture("Assets/models/map/textures/Material.001_baseColor.png");
 
-	// grindstone
-	//model = new Model("Assets/models/grindstone/scene.gltf");
-	//texture = new Texture("Assets/models/grindstone/textures/Main_baseColor.jpeg");
+	//Entity a;
+	//Entity entity = 1;
+	//EntityList.push_back(a);
+	//EntityList.push_back(entity);
 
-
-	shaderProgram = new Shader("Source/Shaders/basic.vert", "Source/Shaders/basic.frag" );
-	skyboxShader = new Shader("Source/Shaders/Skybox/SkyboxBasic.vert", "Source/Shaders/Skybox/SkyboxBasic.frag");
-
-
-	Entity a;
-	Entity entity = 1;
-	EntityList.push_back(a);
-	EntityList.push_back(entity);
-
-	ModelComponentPool.Add(entity, ( model ));
+	//ModelComponentPool.Add(entity, ( model ));
 
 
 	// tell the viewport
 	glViewport(0, 0, WIDTH, HEIGHT);
 
 
-	glm::vec4 lightColor = glm::vec4(1.0f, 1.0f, 1.0f, 1.0f);
-
 	lightPos = glm::vec3(0.5f, 0.5f, 0.5f);
-	glm::mat4 lightModel = glm::translate(glm::mat4(1.0f), lightPos);
 
-	shaderProgram->Activate();
-	glUniform4f(glGetUniformLocation(shaderProgram->ID, "lightColor"), lightColor.x, lightColor.y, lightColor.z, lightColor.w);
-
-	// Enable Depth Buffer
-	glEnable(GL_DEPTH_TEST);
-
-	texture->texUnit(*shaderProgram, "diffuse0", 1);
-	texture->Bind(1);
-
+	shaderProgram->setVec3("lightColor", glm::vec3(1.0f));
+	shaderProgram->setTexture("diffuse0", texture->GetID());
 	
+	glm::mat4 modelMat = glm::scale(glm::mat4(1.0f), glm::vec3(0.01));
+	shaderProgram->setMat4("model", modelMat);
+
 	return true;
 }
 
@@ -123,8 +111,6 @@ bool GraphicsSystem::Init()
 
 void GraphicsSystem::Update(float timeStamp)
 {
-	// draw a triangle
-	// pick a pretty color
 	glClearColor(0.106f, 0.204f, 0.002f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -147,19 +133,21 @@ void GraphicsSystem::Update(float timeStamp)
 
 void GraphicsSystem::Render()
 {
-	
-	// use the shader program
-	shaderProgram->Activate();
-	glUniform3f(glGetUniformLocation(shaderProgram->ID, "lightPos"), lightPos.x, lightPos.y, lightPos.z);
+	shaderProgram->setVec3("lightPos", lightPos);
+	shaderProgram->setVec3("camPos", camera.Position);
 
+	shaderProgram->setMat4("view", camera.GetViewMat());
+	shaderProgram->setMat4("projection", camera.GetProjMat(45.0f, 0.1f, 300.0f));
 
+	model->Draw(*shaderProgram);
+
+	/*
 	for (const auto& [entity, modelComponent] : ModelComponentPool.componentList) {
 		modelComponent->model->Draw(*shaderProgram, camera);
-	}
-	shaderProgram->Unbind();
+	}*/
+	
 	
 	skybox.Render(skyboxShader, camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f));
-
 }
 
 
