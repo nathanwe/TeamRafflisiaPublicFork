@@ -53,6 +53,7 @@ void InputManager::Update()
 
 
 
+
 void InputManager::UpdateThread(GLFWwindow* pWindow)
 {
 	// glfwSetKeyCallback(pWindow, KeyCallback);

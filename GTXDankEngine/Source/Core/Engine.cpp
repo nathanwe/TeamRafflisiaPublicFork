@@ -27,6 +27,7 @@ bool Engine::Init()
 	
 	
 
+	if (!CommandSys.Init()) LOG_ERROR("Command System failed to init.");
 	if (!GraphicsSys.Init()) LOG_ERROR("Graphics System failed to init.");
 	UISys.GrabWindow(GraphicsSys.pWindow);
 	if (!UISys.Init()) LOG_ERROR("UI System failed to init.");
@@ -48,6 +49,7 @@ void Engine::Run()
 	{
 		Framerate->StartFrame();
 		InputSys.Update();
+		CommandSys.Update();
 
 		// Game loop format
 		// TODO: Profiler records time spent for each update()
@@ -80,6 +82,7 @@ void Engine::Run()
 void Engine::Destroy()
 {
 	// Destroy all systems in reverse order
+	if (!CommandSys.Destroy()) LOG_ERROR("Command System failed to destory properly.");
 	if (!UISys.Destroy()) LOG_ERROR("Graphics System failed to destory properly.");
 
 	if (!GraphicsSys.Destroy()) LOG_ERROR("Graphics System failed to destory properly.");
