@@ -54,7 +54,6 @@ private:
 	bool mCurrentStateThread[input_buffer_size];
 	// unsigned int mPreviousStateThread[input_buffer_size];
 
-
 	struct mouseButton {
 		bool left = false;
 		bool middle = false;

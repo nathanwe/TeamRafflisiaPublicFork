@@ -85,6 +85,9 @@ bool GraphicsSystem::Init()
 
 	shaderProgram->setVec3("lightColor", glm::vec3(1.0f));
 
+	camera = Camera(WIDTH, HEIGHT, glm::vec3(0.0f, 0.0f, 2.0f));
+	camera.Init();
+
 	return true;
 }
 

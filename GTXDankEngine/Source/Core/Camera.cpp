@@ -1,12 +1,55 @@
 #include "pch.h"
 #include "Camera.h"
+#include "Engine.h"
 #include "../utils/Log.h"
+
+extern Engine engine;
 
 Camera::Camera(int width, int height, glm::vec3 position) 
 {
 	Camera::width = width;
 	Camera::height = height;
 	Position = position;
+}
+
+void Camera::Init()
+{
+	engine.CommandSys.MoveCommand.SetActionToExecute([&](auto dir)
+		{
+			if (dir == MoveDirection::UP)
+			{
+				Position += 10 * speed * Orientation;
+			}
+			if (dir == MoveDirection::LEFT)
+			{
+				Position += 10 * speed * -glm::normalize(glm::cross(Orientation, Up));
+			}
+			if (dir == MoveDirection::DOWN)
+			{
+				Position += 10 * speed * -Orientation;
+			}
+			if (dir == MoveDirection::RIGHT)
+			{
+				Position += 10 * speed * glm::normalize(glm::cross(Orientation, Up));
+			}
+		});
+
+	engine.CommandSys.SpaceCommand.SetActionToExecute([&]()
+		{
+			Position += speed * Up;
+		});
+	engine.CommandSys.CtrlCommand.SetActionToExecute([&]()
+		{
+			Position += speed * -Up;
+		});
+	engine.CommandSys.ShiftCommand.SetActionToExecute([&]()
+		{
+			speed = 0.01f;
+		});
+	engine.CommandSys.UnShiftCommand.SetActionToExecute([&]()
+		{
+			speed = 0.001f;
+		});
 }
 
 void Camera::UpdateMatrix(float FOVdeg, float nearPlane, float farPlane) 
@@ -27,38 +70,38 @@ void Camera::Matrix(Shader& shader, const char* uniform)
 
 void Camera::Inputs(GLFWwindow* window)
 {
-	if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) 
-	{
-		Position += 10* speed * Orientation;
-	}
-	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) 
-	{
-		Position += 10 * speed * -glm::normalize(glm::cross(Orientation, Up));
-	}
-	if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) 
-	{
-		Position += 10 * speed * -Orientation;
-	}
-	if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) 
-	{
-		Position += 10 * speed * glm::normalize(glm::cross(Orientation, Up));
-	}
-	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) 
-	{
-		Position += speed * Up;
-	}
-	if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS) 
-	{
-		Position += speed * -Up;
-	}
-	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) 
-	{
-		speed = 0.01f;
-	}
-	else if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE) 
-	{
-		speed = 0.001f;
-	}
+	//if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) 
+	//{
+	//	Position += 10* speed * Orientation;
+	//}
+	//if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) 
+	//{
+	//	Position += 10 * speed * -glm::normalize(glm::cross(Orientation, Up));
+	//}
+	//if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) 
+	//{
+	//	Position += 10 * speed * -Orientation;
+	//}
+	//if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) 
+	//{
+	//	Position += 10 * speed * glm::normalize(glm::cross(Orientation, Up));
+	//}
+	//if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) 
+	//{
+	//	Position += speed * Up;
+	//}
+	//if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS) 
+	//{
+	//	Position += speed * -Up;
+	//}
+	//if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) 
+	//{
+	//	speed = 0.01f;
+	//}
+	//else if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE) 
+	//{
+	//	speed = 0.001f;
+	//}
 
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) 
 	{

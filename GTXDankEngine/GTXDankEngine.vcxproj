@@ -105,6 +105,8 @@
     <None Include="Source\Shaders\basic.shader" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Systems\CommandSystem\CommandSystem.h" />
+    <ClInclude Include="Source\Systems\CommandSystem\Command.h" />
     <ClInclude Include="Libraries\include\imgui\imconfig.h" />
     <ClInclude Include="Libraries\include\imgui\imgui.h" />
     <ClInclude Include="Libraries\include\imgui\imgui_impl_glfw.h" />
@@ -133,6 +135,7 @@
     <ClInclude Include="Source\pch\pch.h" />
     <ClInclude Include="Source\Core\FramerateControlSystem\FramerateController.h" />
     <ClInclude Include="Source\Core\FramerateControlSystem\RunningAverage.h" />
+    <ClInclude Include="Source\Systems\CommandSystem\DirectionCommand.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\GraphicsSystem.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\Skybox\Skybox.h" />
     <ClInclude Include="Source\Systems\InputSystem\InputManager.h" />
@@ -143,6 +146,7 @@
     <ClInclude Include="Source\utils\VQS.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Systems\CommandSystem\CommandSystem.cpp" />
     <ClCompile Include="Libraries\include\imgui\imgui.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
@@ -202,8 +206,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Source\Core\FramerateControlSystem\FramerateController.cpp" />
+    <ClCompile Include="Source\Systems\CommandSystem\DirectionCommand.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\GraphicsSystem.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\Skybox\Skybox.cpp" />
+    <ClCompile Include="Source\Systems\CommandSystem\Command.cpp" />
     <ClCompile Include="Source\Systems\InputSystem\InputManager.cpp" />
     <ClCompile Include="Source\Systems\ProfileSystem\ProfileSystem.cpp" />
     <ClCompile Include="Source\Systems\UISystem\UISystem.cpp" />

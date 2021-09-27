@@ -8,6 +8,7 @@
 #include "../Systems/UISystem/UISystem.h"
 #include "FramerateControlSystem/FramerateController.h"
 #include "../Systems/InputSystem/InputManager.h"
+#include "../Systems/CommandSystem/CommandSystem.h"
 
 typedef uint32_t Entity;
 
@@ -54,7 +55,6 @@ public:
 
 	std::shared_ptr<FramerateController> Framerate;
 
-private:
 	// List all Systems
 	// All systems will be allocated in stack
 	// All systems will be init inside Engine::Init()
@@ -77,9 +77,12 @@ private:
 	*/
 
 	UISystem UISys;
-
 	GraphicsSystem GraphicsSys;
-
 	InputManager InputSys;
+	CommandSystem CommandSys;
+
+
+private:
+
 };
 #endif // !ENGINE_H

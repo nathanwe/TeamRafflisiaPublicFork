@@ -20,7 +20,10 @@ class Camera {
 		float speed = 100.0f;
 		float sensitivity = 100.0f;
 
+		Camera() {};
 		Camera(int width, int height, glm::vec3 position);
+
+		void Init();
 
 		void UpdateMatrix(float FOVdeg, float nearPlane, float farPlane);
 		void Matrix(Shader& shader, const char* uniform);

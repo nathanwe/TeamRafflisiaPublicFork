@@ -100,6 +100,12 @@
     <Filter Include="Header Files\Systems\UISystem">
       <UniqueIdentifier>{eedac892-c5eb-4e8f-a908-71e928764f35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Systems\CommandSystem">
+      <UniqueIdentifier>{fd9a67d8-1de2-4829-92b0-f93b81276d8b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems\CommandSystem">
+      <UniqueIdentifier>{9e9809f4-92c9-4d9e-9e93-7a5ba3bcaa69}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\Components\TransformComponent">
       <UniqueIdentifier>{2b4889c9-fcd9-4b3b-8d86-a6696199246e}</UniqueIdentifier>
     </Filter>
@@ -220,6 +226,15 @@
     <ClInclude Include="Source\Systems\GraphicsSystem\Skybox\Skybox.h">
       <Filter>Header Files\Systems\GraphicsSystem\Skybox</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\CommandSystem\Command.h">
+      <Filter>Header Files\Systems\InputSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\CommandSystem\CommandSystem.h">
+      <Filter>Header Files\Systems\CommandSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\CommandSystem\DirectionCommand.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Core\IndexBuffer.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
@@ -317,6 +332,15 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\Skybox\Skybox.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\Skybox</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\CommandSystem\Command.cpp">
+      <Filter>Source Files\Systems\CommandSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\CommandSystem\CommandSystem.cpp">
+      <Filter>Source Files\Systems\CommandSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\CommandSystem\DirectionCommand.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\IndexBuffer.cpp">
       <Filter>Source Files\Core</Filter>

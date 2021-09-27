@@ -7,6 +7,7 @@
 #include "../../Core/Model.h"
 #include "../../Core/System.h"
 #include "Skybox/Skybox.h"
+#include "../../Core/Texture.h"
 
 
 const unsigned int WIDTH = 1200;
@@ -47,7 +48,10 @@ private:
 
 	Skybox skybox;
 
-	Camera camera{ WIDTH, HEIGHT, glm::vec3(0.0f, 0.0f, 8.0f) };
+	Camera camera;
+	
+	Model *model;
+	Texture *texture;
 
 	glm::vec3 lightPos;	
 };
