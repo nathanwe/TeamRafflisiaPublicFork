@@ -114,6 +114,8 @@
     <ClInclude Include="Libraries\include\imgui\imstb_rectpack.h" />
     <ClInclude Include="Libraries\include\imgui\imstb_textedit.h" />
     <ClInclude Include="Libraries\include\imgui\imstb_truetype.h" />
+    <ClInclude Include="Source\Components\MaterialComponent\Material.h" />
+    <ClInclude Include="Source\Components\MaterialComponent\MaterialComponent.h" />
     <ClInclude Include="Source\Components\ModelComponent\ModelComponent.h" />
     <ClInclude Include="Source\Components\TransformComponent\TransformComponent.h" />
     <ClInclude Include="Source\Core\Camera.h" />
@@ -169,6 +171,8 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Source\Components\MaterialComponent\Material.cpp" />
+    <ClCompile Include="Source\Components\MaterialComponent\MaterialComponent.cpp" />
     <ClCompile Include="Source\Components\ModelComponent\ModelComponent.cpp" />
     <ClCompile Include="Source\Components\TransformComponent\TransformComponent.cpp" />
     <ClCompile Include="Source\Core\Camera.cpp" />

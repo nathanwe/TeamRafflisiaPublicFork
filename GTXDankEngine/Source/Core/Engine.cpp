@@ -2,7 +2,11 @@
 #include "Engine.h"
 #include "../utils/Log.h"
 
-std::vector<Entity> EntityList;
+#include "../Components/ModelComponent/ModelComponent.h"
+#include "../Components/TransformComponent/TransformComponent.h"
+#include "../Components/MaterialComponent/MaterialComponent.h"
+
+std::vector<Entity> EntityList{100};
 
 bool Engine::Init()
 {
@@ -29,11 +33,58 @@ bool Engine::Init()
 
 	if (!GraphicsSys.Init()) LOG_ERROR("Graphics System failed to init.");
 	UISys.GrabWindow(GraphicsSys.pWindow);
+
 	if (!UISys.Init()) LOG_ERROR("UI System failed to init.");
+
 	if (!InputSys.Init(GraphicsSys.pWindow)) LOG_ERROR("Input System failed to init.");
 
 	Framerate = std::make_shared<FramerateController>();
 	Framerate->Init(60);
+
+
+
+	//--------------------------------------------------------------------
+	// These datas are not suppose to be inside Engine.cpp
+	// It will moved once scene system is done
+	// 
+	// pokemon ball entity
+	Entity pokemonBall = 0;
+	EntityList.push_back(pokemonBall);
+
+	// model component
+	Model* pokemonBallModel = new Model("Assets/models/PokemonBall/model.obj");
+	ModelComponentPool.Add(pokemonBall, (pokemonBallModel));
+
+	// Transform component
+	VQS* pokemonBallTransform = new VQS(glm::vec3(0.0), 0.01f);
+	TransformComponentPool.Add(pokemonBall, (pokemonBallTransform));
+
+	// Material component
+	Texture* pokemonBallDiffuse = new Texture("Assets/models/PokemonBall/albedo.jpg");
+	Material* pokemonBallMat = new Material(pokemonBallDiffuse);
+	MaterialComponentPool.Add(pokemonBall, (pokemonBallMat));
+
+	//--------------------------------------------------------------------------------
+
+	// lion entity
+	Entity lion = 1;
+	EntityList.push_back(lion);
+
+	// model component
+	Model* lionModel = new Model("Assets/models/Lion/model.obj");
+	ModelComponentPool.Add(lion, (lionModel));
+
+	// Transform component
+	VQS* lionTransform = new VQS(glm::vec3(3.0, -2.0, 1.0), 2.0f);
+	TransformComponentPool.Add(lion, (lionTransform));
+
+	// Material component
+	Texture* lionDiffuse = new Texture("Assets/models/Lion/albedo.jpg");
+	Material* lionMat = new Material(lionDiffuse);
+	MaterialComponentPool.Add(lion, (lionMat));
+
+	//---------------------------------------------------------------------
+
 
 	LOG_INFO("Engine init.");
 	return true;

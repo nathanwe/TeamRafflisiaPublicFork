@@ -4,6 +4,7 @@
 
 #include "../Components/ModelComponent/ModelComponent.h"
 #include "../Components/TransformComponent/TransformComponent.h"
+#include "../Components/MaterialComponent/MaterialComponent.h"
 
 #include "../UISystem/UISystem.h"
 #include "../ProfileSystem/ProfileSystem.h"
@@ -79,26 +80,10 @@ bool GraphicsSystem::Init()
 	// test if yaml lib is linked properly
 	//YAML::Emitter out;
 
-	// new entity
-	Entity a;
-	Entity pokemonBall = 1;
-	EntityList.push_back(a);
-	EntityList.push_back(pokemonBall);
-	
-	// model component
-	Model* pokemonBallModel = new Model("Assets/models/PokemonBall/model.obj" );
-	Texture* pokemonBallDiffuse = new Texture("Assets/models/PokemonBall/albedo.jpg" );
-	ModelComponentPool.Add(pokemonBall, (pokemonBallModel));
-	
-	// Transform component
-	VQS* pokemonBallTransform = new VQS(glm::vec3(0.0), 0.01f);
-	TransformComponentPool.Add(pokemonBall, (pokemonBallTransform));
-
 	// Pass uniforms to shader
 	lightPos = glm::vec3(1.0f, 1.0f, 1.0f);
 
 	shaderProgram->setVec3("lightColor", glm::vec3(1.0f));
-	shaderProgram->setTexture("diffuse0", pokemonBallDiffuse->GetID());
 
 	return true;
 }
@@ -140,10 +125,14 @@ void GraphicsSystem::Render()
 
 		for (const auto& [transEntity, transformComponent] : TransformComponentPool.componentList)
 		{
-			if (modelEntity == transEntity)
+			for (const auto& [matEntity, matComponent] : MaterialComponentPool.componentList)
 			{
-				shaderProgram->setMat4("model", transformComponent->transform->Matrix());
-				modelComponent->model->Draw(*shaderProgram);
+				if (modelEntity == transEntity && matEntity == transEntity)
+				{
+					shaderProgram->setTexture("diffuse0", matComponent->material->Albedo->GetID());
+					shaderProgram->setMat4("model", transformComponent->transform->Matrix());
+					modelComponent->model->Draw(*shaderProgram);
+				}
 			}
 		}
 	}

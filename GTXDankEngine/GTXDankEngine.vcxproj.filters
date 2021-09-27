@@ -103,6 +103,12 @@
     <Filter Include="Header Files\Components\TransformComponent">
       <UniqueIdentifier>{2b4889c9-fcd9-4b3b-8d86-a6696199246e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Components\MaterialComponent">
+      <UniqueIdentifier>{9e342526-e1ec-4bad-8f53-891aed0231c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\MaterialComponent">
+      <UniqueIdentifier>{10cd5eea-e284-44d5-8217-07d4587bae7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\brick.png">
@@ -229,6 +235,12 @@
     <ClInclude Include="Source\Components\TransformComponent\TransformComponent.h">
       <Filter>Header Files\Components\TransformComponent</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Components\MaterialComponent\Material.h">
+      <Filter>Header Files\Components\MaterialComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\MaterialComponent\MaterialComponent.h">
+      <Filter>Header Files\Components\MaterialComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -323,6 +335,12 @@
     </ClCompile>
     <ClCompile Include="Source\Components\TransformComponent\TransformComponent.cpp">
       <Filter>Source Files\Components\TransformComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\MaterialComponent\Material.cpp">
+      <Filter>Source Files\Components\MaterialComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\MaterialComponent\MaterialComponent.cpp">
+      <Filter>Source Files\Components\MaterialComponent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
