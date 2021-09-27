@@ -62,11 +62,17 @@ bool Engine::Init()
 
 	// Material component
 	Texture* pokemonBallDiffuse = new Texture("Assets/models/PokemonBall/albedo.jpg");
-	Material* pokemonBallMat = new Material(pokemonBallDiffuse);
+	Texture* pokemonBallNormal = new Texture("Assets/models/PokemonBall/normal.jpg");
+	Texture* pokemonBallMetallic = new Texture("Assets/models/PokemonBall/metallic.jpg");
+	Texture* pokemonBallRoughness = new Texture("Assets/models/PokemonBall/roughness.jpg");
+
+	Material* pokemonBallMat = new Material(
+		pokemonBallDiffuse, pokemonBallMetallic, pokemonBallNormal, pokemonBallRoughness);
+
 	MaterialComponentPool.Add(pokemonBall, (pokemonBallMat));
 
 	//--------------------------------------------------------------------------------
-
+	
 	// lion entity
 	Entity lion = 1;
 	EntityList.push_back(lion);
@@ -76,14 +82,18 @@ bool Engine::Init()
 	ModelComponentPool.Add(lion, (lionModel));
 
 	// Transform component
-	VQS* lionTransform = new VQS(glm::vec3(3.0, -2.0, 1.0), 2.0f);
+	VQS* lionTransform = new VQS(glm::vec3(2.0, -2.0, 4.0), 2.0f);
 	TransformComponentPool.Add(lion, (lionTransform));
 
 	// Material component
 	Texture* lionDiffuse = new Texture("Assets/models/Lion/albedo.jpg");
-	Material* lionMat = new Material(lionDiffuse);
-	MaterialComponentPool.Add(lion, (lionMat));
+	Texture* lionNormal = new Texture("Assets/models/Lion/normal.jpg");
+	Texture* lionMetallic = new Texture("Assets/models/Lion/metallic.jpg");
+	Texture* lionRoughness = new Texture("Assets/models/Lion/roughness.jpg");
 
+	Material* lionMat = new Material(lionDiffuse, lionMetallic, lionNormal, lionRoughness);
+	MaterialComponentPool.Add(lion, (lionMat));
+	
 	//---------------------------------------------------------------------
 
 

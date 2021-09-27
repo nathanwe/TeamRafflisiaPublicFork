@@ -74,16 +74,17 @@ bool GraphicsSystem::Init()
 
 	skybox.Init(faces);
 	
-	shaderProgram = new Shader("Source/Shaders/basic.shader");
+	//shaderProgram = new Shader("Source/Shaders/basic.shader");
+	ForwardPbrShader = new Shader("Source/Shaders/basicPBR.shader");
 	skyboxShader = new Shader("Source/Shaders/Skybox/Skybox.shader");
 	
 	// test if yaml lib is linked properly
 	//YAML::Emitter out;
 
 	// Pass uniforms to shader
-	lightPos = glm::vec3(1.0f, 1.0f, 1.0f);
+	lightPos = glm::vec3(1.5f, 1.5f, 1.5f);
 
-	shaderProgram->setVec3("lightColor", glm::vec3(1.0f));
+	ForwardPbrShader->setVec3("lightColor", glm::vec3(4.0f));
 
 	camera.Init();
 
@@ -117,12 +118,7 @@ void GraphicsSystem::Update(float timeStamp)
 
 void GraphicsSystem::Render()
 {
-	shaderProgram->setVec3("lightPos", lightPos);
-	shaderProgram->setVec3("camPos", camera.Position);
 
-	shaderProgram->setMat4("view", camera.GetViewMat());
-	shaderProgram->setMat4("projection", camera.GetProjMat(45.0f, 0.1f, 300.0f));
-	
 	for (const auto& [modelEntity, modelComponent] : ModelComponentPool.componentList) {
 
 		for (const auto& [transEntity, transformComponent] : TransformComponentPool.componentList)
@@ -131,15 +127,32 @@ void GraphicsSystem::Render()
 			{
 				if (modelEntity == transEntity && matEntity == transEntity)
 				{
-					shaderProgram->setTexture("diffuse0", matComponent->material->Albedo->GetID());
-					shaderProgram->setMat4("model", transformComponent->transform->Matrix());
-					modelComponent->model->Draw(*shaderProgram);
+					if (matComponent->material->IsPBR)
+						PbrRender(matComponent->material, transformComponent->transform, modelComponent->model);
 				}
 			}
 		}
 	}
 	
 	skybox.Render(skyboxShader, camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f));
+}
+
+
+void GraphicsSystem::PbrRender(Material* mat, VQS* transform, Model* model)
+{
+	ForwardPbrShader->setVec3("lightPos", lightPos);
+	ForwardPbrShader->setVec3("camPos", camera.Position);
+
+	ForwardPbrShader->setMat4("view", camera.GetViewMat());
+	ForwardPbrShader->setMat4("projection", camera.GetProjMat(45.0f, 0.1f, 300.0f));
+	
+	ForwardPbrShader->setTexture("albedoTex", mat->Albedo->GetID());
+	ForwardPbrShader->setTexture("metallicTex", mat->Metallic->GetID());
+	ForwardPbrShader->setTexture("normalTex", mat->Normal->GetID());
+	ForwardPbrShader->setTexture("roughnessTex", mat->Roughness->GetID());
+
+	ForwardPbrShader->setMat4("model", transform->Matrix());
+	model->Draw(*ForwardPbrShader);
 }
 
 

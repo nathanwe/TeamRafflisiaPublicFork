@@ -103,6 +103,7 @@
   <ItemGroup>
     <None Include="Skybox.shader" />
     <None Include="Source\Shaders\basic.shader" />
+    <None Include="Source\Shaders\basicPBR.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Systems\CommandSystem\CommandSystem.h" />

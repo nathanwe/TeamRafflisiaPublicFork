@@ -8,6 +8,9 @@
 #include "../../Core/System.h"
 #include "Skybox/Skybox.h"
 #include "../../Core/Texture.h"
+#include "../Components/MaterialComponent/Material.h"
+#include "../Core/Model.h"
+#include "../utils/VQS.h"
 
 
 const unsigned int WIDTH = 1200;
@@ -42,8 +45,10 @@ private:
 		
 	void Render();
 
+	void PbrRender(Material* mat, VQS* transform, Model* model);
+
 private:
-	Shader* shaderProgram;
+	Shader* ForwardPbrShader;
 	Shader* skyboxShader;
 
 	Skybox skybox;

@@ -18,19 +18,19 @@ void Camera::Init()
 		{
 			if (dir == MoveDirection::UP)
 			{
-				Position += 10 * speed * Orientation;
+				Position += 100 * speed * Orientation;
 			}
 			if (dir == MoveDirection::LEFT)
 			{
-				Position += 10 * speed * -glm::normalize(glm::cross(Orientation, Up));
+				Position += 100 * speed * -glm::normalize(glm::cross(Orientation, Up));
 			}
 			if (dir == MoveDirection::DOWN)
 			{
-				Position += 10 * speed * -Orientation;
+				Position += 100 * speed * -Orientation;
 			}
 			if (dir == MoveDirection::RIGHT)
 			{
-				Position += 10 * speed * glm::normalize(glm::cross(Orientation, Up));
+				Position += 100 * speed * glm::normalize(glm::cross(Orientation, Up));
 			}
 		});
 
