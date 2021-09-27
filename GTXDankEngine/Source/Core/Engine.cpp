@@ -6,7 +6,7 @@
 #include "../Components/TransformComponent/TransformComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
 
-std::vector<Entity> EntityList{100};
+std::vector<Entity> EntityList;
 
 bool Engine::Init()
 {
@@ -48,8 +48,10 @@ bool Engine::Init()
 	// These datas are not suppose to be inside Engine.cpp
 	// It will moved once scene system is done
 	// 
+	Entity noSuchEntity = 0; // 0 means no entity
+	EntityList.push_back(noSuchEntity);
 	// pokemon ball entity
-	Entity pokemonBall = 0;
+	Entity pokemonBall = 1;
 	EntityList.push_back(pokemonBall);
 
 	// model component
@@ -74,7 +76,7 @@ bool Engine::Init()
 	//--------------------------------------------------------------------------------
 	
 	// lion entity
-	Entity lion = 1;
+	Entity lion = 2;
 	EntityList.push_back(lion);
 
 	// model component
