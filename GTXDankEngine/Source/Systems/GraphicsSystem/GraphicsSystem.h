@@ -48,10 +48,7 @@ private:
 
 	Skybox skybox;
 
-	Camera camera;
-	
-	Model *model;
-	Texture *texture;
+	Camera camera{ WIDTH, HEIGHT, glm::vec3(0.0f, 0.0f, 10.0f) };
 
 	glm::vec3 lightPos;	
 };
