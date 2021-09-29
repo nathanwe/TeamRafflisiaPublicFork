@@ -83,11 +83,6 @@ bool GraphicsSystem::Init()
 	// test if yaml lib is linked properly
 	//YAML::Emitter out;
 
-	// Pass uniforms to shader
-	lightPos = glm::vec3(1.5f, 1.5f, 1.5f);
-
-	ForwardPbrShader->setVec3("lightColor", glm::vec3(4.0f));
-
 	camera.Init();
 
 	return true;
@@ -144,7 +139,8 @@ void GraphicsSystem::Render()
 
 void GraphicsSystem::PbrRender(Material* mat, VQS* transform, Model* model)
 {
-	ForwardPbrShader->setVec3("lightPos", lightPos);
+	BindLightSource(ForwardPbrShader);
+
 	ForwardPbrShader->setVec3("camPos", camera.Position);
 
 	ForwardPbrShader->setMat4("view", camera.GetViewMat());
@@ -191,4 +187,23 @@ bool GraphicsSystem::Destroy()
 	return true;
 }
 
+void GraphicsSystem::BindLightSource(Shader* shader)
+{
+	unsigned int lightIndex = 0;
+	for (const auto& [lightEntity, lightComponent] : LightComponentPool.componentList)
+	{
+		for (const auto& [transEntity, transformComponent] : TransformComponentPool.componentList)
+		{
+			if ( lightEntity == transEntity)
+			{
+				glm::vec3 color = lightComponent->LightSource->Color;
+				glm::vec3 intensity = lightComponent->LightSource->Intensity;
 
+				shader->setVec3("lightPositions[" + std::to_string(lightIndex) + "]", transformComponent->transform->position);
+				shader->setVec3("lightColors[" + std::to_string(lightIndex) + "]", color * intensity);
+			}
+
+			++lightIndex;
+		}
+	}
+}
