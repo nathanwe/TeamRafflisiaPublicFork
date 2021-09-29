@@ -73,7 +73,7 @@ inline ErrorEnum MemoryPool<blockSize, blocksPerPage>::AquireNewPage()
 	catch (std::bad_alloc&)
 	{
 		LOG_ERROR("MEMORY_POOL ALOCATION ERROR");
-		assert(false, "in memory pool, failed to alocate memory");
+		assert(!"in memory pool, failed to alocate memory");
 		return ErrorEnum::FAIL_BECAUSE_NO_MORE_MEMORY;
 	}
 	

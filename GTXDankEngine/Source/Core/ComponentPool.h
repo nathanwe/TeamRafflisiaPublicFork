@@ -64,7 +64,17 @@ AbstractComponentPool<T>::AbstractComponentPool()
 template <class T>
 bool AbstractComponentPool<T>::Delete(Entity e)
 {
-	//TODO
+	auto search = componentList.find(e);
+	if (search != componentList.end())
+	{
+		memory.FreeUsedBlock(search->secont);
+		componentList.erase(search);
+	}
+	else
+	{
+		LOG_ERROR("Tried to delete Entity not found");
+		assert(!"Tried to delete Entity not found");
+	}
 }
 
 #endif // !COMPONENTPOOL_H
