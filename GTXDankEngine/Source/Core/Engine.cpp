@@ -82,18 +82,18 @@ bool Engine::Init()
 	EntityList.push_back(lion);
 
 	// model component
-	Model* lionModel = new Model("Assets/models/Lion/model.obj");
+	Model* lionModel = new Model("Assets/models/Vase/model.obj");
 	ModelComponentPool.Add(lion, (lionModel));
 
 	// Transform component
-	VQS* lionTransform = new VQS(glm::vec3(2.0, -2.0, 4.0), 2.0f);
+	VQS* lionTransform = new VQS(glm::vec3(2.0, -1.0, 4.0), 0.5f);
 	TransformComponentPool.Add(lion, (lionTransform));
 
 	// Material component
-	Texture* lionDiffuse = new Texture("Assets/models/Lion/albedo.jpg");
-	Texture* lionNormal = new Texture("Assets/models/Lion/normal.jpg");
-	Texture* lionMetallic = new Texture("Assets/models/Lion/metallic.jpg");
-	Texture* lionRoughness = new Texture("Assets/models/Lion/roughness.jpg");
+	Texture* lionDiffuse = new Texture("Assets/models/Vase/albedo.jpg");
+	Texture* lionNormal = new Texture("Assets/models/Vase/normal.jpg");
+	Texture* lionMetallic = new Texture("Assets/models/Vase/metallic.jpg");
+	Texture* lionRoughness = new Texture("Assets/models/Vase/roughness.jpg");
 
 	Material* lionMat = new Material(lionDiffuse, lionMetallic, lionNormal, lionRoughness);
 	MaterialComponentPool.Add(lion, (lionMat));

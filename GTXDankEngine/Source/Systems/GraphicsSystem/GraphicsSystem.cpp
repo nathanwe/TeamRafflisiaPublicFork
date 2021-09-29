@@ -60,6 +60,9 @@ bool GraphicsSystem::Init()
 	// Enable Depth Buffer
 	glEnable(GL_DEPTH_TEST);
 
+	// back face culling
+	glEnable(GL_CULL_FACE);
+
 	// tell the viewport
 	glViewport(0, 0, WIDTH, HEIGHT);
 	
