@@ -59,7 +59,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\include\Assimp\include\;$(SolutionDir)Source\pch\;$(SolutionDir)Libraries\include\imgui\;$(SolutionDir)Libraries\include\fmod\;$(SolutionDir)Libraries\inlcude\yaml\;$(SolutionDir)Libraries\include\spdlog\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Libraries\include\Assimp\include\;$(SolutionDir)Source\pch\;$(SolutionDir)Libraries\include\imgui\;$(SolutionDir)Libraries\inlcude\yaml\;$(SolutionDir)Libraries\include\spdlog\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
       <LanguageStandard>stdcpp17</LanguageStandard>
@@ -67,7 +67,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>fmod_vc.lib;fmodstudio_vc.lib;glfw3.lib;opengl32.lib;assimp-vc142-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc142-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\lib\;$(SolutionDir)Libraries\lib\yaml\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -107,12 +107,8 @@
     <None Include="Source\Shaders\LightSource.shader" />
   </ItemGroup>
   <ItemGroup>
-
-    <ClInclude Include="Source\Systems\AudioSystem\AudioSystem.h" />
-
     <ClInclude Include="Source\Components\LightComponent\Light.h" />
     <ClInclude Include="Source\Components\LightComponent\LightComponent.h" />
-
     <ClInclude Include="Source\Systems\CommandSystem\CommandSystem.h" />
     <ClInclude Include="Source\Systems\CommandSystem\Command.h" />
     <ClInclude Include="Libraries\include\imgui\imconfig.h" />
@@ -149,19 +145,13 @@
     <ClInclude Include="Source\Systems\InputSystem\InputManager.h" />
     <ClInclude Include="Source\Systems\ProfileSystem\ProfileSystem.h" />
     <ClInclude Include="Source\Systems\UISystem\UISystem.h" />
-    <ClInclude Include="Source\utils\common.h" />
-    <ClInclude Include="Source\utils\common_platform.h" />
     <ClInclude Include="Source\utils\Log.h" />
     <ClInclude Include="Source\utils\Timer.h" />
     <ClInclude Include="Source\utils\VQS.h" />
   </ItemGroup>
   <ItemGroup>
-
-    <ClCompile Include="Source\Systems\AudioSystem\AudioSystem.cpp" />
-
     <ClCompile Include="Source\Components\LightComponent\Light.cpp" />
     <ClCompile Include="Source\Components\LightComponent\LightComponent.cpp" />
-
     <ClCompile Include="Source\Systems\CommandSystem\CommandSystem.cpp" />
     <ClCompile Include="Libraries\include\imgui\imgui.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -229,8 +219,6 @@
     <ClCompile Include="Source\Systems\InputSystem\InputManager.cpp" />
     <ClCompile Include="Source\Systems\ProfileSystem\ProfileSystem.cpp" />
     <ClCompile Include="Source\Systems\UISystem\UISystem.cpp" />
-    <ClCompile Include="Source\utils\common.cpp" />
-    <ClCompile Include="Source\utils\common_platform.cpp" />
     <ClCompile Include="Source\utils\Log.cpp" />
     <ClCompile Include="Source\utils\Timer.cpp" />
     <ClCompile Include="Source\utils\VQS.cpp" />

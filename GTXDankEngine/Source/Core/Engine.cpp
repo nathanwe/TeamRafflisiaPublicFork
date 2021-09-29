@@ -31,7 +31,6 @@ bool Engine::Init()
 	*/
 	
 	
-	if (!AudioSys.Init()) LOG_ERROR("Audio System failed to init.");
 
 	if (!CommandSys.Init()) LOG_ERROR("Command System failed to init.");
 	if (!GraphicsSys.Init()) LOG_ERROR("Graphics System failed to init.");
@@ -151,7 +150,7 @@ void Engine::Run()
 		Framerate->StartFrame();
 		InputSys.Update();
 		CommandSys.Update();
-		AudioSys.Update(0);
+
 		// Game loop format
 		// TODO: Profiler records time spent for each update()
 
@@ -170,7 +169,7 @@ void Engine::Run()
 
 		*/
 
-		
+
 		// hard code timestamp to 0 for now
 		GraphicsSys.Update(0);
 		
@@ -187,10 +186,8 @@ void Engine::Destroy()
 	if (!UISys.Destroy()) LOG_ERROR("Graphics System failed to destory properly.");
 
 	if (!GraphicsSys.Destroy()) LOG_ERROR("Graphics System failed to destory properly.");
-	if (!AudioSys.Destroy())
-	{
-		LOG_ERROR("Audio System failed to destory properly.");
-	}
+
+
 
 	
 	/*
