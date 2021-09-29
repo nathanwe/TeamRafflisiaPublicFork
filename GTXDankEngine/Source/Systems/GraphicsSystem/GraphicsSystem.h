@@ -46,10 +46,14 @@ private:
 	void Render();
 
 	void PbrRender(Material* mat, VQS* transform, Model* model);
+	void RenderLightSource();
+
+	void BindLightSource(Shader* shader);
 
 private:
 	Shader* ForwardPbrShader;
 	Shader* skyboxShader;
+	Shader* LightSourceShader;
 
 	Skybox skybox;
 

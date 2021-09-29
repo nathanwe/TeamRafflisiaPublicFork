@@ -104,9 +104,12 @@
     <None Include="Skybox.shader" />
     <None Include="Source\Shaders\basic.shader" />
     <None Include="Source\Shaders\basicPBR.shader" />
+    <None Include="Source\Shaders\LightSource.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Systems\AudioSystem\AudioSystem.h" />
+    <ClInclude Include="Source\Components\LightComponent\Light.h" />
+    <ClInclude Include="Source\Components\LightComponent\LightComponent.h" />
     <ClInclude Include="Source\Systems\CommandSystem\CommandSystem.h" />
     <ClInclude Include="Source\Systems\CommandSystem\Command.h" />
     <ClInclude Include="Libraries\include\imgui\imconfig.h" />
@@ -151,6 +154,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Systems\AudioSystem\AudioSystem.cpp" />
+    <ClCompile Include="Source\Components\LightComponent\Light.cpp" />
+    <ClCompile Include="Source\Components\LightComponent\LightComponent.cpp" />
     <ClCompile Include="Source\Systems\CommandSystem\CommandSystem.cpp" />
     <ClCompile Include="Libraries\include\imgui\imgui.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
