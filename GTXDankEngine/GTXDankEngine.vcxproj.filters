@@ -115,11 +115,11 @@
     <Filter Include="Source Files\Components\MaterialComponent">
       <UniqueIdentifier>{10cd5eea-e284-44d5-8217-07d4587bae7a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Components\LightComponent">
-      <UniqueIdentifier>{4d09ecab-f7ff-41ba-bbd5-ce5ee32f8e3b}</UniqueIdentifier>
+    <Filter Include="Header Files\Systems\AudioSystem">
+      <UniqueIdentifier>{22b23813-30b1-44be-a26c-3a3148cd3cd7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Components\LightComponent">
-      <UniqueIdentifier>{dc9cca7b-040d-42a6-ac83-dce64c75e493}</UniqueIdentifier>
+    <Filter Include="Source Files\Systems\AudioSystem">
+      <UniqueIdentifier>{04902f60-34e1-494e-b4d8-c10bdd5f50a1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -144,9 +144,6 @@
       <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="Source\Shaders\basicPBR.shader">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="Source\Shaders\LightSource.shader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
@@ -268,11 +265,14 @@
     <ClInclude Include="Source\Components\MaterialComponent\MaterialComponent.h">
       <Filter>Header Files\Components\MaterialComponent</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Components\LightComponent\Light.h">
-      <Filter>Header Files\Components\LightComponent</Filter>
+    <ClInclude Include="Source\Systems\AudioSystem\AudioSystem.h">
+      <Filter>Header Files\Systems\AudioSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Components\LightComponent\LightComponent.h">
-      <Filter>Header Files\Components\LightComponent</Filter>
+    <ClInclude Include="Source\utils\common.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\utils\common_platform.h">
+      <Filter>Header Files\utils</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -384,11 +384,14 @@
     <ClCompile Include="Source\Components\MaterialComponent\MaterialComponent.cpp">
       <Filter>Source Files\Components\MaterialComponent</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Components\LightComponent\Light.cpp">
-      <Filter>Source Files\Components\LightComponent</Filter>
+    <ClCompile Include="Source\Systems\AudioSystem\AudioSystem.cpp">
+      <Filter>Source Files\Systems\AudioSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Components\LightComponent\LightComponent.cpp">
-      <Filter>Source Files\Components\LightComponent</Filter>
+    <ClCompile Include="Source\utils\common.cpp">
+      <Filter>Source Files\utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\utils\common_platform.cpp">
+      <Filter>Source Files\utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

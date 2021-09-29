@@ -9,6 +9,7 @@
 #include "FramerateControlSystem/FramerateController.h"
 #include "../Systems/InputSystem/InputManager.h"
 #include "../Systems/CommandSystem/CommandSystem.h"
+#include "../Systems/AudioSystem/AudioSystem.h"
 
 typedef uint32_t Entity;
 
@@ -75,7 +76,7 @@ public:
 
 	GraphicsSystem GraphicsSys;
 	*/
-
+	AudioSystem AudioSys;
 	UISystem UISys;
 	GraphicsSystem GraphicsSys;
 	InputManager InputSys;

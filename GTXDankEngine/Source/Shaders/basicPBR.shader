@@ -44,11 +44,6 @@ in VS_OUT
 
 const float PI = 3.141f;
 
-// N_LIGHTS is the max value
-const int N_LIGHTS = 500;
-uniform vec3 lightPositions[N_LIGHTS];
-uniform vec3 lightColors[N_LIGHTS];
-
 
 uniform sampler2D albedoTex;
 uniform sampler2D metallicTex;
@@ -128,18 +123,16 @@ vec3 reflection(vec3 N, vec3 V, vec3 albedo, float metallic, float roughness, ve
 {
     vec3 Lo = vec3(0.0);
 
-    for (int i = 0; i < N_LIGHTS; ++i)
-    {
         float d = length(lightPos - WorldPos);
 
 
 
         // calculate per-light radiance
-        vec3 L = normalize(lightPositions[i] - WorldPos);
+        vec3 L = normalize(lightPos - WorldPos);
         vec3 H = normalize(V + L);
-        float distance = length(lightPositions[i] - WorldPos);
+        float distance = length(lightPos - WorldPos);
         float attenuation = 1.0 / (distance * distance);
-        vec3 radiance = vec3(lightColors[i]) * attenuation;
+        vec3 radiance = vec3(lightColor) * attenuation;
 
         // Cook-Torrance BRDF
         float NDF = DistributionGGX(N, H, roughness);
@@ -166,7 +159,7 @@ vec3 reflection(vec3 N, vec3 V, vec3 albedo, float metallic, float roughness, ve
 
         // add to outgoing radiance Lo
         Lo += (kD * albedo / PI + specular) * radiance * NdotL;  // note that we already multiplied the BRDF by the Fresnel (kS) so we won't multiply by kS again
-    }
+    
     return Lo;
 }
 
