@@ -115,6 +115,12 @@
     <Filter Include="Source Files\Components\MaterialComponent">
       <UniqueIdentifier>{10cd5eea-e284-44d5-8217-07d4587bae7a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Components\LightComponent">
+      <UniqueIdentifier>{4d09ecab-f7ff-41ba-bbd5-ce5ee32f8e3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\LightComponent">
+      <UniqueIdentifier>{dc9cca7b-040d-42a6-ac83-dce64c75e493}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\brick.png">
@@ -138,6 +144,9 @@
       <Filter>Resource Files\Shaders</Filter>
     </None>
     <None Include="Source\Shaders\basicPBR.shader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Source\Shaders\LightSource.shader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
   </ItemGroup>
@@ -259,6 +268,12 @@
     <ClInclude Include="Source\Components\MaterialComponent\MaterialComponent.h">
       <Filter>Header Files\Components\MaterialComponent</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Components\LightComponent\Light.h">
+      <Filter>Header Files\Components\LightComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\LightComponent\LightComponent.h">
+      <Filter>Header Files\Components\LightComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -368,6 +383,12 @@
     </ClCompile>
     <ClCompile Include="Source\Components\MaterialComponent\MaterialComponent.cpp">
       <Filter>Source Files\Components\MaterialComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\LightComponent\Light.cpp">
+      <Filter>Source Files\Components\LightComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\LightComponent\LightComponent.cpp">
+      <Filter>Source Files\Components\LightComponent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

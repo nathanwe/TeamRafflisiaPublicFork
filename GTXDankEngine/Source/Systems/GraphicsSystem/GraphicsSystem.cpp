@@ -5,6 +5,7 @@
 #include "../Components/ModelComponent/ModelComponent.h"
 #include "../Components/TransformComponent/TransformComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
+#include "../Components/LightComponent/LightComponent.h"
 
 #include "../UISystem/UISystem.h"
 #include "../ProfileSystem/ProfileSystem.h"
@@ -75,16 +76,12 @@ bool GraphicsSystem::Init()
 	skybox.Init(faces);
 	
 	//shaderProgram = new Shader("Source/Shaders/basic.shader");
+	LightSourceShader = new Shader("Source/Shaders/LightSource.shader");
 	ForwardPbrShader = new Shader("Source/Shaders/basicPBR.shader");
 	skyboxShader = new Shader("Source/Shaders/Skybox/Skybox.shader");
 	
 	// test if yaml lib is linked properly
 	//YAML::Emitter out;
-
-	// Pass uniforms to shader
-	lightPos = glm::vec3(1.5f, 1.5f, 1.5f);
-
-	ForwardPbrShader->setVec3("lightColor", glm::vec3(4.0f));
 
 	camera.Init();
 
@@ -133,6 +130,8 @@ void GraphicsSystem::Render()
 			}
 		}
 	}
+
+	RenderLightSource();
 	
 	skybox.Render(skyboxShader, camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f));
 }
@@ -140,7 +139,8 @@ void GraphicsSystem::Render()
 
 void GraphicsSystem::PbrRender(Material* mat, VQS* transform, Model* model)
 {
-	ForwardPbrShader->setVec3("lightPos", lightPos);
+	BindLightSource(ForwardPbrShader);
+
 	ForwardPbrShader->setVec3("camPos", camera.Position);
 
 	ForwardPbrShader->setMat4("view", camera.GetViewMat());
@@ -156,6 +156,28 @@ void GraphicsSystem::PbrRender(Material* mat, VQS* transform, Model* model)
 }
 
 
+void GraphicsSystem::RenderLightSource()
+{
+	for (const auto& [lightEntity, lightComponent] : LightComponentPool.componentList)
+	{
+		for (const auto& [modelEntity, modelComponent] : ModelComponentPool.componentList) {
+
+			for (const auto& [transEntity, transformComponent] : TransformComponentPool.componentList)
+			{
+				if (modelEntity == transEntity && lightEntity == transEntity)
+				{
+					LightSourceShader->setVec3("lightColor", lightComponent->LightSource->Color);
+					LightSourceShader->setMat4("view", camera.GetViewMat());
+					LightSourceShader->setMat4("projection", camera.GetProjMat(45.0f, 0.1f, 300.0f));
+					LightSourceShader->setMat4("model", transformComponent->transform->Matrix());
+					modelComponent->model->Draw(*LightSourceShader);
+				}
+			}
+		}
+	}
+}
+
+
 
 bool GraphicsSystem::Destroy()
 {
@@ -165,4 +187,23 @@ bool GraphicsSystem::Destroy()
 	return true;
 }
 
+void GraphicsSystem::BindLightSource(Shader* shader)
+{
+	unsigned int lightIndex = 0;
+	for (const auto& [lightEntity, lightComponent] : LightComponentPool.componentList)
+	{
+		for (const auto& [transEntity, transformComponent] : TransformComponentPool.componentList)
+		{
+			if ( lightEntity == transEntity)
+			{
+				glm::vec3 color = lightComponent->LightSource->Color;
+				glm::vec3 intensity = lightComponent->LightSource->Intensity;
 
+				shader->setVec3("lightPositions[" + std::to_string(lightIndex) + "]", transformComponent->transform->position);
+				shader->setVec3("lightColors[" + std::to_string(lightIndex) + "]", color * intensity);
+			}
+
+			++lightIndex;
+		}
+	}
+}

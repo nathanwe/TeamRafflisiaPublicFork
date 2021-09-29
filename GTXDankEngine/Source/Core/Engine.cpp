@@ -5,6 +5,7 @@
 #include "../Components/ModelComponent/ModelComponent.h"
 #include "../Components/TransformComponent/TransformComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
+#include "../Components/LightComponent/LightComponent.h"
 
 std::vector<Entity> EntityList;
 
@@ -97,6 +98,42 @@ bool Engine::Init()
 	MaterialComponentPool.Add(lion, (lionMat));
 	
 	//---------------------------------------------------------------------
+	// Point light source
+	Entity LightSource1 = 3;
+	EntityList.push_back(LightSource1);
+
+	// model component
+	Model* LightSource1Model = new Model("Assets/models/Sphere/model.obj");
+	ModelComponentPool.Add(LightSource1, (LightSource1Model));
+
+	// Transform component
+	VQS* LightSource1Transform = new VQS(glm::vec3(1.5f), 0.008f);
+	TransformComponentPool.Add(LightSource1, (LightSource1Transform));
+
+	// Light source component
+	// white
+	Light* Light1 = new Light(LightType::Point, glm::vec3(1.0f), glm::vec3(10.0f));
+	LightComponentPool.Add(LightSource1, (Light1));
+
+	//--------------------------------------------------------------------------
+	// Point light source
+	Entity LightSource2 = 4;
+	EntityList.push_back(LightSource2);
+
+	// model component
+	ModelComponentPool.Add(LightSource2, (LightSource1Model));
+
+	// Transform component
+	VQS* LightSource2Transform = new VQS(glm::vec3(3.5, 0.0, 4.0), 0.005f);
+	TransformComponentPool.Add(LightSource2, (LightSource2Transform));
+
+	// Light source component
+	// yellow
+	Light* Light2 = new Light(LightType::Point, glm::vec3(1.0f, 0.8f, 0.0), glm::vec3(5.0f));
+	LightComponentPool.Add(LightSource2, (Light2));
+
+	//--------------------------------------------------------------------------
+
 
 
 	LOG_INFO("Engine init.");
