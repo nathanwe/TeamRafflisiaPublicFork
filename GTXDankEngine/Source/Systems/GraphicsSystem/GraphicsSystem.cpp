@@ -5,6 +5,7 @@
 #include "../Components/ModelComponent/ModelComponent.h"
 #include "../Components/TransformComponent/TransformComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
+#include "../Components/LightComponent/LightComponent.h"
 
 #include "../UISystem/UISystem.h"
 #include "../ProfileSystem/ProfileSystem.h"
@@ -75,6 +76,7 @@ bool GraphicsSystem::Init()
 	skybox.Init(faces);
 	
 	//shaderProgram = new Shader("Source/Shaders/basic.shader");
+	LightSourceShader = new Shader("Source/Shaders/LightSource.shader");
 	ForwardPbrShader = new Shader("Source/Shaders/basicPBR.shader");
 	skyboxShader = new Shader("Source/Shaders/Skybox/Skybox.shader");
 	
@@ -133,6 +135,8 @@ void GraphicsSystem::Render()
 			}
 		}
 	}
+
+	RenderLightSource();
 	
 	skybox.Render(skyboxShader, camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f));
 }
@@ -153,6 +157,28 @@ void GraphicsSystem::PbrRender(Material* mat, VQS* transform, Model* model)
 
 	ForwardPbrShader->setMat4("model", transform->Matrix());
 	model->Draw(*ForwardPbrShader);
+}
+
+
+void GraphicsSystem::RenderLightSource()
+{
+	for (const auto& [lightEntity, lightComponent] : LightComponentPool.componentList)
+	{
+		for (const auto& [modelEntity, modelComponent] : ModelComponentPool.componentList) {
+
+			for (const auto& [transEntity, transformComponent] : TransformComponentPool.componentList)
+			{
+				if (modelEntity == transEntity && lightEntity == transEntity)
+				{
+					LightSourceShader->setVec3("lightColor", lightComponent->LightSource->Color);
+					LightSourceShader->setMat4("view", camera.GetViewMat());
+					LightSourceShader->setMat4("projection", camera.GetProjMat(45.0f, 0.1f, 300.0f));
+					LightSourceShader->setMat4("model", transformComponent->transform->Matrix());
+					modelComponent->model->Draw(*LightSourceShader);
+				}
+			}
+		}
+	}
 }
 
 

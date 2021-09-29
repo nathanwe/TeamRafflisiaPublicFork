@@ -146,6 +146,9 @@
     <None Include="Source\Shaders\basicPBR.shader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
+    <None Include="Source\Shaders\LightSource.shader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">

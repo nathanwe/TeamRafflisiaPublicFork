@@ -104,6 +104,7 @@
     <None Include="Skybox.shader" />
     <None Include="Source\Shaders\basic.shader" />
     <None Include="Source\Shaders\basicPBR.shader" />
+    <None Include="Source\Shaders\LightSource.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Components\LightComponent\Light.h" />

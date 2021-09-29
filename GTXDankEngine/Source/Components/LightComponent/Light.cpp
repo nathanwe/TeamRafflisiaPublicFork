@@ -13,6 +13,7 @@ Light::Light(LightType type, glm::vec3 c, glm::vec3 i)
 	if (Intensity.y < 0) Intensity.y = 0;
 	if (Intensity.z < 0) Intensity.z = 0;
 
+	
 #ifdef _DEBUG | DEBUG
 	LOG_INFO("Creating Light with color: {0}, {1}, {2}", Color.x, Color.y, Color.z);
 	LOG_INFO("Creating Light with Intensity: {0}, {1}, {2}", Intensity.x, Intensity.y, Intensity.z);
@@ -26,4 +27,5 @@ float Light::Clip(float target, float max, float min)
 {
 	if (target < min) return min;
 	if (target > max) return max;
+	return target;
 }

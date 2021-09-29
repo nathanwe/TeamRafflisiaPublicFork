@@ -5,6 +5,7 @@
 #include "../Components/ModelComponent/ModelComponent.h"
 #include "../Components/TransformComponent/TransformComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
+#include "../Components/LightComponent/LightComponent.h"
 
 std::vector<Entity> EntityList;
 
@@ -97,6 +98,25 @@ bool Engine::Init()
 	MaterialComponentPool.Add(lion, (lionMat));
 	
 	//---------------------------------------------------------------------
+	// Point light source
+	Entity LightSource1 = 3;
+	EntityList.push_back(LightSource1);
+
+	// model component
+	Model* LightSource1Model = new Model("Assets/models/Sphere/model.obj");
+	ModelComponentPool.Add(LightSource1, (LightSource1Model));
+
+	// Transform component
+	VQS* LightSource1Transform = new VQS(glm::vec3(1.5f), 0.001f);
+	TransformComponentPool.Add(LightSource1, (LightSource1Transform));
+
+	// Light source component
+	Light* LightSource = new Light(LightType::Point, glm::vec3(1.0f), glm::vec3(4.0f));
+	LightComponentPool.Add(LightSource1, (LightSource));
+
+	//--------------------------------------------------------------------------
+
+
 
 
 	LOG_INFO("Engine init.");
