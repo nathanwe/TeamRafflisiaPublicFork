@@ -18,37 +18,37 @@ void Camera::Init()
 		{
 			if (dir == MoveDirection::UP)
 			{
-				Position += 100 * speed * Orientation;
+				Position += speed * Orientation;
 			}
 			if (dir == MoveDirection::LEFT)
 			{
-				Position += 100 * speed * -glm::normalize(glm::cross(Orientation, Up));
+				Position += speed * -glm::normalize(glm::cross(Orientation, Up));
 			}
 			if (dir == MoveDirection::DOWN)
 			{
-				Position += 100 * speed * -Orientation;
+				Position += speed * -Orientation;
 			}
 			if (dir == MoveDirection::RIGHT)
 			{
-				Position += 100 * speed * glm::normalize(glm::cross(Orientation, Up));
+				Position += speed * glm::normalize(glm::cross(Orientation, Up));
 			}
 		});
 
 	engine.CommandSys.SpaceCommand.SetActionToExecute([&]()
 		{
-			Position += speed * Up;
+			Position += speed / 2.f * Up;
 		});
 	engine.CommandSys.CtrlCommand.SetActionToExecute([&]()
 		{
-			Position += speed * -Up;
+			Position += speed / 2.f * -Up;
 		});
 	engine.CommandSys.ShiftCommand.SetActionToExecute([&]()
 		{
-			speed = 0.01f;
+			speed = 0.5f;
 		});
 	engine.CommandSys.UnShiftCommand.SetActionToExecute([&]()
 		{
-			speed = 0.001f;
+			speed = 0.1f;
 		});
 }
 

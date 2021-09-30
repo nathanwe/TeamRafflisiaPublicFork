@@ -45,7 +45,7 @@ in VS_OUT
 const float PI = 3.141f;
 
 // N_LIGHTS is the max value
-const int N_LIGHTS = 500;
+const int N_LIGHTS = 200;	// don't inflate
 uniform vec3 lightPositions[N_LIGHTS];
 uniform vec3 lightColors[N_LIGHTS];
 
