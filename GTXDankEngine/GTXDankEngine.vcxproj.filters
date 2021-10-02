@@ -127,6 +127,15 @@
     <Filter Include="Source Files\Components\LightComponent">
       <UniqueIdentifier>{dc9cca7b-040d-42a6-ac83-dce64c75e493}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Systems\GraphicsSystem\DeferredRenderer">
+      <UniqueIdentifier>{0112eb09-6a0b-43cb-a57b-5c4aecec37c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\GraphicsSystem\DeferredRenderer">
+      <UniqueIdentifier>{e92510f6-d3b6-4ddd-a582-c075fb229a9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\DeferredRenderer">
+      <UniqueIdentifier>{da698507-c5c2-4829-a289-f9a259aac7c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\brick.png">
@@ -154,6 +163,12 @@
     </None>
     <None Include="Source\Shaders\LightSource.shader">
       <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Source\Shaders\DeferredRenderer\DeferredLighting.shader">
+      <Filter>Resource Files\Shaders\DeferredRenderer</Filter>
+    </None>
+    <None Include="Source\Shaders\DeferredRenderer\Fill_G_Buffer.shader">
+      <Filter>Resource Files\Shaders\DeferredRenderer</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -289,6 +304,12 @@
     <ClInclude Include="Source\Components\LightComponent\LightComponent.h">
       <Filter>Header Files\Components\LightComponent</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\GraphicsSystem\Quad.h">
+      <Filter>Header Files\Systems\GraphicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\GraphicsSystem\DeferredRenderer\DeferredRenderer.h">
+      <Filter>Header Files\Systems\GraphicsSystem\DeferredRenderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -413,6 +434,12 @@
     </ClCompile>
     <ClCompile Include="Source\Components\LightComponent\LightComponent.cpp">
       <Filter>Source Files\Components\LightComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\GraphicsSystem\Quad.cpp">
+      <Filter>Source Files\Systems\GraphicsSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\GraphicsSystem\DeferredRenderer\DeferredRenderer.cpp">
+      <Filter>Source Files\Systems\GraphicsSystem\DeferredRenderer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

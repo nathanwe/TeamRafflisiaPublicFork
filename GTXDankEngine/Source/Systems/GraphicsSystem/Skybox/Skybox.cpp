@@ -52,6 +52,8 @@ float skyboxVertices[] = {
 
 void Skybox::Init(std::vector<std::string>& faces)
 {
+	shader = new Shader("Source/Shaders/Skybox/Skybox.shader");
+
 	// skybox VAO and VBO
 	glGenVertexArrays(1, &skyboxVAO);
 	glGenBuffers(1, &skyboxVBO);
@@ -65,9 +67,23 @@ void Skybox::Init(std::vector<std::string>& faces)
 }
 
 
+void Skybox::Init()
+{
+	std::vector<std::string> faces
+	{
+			"Assets/Textures/Skybox/sky/right.jpg",
+			"Assets/Textures/Skybox/sky/left.jpg",
+			"Assets/Textures/Skybox/sky/top.jpg",
+			"Assets/Textures/Skybox/sky/bottom.jpg",
+			"Assets/Textures/Skybox/sky/front.jpg",
+			"Assets/Textures/Skybox/sky/back.jpg"
+	};
+	Init(faces);
+}
 
 
-void Skybox::Render(Shader* shader, glm::mat4 view, glm::mat4 proj)
+
+void Skybox::Render(glm::mat4 view, glm::mat4 proj)
 {
 	// draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
@@ -128,6 +144,8 @@ unsigned int Skybox::LoadCubemap(std::vector<std::string> faces)
 
 void Skybox::Destroy()
 {
+	delete shader;
+
 	glDeleteVertexArrays(1, &skyboxVAO);
 	glDeleteBuffers(1, &skyboxVAO);
 }

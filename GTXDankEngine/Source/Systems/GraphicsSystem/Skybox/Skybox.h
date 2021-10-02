@@ -22,9 +22,10 @@ public:
 	Skybox(const Skybox&) = delete;
 	Skybox& operator= (const Skybox&) = delete;
 
+	void Init();
 	void Init(std::vector<std::string> &faces);
 
-	void Render(Shader* shader, glm::mat4 view, glm::mat4 proj);
+	void Render(glm::mat4 view, glm::mat4 proj);
 
 	void Destroy();
 
@@ -36,7 +37,7 @@ private:
 	unsigned int cubemapTexture;
 	unsigned int skyboxVAO, skyboxVBO;
 
-
+	Shader* shader;
 
 };
 #endif // !SKYBOX_H

@@ -11,6 +11,7 @@
 #include "../Components/MaterialComponent/Material.h"
 #include "../Core/Model.h"
 #include "../utils/VQS.h"
+#include "DeferredRenderer/DeferredRenderer.h"
 
 
 const unsigned int WIDTH = 1200;
@@ -45,20 +46,18 @@ private:
 		
 	void Render();
 
-	void PbrRender(Material* mat, VQS* transform, Model* model);
 	void RenderLightSource();
 
 	void BindLightSource(Shader* shader);
 
+
 private:
-	Shader* ForwardPbrShader;
-	Shader* skyboxShader;
 	Shader* LightSourceShader;
 
 	Skybox skybox;
 
 	Camera camera{ WIDTH, HEIGHT, glm::vec3(0.0f, 0.0f, 10.0f) };
 
-	glm::vec3 lightPos;	
+	DeferredRenderer DeferredRender;
 };
 #endif // !GRAPHICSSYSTEM_H

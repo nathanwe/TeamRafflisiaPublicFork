@@ -66,27 +66,17 @@ bool GraphicsSystem::Init()
 	// tell the viewport
 	glViewport(0, 0, WIDTH, HEIGHT);
 	
-	std::vector<std::string> faces
-	{
-			"Assets/Textures/Skybox/sky/right.jpg",
-			"Assets/Textures/Skybox/sky/left.jpg",
-			"Assets/Textures/Skybox/sky/top.jpg",
-			"Assets/Textures/Skybox/sky/bottom.jpg",
-			"Assets/Textures/Skybox/sky/front.jpg",
-			"Assets/Textures/Skybox/sky/back.jpg"
-	};
 
-	skybox.Init(faces);
+	camera.Init();
+
+	DeferredRender.Init(camera.width, camera.height);
+
+	skybox.Init();
 	
-	//shaderProgram = new Shader("Source/Shaders/basic.shader");
 	LightSourceShader = new Shader("Source/Shaders/LightSource.shader");
-	ForwardPbrShader = new Shader("Source/Shaders/basicPBR.shader");
-	skyboxShader = new Shader("Source/Shaders/Skybox/Skybox.shader");
 	
 	// test if yaml lib is linked properly
 	//YAML::Emitter out;
-
-	camera.Init();
 
 	return true;
 }
@@ -118,45 +108,22 @@ void GraphicsSystem::Update(float timeStamp)
 
 void GraphicsSystem::Render()
 {
+	// Geometry pass for G-buffer
+	DeferredRender.Fill_G_Buffer(camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 300.0f));
 
-	for (const auto& [modelEntity, modelComponent] : ModelComponentPool.componentList) {
+	BindLightSource(DeferredRender.GetLightShader());
 
-		for (const auto& [transEntity, transformComponent] : TransformComponentPool.componentList)
-		{
-			for (const auto& [matEntity, matComponent] : MaterialComponentPool.componentList)
-			{
-				if (modelEntity == transEntity && matEntity == transEntity)
-				{
-					if (matComponent->material->IsPBR)
-						PbrRender(matComponent->material, transformComponent->transform, modelComponent->model);
-				}
-			}
-		}
-	}
+	// PBR rendering, all local pass
+	DeferredRender.Render(camera.Position);
+
+	// copy depth buffer from G-buffer to default FBO
+	DeferredRender.CopyDepthBufferToTarget(0, camera.width, camera.height);
 
 	RenderLightSource();
-	
-	skybox.Render(skyboxShader, camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f));
+
+	skybox.Render(camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f));
 }
 
-
-void GraphicsSystem::PbrRender(Material* mat, VQS* transform, Model* model)
-{
-	BindLightSource(ForwardPbrShader);
-
-	ForwardPbrShader->setVec3("camPos", camera.Position);
-
-	ForwardPbrShader->setMat4("view", camera.GetViewMat());
-	ForwardPbrShader->setMat4("projection", camera.GetProjMat(45.0f, 0.1f, 300.0f));
-	
-	ForwardPbrShader->setTexture("albedoTex", mat->Albedo->GetID());
-	ForwardPbrShader->setTexture("metallicTex", mat->Metallic->GetID());
-	ForwardPbrShader->setTexture("normalTex", mat->Normal->GetID());
-	ForwardPbrShader->setTexture("roughnessTex", mat->Roughness->GetID());
-
-	ForwardPbrShader->setMat4("model", transform->Matrix());
-	model->Draw(*ForwardPbrShader);
-}
 
 
 void GraphicsSystem::RenderLightSource()
@@ -184,6 +151,9 @@ void GraphicsSystem::RenderLightSource()
 
 bool GraphicsSystem::Destroy()
 {
+	delete LightSourceShader;
+
+	DeferredRender.Destroy();
 	skybox.Destroy();
 	glfwDestroyWindow(pWindow);
 	glfwTerminate();
@@ -209,4 +179,6 @@ void GraphicsSystem::BindLightSource(Shader* shader)
 			++lightIndex;
 		}
 	}
+
+	shader->setInt("numberOfLights", lightIndex);
 }

@@ -77,26 +77,26 @@ bool Engine::Init()
 
 	//--------------------------------------------------------------------------------
 	
-	// lion entity
-	Entity lion = 2;
-	EntityList.push_back(lion);
+	// vase entity
+	Entity vase = 2;
+	EntityList.push_back(vase);
 
 	// model component
-	Model* lionModel = new Model("Assets/models/Vase/model.obj");
-	ModelComponentPool.Add(lion, (lionModel));
+	Model* vaseModel = new Model("Assets/models/Vase/model.obj");
+	ModelComponentPool.Add(vase, (vaseModel));
 
 	// Transform component
-	VQS* lionTransform = new VQS(glm::vec3(2.0, -1.0, 4.0), 0.5f);
-	TransformComponentPool.Add(lion, (lionTransform));
+	VQS* vaseTransform = new VQS(glm::vec3(2.0, -1.0, 4.0), 0.5f);
+	TransformComponentPool.Add(vase, (vaseTransform));
 
 	// Material component
-	Texture* lionDiffuse = new Texture("Assets/models/Vase/albedo.jpg");
-	Texture* lionNormal = new Texture("Assets/models/Vase/normal.jpg");
-	Texture* lionMetallic = new Texture("Assets/models/Vase/metallic.jpg");
-	Texture* lionRoughness = new Texture("Assets/models/Vase/roughness.jpg");
+	Texture* vaseDiffuse = new Texture("Assets/models/Vase/albedo.jpg");
+	Texture* vaseNormal = new Texture("Assets/models/Vase/normal.jpg");
+	Texture* vaseMetallic = new Texture("Assets/models/Vase/metallic.jpg");
+	Texture* vaseRoughness = new Texture("Assets/models/Vase/roughness.jpg");
 
-	Material* lionMat = new Material(lionDiffuse, lionMetallic, lionNormal, lionRoughness);
-	MaterialComponentPool.Add(lion, (lionMat));
+	Material* vaseMat = new Material(vaseDiffuse, vaseMetallic, vaseNormal, vaseRoughness);
+	MaterialComponentPool.Add(vase, (vaseMat));
 	
 	//---------------------------------------------------------------------
 	// Point light source
@@ -135,6 +135,27 @@ bool Engine::Init()
 
 	//--------------------------------------------------------------------------
 
+	// lion entity
+	Entity lion = 5;
+	EntityList.push_back(lion);
+
+	// model component
+	Model* lionModel = new Model("Assets/models/Lion/model.obj");
+	ModelComponentPool.Add(lion, (lionModel));
+
+	// Transform component
+	VQS* lionTransform = new VQS(glm::vec3(-1.0, -1.0, 3.0), 1.0f);
+	TransformComponentPool.Add(lion, (lionTransform));
+
+	// Material component
+	Texture* lionDiffuse = new Texture("Assets/models/Lion/albedo.jpg");
+	Texture* lionNormal = new Texture("Assets/models/Lion/normal.jpg");
+	Texture* lionMetallic = new Texture("Assets/models/Lion/metallic.jpg");
+	Texture* lionRoughness = new Texture("Assets/models/Lion/roughness.jpg");
+
+	Material* lionMat = new Material(lionDiffuse, lionMetallic, lionNormal, lionRoughness);
+	MaterialComponentPool.Add(lion, (lionMat));
+	//-----------------------------------------------------------------------
 
 
 	LOG_INFO("Engine init.");

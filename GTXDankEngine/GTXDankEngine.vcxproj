@@ -104,6 +104,8 @@
     <None Include="Skybox.shader" />
     <None Include="Source\Shaders\basic.shader" />
     <None Include="Source\Shaders\basicPBR.shader" />
+    <None Include="Source\Shaders\DeferredRenderer\DeferredLighting.shader" />
+    <None Include="Source\Shaders\DeferredRenderer\Fill_G_Buffer.shader" />
     <None Include="Source\Shaders\LightSource.shader" />
   </ItemGroup>
   <ItemGroup>
@@ -141,7 +143,9 @@
     <ClInclude Include="Source\Core\FramerateControlSystem\FramerateController.h" />
     <ClInclude Include="Source\Core\FramerateControlSystem\RunningAverage.h" />
     <ClInclude Include="Source\Systems\CommandSystem\DirectionCommand.h" />
+    <ClInclude Include="Source\Systems\GraphicsSystem\DeferredRenderer\DeferredRenderer.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\GraphicsSystem.h" />
+    <ClInclude Include="Source\Systems\GraphicsSystem\Quad.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\Skybox\Skybox.h" />
     <ClInclude Include="Source\Systems\InputSystem\InputManager.h" />
     <ClInclude Include="Source\Systems\ProfileSystem\ProfileSystem.h" />
@@ -217,7 +221,9 @@
     </ClCompile>
     <ClCompile Include="Source\Core\FramerateControlSystem\FramerateController.cpp" />
     <ClCompile Include="Source\Systems\CommandSystem\DirectionCommand.cpp" />
+    <ClCompile Include="Source\Systems\GraphicsSystem\DeferredRenderer\DeferredRenderer.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\GraphicsSystem.cpp" />
+    <ClCompile Include="Source\Systems\GraphicsSystem\Quad.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\Skybox\Skybox.cpp" />
     <ClCompile Include="Source\Systems\CommandSystem\Command.cpp" />
     <ClCompile Include="Source\Systems\InputSystem\InputManager.cpp" />
