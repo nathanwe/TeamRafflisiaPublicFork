@@ -73,10 +73,10 @@ bool Engine::Init()
 	TransformComponentPool.Add(pokemonBall, (pokemonBallTransform));
 
 	// Material component
-	ResourceHandle<Texture>* pokemonBallDiffuse = TextureResourceManger.GetResourceHandleNoThread("Assets/models/PokemonBall/albedo.jpg");
-	ResourceHandle<Texture>* pokemonBallNormal = TextureResourceManger.GetResourceHandleNoThread("Assets/models/PokemonBall/normal.jpg");
-	ResourceHandle<Texture>* pokemonBallMetallic = TextureResourceManger.GetResourceHandleNoThread("Assets/models/PokemonBall/metallic.jpg");
-	ResourceHandle<Texture>* pokemonBallRoughness = TextureResourceManger.GetResourceHandleNoThread("Assets/models/PokemonBall/roughness.jpg");
+	ResourceHandle<Texture>* pokemonBallDiffuse = TextureResourceManger.GetResourceHandle("Assets/models/PokemonBall/albedo.jpg");
+	ResourceHandle<Texture>* pokemonBallNormal = TextureResourceManger.GetResourceHandle("Assets/models/PokemonBall/normal.jpg");
+	ResourceHandle<Texture>* pokemonBallMetallic = TextureResourceManger.GetResourceHandle("Assets/models/PokemonBall/metallic.jpg");
+	ResourceHandle<Texture>* pokemonBallRoughness = TextureResourceManger.GetResourceHandle("Assets/models/PokemonBall/roughness.jpg");
 
 	Material* pokemonBallMat = new Material(
 		pokemonBallDiffuse, pokemonBallMetallic, pokemonBallNormal, pokemonBallRoughness);
@@ -97,10 +97,10 @@ bool Engine::Init()
 	VQS* vaseTransform = new VQS(glm::vec3(2.0, -1.0, 4.0), 0.5f);
 	TransformComponentPool.Add(vase, (vaseTransform));
 
-	ResourceHandle<Texture>* vaseDiffuse = TextureResourceManger.GetResourceHandleNoThread("Assets/models/Vase/albedo.jpg");
-	ResourceHandle<Texture>* vaseNormal = TextureResourceManger.GetResourceHandleNoThread("Assets/models/Vase/normal.jpg");
-	ResourceHandle<Texture>* vaseMetallic = TextureResourceManger.GetResourceHandleNoThread("Assets/models/Vase/metallic.jpg");
-	ResourceHandle<Texture>* vaseRoughness = TextureResourceManger.GetResourceHandleNoThread("Assets/models/Vase/roughness.jpg");
+	ResourceHandle<Texture>* vaseDiffuse = TextureResourceManger.GetResourceHandle("Assets/models/Vase/albedo.jpg");
+	ResourceHandle<Texture>* vaseNormal = TextureResourceManger.GetResourceHandle("Assets/models/Vase/normal.jpg");
+	ResourceHandle<Texture>* vaseMetallic = TextureResourceManger.GetResourceHandle("Assets/models/Vase/metallic.jpg");
+	ResourceHandle<Texture>* vaseRoughness = TextureResourceManger.GetResourceHandle("Assets/models/Vase/roughness.jpg");
 
 
 	Material* vaseMat = new Material(vaseDiffuse, vaseMetallic, vaseNormal, vaseRoughness);
@@ -156,10 +156,10 @@ bool Engine::Init()
 	TransformComponentPool.Add(lion, (lionTransform));
 
 	// Material component
-	ResourceHandle<Texture>* lionDiffuse = TextureResourceManger.GetResourceHandleNoThread("Assets/models/Lion/albedo.jpg");
-	ResourceHandle<Texture>* lionNormal = TextureResourceManger.GetResourceHandleNoThread("Assets/models/Lion/normal.jpg");
-	ResourceHandle<Texture>* lionMetallic = TextureResourceManger.GetResourceHandleNoThread("Assets/models/Lion/metallic.jpg");
-	ResourceHandle<Texture>* lionRoughness = TextureResourceManger.GetResourceHandleNoThread("Assets/models/Lion/roughness.jpg");
+	ResourceHandle<Texture>* lionDiffuse = TextureResourceManger.GetResourceHandle("Assets/models/Lion/albedo.jpg");
+	ResourceHandle<Texture>* lionNormal = TextureResourceManger.GetResourceHandle("Assets/models/Lion/normal.jpg");
+	ResourceHandle<Texture>* lionMetallic = TextureResourceManger.GetResourceHandle("Assets/models/Lion/metallic.jpg");
+	ResourceHandle<Texture>* lionRoughness = TextureResourceManger.GetResourceHandle("Assets/models/Lion/roughness.jpg");
 
 	Material* lionMat = new Material(lionDiffuse, lionMetallic, lionNormal, lionRoughness);
 	MaterialComponentPool.Add(lion, (lionMat));

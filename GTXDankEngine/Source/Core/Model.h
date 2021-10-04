@@ -19,6 +19,7 @@ public:
 	Model(const char* path);
 	Model(std::string path);
 	void Draw(Shader& shader) const;
+	void OnLoad();
 
 private:
 	std::vector<Mesh> meshes;

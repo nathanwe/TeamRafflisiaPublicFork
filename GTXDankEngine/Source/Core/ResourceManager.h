@@ -161,6 +161,7 @@ inline ResourceHandle<ResourceType>* ResourceManager<ResourceType>::GetResourceH
 	else
 	{
 		ResourceType* resource = new ResourceType(filepath); //this might take a while
+		resource->OnLoad();
 		resources.insert(std::pair<std::string,
 			ResourceHandle<ResourceType>>(filepath,
 				ResourceHandle<ResourceType>(resource, filepath, ResourceState::LOADED)));
@@ -199,6 +200,7 @@ template<class ResourceType>
 inline bool ResourceManager<ResourceType>::Init(std::string defaultResourcePath)
 {
 	defaultResource = new ResourceType(defaultResourcePath);
+	defaultResource->OnLoad();
 	resources.insert(std::pair<std::string,
 		ResourceHandle<ResourceType>>(defaultResourcePath,
 			ResourceHandle<ResourceType>(defaultResource, defaultResourcePath, ResourceState::LOADED)));
@@ -214,6 +216,7 @@ inline void ResourceManager<ResourceType>::Update(float dt)
 		if (handle.second.state == ResourceState::LOADED_BUT_NOT_UPDATED)
 		{
 			handle.second.resource = handle.second.resourceToUpdateTo;
+			handle.second.resource->OnLoad();
 			handle.second.state = ResourceState::LOADED;
 		}
 	}
@@ -234,7 +237,9 @@ inline void ResourceManager<ResourceType>::ThreadlyUpdateHandles()
 		if (!updatingResources.empty())
 		{
 			std::string filepath = *updatingResources.begin();
+			mutex.lock();
 			ResourceType* resource = new ResourceType(filepath); //this might take a while
+			mutex.unlock();
 			auto handle = resources.find(filepath);
 			if (handle != resources.end())
 			{

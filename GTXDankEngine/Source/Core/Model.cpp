@@ -22,6 +22,10 @@ void Model::Draw(Shader& shader) const
     for (auto mesh : meshes) mesh.Draw(shader);
 }
 
+void Model::OnLoad()
+{
+}
+
 
 
 
