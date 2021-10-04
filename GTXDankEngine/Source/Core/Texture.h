@@ -10,6 +10,8 @@ class Texture {
 
 	public:
 
+		void OnLoad();
+
 		Texture(const char* path);
 		Texture(std::string path);
 		inline ~Texture() { glDeleteTextures(1, &ID); }
@@ -18,6 +20,11 @@ class Texture {
 		void Bind(unsigned int unit);
 		void Unbind();
 		inline GLuint GetID() const { return ID; };
+
+private:
+	//temp but its easyer then passing them around
+		unsigned char* bytes;
+		int widthImg, heightImg, numColCh;
 
 };
 #endif // !TEXTURE_H

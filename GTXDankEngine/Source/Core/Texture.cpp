@@ -4,20 +4,11 @@
 #include "../utils/Log.h"
 
 
-
-
-// Texture Constructor
-Texture::Texture(const char* path)
+void Texture::OnLoad()
 {
-	//LOG_INFO("Loading texture: {0}", path);
-
-	int widthImg, heightImg, numColCh;
-	stbi_set_flip_vertically_on_load(true);
-	unsigned char* bytes = stbi_load(path, &widthImg, &heightImg, &numColCh, 0);
-
-	if (!bytes) 
+	if (!bytes)
 	{
-		LOG_ERROR("Loading texture failed"); 
+		LOG_ERROR("Loading texture failed");
 	}
 
 	// initialize texture
@@ -31,19 +22,19 @@ Texture::Texture(const char* path)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-	if (numColCh == 4) 
+	if (numColCh == 4)
 	{
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthImg, heightImg, 0, GL_RGBA, GL_UNSIGNED_BYTE, bytes);
 	}
-	else if (numColCh == 3) 
+	else if (numColCh == 3)
 	{
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthImg, heightImg, 0, GL_RGB, GL_UNSIGNED_BYTE, bytes);
 	}
-	else if (numColCh == 1) 
+	else if (numColCh == 1)
 	{
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, widthImg, heightImg, 0, GL_RED, GL_UNSIGNED_BYTE, bytes);
 	}
-	else 
+	else
 	{
 		LOG_ERROR("Loading texture failed, automatic Texture type recognition failed");
 		throw std::invalid_argument("Automatic Texture type recognition failed");
@@ -51,11 +42,23 @@ Texture::Texture(const char* path)
 
 	glGenerateMipmap(GL_TEXTURE_2D);
 
-	LOG_INFO("Texture data loading succeed {0}", path);
 	LOG_INFO("Texture data loading ID {0}", ID);
 
 	stbi_image_free(bytes);
 	glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+// Texture Constructor
+Texture::Texture(const char* path)
+{
+	//LOG_INFO("Loading texture: {0}", path);
+
+	stbi_set_flip_vertically_on_load(true);
+	bytes = stbi_load(path, &widthImg, &heightImg, &numColCh, 0);
+
+	LOG_INFO("Texture data loading succeed {0}", path);
+	
+	
 }
 Texture::Texture(std::string path) : Texture::Texture(path.c_str())
 {
