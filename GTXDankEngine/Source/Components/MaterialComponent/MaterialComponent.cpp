@@ -5,6 +5,7 @@
 #include "MaterialComponent.h"
 
 AbstractComponentPool<MaterialComponent> MaterialComponentPool;
+ResourceManager<Texture> TextureResourceManger;
 
 MaterialComponent::MaterialComponent(Entity entity, Material* mat)
 	:AbstractComponent{ entity }, material(mat)

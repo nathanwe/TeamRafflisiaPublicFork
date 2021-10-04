@@ -2,7 +2,7 @@
 #include "Material.h"
 #include "../utils/Log.h"
 
-Material::Material(Texture* albedo)
+Material::Material(ResourceHandle<Texture>* albedo)
 	: Albedo(albedo), Metallic(nullptr), Normal(nullptr), Roughness(nullptr), IsPBR(false)
 {
 	if (albedo == nullptr)
@@ -11,7 +11,7 @@ Material::Material(Texture* albedo)
 
 
 
-Material::Material(Texture* albedo, Texture* metallic, Texture* normal, Texture* roughness)
+Material::Material(ResourceHandle<Texture>* albedo, ResourceHandle<Texture>* metallic, ResourceHandle<Texture>* normal, ResourceHandle<Texture>* roughness)
 	:Albedo(albedo), Metallic(metallic), Normal(normal), Roughness(roughness), IsPBR(false)
 {
 	if (albedo == nullptr)

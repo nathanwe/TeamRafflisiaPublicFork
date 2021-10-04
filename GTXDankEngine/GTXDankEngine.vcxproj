@@ -133,6 +133,7 @@
     <ClInclude Include="Source\Core\Enums.h" />
     <ClInclude Include="Source\Core\IndexBuffer.h" />
     <ClInclude Include="Source\Core\MemoryPool.h" />
+    <ClInclude Include="Source\Core\ResourceManager.h" />
     <ClInclude Include="Source\Core\Mesh.h" />
     <ClInclude Include="Source\Core\Model.h" />
     <ClInclude Include="Source\Core\Shader.h" />

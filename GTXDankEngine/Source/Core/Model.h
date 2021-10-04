@@ -2,7 +2,7 @@
 
 #include "pch.h"
 #include "Mesh.h"
-
+#include <string>
 
 /*
 * .obj model file
@@ -17,6 +17,7 @@ class Model
 {
 public:
 	Model(const char* path);
+	Model(std::string path);
 	void Draw(Shader& shader) const;
 
 private:

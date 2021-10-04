@@ -259,6 +259,9 @@
     <ClInclude Include="Source\Systems\GraphicsSystem\Skybox\Skybox.h">
       <Filter>Header Files\Systems\GraphicsSystem\Skybox</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Core\ResourceManager.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Systems\CommandSystem\Command.h">
       <Filter>Header Files\Systems\InputSystem</Filter>
     </ClInclude>

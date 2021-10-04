@@ -9,13 +9,16 @@
 // Texture Constructor
 Texture::Texture(const char* path)
 {
-	LOG_INFO("Loading texture: {0}", path);
+	//LOG_INFO("Loading texture: {0}", path);
 
 	int widthImg, heightImg, numColCh;
 	stbi_set_flip_vertically_on_load(true);
 	unsigned char* bytes = stbi_load(path, &widthImg, &heightImg, &numColCh, 0);
 
-	if (!bytes) LOG_ERROR("Loading texture failed");
+	if (!bytes) 
+	{
+		LOG_ERROR("Loading texture failed"); 
+	}
 
 	// initialize texture
 	glGenTextures(1, &ID);
@@ -48,12 +51,15 @@ Texture::Texture(const char* path)
 
 	glGenerateMipmap(GL_TEXTURE_2D);
 
-	LOG_INFO("Texture data loading succeed", path);
+	LOG_INFO("Texture data loading succeed {0}", path);
+	LOG_INFO("Texture data loading ID {0}", ID);
 
 	stbi_image_free(bytes);
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
-
+Texture::Texture(std::string path) : Texture::Texture(path.c_str())
+{
+}
 // Sets up uniform variable for shaders to read textures
 void Texture::texUnit(Shader& shader, const char* uniform, unsigned int unit) 
 {

@@ -2,10 +2,12 @@
 #include "../utils/Log.h"
 
 #include "ModelComponent.h"
+#include "../Core/ResourceManager.h"
 
 AbstractComponentPool<ModelComponent> ModelComponentPool;
+ResourceManager<Model> ModelResourceManager;
 
-ModelComponent::ModelComponent(Entity entity, Model* m)
+ModelComponent::ModelComponent(Entity entity, ResourceHandle<Model>* m)
 	:AbstractComponent{entity}, model(m)
 {
 	LOG_INFO("Creating model component to entity: {}", entity);

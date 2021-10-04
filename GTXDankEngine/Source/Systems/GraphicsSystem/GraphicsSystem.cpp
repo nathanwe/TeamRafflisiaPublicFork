@@ -2,10 +2,12 @@
 
 #include "GraphicsSystem.h"
 
+#include "../../utils/Log.h"
 #include "../Components/ModelComponent/ModelComponent.h"
 #include "../Components/TransformComponent/TransformComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
 #include "../Components/LightComponent/LightComponent.h"
+
 
 #include "../UISystem/UISystem.h"
 #include "../ProfileSystem/ProfileSystem.h"
@@ -113,11 +115,13 @@ void GraphicsSystem::Render()
 
 	BindLightSource(DeferredRender.GetLightShader());
 
+
 	// PBR rendering, all local pass
 	DeferredRender.Render(camera.Position);
 
 	// copy depth buffer from G-buffer to default FBO
 	DeferredRender.CopyDepthBufferToTarget(0, camera.width, camera.height);
+
 
 	RenderLightSource();
 
@@ -140,7 +144,7 @@ void GraphicsSystem::RenderLightSource()
 					LightSourceShader->setMat4("view", camera.GetViewMat());
 					LightSourceShader->setMat4("projection", camera.GetProjMat(45.0f, 0.1f, 300.0f));
 					LightSourceShader->setMat4("model", transformComponent->transform->Matrix());
-					modelComponent->model->Draw(*LightSourceShader);
+					modelComponent->model->GetPointer()->Draw(*LightSourceShader);
 				}
 			}
 		}

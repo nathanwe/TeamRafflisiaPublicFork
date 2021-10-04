@@ -11,6 +11,11 @@ Model::Model(const char* path)
     loadModel(path);
 }
 
+Model::Model(std::string path)
+{
+    loadModel(path.c_str());
+}
+
 // iterate all meshes, draw all meshes
 void Model::Draw(Shader& shader) const
 {

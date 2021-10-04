@@ -8,6 +8,7 @@
 #include "../Systems/UISystem/UISystem.h"
 #include "FramerateControlSystem/FramerateController.h"
 #include "../Systems/InputSystem/InputManager.h"
+#include "ResourceManager.h"
 #include "../Systems/CommandSystem/CommandSystem.h"
 #include "../Systems/AudioSystem/AudioSystem.h"
 

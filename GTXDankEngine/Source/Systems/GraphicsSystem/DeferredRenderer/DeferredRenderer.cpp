@@ -125,7 +125,7 @@ void DeferredRenderer::Fill_G_Buffer(glm::mat4 view, glm::mat4 projection)
 				if (modelEntity == transEntity && matEntity == transEntity)
 				{
 					if (matComponent->material->IsPBR) 
-						Fill_G_BufferRender(matComponent->material, transformComponent->transform, modelComponent->model);
+						Fill_G_BufferRender(matComponent->material, transformComponent->transform, modelComponent->model->GetPointer());
 				}
 			}
 		}
@@ -149,10 +149,10 @@ void DeferredRenderer::Render(glm::vec3 camPos)
 
 void DeferredRenderer::Fill_G_BufferRender(Material* mat, VQS* transform, Model* model)
 {
-	Fill_G_BufferShader->setTexture("material.texture_albedo", mat->Albedo->GetID());
-	Fill_G_BufferShader->setTexture("material.texture_metallic", mat->Metallic->GetID());
-	Fill_G_BufferShader->setTexture("material.texture_normal", mat->Normal->GetID());
-	Fill_G_BufferShader->setTexture("material.texture_roughness", mat->Roughness->GetID());
+	Fill_G_BufferShader->setTexture("material.texture_albedo", mat->Albedo->GetPointer()->GetID());
+	Fill_G_BufferShader->setTexture("material.texture_metallic", mat->Metallic->GetPointer()->GetID());
+	Fill_G_BufferShader->setTexture("material.texture_normal", mat->Normal->GetPointer()->GetID());
+	Fill_G_BufferShader->setTexture("material.texture_roughness", mat->Roughness->GetPointer()->GetID());
 
 	Fill_G_BufferShader->setMat4("model", transform->Matrix());
 	model->Draw(*Fill_G_BufferShader);

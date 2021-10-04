@@ -2,10 +2,14 @@
 #include "Engine.h"
 #include "../utils/Log.h"
 
+#include "ResourceManager.h"
+
 #include "../Components/ModelComponent/ModelComponent.h"
 #include "../Components/TransformComponent/TransformComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
 #include "../Components/LightComponent/LightComponent.h"
+
+#include <string>
 
 std::vector<Entity> EntityList;
 
@@ -44,12 +48,15 @@ bool Engine::Init()
 	Framerate = std::make_shared<FramerateController>();
 	Framerate->Init(60);
 
+	ModelResourceManager.Init("Assets/models/PokemonBall/model.obj");
+	TextureResourceManger.Init("Assets/models/PokemonBall/albedo.jpg");
 
 
 	//--------------------------------------------------------------------
 	// These datas are not suppose to be inside Engine.cpp
 	// It will moved once scene system is done
-	// 
+
+
 	Entity noSuchEntity = 0; // 0 means no entity
 	EntityList.push_back(noSuchEntity);
 	// pokemon ball entity
@@ -57,18 +64,19 @@ bool Engine::Init()
 	EntityList.push_back(pokemonBall);
 
 	// model component
-	Model* pokemonBallModel = new Model("Assets/models/PokemonBall/model.obj");
-	ModelComponentPool.Add(pokemonBall, (pokemonBallModel));
+
+	ResourceHandle<Model>* pokemonBallModelHandle = ModelResourceManager.GetResourceHandleNoThread("Assets/models/PokemonBall/model.obj");
+	ModelComponentPool.Add(pokemonBall, (pokemonBallModelHandle));
 
 	// Transform component
 	VQS* pokemonBallTransform = new VQS(glm::vec3(0.0), 0.01f);
 	TransformComponentPool.Add(pokemonBall, (pokemonBallTransform));
 
 	// Material component
-	Texture* pokemonBallDiffuse = new Texture("Assets/models/PokemonBall/albedo.jpg");
-	Texture* pokemonBallNormal = new Texture("Assets/models/PokemonBall/normal.jpg");
-	Texture* pokemonBallMetallic = new Texture("Assets/models/PokemonBall/metallic.jpg");
-	Texture* pokemonBallRoughness = new Texture("Assets/models/PokemonBall/roughness.jpg");
+	ResourceHandle<Texture>* pokemonBallDiffuse = TextureResourceManger.GetResourceHandleNoThread("Assets/models/PokemonBall/albedo.jpg");
+	ResourceHandle<Texture>* pokemonBallNormal = TextureResourceManger.GetResourceHandleNoThread("Assets/models/PokemonBall/normal.jpg");
+	ResourceHandle<Texture>* pokemonBallMetallic = TextureResourceManger.GetResourceHandleNoThread("Assets/models/PokemonBall/metallic.jpg");
+	ResourceHandle<Texture>* pokemonBallRoughness = TextureResourceManger.GetResourceHandleNoThread("Assets/models/PokemonBall/roughness.jpg");
 
 	Material* pokemonBallMat = new Material(
 		pokemonBallDiffuse, pokemonBallMetallic, pokemonBallNormal, pokemonBallRoughness);
@@ -82,18 +90,18 @@ bool Engine::Init()
 	EntityList.push_back(vase);
 
 	// model component
-	Model* vaseModel = new Model("Assets/models/Vase/model.obj");
+	ResourceHandle<Model>* vaseModel = ModelResourceManager.GetResourceHandleNoThread("Assets/models/Vase/model.obj");
 	ModelComponentPool.Add(vase, (vaseModel));
 
 	// Transform component
 	VQS* vaseTransform = new VQS(glm::vec3(2.0, -1.0, 4.0), 0.5f);
 	TransformComponentPool.Add(vase, (vaseTransform));
 
-	// Material component
-	Texture* vaseDiffuse = new Texture("Assets/models/Vase/albedo.jpg");
-	Texture* vaseNormal = new Texture("Assets/models/Vase/normal.jpg");
-	Texture* vaseMetallic = new Texture("Assets/models/Vase/metallic.jpg");
-	Texture* vaseRoughness = new Texture("Assets/models/Vase/roughness.jpg");
+	ResourceHandle<Texture>* vaseDiffuse = TextureResourceManger.GetResourceHandleNoThread("Assets/models/Vase/albedo.jpg");
+	ResourceHandle<Texture>* vaseNormal = TextureResourceManger.GetResourceHandleNoThread("Assets/models/Vase/normal.jpg");
+	ResourceHandle<Texture>* vaseMetallic = TextureResourceManger.GetResourceHandleNoThread("Assets/models/Vase/metallic.jpg");
+	ResourceHandle<Texture>* vaseRoughness = TextureResourceManger.GetResourceHandleNoThread("Assets/models/Vase/roughness.jpg");
+
 
 	Material* vaseMat = new Material(vaseDiffuse, vaseMetallic, vaseNormal, vaseRoughness);
 	MaterialComponentPool.Add(vase, (vaseMat));
@@ -104,7 +112,7 @@ bool Engine::Init()
 	EntityList.push_back(LightSource1);
 
 	// model component
-	Model* LightSource1Model = new Model("Assets/models/Sphere/model.obj");
+	ResourceHandle<Model>* LightSource1Model = ModelResourceManager.GetResourceHandleNoThread("Assets/models/Sphere/model.obj");
 	ModelComponentPool.Add(LightSource1, (LightSource1Model));
 
 	// Transform component
@@ -140,7 +148,7 @@ bool Engine::Init()
 	EntityList.push_back(lion);
 
 	// model component
-	Model* lionModel = new Model("Assets/models/Lion/model.obj");
+	ResourceHandle<Model>* lionModel = ModelResourceManager.GetResourceHandleNoThread("Assets/models/Lion/model.obj");
 	ModelComponentPool.Add(lion, (lionModel));
 
 	// Transform component
@@ -148,10 +156,10 @@ bool Engine::Init()
 	TransformComponentPool.Add(lion, (lionTransform));
 
 	// Material component
-	Texture* lionDiffuse = new Texture("Assets/models/Lion/albedo.jpg");
-	Texture* lionNormal = new Texture("Assets/models/Lion/normal.jpg");
-	Texture* lionMetallic = new Texture("Assets/models/Lion/metallic.jpg");
-	Texture* lionRoughness = new Texture("Assets/models/Lion/roughness.jpg");
+	ResourceHandle<Texture>* lionDiffuse = TextureResourceManger.GetResourceHandleNoThread("Assets/models/Lion/albedo.jpg");
+	ResourceHandle<Texture>* lionNormal = TextureResourceManger.GetResourceHandleNoThread("Assets/models/Lion/normal.jpg");
+	ResourceHandle<Texture>* lionMetallic = TextureResourceManger.GetResourceHandleNoThread("Assets/models/Lion/metallic.jpg");
+	ResourceHandle<Texture>* lionRoughness = TextureResourceManger.GetResourceHandleNoThread("Assets/models/Lion/roughness.jpg");
 
 	Material* lionMat = new Material(lionDiffuse, lionMetallic, lionNormal, lionRoughness);
 	MaterialComponentPool.Add(lion, (lionMat));
@@ -190,9 +198,13 @@ void Engine::Run()
 		PhysicsSystem.Update(timeStamp);
 
 		*/
-
+		
 		
 		// hard code timestamp to 0 for now
+
+		ModelResourceManager.Update(0);
+		TextureResourceManger.Update(0);
+
 		GraphicsSys.Update(0);
 		
 		

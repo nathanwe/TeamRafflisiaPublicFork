@@ -3,19 +3,20 @@
 
 #include "pch.h"
 #include "../Core/Texture.h"
+#include "../Core/ResourceManager.h"
 
 class Material
 {
 public:
-	Material(Texture* albedo);
-	Material(Texture* albedo, Texture* metallic, Texture* normal, Texture* roughness);
+	Material(ResourceHandle<Texture>* albedo);
+	Material(ResourceHandle<Texture>* albedo, ResourceHandle<Texture>* metallic, ResourceHandle<Texture>* normal, ResourceHandle<Texture>* roughness);
 	
 	bool IsPBR;
 
-	Texture* Albedo;
-	Texture* Metallic;
-	Texture* Normal;
-	Texture* Roughness;
+	ResourceHandle<Texture>* Albedo;
+	ResourceHandle<Texture>* Metallic;
+	ResourceHandle<Texture>* Normal;
+	ResourceHandle<Texture>* Roughness;
 
 
 
