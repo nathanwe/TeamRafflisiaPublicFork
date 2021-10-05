@@ -18,7 +18,7 @@ public:
 	};
 	void* GetFreeBlock();
 	void FreeUsedBlock(void* blockToFree);
-	int getMemoryGotten() { return memoryGotten; }
+	int GetMemoryGotten() { return memoryGotten; }
 
 
 private:

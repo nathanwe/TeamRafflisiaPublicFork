@@ -109,6 +109,10 @@
     <None Include="Source\Shaders\LightSource.shader" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Components\RoutineComponent\RoutineComponent.h" />
+    <ClInclude Include="Source\Components\RoutineComponent\LeftRight.h" />
+    <ClInclude Include="Source\Components\RoutineComponent\Routine.h" />
+    <ClInclude Include="Source\Components\RoutineComponent\RoutineList.h" />
     <ClInclude Include="Source\Systems\AudioSystem\AudioSystem.h" />
     <ClInclude Include="Source\Components\LightComponent\Light.h" />
     <ClInclude Include="Source\Components\LightComponent\LightComponent.h" />
@@ -158,6 +162,7 @@
     <ClInclude Include="Source\utils\VQS.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Components\RoutineComponent\RoutineComponent.cpp" />
     <ClCompile Include="Source\Systems\AudioSystem\AudioSystem.cpp" />
     <ClCompile Include="Source\Components\LightComponent\Light.cpp" />
     <ClCompile Include="Source\Components\LightComponent\LightComponent.cpp" />

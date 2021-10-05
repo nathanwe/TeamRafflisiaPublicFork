@@ -132,13 +132,16 @@ void GraphicsSystem::Render()
 
 void GraphicsSystem::RenderLightSource()
 {
-	for (const auto& [lightEntity, lightComponent] : LightComponentPool.componentList)
+	for (auto e : EntityList)
 	{
-		for (const auto& [modelEntity, modelComponent] : ModelComponentPool.componentList) {
-
-			for (const auto& [transEntity, transformComponent] : TransformComponentPool.componentList)
+		auto lightComponent = LightComponentPool.GetComponentByEntity(e);
+		if (lightComponent != nullptr)
+		{
+			auto transformComponent = TransformComponentPool.GetComponentByEntity(e);
+			if (transformComponent != nullptr)
 			{
-				if (modelEntity == transEntity && lightEntity == transEntity)
+				auto modelComponent = ModelComponentPool.GetComponentByEntity(e);
+				if (modelComponent != nullptr)
 				{
 					LightSourceShader->setVec3("lightColor", lightComponent->LightSource->Color);
 					LightSourceShader->setMat4("view", camera.GetViewMat());
@@ -149,6 +152,7 @@ void GraphicsSystem::RenderLightSource()
 			}
 		}
 	}
+	
 }
 
 

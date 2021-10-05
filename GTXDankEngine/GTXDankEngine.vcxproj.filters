@@ -136,6 +136,12 @@
     <Filter Include="Resource Files\Shaders\DeferredRenderer">
       <UniqueIdentifier>{da698507-c5c2-4829-a289-f9a259aac7c9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Components\RoutineComponent">
+      <UniqueIdentifier>{4c3d047e-b558-4bd5-8443-e2fa237eaa1d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\RoutineComponent">
+      <UniqueIdentifier>{a641a787-14a7-42fd-9b43-167fe576cf9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\brick.png">
@@ -313,6 +319,18 @@
     <ClInclude Include="Source\Systems\GraphicsSystem\DeferredRenderer\DeferredRenderer.h">
       <Filter>Header Files\Systems\GraphicsSystem\DeferredRenderer</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Components\RoutineComponent\Routine.h">
+      <Filter>Header Files\Components\RoutineComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\RoutineComponent\RoutineList.h">
+      <Filter>Header Files\Components\RoutineComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\RoutineComponent\LeftRight.h">
+      <Filter>Header Files\Components\RoutineComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\RoutineComponent\RoutineComponent.h">
+      <Filter>Header Files\Components\RoutineComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -443,6 +461,9 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\DeferredRenderer\DeferredRenderer.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\DeferredRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\RoutineComponent\RoutineComponent.cpp">
+      <Filter>Source Files\Components\RoutineComponent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
