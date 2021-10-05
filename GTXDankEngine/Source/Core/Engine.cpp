@@ -8,6 +8,7 @@
 #include "../Components/TransformComponent/TransformComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
 #include "../Components/LightComponent/LightComponent.h"
+#include "../Components/RoutineComponent/RoutineComponent.h"
 
 #include <string>
 
@@ -82,6 +83,11 @@ bool Engine::Init()
 		pokemonBallDiffuse, pokemonBallMetallic, pokemonBallNormal, pokemonBallRoughness);
 
 	MaterialComponentPool.Add(pokemonBall, (pokemonBallMat));
+
+	RoutineList* pokemonBallRoutines = new RoutineList(pokemonBall);
+	pokemonBallRoutines->addRoutine(TYPE_LEFTRIGHT);
+	RoutineComponentPool.Add(pokemonBall, (pokemonBallRoutines));
+
 
 	//--------------------------------------------------------------------------------
 	
@@ -183,6 +189,11 @@ void Engine::Run()
 		AudioSys.Update(0);
 		// Game loop format
 		// TODO: Profiler records time spent for each update()
+
+		for (auto [entity, rComponent] : RoutineComponentPool.componentList)
+		{
+			rComponent->list->Update(DeltaTime(), &InputSys);
+		}
 
 		/*
 		MemorySystem.Update();

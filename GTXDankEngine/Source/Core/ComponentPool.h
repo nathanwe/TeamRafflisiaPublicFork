@@ -23,12 +23,12 @@ public:
 
 	bool Delete(Entity e);
 
-	int getUsedMemory()
+	int GetUsedMemory()
 	{
-		return memory.getMemoryGotten();
+		return memory.GetMemoryGotten();
 	}
 
-
+	T* GetComponentByEntity(Entity e);
 
 	// AbstractComponent pointer instead or handle instead?
 	// Map Entity and component handle
@@ -75,6 +75,19 @@ bool AbstractComponentPool<T>::Delete(Entity e)
 		LOG_ERROR("Tried to delete Entity not found");
 		assert(!"Tried to delete Entity not found");
 	}
+}
+
+template<class T>
+inline T* AbstractComponentPool<T>::GetComponentByEntity(Entity e)
+{
+	auto comp = componentList.find(e);
+	if (comp != componentList.end())
+	{
+		return comp->second;
+	}
+	//LOG_ERROR("component {0} not found", e);
+	return nullptr;
+
 }
 
 #endif // !COMPONENTPOOL_H
