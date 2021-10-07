@@ -4,6 +4,7 @@
 #include "pch.h"
 #include "../utils/VQS.h"
 #include "../Core/ComponentPool.h"
+#include "../Core/Engine.h"
 
 class TransformComponent : public AbstractComponent
 {

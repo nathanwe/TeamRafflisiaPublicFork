@@ -11,6 +11,7 @@
 #include "ResourceManager.h"
 #include "../Systems/CommandSystem/CommandSystem.h"
 #include "../Systems/AudioSystem/AudioSystem.h"
+#include "../Systems/ScriptSystem/ScriptSystem.h"
 
 typedef uint32_t Entity;
 
@@ -82,6 +83,7 @@ public:
 	GraphicsSystem GraphicsSys;
 	InputManager InputSys;
 	CommandSystem CommandSys;
+	ScriptSystem TestScriptSys, LightWiggleScriptSys;
 
 
 private:

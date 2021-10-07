@@ -9,6 +9,7 @@
 #include "../Components/MaterialComponent/MaterialComponent.h"
 #include "../Components/LightComponent/LightComponent.h"
 #include "../Components/RoutineComponent/RoutineComponent.h"
+#include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
 
 #include <string>
 
@@ -36,6 +37,8 @@ bool Engine::Init()
 	*/
 	
 	
+	ScriptResourceManager.Init("Assets/Scripts/FirstScript.lua");
+	
 	if (!AudioSys.Init()) LOG_ERROR("Audio System failed to init.");
 
 	if (!CommandSys.Init()) LOG_ERROR("Command System failed to init.");
@@ -45,6 +48,7 @@ bool Engine::Init()
 	if (!UISys.Init()) LOG_ERROR("UI System failed to init.");
 
 	if (!InputSys.Init(GraphicsSys.pWindow)) LOG_ERROR("Input System failed to init.");
+	
 
 	Framerate = std::make_shared<FramerateController>();
 	Framerate->Init(60);
@@ -87,6 +91,7 @@ bool Engine::Init()
 	RoutineList* pokemonBallRoutines = new RoutineList(pokemonBall);
 	pokemonBallRoutines->addRoutine(TYPE_LEFTRIGHT);
 	RoutineComponentPool.Add(pokemonBall, (pokemonBallRoutines));
+	GameLogicCategoryComponentPool.Add(pokemonBall, (std::vector<GameLogicCategories>({ GameLogicCategories::POKEBALL })));
 
 
 	//--------------------------------------------------------------------------------
@@ -111,6 +116,7 @@ bool Engine::Init()
 
 	Material* vaseMat = new Material(vaseDiffuse, vaseMetallic, vaseNormal, vaseRoughness);
 	MaterialComponentPool.Add(vase, (vaseMat));
+	GameLogicCategoryComponentPool.Add(vase, (std::vector<GameLogicCategories>({ GameLogicCategories::VASE })));
 	
 	//---------------------------------------------------------------------
 	// Point light source
@@ -124,11 +130,13 @@ bool Engine::Init()
 	// Transform component
 	VQS* LightSource1Transform = new VQS(glm::vec3(1.5f), 0.008f);
 	TransformComponentPool.Add(LightSource1, (LightSource1Transform));
-
+	
 	// Light source component
 	// white
 	Light* Light1 = new Light(LightType::Point, glm::vec3(1.0f), glm::vec3(10.0f));
 	LightComponentPool.Add(LightSource1, (Light1));
+	GameLogicCategoryComponentPool.Add(LightSource1, (std::vector<GameLogicCategories>({ GameLogicCategories::POINTLIGHTSOURCE })));
+
 
 	//--------------------------------------------------------------------------
 	// Point light source
@@ -146,6 +154,7 @@ bool Engine::Init()
 	// yellow
 	Light* Light2 = new Light(LightType::Point, glm::vec3(1.0f, 0.8f, 0.0), glm::vec3(5.0f));
 	LightComponentPool.Add(LightSource2, (Light2));
+	GameLogicCategoryComponentPool.Add(LightSource2, (std::vector<GameLogicCategories>({ GameLogicCategories::POINTLIGHTSOURCE })));
 
 	//--------------------------------------------------------------------------
 
@@ -169,8 +178,12 @@ bool Engine::Init()
 
 	Material* lionMat = new Material(lionDiffuse, lionMetallic, lionNormal, lionRoughness);
 	MaterialComponentPool.Add(lion, (lionMat));
+	GameLogicCategoryComponentPool.Add(lion, (std::vector<GameLogicCategories>({ GameLogicCategories::LION })));
+
 	//-----------------------------------------------------------------------
 
+	if (!TestScriptSys.Init("Assets/Scripts/FirstScript.lua")) LOG_ERROR("Test Script System failed to init.");
+	if (!LightWiggleScriptSys.Init("Assets/Scripts/WiggleLights.lua")) LOG_ERROR("Light Wiggle Script System failed to init.");
 
 	LOG_INFO("Engine init.");
 	return true;
@@ -194,7 +207,8 @@ void Engine::Run()
 		{
 			rComponent->list->Update(DeltaTime(), &InputSys);
 		}
-
+		TestScriptSys.Update(0);
+		LightWiggleScriptSys.Update(DeltaTime());
 		/*
 		MemorySystem.Update();
 
@@ -212,7 +226,7 @@ void Engine::Run()
 		
 		
 		// hard code timestamp to 0 for now
-
+		//ScriptResourceManager.Update(0);
 		ModelResourceManager.Update(0);
 		TextureResourceManger.Update(0);
 
@@ -235,7 +249,19 @@ void Engine::Destroy()
 	{
 		LOG_ERROR("Audio System failed to destory properly.");
 	}
-
+	
+	if (!TestScriptSys.Destroy())
+	{
+		LOG_ERROR("Test Script System failed to destory properly.");
+	}
+	if (!LightWiggleScriptSys.Destroy())
+	{
+		LOG_ERROR("Wiggle System failed to destory properly.");
+	}
+	ScriptResourceManager.Destroy();
+	TextureResourceManger.Destroy();
+	ModelResourceManager.Destroy();
+	
 	
 	/*
 	

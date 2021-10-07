@@ -15,6 +15,13 @@ enum class ErrorEnum
 	FAIL_BECAUSE_NO_MORE_MEMORY = 2
 };
 
+enum class GameLogicCategories
+{
+	POKEBALL = 1,
+	VASE = 2,
+	LION = 3,
+	POINTLIGHTSOURCE = 4
+};
 
 
 //TODO real events
