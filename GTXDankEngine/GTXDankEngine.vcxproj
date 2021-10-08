@@ -67,7 +67,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>fmod_vc.lib;fmodstudio_vc.lib;glfw3.lib;opengl32.lib;assimp-vc142-mtd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fmod_vc.lib;fmodstudio_vc.lib;glfw3.lib;opengl32.lib;assimp-vc142-mtd.lib;lua54.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\lib\;$(SolutionDir)Libraries\lib\yaml\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -90,7 +90,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glfw3.lib;opengl32.lib;assimp-vc142-mtd.lib;fmod_vc.lib;fmodstudio_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua54.lib;glfw3.lib;opengl32.lib;assimp-vc142-mtd.lib;fmod_vc.lib;fmodstudio_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\lib\;$(SolutionDir)Libraries\lib\yaml\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -101,6 +101,8 @@
     <Image Include="Assets\Textures\popcat.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Scripts\FirstScript.lua" />
+    <None Include="Assets\Scripts\WiggleLights.lua" />
     <None Include="Skybox.shader" />
     <None Include="Source\Shaders\basic.shader" />
     <None Include="Source\Shaders\basicPBR.shader" />
@@ -109,6 +111,7 @@
     <None Include="Source\Shaders\LightSource.shader" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Components\GameLogicCategoryComponent\GameLogicCategoryComponent.h" />
     <ClInclude Include="Source\Components\RoutineComponent\RoutineComponent.h" />
     <ClInclude Include="Source\Components\RoutineComponent\LeftRight.h" />
     <ClInclude Include="Source\Components\RoutineComponent\Routine.h" />
@@ -154,6 +157,7 @@
     <ClInclude Include="Source\Systems\GraphicsSystem\Skybox\Skybox.h" />
     <ClInclude Include="Source\Systems\InputSystem\InputManager.h" />
     <ClInclude Include="Source\Systems\ProfileSystem\ProfileSystem.h" />
+    <ClInclude Include="Source\Systems\ScriptSystem\ScriptSystem.h" />
     <ClInclude Include="Source\Systems\UISystem\UISystem.h" />
     <ClInclude Include="Source\utils\common.h" />
     <ClInclude Include="Source\utils\common_platform.h" />
@@ -162,6 +166,7 @@
     <ClInclude Include="Source\utils\VQS.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Components\GameLogicCategoryComponent\GameLogicCategoryComponent.cpp" />
     <ClCompile Include="Source\Components\RoutineComponent\RoutineComponent.cpp" />
     <ClCompile Include="Source\Systems\AudioSystem\AudioSystem.cpp" />
     <ClCompile Include="Source\Components\LightComponent\Light.cpp" />
@@ -234,6 +239,7 @@
     <ClCompile Include="Source\Systems\CommandSystem\Command.cpp" />
     <ClCompile Include="Source\Systems\InputSystem\InputManager.cpp" />
     <ClCompile Include="Source\Systems\ProfileSystem\ProfileSystem.cpp" />
+    <ClCompile Include="Source\Systems\ScriptSystem\ScriptSystem.cpp" />
     <ClCompile Include="Source\Systems\UISystem\UISystem.cpp" />
     <ClCompile Include="Source\utils\common.cpp" />
     <ClCompile Include="Source\utils\common_platform.cpp" />

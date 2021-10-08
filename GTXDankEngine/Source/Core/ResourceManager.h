@@ -112,6 +112,7 @@ private:
 	std::thread threadName;
 	std::condition_variable cv;
 	std::mutex mutex;
+	bool threadRunning = true;
 };
 
 //.cpp stuff
@@ -181,11 +182,11 @@ inline ResourceHandle<ResourceType>* ResourceManager<ResourceType>::GetResourceH
 
 template<class ResourceType>
 inline ResourceManager<ResourceType>::~ResourceManager()
-{
-	for (auto& handle : resources)
-	{
-		delete(handle.second.resource);
-	}
+{	
+	threadRunning = false;
+	std::unique_lock<std::mutex> inputUpdateLock(mutex);
+	cv.notify_one();
+	threadName.join();
 }
 
 template<class ResourceType>
@@ -226,13 +227,25 @@ inline void ResourceManager<ResourceType>::Update(float dt)
 template<class ResourceType>
 inline bool ResourceManager<ResourceType>::Destroy()
 {
-	return false;
+	/*
+	for (auto& handle : resources)
+	{
+		delete(handle.second.resource);
+	}
+	*/
+	threadRunning = false;
+	std::unique_lock<std::mutex> inputUpdateLock(mutex);
+	cv.notify_one();
+	threadName.join();
+	
+	return true;
+	
 }
 
 template<class ResourceType>
 inline void ResourceManager<ResourceType>::ThreadlyUpdateHandles()
 {
-	while (true)
+	while (threadRunning)
 	{
 		if (!updatingResources.empty())
 		{

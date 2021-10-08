@@ -142,6 +142,21 @@
     <Filter Include="Source Files\Components\RoutineComponent">
       <UniqueIdentifier>{a641a787-14a7-42fd-9b43-167fe576cf9e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Scripts">
+      <UniqueIdentifier>{babe7050-7384-47b7-a857-823f2f0fa5a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems\ScriptSystem">
+      <UniqueIdentifier>{71857346-95df-4347-9750-96a52bc59b2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\ScriptSystem">
+      <UniqueIdentifier>{360e0d18-7e70-4fd1-93e2-b870d53a068e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Components\GameLogicCatagoryComponent">
+      <UniqueIdentifier>{1dad89c4-adf2-4a71-b54b-0a1bb1019505}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\GameLogicCategoryComponent">
+      <UniqueIdentifier>{201342ec-5d6f-4b13-ba41-fb096ab3d983}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\brick.png">
@@ -175,6 +190,12 @@
     </None>
     <None Include="Source\Shaders\DeferredRenderer\Fill_G_Buffer.shader">
       <Filter>Resource Files\Shaders\DeferredRenderer</Filter>
+    </None>
+    <None Include="Assets\Scripts\FirstScript.lua">
+      <Filter>Resource Files\Scripts</Filter>
+    </None>
+    <None Include="Assets\Scripts\WiggleLights.lua">
+      <Filter>Resource Files\Scripts</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -331,6 +352,12 @@
     <ClInclude Include="Source\Components\RoutineComponent\RoutineComponent.h">
       <Filter>Header Files\Components\RoutineComponent</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\ScriptSystem\ScriptSystem.h">
+      <Filter>Header Files\Systems\ScriptSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\GameLogicCategoryComponent\GameLogicCategoryComponent.h">
+      <Filter>Header Files\Components\GameLogicCatagoryComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -464,6 +491,12 @@
     </ClCompile>
     <ClCompile Include="Source\Components\RoutineComponent\RoutineComponent.cpp">
       <Filter>Source Files\Components\RoutineComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\ScriptSystem\ScriptSystem.cpp">
+      <Filter>Source Files\Systems\ScriptSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\GameLogicCategoryComponent\GameLogicCategoryComponent.cpp">
+      <Filter>Source Files\Components\GameLogicCategoryComponent</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
