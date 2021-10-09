@@ -2,7 +2,6 @@
 #include "Mesh.h"
 #include "IndexBuffer.h"
 #include "VertexBuffer.h"
-#include <iostream>
 
 
 

@@ -3,11 +3,15 @@ FMOD Example Framework
 Copyright (c), Firelight Technologies Pty, Ltd 2012-2021.
 ==============================================================================*/
 #pragma warning(disable : 4996)
+#pragma warning(disable : 26812)
 #ifndef FMOD_EXAMPLES_COMMON_H
 #define FMOD_EXAMPLES_COMMON_H
 
+#pragma warning(push, 0)
 #include "common_platform.h"
 #include "fmod.h"
+
+
 
 #include <stddef.h>
 #include <string.h>
@@ -16,6 +20,9 @@ Copyright (c), Firelight Technologies Pty, Ltd 2012-2021.
 #include <stdarg.h>
 #include <stdio.h>
 #include <assert.h>
+
+#pragma warning(pop)
+
 
 #define NUM_COLUMNS 50
 #define NUM_ROWS 25

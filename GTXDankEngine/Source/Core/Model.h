@@ -1,8 +1,10 @@
-#pragma once
+#ifndef MODEL_H
+#define MODEL_H
+
+
 
 #include "pch.h"
 #include "Mesh.h"
-#include <string>
 
 /*
 * .obj model file
@@ -45,4 +47,4 @@ private:
 
 	//std::vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName);
 };
-
+#endif // !MODEL_H

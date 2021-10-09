@@ -1,4 +1,7 @@
-#pragma once
+#ifndef COMMANDSYSTEM_H
+#define COMMANDSYSTEM_H
+
+
 
 #include "pch.h"
 #include "../../Core/System.h"
@@ -51,3 +54,4 @@ private:
 	bool debugMode;
 };
 
+#endif // !COMMANDSYSTEM_H

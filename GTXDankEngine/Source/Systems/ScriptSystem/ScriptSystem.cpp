@@ -32,7 +32,7 @@ int lua_HostFunction(lua_State* L)
 
 int lua_GetExampleData(lua_State* L)
 {
-    int a = lua_tonumber(L, 1);
+    int a = static_cast<int>(lua_tonumber(L, 1));
     int data[] = { 2,1,0 };
     lua_pushnumber(L, data[a]);
     return 1;

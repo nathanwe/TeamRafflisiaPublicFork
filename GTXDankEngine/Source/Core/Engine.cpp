@@ -11,8 +11,6 @@
 #include "../Components/RoutineComponent/RoutineComponent.h"
 #include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
 
-#include <string>
-
 std::vector<Entity> EntityList;
 
 bool Engine::Init()

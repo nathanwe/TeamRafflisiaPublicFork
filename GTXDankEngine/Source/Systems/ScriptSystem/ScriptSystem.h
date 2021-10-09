@@ -12,14 +12,6 @@
 
 
 
-#include <iostream>
-#include <string>
-#include <cstring>
-#include<fstream>
-#include<sstream>
-
-
-
 // Little error checking utility function
 bool CheckLua(lua_State* L, int r);
 

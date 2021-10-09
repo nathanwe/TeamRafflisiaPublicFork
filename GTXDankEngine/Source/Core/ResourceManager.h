@@ -5,13 +5,6 @@
 
 #include "System.h"
 
-#include <map>
-#include <string>
-#include <list>
-
-#include <thread>
-#include<mutex>
-#include<condition_variable>
 
 #include "../utils/Log.h"
 

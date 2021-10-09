@@ -1,7 +1,5 @@
 #include "pch.h"
 #include "Model.h"
-#include <iostream>
-#include <assimp/pbrmaterial.h>
 
 
 

@@ -1,4 +1,7 @@
-#pragma once
+#ifndef DIRECTIONCOMMAND_H
+#define DIRECTIONCOMMAND_H
+
+
 
 enum class MoveDirection
 {
@@ -72,3 +75,4 @@ public:
 //}
 
 */
+#endif // !DIRECTIONCOMMAND_H

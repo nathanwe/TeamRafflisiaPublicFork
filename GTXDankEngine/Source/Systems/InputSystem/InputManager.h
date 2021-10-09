@@ -18,10 +18,6 @@ Authors: Dylan Washburne
 #include "pch.h"
 #include "../Core/Camera.h"
 
-#include <thread>
-#include<mutex>
-#include<condition_variable>
-
 class InputManager
 {
 public:

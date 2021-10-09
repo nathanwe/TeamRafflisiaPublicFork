@@ -19,19 +19,22 @@
     Online:
         https://glad.dav1d.de/#profile=compatibility&language=c&specification=gl&loader=on&api=gl%3D3.3
 */
-
+#pragma warning(push, 0)
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <glad/glad.h>
-
+#pragma warning(pop)
 static void* get_proc(const char *namez);
 
 #if defined(_WIN32) || defined(__CYGWIN__)
 #ifndef _WINDOWS_
 #undef APIENTRY
 #endif
+#pragma warning(push)
+#pragma warning(disable:26451)
 #include <windows.h>
+#pragma warning(pop)
 static HMODULE libGL;
 
 typedef void* (APIENTRYP PFNWGLGETPROCADDRESSPROC_PRIVATE)(const char*);

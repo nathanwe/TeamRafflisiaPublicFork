@@ -1,8 +1,8 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
 
+#include "pch.h"
 #include "Shader.h"
-#include <string>
 
 class Texture {
 	private:

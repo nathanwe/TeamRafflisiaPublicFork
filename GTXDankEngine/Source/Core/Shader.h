@@ -1,11 +1,8 @@
-#pragma once
+#ifndef SHADER_H
+#define SHADER_H
+
+
 #include "pch.h"
-#include <string>
-
-
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-#include <vector>
 
 
 struct ShaderProgramSource
@@ -68,3 +65,5 @@ private:
 		const std::string& fragmentShader,
 		const std::string& geometryShader);
 };
+
+#endif // !SHADER_H

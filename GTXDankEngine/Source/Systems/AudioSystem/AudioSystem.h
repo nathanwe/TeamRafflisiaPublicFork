@@ -1,7 +1,9 @@
-#pragma once
+#ifndef AUDIOSYSTEM_H
+#define AUDIOSYSTEM_H
+
+#include"pch.h"
 #include "../../Core/System.h"
-#include "fmod_studio.hpp"
-#include "fmod.hpp"
+
 
 class AudioSystem : public System
 {
@@ -27,6 +29,6 @@ public:
 };
 
 
-
+#endif // !AUDIOSYSTEM_H
 
 

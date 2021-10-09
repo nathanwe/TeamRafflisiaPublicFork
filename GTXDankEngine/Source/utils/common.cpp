@@ -3,11 +3,11 @@ FMOD Example Framework
 Copyright (c), Firelight Technologies Pty, Ltd 2012-2021.
 ==============================================================================*/
 #pragma warning(disable : 4996)
-
+#pragma warning(push, 0)
 #include "pch.h"
 #include "common.h"
 #include "fmod_errors.h"
-
+#pragma warning(pop)
 
 void (*Common_Private_Error)(FMOD_RESULT, const char *, int);
 
