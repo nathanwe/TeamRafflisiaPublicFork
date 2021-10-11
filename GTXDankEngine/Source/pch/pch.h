@@ -1,4 +1,10 @@
-#pragma warning(push, 0)
+#pragma warning(push)
+#pragma warning(disable : 26812)
+#pragma warning(disable : 26819)
+#pragma warning(disable : 26451)
+#pragma warning(disable : 26459)
+#pragma warning(disable : 26495)
+#pragma warning(disable : 6387)
 // Graphics--------------------------------------------------
 #include <glad/glad.h>
 #include <glm/glm.hpp>
@@ -17,31 +23,25 @@
 
 
 // loading assets-------------------------------
-//#pragma warning(push)
-//#pragma warning(disable:26819)
 #include <json/json.h>
-//#pragma warning(pop)
+
 
 #include <stb/stb_image.h>
 //#include <yaml-cpp/anchor.h>
 //#include <yaml-cpp/yaml.h>
 
 
-//#pragma warning(push)
-//#pragma warning(disable:26812)
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
 #include <assimp/pbrmaterial.h>
-//#pragma warning(pop)
+
 
 //-------------------------------------------------------
 //sound
-//#pragma warning(push)
-//#pragma warning(disable:26812)
 #include "fmod_studio.hpp"
 #include "fmod.hpp"
-//#pragma warning(pop)
+
 
 //---------------------------------------------------------
 // std
@@ -67,13 +67,8 @@
 
 
 // UI
-//#pragma warning(push)
-//#pragma warning(disable:26451)
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-//#pragma warning(pop)
+
 #pragma warning(pop)
-
-
-

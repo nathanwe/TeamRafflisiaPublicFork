@@ -217,7 +217,7 @@ void Shader::setInt(const std::string& name, int value)
 }
 
 
-void Shader::setTexture(const char* name, unsigned int texture)
+void Shader::setTexture(const char* name, unsigned int texture, int index)
 {
 
     auto it = std::find(textures.begin(), textures.end(), name);
@@ -226,7 +226,7 @@ void Shader::setTexture(const char* name, unsigned int texture)
     if (it != textures.end())
     {
         // calculating the index
-        int index = it - textures.begin();
+        int index = static_cast<int>(it - textures.begin());
 
         this->setInt(name, index);
 

@@ -44,7 +44,7 @@ bool ProfileSystem::Destroy()
 	return false;
 }
 
-void ProfileSystem::AddResult(const char* resultName, float resultTime)
+void ProfileSystem::AddResult(const char* resultName, double resultTime)
 {
 	//For everything that got tracked, create a struct of tracked time
 	//and pushed into a vector of those struct

@@ -24,12 +24,12 @@ public:
 	struct ProfileResult 
 	{
 		const char* name;
-		float time;
+		double time;
 	};
 	
 	std::vector<ProfileResult> profileResults;
 
-	void AddResult(const char* resultName, float resultTime);
+	void AddResult(const char* resultName, double resultTime);
 	
 
 private:

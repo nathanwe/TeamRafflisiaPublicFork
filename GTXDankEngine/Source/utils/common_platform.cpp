@@ -3,8 +3,8 @@ FMOD Example Framework
 Copyright (c), Firelight Technologies Pty, Ltd 2012-2021.
 ==============================================================================*/
 #define WIN32_LEAN_AND_MEAN
-#pragma warning(disable : 4996)
-#pragma warning(push, 0)
+//#pragma warning(disable : 4996)
+
 #include "pch.h"
 #include "common.h"
 #include <stdio.h>
@@ -12,7 +12,7 @@ Copyright (c), Firelight Technologies Pty, Ltd 2012-2021.
 #include <Windows.h>
 #include <Objbase.h>
 #include <vector>
-#pragma warning(pop)
+
 
 static unsigned int gPressedButtons = 0;
 static unsigned int gDownButtons = 0;

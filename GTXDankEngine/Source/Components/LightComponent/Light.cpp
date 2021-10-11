@@ -14,7 +14,7 @@ Light::Light(LightType type, glm::vec3 c, glm::vec3 i)
 	if (Intensity.z < 0) Intensity.z = 0;
 
 	
-#ifdef _DEBUG | DEBUG
+#if defined(_DEBUG ) || defined(DEBUG)
 	LOG_INFO("Creating Light with color: {0}, {1}, {2}", Color.x, Color.y, Color.z);
 	LOG_INFO("Creating Light with Intensity: {0}, {1}, {2}", Intensity.x, Intensity.y, Intensity.z);
 	LOG_INFO("Creating Light with Type: {0}", 
