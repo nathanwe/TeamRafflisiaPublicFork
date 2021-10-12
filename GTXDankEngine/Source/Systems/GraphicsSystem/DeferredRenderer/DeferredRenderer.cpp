@@ -8,6 +8,8 @@
 #include "../Components/MaterialComponent/MaterialComponent.h"
 #include "../Components/LightComponent/LightComponent.h"
 
+//#include "../Shadow/Shadow.h"
+
 #include "../Quad.h"
 
 
@@ -143,6 +145,14 @@ void DeferredRenderer::Render(glm::vec3 camPos)
 
 	DeferredLightingShader->setVec3("camPos", camPos);
 	Quad().Draw(*DeferredLightingShader);
+}
+
+void DeferredRenderer::Render(glm::vec3 camPos, Shadow& shadow)
+{
+	DeferredLightingShader->setTexture("ShadowMap", shadow.GetDepthBuffer());
+	DeferredLightingShader->setMat4("LightSpaceMatrix", shadow.GetLightSpaceMatrix());
+	DeferredLightingShader->setInt("hasShadow", 1);
+	Render(camPos);
 }
 
 

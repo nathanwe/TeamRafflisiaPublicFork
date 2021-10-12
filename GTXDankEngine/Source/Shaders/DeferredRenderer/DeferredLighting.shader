@@ -41,6 +41,50 @@ uniform bool hasDirectionalLight;
 uniform int numberOfLights;
 uniform float exposure;
 
+uniform bool hasShadow;
+uniform sampler2D ShadowMap;
+uniform mat4 LightSpaceMatrix;
+
+
+//--------------------------------------------------------------------
+// Basic shadowMap
+float CalculateShadow(vec3 N, vec3 worldPos)
+{
+    vec4 lightSpaceFragPos = LightSpaceMatrix * vec4(worldPos, 1.0f);
+    vec3 projCoord = lightSpaceFragPos.xyz / lightSpaceFragPos.w;
+    // transform to [0,1] range
+    projCoord = projCoord * 0.5 + 0.5;
+
+    if (projCoord.z > 1 || projCoord.z < 0) return 0;
+    if (projCoord.x > 1 || projCoord.x < 0) return 0;
+    if (projCoord.y > 1 || projCoord.y < 0) return 0;
+
+    // get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
+    //float closestDepth = texture(ShadowMap, projCoord.xy).r;
+    // get depth of current fragment from light's perspective
+    float currentDepth = projCoord.z;
+    //float currentDepth = lightSpaceFragPos.w;
+
+    float bias = 0.0078f;
+    // check whether current frag pos is in shadow
+    //float shadow = (currentDepth - bias) > closestDepth ? 1.0 : 0.0;
+
+
+    float shadow = 0.0;
+    vec2 texelSize = 1.0 / textureSize(ShadowMap, 0);
+    for (int x = -1; x <= 1; ++x)
+    {
+        for (int y = -1; y <= 1; ++y)
+        {
+            float pcfDepth = texture(ShadowMap, projCoord.xy + vec2(x, y) * texelSize).r;
+            shadow += currentDepth - bias > pcfDepth ? 1.0 : 0.0;
+        }
+    }
+    shadow /= 9.0;
+    //if (closestDepth > 0.0f) return 1.0;
+    return shadow;
+}
+
 
 // ----------------------------------------------------------------------------
 float DistributionGGX(vec3 N, vec3 H, float roughness)
@@ -114,8 +158,9 @@ vec3 dirReflection(vec3 N, vec3 V, vec3 albedo, float metallic, float roughness,
     // scale light by NdotL
     float NdotL = max(dot(N, L), 0.0);
 
+    float shadow = CalculateShadow(N, WorldPos);
     // add to outgoing radiance Lo
-    return (kD * albedo / PI + specular) * radiance * NdotL;  // note that we already multiplied the BRDF by the Fresnel (kS) so we won't multiply by kS again
+    return (kD * albedo / PI + specular) * radiance * NdotL * (1.0 - shadow);  // note that we already multiplied the BRDF by the Fresnel (kS) so we won't multiply by kS again
 }
 
 
@@ -163,6 +208,8 @@ vec3 reflection(vec3 N, vec3 V, vec3 albedo, float metallic, float roughness, ve
         // add to outgoing radiance Lo
         Lo += (kD * albedo / PI + specular) * radiance * NdotL;  // note that we already multiplied the BRDF by the Fresnel (kS) so we won't multiply by kS again
     }
+
+
     if (hasDirectionalLight) Lo += dirReflection(N, V, albedo, metallic, roughness, F0, WorldPos);
 
     return Lo;

@@ -71,6 +71,8 @@ bool GraphicsSystem::Init()
 
 	camera.Init();
 
+	Shadow.Init(WIDTH, HEIGHT);
+
 	DeferredRender.Init(camera.width, camera.height);
 
 	skybox.Init();
@@ -122,6 +124,18 @@ void GraphicsSystem::Update(float timeStamp)
 	}
 	ImGui::End();
 
+	ImGui::Begin("Shadow Map");
+	{
+		ImGui::BeginChild("image");
+		// Get the size of the child (i.e. the whole draw size of the windows).
+		ImVec2 wsize = ImGui::GetWindowSize();
+
+		// Because I use the texture from OpenGL, I need to invert the V from the UV.
+		ImGui::Image((ImTextureID)Shadow.GetDepthBuffer(), wsize, ImVec2(0, 1), ImVec2(1, 0));
+		ImGui::EndChild();
+	}
+	ImGui::End();
+
 
 	ImGui::End();
 	ImGui::Render();
@@ -136,14 +150,16 @@ void GraphicsSystem::Update(float timeStamp)
 
 void GraphicsSystem::Render()
 {
+	// Render shadow map
+	Shadow.Update();
+
 	// Geometry pass for G-buffer
 	DeferredRender.Fill_G_Buffer(camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 300.0f));
 
 	BindLightSource(DeferredRender.GetLightShader());
 
-
 	// PBR rendering, all local pass
-	DeferredRender.Render(camera.Position);
+	DeferredRender.Render(camera.Position, Shadow);
 
 	// copy depth buffer from G-buffer to default FBO
 	DeferredRender.CopyDepthBufferToTarget(0, camera.width, camera.height);
@@ -189,6 +205,8 @@ bool GraphicsSystem::Destroy()
 
 	DeferredRender.Destroy();
 	skybox.Destroy();
+	Shadow.Destroy();
+
 	glfwDestroyWindow(pWindow);
 	glfwTerminate();
 	return true;
@@ -239,7 +257,7 @@ void GraphicsSystem::BindDirectionalLight(Shader* shader, Light* light, VQS* tra
 	glm::vec3 position = transform->position;
 
 	// pointing at light source position
-	glm::vec3 lightDirection = position - light ->Target;
+	glm::vec3 lightDirection = position - light->Target;
 
 	shader->setVec3("directionalLightDirection", lightDirection);
 	shader->setVec3("directionalLightColor", color * intensity);

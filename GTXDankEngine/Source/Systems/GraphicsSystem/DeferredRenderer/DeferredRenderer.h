@@ -6,6 +6,7 @@
 #include "../Components/MaterialComponent/Material.h"
 #include "../Core/Model.h"
 #include "../utils/VQS.h"
+#include "../Shadow/Shadow.h"
 
 // forward declearation of shader class
 class Shader;
@@ -25,6 +26,7 @@ public:
 
 	void Fill_G_Buffer(glm::mat4 view, glm::mat4 projection);
 	void Render(glm::vec3 camPos);
+	void Render(glm::vec3 camPos, Shadow& shadow);
 
 	inline Shader* GetLightShader() { return DeferredLightingShader; }
 
