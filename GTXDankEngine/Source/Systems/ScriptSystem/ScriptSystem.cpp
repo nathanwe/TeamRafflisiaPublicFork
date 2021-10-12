@@ -57,7 +57,6 @@ int lua_AddToVQS(lua_State* L)
 
 int lua_GetEntiysByCategory(lua_State* L)
 {
-    int index = 1;
     GameLogicCategories gLC = static_cast<GameLogicCategories>(lua_tonumber(L, 1));
     for (auto e : EntityList)
     {
@@ -79,6 +78,67 @@ int lua_GetEntiysByCategory(lua_State* L)
             }
         }
     }
+    return 1;
+}
+
+int lua_GetCategorysOfEntity(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tonumber(L, 1));
+    lua_newtable(L);
+    int top = lua_gettop(L);
+    int index = 0;
+    auto GLCC = GameLogicCategoryComponentPool.GetComponentByEntity(e);
+    for (int i = 1; i<static_cast<int>(GameLogicCategories::MAX_CATEGORIES);++i)
+    {
+        if (GLCC->categories.find(static_cast<GameLogicCategories>(i)) != GLCC->categories.end())
+        {
+            lua_pushnumber(L, index);
+            lua_pushnumber(L, i);
+            lua_settable(L, top);
+        }
+        
+    }
+
+    return 1;
+}
+
+int lua_UpdateAllEntitys(lua_State* L)
+{
+    for (Entity e : EntityList)
+    {
+        if (GameLogicCategoryComponentPool.GetComponentByEntity(e) != nullptr)
+        {
+            lua_getglobal(L, "UpdateEntity");
+            if (lua_isfunction(L, -1))
+            {
+                lua_pushnumber(L, static_cast<int>(e));
+                CheckLua(L, lua_pcall(L, 1, 0, 0));
+            }
+            else
+            {
+                LOG_ERROR("scriptsystem error, UpdateEntity not found")
+            }
+        }
+    }
+    return 1;
+}
+
+int lua_LoadScript(lua_State* L)
+{
+    std::string filePath = static_cast<std::string>(lua_tostring(L, 1));
+    ResourceHandle<LuaFile>* newScript = ScriptResourceManager.GetResourceHandleNoThread(filePath);
+
+    lua_getglobal(L, "DoStringWithErrorCheck");
+    if (lua_isfunction(L, -1))
+    {
+        lua_pushstring(L, newScript->GetPointer()->data.c_str());
+        CheckLua(L, lua_pcall(L, 1, 0, 0));
+    }
+    else
+    {
+        LOG_ERROR("scriptsystem error, DoStringWithErrorCheck not found")
+    }
+
     return 1;
 }
 
@@ -105,6 +165,9 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "GetExampleData", lua_GetExampleData);
     lua_register(L, "AddToVQS", lua_AddToVQS);
     lua_register(L, "GetEntiysByCategory", lua_GetEntiysByCategory);
+    lua_register(L, "GetCategorysOfEntity", lua_GetCategorysOfEntity);
+    lua_register(L, "UpdateAllEntitys", lua_UpdateAllEntitys);
+    lua_register(L, "LoadScript", lua_LoadScript);
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));
     lua_getglobal(L, "Init");

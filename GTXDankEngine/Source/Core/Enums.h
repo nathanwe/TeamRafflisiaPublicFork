@@ -20,7 +20,8 @@ enum class GameLogicCategories
 	POKEBALL = 1,
 	VASE = 2,
 	LION = 3,
-	POINTLIGHTSOURCE = 4
+	POINT_LIGHT_SOURCE = 4,
+	MAX_CATEGORIES = 5
 };
 
 

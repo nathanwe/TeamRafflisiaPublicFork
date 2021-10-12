@@ -12,7 +12,7 @@ GameLogicCategoryComponent::GameLogicCategoryComponent(Entity e, std::vector<Gam
 	{
 		categories.insert(cat);
 	}
-	LOG_INFO("Creating GameLogicCategoryComponent to entity: {}", entity);
+	LOG_INFO("Creating GameLogicCategoryComponent to entity: {}", e);
 }
 
 

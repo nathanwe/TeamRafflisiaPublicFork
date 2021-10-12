@@ -83,7 +83,7 @@ public:
 	GraphicsSystem GraphicsSys;
 	InputManager InputSys;
 	CommandSystem CommandSys;
-	ScriptSystem TestScriptSys, LightWiggleScriptSys;
+	ScriptSystem DoGameLogicScriptSys;
 
 
 private:

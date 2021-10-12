@@ -8,7 +8,7 @@
 #include "../Components/TransformComponent/TransformComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
 #include "../Components/LightComponent/LightComponent.h"
-#include "../Components/RoutineComponent/RoutineComponent.h"
+//#include "../Components/RoutineComponent/RoutineComponent.h"
 #include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
 
 std::vector<Entity> EntityList;
@@ -86,9 +86,9 @@ bool Engine::Init()
 
 	MaterialComponentPool.Add(pokemonBall, (pokemonBallMat));
 
-	RoutineList* pokemonBallRoutines = new RoutineList(pokemonBall);
-	pokemonBallRoutines->addRoutine(TYPE_LEFTRIGHT);
-	RoutineComponentPool.Add(pokemonBall, (pokemonBallRoutines));
+	//RoutineList* pokemonBallRoutines = new RoutineList(pokemonBall);
+	//pokemonBallRoutines->addRoutine(TYPE_LEFTRIGHT);
+	//RoutineComponentPool.Add(pokemonBall, (pokemonBallRoutines));
 	GameLogicCategoryComponentPool.Add(pokemonBall, (std::vector<GameLogicCategories>({ GameLogicCategories::POKEBALL })));
 
 
@@ -133,7 +133,7 @@ bool Engine::Init()
 	// white
 	Light* Light1 = new Light(LightType::Point, glm::vec3(1.0f), glm::vec3(10.0f));
 	LightComponentPool.Add(LightSource1, (Light1));
-	GameLogicCategoryComponentPool.Add(LightSource1, (std::vector<GameLogicCategories>({ GameLogicCategories::POINTLIGHTSOURCE })));
+	GameLogicCategoryComponentPool.Add(LightSource1, (std::vector<GameLogicCategories>({ GameLogicCategories::POINT_LIGHT_SOURCE })));
 
 
 	//--------------------------------------------------------------------------
@@ -152,7 +152,7 @@ bool Engine::Init()
 	// yellow
 	Light* Light2 = new Light(LightType::Point, glm::vec3(1.0f, 0.8f, 0.0), glm::vec3(5.0f));
 	LightComponentPool.Add(LightSource2, (Light2));
-	GameLogicCategoryComponentPool.Add(LightSource2, (std::vector<GameLogicCategories>({ GameLogicCategories::POINTLIGHTSOURCE })));
+	GameLogicCategoryComponentPool.Add(LightSource2, (std::vector<GameLogicCategories>({ GameLogicCategories::POINT_LIGHT_SOURCE })));
 
 	//--------------------------------------------------------------------------
 
@@ -180,8 +180,8 @@ bool Engine::Init()
 
 	//-----------------------------------------------------------------------
 
-	if (!TestScriptSys.Init("Assets/Scripts/FirstScript.lua")) LOG_ERROR("Test Script System failed to init.");
-	if (!LightWiggleScriptSys.Init("Assets/Scripts/WiggleLights.lua")) LOG_ERROR("Light Wiggle Script System failed to init.");
+	if (!DoGameLogicScriptSys.Init("Assets/Scripts/DoEverything.lua")) LOG_ERROR("Game Logic Script System failed to init.");
+	
 
 	LOG_INFO("Engine init.");
 	return true;
@@ -201,12 +201,12 @@ void Engine::Run()
 		// Game loop format
 		// TODO: Profiler records time spent for each update()
 
-		for (auto [entity, rComponent] : RoutineComponentPool.componentList)
-		{
-			rComponent->list->Update(DeltaTime(), &InputSys);
-		}
-		TestScriptSys.Update(0);
-		LightWiggleScriptSys.Update(DeltaTime());
+		//for (auto [entity, rComponent] : RoutineComponentPool.componentList)
+		//{
+		//	rComponent->list->Update(DeltaTime(), &InputSys);
+		//}
+
+		DoGameLogicScriptSys.Update(DeltaTime());
 		/*
 		MemorySystem.Update();
 
@@ -248,14 +248,11 @@ void Engine::Destroy()
 		LOG_ERROR("Audio System failed to destory properly.");
 	}
 	
-	if (!TestScriptSys.Destroy())
+	if (!DoGameLogicScriptSys.Destroy())
 	{
 		LOG_ERROR("Test Script System failed to destory properly.");
 	}
-	if (!LightWiggleScriptSys.Destroy())
-	{
-		LOG_ERROR("Wiggle System failed to destory properly.");
-	}
+
 	ScriptResourceManager.Destroy();
 	TextureResourceManger.Destroy();
 	ModelResourceManager.Destroy();

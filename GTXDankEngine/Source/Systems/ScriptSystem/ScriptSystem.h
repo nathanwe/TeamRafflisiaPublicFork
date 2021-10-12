@@ -24,6 +24,9 @@ int lua_GetExampleData(lua_State* L);
 //real c++ funcs
 int lua_AddToVQS(lua_State* L);
 int lua_GetEntiysByCategory(lua_State* L);
+int lua_GetCategorysOfEntity(lua_State* L);
+int lua_UpdateAllEntitys(lua_State* L);
+int lua_LoadScript(lua_State* L);
 
 class LuaFile
 {

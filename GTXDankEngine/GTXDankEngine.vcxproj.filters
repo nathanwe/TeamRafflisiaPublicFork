@@ -194,7 +194,13 @@
     <None Include="Assets\Scripts\FirstScript.lua">
       <Filter>Resource Files\Scripts</Filter>
     </None>
-    <None Include="Assets\Scripts\WiggleLights.lua">
+    <None Include="Assets\Scripts\DoLionThings.lua">
+      <Filter>Resource Files\Scripts</Filter>
+    </None>
+    <None Include="Assets\Scripts\DoLightThings.lua">
+      <Filter>Resource Files\Scripts</Filter>
+    </None>
+    <None Include="Assets\Scripts\DoEverything.lua">
       <Filter>Resource Files\Scripts</Filter>
     </None>
   </ItemGroup>

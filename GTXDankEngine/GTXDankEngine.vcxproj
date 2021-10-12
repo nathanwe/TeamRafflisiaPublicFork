@@ -102,8 +102,10 @@
     <Image Include="Assets\Textures\popcat.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Scripts\DoLionThings.lua" />
+    <None Include="Assets\Scripts\DoLightThings.lua" />
+    <None Include="Assets\Scripts\DoEverything.lua" />
     <None Include="Assets\Scripts\FirstScript.lua" />
-    <None Include="Assets\Scripts\WiggleLights.lua" />
     <None Include="Skybox.shader" />
     <None Include="Source\Shaders\basic.shader" />
     <None Include="Source\Shaders\basicPBR.shader" />
