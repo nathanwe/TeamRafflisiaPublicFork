@@ -29,7 +29,9 @@ public:
 	inline Shader* GetLightShader() { return DeferredLightingShader; }
 
 	void CopyDepthBufferToTarget(GLuint fbo, unsigned int gBufferWidth, unsigned int gBufferHeight);
-
+	inline unsigned int GetNormalRoughness() { return G_NormalRoughness; }
+	inline unsigned int GetAlbedoMetallic() { return G_AlbedoMetallic; }
+	inline unsigned int GetDepth() {return RboDepth; }
 	 
 private:
 	Shader* DeferredLightingShader;

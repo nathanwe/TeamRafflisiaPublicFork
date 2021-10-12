@@ -22,7 +22,8 @@ enum class GameLogicCategories
 	LION = 3,
 	POINT_LIGHT_SOURCE = 4,
 	DIR_LIGHT_SOURCE = 5,
-	MAX_CATEGORIES = 6
+	PLANE = 6,
+	MAX_CATEGORIES = 7
 };
 
 

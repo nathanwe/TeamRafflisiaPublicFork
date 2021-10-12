@@ -200,6 +200,30 @@ bool Engine::Init()
 	GameLogicCategoryComponentPool.Add(DirLightSource, (std::vector<GameLogicCategories>({ GameLogicCategories::POINT_LIGHT_SOURCE })));
 
 //-------------------------------------------------------------------------------
+	// plane entity
+	Entity plane = 7;
+	EntityList.push_back(plane);
+
+	// model component
+	ResourceHandle<Model>* planeModel = ModelResourceManager.GetResourceHandleNoThread("Assets/models/plane.obj");
+	
+	ModelComponentPool.Add(plane, (planeModel));
+
+	// Transform component
+	VQS* planeTransform = new VQS(glm::vec3(0.0, -2.0, 0.0), 1.0f);
+	TransformComponentPool.Add(plane, (planeTransform));
+
+	// Material component
+	ResourceHandle<Texture>* planeDiffuse = TextureResourceManger.GetResourceHandle("Assets/Textures/PBR_Ice/albedo.tga");
+	ResourceHandle<Texture>* planeNormal = TextureResourceManger.GetResourceHandle("Assets/Textures/PBR_Ice/normal.tga");
+	ResourceHandle<Texture>* planeMetallic = TextureResourceManger.GetResourceHandle("Assets/Textures/plater/New_Graph_height.png");
+	ResourceHandle<Texture>* planeRoughness = TextureResourceManger.GetResourceHandle("Assets/Textures/PBR_Ice/roughness.tga");
+
+	Material* planeMat = new Material(planeDiffuse, planeMetallic, planeNormal, planeRoughness);
+	MaterialComponentPool.Add(plane, (planeMat));
+	GameLogicCategoryComponentPool.Add(plane, (std::vector<GameLogicCategories>({ GameLogicCategories::PLANE })));
+
+	//-----------------------------------------------------------------------
 
 	if (!DoGameLogicScriptSys.Init("Assets/Scripts/DoEverything.lua")) LOG_ERROR("Game Logic Script System failed to init.");
 	

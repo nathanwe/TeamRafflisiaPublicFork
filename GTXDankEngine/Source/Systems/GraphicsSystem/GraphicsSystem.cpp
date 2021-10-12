@@ -32,7 +32,9 @@ void GraphicsSystem::InitGLFW()
 
 void GraphicsSystem::InitWindow()
 {
-	pWindow = glfwCreateWindow(WIDTH, HEIGHT, "GTX Dank AF Engine", NULL, NULL);
+	// 400 is for the UI
+	// will get removed when we have the UI system
+	pWindow = glfwCreateWindow(WIDTH + 400, HEIGHT, "GTX Dank AF Engine", NULL, NULL);
 
 	if (pWindow == NULL)
 	{
@@ -95,6 +97,35 @@ void GraphicsSystem::Update(float timeStamp)
 
 	// render UI
 	UISys.Update(0);
+
+	ImGui::Begin("Metallic");
+	{
+		ImGui::BeginChild("image");
+		// Get the size of the child (i.e. the whole draw size of the windows).
+		ImVec2 wsize = ImGui::GetWindowSize();
+
+		// Because I use the texture from OpenGL, I need to invert the V from the UV.
+		ImGui::Image((ImTextureID)DeferredRender.GetAlbedoMetallic(), wsize, ImVec2(0, 1), ImVec2(1, 0));
+		ImGui::EndChild();
+	}
+	ImGui::End();
+
+	ImGui::Begin("Normal");
+	{
+		ImGui::BeginChild("image");
+		// Get the size of the child (i.e. the whole draw size of the windows).
+		ImVec2 wsize = ImGui::GetWindowSize();
+
+		// Because I use the texture from OpenGL, I need to invert the V from the UV.
+		ImGui::Image((ImTextureID)DeferredRender.GetNormalRoughness(), wsize, ImVec2(0, 1), ImVec2(1, 0));
+		ImGui::EndChild();
+	}
+	ImGui::End();
+
+
+	ImGui::End();
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 	glfwSwapBuffers(pWindow);
 
