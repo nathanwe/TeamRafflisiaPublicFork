@@ -57,7 +57,7 @@ int lua_AddToVQS(lua_State* L)
 
 int lua_GetEntiysByCategory(lua_State* L)
 {
-    GameLogicCategories gLC = static_cast<GameLogicCategories>(lua_tonumber(L, 1));
+    GameLogicCategories gLC = static_cast<GameLogicCategories>(lua_tointeger(L, 1));
     for (auto e : EntityList)
     {
         auto gLCComponent = GameLogicCategoryComponentPool.GetComponentByEntity(e);
