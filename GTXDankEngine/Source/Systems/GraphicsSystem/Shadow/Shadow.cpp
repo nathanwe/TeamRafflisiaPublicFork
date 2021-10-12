@@ -46,8 +46,14 @@ bool Shadow::Init(unsigned int shadowMapWidth, unsigned int shadowMapHeight)
 
     // check if framebuffer created successfullly
     if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+    {
         LOG_ERROR("Shadow FBO failed to init.");
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        return false;
+    }
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    return true;
 }
 
 
