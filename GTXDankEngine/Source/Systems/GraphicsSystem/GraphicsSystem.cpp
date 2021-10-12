@@ -17,8 +17,6 @@
 extern UISystem UISys;
 extern ProfileSystem ProfileSys;
 
-//#include <yaml/yaml.h>
-
 
 extern std::vector<Entity> EntityList;
 
@@ -77,9 +75,6 @@ bool GraphicsSystem::Init()
 	
 	LightSourceShader = new Shader("Source/Shaders/LightSource.shader");
 	
-	// test if yaml lib is linked properly
-	//YAML::Emitter out;
-
 	return true;
 }
 
@@ -170,6 +165,7 @@ bool GraphicsSystem::Destroy()
 
 void GraphicsSystem::BindLightSource(Shader* shader)
 {
+	shader->setInt("hasDirectionalLight", 0);
 	unsigned int lightIndex = 0;
 	for (const auto& [lightEntity, lightComponent] : LightComponentPool.componentList)
 	{
@@ -177,11 +173,10 @@ void GraphicsSystem::BindLightSource(Shader* shader)
 		{
 			if ( lightEntity == transEntity)
 			{
-				glm::vec3 color = lightComponent->LightSource->Color;
-				glm::vec3 intensity = lightComponent->LightSource->Intensity;
-
-				shader->setVec3("lightPositions[" + std::to_string(lightIndex) + "]", transformComponent->transform->position);
-				shader->setVec3("lightColors[" + std::to_string(lightIndex) + "]", color * intensity);
+				if (lightComponent->LightSource->Type == LightType::Directional)
+					BindDirectionalLight(shader, lightComponent->LightSource, transformComponent->transform);
+				else
+					BindPointLight(shader, lightComponent->LightSource, transformComponent->transform, lightIndex);
 			}
 
 			++lightIndex;
@@ -189,4 +184,32 @@ void GraphicsSystem::BindLightSource(Shader* shader)
 	}
 
 	shader->setInt("numberOfLights", lightIndex);
+}
+
+
+void GraphicsSystem::BindPointLight
+(Shader* shader, Light* light, VQS* transform, unsigned int index)
+{
+	glm::vec3 color = light->Color;
+	glm::vec3 intensity = light->Intensity;
+	glm::vec3 position = transform->position;
+
+	shader->setVec3("lightPositions[" + std::to_string(index) + "]", position);
+	shader->setVec3("lightColors[" + std::to_string(index) + "]", color * intensity);
+}
+
+
+void GraphicsSystem::BindDirectionalLight(Shader* shader, Light* light, VQS* transform)
+{
+	shader->setInt("hasDirectionalLight", 1);
+
+	glm::vec3 color = light->Color;
+	glm::vec3 intensity = light->Intensity;
+	glm::vec3 position = transform->position;
+
+	// pointing at light source position
+	glm::vec3 lightDirection = position - light ->Target;
+
+	shader->setVec3("directionalLightDirection", lightDirection);
+	shader->setVec3("directionalLightColor", color * intensity);
 }

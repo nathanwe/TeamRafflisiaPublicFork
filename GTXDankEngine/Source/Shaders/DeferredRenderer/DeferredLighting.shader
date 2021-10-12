@@ -34,6 +34,10 @@ const int MAX_LIGHTS = 200;
 uniform vec3 lightPositions[MAX_LIGHTS];
 uniform vec3 lightColors[MAX_LIGHTS];
 
+uniform vec3 directionalLightDirection;
+uniform vec3 directionalLightColor;
+uniform bool hasDirectionalLight;
+
 uniform int numberOfLights;
 uniform float exposure;
 
@@ -81,6 +85,41 @@ vec3 fresnelSchlick(float cosTheta, vec3 F0, float roughness)
 // ----------------------------------------------------------------------------
 
 
+// directional light reflection equation
+vec3 dirReflection(vec3 N, vec3 V, vec3 albedo, float metallic, float roughness, vec3 F0, vec3 WorldPos)
+{
+    vec3 Lo = vec3(0.0);
+
+    // calculate per-light radiance
+    vec3 L = normalize(directionalLightDirection);
+    vec3 H = normalize(V + L);
+    vec3 radiance = directionalLightColor;
+
+    // Cook-Torrance BRDF
+    float NDF = DistributionGGX(N, H, roughness);
+    float G = GeometrySmith(N, V, L, roughness);
+    vec3 F = fresnelSchlick(max(dot(H, V), 0.0), F0, roughness);
+
+    vec3 nominator = NDF * G * F;
+    float denominator = 4 * max(dot(N, V), 0.0) * max(dot(N, L), 0.0) + 0.001; // 0.001 to prevent divide by zero.
+    vec3 specular = nominator / denominator;
+
+    // kS is equal to Fresnel
+    vec3 kS = F;
+
+    vec3 kD = vec3(1.0) - kS;
+
+    kD *= 1.0 - metallic;
+
+    // scale light by NdotL
+    float NdotL = max(dot(N, L), 0.0);
+
+    // add to outgoing radiance Lo
+    return (kD * albedo / PI + specular) * radiance * NdotL;  // note that we already multiplied the BRDF by the Fresnel (kS) so we won't multiply by kS again
+}
+
+
+
 // reflection equation
 vec3 reflection(vec3 N, vec3 V, vec3 albedo, float metallic, float roughness, vec3 F0, vec3 WorldPos)
 {
@@ -124,6 +163,8 @@ vec3 reflection(vec3 N, vec3 V, vec3 albedo, float metallic, float roughness, ve
         // add to outgoing radiance Lo
         Lo += (kD * albedo / PI + specular) * radiance * NdotL;  // note that we already multiplied the BRDF by the Fresnel (kS) so we won't multiply by kS again
     }
+    if (hasDirectionalLight) Lo += dirReflection(N, V, albedo, metallic, roughness, F0, WorldPos);
+
     return Lo;
 }
 

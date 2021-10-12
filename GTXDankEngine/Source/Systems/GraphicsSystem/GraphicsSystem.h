@@ -4,15 +4,13 @@
 #include "pch.h"
 
 #include "../../Core/Camera.h"
-#include "../../Core/Model.h"
 #include "../../Core/System.h"
 #include "Skybox/Skybox.h"
-#include "../../Core/Texture.h"
-#include "../Components/MaterialComponent/Material.h"
-#include "../Core/Model.h"
-#include "../utils/VQS.h"
 #include "DeferredRenderer/DeferredRenderer.h"
 
+
+class Light;
+class VQS;
 
 
 const unsigned int WIDTH = 1200;
@@ -50,7 +48,8 @@ private:
 	void RenderLightSource();
 
 	void BindLightSource(Shader* shader);
-
+	void BindPointLight(Shader* shader, Light* light, VQS *transform, unsigned int index);
+	void BindDirectionalLight(Shader* shader, Light* light, VQS* transform);
 
 private:
 	Shader* LightSourceShader;
