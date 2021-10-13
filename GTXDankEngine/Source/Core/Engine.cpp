@@ -10,6 +10,7 @@
 #include "../Components/LightComponent/LightComponent.h"
 //#include "../Components/RoutineComponent/RoutineComponent.h"
 #include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
+#include "../utils/common.h"
 
 std::vector<Entity> EntityList;
 
@@ -34,13 +35,14 @@ bool Engine::Init()
 
 	*/
 	
-	
 	ScriptResourceManager.Init("Assets/Scripts/FirstScript.lua");
 	
+	if (!EntitySys.Init()) LOG_ERROR("Entity System failed to init.");
 	if (!AudioSys.Init()) LOG_ERROR("Audio System failed to init.");
 
 	if (!CommandSys.Init()) LOG_ERROR("Command System failed to init.");
 	if (!GraphicsSys.Init()) LOG_ERROR("Graphics System failed to init.");
+	if (!GameObjectFac.Init()) LOG_ERROR("Game Object Fac failed to init.");
 	UISys.GrabWindow(GraphicsSys.pWindow);
 
 	if (!UISys.Init()) LOG_ERROR("UI System failed to init.");
@@ -59,66 +61,29 @@ bool Engine::Init()
 	// These datas are not suppose to be inside Engine.cpp
 	// It will moved once scene system is done
 
-
-	Entity noSuchEntity = 0; // 0 means no entity
-	EntityList.push_back(noSuchEntity);
-	// pokemon ball entity
-	Entity pokemonBall = 1;
-	EntityList.push_back(pokemonBall);
-
-	// model component
-
-	ResourceHandle<Model>* pokemonBallModelHandle = ModelResourceManager.GetResourceHandleNoThread("Assets/models/PokemonBall/model.obj");
-	ModelComponentPool.Add(pokemonBall, (pokemonBallModelHandle));
-
-	// Transform component
-	VQS* pokemonBallTransform = new VQS(glm::vec3(0.0), 0.01f);
-	TransformComponentPool.Add(pokemonBall, (pokemonBallTransform));
-
-	// Material component
-	ResourceHandle<Texture>* pokemonBallDiffuse = TextureResourceManger.GetResourceHandle("Assets/models/PokemonBall/albedo.jpg");
-	ResourceHandle<Texture>* pokemonBallNormal = TextureResourceManger.GetResourceHandle("Assets/models/PokemonBall/normal.jpg");
-	ResourceHandle<Texture>* pokemonBallMetallic = TextureResourceManger.GetResourceHandle("Assets/models/PokemonBall/metallic.jpg");
-	ResourceHandle<Texture>* pokemonBallRoughness = TextureResourceManger.GetResourceHandle("Assets/models/PokemonBall/roughness.jpg");
-
-	Material* pokemonBallMat = new Material(
-		pokemonBallDiffuse, pokemonBallMetallic, pokemonBallNormal, pokemonBallRoughness);
-
-	MaterialComponentPool.Add(pokemonBall, (pokemonBallMat));
+	Entity pokemonBall = GameObjectFac.CreateObject(GameLogicCategories::POKEBALL);
 
 	//RoutineList* pokemonBallRoutines = new RoutineList(pokemonBall);
 	//pokemonBallRoutines->addRoutine(TYPE_LEFTRIGHT);
 	//RoutineComponentPool.Add(pokemonBall, (pokemonBallRoutines));
-	GameLogicCategoryComponentPool.Add(pokemonBall, (std::vector<GameLogicCategories>({ GameLogicCategories::POKEBALL })));
+	
+	//RoutineList* pokemonBallRoutines = new RoutineList(pokemonBall);
+	//pokemonBallRoutines->addRoutine(TYPE_LEFTRIGHT);
+	//RoutineComponentPool.Add(pokemonBall, (pokemonBallRoutines));
 
+	GameLogicCategoryComponentPool.Add(pokemonBall, (std::vector<GameLogicCategories>({ GameLogicCategories::POKEBALL })));
 
 	//--------------------------------------------------------------------------------
 	
 	// vase entity
-	Entity vase = 2;
-	EntityList.push_back(vase);
-
-	// model component
-	ResourceHandle<Model>* vaseModel = ModelResourceManager.GetResourceHandleNoThread("Assets/models/Vase/model.obj");
-	ModelComponentPool.Add(vase, (vaseModel));
-
-	// Transform component
-	VQS* vaseTransform = new VQS(glm::vec3(2.0, -1.0, 4.0), 0.5f);
-	TransformComponentPool.Add(vase, (vaseTransform));
-
-	ResourceHandle<Texture>* vaseDiffuse = TextureResourceManger.GetResourceHandle("Assets/models/Vase/albedo.jpg");
-	ResourceHandle<Texture>* vaseNormal = TextureResourceManger.GetResourceHandle("Assets/models/Vase/normal.jpg");
-	ResourceHandle<Texture>* vaseMetallic = TextureResourceManger.GetResourceHandle("Assets/models/Vase/metallic.jpg");
-	ResourceHandle<Texture>* vaseRoughness = TextureResourceManger.GetResourceHandle("Assets/models/Vase/roughness.jpg");
-
-
-	Material* vaseMat = new Material(vaseDiffuse, vaseMetallic, vaseNormal, vaseRoughness);
-	MaterialComponentPool.Add(vase, (vaseMat));
+	Entity vase = GameObjectFac.CreateObject(GameLogicCategories::VASE);
 	GameLogicCategoryComponentPool.Add(vase, (std::vector<GameLogicCategories>({ GameLogicCategories::VASE })));
 	
+	//Entity LightSource3 = GameObjectFac.CreateObject(GameLogicCategories::POINTLIGHTSOURCE);
+
 	//---------------------------------------------------------------------
 	// Point light source
-	Entity LightSource1 = 3;
+	Entity LightSource1 = EntitySys.CreateEntity();
 	EntityList.push_back(LightSource1);
 
 	// model component
@@ -135,10 +100,9 @@ bool Engine::Init()
 	LightComponentPool.Add(LightSource1, (Light1));
 	GameLogicCategoryComponentPool.Add(LightSource1, (std::vector<GameLogicCategories>({ GameLogicCategories::POINT_LIGHT_SOURCE })));
 
-
 	//--------------------------------------------------------------------------
 	// Point light source
-	Entity LightSource2 = 4;
+	Entity LightSource2 = EntitySys.CreateEntity();
 	EntityList.push_back(LightSource2);
 
 	// model component
@@ -157,7 +121,7 @@ bool Engine::Init()
 	//--------------------------------------------------------------------------
 
 	// lion entity
-	Entity lion = 5;
+	Entity lion = EntitySys.CreateEntity();
 	EntityList.push_back(lion);
 
 	// model component
@@ -179,9 +143,22 @@ bool Engine::Init()
 	GameLogicCategoryComponentPool.Add(lion, (std::vector<GameLogicCategories>({ GameLogicCategories::LION })));
 
 	//-----------------------------------------------------------------------
+
+	//GameObjectFac.SaveObject(GameLogicCategories::POINTLIGHTSOURCE, LightSource1);
+
+	//temp: for demo
+	CommandSys.Attack3Command.SetActionToExecute([&]()
+		{
+			Entity newBall = GameObjectFac.CreateObject(GameLogicCategories::POKEBALL);
+			auto* trans = TransformComponentPool.GetComponentByEntity(newBall);
+			trans->transform->position.x += rand() % 5;
+			trans->transform->position.y += rand() % 5;
+			trans->transform->position.z += rand() % 5;
+		});
+
 	//Directional light source
 
-	Entity DirLightSource = 6;
+	Entity DirLightSource = EntitySys.CreateEntity();
 	EntityList.push_back(DirLightSource);
 
 	// model component
@@ -201,7 +178,7 @@ bool Engine::Init()
 
 //-------------------------------------------------------------------------------
 	// plane entity
-	Entity plane = 7;
+	Entity plane = EntitySys.CreateEntity();
 	EntityList.push_back(plane);
 
 	// model component

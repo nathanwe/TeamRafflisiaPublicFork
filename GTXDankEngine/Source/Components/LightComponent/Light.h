@@ -1,6 +1,7 @@
 #ifndef LIGHT_H
 #define LIGHT_H
 #include "pch.h"
+#include "../utils/SerializationHelper.h"
 
 enum LightType
 {
@@ -21,6 +22,7 @@ public:
 
 	LightType Type;
 
+	Light();
 	Light(LightType type, glm::vec3 c, glm::vec3 i);
 	Light(LightType type, glm::vec3 c, glm::vec3 i, glm::vec3 t);
 
@@ -28,5 +30,17 @@ public:
 private:
 	float Clip(float target, float max, float min);
 };
+
+inline void to_json(ordered_json& j, const Light& light) {
+	to_json(j["Color"], light.Color);
+	to_json(j["Intensity"], light.Intensity);
+	to_json(j["LightType"], light.Type);
+}
+
+inline void from_json(const ordered_json& j, Light& light) {
+	from_json(j["Color"], light.Color);
+	from_json(j["Intensity"], light.Intensity);
+	light.Type = static_cast<LightType>(j["LightType"]);
+}
 
 #endif

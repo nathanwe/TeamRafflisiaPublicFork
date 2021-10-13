@@ -2,6 +2,8 @@
 #include "Light.h"
 #include "../utils/Log.h"
 
+Light::Light() {};
+
 Light::Light(LightType type, glm::vec3 c, glm::vec3 i)
 	: Type(type), Color(c), Intensity(i)
 {

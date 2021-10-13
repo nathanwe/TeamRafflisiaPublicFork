@@ -1,12 +1,35 @@
 #ifndef ENUMS_H
 #define ENUMS_H
 
-enum class ComponentType
+#include <json/json.h>
+
+#define REGISTER_STRING(x) {x,#x},
+
+enum ComponentType
 {
 	ABSTRACT = 0,
-	BLACK_BOX_MODEL = 1
+	TRANSFORM = 1,
+	LIGHT = 2,
+	MODEL = 3,
+	MATERIAL = 4,
+
+	TOTAL
 };
 
+NLOHMANN_JSON_SERIALIZE_ENUM(ComponentType, {
+	REGISTER_STRING(TRANSFORM)
+	REGISTER_STRING(LIGHT)
+	REGISTER_STRING(MODEL)
+	REGISTER_STRING(MATERIAL)
+	});
+
+static std::unordered_map<std::string, int> ComponentNameToType
+{
+	{"TRANSFORM", 1},
+	{"LIGHT", 2},
+	{"MODEL", 3},
+	{"MATERIAL", 4},
+};
 
 enum class ErrorEnum
 {
@@ -15,7 +38,7 @@ enum class ErrorEnum
 	FAIL_BECAUSE_NO_MORE_MEMORY = 2
 };
 
-enum class GameLogicCategories
+enum GameLogicCategories
 {
 	POKEBALL = 1,
 	VASE = 2,
@@ -25,6 +48,15 @@ enum class GameLogicCategories
 	PLANE = 6,
 	MAX_CATEGORIES = 7
 };
+
+NLOHMANN_JSON_SERIALIZE_ENUM(GameLogicCategories, {
+	REGISTER_STRING(POKEBALL)
+	REGISTER_STRING(VASE)
+	REGISTER_STRING(LION)
+	REGISTER_STRING(POINT_LIGHT_SOURCE)
+	REGISTER_STRING(DIR_LIGHT_SOURCE)
+	REGISTER_STRING(PLANE)
+	});
 
 enum class EventType
 {

@@ -1,0 +1,109 @@
+{
+  "POKEBALL": {
+    "MODEL": {
+      "path": "Assets/models/PokemonBall/model.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": 0.009999999776482582,
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "Assets/models/PokemonBall/albedo.jpg",
+      "MetallicPath": "Assets/models/PokemonBall/metallic.jpg",
+      "NormalPath": "Assets/models/PokemonBall/normal.jpg",
+      "RoughnessPath": "Assets/models/PokemonBall/roughness.jpg"
+    }
+  },
+  "VASE": {
+    "MODEL": {
+      "path": "Assets/models/Vase/model.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 2.0,
+        "y": -1.0,
+        "z": 4.0
+      },
+      "scale": 0.5,
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "Assets/models/Vase/albedo.jpg",
+      "MetallicPath": "Assets/models/Vase/metallic.jpg",
+      "NormalPath": "Assets/models/Vase/normal.jpg",
+      "RoughnessPath": "Assets/models/Vase/roughness.jpg"
+    }
+  },
+  "POINT_LIGHT_SOURCE": {
+    "MODEL": {
+      "path": "Assets/models/Sphere/model.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 1.5,
+        "y": 1.5,
+        "z": 1.5
+      },
+      "scale": 0.00800000037997961,
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "LIGHT": {
+      "Color": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "Intensity": {
+        "x": 10.0,
+        "y": 10.0,
+        "z": 10.0
+      },
+      "LightType": 1
+    }
+  },
+  "LION": {
+    "MODEL": {
+      "path": "Assets/models/Lion/model.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": -1.0,
+        "y": -1.0,
+        "z": 3.0
+      },
+      "scale": 1.0,
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "",
+      "MetallicPath": "",
+      "NormalPath": "",
+      "RoughnessPath": ""
+    }
+  }
+}

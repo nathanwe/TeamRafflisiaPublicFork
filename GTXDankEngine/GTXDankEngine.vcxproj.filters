@@ -157,6 +157,12 @@
     <Filter Include="Source Files\Components\GameLogicCategoryComponent">
       <UniqueIdentifier>{201342ec-5d6f-4b13-ba41-fb096ab3d983}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Systems\EntitySystem">
+      <UniqueIdentifier>{cf862845-5463-4ee0-ac79-1aafec6347a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems\EntitySystem">
+      <UniqueIdentifier>{0afd1664-23f2-40a1-9b2a-5ac954a1e550}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Source Files\Systems\GraphicsSystem\Shadow">
       <UniqueIdentifier>{aa46e90f-eb0f-44c8-93e9-18a33ca36303}</UniqueIdentifier>
     </Filter>
@@ -379,6 +385,15 @@
     <ClInclude Include="Source\Components\GameLogicCategoryComponent\GameLogicCategoryComponent.h">
       <Filter>Header Files\Components\GameLogicCatagoryComponent</Filter>
     </ClInclude>
+    <ClInclude Include="Source\utils\SerializationHelper.h">
+      <Filter>Header Files\utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Core\GameObjectFactory.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\EntitySystem\EntitySystem.h">
+      <Filter>Header Files\Systems\EntitySystem</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Systems\GraphicsSystem\Shadow\Shadow.h">
       <Filter>Header Files\Systems\GraphicsSystem\Shadow</Filter>
     </ClInclude>
@@ -521,6 +536,12 @@
     </ClCompile>
     <ClCompile Include="Source\Components\GameLogicCategoryComponent\GameLogicCategoryComponent.cpp">
       <Filter>Source Files\Components\GameLogicCategoryComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\GameObjectFactory.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\EntitySystem\EntitySystem.cpp">
+      <Filter>Source Files\Systems\EntitySystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\Shadow\Shadow.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\Shadow</Filter>

@@ -5,6 +5,7 @@
 
 #include "pch.h"
 #include "Mesh.h"
+#include "../utils/SerializationHelper.h"
 
 /*
 * .obj model file
@@ -23,6 +24,7 @@ public:
 	void Draw(Shader& shader) const;
 	void OnLoad();
 
+	std::string path;
 private:
 	std::vector<Mesh> meshes;
 
@@ -47,4 +49,13 @@ private:
 
 	//std::vector<Texture> loadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName);
 };
+
+inline void to_json(ordered_json& j, const Model& model) {
+	to_json(j["path"], model.path);
+}
+
+inline void from_json(const ordered_json& j, Model& model) {
+	from_json(j["path"], model.path);
+}
+
 #endif // !MODEL_H

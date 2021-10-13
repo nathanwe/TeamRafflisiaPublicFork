@@ -116,6 +116,9 @@
     <None Include="Source\Shaders\Shadow\DefaultShadowMap.shader" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Systems\EntitySystem\EntitySystem.h" />
+    <ClInclude Include="Source\Core\GameObjectFactory.h" />
+    <ClInclude Include="Source\utils\SerializationHelper.h" />
     <ClInclude Include="Source\Components\GameLogicCategoryComponent\GameLogicCategoryComponent.h" />
     <ClInclude Include="Source\Components\RoutineComponent\RoutineComponent.h" />
     <ClInclude Include="Source\Components\RoutineComponent\LeftRight.h" />
@@ -175,6 +178,7 @@
     <ClCompile Include="LuaHookFunctions.cpp" />
     <ClCompile Include="Source\Components\GameLogicCategoryComponent\GameLogicCategoryComponent.cpp" />
     <ClCompile Include="Source\Components\RoutineComponent\RoutineComponent.cpp" />
+    <ClCompile Include="Source\Core\GameObjectFactory.cpp" />
     <ClCompile Include="Source\Systems\AudioSystem\AudioSystem.cpp" />
     <ClCompile Include="Source\Components\LightComponent\Light.cpp" />
     <ClCompile Include="Source\Components\LightComponent\LightComponent.cpp" />
@@ -239,6 +243,7 @@
     </ClCompile>
     <ClCompile Include="Source\Core\FramerateControlSystem\FramerateController.cpp" />
     <ClCompile Include="Source\Systems\CommandSystem\DirectionCommand.cpp" />
+    <ClCompile Include="Source\Systems\EntitySystem\EntitySystem.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\DeferredRenderer\DeferredRenderer.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\GraphicsSystem.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\Quad.cpp" />

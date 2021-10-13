@@ -4,12 +4,12 @@
 
 
 
-Model::Model(const char* path)
+Model::Model(const char* path) : path(path)
 {
     loadModel(path);
 }
 
-Model::Model(std::string path)
+Model::Model(std::string path) : path(path)
 {
     loadModel(path.c_str());
 }

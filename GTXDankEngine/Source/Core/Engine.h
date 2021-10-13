@@ -12,8 +12,9 @@
 #include "../Systems/CommandSystem/CommandSystem.h"
 #include "../Systems/AudioSystem/AudioSystem.h"
 #include "../Systems/ScriptSystem/ScriptSystem.h"
-
-typedef uint32_t Entity;
+#include "../Systems/EntitySystem/EntitySystem.h"
+#include "../utils/common.h"
+#include "GameObjectFactory.h"
 
 extern std::vector<Entity> EntityList;
 
@@ -63,26 +64,13 @@ public:
 	// All systems will be init inside Engine::Init()
 	// The lifecycle of all systems end when Engine instance get deleted 
 
-	/*
-	MemorySystem MemorySys;
-
-	ResourceSystem ResourceSys;
-
-	EntitySystem EntitySys;
-
-	FrameRateSystem FrameRateSys;
-
-	.......
-
-	PhysicsSystem PhysicsSys;
-
-	GraphicsSystem GraphicsSys;
-	*/
 	AudioSystem AudioSys;
 	UISystem UISys;
 	GraphicsSystem GraphicsSys;
 	InputManager InputSys;
 	CommandSystem CommandSys;
+	EntitySystem EntitySys;
+	GameObjectFactory GameObjectFac;
 	ScriptSystem DoGameLogicScriptSys;
 
 

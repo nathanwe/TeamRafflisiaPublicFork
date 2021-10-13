@@ -2,7 +2,7 @@
 #define VQS_H
 
 #include "pch.h"
-
+#include "../utils/SerializationHelper.h"
 
 class VQS
 {
@@ -25,4 +25,17 @@ public:
 
 	glm::mat4 Matrix(void) const;
 };
+
+inline void to_json(ordered_json& j, const VQS& vqs) {
+	to_json(j["position"], vqs.position);
+	to_json(j["scale"], vqs.scale);
+	to_json(j["rotation"], vqs.rotation);
+}
+
+inline void from_json(const ordered_json& j, VQS& vqs) {
+	from_json(j["position"], vqs.position);
+	from_json(j["scale"], vqs.scale);
+	from_json(j["rotation"], vqs.rotation);
+}
+
 #endif // !VQS_H

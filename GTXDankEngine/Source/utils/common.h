@@ -2,6 +2,8 @@
 FMOD Example Framework
 Copyright (c), Firelight Technologies Pty, Ltd 2012-2021.
 ==============================================================================*/
+typedef uint32_t Entity;
+
 #pragma warning(disable : 4996)
 #pragma warning(disable : 26812)
 #ifndef FMOD_EXAMPLES_COMMON_H
@@ -23,6 +25,7 @@ Copyright (c), Firelight Technologies Pty, Ltd 2012-2021.
 
 #pragma warning(pop)
 
+#define MAX_ENTITIES 10000
 
 #define NUM_COLUMNS 50
 #define NUM_ROWS 25

@@ -4,6 +4,7 @@
 #include "pch.h"
 #include "../Core/Texture.h"
 #include "../Core/ResourceManager.h"
+#include "../utils/SerializationHelper.h"
 
 class Material
 {
@@ -18,9 +19,25 @@ public:
 	ResourceHandle<Texture>* Normal;
 	ResourceHandle<Texture>* Roughness;
 
-
-
+	std::string AlbedoPath;
+	std::string MetallicPath;
+	std::string NormalPath;
+	std::string RoughnessPath;
 };
+
+inline void to_json(ordered_json& j, const Material& material) {
+	to_json(j["AlbedoPath"], material.AlbedoPath);
+	to_json(j["MetallicPath"], material.MetallicPath);
+	to_json(j["NormalPath"], material.NormalPath);
+	to_json(j["RoughnessPath"], material.RoughnessPath);
+}
+
+inline void from_json(const ordered_json& j, Material& material) {
+	from_json(j["AlbedoPath"], material.AlbedoPath);
+	from_json(j["MetallicPath"], material.MetallicPath);
+	from_json(j["NormalPath"], material.NormalPath);
+	from_json(j["RoughnessPath"], material.RoughnessPath);
+}
 
 
 #endif
