@@ -215,6 +215,9 @@
     <None Include="Source\Shaders\Shadow\DefaultShadowMap.shader">
       <Filter>Resource Files\Shaders\Shadow</Filter>
     </None>
+    <None Include="Assets\Scripts\DoPokeballThings.lua">
+      <Filter>Resource Files\Scripts</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">
@@ -521,6 +524,9 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\Shadow\Shadow.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\Shadow</Filter>
+    </ClCompile>
+    <ClCompile Include="LuaHookFunctions.cpp">
+      <Filter>Source Files\Systems\ScriptSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,8 +1,8 @@
 --doeverything
-categoryNames = {[3] = "Lion", [4] = "Light"}
+categoryNames = {[1] = "Pokeball", [3] = "Lion", [4] = "Light"}
 deltaTime = 0
 thisEntity = 0
-
+gEventData = {}
 
 function DoStringWithErrorCheck(str)
 	local tempfunc
@@ -40,3 +40,12 @@ function UpdateEntity( e )
 		end
 	end
 end
+
+function HandleEvent(thingsToEffect, eventData)
+	for index,thing in pairs(thingsToEffect) do
+		gEventData = eventData
+		DoStringWithErrorCheck("HandleEvent".. categoryNames[thing] .."(gEventData)")
+	end
+end
+
+

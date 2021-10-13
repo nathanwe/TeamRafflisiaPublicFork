@@ -9,6 +9,8 @@ void Command::SetActionToExecute(std::function<void()> actionToExecute)
 void Command::Execute()
 {
 	if (actionToExecute)
+	{
 		this->actionToExecute();
+	}
 }
 

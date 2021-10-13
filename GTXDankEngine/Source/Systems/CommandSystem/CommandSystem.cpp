@@ -4,6 +4,7 @@
 
 extern Engine engine;
 
+
 bool CommandSystem::Init()
 {
 	return true;

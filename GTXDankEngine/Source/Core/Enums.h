@@ -26,10 +26,8 @@ enum class GameLogicCategories
 	MAX_CATEGORIES = 7
 };
 
-
-//TODO real events
-struct Event
+enum class EventType
 {
-
+	EMIT_LION = 0
 };
 #endif // !ENUMS_H
