@@ -36,12 +36,27 @@ public:
 	bool IsMousePressed();
 	bool IsMouseTriggered();
 	bool IsMouseReleased();
+
+	float GetControllerAxis(int controllerNo, int axis);
+	bool IsControllerPressed(int controllerNo, int button);
+	bool IsControllerTriggered(int controllerNo, int button);
+	bool IsControllerReleased(int controllerNo, int button);
 public:
 
 
 
 private:
 	static const int input_buffer_size = 512;
+
+	static const int gamepad_count = 8;
+	struct Gamepad {
+		float axes[6];
+		bool buttons[14];
+	};
+	Gamepad gamepads_thread[gamepad_count];
+	Gamepad gamepads[gamepad_count];
+	Gamepad gamepads_prev[gamepad_count];
+
 
 private:
 	bool mCurrentState[input_buffer_size];
