@@ -175,7 +175,6 @@
     <ClInclude Include="Source\utils\VQS.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="LuaHookFunctions.cpp" />
     <ClCompile Include="Source\Components\GameLogicCategoryComponent\GameLogicCategoryComponent.cpp" />
     <ClCompile Include="Source\Components\RoutineComponent\RoutineComponent.cpp" />
     <ClCompile Include="Source\Core\GameObjectFactory.cpp" />
@@ -252,6 +251,7 @@
     <ClCompile Include="Source\Systems\CommandSystem\Command.cpp" />
     <ClCompile Include="Source\Systems\InputSystem\InputManager.cpp" />
     <ClCompile Include="Source\Systems\ProfileSystem\ProfileSystem.cpp" />
+    <ClCompile Include="Source\Systems\ScriptSystem\LuaHookFunctions.cpp" />
     <ClCompile Include="Source\Systems\ScriptSystem\ScriptSystem.cpp" />
     <ClCompile Include="Source\Systems\UISystem\UISystem.cpp" />
     <ClCompile Include="Source\utils\common.cpp" />

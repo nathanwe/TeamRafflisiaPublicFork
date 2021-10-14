@@ -546,7 +546,7 @@
     <ClCompile Include="Source\Systems\GraphicsSystem\Shadow\Shadow.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\Shadow</Filter>
     </ClCompile>
-    <ClCompile Include="LuaHookFunctions.cpp">
+    <ClCompile Include="Source\Systems\ScriptSystem\LuaHookFunctions.cpp">
       <Filter>Source Files\Systems\ScriptSystem</Filter>
     </ClCompile>
   </ItemGroup>
