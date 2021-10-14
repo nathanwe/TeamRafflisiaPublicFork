@@ -26,7 +26,7 @@ public:
 
 	void Fill_G_Buffer(glm::mat4 view, glm::mat4 projection);
 	void Render(glm::vec3 camPos);
-	void Render(glm::vec3 camPos, Shadow& shadow);
+	void Render(glm::vec3 camPos, Shadow& shadow, GLuint fbo);
 
 	inline Shader* GetLightShader() { return DeferredLightingShader; }
 

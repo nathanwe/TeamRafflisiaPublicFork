@@ -25,7 +25,7 @@ public:
 	void Init();
 	void Init(std::vector<std::string> &faces);
 
-	void Render(glm::mat4 view, glm::mat4 proj);
+	void Render(glm::mat4 view, glm::mat4 proj, GLuint fbo);
 
 	void Destroy();
 

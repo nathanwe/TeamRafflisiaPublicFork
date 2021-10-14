@@ -83,8 +83,10 @@ void Skybox::Init()
 
 
 
-void Skybox::Render(glm::mat4 view, glm::mat4 proj)
+void Skybox::Render(glm::mat4 view, glm::mat4 proj, GLuint fbo)
 {
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+
 	// draw skybox as last
 	glDepthFunc(GL_LEQUAL);  // change depth function so depth test passes when values are equal to depth buffer's content
 
@@ -105,6 +107,8 @@ void Skybox::Render(glm::mat4 view, glm::mat4 proj)
 	shader->unBind();
 
 	glDepthFunc(GL_LESS); // set depth function back to default
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 

@@ -8,6 +8,8 @@
 #include "Skybox/Skybox.h"
 #include "Shadow/Shadow.h"
 #include "DeferredRenderer/DeferredRenderer.h"
+#include "FBO.h"
+#include "PostProcess/PostProcess.h"
 
 
 class Light;
@@ -46,7 +48,7 @@ private:
 		
 	void Render();
 
-	void RenderLightSource();
+	void RenderLightSource(GLuint fbo);
 
 	void BindLightSource(Shader* shader);
 	void BindPointLight(Shader* shader, Light* light, VQS *transform, unsigned int index);
@@ -63,5 +65,10 @@ private:
 	Camera camera{ WIDTH, HEIGHT, glm::vec3(0.0f, 0.0f, 10.0f) };
 
 	DeferredRenderer DeferredRender;
+
+	// post process and forward rendering FBO
+	FBO HdrFBO;
+
+	PostProcess PostProcesser;
 };
 #endif // !GRAPHICSSYSTEM_H

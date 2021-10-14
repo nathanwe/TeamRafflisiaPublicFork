@@ -12,6 +12,7 @@
 #include "../UISystem/UISystem.h"
 #include "../ProfileSystem/ProfileSystem.h"
 
+
 #include "../../Core/Texture.h"
 
 extern UISystem UISys;
@@ -75,7 +76,11 @@ bool GraphicsSystem::Init()
 
 	DeferredRender.Init(camera.width, camera.height);
 
+	HdrFBO.Init(camera.width, camera.height);
+
 	skybox.Init();
+
+	PostProcesser.Init();
 	
 	LightSourceShader = new Shader("Source/Shaders/LightSource.shader");
 	
@@ -136,6 +141,14 @@ void GraphicsSystem::Update(float timeStamp)
 	}
 	ImGui::End();
 
+	ImGui::Begin("Post Process");
+	{
+		ImGui::Checkbox("Enable HDR", &(PostProcesser.HasHDR));
+		ImGui::SliderFloat("Exposure", &(PostProcesser.Exposure), 0.01, 5.0);
+	}
+	ImGui::End();
+
+
 
 	ImGui::End();
 	ImGui::Render();
@@ -158,22 +171,34 @@ void GraphicsSystem::Render()
 
 	BindLightSource(DeferredRender.GetLightShader());
 
+	// clear hdr FBO
+	glBindFramebuffer(GL_FRAMEBUFFER, HdrFBO.GetFBO());
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	// PBR rendering, all local pass
-	DeferredRender.Render(camera.Position, Shadow);
+	DeferredRender.Render(camera.Position, Shadow, HdrFBO.GetFBO());
 
 	// copy depth buffer from G-buffer to default FBO
+	DeferredRender.CopyDepthBufferToTarget(HdrFBO.GetFBO(), camera.width, camera.height);
+
+	skybox.Render(camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f), HdrFBO.GetFBO());
+
+	//RenderLightSource(HdrFBO.GetFBO());
+
+	// post processing
+	PostProcesser.Render(HdrFBO);
+
 	DeferredRender.CopyDepthBufferToTarget(0, camera.width, camera.height);
+	RenderLightSource(0);
 
-
-	RenderLightSource();
-
-	skybox.Render(camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f));
 }
 
 
 
-void GraphicsSystem::RenderLightSource()
+void GraphicsSystem::RenderLightSource(GLuint fbo)
 {
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+
 	for (auto e : EntityList)
 	{
 		auto lightComponent = LightComponentPool.GetComponentByEntity(e);
@@ -195,6 +220,7 @@ void GraphicsSystem::RenderLightSource()
 		}
 	}
 	
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 
@@ -202,6 +228,8 @@ void GraphicsSystem::RenderLightSource()
 bool GraphicsSystem::Destroy()
 {
 	delete LightSourceShader;
+
+	PostProcesser.Destroy();
 
 	DeferredRender.Destroy();
 	skybox.Destroy();

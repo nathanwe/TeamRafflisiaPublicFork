@@ -113,11 +113,14 @@
     <None Include="Source\Shaders\DeferredRenderer\DeferredLighting.shader" />
     <None Include="Source\Shaders\DeferredRenderer\Fill_G_Buffer.shader" />
     <None Include="Source\Shaders\LightSource.shader" />
+    <None Include="Source\Shaders\PostProcess\PostProcess.shader" />
     <None Include="Source\Shaders\Shadow\DefaultShadowMap.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Systems\EntitySystem\EntitySystem.h" />
     <ClInclude Include="Source\Core\GameObjectFactory.h" />
+    <ClInclude Include="Source\Systems\GraphicsSystem\FBO.h" />
+    <ClInclude Include="Source\Systems\GraphicsSystem\PostProcess\PostProcess.h" />
     <ClInclude Include="Source\utils\SerializationHelper.h" />
     <ClInclude Include="Source\Components\GameLogicCategoryComponent\GameLogicCategoryComponent.h" />
     <ClInclude Include="Source\Components\RoutineComponent\RoutineComponent.h" />
@@ -244,7 +247,9 @@
     <ClCompile Include="Source\Systems\CommandSystem\DirectionCommand.cpp" />
     <ClCompile Include="Source\Systems\EntitySystem\EntitySystem.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\DeferredRenderer\DeferredRenderer.cpp" />
+    <ClCompile Include="Source\Systems\GraphicsSystem\FBO.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\GraphicsSystem.cpp" />
+    <ClCompile Include="Source\Systems\GraphicsSystem\PostProcess\PostProcess.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\Quad.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\Shadow\Shadow.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\Skybox\Skybox.cpp" />

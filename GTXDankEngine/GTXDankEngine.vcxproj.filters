@@ -172,6 +172,15 @@
     <Filter Include="Resource Files\Shaders\Shadow">
       <UniqueIdentifier>{6eb41cad-0fd5-4b53-9be2-622987e0d771}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Systems\GraphicsSystem\PostProcess">
+      <UniqueIdentifier>{6994a329-d7b3-4f36-bc3e-d3c2dfe7b8ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\GraphicsSystem\PostProcess">
+      <UniqueIdentifier>{8a16b8b3-0ad7-420b-b877-5f2811953458}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\PostProcess">
+      <UniqueIdentifier>{25aa4165-3038-4aeb-b4c7-50cc10773a5d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\brick.png">
@@ -223,6 +232,9 @@
     </None>
     <None Include="Assets\Scripts\DoPokeballThings.lua">
       <Filter>Resource Files\Scripts</Filter>
+    </None>
+    <None Include="Source\Shaders\PostProcess\PostProcess.shader">
+      <Filter>Resource Files\Shaders\PostProcess</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -397,6 +409,12 @@
     <ClInclude Include="Source\Systems\GraphicsSystem\Shadow\Shadow.h">
       <Filter>Header Files\Systems\GraphicsSystem\Shadow</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\GraphicsSystem\FBO.h">
+      <Filter>Header Files\Systems\GraphicsSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\GraphicsSystem\PostProcess\PostProcess.h">
+      <Filter>Header Files\Systems\GraphicsSystem\PostProcess</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -548,6 +566,12 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\ScriptSystem\LuaHookFunctions.cpp">
       <Filter>Source Files\Systems\ScriptSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\GraphicsSystem\FBO.cpp">
+      <Filter>Source Files\Systems\GraphicsSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\GraphicsSystem\PostProcess\PostProcess.cpp">
+      <Filter>Source Files\Systems\GraphicsSystem\PostProcess</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

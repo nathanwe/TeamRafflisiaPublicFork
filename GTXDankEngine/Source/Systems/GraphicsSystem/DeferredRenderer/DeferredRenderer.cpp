@@ -147,12 +147,16 @@ void DeferredRenderer::Render(glm::vec3 camPos)
 	Quad().Draw(*DeferredLightingShader);
 }
 
-void DeferredRenderer::Render(glm::vec3 camPos, Shadow& shadow)
+void DeferredRenderer::Render(glm::vec3 camPos, Shadow& shadow, GLuint fbo)
 {
+	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+
 	DeferredLightingShader->setTexture("ShadowMap", shadow.GetDepthBuffer());
 	DeferredLightingShader->setMat4("LightSpaceMatrix", shadow.GetLightSpaceMatrix());
 	DeferredLightingShader->setInt("hasShadow", 1);
 	Render(camPos);
+
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 
