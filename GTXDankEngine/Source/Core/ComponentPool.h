@@ -43,9 +43,9 @@ template<class T>
 template<typename ...constructorArguments>
 bool AbstractComponentPool<T>::Add(Entity e, constructorArguments... args)
 {
-	if (EntityList[e] == 0) // if entity does not exist
+	if (EntityList.size() <= e || EntityList[e] == -1) // if entity does not exist
 	{
-		LOG_ERROR("Failed to add component, Entity does not exist");
+		LOG_ERROR("Failed to add component, Entity {0} does not exist", e);
 	}
 
 	void* location = memory.GetFreeBlock();
