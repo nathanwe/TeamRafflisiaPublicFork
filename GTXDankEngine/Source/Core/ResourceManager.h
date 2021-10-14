@@ -150,6 +150,11 @@ inline ResourceHandle<ResourceType>* ResourceManager<ResourceType>::GetResourceH
 	auto handle = resources.find(filepath);
 	if (handle != resources.end())
 	{
+		while (handle->second.state != ResourceState::LOADED)
+		{
+			Sleep(1);
+			Update(0);
+		}
 		return &(handle->second);
 	}
 	else

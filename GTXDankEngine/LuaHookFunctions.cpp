@@ -147,7 +147,7 @@ int lua_MakeLionByHand(lua_State* L)
     float ycoord = static_cast<float>(lua_tonumber(L, 2));
     float zcoord = static_cast<float>(lua_tonumber(L, 3));
     // lion entity
-    Entity lion = EntityList.size();
+    Entity lion = engine.EntitySys.CreateEntity();
     EntityList.push_back(lion);
 
     // model component

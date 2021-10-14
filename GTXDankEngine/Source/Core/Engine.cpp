@@ -66,10 +66,6 @@ bool Engine::Init()
 	//RoutineList* pokemonBallRoutines = new RoutineList(pokemonBall);
 	//pokemonBallRoutines->addRoutine(TYPE_LEFTRIGHT);
 	//RoutineComponentPool.Add(pokemonBall, (pokemonBallRoutines));
-	
-	//RoutineList* pokemonBallRoutines = new RoutineList(pokemonBall);
-	//pokemonBallRoutines->addRoutine(TYPE_LEFTRIGHT);
-	//RoutineComponentPool.Add(pokemonBall, (pokemonBallRoutines));
 
 	GameLogicCategoryComponentPool.Add(pokemonBall, (std::vector<GameLogicCategories>({ GameLogicCategories::POKEBALL })));
 

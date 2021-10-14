@@ -48,4 +48,13 @@ function HandleEvent(thingsToEffect, eventData)
 	end
 end
 
+function HandleEventPerEntity(e, thingsToEffect, eventData)
+	for index,thing in pairs(thingsToEffect) do
+		thisEntity = e
+		gEventData = eventData
+		DoStringWithErrorCheck("HandleEventPerEntity".. categoryNames[thing] .."(thisEntity, gEventData)")
+	end		
+
+end
+
 

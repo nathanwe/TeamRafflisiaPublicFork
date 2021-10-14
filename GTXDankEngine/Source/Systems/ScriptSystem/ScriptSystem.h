@@ -15,6 +15,7 @@ typedef uint32_t Entity;
 struct Event
 {
 	std::set<GameLogicCategories> thingsToEffect;
+	bool runPerEntity;
 	EventType type;
 	Entity e1;
 	Entity e2;

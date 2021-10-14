@@ -27,6 +27,7 @@ ScriptSystem::ScriptSystem()
 void SendLionEmitEvent()
 {
     Event ev;
+    ev.runPerEntity = true;
     ev.e1 = 1;
     ev.type = EventType::EMIT_LION;
     ev.thingsToEffect.insert(GameLogicCategories::POKEBALL);
@@ -93,65 +94,92 @@ bool ScriptSystem::Destroy()
     return ScriptResourceManager.Destroy();
 }
 
+void passEvent(lua_State* L, Event event){
+    int index = 0;
+    lua_newtable(L);
+    int top = lua_gettop(L);
+    for (GameLogicCategories gLC : event.thingsToEffect)
+    {
+        lua_pushnumber(L, index);
+        lua_pushnumber(L, static_cast<int>(gLC));
+        lua_settable(L, top);
+        ++index;
+    }
+    lua_newtable(L);
+    top = lua_gettop(L);
+
+    lua_pushstring(L, "type");
+    lua_pushnumber(L, static_cast<int>(event.type));
+    lua_settable(L, top);
+
+    lua_pushstring(L, "e1");
+    lua_pushnumber(L, static_cast<int>(event.e1));
+    lua_settable(L, top);
+
+    lua_pushstring(L, "e2");
+    lua_pushnumber(L, static_cast<int>(event.e2));
+    lua_settable(L, top);
+
+    lua_pushstring(L, "intData1");
+    lua_pushnumber(L, event.intData1);
+    lua_settable(L, top);
+
+    lua_pushstring(L, "floatData1");
+    lua_pushnumber(L, event.floatData1);
+    lua_settable(L, top);
+
+    lua_pushstring(L, "floatData2");
+    lua_pushnumber(L, event.floatData2);
+    lua_settable(L, top);
+
+    lua_pushstring(L, "floatData3");
+    lua_pushnumber(L, event.floatData3);
+    lua_settable(L, top);
+
+    lua_pushstring(L, "floatData4");
+    lua_pushnumber(L, event.floatData4);
+    lua_settable(L, top);
+
+    lua_pushstring(L, "stringData1");
+    lua_pushstring(L, event.stringData1.c_str());
+    lua_settable(L, top);
+}
 void ScriptSystem::HandleEvent(Event event)
 {
-
-    lua_getglobal(L, "HandleEvent");
-    if (lua_isfunction(L, -1))
+    if (event.runPerEntity)
     {
-        int index = 0;
-        lua_newtable(L);
-        int top = lua_gettop(L);
-        for (GameLogicCategories gLC : event.thingsToEffect)
+        for (Entity e : EntityList)
         {
-            lua_pushnumber(L, index);
-            lua_pushnumber(L, static_cast<int>(gLC));
-            lua_settable(L, top);
-            ++index;
+            if (GameLogicCategoryComponentPool.GetComponentByEntity(e) != nullptr)
+            {
+                lua_getglobal(L, "HandleEventPerEntity");
+                if (lua_isfunction(L, -1))
+                {
+                    lua_pushnumber(L, static_cast<int>(e));
+                    passEvent(L, event);
+                    CheckLua(L, lua_pcall(L, 3, 0, 0));
+                }
+                else
+                {
+                    LOG_ERROR("scriptsystem error, HandleEventPerEntity not found")
+                }
+            }
         }
-        lua_newtable(L);
-        top = lua_gettop(L);
-
-        lua_pushstring(L, "type");
-        lua_pushnumber(L, static_cast<int>(event.type));
-        lua_settable(L, top);
-
-        lua_pushstring(L, "e1");
-        lua_pushnumber(L, static_cast<int>(event.e1));
-        lua_settable(L, top);
-
-        lua_pushstring(L, "e2");
-        lua_pushnumber(L, static_cast<int>(event.e2));
-        lua_settable(L, top);
-
-        lua_pushstring(L, "intData1");
-        lua_pushnumber(L, event.intData1);
-        lua_settable(L, top);
-
-        lua_pushstring(L, "floatData1");
-        lua_pushnumber(L, event.floatData1);
-        lua_settable(L, top);
-
-        lua_pushstring(L, "floatData2");
-        lua_pushnumber(L, event.floatData2);
-        lua_settable(L, top);
-
-        lua_pushstring(L, "floatData3");
-        lua_pushnumber(L, event.floatData3);
-        lua_settable(L, top);
-
-        lua_pushstring(L, "floatData4");
-        lua_pushnumber(L, event.floatData4);
-        lua_settable(L, top);
-
-        lua_pushstring(L, "stringData1");
-        lua_pushstring(L, event.stringData1.c_str());
-        lua_settable(L, top);
-
-        CheckLua(L, lua_pcall(L, 2, 0, 0));
     }
     else
     {
-        LOG_ERROR("scriptsystem error, HandleEvent not found")
+        lua_getglobal(L, "HandleEvent");
+        if (lua_isfunction(L, -1))
+        {
+
+            passEvent(L, event);
+
+            CheckLua(L, lua_pcall(L, 2, 0, 0));
+        }
+        else
+        {
+            LOG_ERROR("scriptsystem error, HandleEvent not found")
+        }
     }
+    
 }
