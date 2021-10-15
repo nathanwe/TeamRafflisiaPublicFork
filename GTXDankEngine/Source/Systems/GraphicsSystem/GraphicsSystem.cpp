@@ -199,27 +199,19 @@ void GraphicsSystem::RenderLightSource(GLuint fbo)
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-	for (auto e : EntityList)
+	std::set<Entity> LTMEntitys = LightComponentPool.GetSharedEntitys(&(TransformComponentPool.componentList), &(ModelComponentPool.componentList));
+	for (auto e : LTMEntitys)
 	{
 		auto lightComponent = LightComponentPool.GetComponentByEntity(e);
-		if (lightComponent != nullptr)
-		{
-			auto transformComponent = TransformComponentPool.GetComponentByEntity(e);
-			if (transformComponent != nullptr)
-			{
-				auto modelComponent = ModelComponentPool.GetComponentByEntity(e);
-				if (modelComponent != nullptr)
-				{
-					LightSourceShader->setVec3("lightColor", lightComponent->LightSource->Color);
-					LightSourceShader->setMat4("view", camera.GetViewMat());
-					LightSourceShader->setMat4("projection", camera.GetProjMat(45.0f, 0.1f, 300.0f));
-					LightSourceShader->setMat4("model", transformComponent->transform->Matrix());
-					modelComponent->model->GetPointer()->Draw(*LightSourceShader);
-				}
-			}
-		}
+		auto transformComponent = TransformComponentPool.GetComponentByEntity(e);
+		auto modelComponent = ModelComponentPool.GetComponentByEntity(e);
+
+		LightSourceShader->setVec3("lightColor", lightComponent->LightSource->Color);
+		LightSourceShader->setMat4("view", camera.GetViewMat());
+		LightSourceShader->setMat4("projection", camera.GetProjMat(45.0f, 0.1f, 300.0f));
+		LightSourceShader->setMat4("model", transformComponent->transform->Matrix());
+		modelComponent->model->GetPointer()->Draw(*LightSourceShader);
 	}
-	
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
@@ -244,22 +236,23 @@ void GraphicsSystem::BindLightSource(Shader* shader)
 {
 	shader->setInt("hasDirectionalLight", 0);
 	unsigned int lightIndex = 0;
-	for (const auto& [lightEntity, lightComponent] : LightComponentPool.componentList)
+	std::set<Entity> LTEntitys = LightComponentPool.GetSharedEntitys(&(TransformComponentPool.componentList), &(TransformComponentPool.componentList));
+	for (auto e : LTEntitys)
 	{
-		for (const auto& [transEntity, transformComponent] : TransformComponentPool.componentList)
+		auto lightComponent = LightComponentPool.GetComponentByEntity(e);
+		auto transformComponent = TransformComponentPool.GetComponentByEntity(e);
+	
+		if (lightComponent->LightSource->Type == LightType::Directional)
 		{
-			if ( lightEntity == transEntity)
-			{
-				if (lightComponent->LightSource->Type == LightType::Directional)
-					BindDirectionalLight(shader, lightComponent->LightSource, transformComponent->transform);
-				else
-					BindPointLight(shader, lightComponent->LightSource, transformComponent->transform, lightIndex);
-			}
 
-			++lightIndex;
+			BindDirectionalLight(shader, lightComponent->LightSource, transformComponent->transform);
 		}
+		else
+		{
+			BindPointLight(shader, lightComponent->LightSource, transformComponent->transform, lightIndex);
+		}
+		++lightIndex;
 	}
-
 	shader->setInt("numberOfLights", lightIndex);
 }
 

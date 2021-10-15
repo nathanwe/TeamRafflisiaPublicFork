@@ -50,9 +50,9 @@ int lua_AddToVQS(lua_State* L)
 int lua_GetEntiysByCategory(lua_State* L)
 {
     GameLogicCategories gLC = static_cast<GameLogicCategories>(lua_tointeger(L, 1));
-    for (auto e : EntityList)
+    for (auto comp : GameLogicCategoryComponentPool.componentList)
     {
-        auto gLCComponent = GameLogicCategoryComponentPool.GetComponentByEntity(e);
+        auto gLCComponent = comp.second;
         if (gLCComponent != nullptr)
         {
             if (gLCComponent->categories.find(gLC) != gLCComponent->categories.end())
@@ -60,7 +60,7 @@ int lua_GetEntiysByCategory(lua_State* L)
                 lua_getglobal(L, "AddEntityToList");
                 if (lua_isfunction(L, -1))
                 {
-                    lua_pushnumber(L, e);
+                    lua_pushnumber(L, comp.first);
                     CheckLua(L, lua_pcall(L, 1, 0, 0));
                 }
                 else
@@ -96,20 +96,17 @@ int lua_GetCategorysOfEntity(lua_State* L)
 
 int lua_UpdateAllEntitys(lua_State* L)
 {
-    for (Entity e : EntityList)
+    for (auto comp : GameLogicCategoryComponentPool.componentList)
     {
-        if (GameLogicCategoryComponentPool.GetComponentByEntity(e) != nullptr)
+        lua_getglobal(L, "UpdateEntity");
+        if (lua_isfunction(L, -1))
         {
-            lua_getglobal(L, "UpdateEntity");
-            if (lua_isfunction(L, -1))
-            {
-                lua_pushnumber(L, static_cast<int>(e));
-                CheckLua(L, lua_pcall(L, 1, 0, 0));
-            }
-            else
-            {
-                LOG_ERROR("scriptsystem error, UpdateEntity not found")
-            }
+            lua_pushnumber(L, static_cast<int>(comp.first));
+            CheckLua(L, lua_pcall(L, 1, 0, 0));
+        }
+        else
+        {
+            LOG_ERROR("scriptsystem error, UpdateEntity not found")
         }
     }
     return 1;
