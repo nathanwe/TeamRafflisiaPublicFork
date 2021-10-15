@@ -148,22 +148,14 @@ void ScriptSystem::HandleEvent(Event event)
 {
     if (event.runPerEntity)
     {
-        for (auto comp :GameLogicCategoryComponentPool.componentList)
+        for (Entity e : EntityList)
         {
-            bool shouldPassEvent = false;
-            for (GameLogicCategories glc : event.thingsToEffect)
-            {
-                if (comp.second->categories.find(glc) != comp.second->categories.end())
-                {
-                    shouldPassEvent = true;
-                }
-            }
-            if (shouldPassEvent)
+            if (GameLogicCategoryComponentPool.GetComponentByEntity(e) != nullptr)
             {
                 lua_getglobal(L, "HandleEventPerEntity");
                 if (lua_isfunction(L, -1))
                 {
-                    lua_pushnumber(L, static_cast<int>(comp.first));
+                    lua_pushnumber(L, static_cast<int>(e));
                     passEvent(L, event);
                     CheckLua(L, lua_pcall(L, 3, 0, 0));
                 }
@@ -172,7 +164,6 @@ void ScriptSystem::HandleEvent(Event event)
                     LOG_ERROR("scriptsystem error, HandleEventPerEntity not found")
                 }
             }
-            
         }
     }
     else

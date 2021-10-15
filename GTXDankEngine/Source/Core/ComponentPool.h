@@ -30,25 +30,6 @@ public:
 
 	T* GetComponentByEntity(Entity e);
 
-	template <class U, class V>
-	std::set<Entity> GetSharedEntitys(std::unordered_map<Entity, U*>* componentList1, std::unordered_map<Entity, V*>* componentList2)
-	{
-		std::set<Entity> retval = std::set<Entity>();
-
-		for (auto comp : componentList)
-		{
-			auto comp1 = componentList1->find(comp.first);
-			if (comp1 != componentList1->end())
-			{
-				auto comp2 = componentList2->find(comp.first);
-				if (comp2 != componentList2->end())
-				{
-					retval.insert(comp.first);
-				}
-			}
-		}
-		return retval;
-	}
 	// AbstractComponent pointer instead or handle instead?
 	// Map Entity and component handle
 	std::unordered_map<Entity, T*> componentList;
