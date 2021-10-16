@@ -168,7 +168,7 @@ bool Engine::Init()
 	// Red light
 	// 4th argument is the target of directional light source
 	// direciton: target - position
-	Light* DirLight = new Light(LightType::Directional, glm::vec3(1.0f, 0.6f, 0.6), glm::vec3(8.0f), glm::vec3(0.0, -1.0, 0.0));
+	Light* DirLight = new Light(LightType::Directional, glm::vec3(1.0f, 0.6f, 0.6), glm::vec3(3.0f), glm::vec3(0.0, -1.0, 0.0));
 	LightComponentPool.Add(DirLightSource, (DirLight));
 	GameLogicCategoryComponentPool.Add(DirLightSource, (std::vector<GameLogicCategories>({ GameLogicCategories::POINT_LIGHT_SOURCE })));
 

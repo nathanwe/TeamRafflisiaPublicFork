@@ -8,8 +8,6 @@
 #include "../Components/MaterialComponent/MaterialComponent.h"
 #include "../Components/LightComponent/LightComponent.h"
 
-//#include "../Shadow/Shadow.h"
-
 #include "../Quad.h"
 
 
@@ -17,6 +15,7 @@ bool DeferredRenderer::Init(unsigned int gBufferWidth, unsigned int gBufferHeigh
 {
 	DeferredLightingShader = new Shader("Source/Shaders/DeferredRenderer/DeferredLighting.shader");
 	Fill_G_BufferShader = new Shader("Source/Shaders/DeferredRenderer/Fill_G_Buffer.shader");
+	CelShader = new Shader("Source/Shaders/DeferredRenderer/Cel.shader");
 
 	// Create G buffer
 	// G buffer has one FBO and 3 color attachments
@@ -46,6 +45,7 @@ void DeferredRenderer::Destroy()
 {
 	delete DeferredLightingShader;
 	delete Fill_G_BufferShader;
+	delete CelShader;
 }
 
 
@@ -137,24 +137,33 @@ void DeferredRenderer::Fill_G_Buffer(glm::mat4 view, glm::mat4 projection)
 }
 
 
-void DeferredRenderer::Render(glm::vec3 camPos)
+void DeferredRenderer::Render(glm::vec3 camPos, Shadow& shadow, Shader* shader)
 {
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	Bind_G_Buffer(shader);
 
-	Bind_G_Buffer(DeferredLightingShader);
+	shader->setVec3("camPos", camPos);
+	shader->setTexture("ShadowMap", shadow.GetDepthBuffer());
+	shader->setMat4("LightSpaceMatrix", shadow.GetLightSpaceMatrix());
+	shader->setInt("hasShadow", 1);
+	shader->setInt("EnablePCF", EnablePCF);
 
-	DeferredLightingShader->setVec3("camPos", camPos);
-	Quad().Draw(*DeferredLightingShader);
+	Quad().Draw(*shader);
 }
 
 void DeferredRenderer::Render(glm::vec3 camPos, Shadow& shadow, GLuint fbo)
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
-	DeferredLightingShader->setTexture("ShadowMap", shadow.GetDepthBuffer());
-	DeferredLightingShader->setMat4("LightSpaceMatrix", shadow.GetLightSpaceMatrix());
-	DeferredLightingShader->setInt("hasShadow", 1);
-	Render(camPos);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	if (EnableCelShading)
+	{
+		CelShader->setFloat("fraction", CelFraction);
+		Render(camPos, shadow, CelShader);
+	}
+	else
+		Render(camPos, shadow, DeferredLightingShader);
+
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
@@ -182,4 +191,12 @@ void DeferredRenderer::CopyDepthBufferToTarget(GLuint fbo, unsigned int gBufferW
 	// depth buffer in another shader stage (or somehow see to match the default framebuffer's internal format with the FBO's internal format).
 	glBlitFramebuffer(0, 0, gBufferWidth, gBufferHeight, 0, 0, gBufferWidth, gBufferHeight, GL_DEPTH_BUFFER_BIT, GL_NEAREST);
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
+}
+
+
+
+
+Shader* DeferredRenderer::GetLightShader()
+{ 
+	return EnableCelShading ? CelShader : DeferredLightingShader; 
 }

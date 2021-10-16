@@ -148,6 +148,14 @@ void GraphicsSystem::Update(float timeStamp)
 	}
 	ImGui::End();
 
+	ImGui::Begin("Render Configuration");
+	{
+		ImGui::Checkbox("Enable PCF", &(DeferredRender.EnablePCF));
+		ImGui::Checkbox("Enable Cel Shading", &(DeferredRender.EnableCelShading));	
+		ImGui::SliderFloat("Cel Fractor", &(DeferredRender.CelFraction), 0.01, 10.0);
+	}
+	ImGui::End();
+
 
 
 	ImGui::End();

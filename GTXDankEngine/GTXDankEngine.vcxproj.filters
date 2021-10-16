@@ -236,6 +236,9 @@
     <None Include="Source\Shaders\PostProcess\PostProcess.shader">
       <Filter>Resource Files\Shaders\PostProcess</Filter>
     </None>
+    <None Include="Source\Shaders\DeferredRenderer\Cel.shader">
+      <Filter>Resource Files\Shaders\DeferredRenderer</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">

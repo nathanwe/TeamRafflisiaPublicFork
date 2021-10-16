@@ -44,6 +44,7 @@ uniform float exposure;
 uniform bool hasShadow;
 uniform sampler2D ShadowMap;
 uniform mat4 LightSpaceMatrix;
+uniform bool EnablePCF;
 
 
 //--------------------------------------------------------------------
@@ -60,7 +61,7 @@ float CalculateShadow(vec3 N, vec3 worldPos)
     if (projCoord.y > 1 || projCoord.y < 0) return 0;
 
     // get closest depth value from light's perspective (using [0,1] range fragPosLight as coords)
-    //float closestDepth = texture(ShadowMap, projCoord.xy).r;
+    float closestDepth = texture(ShadowMap, projCoord.xy).r;
     // get depth of current fragment from light's perspective
     float currentDepth = projCoord.z;
     //float currentDepth = lightSpaceFragPos.w;
@@ -68,20 +69,27 @@ float CalculateShadow(vec3 N, vec3 worldPos)
     float bias = 0.0078f;
     // check whether current frag pos is in shadow
     //float shadow = (currentDepth - bias) > closestDepth ? 1.0 : 0.0;
-
-
     float shadow = 0.0;
-    vec2 texelSize = 1.0 / textureSize(ShadowMap, 0);
-    for (int x = -1; x <= 1; ++x)
+
+    if (EnablePCF)
     {
-        for (int y = -1; y <= 1; ++y)
+        vec2 texelSize = 1.0 / textureSize(ShadowMap, 0);
+        for (int x = -1; x <= 1; ++x)
         {
-            float pcfDepth = texture(ShadowMap, projCoord.xy + vec2(x, y) * texelSize).r;
-            shadow += currentDepth - bias > pcfDepth ? 1.0 : 0.0;
+            for (int y = -1; y <= 1; ++y)
+            {
+                float pcfDepth = texture(ShadowMap, projCoord.xy + vec2(x, y) * texelSize).r;
+                shadow += currentDepth - bias > pcfDepth ? 1.0 : 0.0;
+            }
         }
+        shadow /= 9.0;
     }
-    shadow /= 9.0;
-    //if (closestDepth > 0.0f) return 1.0;
+    else
+    {
+        shadow = (currentDepth - bias) > closestDepth ? 1.0 : 0.0;
+    }
+
+
     return shadow;
 }
 
@@ -236,13 +244,6 @@ void main()
 
     // reflectance equation
     vec3 Lo = reflection(N, V, albedo, metallic, roughness, F0, WorldPos);
-
-    // HDR tonemapping
-    //if (enableToneMapping) color = exposure * color / (exposure * color + vec3(1.0f));
-
-    //if (enableToneMapping) color = color / (color + vec3(1.0));
-    // gamma correct
-    //if (enableGammaCorrection) color = pow(color, vec3(1.0 / 2.2));
 
     FragColor = vec4(Lo, 1.0f);
 }
