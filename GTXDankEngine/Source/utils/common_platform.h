@@ -5,7 +5,7 @@ Copyright (c), Firelight Technologies Pty, Ltd 2012-2021.
 #pragma warning(disable : 4996)
 #pragma warning(disable : 26451)
 #pragma warning(0)
-#include <windows.h>
+#include "pch.h"
 
 int FMOD_Main();
 

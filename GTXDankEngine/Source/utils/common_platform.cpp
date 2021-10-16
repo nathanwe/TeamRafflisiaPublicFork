@@ -7,11 +7,11 @@ Copyright (c), Firelight Technologies Pty, Ltd 2012-2021.
 
 #include "pch.h"
 #include "common.h"
-#include <stdio.h>
-#include <conio.h>
-#include <Windows.h>
-#include <Objbase.h>
-#include <vector>
+//#include <stdio.h>
+//#include <conio.h>
+//#include <Windows.h>
+//#include <Objbase.h>
+//#include <vector>
 
 
 static unsigned int gPressedButtons = 0;

@@ -64,11 +64,20 @@
 #include<mutex>
 #include<condition_variable>
 
+#include <windows.h>
+#include <conio.h>
+#include <Windows.h>
+#include <Objbase.h>
 
 
 // UI
 #include "imgui.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
+
+
+// scripting
+#include "../../Libraries/include/lua/lua.hpp"
+
 
 #pragma warning(pop)
