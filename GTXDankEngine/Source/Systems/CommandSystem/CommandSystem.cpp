@@ -48,29 +48,29 @@ bool CommandSystem::Destroy()
 void CommandSystem::ExecuteGameplayCommands()
 {
 	//directional movements
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_W))
+	if (engine.InputSys.IsKeyPressed(GLFW_KEY_W) || engine.InputSys.GetControllerAxis(0, 1) <= -deadzone ) 
 	{
 		MoveCommand.Execute(MoveDirection::UP);
 	}
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_A))
+	if (engine.InputSys.IsKeyPressed(GLFW_KEY_A) || engine.InputSys.GetControllerAxis(0, 0) <= -deadzone )
 	{
 		MoveCommand.Execute(MoveDirection::LEFT);
 	}
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_S))
+	if (engine.InputSys.IsKeyPressed(GLFW_KEY_S) || engine.InputSys.GetControllerAxis(0, 1) >= deadzone )
 	{
 		MoveCommand.Execute(MoveDirection::DOWN);
 	}
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_D))
+	if (engine.InputSys.IsKeyPressed(GLFW_KEY_D) || engine.InputSys.GetControllerAxis(0, 0) >= deadzone )
 	{
 		MoveCommand.Execute(MoveDirection::RIGHT);
 	}
 
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_SPACE))
+	if (engine.InputSys.IsKeyPressed(GLFW_KEY_SPACE) || engine.InputSys.IsControllerPressed(0, 0) )
 	{
 		SpaceCommand.Execute();
 	}
 
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_LEFT_SHIFT))
+	if (engine.InputSys.IsKeyPressed(GLFW_KEY_LEFT_SHIFT) || engine.InputSys.GetControllerAxis(0, 5) >= deadzone )
 	{
 		ShiftCommand.Execute();
 	}
@@ -79,7 +79,7 @@ void CommandSystem::ExecuteGameplayCommands()
 		UnShiftCommand.Execute();
 	}
 
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_LEFT_CONTROL))
+	if (engine.InputSys.IsKeyPressed(GLFW_KEY_LEFT_CONTROL) || engine.InputSys.IsControllerPressed(0, 1) )
 	{
 		CtrlCommand.Execute();
 	}
