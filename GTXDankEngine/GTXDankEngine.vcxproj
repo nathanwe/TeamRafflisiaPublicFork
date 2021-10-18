@@ -110,6 +110,7 @@
     <None Include="Skybox.shader" />
     <None Include="Source\Shaders\basic.shader" />
     <None Include="Source\Shaders\basicPBR.shader" />
+    <None Include="Source\Shaders\DeferredRenderer\Cel.shader" />
     <None Include="Source\Shaders\DeferredRenderer\DeferredLighting.shader" />
     <None Include="Source\Shaders\DeferredRenderer\Fill_G_Buffer.shader" />
     <None Include="Source\Shaders\LightSource.shader" />

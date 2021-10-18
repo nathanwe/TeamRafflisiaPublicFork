@@ -3,7 +3,6 @@
 
 #include "pch.h"
 
-#include "../../Libraries/include/lua/lua.hpp"
 
 #include "../Core/System.h"
 #include "../Core/ResourceManager.h"

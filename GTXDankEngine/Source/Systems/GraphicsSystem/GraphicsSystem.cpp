@@ -144,7 +144,15 @@ void GraphicsSystem::Update(float timeStamp)
 	ImGui::Begin("Post Process");
 	{
 		ImGui::Checkbox("Enable HDR", &(PostProcesser.HasHDR));
-		ImGui::SliderFloat("Exposure", &(PostProcesser.Exposure), 0.01, 5.0);
+		ImGui::SliderFloat("Exposure", &(PostProcesser.Exposure), 0.01f, 5.0f);
+	}
+	ImGui::End();
+
+	ImGui::Begin("Render Configuration");
+	{
+		ImGui::Checkbox("Enable PCF", &(DeferredRender.EnablePCF));
+		ImGui::Checkbox("Enable Cel Shading", &(DeferredRender.EnableCelShading));	
+		ImGui::SliderFloat("Cel Fractor", &(DeferredRender.CelFraction), 0.01f, 10.0f);
 	}
 	ImGui::End();
 

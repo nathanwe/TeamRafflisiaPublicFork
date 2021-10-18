@@ -236,6 +236,9 @@
     <None Include="Source\Shaders\PostProcess\PostProcess.shader">
       <Filter>Resource Files\Shaders\PostProcess</Filter>
     </None>
+    <None Include="Source\Shaders\DeferredRenderer\Cel.shader">
+      <Filter>Resource Files\Shaders\DeferredRenderer</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">
@@ -549,9 +552,6 @@
     <ClCompile Include="Source\Components\RoutineComponent\RoutineComponent.cpp">
       <Filter>Source Files\Components\RoutineComponent</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Systems\ScriptSystem\ScriptSystem.cpp">
-      <Filter>Source Files\Systems\ScriptSystem</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Components\GameLogicCategoryComponent\GameLogicCategoryComponent.cpp">
       <Filter>Source Files\Components\GameLogicCategoryComponent</Filter>
     </ClCompile>
@@ -572,6 +572,9 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\PostProcess\PostProcess.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\PostProcess</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\ScriptSystem\ScriptSystem.cpp">
+      <Filter>Source Files\Systems\UISystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

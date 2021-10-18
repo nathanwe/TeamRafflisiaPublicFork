@@ -25,22 +25,30 @@ public:
 	void Destroy();
 
 	void Fill_G_Buffer(glm::mat4 view, glm::mat4 projection);
-	void Render(glm::vec3 camPos);
+	void Render(glm::vec3 camPos, Shadow& shadow, Shader* shader);
+
 	void Render(glm::vec3 camPos, Shadow& shadow, GLuint fbo);
 
-	inline Shader* GetLightShader() { return DeferredLightingShader; }
+	Shader* GetLightShader();
 
 	void CopyDepthBufferToTarget(GLuint fbo, unsigned int gBufferWidth, unsigned int gBufferHeight);
 	inline unsigned int GetNormalRoughness() { return G_NormalRoughness; }
 	inline unsigned int GetAlbedoMetallic() { return G_AlbedoMetallic; }
 	inline unsigned int GetDepth() {return RboDepth; }
+
+	bool EnableCelShading = true;
+	float CelFraction = 1.0;
+	bool EnablePCF = true;
 	 
 private:
 	Shader* DeferredLightingShader;
 	Shader* Fill_G_BufferShader;
+	Shader* CelShader;
 
 	unsigned int G_Buffer, G_Position, G_NormalRoughness, G_AlbedoMetallic;
 	unsigned int RboDepth;	// depth buffer
+
+	
 
 	void CreateFBO(void);
 
