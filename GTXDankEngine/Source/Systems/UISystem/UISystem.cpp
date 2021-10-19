@@ -14,7 +14,8 @@ bool UISystem::Init()
 	ImGui::StyleColorsDark();
 	ImGui_ImplGlfw_InitForOpenGL(openGLwindow, true);
 	ImGui_ImplOpenGL3_Init("#version 330");
-
+	//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
+	//io.BackendFlags |= ImGuiBackendFlags_HasGamepad;
 	return true;
 }
 void UISystem::Update(float timeStamp)

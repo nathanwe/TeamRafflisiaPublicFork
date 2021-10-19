@@ -25,10 +25,10 @@ bool AudioSystem::Init()
     FMOD::Studio::EventDescription* eventDescription = NULL;
     ERRCHECK(system->getEvent("event:/BGM", &eventDescription));
 
-    FMOD::Studio::EventInstance* eventInstance = NULL;
+    //FMOD::Studio::EventInstance* eventInstance = NULL;
     ERRCHECK(eventDescription->createInstance(&eventInstance));
 
-    FMOD::Studio::Bus* masterBus = NULL;
+    //FMOD::Studio::Bus* masterBus = NULL;
     ERRCHECK(system->getBus("bus:/", &masterBus));
 
     masterBus->setVolume(1.0f);
@@ -36,12 +36,27 @@ bool AudioSystem::Init()
     eventInstance->start();
     eventInstance->setVolume(0.1f);
 
+    allMuted = false;
 	return true;
 }
 
 void AudioSystem::Update(float timeStamp)
 {
-    system->update();
+    //std::cout << "allmuted = " << allMuted << std::endl;
+    if (allMuted)
+    {
+        ERRCHECK(system->getBus("bus:/", &masterBus));
+
+        masterBus->setVolume(0.0f);
+        system->update();
+    }
+    else
+    {
+        ERRCHECK(system->getBus("bus:/", &masterBus));
+
+        masterBus->setVolume(1.0f);
+        system->update();
+    }
 }
 
 bool AudioSystem::Destroy()
@@ -49,6 +64,18 @@ bool AudioSystem::Destroy()
     result = system->release();
     ERRCHECK(result);
     return !result;
+}
+
+void AudioSystem::HandleEvent(Event event)
+{
+    if (event.type == EventType::MUTE_ALL)
+    {
+        allMuted = true;
+    }
+    if (event.type == EventType::UNMUTE_ALL)
+    {
+        allMuted = false;
+    }
 }
 
 

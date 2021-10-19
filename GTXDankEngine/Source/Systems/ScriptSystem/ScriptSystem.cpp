@@ -33,6 +33,12 @@ void SendLionEmitEvent()
     ev.thingsToEffect.insert(GameLogicCategories::POKEBALL);
     engine.DoGameLogicScriptSys.HandleEvent(ev);
 }
+void SendMenuToggleEvent()
+{
+    Event ev;
+    ev.type = EventType::TOGGLE_MENU;
+    engine.MenuSys.HandleEvent(ev);
+}
 
 bool ScriptSystem::Init()
 {
@@ -44,6 +50,7 @@ bool ScriptSystem::Init()
 bool ScriptSystem::Init(std::string filePath)
 {
     engine.CommandSys.Skill1Command.SetActionToExecute(SendLionEmitEvent);
+    engine.CommandSys.Skill2Command.SetActionToExecute(SendMenuToggleEvent);
 
     fileHandle = ScriptResourceManager.GetResourceHandleNoThread(filePath);
     L = luaL_newstate();
@@ -60,6 +67,10 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "GetKeyTriggered", lua_GetKeyTriggered);
     lua_register(L, "MakeLionByHand", lua_MakeLionByHand);
     lua_register(L, "GetPosition", lua_GetPosition);
+    lua_register(L, "BeginImgui", lua_BeginImgui);
+    lua_register(L, "EndImgui", lua_EndImgui);
+    lua_register(L, "ButtonImgui", lua_ButtonImgui);
+    lua_register(L, "SendAudioEvent", lua_SendAudioEvent);
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));
     lua_getglobal(L, "Init");
@@ -90,60 +101,19 @@ void ScriptSystem::Update(float timeStamp)
 
 bool ScriptSystem::Destroy()
 {
+    lua_getglobal(L, "Destroy");
+    if (lua_isfunction(L, -1))
+    {
+        CheckLua(L, lua_pcall(L, 0, 0, 0));
+    }
+    else
+    {
+        LOG_ERROR("scriptsystem error, Destroy not found")
+    }
     lua_close(L);
     return ScriptResourceManager.Destroy();
 }
 
-void passEvent(lua_State* L, Event event){
-    int index = 0;
-    lua_newtable(L);
-    int top = lua_gettop(L);
-    for (GameLogicCategories gLC : event.thingsToEffect)
-    {
-        lua_pushnumber(L, index);
-        lua_pushnumber(L, static_cast<int>(gLC));
-        lua_settable(L, top);
-        ++index;
-    }
-    lua_newtable(L);
-    top = lua_gettop(L);
-
-    lua_pushstring(L, "type");
-    lua_pushnumber(L, static_cast<int>(event.type));
-    lua_settable(L, top);
-
-    lua_pushstring(L, "e1");
-    lua_pushnumber(L, static_cast<int>(event.e1));
-    lua_settable(L, top);
-
-    lua_pushstring(L, "e2");
-    lua_pushnumber(L, static_cast<int>(event.e2));
-    lua_settable(L, top);
-
-    lua_pushstring(L, "intData1");
-    lua_pushnumber(L, event.intData1);
-    lua_settable(L, top);
-
-    lua_pushstring(L, "floatData1");
-    lua_pushnumber(L, event.floatData1);
-    lua_settable(L, top);
-
-    lua_pushstring(L, "floatData2");
-    lua_pushnumber(L, event.floatData2);
-    lua_settable(L, top);
-
-    lua_pushstring(L, "floatData3");
-    lua_pushnumber(L, event.floatData3);
-    lua_settable(L, top);
-
-    lua_pushstring(L, "floatData4");
-    lua_pushnumber(L, event.floatData4);
-    lua_settable(L, top);
-
-    lua_pushstring(L, "stringData1");
-    lua_pushstring(L, event.stringData1.c_str());
-    lua_settable(L, top);
-}
 void ScriptSystem::HandleEvent(Event event)
 {
     if (event.runPerEntity)
@@ -164,7 +134,7 @@ void ScriptSystem::HandleEvent(Event event)
                 if (lua_isfunction(L, -1))
                 {
                     lua_pushnumber(L, static_cast<int>(comp.first));
-                    passEvent(L, event);
+                    PassEvent(L, event);
                     CheckLua(L, lua_pcall(L, 3, 0, 0));
                 }
                 else
@@ -181,7 +151,7 @@ void ScriptSystem::HandleEvent(Event event)
         if (lua_isfunction(L, -1))
         {
 
-            passEvent(L, event);
+            PassEvent(L, event);
 
             CheckLua(L, lua_pcall(L, 2, 0, 0));
         }

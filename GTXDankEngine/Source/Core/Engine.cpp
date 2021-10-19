@@ -199,7 +199,7 @@ bool Engine::Init()
 	//-----------------------------------------------------------------------
 
 	if (!DoGameLogicScriptSys.Init("Assets/Scripts/DoEverything.lua")) LOG_ERROR("Game Logic Script System failed to init.");
-	
+	if (!MenuSys.Init("Assets/Scripts/Menu.lua")) LOG_ERROR("Menu System failed to init.");
 
 	LOG_INFO("Engine init.");
 	return true;
@@ -225,6 +225,7 @@ void Engine::Run()
 		//}
 
 		DoGameLogicScriptSys.Update(DeltaTime());
+		//MenuSys.Update(DeltaTime());
 		/*
 		MemorySystem.Update();
 
@@ -268,7 +269,11 @@ void Engine::Destroy()
 	
 	if (!DoGameLogicScriptSys.Destroy())
 	{
-		LOG_ERROR("Test Script System failed to destory properly.");
+		LOG_ERROR("GameLogic System failed to destory properly.");
+	}
+	if (!MenuSys.Destroy())
+	{
+		LOG_ERROR("Menu System failed to destory properly.");
 	}
 
 	ScriptResourceManager.Destroy();

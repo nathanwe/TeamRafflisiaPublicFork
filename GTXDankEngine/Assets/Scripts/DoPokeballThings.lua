@@ -13,7 +13,7 @@ function UpdatePokeball(dt, e)
 end
 
 function HandleEventPokeball(EventData)
-	if EventData.type == 0 then
+	if EventData.type == 4 then
 		x,y,z = GetPosition(EventData.e1)
 		MakeLionByHand(x,y,z)
 	end

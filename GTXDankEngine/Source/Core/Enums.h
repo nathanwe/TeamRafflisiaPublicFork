@@ -60,6 +60,10 @@ NLOHMANN_JSON_SERIALIZE_ENUM(GameLogicCategories, {
 
 enum class EventType
 {
-	EMIT_LION = 0
+	DEFAULT_EVENT = 0,
+	TOGGLE_MENU = 1,
+	MUTE_ALL = 2,
+	UNMUTE_ALL = 3,
+	EMIT_LION = 4
 };
 #endif // !ENUMS_H

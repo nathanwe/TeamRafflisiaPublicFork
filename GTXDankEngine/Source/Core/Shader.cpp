@@ -217,7 +217,7 @@ void Shader::setInt(const std::string& name, int value)
 }
 
 
-void Shader::setTexture(const char* name, unsigned int texture, int index)
+void Shader::setTexture(const char* name, unsigned int texture)
 {
 
     auto it = std::find(textures.begin(), textures.end(), name);
@@ -252,7 +252,7 @@ void Shader::setTexture(const char* name, unsigned int texture, int index)
 }
 
 
-void Shader::setTexture(const std::string& name, unsigned int texture, int index)
+void Shader::setTexture(const std::string& name, unsigned int texture)
 {
-    setTexture(name.c_str(), texture, index);
+    setTexture(name.c_str(), texture);
 }

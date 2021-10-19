@@ -10,7 +10,188 @@
 
 
 extern Engine engine;
+static void dumpstack(lua_State* L)
+{
+    printf("Begin stack dump\n");
+    int top = lua_gettop(L);
+    for (int i = 1; i <= top; i++)
+    {
+        printf("%d\t%s\t", i, luaL_typename(L, i));
+        switch (lua_type(L, i))
+        {
+        case LUA_TNUMBER:
+            printf("%g\n", lua_tonumber(L, i));
+            break;
+        case LUA_TSTRING:
+            printf("%s\n", lua_tostring(L, i));
+            break;
+        case LUA_TBOOLEAN:
+            printf("%s\n", (lua_toboolean(L, i) ? "true" : "false"));
+            break;
+        case LUA_TNIL:
+            printf("%s\n", "nil");
+            break;
+        default:
+            printf("%p\n", lua_topointer(L, i));
+            break;
+        }
+    }
+    printf("End stack dump\n");
+}
+void PassEvent(lua_State* L, Event event)
+{
+    int index = 0;
+    lua_newtable(L);
+    int top = lua_gettop(L);
+    for (GameLogicCategories gLC : event.thingsToEffect)
+    {
+        lua_pushnumber(L, index);
+        lua_pushnumber(L, static_cast<int>(gLC));
+        lua_settable(L, top);
+        ++index;
+    }
+    lua_newtable(L);
+    top = lua_gettop(L);
 
+    lua_pushstring(L, "type");
+    lua_pushnumber(L, static_cast<int>(event.type));
+    lua_settable(L, top);
+
+    lua_pushstring(L, "e1");
+    lua_pushnumber(L, static_cast<int>(event.e1));
+    lua_settable(L, top);
+
+    lua_pushstring(L, "e2");
+    lua_pushnumber(L, static_cast<int>(event.e2));
+    lua_settable(L, top);
+
+    lua_pushstring(L, "intData1");
+    lua_pushnumber(L, event.intData1);
+    lua_settable(L, top);
+
+    lua_pushstring(L, "floatData1");
+    lua_pushnumber(L, event.floatData1);
+    lua_settable(L, top);
+
+    lua_pushstring(L, "floatData2");
+    lua_pushnumber(L, event.floatData2);
+    lua_settable(L, top);
+
+    lua_pushstring(L, "floatData3");
+    lua_pushnumber(L, event.floatData3);
+    lua_settable(L, top);
+
+    lua_pushstring(L, "floatData4");
+    lua_pushnumber(L, event.floatData4);
+    lua_settable(L, top);
+
+    lua_pushstring(L, "stringData1");
+    lua_pushstring(L, event.stringData1.c_str());
+    lua_settable(L, top);
+}
+Event ReceiveEvent(lua_State* L)
+{
+    //std::cout << "reciving event" << std::endl;
+    Event retvalue = Event();
+    lua_settop(L, 1);
+    luaL_checktype(L, 1, LUA_TTABLE);
+    dumpstack(L);
+    int rettype = lua_getfield(L, -1, "type");
+    if (rettype != LUA_TNIL)
+    {
+        retvalue.type = static_cast<EventType>(lua_tointeger(L, -1));
+    }
+    else
+    {
+        retvalue.type = EventType::DEFAULT_EVENT;
+    }
+    lua_pop(L,1);
+    //dumpstack(L);
+    rettype = lua_getfield(L, -1, "e1");
+    if (rettype != LUA_TNIL)
+    {
+        retvalue.e1 = static_cast<Entity>(lua_tointeger(L, -1));
+    }
+    else
+    {
+        retvalue.e1 = 0;
+    }
+    lua_pop(L, 1);
+    //dumpstack(L);
+    rettype = lua_getfield(L, -1, "e2");
+    if (rettype != LUA_TNIL)
+    {
+        retvalue.e2 = static_cast<Entity>(lua_tointeger(L, -1));
+    }
+    else
+    {
+        retvalue.e2 = 0;
+    }
+    lua_pop(L, 1);
+    //dumpstack(L);
+    rettype = lua_getfield(L, -1, "intData1");
+    if (rettype != LUA_TNIL)
+    {
+        retvalue.intData1 = static_cast<int>(lua_tointeger(L, -1));
+    }
+    else
+    {
+        retvalue.intData1 = 0;
+    }
+    lua_pop(L, 1);
+    rettype = lua_getfield(L, -1, "floatData1");
+    if (rettype != LUA_TNIL)
+    {
+        retvalue.floatData1 = static_cast<float>(lua_tonumber(L, -1));
+    }
+    else
+    {
+        retvalue.floatData1 = 0;
+    }
+    lua_pop(L, 1);
+    rettype = lua_getfield(L, -1, "floatData2");
+    if (rettype != LUA_TNIL)
+    {
+        retvalue.floatData2 = static_cast<float>(lua_tonumber(L, -1));
+    }
+    else
+    {
+        retvalue.floatData2 = 0;
+    }
+    lua_pop(L, 1);
+    rettype = lua_getfield(L, -1, "floatData3");
+    if (rettype != LUA_TNIL)
+    {
+        retvalue.floatData3 = static_cast<float>(lua_tonumber(L, -1));
+    }
+    else
+    {
+        retvalue.floatData3 = 0;
+    }
+    lua_pop(L, 1);
+    rettype = lua_getfield(L, -1, "floatData4");
+    if (rettype != LUA_TNIL)
+    {
+        retvalue.floatData4 = static_cast<float>(lua_tonumber(L, -1));
+    }
+    else
+    {
+        retvalue.floatData4 = 0;
+    }
+    lua_pop(L, 1);
+    rettype = lua_getfield(L, -1, "stringData1");
+    if (rettype != LUA_TNIL)
+    {
+        retvalue.stringData1 = lua_tostring(L, -1);
+    }
+    else
+    {
+        retvalue.stringData1 = "noStringProvided";
+    }
+    lua_pop(L, 1);
+
+    return retvalue;
+}
 
 int lua_HostFunction(lua_State* L)
 {
@@ -184,5 +365,34 @@ int lua_GetPosition(lua_State* L)
         lua_pushnumber(L, 0);
         LOG_ERROR("Transform not found");
     }
+    return 1;
+}
+
+int lua_BeginImgui(lua_State* L)
+{
+    const char* menuName = lua_tostring(L, 1);
+    ImGui::Begin(menuName);
+    return 1;
+}
+
+int lua_EndImgui(lua_State* L)
+{
+    ImGui::End();
+    return 1;
+}
+
+int lua_ButtonImgui(lua_State* L)
+{
+    
+    const char* ButtonName = lua_tostring(L, 1);
+    bool pressed = ImGui::Button(ButtonName, ImVec2(50,25));
+    lua_pushboolean(L, pressed);
+    return 1;
+}
+
+int lua_SendAudioEvent(lua_State* L)
+{
+    Event ev = ReceiveEvent(L);
+    engine.AudioSys.HandleEvent(ev);
     return 1;
 }
