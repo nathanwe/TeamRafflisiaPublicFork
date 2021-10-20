@@ -67,7 +67,7 @@ void Engine::Run()
 		Framerate->StartFrame();
 		InputSys.Update();
 		CommandSys.Update();
-		AudioSys.Update(0);
+		
 		// Game loop format
 		// TODO: Profiler records time spent for each update()
 
@@ -100,7 +100,7 @@ void Engine::Run()
 		TextureResourceManger.Update(0);
 
 		GraphicsSys.Update(0);
-		
+		AudioSys.Update(0);
 		
 		Framerate->EndFrame();
 	}

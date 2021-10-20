@@ -42,6 +42,7 @@ public:
 
 	GLFWwindow* pWindow;
 
+	Camera camera{ WIDTH, HEIGHT, glm::vec3(0.0f, 0.0f, 10.0f) };
 private:
 	void InitGLFW();
 	void InitWindow();
@@ -54,7 +55,6 @@ private:
 	void BindPointLight(Shader* shader, Light* light, VQS *transform, unsigned int index);
 	void BindDirectionalLight(Shader* shader, Light* light, VQS* transform);
 
-
 private:
 	Shader* LightSourceShader;
 
@@ -62,7 +62,7 @@ private:
 
 	Shadow Shadow;
 
-	Camera camera{ WIDTH, HEIGHT, glm::vec3(0.0f, 0.0f, 10.0f) };
+	
 
 	DeferredRenderer DeferredRender;
 
