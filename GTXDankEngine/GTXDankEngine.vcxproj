@@ -119,6 +119,8 @@
     <None Include="Source\Shaders\Shadow\DefaultShadowMap.shader" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\utils\JsonFile.h" />
+    <ClInclude Include="Source\Systems\SceneSystem\SceneSystem.h" />
     <ClInclude Include="Source\Systems\EntitySystem\EntitySystem.h" />
     <ClInclude Include="Source\Core\GameObjectFactory.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\FBO.h" />
@@ -180,6 +182,7 @@
     <ClInclude Include="Source\utils\VQS.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Systems\SceneSystem\SceneSystem.cpp" />
     <ClCompile Include="Source\Components\GameLogicCategoryComponent\GameLogicCategoryComponent.cpp" />
     <ClCompile Include="Source\Components\RoutineComponent\RoutineComponent.cpp" />
     <ClCompile Include="Source\Core\GameObjectFactory.cpp" />

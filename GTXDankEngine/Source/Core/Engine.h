@@ -15,6 +15,8 @@
 #include "../Systems/EntitySystem/EntitySystem.h"
 #include "../utils/common.h"
 #include "GameObjectFactory.h"
+#include "../utils/JsonFile.h"
+#include "../Systems/SceneSystem/SceneSystem.h"
 
 extern std::vector<Entity> EntityList;
 
@@ -70,10 +72,12 @@ public:
 	InputManager InputSys;
 	CommandSystem CommandSys;
 	EntitySystem EntitySys;
+	SceneSystem SceneSys;
 	GameObjectFactory GameObjectFac;
 	ScriptSystem DoGameLogicScriptSys;
 	ScriptSystem MenuSys;
 
+	ResourceManager<JsonFile> serializationResourceManager;
 
 private:
 

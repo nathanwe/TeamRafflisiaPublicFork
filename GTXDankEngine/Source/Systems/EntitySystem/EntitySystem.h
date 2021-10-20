@@ -4,6 +4,7 @@
 #include "../../Core/System.h"
 #include "../../utils/common.h"
 
+//for maintenance of Entity ID
 class EntitySystem : public System
 {
 public:
@@ -16,6 +17,7 @@ public:
 	bool Destroy() override;
 
 	Entity CreateEntity();
+	void DeleteAllEntities();
 	//void DestroyEntity(Entity e);
 	//void SetArchetype();
 	//Archetype GetArchetype();

@@ -9,30 +9,10 @@
 #include "../Components/RoutineComponent/RoutineComponent.h"
 #include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
 #include "../utils/common.h"
+#include "../utils/JsonFile.h"
 
 extern Engine engine;
 
-class JsonFile
-{
-public:
-    JsonFile(std::string filePath)
-    {
-        std::ifstream f(filePath); //taking file as inputstream
-        if (f)
-        {
-            std::ifstream archetypeStream(filePath);
-            archetypeStream >> data;
-        }
-    }
-    ~JsonFile()
-    {
-
-    }
-    ordered_json data;
-    void OnLoad() {};
-};
-
-ResourceManager<JsonFile> SerializationResourceManager;
 
 void DeserializeVQS(ordered_json j, Entity e)
 {
@@ -81,9 +61,15 @@ void DeserializeMaterial(ordered_json j, Entity e)
     }
 }
 
+void DeserializeGameLogic(ordered_json j, Entity e)
+{
+    auto args = j.get<std::vector<GameLogicCategories>>();
+    GameLogicCategoryComponentPool.Add(e, args);
+}
+
 bool GameObjectFactory::Init()
 {
-    auto* handle = SerializationResourceManager.GetResourceHandleNoThread("Assets/Levels/gameObjects.json");
+    auto* handle = engine.serializationResourceManager.GetResourceHandleNoThread("Assets/Levels/gameObjects.json");
     ordered_json archetypeJson = handle->GetPointer()->data;
 
     for (auto itr = archetypeJson.begin(); itr != archetypeJson.end(); ++itr)
@@ -95,13 +81,13 @@ bool GameObjectFactory::Init()
     DeserializeFunctions[2] = DeserializeLight;
     DeserializeFunctions[3] = DeserializeModel;
     DeserializeFunctions[4] = DeserializeMaterial;
+    DeserializeFunctions[5] = DeserializeGameLogic;
 
     return true;
 }
 
-Entity GameObjectFactory::CreateObject(GameLogicCategories objectType)
+Entity GameObjectFactory::CreateObject(std::string name)
 {
-    std::string name = json(objectType);
     ordered_json entityJson = archetypes[name];
     Entity newEntity = engine.EntitySys.CreateEntity();
     EntityList.push_back(newEntity);
@@ -118,9 +104,8 @@ Entity GameObjectFactory::CreateObject(GameLogicCategories objectType)
 }
 
 //temp function, optimize when archetype system is done
-void GameObjectFactory::SaveObject(GameLogicCategories objectType, Entity entity)
+void GameObjectFactory::SaveObject(std::string name, Entity entity)
 {
-    std::string name = json(objectType);
     ordered_json objectJson;
 
     ModelComponent* modelCom = ModelComponentPool.GetComponentByEntity(entity);
@@ -151,10 +136,15 @@ void GameObjectFactory::SaveObject(GameLogicCategories objectType, Entity entity
         objectJson[key] = *ligthCom->LightSource;
     }
 
+    auto* gameLogicCom = GameLogicCategoryComponentPool.GetComponentByEntity(entity);
+    if (gameLogicCom != nullptr)
+    {
+        std::string key = json(ComponentType::GAME_LOGIC);
+        objectJson[key] = gameLogicCom->categories;
+    }
+
     archetypes[name] = objectJson;
 
-
-    //todo do serialization in separate function
     ordered_json output;
     for (const auto& [key, value] : archetypes)
     {

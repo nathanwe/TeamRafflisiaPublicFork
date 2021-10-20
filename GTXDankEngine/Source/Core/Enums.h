@@ -12,7 +12,7 @@ enum ComponentType
 	LIGHT = 2,
 	MODEL = 3,
 	MATERIAL = 4,
-
+	GAME_LOGIC = 5,
 	TOTAL
 };
 
@@ -21,6 +21,7 @@ NLOHMANN_JSON_SERIALIZE_ENUM(ComponentType, {
 	REGISTER_STRING(LIGHT)
 	REGISTER_STRING(MODEL)
 	REGISTER_STRING(MATERIAL)
+	REGISTER_STRING(GAME_LOGIC)
 	});
 
 static std::unordered_map<std::string, int> ComponentNameToType
@@ -29,6 +30,7 @@ static std::unordered_map<std::string, int> ComponentNameToType
 	{"LIGHT", 2},
 	{"MODEL", 3},
 	{"MATERIAL", 4},
+	{"GAME_LOGIC", 5},
 };
 
 enum class ErrorEnum

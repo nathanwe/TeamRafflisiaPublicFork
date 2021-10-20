@@ -134,5 +134,3 @@ inline void from_json(const ordered_json& j, glm::quat& x) {
 	j.at("z").get_to(x.z);
 	j.at("w").get_to(x.w);
 }
-
-

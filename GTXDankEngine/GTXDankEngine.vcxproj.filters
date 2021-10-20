@@ -421,6 +421,12 @@
     <ClInclude Include="Source\Systems\GraphicsSystem\PostProcess\PostProcess.h">
       <Filter>Header Files\Systems\GraphicsSystem\PostProcess</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\SceneSystem\SceneSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\utils\JsonFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -578,6 +584,9 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\ScriptSystem\ScriptSystem.cpp">
       <Filter>Source Files\Systems\UISystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\SceneSystem\SceneSystem.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

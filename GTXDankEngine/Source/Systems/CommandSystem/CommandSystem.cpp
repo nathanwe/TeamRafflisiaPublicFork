@@ -112,7 +112,14 @@ void CommandSystem::ExecuteGameplayCommands()
 		Attack3Command.Execute();
 	}
 
-
+	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_RIGHT))
+	{
+		NextLevelCommand.Execute();
+	}
+	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_LEFT))
+	{
+		PreviousLevelCommand.Execute();
+	}
 }
 
 void CommandSystem::ExecuteUICommands()

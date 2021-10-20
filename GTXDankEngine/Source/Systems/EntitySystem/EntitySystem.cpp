@@ -33,3 +33,12 @@ Entity EntitySystem::CreateEntity()
 	LOG_TRACE("[Entity ID: {}] Entity created", id);
 	return id;
 }
+
+void EntitySystem::DeleteAllEntities()
+{
+	for (Entity e : allocatedEntities)
+	{
+		availableEntities.insert(e);
+	}
+	allocatedEntities.clear();
+}

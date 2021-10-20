@@ -41,8 +41,8 @@ public:
 	//Command Debug2Command;
 	//Command Debug3Command;
 	//
-	//Command DebugNextLevelCommand;
-	//Command DebugPreviousLevelCommand;
+	Command NextLevelCommand;
+	Command PreviousLevelCommand;
 
 private:
 	void ExecuteGameplayCommands();
