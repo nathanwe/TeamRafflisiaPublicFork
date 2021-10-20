@@ -107,6 +107,7 @@
     <None Include="Assets\Scripts\DoEverything.lua" />
     <None Include="Assets\Scripts\DoPokeballThings.lua" />
     <None Include="Assets\Scripts\FirstScript.lua" />
+    <None Include="Assets\Scripts\Menu.lua" />
     <None Include="Skybox.shader" />
     <None Include="Source\Shaders\basic.shader" />
     <None Include="Source\Shaders\basicPBR.shader" />

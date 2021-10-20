@@ -11,11 +11,14 @@
 
 #include "../UISystem/UISystem.h"
 #include "../ProfileSystem/ProfileSystem.h"
+#include "../ScriptSystem/ScriptSystem.h"
+#include "../Core/Engine.h"
 
 
 #include "../../Core/Texture.h"
 
 extern UISystem UISys;
+extern Engine engine;
 extern ProfileSystem ProfileSys;
 
 
@@ -104,6 +107,7 @@ void GraphicsSystem::Update(float timeStamp)
 
 	// render UI
 	UISys.Update(0);
+	engine.MenuSys.Update(0);
 
 	ImGui::Begin("Metallic");
 	{

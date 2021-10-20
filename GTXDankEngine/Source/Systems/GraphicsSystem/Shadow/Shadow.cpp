@@ -67,19 +67,15 @@ void Shadow::Destroy()
 void Shadow::Update()
 {
     glm::vec3 target, lightPos;
-    
-    for (const auto& [lightEntity, lightComponent] : LightComponentPool.componentList)
+    std::set<Entity> LTEntitys = LightComponentPool.Get2SharedEntitys(TransformComponentPool.componentList);
+    for (Entity e : LTEntitys)
     {
-        for (const auto& [transEntity, transformComponent] : TransformComponentPool.componentList)
+        LightComponent* lightComponent = LightComponentPool.GetComponentByEntity(e);
+        TransformComponent* transformComponent = TransformComponentPool.GetComponentByEntity(e);
+        if (lightComponent->LightSource->Type == LightType::Directional)
         {
-            if (lightEntity == transEntity)
-            {
-                if (lightComponent->LightSource->Type == LightType::Directional)
-                {
-                    target = lightComponent->LightSource->Target;
-                    lightPos = transformComponent->transform->position;
-                }
-            }
+            target = lightComponent->LightSource->Target;
+            lightPos = transformComponent->transform->position;
         }
     }
 
@@ -105,15 +101,13 @@ void Shadow::Update()
 
 void Shadow::Render(Shader* shader) const
 {
-    for (const auto& [modelEntity, modelComponent] : ModelComponentPool.componentList) {
-        for (const auto& [transEntity, transformComponent] : TransformComponentPool.componentList)
-        { 
-            if (modelEntity == transEntity)
-            {
-                shader->setMat4("model", transformComponent->transform->Matrix());
-                modelComponent->model->GetPointer()->Draw(*shader);
-            }
-        }
+    std::set<Entity> MTEntitys = ModelComponentPool.Get2SharedEntitys(TransformComponentPool.componentList);
+    for (Entity e : MTEntitys)
+    {
+        TransformComponent* transformComponent = TransformComponentPool.GetComponentByEntity(e);
+        ModelComponent* modelComponent = ModelComponentPool.GetComponentByEntity(e);
+        shader->setMat4("model", transformComponent->transform->Matrix());
+        modelComponent->model->GetPointer()->Draw(*shader);
     }
 }
 

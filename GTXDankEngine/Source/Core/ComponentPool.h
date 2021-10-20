@@ -124,7 +124,7 @@ bool AbstractComponentPool<T>::Delete(Entity e)
 	auto search = componentList.find(e);
 	if (search != componentList.end())
 	{
-		memory.FreeUsedBlock(search->secont);
+		memory.FreeUsedBlock(search->second);
 		componentList.erase(search);
 	}
 	else

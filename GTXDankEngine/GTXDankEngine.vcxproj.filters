@@ -236,6 +236,9 @@
     <None Include="Source\Shaders\PostProcess\PostProcess.shader">
       <Filter>Resource Files\Shaders\PostProcess</Filter>
     </None>
+    <None Include="Assets\Scripts\Menu.lua">
+      <Filter>Resource Files\Scripts</Filter>
+    </None>
     <None Include="Source\Shaders\DeferredRenderer\Cel.shader">
       <Filter>Resource Files\Shaders\DeferredRenderer</Filter>
     </None>

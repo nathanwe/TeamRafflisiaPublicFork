@@ -57,4 +57,7 @@ function HandleEventPerEntity(e, categoriesToEffect, eventData)
 
 end
 
+function Destroy()
+
+end
 

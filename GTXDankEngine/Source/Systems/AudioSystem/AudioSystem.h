@@ -3,6 +3,7 @@
 
 #include"pch.h"
 #include "../../Core/System.h"
+#include "../Systems/ScriptSystem/ScriptSystem.h"
 
 
 class AudioSystem : public System
@@ -22,10 +23,15 @@ public:
 
 	bool Destroy();
 
+	void HandleEvent(Event event);
+
 public:
 
 	FMOD_RESULT result;
 	FMOD::Studio::System* system;
+	bool allMuted;
+	FMOD::Studio::Bus* masterBus = NULL;
+	FMOD::Studio::EventInstance* eventInstance = NULL;
 };
 
 

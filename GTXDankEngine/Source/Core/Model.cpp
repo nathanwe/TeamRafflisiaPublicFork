@@ -17,7 +17,10 @@ Model::Model(std::string path) : path(path)
 // iterate all meshes, draw all meshes
 void Model::Draw(Shader& shader) const
 {
-    for (auto mesh : meshes) mesh.Draw(shader);
+    for (auto mesh : meshes)
+    {
+        mesh.Draw(shader);
+    }
 }
 
 void Model::OnLoad()

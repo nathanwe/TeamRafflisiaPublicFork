@@ -27,6 +27,10 @@ struct Event
 // Little error checking utility function
 bool CheckLua(lua_State* L, int r);
 
+//helper funcs
+static void dumpstack(lua_State* L);
+void PassEvent(lua_State* L, Event event);
+Event ReceiveEvent(lua_State* L);
 
 //c++ func to pass to lua for testing purpouses
 //returns an int, takes a lua_State, and starts with lua_
@@ -42,6 +46,11 @@ int lua_LoadScript(lua_State* L);
 int lua_GetKeyTriggered(lua_State* L);
 int lua_MakeLionByHand(lua_State* L);
 int lua_GetPosition(lua_State* L);
+int lua_BeginImgui(lua_State* L);
+int lua_EndImgui(lua_State* L);
+int lua_ButtonImgui(lua_State* L);
+int lua_SendAudioEvent(lua_State* L);
+
 
 class LuaFile
 {
@@ -80,11 +89,12 @@ public:
 
 	void HandleEvent(Event event);
 private:
-
+	
 	ResourceHandle<LuaFile>* fileHandle;
 	lua_State* L;
 
 };
+
 
 
 #endif // !SCRIPTSYSTEM_H

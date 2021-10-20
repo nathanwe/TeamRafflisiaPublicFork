@@ -72,6 +72,7 @@ public:
 	EntitySystem EntitySys;
 	GameObjectFactory GameObjectFac;
 	ScriptSystem DoGameLogicScriptSys;
+	ScriptSystem MenuSys;
 
 
 private:

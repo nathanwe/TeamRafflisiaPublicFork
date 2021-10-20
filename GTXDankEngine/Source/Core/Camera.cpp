@@ -10,37 +10,45 @@ Camera::Camera(int width, int height, glm::vec3 position)
 	Camera::width = width;
 	Camera::height = height;
 	Position = position;
+
+	glm::quat qPitch = glm::angleAxis(pitch, glm::vec3(1, 0, 0));
+	glm::quat qYaw = glm::angleAxis(yaw, glm::vec3(0, 1, 0));
+
+	orientationQuat = qPitch * qYaw;
+	orientationQuat = glm::normalize(orientationQuat);
 }
 
 void Camera::Init()
 {
 	engine.CommandSys.MoveCommand.SetActionToExecute([&](auto dir)
 		{
+			glm::vec3 tar(-sin(yaw) * cos(pitch), sin(pitch), cos(yaw) * cos(pitch));
+			
 			if (dir == MoveDirection::UP)
 			{
-				Position += speed * Orientation;
+				Position += speed * tar;
 			}
 			if (dir == MoveDirection::LEFT)
 			{
-				Position += speed * -glm::normalize(glm::cross(Orientation, Up));
+				Position += speed * -glm::normalize(glm::cross(tar, Up));
 			}
 			if (dir == MoveDirection::DOWN)
 			{
-				Position += speed * -Orientation;
+				Position += speed * -tar;
 			}
 			if (dir == MoveDirection::RIGHT)
 			{
-				Position += speed * glm::normalize(glm::cross(Orientation, Up));
+				Position += speed * glm::normalize(glm::cross(tar, Up));
 			}
 		});
 
 	engine.CommandSys.SpaceCommand.SetActionToExecute([&]()
 		{
-			Position += speed / 2.f * Up;
+			Position -= speed / 2.f * Up;
 		});
 	engine.CommandSys.CtrlCommand.SetActionToExecute([&]()
 		{
-			Position += speed / 2.f * -Up;
+			Position -= speed / 2.f * -Up;
 		});
 	engine.CommandSys.ShiftCommand.SetActionToExecute([&]()
 		{
@@ -57,7 +65,8 @@ void Camera::UpdateMatrix(float FOVdeg, float nearPlane, float farPlane)
 	glm::mat4 view = glm::mat4(1.0f);
 	glm::mat4 projection = glm::mat4(1.0f);
 
-	view = glm::lookAt(Position, Position + Orientation, Up);
+	// view = glm::lookAt(Position, Position + Orientation, Up);
+	view = glm::mat4_cast(orientationQuat) * glm::translate(glm::mat4(1.0f), Position);
 	projection = glm::perspective(glm::radians(FOVdeg), (float)(width / height), nearPlane, farPlane);
 
 	cameraMatrix = projection * view;
@@ -70,39 +79,6 @@ void Camera::Matrix(Shader& shader, const char* uniform)
 
 void Camera::Inputs(GLFWwindow* window)
 {
-	//if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS) 
-	//{
-	//	Position += 10* speed * Orientation;
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS) 
-	//{
-	//	Position += 10 * speed * -glm::normalize(glm::cross(Orientation, Up));
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS) 
-	//{
-	//	Position += 10 * speed * -Orientation;
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS) 
-	//{
-	//	Position += 10 * speed * glm::normalize(glm::cross(Orientation, Up));
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS) 
-	//{
-	//	Position += speed * Up;
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS) 
-	//{
-	//	Position += speed * -Up;
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_PRESS) 
-	//{
-	//	speed = 0.01f;
-	//}
-	//else if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT) == GLFW_RELEASE) 
-	//{
-	//	speed = 0.001f;
-	//}
-
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS) 
 	{
 		//moved to imgui
@@ -119,17 +95,22 @@ void Camera::Inputs(GLFWwindow* window)
 		
 		glfwGetCursorPos(window, &mouseX, &mouseY);
 
-		float rotX = sensitivity * (float)(mouseY - (height / 2)) / height;
-		float rotY = sensitivity * (float)(mouseX - (width / 2)) / width;
+		pitch += sensitivity * (float)(mouseY - (height / 2)) / height;
+		yaw += sensitivity * (float)(mouseX - (width / 2)) / width;
 
-		glm::vec3 newOrientation = glm::rotate(Orientation, glm::radians(-rotX), glm::normalize(glm::cross(Orientation, Up)));
-
-		if (!((glm::angle(newOrientation, Up) <= glm::radians(5.0f) || glm::angle(newOrientation, -Up) <= glm::radians(5.0f)))) 
-		{
-			Orientation = newOrientation;
+		if (pitch > M_PI / 2.f) {
+			pitch = M_PI / 2.f;
+		}
+		if (pitch < -M_PI / 2.f) {
+			pitch = -M_PI / 2.f;
 		}
 
-		Orientation = glm::rotate(Orientation, glm::radians(-rotY), Up);
+
+		glm::quat qPitch = glm::angleAxis(pitch, glm::vec3(1, 0, 0));
+		glm::quat qYaw = glm::angleAxis(yaw, glm::vec3(0, 1, 0));
+
+		orientationQuat = qPitch * qYaw;
+		orientationQuat = glm::normalize(orientationQuat);
 
 		glfwSetCursorPos(window, (width / 2), (height / 2));
 	}
@@ -138,6 +119,34 @@ void Camera::Inputs(GLFWwindow* window)
 		//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 
 		firstClick = true;
+
+		if (engine.InputSys.IsControllerActive(0)) {
+			float rotX = 0.f;
+			float rotY = 0.f;
+			
+			if (abs(engine.InputSys.GetControllerAxis(0, 2)) >= 0.1f) {
+				rotX = gamepadSensitivity * engine.InputSys.GetControllerAxis(0, 2);
+			}
+			if (abs(engine.InputSys.GetControllerAxis(0, 3)) >= 0.1f) {
+				rotY = gamepadSensitivity * engine.InputSys.GetControllerAxis(0, 3);
+			}
+
+			yaw += rotX;
+			pitch += rotY;
+
+			if (pitch > M_PI / 2.f) {
+				pitch = M_PI / 2.f;
+			}
+			if (pitch < -M_PI / 2.f) {
+				pitch = -M_PI / 2.f;
+			}
+
+			glm::quat qPitch = glm::angleAxis(pitch, glm::vec3(1, 0, 0));
+			glm::quat qYaw = glm::angleAxis(yaw, glm::vec3(0, 1, 0));
+
+			orientationQuat = qPitch * qYaw;
+			orientationQuat = glm::normalize(orientationQuat);
+		}
 	}
 
 	//LOG_INFO("camera position: {0}, {1}, {2}", Position.x, Position.y, Position.z);
