@@ -43,7 +43,8 @@ public:
 	float VolumeTOdB(float volume);
 	//FMOD_VECTOR VectorToFmod(const Vector& vPosition);
 	FMOD_VECTOR vec3GLMtoFMOD(const glm::vec3& vec3);
-
+	void HandleEvent(Event event);
+	void MuteAll();
 
 public:
 
@@ -64,6 +65,8 @@ public:
 	SoundMap soundMaps;
 	ChannelMap channelMaps;
 
+	bool allMuted;
+	FMOD::Studio::Bus* masterBus = NULL;
 };
 
 

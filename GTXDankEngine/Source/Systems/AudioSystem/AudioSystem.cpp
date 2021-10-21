@@ -27,7 +27,6 @@ bool AudioSystem::Init()
     SetChannelVolume(channel,-3.0f);
     SetChannel3dPosition(channel, glm::vec3(-10.0f, -10.0f, 0.0f));
 
-    FMOD::Studio::Bus* masterBus = NULL;
     ERRCHECK(fmodStudioSystem->getBus("bus:/", &masterBus));
 
     masterBus->setVolume(0.05f);
@@ -55,6 +54,8 @@ void AudioSystem::Update(float timeStamp)
     {
         channelMaps.erase(it);
     }
+
+    MuteAll();
     ERRCHECK(fmodStudioSystem->update());
     
 }
@@ -240,6 +241,22 @@ float AudioSystem::VolumeTOdB(float volume)
     return 20.0f * log10f(volume);
 }
 
+void AudioSystem::MuteAll()
+{
+    masterBus->setVolume(0.05f * !allMuted);
+}
+
+void AudioSystem::HandleEvent(Event event)
+{
+    if (event.type == EventType::MUTE_ALL)
+    {
+        allMuted = true;
+    }
+    if (event.type == EventType::UNMUTE_ALL)
+    {
+        allMuted = false;
+    }
+}
 
 
 
