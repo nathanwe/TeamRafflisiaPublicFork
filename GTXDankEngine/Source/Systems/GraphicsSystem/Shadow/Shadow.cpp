@@ -5,6 +5,7 @@
 
 #include "../Components/ModelComponent/ModelComponent.h"
 #include "../Components/TransformComponent/TransformComponent.h"
+#include "../Components/MaterialComponent/MaterialComponent.h"
 #include "../Components/LightComponent/LightComponent.h"
 #include "../utils/VQS.h"
 #include "../Core/Model.h"
@@ -101,11 +102,13 @@ void Shadow::Update()
 
 void Shadow::Render(Shader* shader) const
 {
-    std::set<Entity> MTEntitys = ModelComponentPool.Get2SharedEntitys(TransformComponentPool.componentList);
-    for (Entity e : MTEntitys)
+
+    std::set<Entity> entitys = MaterialComponentPool.Get3SharedEntitys(TransformComponentPool.componentList, ModelComponentPool.componentList);
+    for (auto e : entitys)
     {
-        TransformComponent* transformComponent = TransformComponentPool.GetComponentByEntity(e);
-        ModelComponent* modelComponent = ModelComponentPool.GetComponentByEntity(e);
+        auto transformComponent = TransformComponentPool.GetComponentByEntity(e);
+        auto modelComponent = ModelComponentPool.GetComponentByEntity(e);
+
         shader->setMat4("model", transformComponent->transform->Matrix());
         modelComponent->model->GetPointer()->Draw(*shader);
     }

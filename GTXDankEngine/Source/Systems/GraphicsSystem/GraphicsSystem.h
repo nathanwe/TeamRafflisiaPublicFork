@@ -10,6 +10,7 @@
 #include "DeferredRenderer/DeferredRenderer.h"
 #include "FBO.h"
 #include "PostProcess/PostProcess.h"
+#include "DebugRender/DebugRender.h"
 
 
 class Light;
@@ -49,14 +50,17 @@ private:
 		
 	void Render();
 
-	void RenderLightSource(GLuint fbo);
-
 	void BindLightSource(Shader* shader);
 	void BindPointLight(Shader* shader, Light* light, VQS *transform, unsigned int index);
 	void BindDirectionalLight(Shader* shader, Light* light, VQS* transform);
 
+
+	void DebugDraw();
+
+	void RenderGraphicsUI(void);
+
+
 private:
-	Shader* LightSourceShader;
 
 	Skybox skybox;
 
@@ -70,5 +74,9 @@ private:
 	FBO HdrFBO;
 
 	PostProcess PostProcesser;
+
+	DebugRender DebugRenderer;
+
+	bool DebugMode = false;
 };
 #endif // !GRAPHICSSYSTEM_H

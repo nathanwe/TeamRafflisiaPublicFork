@@ -113,6 +113,7 @@
     <None Include="Skybox.shader" />
     <None Include="Source\Shaders\basic.shader" />
     <None Include="Source\Shaders\basicPBR.shader" />
+    <None Include="Source\Shaders\DebugRender\NormalVec.shader" />
     <None Include="Source\Shaders\DeferredRenderer\Cel.shader" />
     <None Include="Source\Shaders\DeferredRenderer\DeferredLighting.shader" />
     <None Include="Source\Shaders\DeferredRenderer\Fill_G_Buffer.shader" />
@@ -125,6 +126,7 @@
     <ClInclude Include="Source\Systems\SceneSystem\SceneSystem.h" />
     <ClInclude Include="Source\Systems\EntitySystem\EntitySystem.h" />
     <ClInclude Include="Source\Core\GameObjectFactory.h" />
+    <ClInclude Include="Source\Systems\GraphicsSystem\DebugRender\DebugRender.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\FBO.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\PostProcess\PostProcess.h" />
     <ClInclude Include="Source\utils\SerializationHelper.h" />
@@ -253,6 +255,7 @@
     <ClCompile Include="Source\Core\FramerateControlSystem\FramerateController.cpp" />
     <ClCompile Include="Source\Systems\CommandSystem\DirectionCommand.cpp" />
     <ClCompile Include="Source\Systems\EntitySystem\EntitySystem.cpp" />
+    <ClCompile Include="Source\Systems\GraphicsSystem\DebugRender\DebugRender.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\DeferredRenderer\DeferredRenderer.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\FBO.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\GraphicsSystem.cpp" />
