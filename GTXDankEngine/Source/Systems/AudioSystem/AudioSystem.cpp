@@ -66,17 +66,6 @@ bool AudioSystem::Destroy()
     return !result;
 }
 
-void AudioSystem::HandleEvent(Event ev)
-{
-    if (ev.type == EventType::MUTE_ALL)
-    {
-
-    }
-    if (ev.type == EventType::UNMUTE_ALL)
-    {
-    }
-}
-
 
 void AudioSystem::LoadBank(const char* bank_filename, FMOD_STUDIO_LOAD_BANK_FLAGS flags)
 {

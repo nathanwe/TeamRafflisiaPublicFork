@@ -21,7 +21,6 @@ public:
 	bool Init();
 	void Update(float timeStamp);
 	bool Destroy();
-	void HandleEvent(Event ev);
 
 	void LoadBank(const char*, FMOD_STUDIO_LOAD_BANK_FLAGS flags);
 	void LoadEvent(const char* event_filename);
