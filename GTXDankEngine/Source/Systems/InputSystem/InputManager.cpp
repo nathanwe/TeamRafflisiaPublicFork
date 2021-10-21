@@ -32,7 +32,7 @@ InputManager::~InputManager() {
 	updateThread.join();
 }
 
-void InputManager::Update() 
+void InputManager::Update()
 {
 
 	mouseXPrev = mouseX;
@@ -50,6 +50,14 @@ void InputManager::Update()
 		gamepads_prev[i] = gamepads[i];
 		gamepads[i] = gamepads_thread[i];
 	}
+
+	/*
+	for (int i = 0; i < 14; i++) {
+		if (gamepads[0].buttons[i]) {
+			printf("Button %d\n", i);
+		}
+	}
+	*/
 
 	std::unique_lock<std::mutex> inputUpdateLock(mtx);
 	cv.notify_one();
@@ -82,11 +90,12 @@ void InputManager::UpdateThread(GLFWwindow* pWindow)
 
 		// Gamepads
 		for (int scanned_controller = 0; scanned_controller < gamepad_count; scanned_controller++) {
+			gamepads_thread[scanned_controller].active = false;
 			if (glfwJoystickPresent(GLFW_JOYSTICK_1 + scanned_controller) == GL_TRUE)
 			{
 				int axesCount, buttonCount;
-				const float* axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1, &axesCount);
-				const unsigned char* buttons = glfwGetJoystickButtons(GLFW_JOYSTICK_1, &buttonCount);
+				const float* axes = glfwGetJoystickAxes(GLFW_JOYSTICK_1 + scanned_controller, &axesCount);
+				const unsigned char* buttons = glfwGetJoystickButtons(GLFW_JOYSTICK_1 + scanned_controller, &buttonCount);
 
 				// Axis hierarchy (xbox layout, 6 axes)
 				// L_JOY_X L_JOY_Y
@@ -99,6 +108,9 @@ void InputManager::UpdateThread(GLFWwindow* pWindow)
 					}
 					else {
 						gamepads_thread[scanned_controller].axes[i] = axes[i];
+						if (abs(axes[i]) > deadzone) {
+							gamepads_thread[scanned_controller].active = true;
+						}
 					}
 				}
 
@@ -115,11 +127,12 @@ void InputManager::UpdateThread(GLFWwindow* pWindow)
 					}
 					else {
 						gamepads_thread[scanned_controller].buttons[i] = (buttons[i] == GLFW_PRESS);
+						gamepads_thread[scanned_controller].active = true;
 					}
 				}
 
 			}
-			else 
+			else
 			{	// if a controller is not connected to this port, it is zeroed out
 				for (int i = 0; i < 6; i++) {
 					gamepads_thread[scanned_controller].axes[i] = 0.0f;
@@ -165,6 +178,16 @@ bool InputManager::IsKeyReleased(unsigned int KeyScanCode) {
 	if (mPreviousState[KeyScanCode] && !mCurrentState[KeyScanCode])
 		return true;
 	return false;
+}
+
+
+
+
+
+
+double* InputManager::GetMouseChange() {
+	double output[2] = { mouseX - mouseXPrev, mouseY - mouseYPrev };
+	return output;
 }
 
 bool InputManager::IsMousePressed() {
