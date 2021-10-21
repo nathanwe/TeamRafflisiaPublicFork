@@ -37,7 +37,7 @@ bool Engine::Init()
 	ModelResourceManager.Init("Assets/models/PokemonBall/model.obj");
 	TextureResourceManger.Init("Assets/models/PokemonBall/albedo.jpg");
 
-	if(!SceneSys.Init())  LOG_ERROR("Input System failed to init.");
+	
 
 	//temp: for game object factory demo
 	CommandSys.Attack3Command.SetActionToExecute([&]()
@@ -52,6 +52,10 @@ bool Engine::Init()
 	//-----------------------------------------------------------------------
 	if (!DoGameLogicScriptSys.Init("Assets/Scripts/DoEverything.lua")) LOG_ERROR("Game Logic Script System failed to init.");
 	if (!MenuSys.Init("Assets/Scripts/Menu.lua")) LOG_ERROR("Menu System failed to init.");
+
+
+	if (!SceneSys.Init())  LOG_ERROR("Scene System failed to init.");
+
 
 	LOG_INFO("Engine init.");
 	return true;

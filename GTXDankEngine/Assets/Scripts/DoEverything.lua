@@ -1,5 +1,5 @@
 --doeverything
-categoryNames = {[1] = "Pokeball", [3] = "Lion", [4] = "Light"}
+categoryNames = {[1] = "Pokeball", [2] = "Lion", [3] = "Light"}
 deltaTime = 0
 thisEntity = 0
 gEventData = {}
@@ -54,7 +54,6 @@ function HandleEventPerEntity(e, categoriesToEffect, eventData)
 		gEventData = eventData
 		DoStringWithErrorCheck("HandleEventPerEntity".. categoryNames[thing] .."(thisEntity, gEventData)")
 	end		
-
 end
 
 function Destroy()

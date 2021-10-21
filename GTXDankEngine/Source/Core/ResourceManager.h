@@ -137,7 +137,6 @@ inline ResourceHandle<ResourceType>* ResourceManager<ResourceType>::GetResourceH
 		else
 		{
 			LOG_ERROR("cant find just added resource");
-			assert(!"cant find just added resource");
 			return &(handle->second);
 		}
 
@@ -172,7 +171,6 @@ inline ResourceHandle<ResourceType>* ResourceManager<ResourceType>::GetResourceH
 		else
 		{
 			LOG_ERROR("cant find just added resource");
-			assert(!"cant find just added resource");
 			return &(handle->second);
 		}
 	}
@@ -191,7 +189,6 @@ template<class ResourceType>
 inline bool ResourceManager<ResourceType>::Init()
 {
 	LOG_ERROR("cant init w/out string, use other init");
-	assert(!"cant init w / out string, use other init");
 	return false;
 }
 
@@ -259,7 +256,6 @@ inline void ResourceManager<ResourceType>::ThreadlyUpdateHandles()
 			else
 			{
 				LOG_ERROR("cant find updating resource");
-				assert(!"cant find updating resource");
 			}
 			updatingResources.pop_front();
 		}

@@ -242,6 +242,12 @@
     <None Include="Source\Shaders\DeferredRenderer\Cel.shader">
       <Filter>Resource Files\Shaders\DeferredRenderer</Filter>
     </None>
+    <None Include="Assets\Levels\gameObjects.json">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Assets\Levels\levels.json">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">

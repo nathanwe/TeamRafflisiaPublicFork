@@ -20,7 +20,7 @@ void EntitySystem::Update(float timeStamp)
 
 bool EntitySystem::Destroy()
 {
-    return false;
+    return true;
 }
 
 Entity EntitySystem::CreateEntity()
@@ -34,6 +34,14 @@ Entity EntitySystem::CreateEntity()
 	return id;
 }
 
+	void EntitySystem::DestroyEntity(Entity e)
+{
+	allocatedEntities.erase(e);
+	availableEntities.insert(e);
+	--entityCount;
+	LOG_TRACE("[Entity ID: {}] Entity destroyed", e);
+}
+
 void EntitySystem::DeleteAllEntities()
 {
 	for (Entity e : allocatedEntities)
@@ -41,4 +49,5 @@ void EntitySystem::DeleteAllEntities()
 		availableEntities.insert(e);
 	}
 	allocatedEntities.clear();
+	entityCount = 0;
 }

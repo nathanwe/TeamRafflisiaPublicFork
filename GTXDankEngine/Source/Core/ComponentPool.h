@@ -130,8 +130,7 @@ void AbstractComponentPool<T>::Delete(Entity e)
 	}
 	else
 	{
-		LOG_ERROR("Tried to delete Entity not found");
-		assert(!"Tried to delete Entity not found");
+		LOG_INFO("Tried to delete component {0} of unkown Entity", typeid(T).name());
 	}
 }
 

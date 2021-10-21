@@ -50,10 +50,7 @@
       "MetallicPath": "Assets/models/Vase/metallic.jpg",
       "NormalPath": "Assets/models/Vase/normal.jpg",
       "RoughnessPath": "Assets/models/Vase/roughness.jpg"
-    },
-    "GAME_LOGIC": [
-      "VASE"
-    ]
+    }
   },
   "POINT_LIGHT_SOURCE": {
     "MODEL": {
@@ -218,10 +215,7 @@
       "MetallicPath": "Assets/Textures/plater/New_Graph_height.png",
       "NormalPath": "Assets/Textures/PBR_Ice/normal.tga",
       "RoughnessPath": "Assets/Textures/plater/roughness.png"
-    },
-    "GAME_LOGIC": [
-      "PLANE"
-    ]
+    }
   },
   "DirLightSource": {
     "MODEL": {
@@ -258,9 +252,6 @@
         "y": -1.0,
         "z": 0.0
       }
-    },
-    "GAME_LOGIC": [
-      "POINT_LIGHT_SOURCE"
-    ]
+    }
   }
 }

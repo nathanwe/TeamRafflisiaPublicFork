@@ -5,6 +5,7 @@
 #include "../Components/TransformComponent/TransformComponent.h"
 #include "../Components/ModelComponent/ModelComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
+#include "../Components/LightComponent/LightComponent.h"
 #include "../Core/Engine.h"
 #include "../Core/ResourceManager.h"
 
@@ -394,5 +395,23 @@ int lua_SendAudioEvent(lua_State* L)
 {
     Event ev = ReceiveEvent(L);
     engine.AudioSys.HandleEvent(ev);
+    return 1;
+}
+
+int lua_DeleteEntity(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tonumber(L, 1));
+    Event ev = Event(true);
+    ev.type = EventType::DESTROY_ENTITY;
+    ev.e1 = e;
+    engine.DoGameLogicScriptSys.HandleEvent(ev);
+
+    TransformComponentPool.Delete(e);
+    GameLogicCategoryComponentPool.Delete(e);
+    MaterialComponentPool.Delete(e);
+    ModelComponentPool.Delete(e);
+    LightComponentPool.Delete(e);
+
+    engine.EntitySys.DestroyEntity(e);
     return 1;
 }

@@ -22,6 +22,17 @@ struct Event
 	float floatData1, floatData2, floatData3, floatData4;
 	std::string stringData1;
 
+	Event(bool affectEverything = false) : runPerEntity(false), type(EventType::DEFAULT_EVENT), e1(0), e2(0), intData1(0),
+		floatData1(0), floatData2(0), floatData3(0), floatData4(0), stringData1("")
+	{
+		if (affectEverything)
+		{
+			for (int i = 1; i < GameLogicCategories::MAX_CATEGORIES; ++i)
+			{
+				thingsToEffect.insert(static_cast<GameLogicCategories>(i));
+			}
+		}
+	}
 };
 
 // Little error checking utility function
@@ -50,6 +61,7 @@ int lua_BeginImgui(lua_State* L);
 int lua_EndImgui(lua_State* L);
 int lua_ButtonImgui(lua_State* L);
 int lua_SendAudioEvent(lua_State* L);
+int lua_DeleteEntity(lua_State* L);
 
 
 class LuaFile

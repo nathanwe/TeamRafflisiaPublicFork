@@ -39,6 +39,9 @@ void SceneSystem::UnloadScene()
     GameLogicCategoryComponentPool.DeleteAll();
     TransformComponentPool.DeleteAll();
     engine.EntitySys.DeleteAllEntities();
+    Event ev = Event(true);
+    ev.type = EventType::DESTROY_ALL_ENTITIYS;
+    engine.DoGameLogicScriptSys.HandleEvent(ev);
     EntityList.clear();
 }
 

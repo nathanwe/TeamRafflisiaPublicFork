@@ -102,6 +102,8 @@
     <Image Include="Assets\Textures\popcat.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Levels\gameObjects.json" />
+    <None Include="Assets\Levels\levels.json" />
     <None Include="Assets\Scripts\DoLionThings.lua" />
     <None Include="Assets\Scripts\DoLightThings.lua" />
     <None Include="Assets\Scripts\DoEverything.lua" />

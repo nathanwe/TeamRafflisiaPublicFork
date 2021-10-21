@@ -17,6 +17,8 @@ public:
 	bool Destroy() override;
 
 	Entity CreateEntity();
+
+	void DestroyEntity(Entity e);
 	void DeleteAllEntities();
 	//void DestroyEntity(Entity e);
 	//void SetArchetype();
