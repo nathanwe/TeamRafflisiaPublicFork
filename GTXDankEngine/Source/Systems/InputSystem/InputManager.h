@@ -33,12 +33,10 @@ public:
 	bool IsKeyReleased(unsigned int KeyScanCode);
 
 	double mouseX, mouseY;
-	double* GetMouseChange();
 	bool IsMousePressed();
 	bool IsMouseTriggered();
 	bool IsMouseReleased();
 
-	bool IsControllerActive(int controllerNo) { return gamepads[controllerNo].active; }
 	float GetControllerAxis(int controllerNo, int axis);
 	bool IsControllerPressed(int controllerNo, int button);
 	bool IsControllerTriggered(int controllerNo, int button);
@@ -47,20 +45,13 @@ public:
 
 
 
-
-private:
-	// bool mkActive, controllerActive;
-	// bool mkActiveThread, controllerActiveThread;
-
 private:
 	static const int input_buffer_size = 512;
-	float deadzone = 0.1f;
 
 	static const int gamepad_count = 8;
 	struct Gamepad {
 		float axes[6];
 		bool buttons[14];
-		bool active = true;
 	};
 	Gamepad gamepads_thread[gamepad_count];
 	Gamepad gamepads[gamepad_count];

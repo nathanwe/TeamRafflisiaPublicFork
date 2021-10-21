@@ -52,7 +52,6 @@ private:
 private:
 	bool menuMode;
 	bool debugMode;
-	float deadzone = 0.1f;
 };
 
 #endif // !COMMANDSYSTEM_H
