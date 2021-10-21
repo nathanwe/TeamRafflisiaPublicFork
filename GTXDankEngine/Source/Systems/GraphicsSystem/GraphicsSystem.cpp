@@ -8,7 +8,7 @@
 
 
 extern UISystem UISys;
-
+extern Engine engine;
 
 void GraphicsSystem::InitGLFW()
 
@@ -94,6 +94,8 @@ void GraphicsSystem::Update(float timeStamp)
 
 	// Render UI
 	UISys.Update(0);
+
+	engine.MenuSys.Update(0);
 
 	RenderGraphicsUI();
 
