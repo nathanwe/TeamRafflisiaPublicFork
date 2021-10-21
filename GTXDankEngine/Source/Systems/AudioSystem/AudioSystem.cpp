@@ -148,7 +148,7 @@ void AudioSystem::Set3dListenerAndOrientation(Camera camera)
     FMOD_VECTOR forward = vec3GLMtoFMOD(camera.Orientation);
     FMOD_VECTOR up = vec3GLMtoFMOD(camera.Up);
 
-    std::cout << glm::to_string(camera.Position) << glm::to_string(camera.Orientation) << glm::to_string(camera.Up) << std::endl;
+    //std::cout << glm::to_string(camera.Position) << glm::to_string(camera.Orientation) << glm::to_string(camera.Up) << std::endl;
     ERRCHECK(coreSystem->set3DListenerAttributes(0, &pos, nullptr, &forward, &up));
     //ERRCHECK(coreSystem->set3DListenerAttributes(0, &pos, nullptr, nullptr, nullptr));
 }
