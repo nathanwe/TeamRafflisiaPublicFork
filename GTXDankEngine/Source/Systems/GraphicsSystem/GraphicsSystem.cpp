@@ -128,15 +128,13 @@ void GraphicsSystem::Render()
 	// PBR rendering, all local pass
 	DeferredRender.Render(camera.Position, Shadow, HdrFBO.GetFBO());
 
-	// copy depth buffer from G-buffer to HDR FBO
-	DeferredRender.CopyDepthBufferToTarget(HdrFBO.GetFBO(), camera.width, camera.height);
-
 	// post processing
 	PostProcesser.Render(HdrFBO);
 
+	// copy depth buffer from G buffer
+	// becasue skybox needs depth info in order to render correctly
 	DeferredRender.CopyDepthBufferToTarget(0, camera.width, camera.height);
 
-	// copy depth buffer from G-buffer to default FBO
 	skybox.Render(camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f), 0);
 }
 
