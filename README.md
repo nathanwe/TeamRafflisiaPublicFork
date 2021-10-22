@@ -14,12 +14,21 @@
 
 # 3rd Party Libraries:
 Assimp
+
 fmod
+
 GLFW
+
 GLM
+
 IMGUI
+
 KHR
+
 spdlog
+
 stb
+
 JSON https://github.com/nlohmann/json
+
 lua http://www.lua.org
