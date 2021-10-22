@@ -18,6 +18,7 @@ bool Engine::Init()
 {
 	// Format of Engine Init
 	// TODO: Profiler will record how long it takes to init all system
+
 	
 	ScriptResourceManager.Init("Assets/Scripts/FirstScript.lua");
 	
@@ -106,6 +107,9 @@ void Engine::Run()
 		GraphicsSys.Update(0);
 		AudioSys.Update(0);
 		
+		EntitySys.Update(0);
+		SceneSys.Update(0);
+
 		Framerate->EndFrame();
 	}
 }

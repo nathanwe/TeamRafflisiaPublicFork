@@ -79,6 +79,7 @@ public:
 
 	ResourceManager<JsonFile> serializationResourceManager;
 
+
 private:
 
 };

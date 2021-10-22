@@ -28,8 +28,12 @@ public:
 	//update
 
 private:
+	void DestroyQueuedEntity(Entity e);
+	void DeleteAllQueuedEntities();
 	std::set<Entity> availableEntities;
 	std::set<Entity> allocatedEntities;
+	std::set<Entity> deleteQueue;
+	bool deleteAllQueue;
 	int entityCount;
 
 };

@@ -31,13 +31,6 @@ bool SceneSystem::Init()
 
 void SceneSystem::UnloadScene()
 {
-    GameLogicCategoryComponentPool.DeleteAll();
-    ModelComponentPool.DeleteAll();
-    MaterialComponentPool.DeleteAll();
-    LightComponentPool.DeleteAll();
-    RoutineComponentPool.DeleteAll();
-    GameLogicCategoryComponentPool.DeleteAll();
-    TransformComponentPool.DeleteAll();
     engine.EntitySys.DeleteAllEntities();
     Event ev = Event(true);
     ev.type = EventType::DESTROY_ALL_ENTITIYS;
@@ -48,26 +41,9 @@ void SceneSystem::UnloadScene()
 void SceneSystem::LoadScene(int level)
 {
     UnloadScene();
-
-    currentLevel = level;
-    ordered_json levelJson = levels[std::to_string(level)];
-
-    for (auto itr = levelJson.begin(); itr != levelJson.end(); ++itr)
-    {
-        ordered_json j = itr.value();
-        std::string objectName = j["name"];
-        Entity entity = engine.GameObjectFac.CreateObject(objectName);
-        
-        //assume we only need position and rotation at this moment
-        auto* transCom = TransformComponentPool.GetComponentByEntity(entity);
-        transCom->transform->position.x = j["px"];
-        transCom->transform->position.y = j["py"];
-        transCom->transform->position.z = j["pz"];
-        transCom->transform->rotation.x = j["rx"];
-        transCom->transform->rotation.y = j["ry"];
-        transCom->transform->rotation.z = j["rz"];
-        transCom->transform->rotation.w = j["rw"];
-    }
+    shouldLoadLevel = true;
+    levelToLoad = level;
+    
 }
 
 void SceneSystem::LoadNextLevel()
@@ -80,4 +56,36 @@ void SceneSystem::LoadPreviousLevel()
 {
     currentLevel--;
     LoadScene(currentLevel);
+}
+
+void SceneSystem::Update(float dt)
+{
+    if (shouldLoadLevel)
+    {
+        currentLevel = levelToLoad;
+        ordered_json levelJson = levels[std::to_string(currentLevel)];
+
+        for (auto itr = levelJson.begin(); itr != levelJson.end(); ++itr)
+        {
+            ordered_json j = itr.value();
+            std::string objectName = j["name"];
+            Entity entity = engine.GameObjectFac.CreateObject(objectName);
+
+            //assume we only need position and rotation at this moment
+            auto* transCom = TransformComponentPool.GetComponentByEntity(entity);
+            transCom->transform->position.x = j["px"];
+            transCom->transform->position.y = j["py"];
+            transCom->transform->position.z = j["pz"];
+            transCom->transform->rotation.x = j["rx"];
+            transCom->transform->rotation.y = j["ry"];
+            transCom->transform->rotation.z = j["rz"];
+            transCom->transform->rotation.w = j["rw"];
+        }
+    }
+    shouldLoadLevel = false;
+}
+
+bool SceneSystem::Destroy()
+{
+    return false;
 }

@@ -405,13 +405,6 @@ int lua_DeleteEntity(lua_State* L)
     ev.type = EventType::DESTROY_ENTITY;
     ev.e1 = e;
     engine.DoGameLogicScriptSys.HandleEvent(ev);
-
-    TransformComponentPool.Delete(e);
-    GameLogicCategoryComponentPool.Delete(e);
-    MaterialComponentPool.Delete(e);
-    ModelComponentPool.Delete(e);
-    LightComponentPool.Delete(e);
-
     engine.EntitySys.DestroyEntity(e);
     return 1;
 }
