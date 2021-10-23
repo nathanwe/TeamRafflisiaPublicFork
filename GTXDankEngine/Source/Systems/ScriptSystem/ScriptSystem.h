@@ -27,7 +27,7 @@ struct Event
 	{
 		if (affectEverything)
 		{
-			for (int i = 1; i < GameLogicCategories::MAX_CATEGORIES; ++i)
+			for (int i = 1; i < static_cast<int>(GameLogicCategories::MAX_CATEGORIES); ++i)
 			{
 				thingsToEffect.insert(static_cast<GameLogicCategories>(i));
 			}

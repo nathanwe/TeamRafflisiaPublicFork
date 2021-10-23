@@ -31,7 +31,7 @@ void DeserializeLight(ordered_json j, Entity e)
 void DeserializeModel(ordered_json j, Entity e)
 {
     std::string path = j["path"];
-    ResourceHandle<Model>* model = ModelResourceManager.GetResourceHandleNoThread(path);
+    ResourceHandle<Model>* model = ModelResourceManager.GetResourceHandle(path);
     ModelComponentPool.Add(e, (model));
 }
 

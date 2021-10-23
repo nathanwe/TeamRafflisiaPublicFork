@@ -245,9 +245,7 @@ inline void ResourceManager<ResourceType>::ThreadlyUpdateHandles()
 		if (!updatingResources.empty())
 		{
 			std::string filepath = *updatingResources.begin();
-			mutex.lock();
 			ResourceType* resource = new ResourceType(filepath); //this might take a while
-			mutex.unlock();
 			auto handle = resources.find(filepath);
 			if (handle != resources.end())
 			{

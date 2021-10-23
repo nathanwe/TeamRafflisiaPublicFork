@@ -57,7 +57,7 @@ NLOHMANN_JSON_SERIALIZE_ENUM(GameLogicCategories, {
 	//REGISTER_STRING(DIR_LIGHT_SOURCE)
 	//REGISTER_STRING(PLANE)
 	});
-
+	
 enum class EventType
 {
 	DEFAULT_EVENT = 0,
