@@ -5,7 +5,7 @@
 * Press 1：create lions badly
 * Press 2: toggles the menu
 * Press 3: deletes lions
-* Press WASD: move camera
+* Press WASD: move camera & pokeball!
 * Press <- and ->: switch scene
 
 ### **Mouse:** ###

@@ -1,12 +1,61 @@
 #include "pch.h"
 #include "CommandSystem.h"
 #include "../../Core/Engine.h"
+#include "../../Core/Camera.h"
+#include "../GraphicsSystem/GraphicsSystem.h"
 
 extern Engine engine;
 
-
 bool CommandSystem::Init()
 {
+	engine.CommandSys.MoveCommand.SetActionToExecute([&](auto dir)
+		{
+			Event ev = Event();
+			ev.type = EventType::MOVE_POKEBALL;
+			ev.runPerEntity = true;
+			ev.thingsToEffect.insert(GameLogicCategories::POKEBALL);
+			ev.floatData1 = engine.DeltaTime();
+			glm::vec3 quatOrientation(sin(engine.GraphicsSys.camera.yaw) * cos(engine.GraphicsSys.camera.pitch), -sin(engine.GraphicsSys.camera.pitch), -cos(engine.GraphicsSys.camera.yaw) * cos(engine.GraphicsSys.camera.pitch));
+
+			if (dir == MoveDirection::UP)
+			{
+				ev.stringData1 = "Up";
+				engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed * quatOrientation;
+			}
+			if (dir == MoveDirection::LEFT)
+			{
+				ev.stringData1 = "Left";
+				engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed * -glm::normalize(glm::cross(quatOrientation, engine.GraphicsSys.camera.Up));
+			}
+			if (dir == MoveDirection::DOWN)
+			{
+				ev.stringData1 = "Down";
+				engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed * -quatOrientation;
+			}
+			if (dir == MoveDirection::RIGHT)
+			{
+				ev.stringData1 = "Right";
+				engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed * glm::normalize(glm::cross(quatOrientation, engine.GraphicsSys.camera.Up));
+			}
+			engine.DoGameLogicScriptSys.HandleEvent(ev);
+		});
+
+	engine.CommandSys.SpaceCommand.SetActionToExecute([&]()
+		{
+			engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed / 2.f * engine.GraphicsSys.camera.Up;
+		});
+	engine.CommandSys.CtrlCommand.SetActionToExecute([&]()
+		{
+			engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed / 2.f * -engine.GraphicsSys.camera.Up;
+		});
+	engine.CommandSys.ShiftCommand.SetActionToExecute([&]()
+		{
+			engine.GraphicsSys.camera.speed = 0.5f;
+		});
+	engine.CommandSys.UnShiftCommand.SetActionToExecute([&]()
+		{
+			engine.GraphicsSys.camera.speed = 0.1f;
+		});
 	return true;
 }
 

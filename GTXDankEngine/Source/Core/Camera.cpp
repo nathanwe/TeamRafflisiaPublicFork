@@ -21,44 +21,7 @@ Camera::Camera(int width, int height, glm::vec3 position)
 
 void Camera::Init()
 {
-	engine.CommandSys.MoveCommand.SetActionToExecute([&](auto dir)
-		{
-			glm::vec3 quatOrientation(sin(yaw) * cos(pitch), -sin(pitch), -cos(yaw) * cos(pitch));
 
-			if (dir == MoveDirection::UP)
-			{
-				Position += speed * quatOrientation;
-			}
-			if (dir == MoveDirection::LEFT)
-			{
-				Position += speed * -glm::normalize(glm::cross(quatOrientation, Up));
-			}
-			if (dir == MoveDirection::DOWN)
-			{
-				Position += speed * -quatOrientation;
-			}
-			if (dir == MoveDirection::RIGHT)
-			{
-				Position += speed * glm::normalize(glm::cross(quatOrientation, Up));
-			}
-		});
-
-	engine.CommandSys.SpaceCommand.SetActionToExecute([&]()
-		{
-			Position += speed / 2.f * Up;
-		});
-	engine.CommandSys.CtrlCommand.SetActionToExecute([&]()
-		{
-			Position += speed / 2.f * -Up;
-		});
-	engine.CommandSys.ShiftCommand.SetActionToExecute([&]()
-		{
-			speed = 0.5f;
-		});
-	engine.CommandSys.UnShiftCommand.SetActionToExecute([&]()
-		{
-			speed = 0.1f;
-		});
 }
 
 void Camera::UpdateMatrix(float FOVdeg, float nearPlane, float farPlane)

@@ -67,6 +67,7 @@ enum class EventType
 	EMIT_LION = 4,
 	DESTROY_ENTITY = 5,
 	DESTROY_ALL_ENTITIYS = 6,
-	DESTROY_LIONS = 7
+	DESTROY_LIONS = 7,
+	MOVE_POKEBALL = 8
 };
 #endif // !ENUMS_H
