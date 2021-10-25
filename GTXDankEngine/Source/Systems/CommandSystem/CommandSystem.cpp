@@ -3,6 +3,8 @@
 #include "../../Core/Engine.h"
 #include "../../Core/Camera.h"
 #include "../GraphicsSystem/GraphicsSystem.h"
+#include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
+#include "../Components/TransformComponent/TransformComponent.h"
 
 extern Engine engine;
 
@@ -16,6 +18,7 @@ bool CommandSystem::Init()
 			ev.thingsToEffect.insert(GameLogicCategories::POKEBALL);
 			ev.floatData1 = engine.DeltaTime();
 			glm::vec3 quatOrientation(sin(engine.GraphicsSys.camera.yaw) * cos(engine.GraphicsSys.camera.pitch), -sin(engine.GraphicsSys.camera.pitch), -cos(engine.GraphicsSys.camera.yaw) * cos(engine.GraphicsSys.camera.pitch));
+			
 
 			if (dir == MoveDirection::UP)
 			{
