@@ -13,6 +13,10 @@
 #include "../utils/common.h"
 
 std::vector<Entity> EntityList;
+ResourceManager<JsonFile> SerializationResourceManager;
+ResourceManager<Model> ModelResourceManager;
+ResourceManager<LuaFile> ScriptResourceManager;
+ResourceManager<Texture> TextureResourceManger;
 
 bool Engine::Init()
 {
@@ -21,12 +25,28 @@ bool Engine::Init()
 
 	
 	ScriptResourceManager.Init("Assets/Scripts/FirstScript.lua");
+	//preload resouces
+	ScriptResourceManager.GetResourceHandle("Assets/Scripts/DoEverything.lua");
+	ScriptResourceManager.GetResourceHandle("Assets/Scripts/Menu.lua");
+	ScriptResourceManager.GetResourceHandle("Assets/Scripts/DoLionThings.lua");
+	ScriptResourceManager.GetResourceHandle("Assets/Scripts/DoPokeballThings.lua");
+	ScriptResourceManager.GetResourceHandle("Assets/Scripts/DoLightThings.lua");
+
+	SerializationResourceManager.Init("Assets/Levels/GameObjects.json");
+	//preload resouces
+	SerializationResourceManager.GetResourceHandle("Assets/Levels/GameObjects.json");
+
+
+	if (!GraphicsSys.Init()) LOG_ERROR("Graphics System failed to init.");
+
+	ModelResourceManager.Init("Assets/models/PokemonBall/model.obj");
+	TextureResourceManger.Init("Assets/models/PokemonBall/albedo.jpg");
 	
 	if (!EntitySys.Init()) LOG_ERROR("Entity System failed to init.");
 	if (!AudioSys.Init()) LOG_ERROR("Audio System failed to init.");
 
 	if (!CommandSys.Init()) LOG_ERROR("Command System failed to init.");
-	if (!GraphicsSys.Init()) LOG_ERROR("Graphics System failed to init.");
+	
 	if (!GameObjectFac.Init()) LOG_ERROR("Game Object Fac failed to init.");
 	UISys.GrabWindow(GraphicsSys.pWindow);
 	if (!UISys.Init()) LOG_ERROR("UI System failed to init.");
@@ -35,8 +55,7 @@ bool Engine::Init()
 	Framerate = std::make_shared<FramerateController>();
 	Framerate->Init(60);
 
-	ModelResourceManager.Init("Assets/models/PokemonBall/model.obj");
-	TextureResourceManger.Init("Assets/models/PokemonBall/albedo.jpg");
+	
 
 	
 
@@ -57,6 +76,8 @@ bool Engine::Init()
 
 	if (!SceneSys.Init())  LOG_ERROR("Scene System failed to init.");
 
+	
+	
 
 	LOG_INFO("Engine init.");
 	return true;
@@ -139,6 +160,7 @@ void Engine::Destroy()
 	ScriptResourceManager.Destroy();
 	TextureResourceManger.Destroy();
 	ModelResourceManager.Destroy();
+	SerializationResourceManager.Destroy();
 	
 	
 	/*

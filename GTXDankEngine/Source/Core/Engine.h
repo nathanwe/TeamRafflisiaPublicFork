@@ -20,6 +20,11 @@
 
 extern std::vector<Entity> EntityList;
 
+extern ResourceManager<Model> ModelResourceManager;
+extern ResourceManager<JsonFile> SerializationResourceManager;
+extern ResourceManager<LuaFile> ScriptResourceManager;
+extern ResourceManager<Texture> TextureResourceManger;
+
 // Abstract base class for all components
 class AbstractComponent
 {
@@ -77,7 +82,7 @@ public:
 	ScriptSystem DoGameLogicScriptSys;
 	ScriptSystem MenuSys;
 
-	ResourceManager<JsonFile> serializationResourceManager;
+	
 
 
 private:

@@ -3,7 +3,7 @@
 #include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
 #include "../Components/TransformComponent/TransformComponent.h"
 
-ResourceManager<LuaFile> ScriptResourceManager;
+
 extern Engine engine;
 
 bool CheckLua(lua_State* L, int r)

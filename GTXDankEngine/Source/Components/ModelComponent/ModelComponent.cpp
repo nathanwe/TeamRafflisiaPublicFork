@@ -5,7 +5,6 @@
 #include "../Core/ResourceManager.h"
 
 AbstractComponentPool<ModelComponent> ModelComponentPool;
-ResourceManager<Model> ModelResourceManager;
 
 ModelComponent::ModelComponent(Entity entity, ResourceHandle<Model>* m)
 	:AbstractComponent{entity}, model(m)

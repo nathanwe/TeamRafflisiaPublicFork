@@ -330,7 +330,7 @@ int lua_MakeLionByHand(lua_State* L)
     EntityList.push_back(lion);
 
     // model component
-    ResourceHandle<Model>* lionModel = ModelResourceManager.GetResourceHandleNoThread("Assets/models/Lion/model.obj");
+    ResourceHandle<Model>* lionModel = ModelResourceManager.GetResourceHandle("Assets/models/Lion/model.obj");
     ModelComponentPool.Add(lion, (lionModel));
 
     // Transform component

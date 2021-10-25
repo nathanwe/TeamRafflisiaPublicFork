@@ -69,7 +69,7 @@ void DeserializeGameLogic(ordered_json j, Entity e)
 
 bool GameObjectFactory::Init()
 {
-    auto* handle = engine.serializationResourceManager.GetResourceHandleNoThread("Assets/Levels/gameObjects.json");
+    auto* handle = SerializationResourceManager.GetResourceHandleNoThread("Assets/Levels/gameObjects.json");
     ordered_json archetypeJson = handle->GetPointer()->data;
 
     for (auto itr = archetypeJson.begin(); itr != archetypeJson.end(); ++itr)

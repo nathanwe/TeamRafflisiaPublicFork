@@ -86,8 +86,6 @@ public:
 };
 
 
-extern ResourceManager<LuaFile> ScriptResourceManager;
-
 class ScriptSystem : public System
 {
 public:

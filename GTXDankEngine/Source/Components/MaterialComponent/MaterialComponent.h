@@ -16,7 +16,6 @@ public:
 };
 
 extern AbstractComponentPool<MaterialComponent> MaterialComponentPool;
-extern ResourceManager<Texture> TextureResourceManger;
 
 
 #endif
