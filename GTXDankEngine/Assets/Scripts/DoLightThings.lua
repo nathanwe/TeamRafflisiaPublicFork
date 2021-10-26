@@ -27,3 +27,13 @@ function UpdateLight (dt, e)
 		end
 	AddToVQS(e, 0, speed*directions[e]*dt, 0)
 end
+
+function HandleEventLight(EventData)
+	if EventData.type == 5 then
+		DestroyLight(EventData.e1)
+	end
+	if EventData.type == 6 then
+		timers = {}
+		directions = {}
+	end
+end

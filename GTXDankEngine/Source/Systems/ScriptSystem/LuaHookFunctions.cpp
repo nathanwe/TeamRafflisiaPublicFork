@@ -5,6 +5,7 @@
 #include "../Components/TransformComponent/TransformComponent.h"
 #include "../Components/ModelComponent/ModelComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
+#include "../Components/LightComponent/LightComponent.h"
 #include "../Core/Engine.h"
 #include "../Core/ResourceManager.h"
 
@@ -228,7 +229,7 @@ int lua_AddToVQS(lua_State* L)
 
 }
 
-int lua_GetEntiysByCategory(lua_State* L)
+int lua_GetEntitiesByCategory(lua_State* L)
 {
     GameLogicCategories gLC = static_cast<GameLogicCategories>(lua_tointeger(L, 1));
     for (auto comp : GameLogicCategoryComponentPool.componentList)
@@ -329,7 +330,7 @@ int lua_MakeLionByHand(lua_State* L)
     EntityList.push_back(lion);
 
     // model component
-    ResourceHandle<Model>* lionModel = ModelResourceManager.GetResourceHandleNoThread("Assets/models/Lion/model.obj");
+    ResourceHandle<Model>* lionModel = ModelResourceManager.GetResourceHandle("Assets/models/Lion/model.obj");
     ModelComponentPool.Add(lion, (lionModel));
 
     // Transform component
@@ -394,5 +395,16 @@ int lua_SendAudioEvent(lua_State* L)
 {
     Event ev = ReceiveEvent(L);
     engine.AudioSys.HandleEvent(ev);
+    return 1;
+}
+
+int lua_DeleteEntity(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tonumber(L, 1));
+    Event ev = Event(true);
+    ev.type = EventType::DESTROY_ENTITY;
+    ev.e1 = e;
+    engine.DoGameLogicScriptSys.HandleEvent(ev);
+    engine.EntitySys.DestroyEntity(e);
     return 1;
 }

@@ -181,6 +181,24 @@
     <Filter Include="Resource Files\Shaders\PostProcess">
       <UniqueIdentifier>{25aa4165-3038-4aeb-b4c7-50cc10773a5d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Shaders\DebugRender">
+      <UniqueIdentifier>{37077e0d-6e08-47a3-9d21-62cc4e1b3789}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\GraphicsSystem\DebugRender">
+      <UniqueIdentifier>{17a6709a-357e-481c-b5a0-a4eef0b45a82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems\GraphicsSystem\DebugRender">
+      <UniqueIdentifier>{e36491d0-281f-49be-b371-f8aaa0f96113}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Levels">
+      <UniqueIdentifier>{612aa5d4-f79d-4190-990c-0206d9898772}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems\SceneSystem">
+      <UniqueIdentifier>{9a5641ae-c20d-426c-a5d1-48ec0232d1ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\SceneSystem">
+      <UniqueIdentifier>{00daabd3-a98e-4360-bfbe-96edbcb3fd32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\brick.png">
@@ -241,6 +259,15 @@
     </None>
     <None Include="Source\Shaders\DeferredRenderer\Cel.shader">
       <Filter>Resource Files\Shaders\DeferredRenderer</Filter>
+    </None>
+    <None Include="Source\Shaders\DebugRender\NormalVec.shader">
+      <Filter>Resource Files\Shaders\DebugRender</Filter>
+    </None>
+    <None Include="Assets\Levels\levels.json">
+      <Filter>Resource Files\Levels</Filter>
+    </None>
+    <None Include="Assets\Levels\gameObjects.json">
+      <Filter>Resource Files\Levels</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -421,6 +448,15 @@
     <ClInclude Include="Source\Systems\GraphicsSystem\PostProcess\PostProcess.h">
       <Filter>Header Files\Systems\GraphicsSystem\PostProcess</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\GraphicsSystem\DebugRender\DebugRender.h">
+      <Filter>Header Files\Systems\GraphicsSystem\DebugRender</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\utils\JsonFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\SceneSystem\SceneSystem.h">
+      <Filter>Header Files\Systems\SceneSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -578,6 +614,12 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\ScriptSystem\ScriptSystem.cpp">
       <Filter>Source Files\Systems\UISystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\GraphicsSystem\DebugRender\DebugRender.cpp">
+      <Filter>Source Files\Systems\GraphicsSystem\DebugRender</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\SceneSystem\SceneSystem.cpp">
+      <Filter>Source Files\Systems\SceneSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

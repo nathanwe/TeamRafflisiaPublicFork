@@ -21,7 +21,8 @@ public:
 	template<typename... constructorArguments>
 	bool Add(Entity e, constructorArguments... args);
 
-	bool Delete(Entity e);
+	void Delete(Entity e);
+	void DeleteAll();
 
 	int GetUsedMemory()
 	{
@@ -119,7 +120,7 @@ AbstractComponentPool<T>::AbstractComponentPool()
 }
 
 template <class T>
-bool AbstractComponentPool<T>::Delete(Entity e)
+void AbstractComponentPool<T>::Delete(Entity e)
 {
 	auto search = componentList.find(e);
 	if (search != componentList.end())
@@ -129,9 +130,18 @@ bool AbstractComponentPool<T>::Delete(Entity e)
 	}
 	else
 	{
-		LOG_ERROR("Tried to delete Entity not found");
-		assert(!"Tried to delete Entity not found");
+		LOG_INFO("Tried to delete component {0} of unkown Entity", typeid(T).name());
 	}
+}
+
+template <class T>
+void AbstractComponentPool<T>::DeleteAll()
+{
+	for (auto itr = componentList.begin(); itr != componentList.end(); itr++)
+	{
+		memory.FreeUsedBlock(itr->second);
+	}
+	componentList.clear();
 }
 
 template<class T>

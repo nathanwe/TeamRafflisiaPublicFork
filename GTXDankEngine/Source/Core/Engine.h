@@ -15,8 +15,15 @@
 #include "../Systems/EntitySystem/EntitySystem.h"
 #include "../utils/common.h"
 #include "GameObjectFactory.h"
+#include "../utils/JsonFile.h"
+#include "../Systems/SceneSystem/SceneSystem.h"
 
 extern std::vector<Entity> EntityList;
+
+extern ResourceManager<Model> ModelResourceManager;
+extern ResourceManager<JsonFile> SerializationResourceManager;
+extern ResourceManager<LuaFile> ScriptResourceManager;
+extern ResourceManager<Texture> TextureResourceManger;
 
 // Abstract base class for all components
 class AbstractComponent
@@ -70,9 +77,12 @@ public:
 	InputManager InputSys;
 	CommandSystem CommandSys;
 	EntitySystem EntitySys;
+	SceneSystem SceneSys;
 	GameObjectFactory GameObjectFac;
 	ScriptSystem DoGameLogicScriptSys;
 	ScriptSystem MenuSys;
+
+	
 
 
 private:

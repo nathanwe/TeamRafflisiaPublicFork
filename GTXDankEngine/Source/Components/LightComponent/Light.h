@@ -35,12 +35,14 @@ inline void to_json(ordered_json& j, const Light& light) {
 	to_json(j["Color"], light.Color);
 	to_json(j["Intensity"], light.Intensity);
 	to_json(j["LightType"], light.Type);
+	to_json(j["Target"], light.Target);
 }
 
 inline void from_json(const ordered_json& j, Light& light) {
 	from_json(j["Color"], light.Color);
 	from_json(j["Intensity"], light.Intensity);
 	light.Type = static_cast<LightType>(j["LightType"]);
+	from_json(j["Target"], light.Target);
 }
 
 #endif

@@ -15,6 +15,5 @@ public:
 };
 
 extern AbstractComponentPool<ModelComponent> ModelComponentPool;
-extern ResourceManager<Model> ModelResourceManager;
 
 #endif // !MODELCOMPONENT_H

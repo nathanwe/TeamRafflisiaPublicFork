@@ -25,6 +25,10 @@ void Model::Draw(Shader& shader) const
 
 void Model::OnLoad()
 {
+    for (auto& mesh : meshes)
+    {
+        mesh.setup();
+    }
 }
 
 
@@ -88,7 +92,9 @@ std::vector<Vertex> Model::processVertices(aiMesh* mesh) const
 
         // normals
         if (mesh->HasNormals())
+        {
             setVec3(vertex.Normal, mesh->mNormals[i]);
+        }
 
         // texture coordinates
         if (mesh->mTextureCoords[0]) // does the mesh contain texture coordinates?

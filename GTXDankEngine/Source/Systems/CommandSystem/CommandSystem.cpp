@@ -1,12 +1,64 @@
 #include "pch.h"
 #include "CommandSystem.h"
 #include "../../Core/Engine.h"
+#include "../../Core/Camera.h"
+#include "../GraphicsSystem/GraphicsSystem.h"
+#include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
+#include "../Components/TransformComponent/TransformComponent.h"
 
 extern Engine engine;
 
-
 bool CommandSystem::Init()
 {
+	engine.CommandSys.MoveCommand.SetActionToExecute([&](auto dir)
+		{
+			Event ev = Event();
+			ev.type = EventType::MOVE_POKEBALL;
+			ev.runPerEntity = true;
+			ev.thingsToEffect.insert(GameLogicCategories::POKEBALL);
+			ev.floatData1 = engine.DeltaTime();
+			glm::vec3 quatOrientation(sin(engine.GraphicsSys.camera.yaw) * cos(engine.GraphicsSys.camera.pitch), -sin(engine.GraphicsSys.camera.pitch), -cos(engine.GraphicsSys.camera.yaw) * cos(engine.GraphicsSys.camera.pitch));
+			
+
+			if (dir == MoveDirection::UP)
+			{
+				ev.stringData1 = "Up";
+				engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed * quatOrientation;
+			}
+			if (dir == MoveDirection::LEFT)
+			{
+				ev.stringData1 = "Left";
+				engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed * -glm::normalize(glm::cross(quatOrientation, engine.GraphicsSys.camera.Up));
+			}
+			if (dir == MoveDirection::DOWN)
+			{
+				ev.stringData1 = "Down";
+				engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed * -quatOrientation;
+			}
+			if (dir == MoveDirection::RIGHT)
+			{
+				ev.stringData1 = "Right";
+				engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed * glm::normalize(glm::cross(quatOrientation, engine.GraphicsSys.camera.Up));
+			}
+			engine.DoGameLogicScriptSys.HandleEvent(ev);
+		});
+
+	engine.CommandSys.SpaceCommand.SetActionToExecute([&]()
+		{
+			engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed / 2.f * engine.GraphicsSys.camera.Up;
+		});
+	engine.CommandSys.CtrlCommand.SetActionToExecute([&]()
+		{
+			engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed / 2.f * -engine.GraphicsSys.camera.Up;
+		});
+	engine.CommandSys.ShiftCommand.SetActionToExecute([&]()
+		{
+			engine.GraphicsSys.camera.speed = 0.5f;
+		});
+	engine.CommandSys.UnShiftCommand.SetActionToExecute([&]()
+		{
+			engine.GraphicsSys.camera.speed = 0.1f;
+		});
 	return true;
 }
 
@@ -48,29 +100,29 @@ bool CommandSystem::Destroy()
 void CommandSystem::ExecuteGameplayCommands()
 {
 	//directional movements
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_W) || engine.InputSys.GetControllerAxis(0, 1) <= -deadzone ) 
+	if (engine.InputSys.IsKeyPressed(GLFW_KEY_W))
 	{
 		MoveCommand.Execute(MoveDirection::UP);
 	}
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_A) || engine.InputSys.GetControllerAxis(0, 0) <= -deadzone )
+	if (engine.InputSys.IsKeyPressed(GLFW_KEY_A))
 	{
 		MoveCommand.Execute(MoveDirection::LEFT);
 	}
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_S) || engine.InputSys.GetControllerAxis(0, 1) >= deadzone )
+	if (engine.InputSys.IsKeyPressed(GLFW_KEY_S))
 	{
 		MoveCommand.Execute(MoveDirection::DOWN);
 	}
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_D) || engine.InputSys.GetControllerAxis(0, 0) >= deadzone )
+	if (engine.InputSys.IsKeyPressed(GLFW_KEY_D))
 	{
 		MoveCommand.Execute(MoveDirection::RIGHT);
 	}
 
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_SPACE) || engine.InputSys.IsControllerPressed(0, 0) )
+	if (engine.InputSys.IsKeyPressed(GLFW_KEY_SPACE))
 	{
 		SpaceCommand.Execute();
 	}
 
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_LEFT_SHIFT) || engine.InputSys.GetControllerAxis(0, 5) >= deadzone )
+	if (engine.InputSys.IsKeyPressed(GLFW_KEY_LEFT_SHIFT))
 	{
 		ShiftCommand.Execute();
 	}
@@ -79,7 +131,7 @@ void CommandSystem::ExecuteGameplayCommands()
 		UnShiftCommand.Execute();
 	}
 
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_LEFT_CONTROL) || engine.InputSys.IsControllerPressed(0, 1) )
+	if (engine.InputSys.IsKeyPressed(GLFW_KEY_LEFT_CONTROL))
 	{
 		CtrlCommand.Execute();
 	}
@@ -112,7 +164,14 @@ void CommandSystem::ExecuteGameplayCommands()
 		Attack3Command.Execute();
 	}
 
-
+	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_RIGHT))
+	{
+		NextLevelCommand.Execute();
+	}
+	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_LEFT))
+	{
+		PreviousLevelCommand.Execute();
+	}
 }
 
 void CommandSystem::ExecuteUICommands()

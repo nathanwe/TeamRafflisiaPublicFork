@@ -3,7 +3,7 @@
 #include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
 #include "../Components/TransformComponent/TransformComponent.h"
 
-ResourceManager<LuaFile> ScriptResourceManager;
+
 extern Engine engine;
 
 bool CheckLua(lua_State* L, int r)
@@ -39,11 +39,19 @@ void SendMenuToggleEvent()
     ev.type = EventType::TOGGLE_MENU;
     engine.MenuSys.HandleEvent(ev);
 }
+void SendLionDeleteEvent()
+{
+    Event ev;
+    ev.runPerEntity = true;
+    ev.type = EventType::DESTROY_LIONS;
+    ev.thingsToEffect.insert(GameLogicCategories::LION);
+    engine.DoGameLogicScriptSys.HandleEvent(ev);
+}
 
 bool ScriptSystem::Init()
 {
     LOG_ERROR("script system needs a script");
-    assert(!"script system needs a script");
+    assert(false && "script system needs a script");
     return false;
 }
 
@@ -51,6 +59,7 @@ bool ScriptSystem::Init(std::string filePath)
 {
     engine.CommandSys.Skill1Command.SetActionToExecute(SendLionEmitEvent);
     engine.CommandSys.Skill2Command.SetActionToExecute(SendMenuToggleEvent);
+    engine.CommandSys.Skill3Command.SetActionToExecute(SendLionDeleteEvent);
 
     fileHandle = ScriptResourceManager.GetResourceHandleNoThread(filePath);
     L = luaL_newstate();
@@ -60,7 +69,7 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "HostFunction", lua_HostFunction);
     lua_register(L, "GetExampleData", lua_GetExampleData);
     lua_register(L, "AddToVQS", lua_AddToVQS);
-    lua_register(L, "GetEntiysByCategory", lua_GetEntiysByCategory);
+    lua_register(L, "GetEntiysByCategory", lua_GetEntitiesByCategory);
     lua_register(L, "GetCategorysOfEntity", lua_GetCategorysOfEntity);
     lua_register(L, "UpdateAllEntitys", lua_UpdateAllEntitys);
     lua_register(L, "LoadScript", lua_LoadScript);
@@ -71,6 +80,7 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "EndImgui", lua_EndImgui);
     lua_register(L, "ButtonImgui", lua_ButtonImgui);
     lua_register(L, "SendAudioEvent", lua_SendAudioEvent);
+    lua_register(L, "DeleteEntity", lua_DeleteEntity);
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));
     lua_getglobal(L, "Init");

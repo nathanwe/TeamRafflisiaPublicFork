@@ -102,6 +102,8 @@
     <Image Include="Assets\Textures\popcat.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Levels\gameObjects.json" />
+    <None Include="Assets\Levels\levels.json" />
     <None Include="Assets\Scripts\DoLionThings.lua" />
     <None Include="Assets\Scripts\DoLightThings.lua" />
     <None Include="Assets\Scripts\DoEverything.lua" />
@@ -111,6 +113,7 @@
     <None Include="Skybox.shader" />
     <None Include="Source\Shaders\basic.shader" />
     <None Include="Source\Shaders\basicPBR.shader" />
+    <None Include="Source\Shaders\DebugRender\NormalVec.shader" />
     <None Include="Source\Shaders\DeferredRenderer\Cel.shader" />
     <None Include="Source\Shaders\DeferredRenderer\DeferredLighting.shader" />
     <None Include="Source\Shaders\DeferredRenderer\Fill_G_Buffer.shader" />
@@ -119,8 +122,11 @@
     <None Include="Source\Shaders\Shadow\DefaultShadowMap.shader" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\utils\JsonFile.h" />
+    <ClInclude Include="Source\Systems\SceneSystem\SceneSystem.h" />
     <ClInclude Include="Source\Systems\EntitySystem\EntitySystem.h" />
     <ClInclude Include="Source\Core\GameObjectFactory.h" />
+    <ClInclude Include="Source\Systems\GraphicsSystem\DebugRender\DebugRender.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\FBO.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\PostProcess\PostProcess.h" />
     <ClInclude Include="Source\utils\SerializationHelper.h" />
@@ -180,6 +186,7 @@
     <ClInclude Include="Source\utils\VQS.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Systems\SceneSystem\SceneSystem.cpp" />
     <ClCompile Include="Source\Components\GameLogicCategoryComponent\GameLogicCategoryComponent.cpp" />
     <ClCompile Include="Source\Components\RoutineComponent\RoutineComponent.cpp" />
     <ClCompile Include="Source\Core\GameObjectFactory.cpp" />
@@ -248,6 +255,7 @@
     <ClCompile Include="Source\Core\FramerateControlSystem\FramerateController.cpp" />
     <ClCompile Include="Source\Systems\CommandSystem\DirectionCommand.cpp" />
     <ClCompile Include="Source\Systems\EntitySystem\EntitySystem.cpp" />
+    <ClCompile Include="Source\Systems\GraphicsSystem\DebugRender\DebugRender.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\DeferredRenderer\DeferredRenderer.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\FBO.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\GraphicsSystem.cpp" />

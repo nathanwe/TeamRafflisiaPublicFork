@@ -32,7 +32,7 @@ InputManager::~InputManager() {
 	updateThread.join();
 }
 
-void InputManager::Update() 
+void InputManager::Update()
 {
 
 	mouseXPrev = mouseX;
@@ -132,7 +132,7 @@ void InputManager::UpdateThread(GLFWwindow* pWindow)
 				}
 
 			}
-			else 
+			else
 			{	// if a controller is not connected to this port, it is zeroed out
 				for (int i = 0; i < 6; i++) {
 					gamepads_thread[scanned_controller].axes[i] = 0.0f;

@@ -25,11 +25,10 @@ public:
 		std::vector<unsigned int> indices);
 
 	void Draw(Shader& shader) const;
+	void setup();
 
 private:
 	unsigned int VAO;
-
-	void setup();
 
 };
 

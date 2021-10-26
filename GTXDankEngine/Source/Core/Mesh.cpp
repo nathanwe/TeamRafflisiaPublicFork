@@ -11,7 +11,7 @@ Mesh::Mesh(std::vector<Vertex> vertices,
     : vertices(vertices), indices(indices)
 
 {
-    setup();
+    //setup();
 }
 
 void Mesh::Draw(Shader& shader) const

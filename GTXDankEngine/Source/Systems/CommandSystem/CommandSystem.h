@@ -41,8 +41,8 @@ public:
 	//Command Debug2Command;
 	//Command Debug3Command;
 	//
-	//Command DebugNextLevelCommand;
-	//Command DebugPreviousLevelCommand;
+	Command NextLevelCommand;
+	Command PreviousLevelCommand;
 
 private:
 	void ExecuteGameplayCommands();
@@ -52,7 +52,6 @@ private:
 private:
 	bool menuMode;
 	bool debugMode;
-	float deadzone = 0.1f;
 };
 
 #endif // !COMMANDSYSTEM_H
