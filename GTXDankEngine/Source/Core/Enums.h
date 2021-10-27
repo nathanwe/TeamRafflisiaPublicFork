@@ -13,6 +13,8 @@ enum ComponentType
 	MODEL = 3,
 	MATERIAL = 4,
 	GAME_LOGIC = 5,
+	STILL_BODY = 6,
+	MOVING_BODY = 7,
 	TOTAL
 };
 
@@ -22,6 +24,10 @@ NLOHMANN_JSON_SERIALIZE_ENUM(ComponentType, {
 	REGISTER_STRING(MODEL)
 	REGISTER_STRING(MATERIAL)
 	REGISTER_STRING(GAME_LOGIC)
+	//
+	REGISTER_STRING(STILL_BODY)
+	REGISTER_STRING(MOVING_BODY)
+	//
 	});
 
 static std::unordered_map<std::string, int> ComponentNameToType
@@ -31,6 +37,10 @@ static std::unordered_map<std::string, int> ComponentNameToType
 	{"MODEL", 3},
 	{"MATERIAL", 4},
 	{"GAME_LOGIC", 5},
+	//
+	{"GAME_LOGIC", 6},
+	{"GAME_LOGIC", 7},
+	//
 };
 
 enum class ErrorEnum
@@ -70,4 +80,31 @@ enum class EventType
 	DESTROY_LIONS = 7,
 	MOVE_POKEBALL = 8
 };
+
+///////////////////////////////////////////////////////
+// Physics
+///////////////////////////////////////////////////////
+
+enum class Collision_Type
+{
+	STATIC,
+	DYNAMIC,
+
+	BODY_TYPE
+};
+
+///////////////////////////////////////////////////////
+
+
+///////////////////////////////////////////////////////
+
+enum class Shape
+{
+	SPHERE,
+
+	SHAPE
+};
+
+///////////////////////////////////////////////////////
+
 #endif // !ENUMS_H

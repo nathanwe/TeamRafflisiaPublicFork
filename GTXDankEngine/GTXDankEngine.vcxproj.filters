@@ -457,6 +457,21 @@
     <ClInclude Include="Source\Systems\SceneSystem\SceneSystem.h">
       <Filter>Header Files\Systems\SceneSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Components\PhysicsComponent\MovingBodyComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\PhysicsComponent\StillBodyComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\PhysicsComponent\Collider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\PhysicsComponent\RigidBody.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\PhysicsSystem\PhysicsSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -620,6 +635,21 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\SceneSystem\SceneSystem.cpp">
       <Filter>Source Files\Systems\SceneSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\PhysicsComponent\MovingBodyComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\PhysicsComponent\StillBodyComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\PhysicsComponent\Collider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\PhysicsSystem\PhysicsSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\PhysicsComponent\RigidBody.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

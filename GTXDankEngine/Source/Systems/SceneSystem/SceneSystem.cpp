@@ -5,6 +5,10 @@
 #include "../Components/TransformComponent/TransformComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
 #include "../Components/LightComponent/LightComponent.h"
+//
+#include "../Components/PhysicsComponent/StillBodyComponent.h"
+#include "../Components/PhysicsComponent/MovingBodyComponent.h"
+//
 #include "../Components/RoutineComponent/RoutineComponent.h"
 #include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
 

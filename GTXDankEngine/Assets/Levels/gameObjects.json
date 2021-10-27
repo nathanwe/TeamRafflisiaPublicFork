@@ -253,5 +253,43 @@
         "z": 0.0
       }
     }
+  },
+  "Physics1": {
+    "MODEL": {
+      "path": "Assets/models/Sphere/model.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": 0.00800000037997961,
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    }
+  },
+  "Physics2": {
+    "MODEL": {
+      "path": "Assets/models/Sphere/model.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": 0.004999999888241291,
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    }
   }
 }

@@ -17,6 +17,7 @@
 #include "GameObjectFactory.h"
 #include "../utils/JsonFile.h"
 #include "../Systems/SceneSystem/SceneSystem.h"
+#include "../Systems/PhysicsSystem/PhysicsSystem.h"
 
 extern std::vector<Entity> EntityList;
 
@@ -81,6 +82,7 @@ public:
 	GameObjectFactory GameObjectFac;
 	ScriptSystem DoGameLogicScriptSys;
 	ScriptSystem MenuSys;
+	PhysicsSystem PhysicsSys;
 
 	
 
