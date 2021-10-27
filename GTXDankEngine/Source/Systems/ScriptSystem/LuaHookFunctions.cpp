@@ -233,7 +233,7 @@ int lua_AddToVQS(lua_State* L)
 
 }
 
-int lua_GetEntitiesByCategory(lua_State* L)
+int lua_GetEntiysByCategory(lua_State* L)
 {
     GameLogicCategories gLC = static_cast<GameLogicCategories>(lua_tointeger(L, 1));
     for (auto comp : GameLogicCategoryComponentPool.componentList)

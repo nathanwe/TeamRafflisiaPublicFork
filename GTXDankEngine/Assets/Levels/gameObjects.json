@@ -21,7 +21,8 @@
       "AlbedoPath": "Assets/models/PokemonBall/albedo.jpg",
       "MetallicPath": "Assets/models/PokemonBall/metallic.jpg",
       "NormalPath": "Assets/models/PokemonBall/normal.jpg",
-      "RoughnessPath": "Assets/models/PokemonBall/roughness.jpg"
+      "RoughnessPath": "Assets/models/PokemonBall/roughness.jpg",
+      "Alpha": 1.0
     },
     "GAME_LOGIC": [
       "POKEBALL"
@@ -49,7 +50,8 @@
       "AlbedoPath": "Assets/models/Vase/albedo.jpg",
       "MetallicPath": "Assets/models/Vase/metallic.jpg",
       "NormalPath": "Assets/models/Vase/normal.jpg",
-      "RoughnessPath": "Assets/models/Vase/roughness.jpg"
+      "RoughnessPath": "Assets/models/Vase/roughness.jpg",
+      "Alpha": 1.0
     }
   },
   "POINT_LIGHT_SOURCE": {
@@ -146,7 +148,8 @@
       "AlbedoPath": "Assets/models/Lion/albedo.jpg",
       "MetallicPath": "Assets/models/Lion/metallic.jpg",
       "NormalPath": "Assets/models/Lion/normal.jpg",
-      "RoughnessPath": "Assets/models/Lion/roughness.jpg"
+      "RoughnessPath": "Assets/models/Lion/roughness.jpg",
+      "Alpha": 1.0
     },
     "GAME_LOGIC": [
       "LION"
@@ -214,7 +217,8 @@
       "AlbedoPath": "Assets/Textures/PBR_Ice/albedo.tga",
       "MetallicPath": "Assets/Textures/plater/New_Graph_height.png",
       "NormalPath": "Assets/Textures/PBR_Ice/normal.tga",
-      "RoughnessPath": "Assets/Textures/plater/roughness.png"
+      "RoughnessPath": "Assets/Textures/plater/roughness.png",
+      "Alpha": 1.0
     }
   },
   "DirLightSource": {

@@ -69,7 +69,7 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "HostFunction", lua_HostFunction);
     lua_register(L, "GetExampleData", lua_GetExampleData);
     lua_register(L, "AddToVQS", lua_AddToVQS);
-    lua_register(L, "GetEntiysByCategory", lua_GetEntitiesByCategory);
+    lua_register(L, "GetEntiysByCategory", lua_GetEntiysByCategory);
     lua_register(L, "GetCategorysOfEntity", lua_GetCategorysOfEntity);
     lua_register(L, "UpdateAllEntitys", lua_UpdateAllEntitys);
     lua_register(L, "LoadScript", lua_LoadScript);

@@ -81,6 +81,7 @@ void DeserializeMaterial(ordered_json j, Entity e)
     if (NormalPath.empty())
     {
         Material* material = new Material(diffuse);
+        from_json(j, *material);
         MaterialComponentPool.Add(e, (material));
         return;
     }
@@ -90,6 +91,7 @@ void DeserializeMaterial(ordered_json j, Entity e)
         ResourceHandle<Texture>* metallic = TextureResourceManger.GetResourceHandle(MetallicPath);
         ResourceHandle<Texture>* roughness = TextureResourceManger.GetResourceHandle(RoughnessPath);
         Material* material = new Material(diffuse, metallic, normal, roughness);
+        from_json(j, *material);
         MaterialComponentPool.Add(e, (material));
         return;
     }
