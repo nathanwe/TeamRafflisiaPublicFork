@@ -6,6 +6,12 @@
 #include "../Components/TransformComponent/TransformComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
 #include "../Components/LightComponent/LightComponent.h"
+
+//
+#include "../Components/PhysicsComponent/StillBodyComponent.h"
+#include "../Components/PhysicsComponent/MovingBodyComponent.h"
+//
+
 #include "../Components/RoutineComponent/RoutineComponent.h"
 #include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
 #include "../utils/common.h"
@@ -27,6 +33,34 @@ void DeserializeLight(ordered_json j, Entity e)
     from_json(j, *light);
     LightComponentPool.Add(e, (light));
 }
+
+////////////
+// Physics
+////////////////
+
+//void DeserializeStillBody(ordered_json j, Entity e)
+//{
+//    //Light* light = new Light();
+//    //from_json(j, *light);
+//    StillBodyComponentPool.Add(e);
+//}
+//
+//void DeserializeMovingBody(ordered_json j, Entity e)
+//{
+//    /*Light* light = new Light();
+//    from_json(j, *light);*/
+//    MovingBodyComponentPool.Add(e);
+//}
+
+void DeserializeRigidBody(ordered_json j, Entity e)
+{
+    RigidBody* rigidBody = new RigidBody();
+    from_json(j, *rigidBody);
+    MovingBodyComponentPool.Add(e, (rigidBody));
+}
+
+
+//
 
 void DeserializeModel(ordered_json j, Entity e)
 {
@@ -84,6 +118,7 @@ bool GameObjectFactory::Init()
     DeserializeFunctions[3] = DeserializeModel;
     DeserializeFunctions[4] = DeserializeMaterial;
     DeserializeFunctions[5] = DeserializeGameLogic;
+    DeserializeFunctions[6] = DeserializeRigidBody;
 
     return true;
 }
@@ -137,6 +172,37 @@ void GameObjectFactory::SaveObject(std::string name, Entity entity)
         std::string key = json(ComponentType::LIGHT);
         objectJson[key] = *ligthCom->LightSource;
     }
+
+    ////////////
+    // Physics
+    ////////////
+
+    //auto* stillBodyCom = StillBodyComponentPool.GetComponentByEntity(entity);
+    //if (stillBodyCom != nullptr)
+    //{
+    //   /* std::string key = json(ComponentType::STILL_BODY);
+    //    objectJson[key] = *stillBodyCom->BroadPhase;*/
+    //}
+
+    //auto* movingBodyCom = MovingBodyComponentPool.GetComponentByEntity(entity);
+    //if (movingBodyCom != nullptr)
+    //{
+    //   /* std::string key = json(ComponentType::MOVING_BODY);
+    //    objectJson[key] = *movingBodyCom->BroadPhase;*/
+    //}
+
+    auto* movingBodyCom = MovingBodyComponentPool.GetComponentByEntity(entity);
+    if (movingBodyCom != nullptr)
+    {
+        std::string key = json(ComponentType::MOVING_BODY);
+        objectJson[key] = *movingBodyCom->rigidBody;
+    }
+
+
+    //
+
+    
+
 
     auto* gameLogicCom = GameLogicCategoryComponentPool.GetComponentByEntity(entity);
     if (gameLogicCom != nullptr)

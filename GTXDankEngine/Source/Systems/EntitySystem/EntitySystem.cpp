@@ -11,6 +11,11 @@
 #include "../Components/MaterialComponent/MaterialComponent.h"
 #include "../Components/LightComponent/LightComponent.h"
 
+//
+#include "../Components/PhysicsComponent/StillBodyComponent.h"
+#include "../Components/PhysicsComponent/MovingBodyComponent.h"
+//
+
 extern Engine engine;
 
 bool EntitySystem::Init()
@@ -78,6 +83,11 @@ void EntitySystem::DestroyQueuedEntity(Entity e)
 	MaterialComponentPool.Delete(e);
 	ModelComponentPool.Delete(e);
 	LightComponentPool.Delete(e);
+	//
+	StillBodyComponentPool.Delete(e);
+	MovingBodyComponentPool.Delete(e);
+	//
+	
 }
 
 void EntitySystem::DeleteAllQueuedEntities()
@@ -86,6 +96,10 @@ void EntitySystem::DeleteAllQueuedEntities()
 	ModelComponentPool.DeleteAll();
 	MaterialComponentPool.DeleteAll();
 	LightComponentPool.DeleteAll();
+	//
+	StillBodyComponentPool.DeleteAll();
+	MovingBodyComponentPool.DeleteAll();
+	//
 	GameLogicCategoryComponentPool.DeleteAll();
 	TransformComponentPool.DeleteAll();
 	for (Entity e : allocatedEntities)
