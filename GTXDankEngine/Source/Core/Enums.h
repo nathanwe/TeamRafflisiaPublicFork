@@ -38,8 +38,8 @@ static std::unordered_map<std::string, int> ComponentNameToType
 	{"MATERIAL", 4},
 	{"GAME_LOGIC", 5},
 	//
-	{"GAME_LOGIC", 6},
-	{"GAME_LOGIC", 7},
+	{"STILL_BODY", 6},
+	{"MOVING_BODY", 7},
 	//
 };
 
