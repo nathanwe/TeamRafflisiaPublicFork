@@ -14,7 +14,7 @@ public:
 	float friction;
 	bool isGravity;
 	float mass;
-	Collision_Type collisionType;
+	CollisionType collisionType;
 
 	//State
 	bool isColliding;

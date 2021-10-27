@@ -85,7 +85,7 @@ enum class EventType
 // Physics
 ///////////////////////////////////////////////////////
 
-enum class Collision_Type
+enum class CollisionType
 {
 	STATIC,
 	DYNAMIC,

@@ -115,7 +115,7 @@
       "rw": 1.0
     },
     "Physics2": {
-      "name": "Physics2",
+      "name": "Light2",
       "px": 3.5,
       "py": 0.0,
       "pz": 4.0,

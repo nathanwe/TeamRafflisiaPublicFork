@@ -472,6 +472,9 @@
     <ClInclude Include="Source\Systems\PhysicsSystem\PhysicsSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\PhysicsSystem\Collision\CollisionFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -649,6 +652,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Components\PhysicsComponent\RigidBody.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\PhysicsSystem\Collision\CollisionFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -25,7 +25,7 @@ bool PhysicsSystem::Init()
 	return true;
 }
 
-void PhysicsSystem::Update(float timeStamp)
+void PhysicsSystem::Update(float timeStamp = 0)
 {
 	/*if (RigidBodyComponentPool.componentList.size() == 0)
 		return;*/

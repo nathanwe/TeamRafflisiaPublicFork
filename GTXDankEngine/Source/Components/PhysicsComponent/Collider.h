@@ -7,12 +7,11 @@
 class Collider
 {
 public:
-	Collider() {}
 
-	Shape shape;
+	Shape shape = Shape::SPHERE;
 
 	// In case of sphere
-	float radius;
+	float radius = 1.0f;
 
 	//// In case of Plane
 	//glm::vec3 normal;

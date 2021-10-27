@@ -50,6 +50,10 @@ bool Engine::Init()
 	if (!AudioSys.Init()) LOG_ERROR("Audio System failed to init.");
 
 	if (!CommandSys.Init()) LOG_ERROR("Command System failed to init.");
+
+	//
+	if (!PhysicsSys.Init()) LOG_ERROR("Physics System failed to init.");
+	//
 	
 	if (!GameObjectFac.Init()) LOG_ERROR("Game Object Fac failed to init.");
 	UISys.GrabWindow(GraphicsSys.pWindow);
@@ -97,6 +101,8 @@ void Engine::Run()
 		Framerate->StartFrame();
 		InputSys.Update();
 		CommandSys.Update();
+
+		PhysicsSys.Update(0);
 		
 		// Game loop format
 		// TODO: Profiler records time spent for each update()
@@ -143,6 +149,10 @@ void Engine::Run()
 void Engine::Destroy()
 {
 	// Destroy all systems in reverse order
+	//
+	if (!PhysicsSys.Destroy()) LOG_ERROR("Physics System failed to destory properly.");
+	//
+
 	if (!CommandSys.Destroy()) LOG_ERROR("Command System failed to destory properly.");
 	if (!UISys.Destroy()) LOG_ERROR("Graphics System failed to destory properly.");
 
