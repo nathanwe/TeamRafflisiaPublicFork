@@ -10,10 +10,10 @@
 class MovingBodyComponent : public AbstractComponent
 {
 public:
-	MovingBodyComponent(Entity e);
+	MovingBodyComponent(Entity e, RigidBody* rigidBody);
 
 public:
-	RigidBody rigidBody;
+	RigidBody* rigidBody;
 
 	Collider BroadPhase;
 	std::vector<Collider> NarrowPhase;

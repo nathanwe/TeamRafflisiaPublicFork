@@ -89,16 +89,16 @@ bool PhysicsSystem::Destroy()
 
 void PhysicsSystem::Integrate(MovingBodyComponent* movingBody, float dt)
 {
-	movingBody->rigidBody.prevVelocity = movingBody->rigidBody.velocity;
-	movingBody->rigidBody.velocity += movingBody->rigidBody.acceleration * dt;
+	movingBody->rigidBody->prevVelocity = movingBody->rigidBody->velocity;
+	movingBody->rigidBody->velocity += movingBody->rigidBody->acceleration * dt;
 
-	if (movingBody->rigidBody.isGravity)
-		if (movingBody->rigidBody.velocity.y < 0)
-			movingBody->rigidBody.velocity += 2.0f * dt * glm::vec3(0, -1, 0);
+	if (movingBody->rigidBody->isGravity)
+		if (movingBody->rigidBody->velocity.y < 0)
+			movingBody->rigidBody->velocity += 2.0f * dt * glm::vec3(0, -1, 0);
 		else
-			movingBody->rigidBody.velocity += 1.8f * dt * glm::vec3(0, -1, 0);
+			movingBody->rigidBody->velocity += 1.8f * dt * glm::vec3(0, -1, 0);
 
-	movingBody->rigidBody.prevPosition = movingBody->rigidBody.position;
-	movingBody->rigidBody.position += movingBody->rigidBody.velocity * dt;
+	movingBody->rigidBody->prevPosition = movingBody->rigidBody->position;
+	movingBody->rigidBody->position += movingBody->rigidBody->velocity * dt;
 
 }

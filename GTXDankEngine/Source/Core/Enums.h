@@ -13,8 +13,8 @@ enum ComponentType
 	MODEL = 3,
 	MATERIAL = 4,
 	GAME_LOGIC = 5,
-	STILL_BODY = 6,
-	MOVING_BODY = 7,
+	MOVING_BODY = 6,
+	STILL_BODY = 7,
 	TOTAL
 };
 
@@ -25,8 +25,8 @@ NLOHMANN_JSON_SERIALIZE_ENUM(ComponentType, {
 	REGISTER_STRING(MATERIAL)
 	REGISTER_STRING(GAME_LOGIC)
 	//
-	REGISTER_STRING(STILL_BODY)
 	REGISTER_STRING(MOVING_BODY)
+	REGISTER_STRING(STILL_BODY)
 	//
 	});
 
@@ -38,8 +38,8 @@ static std::unordered_map<std::string, int> ComponentNameToType
 	{"MATERIAL", 4},
 	{"GAME_LOGIC", 5},
 	//
-	{"STILL_BODY", 6},
-	{"MOVING_BODY", 7},
+	{"MOVING_BODY", 6},
+	{"STILL_BODY", 7},
 	//
 };
 
