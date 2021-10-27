@@ -118,19 +118,17 @@ void DeferredRenderer::Fill_G_Buffer(glm::mat4 view, glm::mat4 projection)
 	Fill_G_BufferShader->setMat4("projection", projection);
 	Fill_G_BufferShader->setMat4("view", view);
 
-	for (const auto& [modelEntity, modelComponent] : ModelComponentPool.componentList) {
 
-		for (const auto& [transEntity, transformComponent] : TransformComponentPool.componentList)
-		{
-			for (const auto& [matEntity, matComponent] : MaterialComponentPool.componentList)
-			{
-				if (modelEntity == transEntity && matEntity == transEntity)
-				{
-					if (matComponent->material->IsPBR) 
-						Fill_G_BufferRender(matComponent->material, transformComponent->transform, modelComponent->model->GetPointer());
-				}
-			}
-		}
+	std::set<Entity> Entitys = MaterialComponentPool.Get3SharedEntitys(TransformComponentPool.componentList, ModelComponentPool.componentList);
+	for (auto e : Entitys)
+	{
+		auto matComponent = MaterialComponentPool.GetComponentByEntity(e);
+		auto transformComponent = TransformComponentPool.GetComponentByEntity(e);
+		auto modelComponent = ModelComponentPool.GetComponentByEntity(e);
+
+		// PBR and opaque
+		if (matComponent->material->IsPBR && matComponent->material->Alpha == 1.0f)
+			Fill_G_BufferRender(matComponent->material, transformComponent->transform, modelComponent->model->GetPointer());
 	}
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);

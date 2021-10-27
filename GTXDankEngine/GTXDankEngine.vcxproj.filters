@@ -199,6 +199,15 @@
     <Filter Include="Source Files\Systems\SceneSystem">
       <UniqueIdentifier>{00daabd3-a98e-4360-bfbe-96edbcb3fd32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Systems\GraphicsSystem\OIT">
+      <UniqueIdentifier>{aede0c9e-19e5-44a3-a6f7-f265fd6e70d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems\GraphicsSystem\OIT">
+      <UniqueIdentifier>{c08367b3-0b60-40fd-bb79-2072d7b389f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\OIT">
+      <UniqueIdentifier>{5915912b-c6f5-44d4-9f83-0891912b40ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\brick.png">
@@ -268,6 +277,12 @@
     </None>
     <None Include="Assets\Levels\gameObjects.json">
       <Filter>Resource Files\Levels</Filter>
+    </None>
+    <None Include="Source\Shaders\OIT\TransparentPass.shader">
+      <Filter>Resource Files\Shaders\OIT</Filter>
+    </None>
+    <None Include="Source\Shaders\OIT\CompositionPass.shader">
+      <Filter>Resource Files\Shaders\OIT</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -457,6 +472,9 @@
     <ClInclude Include="Source\Systems\SceneSystem\SceneSystem.h">
       <Filter>Header Files\Systems\SceneSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\GraphicsSystem\OIT\OIT.h">
+      <Filter>Header Files\Systems\GraphicsSystem\OIT</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Components\PhysicsComponent\MovingBodyComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -638,6 +656,9 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\SceneSystem\SceneSystem.cpp">
       <Filter>Source Files\Systems\SceneSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\GraphicsSystem\OIT\OIT.cpp">
+      <Filter>Source Files\Systems\GraphicsSystem\OIT</Filter>
     </ClCompile>
     <ClCompile Include="Source\Components\PhysicsComponent\MovingBodyComponent.cpp">
       <Filter>Source Files</Filter>
