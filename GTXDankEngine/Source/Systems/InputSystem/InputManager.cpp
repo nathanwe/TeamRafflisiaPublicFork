@@ -104,11 +104,16 @@ void InputManager::UpdateThread(GLFWwindow* pWindow)
 
 				for (int i = 0; i < 6; i++) {	// we are only accounting for 6 axes, regardless of controller
 					if (axesCount <= i) {		// if a controller has fewer than 6 axes, its excess axes are treated as zero
-						gamepads_thread[scanned_controller].axes[i] = 0.0f;
+						if (i < 4) {
+							gamepads_thread[scanned_controller].axes[i] = 0.0f;
+						}
+						else {
+							gamepads_thread[scanned_controller].axes[i] = -1.0f;
+						}
 					}
 					else {
 						gamepads_thread[scanned_controller].axes[i] = axes[i];
-						if (abs(axes[i]) > deadzone) {
+						if (i < 4 ? abs(axes[i]) > deadzone : axes[i] > -1.f + deadzone) {
 							gamepads_thread[scanned_controller].active = true;
 						}
 					}
@@ -122,20 +127,32 @@ void InputManager::UpdateThread(GLFWwindow* pWindow)
 				// D-Pad: Up Right Down Left
 
 				for (int i = 0; i < 14; i++) {	// we are only accounting for 14 buttons, regardless of controller
-					if (axesCount <= i) {		// if a controller has fewer than 14 buttons, its excess are treated as unpressed
+					if (buttonCount <= i) {		// if a controller has fewer than 14 buttons, its excess are treated as unpressed
 						gamepads_thread[scanned_controller].buttons[i] = GLFW_RELEASE;
 					}
 					else {
 						gamepads_thread[scanned_controller].buttons[i] = (buttons[i] == GLFW_PRESS);
-						gamepads_thread[scanned_controller].active = true;
+						if (gamepads_thread[scanned_controller].buttons[i]) {
+							gamepads_thread[scanned_controller].active = true;
+						}
 					}
 				}
+
+#ifdef DEBUG
+				if (gamepads_thread[scanned_controller].active) {
+					std::cout << "Controller " << scanned_controller << " is active" << std::endl;
+				}
+#endif // DEBUG
 
 			}
 			else
 			{	// if a controller is not connected to this port, it is zeroed out
+				gamepads_thread[scanned_controller].active = false;
 				for (int i = 0; i < 6; i++) {
 					gamepads_thread[scanned_controller].axes[i] = 0.0f;
+					if (i >= 4) {
+						gamepads_thread[scanned_controller].axes[i] = -1.0f;
+					}
 				}
 				for (int i = 0; i < 14; i++) {
 					gamepads_thread[scanned_controller].buttons[i] = GLFW_RELEASE;

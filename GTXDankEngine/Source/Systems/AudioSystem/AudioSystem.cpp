@@ -144,7 +144,7 @@ int AudioSystem::PlaySound(const char* sound_filename, const glm::vec3& vPos, fl
 }
 void AudioSystem::Set3dListenerAndOrientation(Camera camera)
 {
-    FMOD_VECTOR pos = vec3GLMtoFMOD(camera.Position);
+    FMOD_VECTOR pos = vec3GLMtoFMOD(camera.GetPosition());
     FMOD_VECTOR forward = vec3GLMtoFMOD(camera.Orientation);
     FMOD_VECTOR up = vec3GLMtoFMOD(camera.Up);
 

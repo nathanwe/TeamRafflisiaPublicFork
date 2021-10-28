@@ -44,7 +44,7 @@ public:
 	bool IsControllerTriggered(int controllerNo, int button);
 	bool IsControllerReleased(int controllerNo, int button);
 public:
-
+	float deadzone = 0.1f;
 
 
 
@@ -54,7 +54,7 @@ private:
 
 private:
 	static const int input_buffer_size = 512;
-	float deadzone = 0.1f;
+	
 
 	static const int gamepad_count = 8;
 	struct Gamepad {
