@@ -19,7 +19,8 @@ end
 function HandleEventPerEntityPokeball(e, EventData)
 	if EventData.type == 4 then
 		x,y,z = GetPosition(e)
-		MakeLionByHand(x,y,z)
+		ent = CreateEntity("LION")
+		SetPosition(ent,x,y,z)
 	end
 	if EventData.type == 8 then
 		if EventData.stringData1 == "Up" then

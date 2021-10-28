@@ -52,6 +52,7 @@ function HandleEventPerEntity(e, categoriesToEffect, eventData)
 	for index,thing in pairs(categoriesToEffect) do
 		thisEntity = e
 		gEventData = eventData
+		print("HandleEventPerEntity for " .. e)
 		DoStringWithErrorCheck("HandleEventPerEntity".. categoryNames[thing] .."(thisEntity, gEventData)")
 	end		
 end

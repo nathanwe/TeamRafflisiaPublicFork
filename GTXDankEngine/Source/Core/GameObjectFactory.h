@@ -1,4 +1,7 @@
-#pragma once
+#ifndef GAMEOBJECTFACTORY_H
+#define GAMEOBJECTFACTORY_H
+
+
 
 #include "pch.h"
 #include "../utils/common.h"
@@ -16,3 +19,5 @@ private:
 	std::unordered_map<std::string, ordered_json> archetypes;
 	void (*DeserializeFunctions[ComponentType::TOTAL])(ordered_json j, Entity e);
 };
+
+#endif // !GAMEOBJECTFACTORY_H

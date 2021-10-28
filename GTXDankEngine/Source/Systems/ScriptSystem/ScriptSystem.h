@@ -62,6 +62,8 @@ int lua_EndImgui(lua_State* L);
 int lua_ButtonImgui(lua_State* L);
 int lua_SendAudioEvent(lua_State* L);
 int lua_DeleteEntity(lua_State* L);
+int lua_CreateEntity(lua_State* L);
+int lua_SetPosition(lua_State* L);
 
 
 class LuaFile

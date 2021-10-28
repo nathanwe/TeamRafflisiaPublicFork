@@ -12,6 +12,7 @@
 //
 #include "../Core/Engine.h"
 #include "../Core/ResourceManager.h"
+#include "../Core/GameObjectFactory.h"
 
 
 extern Engine engine;
@@ -229,7 +230,7 @@ int lua_AddToVQS(lua_State* L)
         trans->transform->position.y += amountToAddy;
         trans->transform->position.z += amountToAddz;
     }
-    return 1;
+    return 0;
 
 }
 
@@ -295,7 +296,7 @@ int lua_UpdateAllEntitys(lua_State* L)
             LOG_ERROR("scriptsystem error, UpdateEntity not found")
         }
     }
-    return 1;
+    return 0;
 }
 
 int lua_LoadScript(lua_State* L)
@@ -314,7 +315,7 @@ int lua_LoadScript(lua_State* L)
         LOG_ERROR("scriptsystem error, DoStringWithErrorCheck not found")
     }
 
-    return 1;
+    return 0;
 }
 
 int lua_GetKeyTriggered(lua_State* L)
@@ -350,7 +351,7 @@ int lua_MakeLionByHand(lua_State* L)
     Material* lionMat = new Material(lionDiffuse, lionMetallic, lionNormal, lionRoughness);
     MaterialComponentPool.Add(lion, (lionMat));
     GameLogicCategoryComponentPool.Add(lion, (std::vector<GameLogicCategories>({ GameLogicCategories::LION })));
-    return 1;
+    return 0;
 }
 
 int lua_GetPosition(lua_State* L)
@@ -370,20 +371,20 @@ int lua_GetPosition(lua_State* L)
         lua_pushnumber(L, 0);
         LOG_ERROR("Transform not found");
     }
-    return 1;
+    return 3;
 }
 
 int lua_BeginImgui(lua_State* L)
 {
     const char* menuName = lua_tostring(L, 1);
     ImGui::Begin(menuName);
-    return 1;
+    return 0;
 }
 
 int lua_EndImgui(lua_State* L)
 {
     ImGui::End();
-    return 1;
+    return 0;
 }
 
 int lua_ButtonImgui(lua_State* L)
@@ -399,7 +400,7 @@ int lua_SendAudioEvent(lua_State* L)
 {
     Event ev = ReceiveEvent(L);
     engine.AudioSys.HandleEvent(ev);
-    return 1;
+    return 0;
 }
 
 int lua_DeleteEntity(lua_State* L)
@@ -410,5 +411,32 @@ int lua_DeleteEntity(lua_State* L)
     ev.e1 = e;
     engine.DoGameLogicScriptSys.HandleEvent(ev);
     engine.EntitySys.DestroyEntity(e);
+    return 0;
+}
+int lua_CreateEntity(lua_State* L)
+{
+    std::string str = lua_tostring(L, 1);
+    Entity e = engine.GameObjectFac.CreateObject(str);
+    lua_pushinteger(L, static_cast<int>(e));
     return 1;
+}
+
+int lua_SetPosition(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    float x = static_cast<float>(lua_tonumber(L, 2));
+    float y = static_cast<float>(lua_tonumber(L, 3));
+    float z = static_cast<float>(lua_tonumber(L, 4));
+    TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
+    if (trans != nullptr)
+    {
+        trans->transform->position.x = x;
+        trans->transform->position.y = y;
+        trans->transform->position.z = z;
+    }
+    else
+    {
+        LOG_ERROR("Transform not found");
+    }
+    return 0;
 }
