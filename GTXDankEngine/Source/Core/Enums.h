@@ -78,7 +78,8 @@ enum class EventType
 	DESTROY_ENTITY = 5,
 	DESTROY_ALL_ENTITIYS = 6,
 	DESTROY_LIONS = 7,
-	MOVE_POKEBALL = 8
+	MOVE_POKEBALL = 8,
+	PLAY_SOUND = 9
 };
 
 ///////////////////////////////////////////////////////

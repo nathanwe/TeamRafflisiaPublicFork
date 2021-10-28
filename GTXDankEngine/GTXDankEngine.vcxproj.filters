@@ -226,6 +226,12 @@
     <Filter Include="Header Files\Systems\PhysicsSystem\Collision">
       <UniqueIdentifier>{548bf5c2-7a69-4917-ba6d-ae5afbd7f070}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Components\AudioComponent">
+      <UniqueIdentifier>{78718be9-f549-48d0-bdba-6c6552a8f35b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\AudioComponent">
+      <UniqueIdentifier>{ae1b7713-87f4-473f-b7b1-ba84dc6c195d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\brick.png">
@@ -510,6 +516,9 @@
     </ClInclude>
     <ClInclude Include="Source\Systems\PhysicsSystem\Collision\CollisionFunctions.h">
       <Filter>Header Files\Systems\PhysicsSystem\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\AudioComponent\AudioBus.h">
+      <Filter>Header Files\Components\AudioComponent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

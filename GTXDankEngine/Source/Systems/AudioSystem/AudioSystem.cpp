@@ -18,6 +18,9 @@ bool AudioSystem::Init()
     ERRCHECK(coreSystem->setSoftwareFormat(0, FMOD_SPEAKERMODE_5POINT1, 0));
     ERRCHECK(fmodStudioSystem->initialize(1024, FMOD_STUDIO_INIT_NORMAL, FMOD_INIT_NORMAL| FMOD_INIT_3D_RIGHTHANDED, 0));
 
+    ERRCHECK(coreSystem->createChannelGroup("BGM", &BGM));
+    ERRCHECK(coreSystem->createChannelGroup("SFX", &SFX));
+
     LoadBank("Master.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     LoadBank("Master.strings.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     LoadEvent("event:/BGM");
@@ -89,7 +92,7 @@ void AudioSystem::LoadEvent(const char* event_filename)
         }
     }
 }
-void AudioSystem::LoadSound(const char* sound_filename, bool b3d, bool bLooping, bool bStream)
+void AudioSystem::LoadSound(const char* sound_filename, bool b3d, bool bLooping, bool bStream, bool BUS)
 {
     auto mapIter = soundMaps.find(sound_filename);
     if (mapIter != soundMaps.end())
@@ -104,6 +107,7 @@ void AudioSystem::LoadSound(const char* sound_filename, bool b3d, bool bLooping,
     ERRCHECK(coreSystem->createSound(Common_MediaPath(sound_filename), eMode, nullptr, &pSound));
     if (pSound) {
         soundMaps[sound_filename] = pSound;
+        groupMaps[sound_filename] = (int)BUS;
     }
 }
 void AudioSystem::UnLoadSound(const char* sound_filename)
@@ -139,6 +143,7 @@ int AudioSystem::PlaySound(const char* sound_filename, const glm::vec3& vPos, fl
         ERRCHECK(pChannel->setVolume(dBtoVolume(fVolumedB)));
         ERRCHECK(pChannel->setPaused(false));
         channelMaps[nChannelId] = pChannel;
+        ERRCHECK(pChannel->setChannelGroup(groupMaps[sound_filename] ? BGM : SFX));
     }
     return nChannelId;
 }
@@ -255,6 +260,10 @@ void AudioSystem::HandleEvent(Event event)
     if (event.type == EventType::UNMUTE_ALL)
     {
         allMuted = false;
+    }
+    if (event.type == EventType::PLAY_SOUND)
+    {
+        PlaySound(event.stringData1.c_str(), glm::vec3(event.floatData2, event.floatData3, event.floatData4), event.floatData1);
     }
 }
 
