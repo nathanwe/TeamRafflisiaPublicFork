@@ -1,5 +1,6 @@
 --menu.lua
 showMenu = true
+muted = false
 
 
 function Init()
@@ -10,18 +11,25 @@ end
 function Update(dt)
 	if showMenu then
 		BeginImgui("Sound")
-		local mutePressed = ButtonImgui("Mute")
-		local unmutePressed = ButtonImgui("Unmute")
-		if mutePressed then
-			local AudioEventTable = {}
-			AudioEventTable["type"] = 2
-			SendAudioEvent(AudioEventTable)
+		if muted then
+		
+			local unmutePressed = ButtonImgui("Unmute BGM")
+			if unmutePressed then
+				local AudioEventTable = {}
+				AudioEventTable["type"] = 3
+				SendAudioEvent(AudioEventTable)
+				muted = false
+			end
+		else
+			local mutePressed = ButtonImgui("Mute BGM")
+			if mutePressed then
+				local AudioEventTable = {}
+				AudioEventTable["type"] = 2
+				SendAudioEvent(AudioEventTable)
+				muted = true
+			end
 		end
-		if unmutePressed then
-			local AudioEventTable = {}
-			AudioEventTable["type"] = 3
-			SendAudioEvent(AudioEventTable)
-		end
+		
 		EndImgui()
 	end
 end
