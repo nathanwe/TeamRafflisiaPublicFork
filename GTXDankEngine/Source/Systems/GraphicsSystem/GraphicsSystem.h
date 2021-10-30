@@ -11,6 +11,7 @@
 #include "FBO.h"
 #include "PostProcess/PostProcess.h"
 #include "DebugRender/DebugRender.h"
+#include "OIT/OIT.h"
 
 
 class Light;
@@ -72,6 +73,8 @@ private:
 
 	// post process and forward rendering FBO
 	FBO HdrFBO;
+
+	OIT TransparentRenderer;
 
 	PostProcess PostProcesser;
 

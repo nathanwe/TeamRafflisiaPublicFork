@@ -22,7 +22,7 @@
       "MetallicPath": "Assets/models/PokemonBall/metallic.jpg",
       "NormalPath": "Assets/models/PokemonBall/normal.jpg",
       "RoughnessPath": "Assets/models/PokemonBall/roughness.jpg",
-      "Alpha": 1.0
+      "Alpha": 0.8
     },
     "GAME_LOGIC": [
       "POKEBALL"
@@ -51,7 +51,7 @@
       "MetallicPath": "Assets/models/Vase/metallic.jpg",
       "NormalPath": "Assets/models/Vase/normal.jpg",
       "RoughnessPath": "Assets/models/Vase/roughness.jpg",
-      "Alpha": 1.0
+      "Alpha": 0.5
     }
   },
   "POINT_LIGHT_SOURCE": {

@@ -66,6 +66,8 @@ bool GraphicsSystem::Init()
 
 	HdrFBO.Init(camera.width, camera.height);
 
+	TransparentRenderer.Init(camera.width, camera.height);
+
 	skybox.Init();
 
 	PostProcesser.Init();
@@ -126,16 +128,17 @@ void GraphicsSystem::Render()
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// PBR rendering, all local pass
-	DeferredRender.Render(camera.Position, Shadow, HdrFBO.GetFBO());
+	DeferredRender.Render(camera.GetPosition(), Shadow, HdrFBO.GetFBO());
+
+	DeferredRender.CopyDepthBufferToTarget(HdrFBO.GetFBO(), camera.width, camera.height);
+	skybox.Render(camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f), HdrFBO.GetFBO());
+
+	// Forward Rendering
+	// Render transparent objects
+	TransparentRenderer.Render(HdrFBO.GetFBO(), camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 300.0f), DeferredRender.GetDepth());
 
 	// post processing
 	PostProcesser.Render(HdrFBO);
-
-	// copy depth buffer from G buffer
-	// becasue skybox needs depth info in order to render correctly
-	DeferredRender.CopyDepthBufferToTarget(0, camera.width, camera.height);
-
-	skybox.Render(camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f), 0);
 }
 
 
@@ -148,6 +151,9 @@ bool GraphicsSystem::Destroy()
 	PostProcesser.Destroy();
 
 	DeferredRender.Destroy();
+
+	TransparentRenderer.Destroy();
+
 	skybox.Destroy();
 	Shadow.Destroy();
 
@@ -256,6 +262,15 @@ void GraphicsSystem::RenderGraphicsUI(void)
 		ImGui::Checkbox("Enable PCF", &(DeferredRender.EnablePCF));
 		ImGui::Checkbox("Enable Cel Shading", &(DeferredRender.EnableCelShading));
 		ImGui::SliderFloat("Cel Fractor", &(DeferredRender.CelFraction), 0.01f, 10.0f);
+	}
+	ImGui::End();
+
+	ImGui::Begin("Camera Configs");
+	{
+		ImGui::Checkbox("Third Person", &camera.thirdPerson);
+		ImGui::SliderFloat("Offset", &camera.thirdPersonOffset, 0.f, 20.f);
+		ImGui::Text("/////");
+		ImGui::Checkbox("Follow Pokeball", &camera.objectTrack);
 	}
 	ImGui::End();
 }
