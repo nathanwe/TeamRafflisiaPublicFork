@@ -46,13 +46,15 @@ void PhysicsSystem::Update(float timeStamp = 0)
 	//Detect Collision
 	//DetectCollision();
 
-	/*for (const auto& [physicsEntity, rigidBodyComponent] : RigidBodyComponentPool.componentList)
+	for (const auto& [physicsEntity, rigidBodyComponent] : MovingBodyComponentPool.componentList)
 	{
-		if (rigidBodyComponent->collider.shape == Shape::PLANE)
-			continue;
+		/*if (rigidBodyComponent->collider.shape == Shape::PLANE)
+			continue;*/
 
-		TransformComponentPool.componentList[physicsEntity]->transform->position = rigidBodyComponent->position;
-	}*/
+		TransformComponentPool.componentList[physicsEntity]->transform->position = rigidBodyComponent->rigidBody->position;
+		glm::quat qYaw  = glm::angleAxis(0.01f, glm::vec3(0, 1, 0));
+		TransformComponentPool.componentList[physicsEntity]->transform->rotation *= glm::normalize(qYaw);
+	}
 }
 
 
@@ -94,9 +96,9 @@ void PhysicsSystem::Integrate(MovingBodyComponent* movingBody, float dt)
 
 	if (movingBody->rigidBody->isGravity)
 		if (movingBody->rigidBody->velocity.y < 0)
-			movingBody->rigidBody->velocity += 2.0f * dt * glm::vec3(0, -1, 0);
+			movingBody->rigidBody->velocity += 0.5f * dt * glm::vec3(0, -1, 0);
 		else
-			movingBody->rigidBody->velocity += 1.8f * dt * glm::vec3(0, -1, 0);
+			movingBody->rigidBody->velocity += 0.3f * dt * glm::vec3(0, -1, 0);
 
 	movingBody->rigidBody->prevPosition = movingBody->rigidBody->position;
 	movingBody->rigidBody->position += movingBody->rigidBody->velocity * dt;

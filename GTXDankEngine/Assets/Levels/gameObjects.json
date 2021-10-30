@@ -268,12 +268,39 @@
         "y": 0.0,
         "z": 0.0
       },
-      "scale": 0.00800000037997961,
+      "scale": 0.004999999888241291,
       "rotation": {
         "x": 0.0,
         "y": 0.0,
         "z": 0.0,
         "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "Assets/Textures/plater/roughness.png",
+      "Alpha": 1.0
+    },
+    "MOVING_BODY": {
+      "Elasticity": 1.0,
+	    "Friction": 1.0,
+	    "Gravity": true,
+      "Position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Velocity": {
+        "x": 0.5,
+        "y": 2.0,
+        "z": 0.0
+      },
+      "Accelereation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
       }
     }
   },
@@ -283,7 +310,7 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 0.0,
+        "x": 0.5,
         "y": 0.0,
         "z": 0.0
       },
@@ -293,6 +320,33 @@
         "y": 0.0,
         "z": 0.0,
         "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "Assets/Textures/plater/roughness.png",
+      "Alpha": 1.0
+    },
+    "MOVING_BODY": {
+      "Elasticity": 1.0,
+	    "Friction": 1.0,
+	    "Gravity": false,
+      "Position": {
+        "x": 0.5,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Velocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Accelereation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
       }
     }
   }
