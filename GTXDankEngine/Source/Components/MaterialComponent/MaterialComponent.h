@@ -10,9 +10,9 @@
 class MaterialComponent : public AbstractComponent
 {
 public:
-	MaterialComponent(Entity e, Material* mat);
+	MaterialComponent(Entity e, Material mat);
 
-	Material* material;
+	Material material;
 };
 
 extern AbstractComponentPool<MaterialComponent> MaterialComponentPool;

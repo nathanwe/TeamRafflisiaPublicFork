@@ -77,13 +77,13 @@ void SceneSystem::Update(float dt)
 
             //assume we only need position and rotation at this moment
             auto* transCom = TransformComponentPool.GetComponentByEntity(entity);
-            transCom->transform->position.x = j["px"];
-            transCom->transform->position.y = j["py"];
-            transCom->transform->position.z = j["pz"];
-            transCom->transform->rotation.x = j["rx"];
-            transCom->transform->rotation.y = j["ry"];
-            transCom->transform->rotation.z = j["rz"];
-            transCom->transform->rotation.w = j["rw"];
+            transCom->transform.position.x = j["px"];
+            transCom->transform.position.y = j["py"];
+            transCom->transform.position.z = j["pz"];
+            transCom->transform.rotation.x = j["rx"];
+            transCom->transform.rotation.y = j["ry"];
+            transCom->transform.rotation.z = j["rz"];
+            transCom->transform.rotation.w = j["rw"];
         }
     }
     shouldLoadLevel = false;

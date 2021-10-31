@@ -172,10 +172,10 @@ void GraphicsSystem::BindLightSource(Shader* shader)
 		auto lightComponent = LightComponentPool.GetComponentByEntity(e);
 		auto transformComponent = TransformComponentPool.GetComponentByEntity(e);
 	
-		if (lightComponent->LightSource->Type == LightType::Directional)
-			BindDirectionalLight(shader, lightComponent->LightSource, transformComponent->transform);
+		if (lightComponent->LightSource.Type == LightType::Directional)
+			BindDirectionalLight(shader, &lightComponent->LightSource, &transformComponent->transform);
 		else
-			BindPointLight(shader, lightComponent->LightSource, transformComponent->transform, lightIndex);
+			BindPointLight(shader, &lightComponent->LightSource, &transformComponent->transform, lightIndex);
 		
 		++lightIndex;
 	}

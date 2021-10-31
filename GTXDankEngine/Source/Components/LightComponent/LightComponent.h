@@ -9,9 +9,9 @@
 class LightComponent : public AbstractComponent
 {
 public:
-	LightComponent(Entity e, Light* light);
+	LightComponent(Entity e, Light light);
 
-	Light* LightSource;
+	Light LightSource;
 };
 
 extern AbstractComponentPool<LightComponent> LightComponentPool;

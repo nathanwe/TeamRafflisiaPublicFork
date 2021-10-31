@@ -69,7 +69,7 @@ void Camera::Inputs(GLFWwindow* window)
 		if (e != UINT32_MAX) {
 			updated = true;
 			TransformComponent* pTrans = TransformComponentPool.GetComponentByEntity(e);
-			Position = pTrans->transform->position;
+			Position = pTrans->transform.position;
 		}
 	}
 

@@ -226,9 +226,9 @@ int lua_AddToVQS(lua_State* L)
     TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
     if (trans != nullptr)
     {
-        trans->transform->position.x += amountToAddx;
-        trans->transform->position.y += amountToAddy;
-        trans->transform->position.z += amountToAddz;
+        trans->transform.position.x += amountToAddx;
+        trans->transform.position.y += amountToAddy;
+        trans->transform.position.z += amountToAddz;
     }
     return 0;
 
@@ -325,44 +325,15 @@ int lua_GetKeyTriggered(lua_State* L)
     return 1;
 }
 
-int lua_MakeLionByHand(lua_State* L)
-{
-    float xcoord = static_cast<float>(lua_tonumber(L, 1));
-    float ycoord = static_cast<float>(lua_tonumber(L, 2));
-    float zcoord = static_cast<float>(lua_tonumber(L, 3));
-    // lion entity
-    Entity lion = engine.EntitySys.CreateEntity();
-    EntityList.push_back(lion);
-
-    // model component
-    ResourceHandle<Model>* lionModel = ModelResourceManager.GetResourceHandle("Assets/models/Lion/model.obj");
-    ModelComponentPool.Add(lion, (lionModel));
-
-    // Transform component
-    VQS* lionTransform = new VQS(glm::vec3(xcoord, ycoord, zcoord), 1.0f);
-    TransformComponentPool.Add(lion, (lionTransform));
-
-    // Material component
-    ResourceHandle<Texture>* lionDiffuse = TextureResourceManger.GetResourceHandle("Assets/models/Lion/albedo.jpg");
-    ResourceHandle<Texture>* lionNormal = TextureResourceManger.GetResourceHandle("Assets/models/Lion/normal.jpg");
-    ResourceHandle<Texture>* lionMetallic = TextureResourceManger.GetResourceHandle("Assets/models/Lion/metallic.jpg");
-    ResourceHandle<Texture>* lionRoughness = TextureResourceManger.GetResourceHandle("Assets/models/Lion/roughness.jpg");
-
-    Material* lionMat = new Material(lionDiffuse, lionMetallic, lionNormal, lionRoughness);
-    MaterialComponentPool.Add(lion, (lionMat));
-    GameLogicCategoryComponentPool.Add(lion, (std::vector<GameLogicCategories>({ GameLogicCategories::LION })));
-    return 0;
-}
-
 int lua_GetPosition(lua_State* L)
 {
     Entity e = static_cast<Entity>(lua_tointeger(L, 1));
     TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
     if (trans != nullptr)
     {
-        lua_pushnumber(L, trans->transform->position.x);
-        lua_pushnumber(L, trans->transform->position.y);
-        lua_pushnumber(L, trans->transform->position.z);
+        lua_pushnumber(L, trans->transform.position.x);
+        lua_pushnumber(L, trans->transform.position.y);
+        lua_pushnumber(L, trans->transform.position.z);
     }
     else
     {
@@ -430,9 +401,9 @@ int lua_SetPosition(lua_State* L)
     TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
     if (trans != nullptr)
     {
-        trans->transform->position.x = x;
-        trans->transform->position.y = y;
-        trans->transform->position.z = z;
+        trans->transform.position.x = x;
+        trans->transform.position.y = y;
+        trans->transform.position.z = z;
     }
     else
     {

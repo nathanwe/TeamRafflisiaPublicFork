@@ -72,9 +72,9 @@ bool Engine::Init()
 		{
 			Entity newBall = GameObjectFac.CreateObject("POKEBALL");
 			auto* trans = TransformComponentPool.GetComponentByEntity(newBall);
-			trans->transform->position.x += rand() % 5;
-			trans->transform->position.y += rand() % 5;
-			trans->transform->position.z += rand() % 5;
+			trans->transform.position.x += rand() % 5;
+			trans->transform.position.y += rand() % 5;
+			trans->transform.position.z += rand() % 5;
 		});
 
 	//-----------------------------------------------------------------------

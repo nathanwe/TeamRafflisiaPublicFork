@@ -74,7 +74,6 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "UpdateAllEntitys", lua_UpdateAllEntitys);
     lua_register(L, "LoadScript", lua_LoadScript);
     lua_register(L, "GetKeyTriggered", lua_GetKeyTriggered);
-    lua_register(L, "MakeLionByHand", lua_MakeLionByHand);
     lua_register(L, "GetPosition", lua_GetPosition);
     lua_register(L, "BeginImgui", lua_BeginImgui);
     lua_register(L, "EndImgui", lua_EndImgui);

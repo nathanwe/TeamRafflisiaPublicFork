@@ -73,10 +73,10 @@ void Shadow::Update()
     {
         LightComponent* lightComponent = LightComponentPool.GetComponentByEntity(e);
         TransformComponent* transformComponent = TransformComponentPool.GetComponentByEntity(e);
-        if (lightComponent->LightSource->Type == LightType::Directional)
+        if (lightComponent->LightSource.Type == LightType::Directional)
         {
-            target = lightComponent->LightSource->Target;
-            lightPos = transformComponent->transform->position;
+            target = lightComponent->LightSource.Target;
+            lightPos = transformComponent->transform.position;
         }
     }
 
@@ -109,7 +109,7 @@ void Shadow::Render(Shader* shader) const
         auto transformComponent = TransformComponentPool.GetComponentByEntity(e);
         auto modelComponent = ModelComponentPool.GetComponentByEntity(e);
 
-        shader->setMat4("model", transformComponent->transform->Matrix());
+        shader->setMat4("model", transformComponent->transform.Matrix());
         modelComponent->model->GetPointer()->Draw(*shader);
     }
 }

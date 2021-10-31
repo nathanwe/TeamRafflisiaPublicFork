@@ -55,7 +55,6 @@ int lua_GetCategorysOfEntity(lua_State* L);
 int lua_UpdateAllEntitys(lua_State* L);
 int lua_LoadScript(lua_State* L);
 int lua_GetKeyTriggered(lua_State* L);
-int lua_MakeLionByHand(lua_State* L);
 int lua_GetPosition(lua_State* L);
 int lua_BeginImgui(lua_State* L);
 int lua_EndImgui(lua_State* L);

@@ -28,8 +28,8 @@ void DebugRender::RenderLightSource(GLuint fbo)
 		auto transformComponent = TransformComponentPool.GetComponentByEntity(e);
 		auto modelComponent = ModelComponentPool.GetComponentByEntity(e);
 
-		LightSourceShader->setVec3("lightColor", lightComponent->LightSource->Color);
-		LightSourceShader->setMat4("model", transformComponent->transform->Matrix());
+		LightSourceShader->setVec3("lightColor", lightComponent->LightSource.Color);
+		LightSourceShader->setMat4("model", transformComponent->transform.Matrix());
 		modelComponent->model->GetPointer()->Draw(*LightSourceShader);
 	}
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -51,7 +51,7 @@ void DebugRender::DrawNormalVec()
 		auto transformComponent = TransformComponentPool.GetComponentByEntity(e);
 		auto modelComponent = ModelComponentPool.GetComponentByEntity(e);
 
-		NormalVecShader->setMat4("model", transformComponent->transform->Matrix());
+		NormalVecShader->setMat4("model", transformComponent->transform.Matrix());
 		modelComponent->model->GetPointer()->Draw(*NormalVecShader);
 	}
 }
@@ -74,7 +74,7 @@ void DebugRender::DrawWireFrameObj()
 		auto transformComponent = TransformComponentPool.GetComponentByEntity(e);
 		auto modelComponent = ModelComponentPool.GetComponentByEntity(e);
 
-		LightSourceShader->setMat4("model", transformComponent->transform->Matrix());
+		LightSourceShader->setMat4("model", transformComponent->transform.Matrix());
 		modelComponent->model->GetPointer()->Draw(*LightSourceShader);
 	}
 	// disable wireframe mode

@@ -3,7 +3,7 @@
 
 AbstractComponentPool<LightComponent> LightComponentPool;
 
-LightComponent::LightComponent(Entity e, Light* light)
+LightComponent::LightComponent(Entity e, Light light)
 	:AbstractComponent{ entity }, LightSource(light)
 {
 	LOG_INFO("Creating Light component to entity: {}", entity);

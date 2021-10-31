@@ -127,8 +127,8 @@ void DeferredRenderer::Fill_G_Buffer(glm::mat4 view, glm::mat4 projection)
 		auto modelComponent = ModelComponentPool.GetComponentByEntity(e);
 
 		// PBR and opaque
-		if (matComponent->material->IsPBR && matComponent->material->Alpha == 1.0f)
-			Fill_G_BufferRender(matComponent->material, transformComponent->transform, modelComponent->model->GetPointer());
+		if (matComponent->material.IsPBR && matComponent->material.Alpha == 1.0f)
+			Fill_G_BufferRender(&matComponent->material, &transformComponent->transform, modelComponent->model->GetPointer());
 	}
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
