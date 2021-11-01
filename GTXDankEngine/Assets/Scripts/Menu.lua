@@ -1,18 +1,18 @@
 --menu.lua
 showMenu = true
 muted = false
+BGMVolumeLocation = nil
+SFXVolumeLocation = nil
 
 
 function Init()
-	--InitImgui()
-
+	BGMVolumeLocation, SFXVolumeLocation =GetSoundVolumes();
 end
 
 function Update(dt)
 	if showMenu then
 		BeginImgui("Sound")
 		if muted then
-		
 			local unmutePressed = ButtonImgui("Unmute BGM")
 			if unmutePressed then
 				local AudioEventTable = {}
@@ -29,7 +29,8 @@ function Update(dt)
 				muted = true
 			end
 		end
-		
+		IntSliderImgui("BGM Volume", BGMVolumeLocation, 1, 10)
+		IntSliderImgui("SFX Volume", SFXVolumeLocation, 1, 10)
 		EndImgui()
 	end
 end

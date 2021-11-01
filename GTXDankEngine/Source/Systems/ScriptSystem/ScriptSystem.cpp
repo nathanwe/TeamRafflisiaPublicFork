@@ -78,10 +78,15 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "BeginImgui", lua_BeginImgui);
     lua_register(L, "EndImgui", lua_EndImgui);
     lua_register(L, "ButtonImgui", lua_ButtonImgui);
+    lua_register(L, "IntSliderImgui", lua_IntSliderImgui);
     lua_register(L, "SendAudioEvent", lua_SendAudioEvent);
     lua_register(L, "DeleteEntity", lua_DeleteEntity);
     lua_register(L, "CreateEntity", lua_CreateEntity);
     lua_register(L, "SetPosition", lua_SetPosition);
+    lua_register(L, "GetRigidData", lua_GetRigidData);
+    lua_register(L, "SetPhysicsVelocity", lua_SetPhysicsVelocity);
+    lua_register(L, "GetSoundVolumes", lua_GetSoundVolumes);
+
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));
     lua_getglobal(L, "Init");

@@ -360,11 +360,20 @@ int lua_EndImgui(lua_State* L)
 
 int lua_ButtonImgui(lua_State* L)
 {
-    
     const char* ButtonName = lua_tostring(L, 1);
     bool pressed = ImGui::Button(ButtonName, ImVec2(50,25));
     lua_pushboolean(L, pressed);
     return 1;
+}
+
+int lua_IntSliderImgui(lua_State* L)
+{
+    const char* SliderName = lua_tostring(L, 1);
+    void* sliderValueLocation = lua_touserdata(L, 2);
+    int sliderMinValue = lua_tointeger(L, 3);
+    int sliderMaxValue = lua_tointeger(L, 4);
+    ImGui::SliderInt(SliderName, static_cast<int*>(sliderValueLocation), sliderMinValue, sliderMaxValue);
+    return 0;
 }
 
 int lua_SendAudioEvent(lua_State* L)
@@ -410,4 +419,128 @@ int lua_SetPosition(lua_State* L)
         LOG_ERROR("Transform not found");
     }
     return 0;
+}
+
+int lua_GetRigidData(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    lua_newtable(L);
+    int top = lua_gettop(L);
+    MovingBodyComponent* bod = MovingBodyComponentPool.GetComponentByEntity(e);
+    if (bod != nullptr)
+    {
+        lua_pushstring(L, "elasticity");
+        lua_pushnumber(L, bod->rigidBody.elasticity);
+        lua_settable(L, top);
+
+        lua_pushstring(L, "friction");
+        lua_pushnumber(L, bod->rigidBody.friction);
+        lua_settable(L, top);
+
+        lua_pushstring(L, "isGravity");
+        lua_pushboolean(L, bod->rigidBody.isGravity);
+        lua_settable(L, top);
+
+        lua_pushstring(L, "mass");
+        lua_pushnumber(L, bod->rigidBody.mass);
+        lua_settable(L, top);
+
+        lua_pushstring(L, "collisionType");
+        lua_pushinteger(L, static_cast<int>(bod->rigidBody.collisionType));
+        lua_settable(L, top);
+
+        lua_pushstring(L, "isColliding");
+        lua_pushboolean(L, bod->rigidBody.isColliding);
+        lua_settable(L, top);
+
+        lua_pushstring(L, "mass");
+        lua_pushnumber(L, bod->rigidBody.mass);
+        lua_settable(L, top);
+
+        lua_pushstring(L, "position");
+        {
+            lua_newtable(L);
+            int top1 = lua_gettop(L);
+
+            lua_pushstring(L, "x");
+            lua_pushnumber(L, bod->rigidBody.position.x);
+            lua_settable(L, top1);
+
+            lua_pushstring(L, "y");
+            lua_pushnumber(L, bod->rigidBody.position.y);
+            lua_settable(L, top1);
+
+            lua_pushstring(L, "x");
+            lua_pushnumber(L, bod->rigidBody.position.z);
+            lua_settable(L, top1);
+        }
+        lua_settable(L, top);
+
+        lua_pushstring(L, "velocity");
+        {
+            lua_newtable(L);
+            int top1 = lua_gettop(L);
+
+            lua_pushstring(L, "x");
+            lua_pushnumber(L, bod->rigidBody.velocity.x);
+            lua_settable(L, top1);
+
+            lua_pushstring(L, "y");
+            lua_pushnumber(L, bod->rigidBody.velocity.y);
+            lua_settable(L, top1);
+
+            lua_pushstring(L, "x");
+            lua_pushnumber(L, bod->rigidBody.velocity.z);
+            lua_settable(L, top1);
+        }
+        lua_settable(L, top);
+
+        lua_pushstring(L, "acceleration");
+        {
+            lua_newtable(L);
+            int top1 = lua_gettop(L);
+
+            lua_pushstring(L, "x");
+            lua_pushnumber(L, bod->rigidBody.acceleration.x);
+            lua_settable(L, top1);
+
+            lua_pushstring(L, "y");
+            lua_pushnumber(L, bod->rigidBody.acceleration.y);
+            lua_settable(L, top1);
+
+            lua_pushstring(L, "x");
+            lua_pushnumber(L, bod->rigidBody.acceleration.z);
+            lua_settable(L, top1);
+        }
+        lua_settable(L, top);
+
+    }
+    return 1;
+}
+
+int lua_SetPhysicsVelocity(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    float x = static_cast<float>(lua_tonumber(L, 2));
+    float y = static_cast<float>(lua_tonumber(L, 3));
+    float z = static_cast<float>(lua_tonumber(L, 4));
+    MovingBodyComponent* bod = MovingBodyComponentPool.GetComponentByEntity(e);
+    if (bod != nullptr)
+    {
+        bod->rigidBody.velocity.x = x;
+        bod->rigidBody.velocity.x = x;
+        bod->rigidBody.velocity.x = x;
+    }
+    else
+    {
+        LOG_ERROR("Transform not found");
+    }
+    return 0;
+}
+
+int lua_GetSoundVolumes(lua_State* L)
+{
+    lua_pushlightuserdata(L,static_cast<void*>(&engine.AudioSys.BGMVolume));
+    lua_pushlightuserdata(L,static_cast<void*>(&engine.AudioSys.SFXVolume));
+    return 2;
 }
