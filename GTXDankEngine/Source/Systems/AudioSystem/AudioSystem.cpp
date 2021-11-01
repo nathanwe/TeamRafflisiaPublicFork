@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "AudioSystem.h"
 #include "../GraphicsSystem/GraphicsSystem.h"
+#include "../ProfileSystem/ProfileSystem.h"
 #include "../Core/Engine.h"
 #include "../utils/common.h"
 #include <../glm/gtx/string_cast.hpp >
@@ -41,6 +42,9 @@ bool AudioSystem::Init()
 }
 void AudioSystem::Update(float timeStamp)
 {
+
+    Timer timer("Audio Update");
+
     Set3dListenerAndOrientation(engine.GraphicsSys.camera);
 
     std::vector<ChannelMap::iterator> pStoppedChannels;
