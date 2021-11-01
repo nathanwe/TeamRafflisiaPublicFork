@@ -6,6 +6,7 @@
 #include "../Components/LightComponent/LightComponent.h"
 #include "../UISystem/UISystem.h"
 
+#include "../ProfileSystem/ProfileSystem.h"
 
 extern UISystem UISys;
 extern Engine engine;
@@ -82,6 +83,8 @@ bool GraphicsSystem::Init()
 
 void GraphicsSystem::Update(float timeStamp)
 {
+	Timer timer("Graphics Update");
+
 	// clear default framebuffer
 	glClearColor(0.106f, 0.204f, 0.002f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

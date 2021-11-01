@@ -12,6 +12,8 @@
 #include "../Components/RoutineComponent/RoutineComponent.h"
 #include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
 
+#include "../ProfileSystem/ProfileSystem.h"
+
 extern Engine engine;
 
 bool SceneSystem::Init()
@@ -64,6 +66,8 @@ void SceneSystem::LoadPreviousLevel()
 
 void SceneSystem::Update(float dt)
 {
+    Timer timer("Scene Update");
+    
     if (shouldLoadLevel)
     {
         currentLevel = levelToLoad;

@@ -14,6 +14,7 @@
 #include "../Core/FramerateControlSystem/FramerateController.h"
 #include "../Core/Engine.h"
 
+#include "../ProfileSystem/ProfileSystem.h"
 //#include "Collision/CollisionFunctions.h"
 
 extern Engine engine;
@@ -27,6 +28,8 @@ bool PhysicsSystem::Init()
 
 void PhysicsSystem::Update(float timeStamp = 0)
 {
+	Timer timer("Physics Update");
+
 	/*if (RigidBodyComponentPool.componentList.size() == 0)
 		return;*/
 
