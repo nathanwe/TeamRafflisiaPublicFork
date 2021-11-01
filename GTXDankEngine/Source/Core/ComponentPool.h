@@ -29,7 +29,7 @@ public:
 		return memory.GetMemoryGotten();
 	}
 
-	T* GetComponentByEntity(Entity e);
+	inline T* GetComponentByEntity(Entity e);
 
 	template <class U>
 	std::set<Entity> Get2SharedEntitys(std::unordered_map<Entity, U*>& componentList1)

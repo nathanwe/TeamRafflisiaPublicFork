@@ -361,7 +361,9 @@ int lua_EndImgui(lua_State* L)
 int lua_ButtonImgui(lua_State* L)
 {
     const char* ButtonName = lua_tostring(L, 1);
-    bool pressed = ImGui::Button(ButtonName, ImVec2(50,25));
+    int buttonWidth = lua_tointeger(L, 2);
+    int buttonHight = lua_tointeger(L, 3);
+    bool pressed = ImGui::Button(ButtonName, ImVec2(buttonWidth, buttonHight));
     lua_pushboolean(L, pressed);
     return 1;
 }

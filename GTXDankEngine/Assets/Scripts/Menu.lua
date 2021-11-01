@@ -13,7 +13,7 @@ function Update(dt)
 	if showMenu then
 		BeginImgui("Sound")
 		if muted then
-			local unmutePressed = ButtonImgui("Unmute BGM")
+			local unmutePressed = ButtonImgui("Unmute BGM", 100, 50)
 			if unmutePressed then
 				local AudioEventTable = {}
 				AudioEventTable["type"] = 3
@@ -21,7 +21,7 @@ function Update(dt)
 				muted = false
 			end
 		else
-			local mutePressed = ButtonImgui("Mute BGM")
+			local mutePressed = ButtonImgui("Mute BGM", 100, 50)
 			if mutePressed then
 				local AudioEventTable = {}
 				AudioEventTable["type"] = 2
