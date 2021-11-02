@@ -26,7 +26,7 @@ bool AudioSystem::Init()
     LoadBank("Master.strings.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     LoadEvent("event:/BGM");
     PlayEvent("event:/BGM");
-    LoadSound("SaberRelay.mp3", true, true);
+    LoadSound("SaberRelay.mp3", true, false);
     int channel = PlaySound("SaberRelay.mp3");
     SetChannelVolume(channel,-3.0f);
     SetChannel3dPosition(channel, glm::vec3(-10.0f, -10.0f, 0.0f));
@@ -257,11 +257,19 @@ void AudioSystem::MuteAll()
 
 void AudioSystem::HandleEvent(Event event)
 {
-    if (event.type == EventType::MUTE_ALL)
+    if (event.type == EventType::MUTE_BGM)
     {
         allMuted = true;
     }
-    if (event.type == EventType::UNMUTE_ALL)
+    if (event.type == EventType::UNMUTE_BGM)
+    {
+        allMuted = false;
+    }
+    if (event.type == EventType::MUTE_SFX)
+    {
+        allMuted = true;
+    }
+    if (event.type == EventType::UNMUTE_SFX)
     {
         allMuted = false;
     }

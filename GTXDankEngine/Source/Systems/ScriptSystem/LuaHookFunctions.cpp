@@ -101,7 +101,7 @@ Event ReceiveEvent(lua_State* L)
     Event retvalue = Event();
     lua_settop(L, 1);
     luaL_checktype(L, 1, LUA_TTABLE);
-    dumpstack(L);
+    //dumpstack(L);
     int rettype = lua_getfield(L, -1, "type");
     if (rettype != LUA_TNIL)
     {
