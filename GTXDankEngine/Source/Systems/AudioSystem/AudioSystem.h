@@ -74,6 +74,10 @@ public:
 	GroupMap groupMaps;
 
 	bool allMuted;
+	//scripts just directly touch these values between 1-10
+	int BGMVolume;
+	int SFXVolume;
+
 	FMOD::Studio::Bus* masterBus = NULL;
 
 	FMOD::ChannelGroup* BGM;

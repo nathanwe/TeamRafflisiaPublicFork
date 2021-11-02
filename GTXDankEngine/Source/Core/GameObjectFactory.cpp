@@ -22,15 +22,15 @@ extern Engine engine;
 
 void DeserializeVQS(ordered_json j, Entity e)
 {
-    VQS* vqs = new VQS();
-    from_json(j, *vqs);
+    VQS vqs = VQS();
+    from_json(j, vqs);
     TransformComponentPool.Add(e, (vqs));
 }
 
 void DeserializeLight(ordered_json j, Entity e)
 {
-    Light* light = new Light();
-    from_json(j, *light);
+    Light light = Light();
+    from_json(j, light);
     LightComponentPool.Add(e, (light));
 }
 
@@ -47,8 +47,8 @@ void DeserializeLight(ordered_json j, Entity e)
 //
 void DeserializeRigidBody(ordered_json j, Entity e)
 {
-    RigidBody* rigidBody = new RigidBody();
-    from_json(j, *rigidBody);
+    RigidBody rigidBody = RigidBody();
+    from_json(j, rigidBody);
     MovingBodyComponentPool.Add(e, (rigidBody));
 }
 
@@ -102,8 +102,8 @@ void DeserializeMaterial(ordered_json j, Entity e)
 
     if (NormalPath.empty())
     {
-        Material* material = new Material(diffuse);
-        from_json(j, *material);
+        Material material = Material(diffuse);
+        from_json(j, material);
         MaterialComponentPool.Add(e, (material));
         return;
     }
@@ -112,8 +112,8 @@ void DeserializeMaterial(ordered_json j, Entity e)
         ResourceHandle<Texture>* normal = TextureResourceManger.GetResourceHandle(NormalPath);
         ResourceHandle<Texture>* metallic = TextureResourceManger.GetResourceHandle(MetallicPath);
         ResourceHandle<Texture>* roughness = TextureResourceManger.GetResourceHandle(RoughnessPath);
-        Material* material = new Material(diffuse, metallic, normal, roughness);
-        from_json(j, *material);
+        Material material = Material(diffuse, metallic, normal, roughness);
+        from_json(j, material);
         MaterialComponentPool.Add(e, (material));
         return;
     }
@@ -179,21 +179,21 @@ void GameObjectFactory::SaveObject(std::string name, Entity entity)
     if (transCom != nullptr)
     {
         std::string key = json(ComponentType::TRANSFORM);
-        objectJson[key] = *transCom->transform;
+        objectJson[key] = transCom->transform;
     }
 
     auto* matCom = MaterialComponentPool.GetComponentByEntity(entity);
     if (matCom != nullptr)
     {
         std::string key = json(ComponentType::MATERIAL);
-        objectJson[key] = *matCom->material;
+        objectJson[key] = matCom->material;
     }
 
     auto* ligthCom = LightComponentPool.GetComponentByEntity(entity);
     if (ligthCom != nullptr)
     {
         std::string key = json(ComponentType::LIGHT);
-        objectJson[key] = *ligthCom->LightSource;
+        objectJson[key] = ligthCom->LightSource;
     }
 
     ////////////
@@ -218,7 +218,7 @@ void GameObjectFactory::SaveObject(std::string name, Entity entity)
     if (movingBodyCom != nullptr)
     {
         std::string key = json(ComponentType::MOVING_BODY);
-        objectJson[key] = *movingBodyCom->rigidBody;
+        objectJson[key] = (movingBodyCom->rigidBody);
     }
 
 

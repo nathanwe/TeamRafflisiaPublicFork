@@ -3,6 +3,7 @@
 #include "../../Core/Engine.h"
 #include "../../Core/Camera.h"
 #include "../GraphicsSystem/GraphicsSystem.h"
+#include "../ProfileSystem/ProfileSystem.h"
 
 extern Engine engine;
 
@@ -85,6 +86,8 @@ bool CommandSystem::Init()
 
 void CommandSystem::Update(float timeStamp)
 {
+	Timer timer("Command Update");
+
 	//toggle menu mode
 	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_ESCAPE) || engine.InputSys.IsControllerTriggered(0, 7))
 	{

@@ -44,7 +44,7 @@ void PassEvent(lua_State* L, Event event);
 Event ReceiveEvent(lua_State* L);
 
 //c++ func to pass to lua for testing purpouses
-//returns an int, takes a lua_State, and starts with lua_
+//returns an the nuber of valuse it returns in lua, takes a lua_State, and starts with lua_
 int lua_HostFunction(lua_State* L);
 int lua_GetExampleData(lua_State* L);
 
@@ -55,15 +55,19 @@ int lua_GetCategorysOfEntity(lua_State* L);
 int lua_UpdateAllEntitys(lua_State* L);
 int lua_LoadScript(lua_State* L);
 int lua_GetKeyTriggered(lua_State* L);
-int lua_MakeLionByHand(lua_State* L);
 int lua_GetPosition(lua_State* L);
 int lua_BeginImgui(lua_State* L);
 int lua_EndImgui(lua_State* L);
 int lua_ButtonImgui(lua_State* L);
+int lua_IntSliderImgui(lua_State* L);
 int lua_SendAudioEvent(lua_State* L);
 int lua_DeleteEntity(lua_State* L);
 int lua_CreateEntity(lua_State* L);
 int lua_SetPosition(lua_State* L);
+int lua_GetRigidData(lua_State* L);
+int lua_SetPhysicsVelocity(lua_State* L);
+int lua_GetSoundVolumes(lua_State* L);
+
 
 
 class LuaFile

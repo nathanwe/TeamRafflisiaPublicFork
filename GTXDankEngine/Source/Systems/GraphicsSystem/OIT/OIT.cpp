@@ -152,11 +152,11 @@ void OIT::RenderTransparentObjects(glm::mat4 view, glm::mat4 projection)
 		auto modelComponent = ModelComponentPool.GetComponentByEntity(e);
 
 		// if it's transparent object, bind diffuse texture, bind alpha, bind model matrix
-		if (matComponent->material->Alpha != 1.0f)
+		if (matComponent->material.Alpha != 1.0f)
 		{
-			TransparentShader->setTexture("diffuse", matComponent->material->Albedo->GetPointer()->GetID());
-			TransparentShader->setFloat("alpha", matComponent->material->Alpha);
-			TransparentShader->setMat4("model", transformComponent->transform->Matrix());
+			TransparentShader->setTexture("diffuse", matComponent->material.Albedo->GetPointer()->GetID());
+			TransparentShader->setFloat("alpha", matComponent->material.Alpha);
+			TransparentShader->setMat4("model", transformComponent->transform.Matrix());
 
 			modelComponent->model->GetPointer()->Draw(*TransparentShader);	// Draw call
 		}

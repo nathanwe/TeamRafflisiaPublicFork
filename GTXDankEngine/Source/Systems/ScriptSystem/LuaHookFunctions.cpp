@@ -101,7 +101,7 @@ Event ReceiveEvent(lua_State* L)
     Event retvalue = Event();
     lua_settop(L, 1);
     luaL_checktype(L, 1, LUA_TTABLE);
-    dumpstack(L);
+    //dumpstack(L);
     int rettype = lua_getfield(L, -1, "type");
     if (rettype != LUA_TNIL)
     {
@@ -226,9 +226,9 @@ int lua_AddToVQS(lua_State* L)
     TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
     if (trans != nullptr)
     {
-        trans->transform->position.x += amountToAddx;
-        trans->transform->position.y += amountToAddy;
-        trans->transform->position.z += amountToAddz;
+        trans->transform.position.x += amountToAddx;
+        trans->transform.position.y += amountToAddy;
+        trans->transform.position.z += amountToAddz;
     }
     return 0;
 
@@ -325,44 +325,15 @@ int lua_GetKeyTriggered(lua_State* L)
     return 1;
 }
 
-int lua_MakeLionByHand(lua_State* L)
-{
-    float xcoord = static_cast<float>(lua_tonumber(L, 1));
-    float ycoord = static_cast<float>(lua_tonumber(L, 2));
-    float zcoord = static_cast<float>(lua_tonumber(L, 3));
-    // lion entity
-    Entity lion = engine.EntitySys.CreateEntity();
-    EntityList.push_back(lion);
-
-    // model component
-    ResourceHandle<Model>* lionModel = ModelResourceManager.GetResourceHandle("Assets/models/Lion/model.obj");
-    ModelComponentPool.Add(lion, (lionModel));
-
-    // Transform component
-    VQS* lionTransform = new VQS(glm::vec3(xcoord, ycoord, zcoord), 1.0f);
-    TransformComponentPool.Add(lion, (lionTransform));
-
-    // Material component
-    ResourceHandle<Texture>* lionDiffuse = TextureResourceManger.GetResourceHandle("Assets/models/Lion/albedo.jpg");
-    ResourceHandle<Texture>* lionNormal = TextureResourceManger.GetResourceHandle("Assets/models/Lion/normal.jpg");
-    ResourceHandle<Texture>* lionMetallic = TextureResourceManger.GetResourceHandle("Assets/models/Lion/metallic.jpg");
-    ResourceHandle<Texture>* lionRoughness = TextureResourceManger.GetResourceHandle("Assets/models/Lion/roughness.jpg");
-
-    Material* lionMat = new Material(lionDiffuse, lionMetallic, lionNormal, lionRoughness);
-    MaterialComponentPool.Add(lion, (lionMat));
-    GameLogicCategoryComponentPool.Add(lion, (std::vector<GameLogicCategories>({ GameLogicCategories::LION })));
-    return 0;
-}
-
 int lua_GetPosition(lua_State* L)
 {
     Entity e = static_cast<Entity>(lua_tointeger(L, 1));
     TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
     if (trans != nullptr)
     {
-        lua_pushnumber(L, trans->transform->position.x);
-        lua_pushnumber(L, trans->transform->position.y);
-        lua_pushnumber(L, trans->transform->position.z);
+        lua_pushnumber(L, trans->transform.position.x);
+        lua_pushnumber(L, trans->transform.position.y);
+        lua_pushnumber(L, trans->transform.position.z);
     }
     else
     {
@@ -389,11 +360,22 @@ int lua_EndImgui(lua_State* L)
 
 int lua_ButtonImgui(lua_State* L)
 {
-    
     const char* ButtonName = lua_tostring(L, 1);
-    bool pressed = ImGui::Button(ButtonName, ImVec2(50,25));
+    int buttonWidth = lua_tointeger(L, 2);
+    int buttonHight = lua_tointeger(L, 3);
+    bool pressed = ImGui::Button(ButtonName, ImVec2(buttonWidth, buttonHight));
     lua_pushboolean(L, pressed);
     return 1;
+}
+
+int lua_IntSliderImgui(lua_State* L)
+{
+    const char* SliderName = lua_tostring(L, 1);
+    void* sliderValueLocation = lua_touserdata(L, 2);
+    int sliderMinValue = lua_tointeger(L, 3);
+    int sliderMaxValue = lua_tointeger(L, 4);
+    ImGui::SliderInt(SliderName, static_cast<int*>(sliderValueLocation), sliderMinValue, sliderMaxValue);
+    return 0;
 }
 
 int lua_SendAudioEvent(lua_State* L)
@@ -430,13 +412,137 @@ int lua_SetPosition(lua_State* L)
     TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
     if (trans != nullptr)
     {
-        trans->transform->position.x = x;
-        trans->transform->position.y = y;
-        trans->transform->position.z = z;
+        trans->transform.position.x = x;
+        trans->transform.position.y = y;
+        trans->transform.position.z = z;
     }
     else
     {
         LOG_ERROR("Transform not found");
     }
     return 0;
+}
+
+int lua_GetRigidData(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    lua_newtable(L);
+    int top = lua_gettop(L);
+    MovingBodyComponent* bod = MovingBodyComponentPool.GetComponentByEntity(e);
+    if (bod != nullptr)
+    {
+        lua_pushstring(L, "elasticity");
+        lua_pushnumber(L, bod->rigidBody.elasticity);
+        lua_settable(L, top);
+
+        lua_pushstring(L, "friction");
+        lua_pushnumber(L, bod->rigidBody.friction);
+        lua_settable(L, top);
+
+        lua_pushstring(L, "isGravity");
+        lua_pushboolean(L, bod->rigidBody.isGravity);
+        lua_settable(L, top);
+
+        lua_pushstring(L, "mass");
+        lua_pushnumber(L, bod->rigidBody.mass);
+        lua_settable(L, top);
+
+        lua_pushstring(L, "collisionType");
+        lua_pushinteger(L, static_cast<int>(bod->rigidBody.collisionType));
+        lua_settable(L, top);
+
+        lua_pushstring(L, "isColliding");
+        lua_pushboolean(L, bod->rigidBody.isColliding);
+        lua_settable(L, top);
+
+        lua_pushstring(L, "mass");
+        lua_pushnumber(L, bod->rigidBody.mass);
+        lua_settable(L, top);
+
+        lua_pushstring(L, "position");
+        {
+            lua_newtable(L);
+            int top1 = lua_gettop(L);
+
+            lua_pushstring(L, "x");
+            lua_pushnumber(L, bod->rigidBody.position.x);
+            lua_settable(L, top1);
+
+            lua_pushstring(L, "y");
+            lua_pushnumber(L, bod->rigidBody.position.y);
+            lua_settable(L, top1);
+
+            lua_pushstring(L, "x");
+            lua_pushnumber(L, bod->rigidBody.position.z);
+            lua_settable(L, top1);
+        }
+        lua_settable(L, top);
+
+        lua_pushstring(L, "velocity");
+        {
+            lua_newtable(L);
+            int top1 = lua_gettop(L);
+
+            lua_pushstring(L, "x");
+            lua_pushnumber(L, bod->rigidBody.velocity.x);
+            lua_settable(L, top1);
+
+            lua_pushstring(L, "y");
+            lua_pushnumber(L, bod->rigidBody.velocity.y);
+            lua_settable(L, top1);
+
+            lua_pushstring(L, "x");
+            lua_pushnumber(L, bod->rigidBody.velocity.z);
+            lua_settable(L, top1);
+        }
+        lua_settable(L, top);
+
+        lua_pushstring(L, "acceleration");
+        {
+            lua_newtable(L);
+            int top1 = lua_gettop(L);
+
+            lua_pushstring(L, "x");
+            lua_pushnumber(L, bod->rigidBody.acceleration.x);
+            lua_settable(L, top1);
+
+            lua_pushstring(L, "y");
+            lua_pushnumber(L, bod->rigidBody.acceleration.y);
+            lua_settable(L, top1);
+
+            lua_pushstring(L, "x");
+            lua_pushnumber(L, bod->rigidBody.acceleration.z);
+            lua_settable(L, top1);
+        }
+        lua_settable(L, top);
+
+    }
+    return 1;
+}
+
+int lua_SetPhysicsVelocity(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    float x = static_cast<float>(lua_tonumber(L, 2));
+    float y = static_cast<float>(lua_tonumber(L, 3));
+    float z = static_cast<float>(lua_tonumber(L, 4));
+    MovingBodyComponent* bod = MovingBodyComponentPool.GetComponentByEntity(e);
+    if (bod != nullptr)
+    {
+        bod->rigidBody.velocity.x = x;
+        bod->rigidBody.velocity.x = x;
+        bod->rigidBody.velocity.x = x;
+    }
+    else
+    {
+        LOG_ERROR("Transform not found");
+    }
+    return 0;
+}
+
+int lua_GetSoundVolumes(lua_State* L)
+{
+    lua_pushlightuserdata(L,static_cast<void*>(&engine.AudioSys.BGMVolume));
+    lua_pushlightuserdata(L,static_cast<void*>(&engine.AudioSys.SFXVolume));
+    return 2;
 }

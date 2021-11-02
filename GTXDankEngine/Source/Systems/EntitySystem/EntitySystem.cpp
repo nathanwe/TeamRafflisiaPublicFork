@@ -11,6 +11,8 @@
 #include "../Components/MaterialComponent/MaterialComponent.h"
 #include "../Components/LightComponent/LightComponent.h"
 
+#include "../ProfileSystem/ProfileSystem.h"
+
 //
 #include "../Components/PhysicsComponent/StillBodyComponent.h"
 #include "../Components/PhysicsComponent/MovingBodyComponent.h"
@@ -29,6 +31,8 @@ bool EntitySystem::Init()
 
 void EntitySystem::Update(float timeStamp)
 {
+	Timer timer("Entity Update");
+
 	if (deleteAllQueue)
 	{
 

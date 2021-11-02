@@ -5,7 +5,6 @@
 #include "../Core/Enums.h"
 #include "../Core/ComponentPool.h"
 #include "Collider.h"
-#include <vector>
 
 class StillBodyComponent : public AbstractComponent
 {

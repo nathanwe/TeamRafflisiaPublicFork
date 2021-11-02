@@ -11,7 +11,7 @@ public:
 
 	void Update(float deltaTime, InputManager* InputSys)
 	{
-		TransformComponentPool.GetComponentByEntity(entityID)->transform->position.x += 1.0f * direction * deltaTime;
+		TransformComponentPool.GetComponentByEntity(entityID)->transform.position.x += 1.0f * direction * deltaTime;
 		timer += deltaTime;
 
 		if (timer >= swapTime)
@@ -22,12 +22,12 @@ public:
 
 		if (InputSys->IsKeyPressed(GLFW_KEY_G))
 		{
-			TransformComponentPool.GetComponentByEntity(entityID)->transform->position.y += 1.0f * deltaTime;
+			TransformComponentPool.GetComponentByEntity(entityID)->transform.position.y += 1.0f * deltaTime;
 		}
 
 		if (InputSys->IsKeyPressed(GLFW_KEY_H))
 		{
-			TransformComponentPool.GetComponentByEntity(entityID)->transform->position.y -= 1.0f * deltaTime;
+			TransformComponentPool.GetComponentByEntity(entityID)->transform.position.y -= 1.0f * deltaTime;
 		}
 	}
 

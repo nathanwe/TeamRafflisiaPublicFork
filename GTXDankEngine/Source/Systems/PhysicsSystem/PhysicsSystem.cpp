@@ -22,6 +22,7 @@
 #include "../Core/FramerateControlSystem/FramerateController.h"
 #include "../Core/Engine.h"
 
+#include "../ProfileSystem/ProfileSystem.h"
 #include "Collision/CollisionFunctions.h"
 
 extern Engine engine;
@@ -35,6 +36,8 @@ bool PhysicsSystem::Init()
 
 void PhysicsSystem::Update(float timeStamp = 0)
 {
+	Timer timer("Physics Update");
+
 	/*if (RigidBodyComponentPool.componentList.size() == 0)
 		return;*/
 
@@ -117,9 +120,8 @@ bool PhysicsSystem::Destroy()
 
 void PhysicsSystem::Integrate(MovingBodyComponent* movingBody, float dt)
 {
-	movingBody->rigidBody->prevVelocity = movingBody->rigidBody->velocity;
-	movingBody->rigidBody->velocity += movingBody->rigidBody->acceleration * dt;
-
+	movingBody->rigidBody.prevVelocity = movingBody->rigidBody.velocity;
+	movingBody->rigidBody.velocity += movingBody->rigidBody.acceleration * dt;
 
 
 	if (movingBody->rigidBody->isGravity)
@@ -128,8 +130,9 @@ void PhysicsSystem::Integrate(MovingBodyComponent* movingBody, float dt)
 		else
 			movingBody->rigidBody->velocity += 0.8f * movingBody->rigidBody->mass * dt * glm::vec3(0, -1, 0);
 
-	movingBody->rigidBody->prevPosition = movingBody->rigidBody->position;
-	movingBody->rigidBody->position += movingBody->rigidBody->velocity * dt;
+
+	movingBody->rigidBody.prevPosition = movingBody->rigidBody.position;
+	movingBody->rigidBody.position += movingBody->rigidBody.velocity * dt;
 
 	movingBody->rigidBody->prevAcceleration += movingBody->rigidBody->acceleration;
 

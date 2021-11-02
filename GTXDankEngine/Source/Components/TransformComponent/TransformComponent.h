@@ -9,9 +9,9 @@
 class TransformComponent : public AbstractComponent
 {
 public:
-	TransformComponent(Entity e, VQS* transform);
+	TransformComponent(Entity e, VQS transform);
 
-	VQS* transform;	
+	VQS transform;	
 };
 
 extern AbstractComponentPool<TransformComponent> TransformComponentPool;
