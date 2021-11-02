@@ -45,18 +45,40 @@ void DeserializeLight(ordered_json j, Entity e)
 //    StillBodyComponentPool.Add(e);
 //}
 //
-//void DeserializeMovingBody(ordered_json j, Entity e)
-//{
-//    /*Light* light = new Light();
-//    from_json(j, *light);*/
-//    MovingBodyComponentPool.Add(e);
-//}
-
 void DeserializeRigidBody(ordered_json j, Entity e)
 {
     RigidBody* rigidBody = new RigidBody();
     from_json(j, *rigidBody);
     MovingBodyComponentPool.Add(e, (rigidBody));
+}
+
+void DeserializeColliderMovingBody(ordered_json j, Entity e)
+{
+    Collider* collider = new Collider();
+    from_json(j, *collider);
+    MovingBodyComponentPool.GetComponentByEntity(e)->BroadPhase = *collider;
+}
+
+void DeserializeColliderStillBody(ordered_json j, Entity e)
+{
+    Collider* collider = new Collider();
+    from_json(j, *collider);
+    StillBodyComponentPool.GetComponentByEntity(e)->BroadPhase = *collider;
+}
+
+void DeserializeMovingBody(ordered_json j, Entity e)
+{
+    DeserializeRigidBody(j, e);
+    MovingBodyComponentPool.GetComponentByEntity(e)->rigidBody->position = TransformComponentPool.GetComponentByEntity(e)->transform->position;
+    DeserializeColliderMovingBody(j, e);
+    //MovingBodyComponentPool.Add(e);
+}
+void DeserializeStillBody(ordered_json j, Entity e)
+{
+    StillBodyComponentPool.Add(e);
+    StillBodyComponentPool.GetComponentByEntity(e)->position = TransformComponentPool.GetComponentByEntity(e)->transform->position;
+    DeserializeColliderStillBody(j, e);
+    //MovingBodyComponentPool.Add(e);
 }
 
 
@@ -118,7 +140,8 @@ bool GameObjectFactory::Init()
     DeserializeFunctions[3] = DeserializeModel;
     DeserializeFunctions[4] = DeserializeMaterial;
     DeserializeFunctions[5] = DeserializeGameLogic;
-    DeserializeFunctions[6] = DeserializeRigidBody;
+    DeserializeFunctions[6] = DeserializeMovingBody;
+    DeserializeFunctions[7] = DeserializeStillBody;
 
     return true;
 }

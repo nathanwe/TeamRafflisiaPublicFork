@@ -12,7 +12,10 @@
 #include "../Components/RoutineComponent/RoutineComponent.h"
 #include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
 
+//#include "../Core/Engine.h"
+
 extern Engine engine;
+//extern PhysicsSystem PhysicsSys;
 
 bool SceneSystem::Init()
 {
@@ -84,6 +87,10 @@ void SceneSystem::Update(float dt)
             transCom->transform->rotation.y = j["ry"];
             transCom->transform->rotation.z = j["rz"];
             transCom->transform->rotation.w = j["rw"];
+
+            // For Physics
+            engine.PhysicsSys.UpdatePosition();
+            //
         }
     }
     shouldLoadLevel = false;
