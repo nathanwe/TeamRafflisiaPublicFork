@@ -361,8 +361,8 @@ int lua_EndImgui(lua_State* L)
 int lua_ButtonImgui(lua_State* L)
 {
     const char* ButtonName = lua_tostring(L, 1);
-    int buttonWidth = lua_tointeger(L, 2);
-    int buttonHight = lua_tointeger(L, 3);
+    float buttonWidth = static_cast<float>(lua_tonumber(L, 2));
+    float buttonHight = static_cast<float>(lua_tonumber(L, 3));
     bool pressed = ImGui::Button(ButtonName, ImVec2(buttonWidth, buttonHight));
     lua_pushboolean(L, pressed);
     return 1;
@@ -372,8 +372,8 @@ int lua_IntSliderImgui(lua_State* L)
 {
     const char* SliderName = lua_tostring(L, 1);
     void* sliderValueLocation = lua_touserdata(L, 2);
-    int sliderMinValue = lua_tointeger(L, 3);
-    int sliderMaxValue = lua_tointeger(L, 4);
+    int sliderMinValue = static_cast<int>(lua_tointeger(L, 3));
+    int sliderMaxValue = static_cast<int>(lua_tointeger(L, 4));
     ImGui::SliderInt(SliderName, static_cast<int*>(sliderValueLocation), sliderMinValue, sliderMaxValue);
     return 0;
 }

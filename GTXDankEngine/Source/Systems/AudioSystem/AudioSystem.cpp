@@ -65,8 +65,8 @@ void AudioSystem::Update(float timeStamp)
         channelMaps.erase(it);
     }
 
-    SetChannelGroupVolume(BGM, BGMVolume);
-    SetChannelGroupVolume(SFX, SFXVolume);
+    SetChannelGroupVolume(BGM, static_cast<float>(BGMVolume));
+    SetChannelGroupVolume(SFX, static_cast<float>(SFXVolume));
 
     MuteAll();
     ERRCHECK(fmodStudioSystem->update());
@@ -161,7 +161,15 @@ void AudioSystem::Set3dListenerAndOrientation(Camera camera)
 {
     FMOD_VECTOR pos = vec3GLMtoFMOD(camera.GetPosition());
     FMOD_VECTOR forward = vec3GLMtoFMOD(camera.Orientation);
-    FMOD_VECTOR up = vec3GLMtoFMOD(camera.Up);
+    glm::vec3 side = glm::cross(camera.Orientation, camera.Up);
+    glm::vec3 top = glm::cross(side, camera.Orientation);
+    top = glm::normalize(top);
+    if (glm::dot(top, camera.Up) < 0)
+    {
+        top = -top;
+    }
+    FMOD_VECTOR up = vec3GLMtoFMOD(top);
+    
 
     //std::cout << glm::to_string(camera.Position) << glm::to_string(camera.Orientation) << glm::to_string(camera.Up) << std::endl;
     ERRCHECK(coreSystem->set3DListenerAttributes(0, &pos, nullptr, &forward, &up));
