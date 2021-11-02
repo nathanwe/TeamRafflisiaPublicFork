@@ -272,8 +272,12 @@ void GraphicsSystem::RenderGraphicsUI(void)
 	{
 		ImGui::Checkbox("Third Person", &camera.thirdPerson);
 		ImGui::SliderFloat("Offset", &camera.thirdPersonOffset, 0.f, 20.f);
-		ImGui::Text("/////");
 		ImGui::Checkbox("Follow Pokeball", &camera.objectTrack);
+		ImGui::Text("/////");
+		ImGui::Checkbox("Mouse Invert X", &camera.mouseInvertX);
+		ImGui::Checkbox("Mouse Invert Y", &camera.mouseInvertY);
+		ImGui::Checkbox("Gamepad Invert X", &camera.gamepadInvertX);
+		ImGui::Checkbox("Gamepad Invert Y", &camera.gamepadInvertY);
 	}
 	ImGui::End();
 }
