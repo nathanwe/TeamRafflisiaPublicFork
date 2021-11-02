@@ -104,6 +104,16 @@
     }
   },
   "2": {
+    "DirLightSource": {
+      "name": "DirLightSource",
+      "px": -20.0,
+      "py": 20.0,
+      "pz": 20.0,
+      "rx": 0.0,
+      "ry": 0.0,
+      "rz": 0.0,
+      "rw": 1.0
+    },
     "Physics1": {
       "name": "Physics1",
       "px": 0.0,

@@ -546,3 +546,79 @@ int lua_GetSoundVolumes(lua_State* L)
     lua_pushlightuserdata(L,static_cast<void*>(&engine.AudioSys.SFXVolume));
     return 2;
 }
+
+int lua_GetScale(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
+    if (trans != nullptr)
+    {
+        lua_pushnumber(L, trans->transform.scale);
+    }
+    else
+    {
+        lua_pushnumber(L, 0);
+        LOG_ERROR("Transform not found");
+    }
+    return 1;
+}
+
+int lua_SetScale(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    float x = static_cast<float>(lua_tonumber(L, 2));
+    TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
+    if (trans != nullptr)
+    {
+        trans->transform.scale = x;
+    }
+    else
+    {
+        LOG_ERROR("Transform not found");
+    }
+    return 0;
+}
+
+int lua_GetRotation(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
+    if (trans != nullptr)
+    {
+        lua_pushnumber(L, trans->transform.rotation.w);
+        lua_pushnumber(L, trans->transform.rotation.x);
+        lua_pushnumber(L, trans->transform.rotation.y);
+        lua_pushnumber(L, trans->transform.rotation.z);
+    }
+    else
+    {
+        lua_pushnumber(L, 0);
+        lua_pushnumber(L, 0);
+        lua_pushnumber(L, 0);
+        lua_pushnumber(L, 0);
+        LOG_ERROR("Transform not found");
+    }
+    return 4;
+}
+
+int lua_SetRotation(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    float w = static_cast<float>(lua_tonumber(L, 2));
+    float x = static_cast<float>(lua_tonumber(L, 3));
+    float y = static_cast<float>(lua_tonumber(L, 4));
+    float z = static_cast<float>(lua_tonumber(L, 5));
+    TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
+    if (trans != nullptr)
+    {
+        trans->transform.rotation.w = w;
+        trans->transform.rotation.x = x;
+        trans->transform.rotation.y = y;
+        trans->transform.rotation.z = z;
+    }
+    else
+    {
+        LOG_ERROR("Transform not found");
+    }
+    return 0;
+}

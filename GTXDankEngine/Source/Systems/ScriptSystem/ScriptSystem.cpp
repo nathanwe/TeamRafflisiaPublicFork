@@ -86,6 +86,10 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "GetRigidData", lua_GetRigidData);
     lua_register(L, "SetPhysicsVelocity", lua_SetPhysicsVelocity);
     lua_register(L, "GetSoundVolumes", lua_GetSoundVolumes);
+    lua_register(L, "GetScale", lua_GetScale);
+    lua_register(L, "SetScale", lua_SetScale);
+    lua_register(L, "GetRotation", lua_GetRotation);
+    lua_register(L, "SetRotation", lua_SetRotation);
 
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));
