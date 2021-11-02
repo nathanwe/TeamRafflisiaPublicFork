@@ -337,7 +337,7 @@
       "Elasticity": 1.0,
       "Friction": 1.0,
       "Gravity": false,
-      "Mass": 10.0,
+      "Mass": 3.0,
       "Velocity": {
         "x": -0.5,
         "y": 0.0,

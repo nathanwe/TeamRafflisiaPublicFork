@@ -22,72 +22,72 @@ std::pair<std::string, float> MovingBodyComponent::getDebugDraw()
 
 glm::vec3 MovingBodyComponent::getPostion()
 {
-	return this->rigidBody->position;
+	return this->rigidBody.position;
 }
 void MovingBodyComponent::setPostion(glm::vec3 pos)
 {
-	this->rigidBody->position = pos;
+	this->rigidBody.position = pos;
 }
 
 glm::vec3 MovingBodyComponent::getVelocity()
 {
-	return this->rigidBody->velocity;
+	return this->rigidBody.velocity;
 }
 void MovingBodyComponent::setVelocity(glm::vec3 vel)
 {
-	this->rigidBody->velocity = vel;
+	this->rigidBody.velocity = vel;
 }
 
 glm::vec3 MovingBodyComponent::getAccelration()
 {
-	return this->rigidBody->acceleration;
+	return this->rigidBody.acceleration;
 }
 void MovingBodyComponent::setAcceleration(glm::vec3 acc)
 {
-	this->rigidBody->acceleration = acc;
+	this->rigidBody.acceleration = acc;
 }
 
 glm::quat MovingBodyComponent::getOrientation()
 {
-	return this->rigidBody->orientation;
+	return this->rigidBody.orientation;
 }
 void MovingBodyComponent::setOrientation(glm::quat orient)
 {
-	this->rigidBody->orientation = orient;
+	this->rigidBody.orientation = orient;
 }
 
 glm::quat MovingBodyComponent::getAngularVelocity()
 {
-	return this->rigidBody->angularVelocity;
+	return this->rigidBody.angularVelocity;
 }
 void MovingBodyComponent::setAngularVelocity(glm::quat omega)
 {
-	this->rigidBody->angularVelocity = omega;
+	this->rigidBody.angularVelocity = omega;
 }
 
 glm::quat MovingBodyComponent::getTorque()
 {
-	return this->rigidBody->torque;
+	return this->rigidBody.torque;
 }
 void MovingBodyComponent::setTorque(glm::quat tor)
 {
-	this->rigidBody->torque = tor;
+	this->rigidBody.torque = tor;
 }
 
 bool MovingBodyComponent::getGravity()
 {
-	return this->rigidBody->isGravity;
+	return this->rigidBody.isGravity;
 }
 void MovingBodyComponent::setGravity(bool gravity)
 {
-	this->rigidBody->isGravity = gravity;
+	this->rigidBody.isGravity = gravity;
 }
 
 float MovingBodyComponent::getElasticity()
 {
-	return this->rigidBody->elasticity;
+	return this->rigidBody.elasticity;
 }
 void MovingBodyComponent::setElasticity(float elasticity)
 {
-	this->rigidBody->elasticity = elasticity;
+	this->rigidBody.elasticity = elasticity;
 }

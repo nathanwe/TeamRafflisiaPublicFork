@@ -69,14 +69,14 @@ void DeserializeColliderStillBody(ordered_json j, Entity e)
 void DeserializeMovingBody(ordered_json j, Entity e)
 {
     DeserializeRigidBody(j, e);
-    MovingBodyComponentPool.GetComponentByEntity(e)->rigidBody->position = TransformComponentPool.GetComponentByEntity(e)->transform->position;
+    //MovingBodyComponentPool.GetComponentByEntity(e)->rigidBody.position = TransformComponentPool.GetComponentByEntity(e)->transform->position;
     DeserializeColliderMovingBody(j, e);
     //MovingBodyComponentPool.Add(e);
 }
 void DeserializeStillBody(ordered_json j, Entity e)
 {
     StillBodyComponentPool.Add(e);
-    StillBodyComponentPool.GetComponentByEntity(e)->position = TransformComponentPool.GetComponentByEntity(e)->transform->position;
+    //StillBodyComponentPool.GetComponentByEntity(e)->position = TransformComponentPool.GetComponentByEntity(e)->transform->position;
     DeserializeColliderStillBody(j, e);
     //MovingBodyComponentPool.Add(e);
 }

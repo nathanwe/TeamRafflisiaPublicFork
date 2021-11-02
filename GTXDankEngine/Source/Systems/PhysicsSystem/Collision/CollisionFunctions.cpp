@@ -216,15 +216,15 @@ float DynamicSphereToDynamicSphere(glm::vec3* pCenter0i, float Radius0, glm::vec
 
 void ReflectStaticSphereStaticSphere(MovingBodyComponent* mb1, StillBodyComponent* sb2)
 {
-	float delT = DynamicSphereToStaticSphere(&mb1->rigidBody->prevPosition, &mb1->rigidBody->position, mb1->BroadPhase.radius, &mb1->rigidBody->velocity, &sb2->position, sb2->BroadPhase.radius);
+	float delT = DynamicSphereToStaticSphere(&mb1->rigidBody.prevPosition, &mb1->rigidBody.position, mb1->BroadPhase.radius, &mb1->rigidBody.velocity, &sb2->position, sb2->BroadPhase.radius);
 
 	if (delT == -1)
 		return;
 
-	glm::vec3 contactPostion = mb1->rigidBody->prevPosition + mb1->rigidBody->velocity * delT;
+	glm::vec3 contactPostion = mb1->rigidBody.prevPosition + mb1->rigidBody.velocity * delT;
 
 	// Incident direction - opposite
-	glm::vec3 m = mb1->rigidBody->prevPosition - contactPostion;
+	glm::vec3 m = mb1->rigidBody.prevPosition - contactPostion;
 
 	// Normal
 	glm::vec3 n = contactPostion - sb2->position;
@@ -235,43 +235,48 @@ void ReflectStaticSphereStaticSphere(MovingBodyComponent* mb1, StillBodyComponen
 	glm::vec3 r = (2 * (glm::dot(m, n)) * n) - m;
 
 	
-	mb1->rigidBody->position = contactPostion + r;
+	mb1->rigidBody.position = contactPostion + r;
 }
 
 
 void ReflectMovingSphereMovingSphere(MovingBodyComponent* mb1, MovingBodyComponent* mb2, float dt)
 {
-	glm::vec3 V1;
-	glm::vec3 V2;
-	float delT = DynamicSphereToDynamicSphere(&mb1->rigidBody->prevPosition, mb1->BroadPhase.radius, &mb1->rigidBody->velocity, &mb2->rigidBody->prevPosition, mb2->BroadPhase.radius, &mb2->rigidBody->velocity, dt);
+	glm::vec3 V1, vNorm1;
+	glm::vec3 V2, vNorm2;
+	float delT = DynamicSphereToDynamicSphere(&mb1->rigidBody.prevPosition, mb1->BroadPhase.radius, &mb1->rigidBody.velocity, &mb2->rigidBody.prevPosition, mb2->BroadPhase.radius, &mb2->rigidBody.velocity, dt);
 
 	if (delT == -1)
 		return;
 
-	glm::vec3 contactPostion1 = mb1->rigidBody->prevPosition + mb1->rigidBody->velocity * delT;
-	glm::vec3 contactPostion2 = mb2->rigidBody->prevPosition + mb2->rigidBody->velocity * delT;
+	glm::vec3 contactPostion1 = mb1->rigidBody.prevPosition + mb1->rigidBody.velocity * delT;
+	glm::vec3 contactPostion2 = mb2->rigidBody.prevPosition + mb2->rigidBody.velocity * delT;
+
+	glm::vec3 normal = glm::normalize(contactPostion2 - contactPostion1);
 
 
-	if (mb1->rigidBody->elasticity + mb2->rigidBody->elasticity == 0)
+	vNorm1 = glm::dot(normal, mb1->rigidBody.velocity) * normal;
+	vNorm2 = glm::dot(-normal, mb2->rigidBody.velocity) * normal;
+
+	if (mb1->rigidBody.elasticity + mb2->rigidBody.elasticity == 0)
 	{
-		V1 = (mb1->rigidBody->velocity + mb2->rigidBody->velocity) / 2.0f;
-		V2 = (mb1->rigidBody->velocity + mb2->rigidBody->velocity) / 2.0f;
+		V1 = (vNorm1 + vNorm2) / 2.0f;
+		V2 = (vNorm1 + vNorm2) / 2.0f;
 	}
 	else
 	{
-		V1 = ((mb1->rigidBody->mass - mb2->rigidBody->mass) / (mb1->rigidBody->mass + mb2->rigidBody->mass) * mb1->rigidBody->velocity) + ((2 * mb2->rigidBody->mass / (mb1->rigidBody->mass + mb2->rigidBody->mass)) * mb2->rigidBody->velocity);
-		V2 = ((mb2->rigidBody->mass - mb1->rigidBody->mass) / (mb1->rigidBody->mass + mb2->rigidBody->mass) * mb2->rigidBody->velocity) + ((2 * mb1->rigidBody->mass / (mb1->rigidBody->mass + mb2->rigidBody->mass)) * mb1->rigidBody->velocity);
+		V1 = ((mb1->rigidBody.mass - mb2->rigidBody.mass) / (mb1->rigidBody.mass + mb2->rigidBody.mass) * vNorm1) + ((2 * mb2->rigidBody.mass / (mb1->rigidBody.mass + mb2->rigidBody.mass)) * vNorm2);
+		V2 = ((mb2->rigidBody.mass - mb1->rigidBody.mass) / (mb1->rigidBody.mass + mb2->rigidBody.mass) * vNorm2) + ((2 * mb1->rigidBody.mass / (mb1->rigidBody.mass + mb2->rigidBody.mass)) * vNorm1);
 
 
-		V1 *= (mb1->rigidBody->elasticity + mb2->rigidBody->elasticity) / 2;
-		V2 *= (mb1->rigidBody->elasticity + mb2->rigidBody->elasticity) / 2;
+		V1 *= (mb1->rigidBody.elasticity + mb2->rigidBody.elasticity) / 2;
+		V2 *= (mb1->rigidBody.elasticity + mb2->rigidBody.elasticity) / 2;
 	}
 	
 
-	mb1->rigidBody->position = contactPostion1 + V1 * (dt - delT);
-	mb2->rigidBody->position = contactPostion2 + V2 * (dt - delT);
+	mb1->rigidBody.position = contactPostion1 + V1 * (dt - delT);
+	mb2->rigidBody.position = contactPostion2 + V2 * (dt - delT);
 
-	mb1->rigidBody->velocity = V1;
-	mb2->rigidBody->velocity = V2;
+	mb1->rigidBody.velocity = V1;
+	mb2->rigidBody.velocity = V2;
 
 }
