@@ -57,13 +57,13 @@ void PhysicsSystem::Update(float timeStamp = 0)
 	//Detect Collision
 	DetectCollision(dt);
 
-	for (const auto& [physicsEntity, rigidBodyComponent] : MovingBodyComponentPool.componentList)
+	for (const auto& [physicsEntity, movingBodyComponent] : MovingBodyComponentPool.componentList)
 	{
 		/*if (rigidBodyComponent->collider.shape == Shape::PLANE)
 			continue;*/
 
-		TransformComponentPool.componentList[physicsEntity]->transform->position = rigidBodyComponent->rigidBody->position;
-		TransformComponentPool.componentList[physicsEntity]->transform->rotation = rigidBodyComponent->rigidBody->orientation;
+		TransformComponentPool.componentList[physicsEntity]->transform.position = movingBodyComponent->rigidBody.position;
+		TransformComponentPool.componentList[physicsEntity]->transform.rotation = movingBodyComponent->rigidBody.orientation;
 		/*glm::quat qYaw  = glm::angleAxis(0.01f, glm::vec3(0, 1, 0));
 		TransformComponentPool.componentList[physicsEntity]->transform->rotation *= glm::normalize(qYaw);*/
 	}
@@ -96,18 +96,18 @@ void PhysicsSystem::UpdatePosition()
 {
 	for (const auto& [physicsEntity, movingBodyComponent] : MovingBodyComponentPool.componentList)
 	{
-		movingBodyComponent->rigidBody->position = TransformComponentPool.componentList[physicsEntity]->transform->position;
-		movingBodyComponent->rigidBody->orientation = TransformComponentPool.componentList[physicsEntity]->transform->rotation;
+		movingBodyComponent->rigidBody.position = TransformComponentPool.componentList[physicsEntity]->transform.position;
+		movingBodyComponent->rigidBody.orientation = TransformComponentPool.componentList[physicsEntity]->transform.rotation;
 
 		
 
-		movingBodyComponent->rigidBody->angularVelocity = glm::quat(1.0, 0.0, 0.0, 0.0);
-		movingBodyComponent->rigidBody->torque = glm::quat(1.0, 0.0, 0.0, 0.0);
+		movingBodyComponent->rigidBody.angularVelocity = glm::quat(1.0, 0.0, 0.0, 0.0);
+		movingBodyComponent->rigidBody.torque = glm::quat(1.0, 0.0, 0.0, 0.0);
 	}
 
 	for (const auto& [physicsEntity, stillBodyComponent] : StillBodyComponentPool.componentList)
 	{
-		stillBodyComponent->position = TransformComponentPool.componentList[physicsEntity]->transform->position;
+		stillBodyComponent->position = TransformComponentPool.componentList[physicsEntity]->transform.position;
 	}
 }
 
@@ -124,24 +124,24 @@ void PhysicsSystem::Integrate(MovingBodyComponent* movingBody, float dt)
 	movingBody->rigidBody.velocity += movingBody->rigidBody.acceleration * dt;
 
 
-	if (movingBody->rigidBody->isGravity)
-		if (movingBody->rigidBody->velocity.y < 0)
-			movingBody->rigidBody->velocity += movingBody->rigidBody->mass * dt * glm::vec3(0, -1, 0);
+	if (movingBody->rigidBody.isGravity)
+		if (movingBody->rigidBody.velocity.y < 0)
+			movingBody->rigidBody.velocity += movingBody->rigidBody.mass * dt * glm::vec3(0, -1, 0);
 		else
-			movingBody->rigidBody->velocity += 0.8f * movingBody->rigidBody->mass * dt * glm::vec3(0, -1, 0);
+			movingBody->rigidBody.velocity += 0.8f * movingBody->rigidBody.mass * dt * glm::vec3(0, -1, 0);
 
 
 	movingBody->rigidBody.prevPosition = movingBody->rigidBody.position;
 	movingBody->rigidBody.position += movingBody->rigidBody.velocity * dt;
 
-	movingBody->rigidBody->prevAcceleration += movingBody->rigidBody->acceleration;
+	movingBody->rigidBody.prevAcceleration += movingBody->rigidBody.acceleration;
 
 
 	//Rotation
-	movingBody->rigidBody->prevAngularVelocity = movingBody->rigidBody->angularVelocity;
+	movingBody->rigidBody.prevAngularVelocity = movingBody->rigidBody.angularVelocity;
 	//movingBody->rigidBody->angularVelocity *= movingBody->rigidBody->torque;
 
-	movingBody->rigidBody->prevOrientation = movingBody->rigidBody->orientation;
-	movingBody->rigidBody->orientation *= glm::normalize(movingBody->rigidBody->angularVelocity);
+	movingBody->rigidBody.prevOrientation = movingBody->rigidBody.orientation;
+	movingBody->rigidBody.orientation *= glm::normalize(movingBody->rigidBody.angularVelocity);
 
 }
