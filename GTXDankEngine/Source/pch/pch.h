@@ -27,8 +27,6 @@
 
 
 #include <stb/stb_image.h>
-//#include <yaml-cpp/anchor.h>
-//#include <yaml-cpp/yaml.h>
 
 
 #include <assimp/Importer.hpp>
