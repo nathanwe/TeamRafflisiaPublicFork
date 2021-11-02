@@ -24,29 +24,41 @@ public:
 	glm::vec3 velocity;
 	glm::vec3 acceleration;
 
+	glm::quat orientation;
+	glm::quat angularVelocity;
+	glm::quat torque;
+
 	// Previous Frame
 	glm::vec3 prevPosition;
 	glm::vec3 prevVelocity;
 	glm::vec3 prevAcceleration;
+
+	glm::quat prevOrientation;
+	glm::quat prevAngularVelocity;
+	glm::quat prevTorque;
 };
 
-#endif // !RIGID_BODY_H
 
 inline void to_json(ordered_json& j, const RigidBody& rigidBody) {
 	to_json(j["Elasticity"], rigidBody.elasticity);
 	to_json(j["Friction"], rigidBody.friction);
 	to_json(j["Gravity"], rigidBody.isGravity);
-	to_json(j["Position"], rigidBody.position);
+	to_json(j["Mass"], rigidBody.mass);
+	//to_json(j["Position"], rigidBody.position);
 	to_json(j["Velocity"], rigidBody.velocity);
 	to_json(j["Accelereation"], rigidBody.acceleration);
-	//to_json(j["CollisionType"], rigidBody.collisionType);
+	to_json(j["CollisionType"], rigidBody.collisionType);
 }
 
 inline void from_json(const ordered_json& j, RigidBody& rigidBody) {
 	from_json(j["Elasticity"], rigidBody.elasticity);
 	from_json(j["Friction"], rigidBody.friction);
 	from_json(j["Gravity"], rigidBody.isGravity);
-	from_json(j["Position"], rigidBody.position);
+	from_json(j["Mass"], rigidBody.mass);
+	//from_json(j["Position"], rigidBody.position);
 	from_json(j["Velocity"], rigidBody.velocity);
 	from_json(j["Accelereation"], rigidBody.acceleration);
+	rigidBody.collisionType = static_cast<CollisionType>(j["CollisionType"]);
 }
+
+#endif // !RIGID_BODY_H

@@ -1,5 +1,13 @@
 #include "pch.h"
 
+////////
+//
+//
+// Sphere radius at scale of 0.01 is 0.64 units
+//
+//
+//
+////
 
 #include "../Components/PhysicsComponent/StillBodyComponent.h"
 #include "../Components/PhysicsComponent/MovingBodyComponent.h"
@@ -15,7 +23,7 @@
 #include "../Core/Engine.h"
 
 #include "../ProfileSystem/ProfileSystem.h"
-//#include "Collision/CollisionFunctions.h"
+#include "Collision/CollisionFunctions.h"
 
 extern Engine engine;
 
@@ -47,41 +55,61 @@ void PhysicsSystem::Update(float timeStamp = 0)
 	}
 
 	//Detect Collision
-	//DetectCollision();
+	DetectCollision(dt);
 
-	/*for (const auto& [physicsEntity, rigidBodyComponent] : RigidBodyComponentPool.componentList)
+	for (const auto& [physicsEntity, rigidBodyComponent] : MovingBodyComponentPool.componentList)
 	{
-		if (rigidBodyComponent->collider.shape == Shape::PLANE)
-			continue;
+		/*if (rigidBodyComponent->collider.shape == Shape::PLANE)
+			continue;*/
 
-		TransformComponentPool.componentList[physicsEntity]->transform->position = rigidBodyComponent->position;
-	}*/
+		TransformComponentPool.componentList[physicsEntity]->transform->position = rigidBodyComponent->rigidBody->position;
+		TransformComponentPool.componentList[physicsEntity]->transform->rotation = rigidBodyComponent->rigidBody->orientation;
+		/*glm::quat qYaw  = glm::angleAxis(0.01f, glm::vec3(0, 1, 0));
+		TransformComponentPool.componentList[physicsEntity]->transform->rotation *= glm::normalize(qYaw);*/
+	}
 }
 
 
-//void PhysicsSystem::DetectCollision()
-//{
-//	//Hard Coded for now
-//	for (auto itr1 = RigidBodyComponentPool.componentList.begin(); itr1 != RigidBodyComponentPool.componentList.end(); ++itr1)
-//	{
-//		for (auto itr2 = next(itr1, 1); itr2 != RigidBodyComponentPool.componentList.end(); ++itr2)
-//		{
-//			if (itr1->second->collider.shape == Shape::PLANE)
-//			{
-//				ReflectSpherePlane(itr1->second, itr2->second);
-//			}
-//			else if (itr2->second->collider.shape == Shape::PLANE)
-//			{
-//				ReflectSpherePlane(itr2->second, itr1->second);
-//			}
-//			else
-//			{
-//				ReflectSphereSphere(itr1->second, itr2->second);
-//			}
-//		}
-//	}
-//}
+void PhysicsSystem::DetectCollision(float dt)
+{
+	//Hard Coded for now
+	// Moving Sphere - Moving Sphere
+	for (auto itr1 = MovingBodyComponentPool.componentList.begin(); itr1 != MovingBodyComponentPool.componentList.end(); ++itr1)
+	{
+		for (auto itr2 = next(itr1, 1); itr2 != MovingBodyComponentPool.componentList.end(); ++itr2)
+		{
+			ReflectMovingSphereMovingSphere(itr1->second, itr2->second, dt);
+		}
+	}
 
+	// Moving Sphere - Still Sphere
+	for (auto itr1 = MovingBodyComponentPool.componentList.begin(); itr1 != MovingBodyComponentPool.componentList.end(); ++itr1)
+	{
+		for (auto itr2 = StillBodyComponentPool.componentList.begin() ; itr2 != StillBodyComponentPool.componentList.end(); ++itr2)
+		{
+			ReflectStaticSphereStaticSphere(itr1->second, itr2->second);
+		}
+	}
+}
+
+void PhysicsSystem::UpdatePosition()
+{
+	for (const auto& [physicsEntity, movingBodyComponent] : MovingBodyComponentPool.componentList)
+	{
+		movingBodyComponent->rigidBody->position = TransformComponentPool.componentList[physicsEntity]->transform->position;
+		movingBodyComponent->rigidBody->orientation = TransformComponentPool.componentList[physicsEntity]->transform->rotation;
+
+		
+
+		movingBodyComponent->rigidBody->angularVelocity = glm::quat(1.0, 0.0, 0.0, 0.0);
+		movingBodyComponent->rigidBody->torque = glm::quat(1.0, 0.0, 0.0, 0.0);
+	}
+
+	for (const auto& [physicsEntity, stillBodyComponent] : StillBodyComponentPool.componentList)
+	{
+		stillBodyComponent->position = TransformComponentPool.componentList[physicsEntity]->transform->position;
+	}
+}
 
 
 bool PhysicsSystem::Destroy()
@@ -95,13 +123,25 @@ void PhysicsSystem::Integrate(MovingBodyComponent* movingBody, float dt)
 	movingBody->rigidBody.prevVelocity = movingBody->rigidBody.velocity;
 	movingBody->rigidBody.velocity += movingBody->rigidBody.acceleration * dt;
 
-	if (movingBody->rigidBody.isGravity)
-		if (movingBody->rigidBody.velocity.y < 0)
-			movingBody->rigidBody.velocity += 2.0f * dt * glm::vec3(0, -1, 0);
+
+	if (movingBody->rigidBody->isGravity)
+		if (movingBody->rigidBody->velocity.y < 0)
+			movingBody->rigidBody->velocity += movingBody->rigidBody->mass * dt * glm::vec3(0, -1, 0);
 		else
-			movingBody->rigidBody.velocity += 1.8f * dt * glm::vec3(0, -1, 0);
+			movingBody->rigidBody->velocity += 0.8f * movingBody->rigidBody->mass * dt * glm::vec3(0, -1, 0);
+
 
 	movingBody->rigidBody.prevPosition = movingBody->rigidBody.position;
 	movingBody->rigidBody.position += movingBody->rigidBody.velocity * dt;
+
+	movingBody->rigidBody->prevAcceleration += movingBody->rigidBody->acceleration;
+
+
+	//Rotation
+	movingBody->rigidBody->prevAngularVelocity = movingBody->rigidBody->angularVelocity;
+	//movingBody->rigidBody->angularVelocity *= movingBody->rigidBody->torque;
+
+	movingBody->rigidBody->prevOrientation = movingBody->rigidBody->orientation;
+	movingBody->rigidBody->orientation *= glm::normalize(movingBody->rigidBody->angularVelocity);
 
 }

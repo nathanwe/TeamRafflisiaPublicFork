@@ -19,8 +19,12 @@ public:
 	bool Init();
 
 	void Update(float timeStamp);
+	void UpdatePosition();
 
 	void Integrate(MovingBodyComponent* movingBody, float dt);
+
+	void DetectCollision(float dt);
+
 
 	bool Destroy();
 };

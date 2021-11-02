@@ -105,20 +105,20 @@
   },
   "2": {
     "Physics1": {
-      "name": "Light1",
-      "px": 1.5,
-      "py": 1.5,
-      "pz": 1.5,
+      "name": "Physics1",
+      "px": 0.0,
+      "py": 0.0,
+      "pz": 0.0,
       "rx": 0.0,
       "ry": 0.0,
       "rz": 0.0,
       "rw": 1.0
     },
     "Physics2": {
-      "name": "Light2",
+      "name": "Physics2",
       "px": 3.5,
       "py": 0.0,
-      "pz": 4.0,
+      "pz": 0.0,
       "rx": 0.0,
       "ry": 0.0,
       "rz": 0.0,

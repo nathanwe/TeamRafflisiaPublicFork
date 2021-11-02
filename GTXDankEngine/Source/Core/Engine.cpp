@@ -51,11 +51,13 @@ bool Engine::Init()
 
 	if (!CommandSys.Init()) LOG_ERROR("Command System failed to init.");
 
+	
+	
+	if (!GameObjectFac.Init()) LOG_ERROR("Game Object Fac failed to init.");
 	//
 	if (!PhysicsSys.Init()) LOG_ERROR("Physics System failed to init.");
 	//
-	
-	if (!GameObjectFac.Init()) LOG_ERROR("Game Object Fac failed to init.");
+
 	UISys.GrabWindow(GraphicsSys.pWindow);
 	if (!UISys.Init()) LOG_ERROR("UI System failed to init.");
 	if (!InputSys.Init(GraphicsSys.pWindow)) LOG_ERROR("Input System failed to init.");

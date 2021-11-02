@@ -14,7 +14,14 @@ public:
 public:
 	glm::vec3 position;
 	Collider BroadPhase;
-	std::vector<Collider> NarrowPhase;
+	//std::vector<Collider> NarrowPhase;
+
+
+	// Getters and Setters
+	glm::vec3 getPostion();
+	void setPostion(glm::vec3 pos);
+
+	std::pair<std::string, float> getDebugDraw();
 
 };
 

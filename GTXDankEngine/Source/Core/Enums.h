@@ -88,7 +88,7 @@ enum class EventType
 // Physics
 ///////////////////////////////////////////////////////
 
-enum class CollisionType
+enum CollisionType
 {
 	STATIC,
 	DYNAMIC,
@@ -101,9 +101,12 @@ enum class CollisionType
 
 ///////////////////////////////////////////////////////
 
-enum class Shape
+enum Shape
 {
 	SPHERE,
+	PLANE,
+	CUBE,
+	CUBOID,
 
 	SHAPE
 };
