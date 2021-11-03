@@ -125,7 +125,7 @@ void CommandSystem::Update(float timeStamp)
 				if (key2 != -1)
 				{
 					pendingKeyUpdate = false;
-					GetCommand(commandNamePendingKeyUpdate).gamepadCode = key;
+					GetCommand(commandNamePendingKeyUpdate).gamepadCode = key2;
 					SerializeCommands();
 				}
 			}
