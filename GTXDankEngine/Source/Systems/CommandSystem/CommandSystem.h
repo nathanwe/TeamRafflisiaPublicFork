@@ -1,12 +1,11 @@
 #ifndef COMMANDSYSTEM_H
 #define COMMANDSYSTEM_H
 
-
-
 #include "pch.h"
 #include "../../Core/System.h"
 #include "Command.h"
 #include "DirectionCommand.h"
+#include "PlayerSettings.h"
 
 class CommandSystem : public System
 {
@@ -15,34 +14,20 @@ public:
 	virtual void Update(float timeStamp = 0) override;
 	virtual bool Destroy() override;
 
-public:
-	DirectionCommand MoveCommand;
-	Command SpaceCommand;
-	Command ShiftCommand;
-	Command UnShiftCommand;
-	Command CtrlCommand;
+	Command& GetCommand(std::string name);
+	DirectionCommand& GetDirectionCommand();
 
-	Command Attack1Command;
-	Command Attack2Command;
-	Command Attack3Command;
-	
-	Command Skill1Command;
-	Command Skill2Command;
-	Command Skill3Command;
-	
-	Command ToggleMenuCommand;
-	Command MenuUpCommand;
-	Command MenuDownCommand;
-	
-	Command DebugModeCommand;
-	//Command InvincibleModeCommand;
-	//
-	//Command Debug1Command;
-	//Command Debug2Command;
-	//Command Debug3Command;
-	//
-	Command NextLevelCommand;
-	Command PreviousLevelCommand;
+	void ShowCommandMenu();
+
+	void SerializeCommands();
+	void LoadDefaultCommands();
+
+public:
+	PlayerSettings setting;
+	Command toggleMenuCommand;
+
+	bool menuMode;
+	bool debugMode;
 
 private:
 	void ExecuteGameplayCommands();
@@ -50,8 +35,11 @@ private:
 	void ExecuteDebugCommands();
 
 private:
-	bool menuMode;
-	bool debugMode;
+	//DirectionCommand* moveCommand;
+	//std::unordered_map<std::string, Command*> commands;
+	std::string commandNamePendingKeyUpdate;
+	bool pendingKeyUpdate = false;
+	bool keyUpdateBuffer = false;
 };
 
 #endif // !COMMANDSYSTEM_H

@@ -99,8 +99,8 @@ void Camera::Inputs(GLFWwindow* window)
 		float rotY = sensitivity * (float)(mouseY - (height / 2)) / height;
 		glfwSetCursorPos(window, (width / 2), (height / 2));
 
-		if (mouseInvertX) rotX *= -1.f;
-		if (mouseInvertY) rotY *= -1.f;
+		if (engine.CommandSys.setting.mouseInvertedX) rotX *= -1.f;
+		if (engine.CommandSys.setting.mouseInvertedY) rotY *= -1.f;
 
 		pitch += rotY;
 		yaw += rotX;
@@ -123,13 +123,13 @@ void Camera::Inputs(GLFWwindow* window)
 
 			if (abs(engine.InputSys.GetControllerAxis(0, 2)) >= 0.1f) {
 				rotX = gamepadSensitivity * engine.InputSys.GetControllerAxis(0, 2);
-				if (gamepadInvertX) {
+				if (engine.CommandSys.setting.gamepadInvertedX) {
 					rotX *= -1.f;
 				}
 			}
 			if (abs(engine.InputSys.GetControllerAxis(0, 3)) >= 0.1f) {
 				rotY = gamepadSensitivity * engine.InputSys.GetControllerAxis(0, 3);
-				if (gamepadInvertY) {
+				if (engine.CommandSys.setting.gamepadInvertedY) {
 					rotY *= -1.f;
 				}
 			}
@@ -161,6 +161,8 @@ void Camera::Inputs(GLFWwindow* window)
 
 		orientationScale = glm::vec3(sin(yaw) * cos(pitch), -sin(pitch), -cos(yaw) * cos(pitch));
 	}
+
+	speed = 10.0f;
 
 	//LOG_INFO("camera position: {0}, {1}, {2}", Position.x, Position.y, Position.z);
 }

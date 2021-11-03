@@ -9,9 +9,16 @@ extern Engine engine;
 
 bool CommandSystem::Init()
 {
-	if (!menuMode)
-	{
-		engine.CommandSys.MoveCommand.SetActionToExecute([&](auto dir)
+	auto* handle = SerializationResourceManager.GetResourceHandleNoThread("Assets/Configs/commands.json");
+	ordered_json commandJson = handle->GetPointer()->data;
+	setting = commandJson;
+
+	//special command: non-configurable
+	toggleMenuCommand.keyboardcode = GLFW_KEY_ESCAPE;
+	toggleMenuCommand.gamepadCode = 7;
+	toggleMenuCommand.keyPressType = KeyPressType::Press;
+
+		setting.directionCommand.SetActionToExecute([&](auto dir, float scale)
 			{
 				Event ev = Event();
 				ev.type = EventType::MOVE_POKEBALL;
@@ -20,67 +27,42 @@ bool CommandSystem::Init()
 				ev.floatData1 = engine.DeltaTime();
 				glm::vec3 quatOrientation(sin(engine.GraphicsSys.camera.yaw) * cos(engine.GraphicsSys.camera.pitch), -sin(engine.GraphicsSys.camera.pitch), -cos(engine.GraphicsSys.camera.yaw) * cos(engine.GraphicsSys.camera.pitch));
 
-				float scale = 1.f;
 				if (dir == MoveDirection::UP)
 				{
 					ev.stringData1 = "Up";
-
-					if (engine.InputSys.IsControllerActive(0)) {
-						scale = -engine.InputSys.GetControllerAxis(0, 1);
-					}
-
-					engine.GraphicsSys.camera.Position += scale * engine.GraphicsSys.camera.speed * quatOrientation;
+					engine.GraphicsSys.camera.Position += scale * engine.GraphicsSys.camera.speed * quatOrientation * engine.DeltaTime();
 				}
 				if (dir == MoveDirection::LEFT)
 				{
 					ev.stringData1 = "Left";
-
-					if (engine.InputSys.IsControllerActive(0)) {
-						scale = -engine.InputSys.GetControllerAxis(0, 0);
-					}
-
-					engine.GraphicsSys.camera.Position += scale * engine.GraphicsSys.camera.speed * -glm::normalize(glm::cross(quatOrientation, engine.GraphicsSys.camera.Up));
+					engine.GraphicsSys.camera.Position += scale * engine.GraphicsSys.camera.speed * -glm::normalize(glm::cross(quatOrientation, engine.GraphicsSys.camera.Up)) * engine.DeltaTime();
 				}
 				if (dir == MoveDirection::DOWN)
 				{
 					ev.stringData1 = "Down";
-
-					if (engine.InputSys.IsControllerActive(0)) {
-						scale = engine.InputSys.GetControllerAxis(0, 1);
-					}
-
-					engine.GraphicsSys.camera.Position += scale * engine.GraphicsSys.camera.speed * -quatOrientation;
+					engine.GraphicsSys.camera.Position += scale * engine.GraphicsSys.camera.speed * -quatOrientation * engine.DeltaTime();
 				}
 				if (dir == MoveDirection::RIGHT)
 				{
 					ev.stringData1 = "Right";
-
-					if (engine.InputSys.IsControllerActive(0)) {
-						scale = engine.InputSys.GetControllerAxis(0, 0);
-					}
-
-					engine.GraphicsSys.camera.Position += scale * engine.GraphicsSys.camera.speed * glm::normalize(glm::cross(quatOrientation, engine.GraphicsSys.camera.Up));
+					engine.GraphicsSys.camera.Position += scale * engine.GraphicsSys.camera.speed * glm::normalize(glm::cross(quatOrientation, engine.GraphicsSys.camera.Up)) * engine.DeltaTime();
 				}
 				engine.DoGameLogicScriptSys.HandleEvent(ev);
 			});
 
-		engine.CommandSys.SpaceCommand.SetActionToExecute([&]()
+		engine.CommandSys.GetCommand("Space").SetActionToExecute([&]()
 			{
-				engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed / 2.f * engine.GraphicsSys.camera.Up;
+				engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed / 2.f * engine.GraphicsSys.camera.Up * engine.DeltaTime();
 			});
-		engine.CommandSys.CtrlCommand.SetActionToExecute([&]()
+		engine.CommandSys.GetCommand("Ctrl").SetActionToExecute([&]()
 			{
-				engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed / 2.f * -engine.GraphicsSys.camera.Up;
+				engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed / 2.f * -engine.GraphicsSys.camera.Up * engine.DeltaTime();
 			});
-		engine.CommandSys.ShiftCommand.SetActionToExecute([&]()
+		engine.CommandSys.GetCommand("Shift").SetActionToExecute([&]()
 			{
 				engine.GraphicsSys.camera.speed = 0.5f;
 			});
-		engine.CommandSys.UnShiftCommand.SetActionToExecute([&]()
-			{
-				engine.GraphicsSys.camera.speed = 0.1f;
-			});
-	}
+
 	return true;
 }
 
@@ -92,13 +74,18 @@ void CommandSystem::Update(float timeStamp)
 	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_ESCAPE) || engine.InputSys.IsControllerTriggered(0, 7))
 	{
 		menuMode = !menuMode;
+		if (!menuMode)
+		{
+			pendingKeyUpdate = false;
+		}
+
 		ImGuiIO& io = ImGui::GetIO();
 		if (io.ConfigFlags &= ImGuiConfigFlags_NavEnableGamepad)
 		{
 			if (!menuMode)
 			{
 				io.ConfigFlags -= ImGuiConfigFlags_NavEnableGamepad;
-				io.ConfigFlags -= ImGuiConfigFlags_NavEnableKeyboard;
+				// io.ConfigFlags -= ImGuiConfigFlags_NavEnableKeyboard;
 			}
 		}
 		else
@@ -106,19 +93,48 @@ void CommandSystem::Update(float timeStamp)
 			if (menuMode)
 			{
 				io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
-				io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+				// io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 				ImGui::SetWindowFocus("Camera Configs");
 			}
 		}
 		// io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-		ToggleMenuCommand.Execute();
+		toggleMenuCommand.Execute();
+	}
+
+	//waiting for control key update
+	if (pendingKeyUpdate)
+	{
+		if (keyUpdateBuffer) 
+		{
+			keyUpdateBuffer = false;
+		}
+		else
+		{
+			int key = engine.InputSys.IsAnyKeyTriggered();
+			if (key != -1)
+			{
+				pendingKeyUpdate = false;
+				GetCommand(commandNamePendingKeyUpdate).keyboardcode = key;
+				SerializeCommands();
+			}
+			else
+			{
+				int key2 = engine.InputSys.IsAnyControllerTriggered();
+				if (key2 != -1)
+				{
+					pendingKeyUpdate = false;
+					GetCommand(commandNamePendingKeyUpdate).gamepadCode = key;
+					SerializeCommands();
+				}
+			}
+		}
 	}
 
 	//toggle debug mode
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_T))
+	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_T))
 	{
 		debugMode = !debugMode;
-		DebugModeCommand.Execute();
+		GetCommand("DebugMode").Execute();
 	}
 
 	if (menuMode)
@@ -140,85 +156,94 @@ bool CommandSystem::Destroy()
 	return true;
 }
 
+Command& CommandSystem::GetCommand(std::string name)
+{
+	auto command = setting.commands.find(name);
+	if (command == setting.commands.end())
+		assert("Command is not setup correcly.");
+	return command->second;
+}
+
+DirectionCommand& CommandSystem::GetDirectionCommand()
+{
+	return setting.directionCommand;
+}
+
+void CommandSystem::ShowCommandMenu()
+{
+	if (ImGui::Checkbox("Invert Mouse X", &(setting.mouseInvertedX)))
+	{
+		SerializeCommands();
+	}
+	if (ImGui::Checkbox("Invert Mouse Y", &(setting.mouseInvertedY)))
+	{
+		SerializeCommands();
+	}
+	if (ImGui::Checkbox("Invert Gamepad X", &(setting.gamepadInvertedX)))
+	{
+		SerializeCommands();
+	}
+	if (ImGui::Checkbox("Invert Gamepad Y", &(setting.gamepadInvertedY)))
+	{
+		SerializeCommands();
+	}
+	
+	for (auto& [key, command] : setting.commands)
+	{
+		if (ImGui::Button(key.c_str(), ImVec2(100, 25)))
+		{
+			commandNamePendingKeyUpdate = key;
+			pendingKeyUpdate = true;
+			keyUpdateBuffer = true;
+		}
+	}
+
+	if (pendingKeyUpdate)
+	{
+		ImGui::Begin("Please press new key");
+		ImGui::End();
+	}
+}
+
+void CommandSystem::SerializeCommands()
+{
+	ordered_json output = setting;
+	std::ofstream outputStream("Assets/Configs/commands.json");
+	outputStream << output.dump(2);
+}
+
+void CommandSystem::LoadDefaultCommands()
+{
+	if (ImGui::Button("Reset Controls", ImVec2(100, 25)))
+	{
+		pendingKeyUpdate = false;
+		auto* handle = SerializationResourceManager.GetResourceHandleNoThread("Assets/Configs/default.json");
+		ordered_json commandJson = handle->GetPointer()->data;
+		PlayerSettings defaultSetting = commandJson;
+		for (auto& [key, command] : setting.commands)
+		{
+			command.gamepadCode = defaultSetting.commands[key].gamepadCode;
+			command.keyboardcode = defaultSetting.commands[key].keyboardcode;
+			command.keyPressType = defaultSetting.commands[key].keyPressType;
+		}
+		SerializeCommands();
+	}
+
+
+}
+
 void CommandSystem::ExecuteGameplayCommands()
 {
-	//directional movements
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_W) || engine.InputSys.GetControllerAxis(0, 1) < -engine.InputSys.deadzone)
+	setting.directionCommand.Execute();
+	for (auto& [key, command] : setting.commands)
 	{
-		MoveCommand.Execute(MoveDirection::UP);
-	}
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_A) || engine.InputSys.GetControllerAxis(0, 0) < -engine.InputSys.deadzone)
-	{
-		MoveCommand.Execute(MoveDirection::LEFT);
-	}
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_S) || engine.InputSys.GetControllerAxis(0, 1) > engine.InputSys.deadzone)
-	{
-		MoveCommand.Execute(MoveDirection::DOWN);
-	}
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_D) || engine.InputSys.GetControllerAxis(0, 0) > engine.InputSys.deadzone)
-	{
-		MoveCommand.Execute(MoveDirection::RIGHT);
-	}
-
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_SPACE) || engine.InputSys.IsControllerPressed(0, 0))
-	{
-		SpaceCommand.Execute();
-	}
-
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_LEFT_SHIFT) || engine.InputSys.GetControllerAxis(0, 5) > -1.f + engine.InputSys.deadzone)
-	{
-		ShiftCommand.Execute();
-	}
-	else
-	{
-		UnShiftCommand.Execute();
-	}
-
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_LEFT_CONTROL) || engine.InputSys.IsControllerPressed(0, 1))
-	{
-		CtrlCommand.Execute();
-	}
-
-	//skill
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_1))
-	{
-		Skill1Command.Execute();
-	}
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_2))
-	{
-		Skill2Command.Execute();
-	}
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_3))
-	{
-		Skill3Command.Execute();
-	}
-
-	//attack
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_J))
-	{
-		Attack1Command.Execute();
-	}
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_K))
-	{
-		Attack2Command.Execute();
-	}
-	if (engine.InputSys.IsKeyPressed(GLFW_KEY_L))
-	{
-		Attack3Command.Execute();
-	}
-
-	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_RIGHT))
-	{
-		NextLevelCommand.Execute();
-	}
-	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_LEFT))
-	{
-		PreviousLevelCommand.Execute();
+		command.Execute();
 	}
 }
 
 void CommandSystem::ExecuteUICommands()
 {
+	/*
 	ImGuiIO& io = ImGui::GetIO();
 
 	if (menuMode && engine.InputSys.IsControllerTriggered(0, 1)) {
@@ -233,6 +258,7 @@ void CommandSystem::ExecuteUICommands()
 			io.ConfigFlags -= ImGuiConfigFlags_NavEnableKeyboard;
 		}
 	}
+	*/
 
 	/*
 	if (engine.InputSys.IsControllerActive(0)) {
@@ -257,3 +283,5 @@ void CommandSystem::ExecuteUICommands()
 void CommandSystem::ExecuteDebugCommands()
 {
 }
+
+

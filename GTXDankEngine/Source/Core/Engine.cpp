@@ -70,7 +70,7 @@ bool Engine::Init()
 	
 
 	//temp: for game object factory demo
-	CommandSys.Attack3Command.SetActionToExecute([&]()
+	CommandSys.GetCommand("Attack3").SetActionToExecute([&]()
 		{
 			Entity newBall = GameObjectFac.CreateObject("POKEBALL");
 			auto* trans = TransformComponentPool.GetComponentByEntity(newBall);

@@ -132,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Components\AudioComponent\AudioBus.h" />
+    <ClInclude Include="Source\Systems\CommandSystem\PlayerSettings.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\OIT\OIT.h" />
     <ClInclude Include="Source\Components\PhysicsComponent\Collider.h" />
     <ClInclude Include="Source\Components\PhysicsComponent\MovingBodyComponent.h" />

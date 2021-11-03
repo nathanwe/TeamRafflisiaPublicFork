@@ -32,6 +32,9 @@ public:
 	bool IsKeyTriggered(unsigned int KeyScanCode);
 	bool IsKeyReleased(unsigned int KeyScanCode);
 
+	int IsAnyKeyTriggered();
+	int IsAnyControllerTriggered();
+
 	double mouseX, mouseY;
 	//double* GetMouseChange();
 	bool IsMousePressed();

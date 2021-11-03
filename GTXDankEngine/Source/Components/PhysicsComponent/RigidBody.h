@@ -61,4 +61,5 @@ inline void from_json(const ordered_json& j, RigidBody& rigidBody) {
 	rigidBody.collisionType = static_cast<CollisionType>(j["CollisionType"]);
 }
 
+
 #endif // !RIGID_BODY_H

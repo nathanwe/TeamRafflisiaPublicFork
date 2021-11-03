@@ -25,11 +25,11 @@ bool SceneSystem::Init()
 
     LoadScene(0);
 
-    engine.CommandSys.NextLevelCommand.SetActionToExecute([&]()
+    engine.CommandSys.GetCommand("NextLevel").SetActionToExecute([&]()
         {
             LoadNextLevel();
         });
-    engine.CommandSys.PreviousLevelCommand.SetActionToExecute([&]()
+    engine.CommandSys.GetCommand("PreviousLevel").SetActionToExecute([&]()
         {
             LoadPreviousLevel();
         });

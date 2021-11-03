@@ -54,9 +54,9 @@ bool ScriptSystem::Init()
 
 bool ScriptSystem::Init(std::string filePath)
 {
-    engine.CommandSys.Skill1Command.SetActionToExecute(SendLionEmitEvent);
-    engine.CommandSys.Skill2Command.SetActionToExecute(SendMenuToggleEvent);
-    engine.CommandSys.Skill3Command.SetActionToExecute(SendLionDeleteEvent);
+    engine.CommandSys.GetCommand("Skill1").SetActionToExecute(SendLionEmitEvent);
+    engine.CommandSys.toggleMenuCommand.SetActionToExecute(SendMenuToggleEvent);
+    engine.CommandSys.GetCommand("Skill3").SetActionToExecute(SendLionDeleteEvent);
 
     fileHandle = ScriptResourceManager.GetResourceHandleNoThread(filePath);
     L = luaL_newstate();
@@ -75,6 +75,8 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "BeginImgui", lua_BeginImgui);
     lua_register(L, "EndImgui", lua_EndImgui);
     lua_register(L, "ButtonImgui", lua_ButtonImgui);
+    lua_register(L, "ControlMenu", lua_ControlMenu);
+    lua_register(L, "ResetControl", lua_ResetControl);
     lua_register(L, "IntSliderImgui", lua_IntSliderImgui);
     lua_register(L, "SendAudioEvent", lua_SendAudioEvent);
     lua_register(L, "DeleteEntity", lua_DeleteEntity);

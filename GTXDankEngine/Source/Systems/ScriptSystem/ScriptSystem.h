@@ -59,6 +59,8 @@ int lua_GetPosition(lua_State* L);
 int lua_BeginImgui(lua_State* L);
 int lua_EndImgui(lua_State* L);
 int lua_ButtonImgui(lua_State* L);
+int lua_ControlMenu(lua_State* L);
+int lua_ResetControl(lua_State* L);
 int lua_IntSliderImgui(lua_State* L);
 int lua_SendAudioEvent(lua_State* L);
 int lua_DeleteEntity(lua_State* L);

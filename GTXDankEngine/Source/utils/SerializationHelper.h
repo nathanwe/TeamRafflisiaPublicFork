@@ -134,3 +134,13 @@ inline void from_json(const ordered_json& j, glm::quat& x) {
 	j.at("z").get_to(x.z);
 	j.at("w").get_to(x.w);
 }
+
+template<typename T>
+inline void from_json(const ordered_json& j, T* arr) {
+	std::vector<T> v;
+	j.get_to(v);
+	for (int i = 0; i < v.size(); i++)
+	{
+		arr[i] = v[i];
+	}
+}

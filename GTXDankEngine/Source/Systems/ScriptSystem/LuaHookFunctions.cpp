@@ -368,6 +368,18 @@ int lua_ButtonImgui(lua_State* L)
     return 1;
 }
 
+int lua_ControlMenu(lua_State* L)
+{
+    engine.CommandSys.ShowCommandMenu();
+    return 1;
+}
+
+int lua_ResetControl(lua_State* L)
+{
+    engine.CommandSys.LoadDefaultCommands();
+    return 1;
+}
+
 int lua_IntSliderImgui(lua_State* L)
 {
     const char* SliderName = lua_tostring(L, 1);

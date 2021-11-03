@@ -197,6 +197,26 @@ bool InputManager::IsKeyReleased(unsigned int KeyScanCode) {
 	return false;
 }
 
+int InputManager::IsAnyKeyTriggered()
+{
+	for (int i = 0; i < 512; i++)
+	{
+		if (mPreviousState[i] && !mCurrentState[i])
+			return i;
+	}
+	return -1;
+}
+
+int InputManager::IsAnyControllerTriggered()
+{
+	for (int i = 0; i < 14; i++)
+	{
+		if (IsControllerTriggered(0, i))
+			return i;
+	}
+	return -1;
+}
+
 
 
 

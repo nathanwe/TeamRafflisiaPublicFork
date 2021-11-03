@@ -3,10 +3,12 @@
 
 ### **Keyboard:** ###
 * Press 1：create lions badly
-* Press 2: toggles the menu
 * Press 3: deletes lions
 * Press WASD: move camera & pokeball!
 * Press <- and ->: switch scene
+* Press ECS: Toggle Menu
+
+Keys can be re-mapped through the menu
 
 ### **Mouse:** ###
 * right click and drag change camera
