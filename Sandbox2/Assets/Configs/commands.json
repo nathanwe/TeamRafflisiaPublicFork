@@ -26,13 +26,18 @@
       "gamepadCode": -1,
       "keyPressType": 1
     },
+    "Skill3": {
+      "keyboardcode": 51,
+      "gamepadCode": -1,
+      "keyPressType": 1
+    },
     "Shift": {
-      "keyboardcode": 71,
+      "keyboardcode": 32,
       "gamepadCode": -1,
       "keyPressType": 0
     },
-    "Skill3": {
-      "keyboardcode": 51,
+    "Skill2": {
+      "keyboardcode": 50,
       "gamepadCode": -1,
       "keyPressType": 1
     },
@@ -41,11 +46,6 @@
       "gamepadCode": 1,
       "keyPressType": 0
     },
-    "Skill2": {
-      "keyboardcode": 50,
-      "gamepadCode": -1,
-      "keyPressType": 1
-    },
     "Attack3": {
       "keyboardcode": 76,
       "gamepadCode": -1,
@@ -53,6 +53,11 @@
     },
     "DebugMode": {
       "keyboardcode": 84,
+      "gamepadCode": -1,
+      "keyPressType": 1
+    },
+    "GraphicsDebugMode": {
+      "keyboardcode": 71,
       "gamepadCode": -1,
       "keyPressType": 1
     },
