@@ -1,5 +1,5 @@
 #ifndef SKYBOX_H
-#define SKYOX_H
+#define SKYBOX_H
 
 
 

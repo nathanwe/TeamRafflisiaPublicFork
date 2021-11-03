@@ -142,9 +142,6 @@
     <Filter Include="Source Files\Components\RoutineComponent">
       <UniqueIdentifier>{a641a787-14a7-42fd-9b43-167fe576cf9e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Scripts">
-      <UniqueIdentifier>{babe7050-7384-47b7-a857-823f2f0fa5a4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Systems\ScriptSystem">
       <UniqueIdentifier>{71857346-95df-4347-9750-96a52bc59b2a}</UniqueIdentifier>
     </Filter>
@@ -241,6 +238,36 @@
     <Filter Include="Source Files\Components\AudioComponent">
       <UniqueIdentifier>{ae1b7713-87f4-473f-b7b1-ba84dc6c195d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Scripts">
+      <UniqueIdentifier>{8ab69900-3b04-405a-8256-f0643e65aca3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SandBox1">
+      <UniqueIdentifier>{119406c0-04b4-4a69-8b80-ec4f534219cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SandBox1\audio">
+      <UniqueIdentifier>{e45579e3-7f0d-4851-af3e-6501675216fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SandBox1\Configs">
+      <UniqueIdentifier>{d22bb364-fed4-4d40-a118-0256c10700c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SandBox1\Levels">
+      <UniqueIdentifier>{2381d167-b476-4957-a911-09391d6db198}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SandBox1\models">
+      <UniqueIdentifier>{b077dea1-8c97-4133-a128-0af29e1ac5fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SandBox1\Scripts">
+      <UniqueIdentifier>{54406daa-c162-474b-9dfd-ce42e840dc3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SandBox1\Textures">
+      <UniqueIdentifier>{b041af44-ae96-46c2-a395-360fa359aa59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SandBox2">
+      <UniqueIdentifier>{37dc948c-4d22-4324-b6f0-8dc5c9af0582}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SandBox2\Scripts">
+      <UniqueIdentifier>{d786e3a1-03cd-4e57-9e30-1998226fdaf7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Textures\brick.png">
@@ -275,29 +302,11 @@
     <None Include="Source\Shaders\DeferredRenderer\Fill_G_Buffer.shader">
       <Filter>Resource Files\Shaders\DeferredRenderer</Filter>
     </None>
-    <None Include="Assets\Scripts\FirstScript.lua">
-      <Filter>Resource Files\Scripts</Filter>
-    </None>
-    <None Include="Assets\Scripts\DoLionThings.lua">
-      <Filter>Resource Files\Scripts</Filter>
-    </None>
-    <None Include="Assets\Scripts\DoLightThings.lua">
-      <Filter>Resource Files\Scripts</Filter>
-    </None>
-    <None Include="Assets\Scripts\DoEverything.lua">
-      <Filter>Resource Files\Scripts</Filter>
-    </None>
     <None Include="Source\Shaders\Shadow\DefaultShadowMap.shader">
       <Filter>Resource Files\Shaders\Shadow</Filter>
     </None>
-    <None Include="Assets\Scripts\DoPokeballThings.lua">
-      <Filter>Resource Files\Scripts</Filter>
-    </None>
     <None Include="Source\Shaders\PostProcess\PostProcess.shader">
       <Filter>Resource Files\Shaders\PostProcess</Filter>
-    </None>
-    <None Include="Assets\Scripts\Menu.lua">
-      <Filter>Resource Files\Scripts</Filter>
     </None>
     <None Include="Source\Shaders\DeferredRenderer\Cel.shader">
       <Filter>Resource Files\Shaders\DeferredRenderer</Filter>
@@ -322,6 +331,60 @@
     </None>
     <None Include="Source\Shaders\ParticleSystem\Render.shader">
       <Filter>Resource Files\Shaders\ParticleSystem</Filter>
+    </None>
+    <None Include="Assets\Scripts\Menu.lua">
+      <Filter>Resource Files\Scripts</Filter>
+    </None>
+    <None Include="Assets\Scripts\WhereTheGameAt.lua">
+      <Filter>Resource Files\Scripts</Filter>
+    </None>
+    <None Include="..\SandBox1\Assets\audio\Master.bank">
+      <Filter>SandBox1\audio</Filter>
+    </None>
+    <None Include="..\SandBox1\Assets\audio\Master.strings.bank">
+      <Filter>SandBox1\audio</Filter>
+    </None>
+    <None Include="..\SandBox1\Assets\Configs\commands.json">
+      <Filter>SandBox1\Configs</Filter>
+    </None>
+    <None Include="..\SandBox1\Assets\Configs\default.json">
+      <Filter>SandBox1\Configs</Filter>
+    </None>
+    <None Include="..\SandBox1\Assets\Levels\gameObjects.json">
+      <Filter>SandBox1\Levels</Filter>
+    </None>
+    <None Include="..\SandBox1\Assets\Levels\levels.json">
+      <Filter>SandBox1\Levels</Filter>
+    </None>
+    <None Include="..\SandBox1\Assets\Scripts\DoEverything.lua">
+      <Filter>SandBox1\Scripts</Filter>
+    </None>
+    <None Include="..\SandBox1\Assets\Scripts\DoLightThings.lua">
+      <Filter>SandBox1\Scripts</Filter>
+    </None>
+    <None Include="..\SandBox1\Assets\Scripts\DoLionThings.lua">
+      <Filter>SandBox1\Scripts</Filter>
+    </None>
+    <None Include="..\SandBox1\Assets\Scripts\DoPokeballThings.lua">
+      <Filter>SandBox1\Scripts</Filter>
+    </None>
+    <None Include="..\SandBox1\Assets\Scripts\FirstScript.lua">
+      <Filter>SandBox1\Scripts</Filter>
+    </None>
+    <None Include="..\Sandbox2\Assets\Scripts\DoEverything.lua">
+      <Filter>SandBox2\Scripts</Filter>
+    </None>
+    <None Include="..\Sandbox2\Assets\Scripts\DoLightThings.lua">
+      <Filter>SandBox2\Scripts</Filter>
+    </None>
+    <None Include="..\Sandbox2\Assets\Scripts\DoLionThings.lua">
+      <Filter>SandBox2\Scripts</Filter>
+    </None>
+    <None Include="..\Sandbox2\Assets\Scripts\DoPokeballThings.lua">
+      <Filter>SandBox2\Scripts</Filter>
+    </None>
+    <None Include="..\Sandbox2\Assets\Scripts\FirstScript.lua">
+      <Filter>SandBox2\Scripts</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -729,5 +792,46 @@
     <ClCompile Include="Source\Systems\GraphicsSystem\ParticleSystem\ParticleSystem.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\ParticleSystem</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\SandBox1\Assets\audio\Dash.wav">
+      <Filter>SandBox1\audio</Filter>
+    </Media>
+    <Media Include="..\SandBox1\Assets\audio\DeadEffect.wav">
+      <Filter>SandBox1\audio</Filter>
+    </Media>
+    <Media Include="..\SandBox1\Assets\audio\DeadEffectRev.wav">
+      <Filter>SandBox1\audio</Filter>
+    </Media>
+    <Media Include="..\SandBox1\Assets\audio\JumpSFX.wav">
+      <Filter>SandBox1\audio</Filter>
+    </Media>
+    <Media Include="..\SandBox1\Assets\audio\jumpSFX2.wav">
+      <Filter>SandBox1\audio</Filter>
+    </Media>
+    <Media Include="..\SandBox1\Assets\audio\Lonely.wav">
+      <Filter>SandBox1\audio</Filter>
+    </Media>
+    <Media Include="..\SandBox1\Assets\audio\Lonely_2.wav">
+      <Filter>SandBox1\audio</Filter>
+    </Media>
+    <Media Include="..\SandBox1\Assets\audio\Maozon &amp; C-Show - Realize feat. Kyte (MV).mp3">
+      <Filter>SandBox1\audio</Filter>
+    </Media>
+    <Media Include="..\SandBox1\Assets\audio\SaberRelay.mp3">
+      <Filter>SandBox1\audio</Filter>
+    </Media>
+    <Media Include="..\SandBox1\Assets\audio\Vapor.mp3">
+      <Filter>SandBox1\audio</Filter>
+    </Media>
+    <Media Include="..\SandBox1\Assets\audio\Vapor.wav">
+      <Filter>SandBox1\audio</Filter>
+    </Media>
+    <Media Include="..\SandBox1\Assets\audio\VaporMaster.wav">
+      <Filter>SandBox1\audio</Filter>
+    </Media>
+    <Media Include="..\SandBox1\Assets\audio\WinEffect.wav">
+      <Filter>SandBox1\audio</Filter>
+    </Media>
   </ItemGroup>
 </Project>

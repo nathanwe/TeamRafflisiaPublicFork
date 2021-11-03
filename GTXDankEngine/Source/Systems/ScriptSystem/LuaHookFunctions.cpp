@@ -634,3 +634,9 @@ int lua_SetRotation(lua_State* L)
     }
     return 0;
 }
+
+int lua_SetGamePath(lua_State* L)
+{
+    GAME_PATH = lua_tostring(L, 1);
+    return 0;
+}

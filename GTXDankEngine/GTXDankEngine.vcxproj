@@ -107,14 +107,26 @@
     <Image Include="Assets\Textures\popcat.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\SandBox1\Assets\audio\Master.bank" />
+    <None Include="..\SandBox1\Assets\audio\Master.strings.bank" />
+    <None Include="..\SandBox1\Assets\Configs\commands.json" />
+    <None Include="..\SandBox1\Assets\Configs\default.json" />
+    <None Include="..\SandBox1\Assets\Levels\gameObjects.json" />
+    <None Include="..\SandBox1\Assets\Levels\levels.json" />
+    <None Include="..\SandBox1\Assets\Scripts\DoEverything.lua" />
+    <None Include="..\SandBox1\Assets\Scripts\DoLightThings.lua" />
+    <None Include="..\SandBox1\Assets\Scripts\DoLionThings.lua" />
+    <None Include="..\SandBox1\Assets\Scripts\DoPokeballThings.lua" />
+    <None Include="..\SandBox1\Assets\Scripts\FirstScript.lua" />
+    <None Include="..\Sandbox2\Assets\Scripts\DoEverything.lua" />
+    <None Include="..\Sandbox2\Assets\Scripts\DoLightThings.lua" />
+    <None Include="..\Sandbox2\Assets\Scripts\DoLionThings.lua" />
+    <None Include="..\Sandbox2\Assets\Scripts\DoPokeballThings.lua" />
+    <None Include="..\Sandbox2\Assets\Scripts\FirstScript.lua" />
     <None Include="Assets\Levels\gameObjects.json" />
     <None Include="Assets\Levels\levels.json" />
-    <None Include="Assets\Scripts\DoLionThings.lua" />
-    <None Include="Assets\Scripts\DoLightThings.lua" />
-    <None Include="Assets\Scripts\DoEverything.lua" />
-    <None Include="Assets\Scripts\DoPokeballThings.lua" />
-    <None Include="Assets\Scripts\FirstScript.lua" />
     <None Include="Assets\Scripts\Menu.lua" />
+    <None Include="Assets\Scripts\WhereTheGameAt.lua" />
     <None Include="Skybox.shader" />
     <None Include="Source\Shaders\basic.shader" />
     <None Include="Source\Shaders\basicPBR.shader" />
@@ -301,6 +313,21 @@
     <ClCompile Include="Source\utils\Log.cpp" />
     <ClCompile Include="Source\utils\Timer.cpp" />
     <ClCompile Include="Source\utils\VQS.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="..\SandBox1\Assets\audio\Dash.wav" />
+    <Media Include="..\SandBox1\Assets\audio\DeadEffect.wav" />
+    <Media Include="..\SandBox1\Assets\audio\DeadEffectRev.wav" />
+    <Media Include="..\SandBox1\Assets\audio\JumpSFX.wav" />
+    <Media Include="..\SandBox1\Assets\audio\jumpSFX2.wav" />
+    <Media Include="..\SandBox1\Assets\audio\Lonely.wav" />
+    <Media Include="..\SandBox1\Assets\audio\Lonely_2.wav" />
+    <Media Include="..\SandBox1\Assets\audio\Maozon &amp; C-Show - Realize feat. Kyte (MV).mp3" />
+    <Media Include="..\SandBox1\Assets\audio\SaberRelay.mp3" />
+    <Media Include="..\SandBox1\Assets\audio\Vapor.mp3" />
+    <Media Include="..\SandBox1\Assets\audio\Vapor.wav" />
+    <Media Include="..\SandBox1\Assets\audio\VaporMaster.wav" />
+    <Media Include="..\SandBox1\Assets\audio\WinEffect.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

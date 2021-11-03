@@ -127,7 +127,7 @@ void DeserializeGameLogic(ordered_json j, Entity e)
 
 bool GameObjectFactory::Init()
 {
-    auto* handle = SerializationResourceManager.GetResourceHandleNoThread("Assets/Levels/gameObjects.json");
+    auto* handle = SerializationResourceManager.GetResourceHandleNoThread(GAME_PATH + std::string("Assets/Levels/gameObjects.json"));
     ordered_json archetypeJson = handle->GetPointer()->data;
 
     for (auto itr = archetypeJson.begin(); itr != archetypeJson.end(); ++itr)
@@ -241,7 +241,7 @@ void GameObjectFactory::SaveObject(std::string name, Entity entity)
     {
         output[key] = value;
     }
-    std::ofstream outputStream("Assets/Levels/gameObjects.json");
+    std::ofstream outputStream(GAME_PATH + std::string("Assets/Levels/gameObjects.json"));
     outputStream << output.dump(2);
 }
 
@@ -258,7 +258,7 @@ void GameObjectFactory::SaveObject(std::string name, Entity entity)
     //j[vaseCategory][(std::string)json(ComponentType::MODEL)] = *ModelComponentPool.GetComponentByEntity(vase)->model->GetPointer();
     //j[vaseCategory][(std::string)json(ComponentType::TRANSFORM)] = *vaseTransform;
     //j[vaseCategory][(std::string)json(ComponentType::MATERIAL)] = *vaseMat;
-    //std::ofstream outputStream("Assets/Levels/gameObjects.json");
+    //std::ofstream outputStream(GAME_PATH + std::string("Assets/Levels/gameObjects.json"));
     //outputStream << j.dump(2);
 */
 /*

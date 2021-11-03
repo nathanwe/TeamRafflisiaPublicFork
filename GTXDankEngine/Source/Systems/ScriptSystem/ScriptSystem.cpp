@@ -21,29 +21,7 @@ bool CheckLua(lua_State* L, int r)
 }
 
 
-void SendLionEmitEvent()
-{
-    Event ev;
-    ev.runPerEntity = true;
-    ev.e1 = 1;
-    ev.type = EventType::EMIT_LION;
-    ev.thingsToEffect.insert(GameLogicCategories::POKEBALL);
-    engine.DoGameLogicScriptSys.HandleEvent(ev);
-}
-void SendMenuToggleEvent()
-{
-    Event ev;
-    ev.type = EventType::TOGGLE_MENU;
-    engine.MenuSys.HandleEvent(ev);
-}
-void SendLionDeleteEvent()
-{
-    Event ev;
-    ev.runPerEntity = true;
-    ev.type = EventType::DESTROY_LIONS;
-    ev.thingsToEffect.insert(GameLogicCategories::LION);
-    engine.DoGameLogicScriptSys.HandleEvent(ev);
-}
+
 
 bool ScriptSystem::Init()
 {
@@ -54,9 +32,6 @@ bool ScriptSystem::Init()
 
 bool ScriptSystem::Init(std::string filePath)
 {
-    engine.CommandSys.GetCommand("Skill1").SetActionToExecute(SendLionEmitEvent);
-    engine.CommandSys.toggleMenuCommand.SetActionToExecute(SendMenuToggleEvent);
-    engine.CommandSys.GetCommand("Skill3").SetActionToExecute(SendLionDeleteEvent);
 
     fileHandle = ScriptResourceManager.GetResourceHandleNoThread(filePath);
     L = luaL_newstate();
@@ -89,7 +64,7 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "SetScale", lua_SetScale);
     lua_register(L, "GetRotation", lua_GetRotation);
     lua_register(L, "SetRotation", lua_SetRotation);
-
+    lua_register(L, "SetGamePath", lua_SetGamePath);
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));
     lua_getglobal(L, "Init");
@@ -99,7 +74,7 @@ bool ScriptSystem::Init(std::string filePath)
     }
     else
     {
-        LOG_ERROR("scriptsystem error, Init() not found")
+        LOG_ERROR("scriptsystem error, Init() of " + filePath + "not found")
     }
     return out;
 }

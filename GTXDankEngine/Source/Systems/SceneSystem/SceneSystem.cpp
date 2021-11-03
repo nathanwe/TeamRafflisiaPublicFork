@@ -20,7 +20,7 @@ extern Engine engine;
 
 bool SceneSystem::Init()
 {
-    auto* handle = SerializationResourceManager.GetResourceHandleNoThread("Assets/Levels/levels.json");
+    auto* handle = SerializationResourceManager.GetResourceHandleNoThread(GAME_PATH + std::string("Assets/Levels/levels.json"));
     levels = handle->GetPointer()->data;
 
     LoadScene(0);

@@ -54,23 +54,39 @@ void DirectionCommand::Execute()
 	float axisValue2 = engine.InputSys.GetControllerAxis(0, gamepadCode[1]);
 
 	if (engine.InputSys.IsKeyPressed(keyboardCode[0]))
+	{
 		this->actionToExecute(MoveDirection::UP, 1.0f);
-	if(axisValue2 < -engine.InputSys.deadzone)
+	}
+	if (axisValue2 < -engine.InputSys.deadzone)
+	{
 		this->actionToExecute(MoveDirection::UP, abs(axisValue2));
+	}
 
 	if (engine.InputSys.IsKeyPressed(keyboardCode[1]))
+	{
 		this->actionToExecute(MoveDirection::LEFT, 1.0f);
+	}
 	if (axisValue < -engine.InputSys.deadzone)
+	{
 		this->actionToExecute(MoveDirection::LEFT, abs(axisValue));
+	}
 
 	if (engine.InputSys.IsKeyPressed(keyboardCode[2]))
+	{
 		this->actionToExecute(MoveDirection::DOWN, 1.0f);
+	}
 	if (axisValue2 > engine.InputSys.deadzone)
+	{
 		this->actionToExecute(MoveDirection::DOWN, axisValue2);
+	}
 
 	if (engine.InputSys.IsKeyPressed(keyboardCode[3]))
+	{
 		this->actionToExecute(MoveDirection::RIGHT, 1.0f);
+	}
 	if (axisValue > engine.InputSys.deadzone)
+	{
 		this->actionToExecute(MoveDirection::RIGHT, axisValue);
+	}
 
 }

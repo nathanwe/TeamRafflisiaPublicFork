@@ -14,7 +14,7 @@ MovingBodyComponent::MovingBodyComponent(Entity e, RigidBody rigidBody)
 
 std::pair<std::string, float> MovingBodyComponent::getDebugDraw()
 {
-	std::string path = "Assets/models/Sphere/model.obj";
+	std::string path = GAME_PATH + std::string("Assets/models/Sphere/model.obj");
 	float scale = this->BroadPhase.radius / 64;
 
 	return std::pair<std::string, float>(path, scale);

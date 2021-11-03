@@ -1,4 +1,8 @@
 # **GTXDankGameEngine** #
+
+### **Engine controls:** ###
+go to GtxdankEngine/Assets/Scripts/WhereTheGameAt.lua, make line 4 either SetGamePath("../SandBox1/") or SetGamePath("../SandBox2/") to switch between games.
+
 ### **Sandbox controls:** ###
 
 ### **Keyboard:** ###

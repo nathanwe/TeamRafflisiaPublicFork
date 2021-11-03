@@ -22,7 +22,7 @@ void StillBodyComponent::setPostion(glm::vec3 pos)
 
 std::pair<std::string, float> StillBodyComponent::getDebugDraw()
 {
-	std::string path = "Assets/models/Sphere/model.obj";
+	std::string path = GAME_PATH + std::string("Assets/models/Sphere/model.obj");
 	float scale = this->BroadPhase.radius / 64;
 
 	return std::pair<std::string, float>(path, scale);

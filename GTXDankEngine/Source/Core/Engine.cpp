@@ -17,6 +17,7 @@
 #include "../utils/common.h"
 
 std::vector<Entity> EntityList;
+std::string GAME_PATH;
 ResourceManager<JsonFile> SerializationResourceManager;
 ResourceManager<Model> ModelResourceManager;
 ResourceManager<LuaFile> ScriptResourceManager;
@@ -26,25 +27,24 @@ bool Engine::Init()
 {
 	// Format of Engine Init
 	// TODO: Profiler will record how long it takes to init all system
-
-	
-	ScriptResourceManager.Init("Assets/Scripts/FirstScript.lua");
+	ScriptResourceManager.Init("Assets/Scripts/WhereTheGameAt.lua");
+	if (!FindGameSys.Init("Assets/Scripts/WhereTheGameAt.lua")) LOG_ERROR("Game not Found");
 	//preload resouces
-	ScriptResourceManager.GetResourceHandle("Assets/Scripts/DoEverything.lua");
+	ScriptResourceManager.GetResourceHandle(GAME_PATH + std::string("Assets/Scripts/DoEverything.lua"));
 	ScriptResourceManager.GetResourceHandle("Assets/Scripts/Menu.lua");
-	ScriptResourceManager.GetResourceHandle("Assets/Scripts/DoLionThings.lua");
-	ScriptResourceManager.GetResourceHandle("Assets/Scripts/DoPokeballThings.lua");
-	ScriptResourceManager.GetResourceHandle("Assets/Scripts/DoLightThings.lua");
+	ScriptResourceManager.GetResourceHandle(GAME_PATH + std::string("Assets/Scripts/DoLionThings.lua"));
+	ScriptResourceManager.GetResourceHandle(GAME_PATH + std::string("Assets/Scripts/DoPokeballThings.lua"));
+	ScriptResourceManager.GetResourceHandle(GAME_PATH + std::string("Assets/Scripts/DoLightThings.lua"));
 
-	SerializationResourceManager.Init("Assets/Levels/GameObjects.json");
+	SerializationResourceManager.Init(GAME_PATH + std::string("Assets/Levels/GameObjects.json"));
 	//preload resouces
-	SerializationResourceManager.GetResourceHandle("Assets/Levels/GameObjects.json");
+	SerializationResourceManager.GetResourceHandle(GAME_PATH + std::string("Assets/Levels/GameObjects.json"));
 
 
 	if (!GraphicsSys.Init()) LOG_ERROR("Graphics System failed to init.");
 
-	ModelResourceManager.Init("Assets/models/PokemonBall/model.obj");
-	TextureResourceManger.Init("Assets/models/PokemonBall/albedo.jpg");
+	ModelResourceManager.Init(GAME_PATH + std::string("Assets/models/PokemonBall/model.obj"));
+	TextureResourceManger.Init(GAME_PATH + std::string("Assets/models/PokemonBall/albedo.jpg"));
 	
 	if (!EntitySys.Init()) LOG_ERROR("Entity System failed to init.");
 	if (!AudioSys.Init()) LOG_ERROR("Audio System failed to init.");
@@ -80,7 +80,7 @@ bool Engine::Init()
 		});
 
 	//-----------------------------------------------------------------------
-	if (!DoGameLogicScriptSys.Init("Assets/Scripts/DoEverything.lua")) LOG_ERROR("Game Logic Script System failed to init.");
+	if (!DoGameLogicScriptSys.Init(GAME_PATH + std::string("Assets/Scripts/DoEverything.lua"))) LOG_ERROR("Game Logic Script System failed to init.");
 	if (!MenuSys.Init("Assets/Scripts/Menu.lua")) LOG_ERROR("Menu System failed to init.");
 
 

@@ -7,9 +7,33 @@
 
 extern Engine engine;
 
+void SendLionEmitEvent()
+{
+	Event ev;
+	ev.runPerEntity = true;
+	ev.e1 = 1;
+	ev.type = EventType::EMIT_LION;
+	ev.thingsToEffect.insert(GameLogicCategories::POKEBALL);
+	engine.DoGameLogicScriptSys.HandleEvent(ev);
+}
+void SendMenuToggleEvent()
+{
+	Event ev;
+	ev.type = EventType::TOGGLE_MENU;
+	engine.MenuSys.HandleEvent(ev);
+}
+void SendLionDeleteEvent()
+{
+	Event ev;
+	ev.runPerEntity = true;
+	ev.type = EventType::DESTROY_LIONS;
+	ev.thingsToEffect.insert(GameLogicCategories::LION);
+	engine.DoGameLogicScriptSys.HandleEvent(ev);
+}
 bool CommandSystem::Init()
 {
-	auto* handle = SerializationResourceManager.GetResourceHandleNoThread("Assets/Configs/commands.json");
+	auto* handle = SerializationResourceManager.GetResourceHandleNoThread(GAME_PATH + std::string("Assets/Configs/commands.json"));
+
 	ordered_json commandJson = handle->GetPointer()->data;
 	setting = commandJson;
 
@@ -62,6 +86,10 @@ bool CommandSystem::Init()
 			{
 				engine.GraphicsSys.camera.speed = 0.5f;
 			});
+
+		engine.CommandSys.GetCommand("Skill1").SetActionToExecute(SendLionEmitEvent);
+		engine.CommandSys.toggleMenuCommand.SetActionToExecute(SendMenuToggleEvent);
+		engine.CommandSys.GetCommand("Skill3").SetActionToExecute(SendLionDeleteEvent);
 
 	return true;
 }
@@ -211,7 +239,7 @@ void CommandSystem::ShowCommandMenu()
 void CommandSystem::SerializeCommands()
 {
 	ordered_json output = setting;
-	std::ofstream outputStream("Assets/Configs/commands.json");
+	std::ofstream outputStream(GAME_PATH + std::string("Assets/Configs/commands.json"));
 	outputStream << output.dump(2);
 }
 
@@ -220,7 +248,7 @@ void CommandSystem::LoadDefaultCommands()
 	if (ImGui::Button("Reset Controls", ImVec2(100, 25)))
 	{
 		pendingKeyUpdate = false;
-		auto* handle = SerializationResourceManager.GetResourceHandleNoThread("Assets/Configs/default.json");
+		auto* handle = SerializationResourceManager.GetResourceHandleNoThread(GAME_PATH + std::string("Assets/Configs/default.json"));
 		ordered_json commandJson = handle->GetPointer()->data;
 		PlayerSettings defaultSetting = commandJson;
 		for (auto& [key, command] : setting.commands)

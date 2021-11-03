@@ -1,8 +1,6 @@
 #ifndef ENGINE_H
 #define ENGINE_H
 
-
-
 #include "pch.h"
 #include "../Systems/GraphicsSystem/GraphicsSystem.h"
 #include "../Systems/UISystem/UISystem.h"
@@ -21,10 +19,13 @@
 
 extern std::vector<Entity> EntityList;
 
+extern std::string GAME_PATH;
+
 extern ResourceManager<Model> ModelResourceManager;
 extern ResourceManager<JsonFile> SerializationResourceManager;
 extern ResourceManager<LuaFile> ScriptResourceManager;
 extern ResourceManager<Texture> TextureResourceManger;
+
 
 // Abstract base class for all components
 class AbstractComponent
@@ -82,6 +83,7 @@ public:
 	GameObjectFactory GameObjectFac;
 	ScriptSystem DoGameLogicScriptSys;
 	ScriptSystem MenuSys;
+	ScriptSystem FindGameSys;
 	PhysicsSystem PhysicsSys;
 
 	GLFWwindow* window;

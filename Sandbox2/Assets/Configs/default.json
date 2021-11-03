@@ -1,0 +1,70 @@
+{
+  "mouseInvertedX": false,
+  "mouseInvertedY": false,
+  "gamepadInvertedX": false,
+  "gamepadInvertedY": false,
+  "directionCommand": {
+    "keyboardCode": [
+      87,
+      65,
+      83,
+      68
+    ],
+    "gamepadCode": [
+      0,
+      1
+    ]
+  },
+  "commands": {
+    "Space": {
+      "keyboardcode": 32,
+      "gamepadCode": 0,
+      "keyPressType": 0
+    },
+    "Skill1": {
+      "keyboardcode": 49,
+      "gamepadCode": -1,
+      "keyPressType": 1
+    },
+    "Shift": {
+      "keyboardcode": 32,
+      "gamepadCode": -1,
+      "keyPressType": 0
+    },
+    "Skill3": {
+      "keyboardcode": 51,
+      "gamepadCode": -1,
+      "keyPressType": 1
+    },
+    "Ctrl": {
+      "keyboardcode": 341,
+      "gamepadCode": 1,
+      "keyPressType": 0
+    },
+    "Skill2": {
+      "keyboardcode": 50,
+      "gamepadCode": -1,
+      "keyPressType": 1
+    },
+    "Attack3": {
+      "keyboardcode": 76,
+      "gamepadCode": -1,
+      "keyPressType": 0
+    },
+    "DebugMode": {
+      "keyboardcode": 84,
+      "gamepadCode": -1,
+      "keyPressType": 1
+    },
+    "NextLevel": {
+      "keyboardcode": 262,
+      "gamepadCode": -1,
+      "keyPressType": 1
+    },
+    "PreviousLevel": {
+      "keyboardcode": 263,
+      "gamepadCode": -1,
+      "keyPressType": 1
+    }
+  }
+}

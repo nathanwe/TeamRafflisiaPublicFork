@@ -212,7 +212,9 @@ int InputManager::IsAnyControllerTriggered()
 	for (int i = 0; i < 14; i++)
 	{
 		if (IsControllerTriggered(0, i))
+		{
 			return i;
+		}
 	}
 	return -1;
 }
