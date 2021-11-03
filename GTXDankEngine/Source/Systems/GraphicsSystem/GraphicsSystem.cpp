@@ -73,7 +73,7 @@ bool GraphicsSystem::Init()
 
 	skybox.Init();
 
-	PS.Init(1000000);
+	PS.Init(100000);
 
 	PostProcesser.Init();
 
