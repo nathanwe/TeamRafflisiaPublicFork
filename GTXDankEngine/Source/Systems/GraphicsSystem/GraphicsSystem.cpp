@@ -50,6 +50,8 @@ bool GraphicsSystem::Init()
 	// use glad
 	gladLoadGL();
 
+	glfwSwapInterval(0);
+
 	// Enable Depth Buffer
 	glEnable(GL_DEPTH_TEST);
 
