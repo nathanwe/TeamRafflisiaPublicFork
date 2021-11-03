@@ -21,7 +21,7 @@ void ParticleSystem::Init(int num_particles)
 	glBufferData(GL_ARRAY_BUFFER, Particles.size() * sizeof(Particle), &Particles[0], GL_STATIC_DRAW);
 
 	// render shader uniforms
-	RenderShader->setInt("vertex_count", Particles.size());
+	RenderShader->setInt("vertex_count", static_cast<int>(Particles.size()));
 	RenderShader->setMat4("projection", glm::ortho(0.0f, (float)1200, (float)860, 0.0f, -1.0f, 1.0f));
 
 }
@@ -38,7 +38,7 @@ void ParticleSystem::Draw(float timeStamp, glm::mat4 view, glm::mat4 proj, unsig
 
 	ComputeShader->Bind();
 	glBindBufferBase(GL_SHADER_STORAGE_BUFFER, 0, SSBO);
-	glDispatchCompute((Particles.size() / 128) + 1, 1, 1);	// group size: 128
+	glDispatchCompute(static_cast<GLuint>((Particles.size() / 128) + 1), 1, 1);	// group size: 128
 	glMemoryBarrier(GL_VERTEX_ATTRIB_ARRAY_BARRIER_BIT);
 	ComputeShader->unBind();
 
@@ -48,7 +48,7 @@ void ParticleSystem::Draw(float timeStamp, glm::mat4 view, glm::mat4 proj, unsig
 
 	RenderShader->Bind();
 	glBindBuffer(GL_ARRAY_BUFFER, SSBO);
-	glDrawArraysInstanced(GL_POINTS, 0, 1, Particles.size());
+	glDrawArraysInstanced(GL_POINTS, 0, 1, static_cast<GLsizei>(Particles.size()));
 	RenderShader->unBind();
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);

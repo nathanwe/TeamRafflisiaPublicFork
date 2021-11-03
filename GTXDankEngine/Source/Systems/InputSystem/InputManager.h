@@ -33,7 +33,7 @@ public:
 	bool IsKeyReleased(unsigned int KeyScanCode);
 
 	double mouseX, mouseY;
-	double* GetMouseChange();
+	//double* GetMouseChange();
 	bool IsMousePressed();
 	bool IsMouseTriggered();
 	bool IsMouseReleased();

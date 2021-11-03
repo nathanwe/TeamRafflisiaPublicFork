@@ -202,10 +202,10 @@ bool InputManager::IsKeyReleased(unsigned int KeyScanCode) {
 
 
 
-double* InputManager::GetMouseChange() {
-	double output[2] = { mouseX - mouseXPrev, mouseY - mouseYPrev };
-	return output;
-}
+//double* InputManager::GetMouseChange() {
+//	double output[2] = { mouseX - mouseXPrev, mouseY - mouseYPrev };
+//	return output;
+//}
 
 bool InputManager::IsMousePressed() {
 	return mCurrentMouse.left;
