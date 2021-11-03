@@ -81,7 +81,8 @@ enum class EventType
 	MOVE_POKEBALL = 8,
 	PLAY_SOUND = 9,
 	MUTE_SFX = 10,
-	UNMUTE_SFX = 11
+	UNMUTE_SFX = 11,
+	PHYSICS_COLLISION = 12
 };
 
 ///////////////////////////////////////////////////////

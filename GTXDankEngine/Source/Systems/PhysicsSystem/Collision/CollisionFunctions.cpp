@@ -214,12 +214,12 @@ float DynamicSphereToDynamicSphere(glm::vec3* pCenter0i, float Radius0, glm::vec
 //
 
 
-void ReflectStaticSphereStaticSphere(MovingBodyComponent* mb1, StillBodyComponent* sb2)
+bool ReflectStaticSphereStaticSphere(MovingBodyComponent* mb1, StillBodyComponent* sb2)
 {
 	float delT = DynamicSphereToStaticSphere(&mb1->rigidBody.prevPosition, &mb1->rigidBody.position, mb1->BroadPhase.radius, &mb1->rigidBody.velocity, &sb2->position, sb2->BroadPhase.radius);
 
 	if (delT == -1)
-		return;
+		return false;
 
 	glm::vec3 contactPostion = mb1->rigidBody.prevPosition + mb1->rigidBody.velocity * delT;
 
@@ -236,17 +236,18 @@ void ReflectStaticSphereStaticSphere(MovingBodyComponent* mb1, StillBodyComponen
 
 	
 	mb1->rigidBody.position = contactPostion + r;
+	return true;
 }
 
 
-void ReflectMovingSphereMovingSphere(MovingBodyComponent* mb1, MovingBodyComponent* mb2, float dt)
+bool ReflectMovingSphereMovingSphere(MovingBodyComponent* mb1, MovingBodyComponent* mb2, float dt)
 {
 	glm::vec3 V1, vNorm1;
 	glm::vec3 V2, vNorm2;
 	float delT = DynamicSphereToDynamicSphere(&mb1->rigidBody.prevPosition, mb1->BroadPhase.radius, &mb1->rigidBody.velocity, &mb2->rigidBody.prevPosition, mb2->BroadPhase.radius, &mb2->rigidBody.velocity, dt);
 
 	if (delT == -1)
-		return;
+		return false;
 
 	glm::vec3 contactPostion1 = mb1->rigidBody.prevPosition + mb1->rigidBody.velocity * delT;
 	glm::vec3 contactPostion2 = mb2->rigidBody.prevPosition + mb2->rigidBody.velocity * delT;
@@ -278,5 +279,6 @@ void ReflectMovingSphereMovingSphere(MovingBodyComponent* mb1, MovingBodyCompone
 
 	mb1->rigidBody.velocity = V1;
 	mb2->rigidBody.velocity = V2;
+	return true;
 
 }

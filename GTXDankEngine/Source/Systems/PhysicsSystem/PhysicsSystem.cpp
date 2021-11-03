@@ -57,13 +57,17 @@ void PhysicsSystem::Update(float timeStamp = 0)
 	//Detect Collision
 	DetectCollision(dt);
 
-	for (const auto& [physicsEntity, movingBodyComponent] : MovingBodyComponentPool.componentList)
+	std::set<Entity> MTEntitys = MovingBodyComponentPool.Get2SharedEntitys(TransformComponentPool.componentList);
+	for (auto e : MTEntitys)
 	{
 		/*if (rigidBodyComponent->collider.shape == Shape::PLANE)
 			continue;*/
-
-		TransformComponentPool.componentList[physicsEntity]->transform.position = movingBodyComponent->rigidBody.position;
-		TransformComponentPool.componentList[physicsEntity]->transform.rotation = movingBodyComponent->rigidBody.orientation;
+		auto movingBodyComponent = MovingBodyComponentPool.GetComponentByEntity(e);
+		auto transformComponent = TransformComponentPool.GetComponentByEntity(e);
+		transformComponent->transform.position = movingBodyComponent->rigidBody.position;
+		transformComponent->transform.rotation = movingBodyComponent->rigidBody.orientation;
+		//TransformComponentPool.componentList[physicsEntity]->transform.position = movingBodyComponent->rigidBody.position;
+		//TransformComponentPool.componentList[physicsEntity]->transform.rotation = movingBodyComponent->rigidBody.orientation;
 		/*glm::quat qYaw  = glm::angleAxis(0.01f, glm::vec3(0, 1, 0));
 		TransformComponentPool.componentList[physicsEntity]->transform->rotation *= glm::normalize(qYaw);*/
 	}
@@ -78,7 +82,14 @@ void PhysicsSystem::DetectCollision(float dt)
 	{
 		for (auto itr2 = next(itr1, 1); itr2 != MovingBodyComponentPool.componentList.end(); ++itr2)
 		{
-			ReflectMovingSphereMovingSphere(itr1->second, itr2->second, dt);
+			if (ReflectMovingSphereMovingSphere(itr1->second, itr2->second, dt))
+			{
+				Event ev = Event(true);
+				ev.type = EventType::PHYSICS_COLLISION;
+				ev.e1 = itr1->first;
+				ev.e2 = itr2->first;
+				engine.DoGameLogicScriptSys.HandleEvent(ev);
+			}
 		}
 	}
 
@@ -87,7 +98,14 @@ void PhysicsSystem::DetectCollision(float dt)
 	{
 		for (auto itr2 = StillBodyComponentPool.componentList.begin() ; itr2 != StillBodyComponentPool.componentList.end(); ++itr2)
 		{
-			ReflectStaticSphereStaticSphere(itr1->second, itr2->second);
+			if(ReflectStaticSphereStaticSphere(itr1->second, itr2->second))
+			{
+				Event ev = Event(true);
+				ev.type = EventType::PHYSICS_COLLISION;
+				ev.e1 = itr1->first;
+				ev.e2 = itr2->first;
+				engine.DoGameLogicScriptSys.HandleEvent(ev);
+			}
 		}
 	}
 }

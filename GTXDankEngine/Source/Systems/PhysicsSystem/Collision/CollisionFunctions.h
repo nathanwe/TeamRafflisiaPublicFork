@@ -20,9 +20,9 @@ float DynamicSphereToStaticSphere(glm::vec3* pCenter0i, glm::vec3* pCenter0f, fl
 float DynamicSphereToDynamicSphere(glm::vec3* pCenter0i, float Radius0, glm::vec3* velocity0, glm::vec3* pCenter1, float Radius1, glm::vec3* velocity1, float t);
 
 
-//void ReflectSpherePlane(RigidBodyComponent* rb1, RigidBodyComponent* rb2);
-void ReflectStaticSphereStaticSphere(MovingBodyComponent* mb1, StillBodyComponent* sb2);
-void ReflectMovingSphereMovingSphere(MovingBodyComponent* mb1, MovingBodyComponent* mb2, float dt);
+//bool ReflectSpherePlane(RigidBodyComponent* rb1, RigidBodyComponent* rb2);
+bool ReflectStaticSphereStaticSphere(MovingBodyComponent* mb1, StillBodyComponent* sb2);
+bool ReflectMovingSphereMovingSphere(MovingBodyComponent* mb1, MovingBodyComponent* mb2, float dt);
 
 #endif // !COLLISION_FUNCTIONS_H
 
