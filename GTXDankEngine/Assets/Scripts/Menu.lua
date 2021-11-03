@@ -56,7 +56,7 @@ function Update(dt)
 		if playSfxPressed then
 			local AudioEventTable = {}
 			AudioEventTable["type"] = 9
-			AudioEventTable["stringData1"] = "SaberRelay.mp3"
+			AudioEventTable["stringData1"] = "JumpSFX.wav"
 			AudioEventTable["floatData1"] = 1.0
 			AudioEventTable["floatData2"] = 1.0
 			AudioEventTable["floatData3"] = 1.0

@@ -6,12 +6,12 @@
 #include "../Core/Camera.h"
 #include "../Systems/ScriptSystem/ScriptSystem.h"
 
-//class BUS 
-//{
-//	void AddName(const char*);
-//	std::vector<const char*> filename;
-//	
-//};
+struct WaitingSound
+{
+	const char* strSoundName;
+	glm::vec3 vPos = glm::vec3(0);
+	float fVolumedB = 0.0f;
+};
 
 class AudioSystem : public System
 {
@@ -52,6 +52,7 @@ public:
 	FMOD_VECTOR vec3GLMtoFMOD(const glm::vec3& vec3);
 	void HandleEvent(Event event);
 	void MuteAll();
+	void TryPlayWaitingList();
 
 public:
 
@@ -85,7 +86,7 @@ public:
 	FMOD::ChannelGroup* BGM;
 	FMOD::ChannelGroup* SFX;
 
-
+	std::list<WaitingSound> waitingList;
 };
 
 

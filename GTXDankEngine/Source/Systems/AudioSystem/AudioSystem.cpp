@@ -26,7 +26,12 @@ bool AudioSystem::Init()
     LoadBank("Master.strings.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     LoadEvent("event:/BGM");
     //PlayEvent("event:/BGM");
-    LoadSound("SaberRelay.mp3", true, true);
+    LoadSound("SaberRelay.mp3", true);
+    LoadSound("Dash.wav", true);
+    LoadSound("DeadEffect.wav", true);
+    LoadSound("DeadEffectRev.wav", true);
+    LoadSound("JumpSFX.wav", true);
+    LoadSound("jumpSFX2.wav", true);
     LoadSound("Maozon & C-Show - Realize feat. Kyte (MV).mp3", false, true, true, true);
     int channel = PlaySound("SaberRelay.mp3");
     SetChannelVolume(channel,0.0f);
@@ -65,12 +70,26 @@ void AudioSystem::Update(float timeStamp)
         channelMaps.erase(it);
     }
 
+    TryPlayWaitingList();
+
+
     SetChannelGroupVolume(BGM, static_cast<float>(BGMVolume));
     SetChannelGroupVolume(SFX, static_cast<float>(SFXVolume));
 
     MuteAll();
     ERRCHECK(fmodStudioSystem->update());
     
+}
+
+void AudioSystem::TryPlayWaitingList() 
+{
+    int size = waitingList.size();
+    for (int i = 0; i < size; i++)
+    {
+        WaitingSound cur = waitingList.front();
+        PlaySound(cur.strSoundName, cur.vPos, cur.fVolumedB);
+        waitingList.pop_front();
+    }
 }
 bool AudioSystem::Destroy()
 {
@@ -112,6 +131,7 @@ void AudioSystem::LoadSound(const char* sound_filename, bool b3d, bool bLooping,
     eMode |= b3d ? FMOD_3D : FMOD_2D;
     eMode |= bLooping ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF;
     eMode |= bStream ? FMOD_CREATESTREAM : FMOD_CREATECOMPRESSEDSAMPLE;
+    eMode |= FMOD_NONBLOCKING;
 
     FMOD::Sound* pSound = nullptr;
     ERRCHECK(coreSystem->createSound(Common_MediaPath(sound_filename), eMode, nullptr, &pSound));
@@ -140,7 +160,12 @@ int AudioSystem::PlaySound(const char* sound_filename, const glm::vec3& vPos, fl
             return nChannelId;
         }
     }
-    FMOD::Channel* pChannel = nullptr;
+    FMOD::Channel* pChannel = nullptr; 
+    FMOD_OPENSTATE openstate;
+    ERRCHECK((mapIter->second->getOpenState(&openstate, nullptr, nullptr, nullptr)));
+    //printf("%s state %d\n", sound_filename, (int)openstate);
+    if (openstate != FMOD_OPENSTATE_READY) { waitingList.push_back(WaitingSound{ sound_filename ,vPos,fVolumedB }); return -1; }
+    
     ERRCHECK(coreSystem->playSound(mapIter->second, nullptr, true, &pChannel));
     if (pChannel)
     {
