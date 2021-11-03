@@ -81,6 +81,6 @@ private:
 
 	DebugRender DebugRenderer;
 
-	bool DebugMode = false;
+	bool RenderingDebugMode = false;
 };
 #endif // !GRAPHICSSYSTEM_H

@@ -79,9 +79,6 @@ void Camera::Inputs(GLFWwindow* window)
 
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
 	{
-		//moved to imgui
-		//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-
 		if (firstClick)
 		{
 			glfwSetCursorPos(window, (width / 2), (height / 2));
@@ -110,9 +107,6 @@ void Camera::Inputs(GLFWwindow* window)
 		Orientation = glm::rotate(Orientation, glm::radians(-rotY * 180.f), Up);
 	}
 	else if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_RELEASE) {
-		//moved to imgui
-		//glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-
 		firstClick = true;
 
 		if (engine.InputSys.IsControllerActive(0)) {

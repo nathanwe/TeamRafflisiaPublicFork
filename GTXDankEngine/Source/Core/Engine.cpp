@@ -204,3 +204,39 @@ inline float Engine::DeltaTime()
 {
 	return this->Framerate->DeltaSeconds();
 }
+
+bool Engine::getMenuMode()
+{
+	return menuMode;
+}
+
+void Engine::setMenuMode(bool mode)
+{
+	menuMode = mode;
+	if (menuMode || debugMode)
+	{
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+	}
+	else
+	{
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+	}
+}
+
+bool Engine::getDebugMode()
+{
+	return debugMode;
+}
+
+void Engine::setDebugMode(bool mode)
+{
+	debugMode = mode;
+	if (menuMode || debugMode)
+	{
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+	}
+	else
+	{
+		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
+	}
+}

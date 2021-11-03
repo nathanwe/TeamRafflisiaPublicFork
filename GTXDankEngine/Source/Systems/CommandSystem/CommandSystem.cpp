@@ -74,6 +74,8 @@ void CommandSystem::Update(float timeStamp)
 	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_ESCAPE) || engine.InputSys.IsControllerTriggered(0, 7))
 	{
 		menuMode = !menuMode;
+		engine.setMenuMode(menuMode);
+
 		if (!menuMode)
 		{
 			pendingKeyUpdate = false;
@@ -134,6 +136,7 @@ void CommandSystem::Update(float timeStamp)
 	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_T))
 	{
 		debugMode = !debugMode;
+		engine.setDebugMode(debugMode);
 		GetCommand("DebugMode").Execute();
 	}
 

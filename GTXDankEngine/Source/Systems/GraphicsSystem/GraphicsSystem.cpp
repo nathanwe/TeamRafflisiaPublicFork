@@ -25,7 +25,10 @@ void GraphicsSystem::InitWindow()
 {
 	// 400 is for the UI
 	// will get removed when we have the UI system
-	pWindow = glfwCreateWindow(WIDTH + 400, HEIGHT, "GTX Dank AF Engine", NULL, NULL);
+	//pWindow = glfwCreateWindow(WIDTH + 400, HEIGHT, "GTX Dank AF Engine", NULL, NULL);
+	pWindow = glfwCreateWindow(WIDTH, HEIGHT, "GTX Dank AF Engine", NULL, NULL);
+	engine.window = pWindow;
+	glfwSetInputMode(pWindow, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
 	if (pWindow == NULL)
 	{
@@ -99,23 +102,31 @@ void GraphicsSystem::Update(float timeStamp)
 	camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
 
 	// Render
-	if (!DebugMode) Render(timeStamp);
+	if (!RenderingDebugMode) Render(timeStamp);
 	else DebugDraw();
 	
-	
 	// Render UI
-	UISys.Update(0);
+	if (engine.getMenuMode() || engine.getDebugMode())
+	{
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
 
-	engine.MenuSys.Update(0);
+		if (engine.getDebugMode())
+		{
+			UISys.Update(0);
+			RenderGraphicsUI();
+		}
+		
+		if (engine.getMenuMode())
+		{
+			engine.MenuSys.Update(0);
+		}
 
-	RenderGraphicsUI();
-
-
-	ImGui::End();
-	ImGui::Render();
-	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	}
 	
-
 	// swap buffer
 	glfwSwapBuffers(pWindow);
 	glfwPollEvents();
@@ -275,7 +286,7 @@ void GraphicsSystem::RenderGraphicsUI(void)
 
 	ImGui::Begin("Render Configuration");
 	{
-		ImGui::Checkbox("Enable Debug Mode", &DebugMode);
+		ImGui::Checkbox("Enable Debug Mode", &RenderingDebugMode);
 		ImGui::Checkbox("Visualize Normal Vec", &DebugRenderer.EnableNormalVisual);
 		ImGui::Checkbox("Enable PCF", &(DeferredRender.EnablePCF));
 		ImGui::Checkbox("Enable Cel Shading", &(DeferredRender.EnableCelShading));

@@ -4,9 +4,10 @@
 ### **Keyboard:** ###
 * Press 1：create lions badly
 * Press 3: deletes lions
+* Press T: Toggle Debug Menu
 * Press WASD: move camera & pokeball!
 * Press <- and ->: switch scene
-* Press ECS: Toggle Menu
+* Press ECS: Toggle In-Game Menu
 
 Keys can be re-mapped through the menu
 

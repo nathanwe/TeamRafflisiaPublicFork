@@ -84,10 +84,17 @@ public:
 	ScriptSystem MenuSys;
 	PhysicsSystem PhysicsSys;
 
-	
+	GLFWwindow* window;
+
+	bool getMenuMode();
+	void setMenuMode(bool mode);
+	bool getDebugMode();
+	void setDebugMode(bool mode);
 
 
 private:
+	bool menuMode = false;
+	bool debugMode = false;
 
 };
 #endif // !ENGINE_H

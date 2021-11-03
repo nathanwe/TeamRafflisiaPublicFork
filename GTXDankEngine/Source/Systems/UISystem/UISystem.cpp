@@ -22,17 +22,13 @@ void UISystem::Update(float timeStamp)
 	
 	Timer timer("UI Update");
 
-	ImGui_ImplOpenGL3_NewFrame();
-	ImGui_ImplGlfw_NewFrame();
-	ImGui::NewFrame();
-	if(ImGui::IsMouseDown(ImGuiMouseButton_Right))
-		ImGui::SetMouseCursor(ImGuiMouseCursor_None);
 	ImGui::Begin("ImGui Window");
 	//every output on imgui is contained within this scope
 	{	
 		ProfileSys.Update(0);
 	}
-	//ImGui::End();
+	ImGui::End();
+
 	//ImGui::Render();
 	//ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
