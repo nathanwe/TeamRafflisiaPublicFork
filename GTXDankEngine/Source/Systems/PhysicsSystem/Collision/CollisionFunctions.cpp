@@ -236,7 +236,18 @@ bool ReflectStaticSphereStaticSphere(MovingBodyComponent* mb1, StillBodyComponen
 
 	
 	mb1->rigidBody.position = contactPostion + r;
-	return true;
+  
+	if (mb1->rigidBody.elasticity == 0)
+	{
+		mb1->rigidBody.velocity -= glm::dot(n, mb1->rigidBody.velocity) * n;
+	}
+	else
+	{
+		mb1->rigidBody.velocity -= 2 * glm::dot(n, mb1->rigidBody.velocity) * n;
+		mb1->rigidBody.velocity *= (mb1->rigidBody.elasticity + 1) / 2;
+	}
+  
+  return true;
 }
 
 
