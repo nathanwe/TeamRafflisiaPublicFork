@@ -67,7 +67,10 @@ int lua_SetPosition(lua_State* L);
 int lua_GetRigidData(lua_State* L);
 int lua_SetPhysicsVelocity(lua_State* L);
 int lua_GetSoundVolumes(lua_State* L);
-
+int lua_GetScale(lua_State* L);
+int lua_SetScale(lua_State* L);
+int lua_GetRotation(lua_State* L);
+int lua_SetRotation(lua_State* L);
 
 
 class LuaFile
@@ -95,7 +98,6 @@ public:
 class ScriptSystem : public System
 {
 public:
-	ScriptSystem();
 	~ScriptSystem() {};
 
 	bool Init();

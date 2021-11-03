@@ -226,6 +226,15 @@
     <Filter Include="Header Files\Systems\PhysicsSystem\Collision">
       <UniqueIdentifier>{548bf5c2-7a69-4917-ba6d-ae5afbd7f070}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Systems\GraphicsSystem\ParticleSystem">
+      <UniqueIdentifier>{71d3bcc1-4140-4e5b-aa14-1c6c926518b7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems\GraphicsSystem\ParticleSystem">
+      <UniqueIdentifier>{54124494-cffe-4b98-9b3a-d1cbaefa2066}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\ParticleSystem">
+      <UniqueIdentifier>{d8052aef-80d9-4331-94c0-bf1887760f77}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files\Components\AudioComponent">
       <UniqueIdentifier>{78718be9-f549-48d0-bdba-6c6552a8f35b}</UniqueIdentifier>
     </Filter>
@@ -307,6 +316,12 @@
     </None>
     <None Include="Source\Shaders\OIT\CompositionPass.shader">
       <Filter>Resource Files\Shaders\OIT</Filter>
+    </None>
+    <None Include="Source\Shaders\ParticleSystem\ParticleSystem.cs.shader">
+      <Filter>Resource Files\Shaders\ParticleSystem</Filter>
+    </None>
+    <None Include="Source\Shaders\ParticleSystem\Render.shader">
+      <Filter>Resource Files\Shaders\ParticleSystem</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -517,6 +532,9 @@
     <ClInclude Include="Source\Systems\PhysicsSystem\Collision\CollisionFunctions.h">
       <Filter>Header Files\Systems\PhysicsSystem\Collision</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\GraphicsSystem\ParticleSystem\ParticleSystem.h">
+      <Filter>Header Files\Systems\GraphicsSystem\ParticleSystem</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Components\AudioComponent\AudioBus.h">
       <Filter>Header Files\Components\AudioComponent</Filter>
     </ClInclude>
@@ -704,6 +722,9 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\PhysicsSystem\Collision\CollisionFunctions.cpp">
       <Filter>Source Files\Systems\PhysicsSystem\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\GraphicsSystem\ParticleSystem\ParticleSystem.cpp">
+      <Filter>Source Files\Systems\GraphicsSystem\ParticleSystem</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

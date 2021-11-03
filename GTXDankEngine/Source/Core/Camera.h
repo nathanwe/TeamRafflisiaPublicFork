@@ -17,6 +17,7 @@ public:
 	glm::mat4 projectionMatrix = glm::mat4(1.0f);
 
 	glm::quat orientationQuat = glm::normalize(glm::quat(1.f, 0.f, 0.f, 1.f));
+	glm::vec3 orientationScale;
 	float pitch = glm::radians(0.0f);
 	float yaw = glm::radians(0.0f);
 	float roll = glm::radians(0.0f);
@@ -30,11 +31,16 @@ public:
 	float sensitivity = 1.0f;
 	float gamepadSensitivity = 0.05f;
 
+	bool mouseInvertX = false;
+	bool mouseInvertY = false;
+	bool gamepadInvertX = false;
+	bool gamepadInvertY = false;
+
 	bool objectTrack = false;
 	bool thirdPerson = false;
 	float thirdPersonOffset = 5.f;
 
-	Camera() {};
+	
 	Camera(int width, int height, glm::vec3 position);
 
 	void Init();
@@ -45,10 +51,7 @@ public:
 
 	inline glm::mat4 GetViewMat() { return viewMatrix; }
 	inline glm::mat4 GetProjMat(float FOV, float n, float f) { return glm::perspective(glm::radians(FOV), (float)(width) / (height), n, f); }
-	inline glm::vec3 GetPosition() { 
-		glm::vec3 pos{ -viewMatrix[3][0], -viewMatrix[3][2], -viewMatrix[3][1] };
-		return pos; 
-	}
+	inline glm::vec3 GetPosition() { return (Position - glm::vec3(thirdPersonOffset) * orientationScale); }
 
 
 };

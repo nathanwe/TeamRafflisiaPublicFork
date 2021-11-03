@@ -25,11 +25,14 @@ bool AudioSystem::Init()
     LoadBank("Master.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     LoadBank("Master.strings.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     LoadEvent("event:/BGM");
-    PlayEvent("event:/BGM");
-    LoadSound("SaberRelay.mp3", true, false);
+    //PlayEvent("event:/BGM");
+    LoadSound("SaberRelay.mp3", true, true);
+    LoadSound("Maozon & C-Show - Realize feat. Kyte (MV).mp3", false, true, true, true);
     int channel = PlaySound("SaberRelay.mp3");
-    SetChannelVolume(channel,-3.0f);
+    SetChannelVolume(channel,0.0f);
     SetChannel3dPosition(channel, glm::vec3(-10.0f, -10.0f, 0.0f));
+    int channel2 = PlaySound("Maozon & C-Show - Realize feat. Kyte (MV).mp3");
+    SetChannelVolume(channel2, -3.0f);
 
     ERRCHECK(fmodStudioSystem->getBus("bus:/", &masterBus));
 
@@ -61,6 +64,9 @@ void AudioSystem::Update(float timeStamp)
     {
         channelMaps.erase(it);
     }
+
+    SetChannelGroupVolume(BGM, static_cast<float>(BGMVolume));
+    SetChannelGroupVolume(SFX, static_cast<float>(SFXVolume));
 
     MuteAll();
     ERRCHECK(fmodStudioSystem->update());
@@ -96,7 +102,7 @@ void AudioSystem::LoadEvent(const char* event_filename)
         }
     }
 }
-void AudioSystem::LoadSound(const char* sound_filename, bool b3d, bool bLooping, bool bStream, bool BUS)
+void AudioSystem::LoadSound(const char* sound_filename, bool b3d, bool bLooping, bool BUS, bool bStream)
 {
     auto mapIter = soundMaps.find(sound_filename);
     if (mapIter != soundMaps.end())
@@ -155,7 +161,15 @@ void AudioSystem::Set3dListenerAndOrientation(Camera camera)
 {
     FMOD_VECTOR pos = vec3GLMtoFMOD(camera.GetPosition());
     FMOD_VECTOR forward = vec3GLMtoFMOD(camera.Orientation);
-    FMOD_VECTOR up = vec3GLMtoFMOD(camera.Up);
+    glm::vec3 side = glm::cross(camera.Orientation, camera.Up);
+    glm::vec3 top = glm::cross(side, camera.Orientation);
+    top = glm::normalize(top);
+    if (glm::dot(top, camera.Up) < 0)
+    {
+        top = -top;
+    }
+    FMOD_VECTOR up = vec3GLMtoFMOD(top);
+    
 
     //std::cout << glm::to_string(camera.Position) << glm::to_string(camera.Orientation) << glm::to_string(camera.Up) << std::endl;
     ERRCHECK(coreSystem->set3DListenerAttributes(0, &pos, nullptr, &forward, &up));
@@ -211,6 +225,11 @@ void AudioSystem::SetChannelVolume(int nChannelId, float fVolumedB)
     ERRCHECK(mapIter->second->setVolume(dBtoVolume(fVolumedB)));
 }
 
+void AudioSystem::SetChannelGroupVolume(FMOD::ChannelGroup* channelGroup, float fVolumedB)
+{
+    ERRCHECK(channelGroup->setVolume(fVolumedB / 10.0f));
+}
+
 void AudioSystem::GetEventParameter(const char* event_filename, const char* parameter_name, float* value) {
     auto mapIter = eventMaps.find(event_filename);
     if (mapIter == eventMaps.end()) { return; }
@@ -252,26 +271,27 @@ float AudioSystem::VolumeTOdB(float volume)
 
 void AudioSystem::MuteAll()
 {
-    masterBus->setVolume(0.05f * !allMuted);
+    BGM->setMute(BGMMuted);
+    SFX->setMute(SFXMuted);
 }
 
 void AudioSystem::HandleEvent(Event event)
 {
     if (event.type == EventType::MUTE_BGM)
     {
-        allMuted = true;
+        BGMMuted = true;
     }
     if (event.type == EventType::UNMUTE_BGM)
     {
-        allMuted = false;
+        BGMMuted = false;
     }
     if (event.type == EventType::MUTE_SFX)
     {
-        allMuted = true;
+        SFXMuted = true;
     }
     if (event.type == EventType::UNMUTE_SFX)
     {
-        allMuted = false;
+        SFXMuted = false;
     }
     if (event.type == EventType::PLAY_SOUND)
     {

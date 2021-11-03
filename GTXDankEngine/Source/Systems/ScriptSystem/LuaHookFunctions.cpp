@@ -361,8 +361,8 @@ int lua_EndImgui(lua_State* L)
 int lua_ButtonImgui(lua_State* L)
 {
     const char* ButtonName = lua_tostring(L, 1);
-    int buttonWidth = lua_tointeger(L, 2);
-    int buttonHight = lua_tointeger(L, 3);
+    float buttonWidth = static_cast<float>(lua_tonumber(L, 2));
+    float buttonHight = static_cast<float>(lua_tonumber(L, 3));
     bool pressed = ImGui::Button(ButtonName, ImVec2(buttonWidth, buttonHight));
     lua_pushboolean(L, pressed);
     return 1;
@@ -372,8 +372,8 @@ int lua_IntSliderImgui(lua_State* L)
 {
     const char* SliderName = lua_tostring(L, 1);
     void* sliderValueLocation = lua_touserdata(L, 2);
-    int sliderMinValue = lua_tointeger(L, 3);
-    int sliderMaxValue = lua_tointeger(L, 4);
+    int sliderMinValue = static_cast<int>(lua_tointeger(L, 3));
+    int sliderMaxValue = static_cast<int>(lua_tointeger(L, 4));
     ImGui::SliderInt(SliderName, static_cast<int*>(sliderValueLocation), sliderMinValue, sliderMaxValue);
     return 0;
 }
@@ -545,4 +545,80 @@ int lua_GetSoundVolumes(lua_State* L)
     lua_pushlightuserdata(L,static_cast<void*>(&engine.AudioSys.BGMVolume));
     lua_pushlightuserdata(L,static_cast<void*>(&engine.AudioSys.SFXVolume));
     return 2;
+}
+
+int lua_GetScale(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
+    if (trans != nullptr)
+    {
+        lua_pushnumber(L, trans->transform.scale);
+    }
+    else
+    {
+        lua_pushnumber(L, 0);
+        LOG_ERROR("Transform not found");
+    }
+    return 1;
+}
+
+int lua_SetScale(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    float x = static_cast<float>(lua_tonumber(L, 2));
+    TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
+    if (trans != nullptr)
+    {
+        trans->transform.scale = x;
+    }
+    else
+    {
+        LOG_ERROR("Transform not found");
+    }
+    return 0;
+}
+
+int lua_GetRotation(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
+    if (trans != nullptr)
+    {
+        lua_pushnumber(L, trans->transform.rotation.w);
+        lua_pushnumber(L, trans->transform.rotation.x);
+        lua_pushnumber(L, trans->transform.rotation.y);
+        lua_pushnumber(L, trans->transform.rotation.z);
+    }
+    else
+    {
+        lua_pushnumber(L, 0);
+        lua_pushnumber(L, 0);
+        lua_pushnumber(L, 0);
+        lua_pushnumber(L, 0);
+        LOG_ERROR("Transform not found");
+    }
+    return 4;
+}
+
+int lua_SetRotation(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    float w = static_cast<float>(lua_tonumber(L, 2));
+    float x = static_cast<float>(lua_tonumber(L, 3));
+    float y = static_cast<float>(lua_tonumber(L, 4));
+    float z = static_cast<float>(lua_tonumber(L, 5));
+    TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
+    if (trans != nullptr)
+    {
+        trans->transform.rotation.w = w;
+        trans->transform.rotation.x = x;
+        trans->transform.rotation.y = y;
+        trans->transform.rotation.z = z;
+    }
+    else
+    {
+        LOG_ERROR("Transform not found");
+    }
+    return 0;
 }

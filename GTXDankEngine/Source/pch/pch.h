@@ -6,6 +6,10 @@
 #pragma warning(disable : 26495)
 #pragma warning(disable : 6387)
 // Graphics--------------------------------------------------
+//windows has to be included before glad
+#include <Windows.h>
+#include <windows.h>
+
 #include <glad/glad.h>
 #include <glm/glm.hpp>
 
@@ -27,8 +31,6 @@
 
 
 #include <stb/stb_image.h>
-//#include <yaml-cpp/anchor.h>
-//#include <yaml-cpp/yaml.h>
 
 
 #include <assimp/Importer.hpp>
@@ -65,9 +67,7 @@
 #include<mutex>
 #include<condition_variable>
 
-#include <windows.h>
 #include <conio.h>
-#include <Windows.h>
 #include <Objbase.h>
 
 

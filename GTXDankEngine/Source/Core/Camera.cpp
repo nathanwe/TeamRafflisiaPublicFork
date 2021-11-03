@@ -20,6 +20,8 @@ Camera::Camera(int width, int height, glm::vec3 position)
 
 	orientationQuat = qRoll * qPitch * qYaw;
 	orientationQuat = glm::normalize(orientationQuat);
+
+	orientationScale = glm::vec3(sin(yaw) * cos(pitch), -sin(pitch), -cos(yaw) * cos(pitch));
 }
 
 void Camera::Init()
@@ -40,6 +42,8 @@ void Camera::UpdateMatrix(float FOVdeg, float nearPlane, float farPlane)
 		viewMatrix = glm::mat4_cast(orientationQuat) * glm::translate(glm::mat4(1.0f), -Position);
 	}
 	projectionMatrix = glm::perspective(glm::radians(FOVdeg), (float)(width / height), nearPlane, farPlane);
+
+	cameraMatrix = projectionMatrix * viewMatrix;
 }
 
 void Camera::Matrix(Shader& shader, const char* uniform)
@@ -91,17 +95,19 @@ void Camera::Inputs(GLFWwindow* window)
 
 		glfwGetCursorPos(window, &mouseX, &mouseY);
 
-		float rotX = 180 * sensitivity * (float)(mouseY - (height / 2)) / height;
-		float rotY = 180 * sensitivity * (float)(mouseX - (width / 2)) / width;
+		float rotX = sensitivity * (float)(mouseX - (width / 2)) / width;
+		float rotY = sensitivity * (float)(mouseY - (height / 2)) / height;
+		glfwSetCursorPos(window, (width / 2), (height / 2));
+
+		if (mouseInvertX) rotX *= -1.f;
+		if (mouseInvertY) rotY *= -1.f;
+
+		pitch += rotY;
+		yaw += rotX;
 
 		// Support for sound system; TODO remove
-		Orientation = glm::rotate(Orientation, glm::radians(-rotX), glm::normalize(glm::cross(Orientation, Up)));
-		Orientation = glm::rotate(Orientation, glm::radians(-rotY), Up);
-
-		pitch += sensitivity * (float)(mouseY - (height / 2)) / height;
-		yaw += sensitivity * (float)(mouseX - (width / 2)) / width;
-
-		glfwSetCursorPos(window, (width / 2), (height / 2));
+		Orientation = glm::rotate(Orientation, glm::radians(-rotX * 180.f), glm::normalize(glm::cross(Orientation, Up)));
+		Orientation = glm::rotate(Orientation, glm::radians(-rotY * 180.f), Up);
 	}
 	else if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_RELEASE) {
 		//moved to imgui
@@ -117,9 +123,15 @@ void Camera::Inputs(GLFWwindow* window)
 
 			if (abs(engine.InputSys.GetControllerAxis(0, 2)) >= 0.1f) {
 				rotX = gamepadSensitivity * engine.InputSys.GetControllerAxis(0, 2);
+				if (gamepadInvertX) {
+					rotX *= -1.f;
+				}
 			}
 			if (abs(engine.InputSys.GetControllerAxis(0, 3)) >= 0.1f) {
 				rotY = gamepadSensitivity * engine.InputSys.GetControllerAxis(0, 3);
+				if (gamepadInvertY) {
+					rotY *= -1.f;
+				}
 			}
 
 			// Support for sound system; TODO remove
@@ -134,10 +146,10 @@ void Camera::Inputs(GLFWwindow* window)
 	if (updated)
 	{
 		if (pitch > M_PI / 2.f) {
-			pitch = M_PI / 2.f;
+			pitch = static_cast<float>(M_PI / 2.f);
 		}
 		if (pitch < -M_PI / 2.f) {
-			pitch = -M_PI / 2.f;
+			pitch = static_cast<float>(-M_PI / 2.f);
 		}
 
 		glm::quat qPitch = glm::angleAxis(pitch, glm::vec3(1, 0, 0));
@@ -146,6 +158,8 @@ void Camera::Inputs(GLFWwindow* window)
 
 		orientationQuat = qRoll * qPitch * qYaw;
 		orientationQuat = glm::normalize(orientationQuat);
+
+		orientationScale = glm::vec3(sin(yaw) * cos(pitch), -sin(pitch), -cos(yaw) * cos(pitch));
 	}
 
 	//LOG_INFO("camera position: {0}, {1}, {2}", Position.x, Position.y, Position.z);

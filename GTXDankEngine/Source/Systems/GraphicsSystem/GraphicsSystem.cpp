@@ -71,6 +71,8 @@ bool GraphicsSystem::Init()
 
 	skybox.Init();
 
+	PS.Init(1000000);
+
 	PostProcesser.Init();
 
 	DebugRenderer.Init(&camera);
@@ -88,15 +90,17 @@ void GraphicsSystem::Update(float timeStamp)
 	// clear default framebuffer
 	glClearColor(0.106f, 0.204f, 0.002f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
 
 	// update camera
 	camera.Inputs(pWindow);
 	camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
-	 
-	// Render
-	if (!DebugMode) Render();
-	else DebugDraw();
 
+	// Render
+	if (!DebugMode) Render(timeStamp);
+	else DebugDraw();
+	
+	
 	// Render UI
 	UISys.Update(0);
 
@@ -108,6 +112,7 @@ void GraphicsSystem::Update(float timeStamp)
 	ImGui::End();
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	
 
 	// swap buffer
 	glfwSwapBuffers(pWindow);
@@ -116,13 +121,16 @@ void GraphicsSystem::Update(float timeStamp)
 
 
 
-void GraphicsSystem::Render()
+void GraphicsSystem::Render(float timeStamp)
 {
+	glm::mat4 view = camera.GetViewMat();
+	glm::mat4 proj = camera.GetProjMat(45.0f, 0.1f, 300.0f);
+
 	// Render shadow map
 	Shadow.Update();
 
 	// Geometry pass for G-buffer
-	DeferredRender.Fill_G_Buffer(camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 300.0f));
+	DeferredRender.Fill_G_Buffer(view, proj);
 
 	BindLightSource(DeferredRender.GetLightShader());
 
@@ -134,11 +142,16 @@ void GraphicsSystem::Render()
 	DeferredRender.Render(camera.GetPosition(), Shadow, HdrFBO.GetFBO());
 
 	DeferredRender.CopyDepthBufferToTarget(HdrFBO.GetFBO(), camera.width, camera.height);
-	skybox.Render(camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f), HdrFBO.GetFBO());
+
+	glDisable(GL_CULL_FACE);
+	PS.Draw(timeStamp, view, proj, HdrFBO.GetFBO());
+	glEnable(GL_CULL_FACE);
+
+	skybox.Render(view, proj, HdrFBO.GetFBO());
 
 	// Forward Rendering
 	// Render transparent objects
-	TransparentRenderer.Render(HdrFBO.GetFBO(), camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 300.0f), DeferredRender.GetDepth());
+	TransparentRenderer.Render(HdrFBO.GetFBO(), view, proj, HdrFBO.GetDepth());
 
 	// post processing
 	PostProcesser.Render(HdrFBO);
@@ -226,7 +239,7 @@ void GraphicsSystem::RenderGraphicsUI(void)
 		ImVec2 wsize = ImGui::GetWindowSize();
 
 		// Because I use the texture from OpenGL, I need to invert the V from the UV.
-		ImGui::Image((ImTextureID)DeferredRender.GetAlbedoMetallic(), wsize, ImVec2(0, 1), ImVec2(1, 0));
+		ImGui::Image((ImTextureID)(UIntToPtr(DeferredRender.GetAlbedoMetallic())), wsize, ImVec2(0, 1), ImVec2(1, 0));
 		ImGui::EndChild();
 	}
 	ImGui::End();
@@ -236,7 +249,7 @@ void GraphicsSystem::RenderGraphicsUI(void)
 		ImGui::BeginChild("image");
 		ImVec2 wsize = ImGui::GetWindowSize();
 
-		ImGui::Image((ImTextureID)DeferredRender.GetNormalRoughness(), wsize, ImVec2(0, 1), ImVec2(1, 0));
+		ImGui::Image((ImTextureID)(UIntToPtr(DeferredRender.GetNormalRoughness())), wsize, ImVec2(0, 1), ImVec2(1, 0));
 		ImGui::EndChild();
 	}
 	ImGui::End();
@@ -246,7 +259,7 @@ void GraphicsSystem::RenderGraphicsUI(void)
 		ImGui::BeginChild("image");
 		ImVec2 wsize = ImGui::GetWindowSize();
 
-		ImGui::Image((ImTextureID)Shadow.GetDepthBuffer(), wsize, ImVec2(0, 1), ImVec2(1, 0));
+		ImGui::Image((ImTextureID)(UIntToPtr(Shadow.GetDepthBuffer())), wsize, ImVec2(0, 1), ImVec2(1, 0));
 		ImGui::EndChild();
 	}
 	ImGui::End();
@@ -272,8 +285,12 @@ void GraphicsSystem::RenderGraphicsUI(void)
 	{
 		ImGui::Checkbox("Third Person", &camera.thirdPerson);
 		ImGui::SliderFloat("Offset", &camera.thirdPersonOffset, 0.f, 20.f);
-		ImGui::Text("/////");
 		ImGui::Checkbox("Follow Pokeball", &camera.objectTrack);
+		ImGui::Text("/////");
+		ImGui::Checkbox("Mouse Invert X", &camera.mouseInvertX);
+		ImGui::Checkbox("Mouse Invert Y", &camera.mouseInvertY);
+		ImGui::Checkbox("Gamepad Invert X", &camera.gamepadInvertX);
+		ImGui::Checkbox("Gamepad Invert Y", &camera.gamepadInvertY);
 	}
 	ImGui::End();
 }
