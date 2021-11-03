@@ -98,7 +98,6 @@ public:
 class ScriptSystem : public System
 {
 public:
-	ScriptSystem();
 	~ScriptSystem() {};
 
 	bool Init();

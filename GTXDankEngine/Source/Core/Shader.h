@@ -24,7 +24,6 @@ private:
 	std::vector<std::string> textures;
 
 public:
-	Shader() :rendererID(0) {};
 	Shader(const std::string& path);
 	~Shader();
 	void Bind();
