@@ -50,6 +50,8 @@ bool GraphicsSystem::Init()
 	// use glad
 	gladLoadGL();
 
+	glfwSwapInterval(0);
+
 	// Enable Depth Buffer
 	glEnable(GL_DEPTH_TEST);
 
@@ -71,6 +73,8 @@ bool GraphicsSystem::Init()
 
 	skybox.Init();
 
+	PS.Init(1000000);
+
 	PostProcesser.Init();
 
 	DebugRenderer.Init(&camera);
@@ -88,15 +92,17 @@ void GraphicsSystem::Update(float timeStamp)
 	// clear default framebuffer
 	glClearColor(0.106f, 0.204f, 0.002f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
 
 	// update camera
 	camera.Inputs(pWindow);
 	camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
-	 
-	// Render
-	if (!DebugMode) Render();
-	else DebugDraw();
 
+	// Render
+	if (!DebugMode) Render(timeStamp);
+	else DebugDraw();
+	
+	
 	// Render UI
 	UISys.Update(0);
 
@@ -108,6 +114,7 @@ void GraphicsSystem::Update(float timeStamp)
 	ImGui::End();
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	
 
 	// swap buffer
 	glfwSwapBuffers(pWindow);
@@ -116,13 +123,16 @@ void GraphicsSystem::Update(float timeStamp)
 
 
 
-void GraphicsSystem::Render()
+void GraphicsSystem::Render(float timeStamp)
 {
+	glm::mat4 view = camera.GetViewMat();
+	glm::mat4 proj = camera.GetProjMat(45.0f, 0.1f, 300.0f);
+
 	// Render shadow map
 	Shadow.Update();
 
 	// Geometry pass for G-buffer
-	DeferredRender.Fill_G_Buffer(camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 300.0f));
+	DeferredRender.Fill_G_Buffer(view, proj);
 
 	BindLightSource(DeferredRender.GetLightShader());
 
@@ -134,11 +144,16 @@ void GraphicsSystem::Render()
 	DeferredRender.Render(camera.GetPosition(), Shadow, HdrFBO.GetFBO());
 
 	DeferredRender.CopyDepthBufferToTarget(HdrFBO.GetFBO(), camera.width, camera.height);
-	skybox.Render(camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f), HdrFBO.GetFBO());
+
+	glDisable(GL_CULL_FACE);
+	PS.Draw(timeStamp, view, proj, HdrFBO.GetFBO());
+	glEnable(GL_CULL_FACE);
+
+	skybox.Render(view, proj, HdrFBO.GetFBO());
 
 	// Forward Rendering
 	// Render transparent objects
-	TransparentRenderer.Render(HdrFBO.GetFBO(), camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 300.0f), DeferredRender.GetDepth());
+	TransparentRenderer.Render(HdrFBO.GetFBO(), view, proj, HdrFBO.GetDepth());
 
 	// post processing
 	PostProcesser.Render(HdrFBO);

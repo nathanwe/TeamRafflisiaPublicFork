@@ -137,7 +137,7 @@ void Engine::Run()
 		ModelResourceManager.Update(0);
 		TextureResourceManger.Update(0);
 
-		GraphicsSys.Update(0);
+		GraphicsSys.Update(DeltaTime());
 		AudioSys.Update(0);
 		
 		EntitySys.Update(0);
