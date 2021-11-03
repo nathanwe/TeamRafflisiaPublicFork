@@ -10,6 +10,7 @@ struct ShaderProgramSource
 	std::string VertexSource;
 	std::string FragmentSource;
 	std::string GeometrySource;
+	std::string ComputeSource;
 };
 
 
@@ -54,7 +55,7 @@ private:
 
 	// type: GL_FRAGMENT_SHADER or GL_VERTEX_SHADER
 	// return shader program ID
-	unsigned int compileShader(unsigned int type, const std::string& shaderSource);
+	unsigned int CompileShader(unsigned int type, const std::string& shaderSource);
 	void shaderErrorInfo(unsigned int shader, unsigned int type);
 
 	// vertexShader: shader source as a string
@@ -62,7 +63,7 @@ private:
 	// return shader ID
 	unsigned int createShader(const std::string& vertexShader,
 		const std::string& fragmentShader,
-		const std::string& geometryShader);
+		const std::string& geometryShader, const std::string& computeShader);
 };
 
 #endif // !SHADER_H

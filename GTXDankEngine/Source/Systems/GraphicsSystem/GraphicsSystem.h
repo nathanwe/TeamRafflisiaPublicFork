@@ -12,6 +12,7 @@
 #include "PostProcess/PostProcess.h"
 #include "DebugRender/DebugRender.h"
 #include "OIT/OIT.h"
+#include "ParticleSystem/ParticleSystem.h"
 
 
 class Light;
@@ -49,7 +50,7 @@ private:
 	void InitGLFW();
 	void InitWindow();
 		
-	void Render();
+	void Render(float timeStamp);
 
 	void BindLightSource(Shader* shader);
 	void BindPointLight(Shader* shader, Light* light, VQS *transform, unsigned int index);
@@ -67,7 +68,7 @@ private:
 
 	Shadow Shadow;
 
-	
+	ParticleSystem PS;
 
 	DeferredRenderer DeferredRender;
 

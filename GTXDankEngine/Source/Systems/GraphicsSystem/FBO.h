@@ -20,6 +20,7 @@ public:
 	inline void Unbind() const { glBindFramebuffer(GL_FRAMEBUFFER, 0); };
 
 	inline unsigned int GetFBO() const { return Fbo; }
+	inline unsigned int GetDepth() { return DepthBuffer; };
 	inline unsigned int GetColorAttachment() const { return ColorBuffer; };
 };
 

@@ -6,9 +6,11 @@ Shader::Shader(const std::string& path)
     :rendererID(0), shaderFilePath(path), textureUnit(0)
 {
     ShaderProgramSource source = parseShader(shaderFilePath);
-    rendererID = createShader(source.VertexSource,
+    rendererID = createShader(
+        source.VertexSource,
         source.FragmentSource,
-        source.GeometrySource);
+        source.GeometrySource,
+        source.ComputeSource);
 }
 
 Shader::~Shader()
@@ -21,13 +23,13 @@ Shader::~Shader()
 ShaderProgramSource Shader::parseShader(const std::string& path)
 {
     enum class ShaderMode {
-        NONE = -1, VERTEX_MODE = 0, FRAGMENT_MODE = 1, GEOMETRY_MODE = 2
+        NONE = -1, VERTEX_MODE = 0, FRAGMENT_MODE = 1, GEOMETRY_MODE = 2, COMPUTE_MODE = 3
     };
     std::fstream stream(path);
     std::string line;
 
     // 3 string streams, one for vertex shader, one for fragment shader, one for geometry shader
-    std::stringstream ss[3];
+    std::stringstream ss[4];
     ShaderMode currentMode = ShaderMode::NONE;
 
     // shader file has 2 lines: #shader fragment and #shader vertex 
@@ -40,37 +42,60 @@ ShaderProgramSource Shader::parseShader(const std::string& path)
                 currentMode = ShaderMode::VERTEX_MODE;
             else if (line.find("fragment") != std::string::npos)
                 currentMode = ShaderMode::FRAGMENT_MODE;
-            else if (line.find("geometry") != std::string::npos &&
-                !(line.find("//") != std::string::npos))
+            else if (line.find("geometry") != std::string::npos)
                 currentMode = ShaderMode::GEOMETRY_MODE;
+            else if (line.find("compute") != std::string::npos)
+                currentMode = ShaderMode::COMPUTE_MODE;
+            
         }
         else
         {
             ss[(int)currentMode] << line << '\n';
         }
     }
-    return { ss[0].str(), ss[1].str(), ss[2].str() };
+    return { ss[0].str(), ss[1].str(), ss[2].str(), ss[3].str() };
 }
 
 
 unsigned int Shader::createShader(const std::string& vertexShader,
     const std::string& fragmentShader,
-    const std::string& geometryShader)
+    const std::string& geometryShader,
+    const std::string& computeShader)
 {
+    bool hasVertexShader = vertexShader.length() > 0;
+    bool hasFragmentShader = fragmentShader.length() > 0;
     bool hasGeometryShader = geometryShader.length() > 0;
+    bool hasComputeShader = computeShader.length() > 0;
 
 
     unsigned int shaderProgram = glCreateProgram();
-    unsigned int vertexShaderID = compileShader(GL_VERTEX_SHADER, vertexShader);
-    unsigned int fragmentShaderID = compileShader(GL_FRAGMENT_SHADER, fragmentShader);
+    unsigned int vertexShaderID;
+    unsigned int fragmentShaderID;
     unsigned int geometryShaderID;
+    unsigned int computeShaderID;
 
-    glAttachShader(shaderProgram, vertexShaderID);
-    glAttachShader(shaderProgram, fragmentShaderID);
+
+    if (hasVertexShader)
+    {
+        vertexShaderID = CompileShader(GL_VERTEX_SHADER, vertexShader);
+        glAttachShader(shaderProgram, vertexShaderID);
+    }
+
+    if (hasFragmentShader)
+    {
+        fragmentShaderID = CompileShader(GL_FRAGMENT_SHADER, fragmentShader);
+        glAttachShader(shaderProgram, fragmentShaderID);
+    }
+
 
     if (hasGeometryShader) {
-        geometryShaderID = compileShader(GL_GEOMETRY_SHADER, geometryShader);
+        geometryShaderID = CompileShader(GL_GEOMETRY_SHADER, geometryShader);
         glAttachShader(shaderProgram, geometryShaderID);
+    }
+
+    if (hasComputeShader) {
+        computeShaderID = CompileShader(GL_COMPUTE_SHADER, computeShader);
+        glAttachShader(shaderProgram, computeShaderID);
     }
 
 
@@ -80,14 +105,15 @@ unsigned int Shader::createShader(const std::string& vertexShader,
     //TODO: catch exceptions
     glValidateProgram(shaderProgram);
 
-    glDeleteShader(vertexShaderID);
-    glDeleteShader(fragmentShaderID);
+    if (hasVertexShader) glDeleteShader(vertexShaderID);
+    if (hasFragmentShader) glDeleteShader(fragmentShaderID);
     if (hasGeometryShader) glDeleteShader(geometryShaderID);
+    if (hasComputeShader) glDeleteShader(computeShaderID);
 
     return shaderProgram;
 }
 
-unsigned int Shader::compileShader(unsigned int type, const std::string& shaderSource)
+unsigned int Shader::CompileShader(unsigned int type, const std::string& shaderSource)
 {
     unsigned int id = glCreateShader(type);
     const char* source = shaderSource.c_str();
@@ -111,8 +137,10 @@ void Shader::shaderErrorInfo(unsigned int shader, unsigned int type)
             std::cout << "File Name: " << shaderFilePath << " ERROR: Vertex Shader Compilation Error. " << infoLog << std::endl;
         else if (type == GL_FRAGMENT_SHADER)
             std::cout << "File Name: " << shaderFilePath << " ERROR: Fragment Shader Compilation Error. " << infoLog << std::endl;
-        else
+        else if (type == GL_GEOMETRY_SHADER)
             std::cout << "File Name: " << shaderFilePath << " ERROR: Geometry Shader Compilation Error. " << infoLog << std::endl;
+        else
+            std::cout << "ERROR: Compute Shader Compilation Error." << infoLog << std::endl;
     }
 }
 
@@ -172,8 +200,10 @@ void Shader::setVec3(const std::string& name, glm::vec3 vec)
 
 void Shader::setVec2(const char* name, glm::vec2 vec)
 {
+    this->Bind();
     unsigned int location = getUniformLocation(name);
     glUniform2fv(location, 1, glm::value_ptr(vec));
+    this->unBind();
 }
 
 
