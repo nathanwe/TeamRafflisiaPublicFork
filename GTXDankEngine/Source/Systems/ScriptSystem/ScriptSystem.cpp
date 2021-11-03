@@ -20,9 +20,6 @@ bool CheckLua(lua_State* L, int r)
     }
 }
 
-ScriptSystem::ScriptSystem()
-{
-}
 
 void SendLionEmitEvent()
 {

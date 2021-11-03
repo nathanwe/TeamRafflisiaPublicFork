@@ -226,7 +226,7 @@ void GraphicsSystem::RenderGraphicsUI(void)
 		ImVec2 wsize = ImGui::GetWindowSize();
 
 		// Because I use the texture from OpenGL, I need to invert the V from the UV.
-		ImGui::Image((ImTextureID)DeferredRender.GetAlbedoMetallic(), wsize, ImVec2(0, 1), ImVec2(1, 0));
+		ImGui::Image((ImTextureID)(UIntToPtr(DeferredRender.GetAlbedoMetallic())), wsize, ImVec2(0, 1), ImVec2(1, 0));
 		ImGui::EndChild();
 	}
 	ImGui::End();
@@ -236,7 +236,7 @@ void GraphicsSystem::RenderGraphicsUI(void)
 		ImGui::BeginChild("image");
 		ImVec2 wsize = ImGui::GetWindowSize();
 
-		ImGui::Image((ImTextureID)DeferredRender.GetNormalRoughness(), wsize, ImVec2(0, 1), ImVec2(1, 0));
+		ImGui::Image((ImTextureID)(UIntToPtr(DeferredRender.GetNormalRoughness())), wsize, ImVec2(0, 1), ImVec2(1, 0));
 		ImGui::EndChild();
 	}
 	ImGui::End();
@@ -246,7 +246,7 @@ void GraphicsSystem::RenderGraphicsUI(void)
 		ImGui::BeginChild("image");
 		ImVec2 wsize = ImGui::GetWindowSize();
 
-		ImGui::Image((ImTextureID)Shadow.GetDepthBuffer(), wsize, ImVec2(0, 1), ImVec2(1, 0));
+		ImGui::Image((ImTextureID)(UIntToPtr(Shadow.GetDepthBuffer())), wsize, ImVec2(0, 1), ImVec2(1, 0));
 		ImGui::EndChild();
 	}
 	ImGui::End();

@@ -40,7 +40,7 @@ public:
 	bool thirdPerson = false;
 	float thirdPersonOffset = 5.f;
 
-	Camera() {};
+	
 	Camera(int width, int height, glm::vec3 position);
 
 	void Init();
