@@ -81,7 +81,12 @@ bool GraphicsSystem::Init()
 	PostProcesser.Init();
 
 	DebugRenderer.Init(&camera);
-	
+
+	engine.CommandSys.GetCommand("GraphicsDebugMode").SetActionToExecute([&]()
+		{
+			RenderingDebugMode = !RenderingDebugMode;
+		});
+
 	return true;
 }
 

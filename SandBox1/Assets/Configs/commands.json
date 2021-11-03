@@ -56,6 +56,11 @@
       "gamepadCode": -1,
       "keyPressType": 1
     },
+    "GraphicsDebugMode": {
+      "keyboardcode": 71,
+      "gamepadCode": -1,
+      "keyPressType": 1
+    },
     "NextLevel": {
       "keyboardcode": 262,
       "gamepadCode": -1,

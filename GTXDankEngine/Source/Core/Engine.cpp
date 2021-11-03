@@ -41,6 +41,7 @@ bool Engine::Init()
 	SerializationResourceManager.GetResourceHandle(GAME_PATH + std::string("Assets/Levels/GameObjects.json"));
 
 
+	if (!CommandSys.Init()) LOG_ERROR("Command System failed to init.");
 	if (!GraphicsSys.Init()) LOG_ERROR("Graphics System failed to init.");
 
 	ModelResourceManager.Init(GAME_PATH + std::string("Assets/models/PokemonBall/model.obj"));
@@ -49,14 +50,10 @@ bool Engine::Init()
 	if (!EntitySys.Init()) LOG_ERROR("Entity System failed to init.");
 	if (!AudioSys.Init()) LOG_ERROR("Audio System failed to init.");
 
-	if (!CommandSys.Init()) LOG_ERROR("Command System failed to init.");
-
-	
-	
 	if (!GameObjectFac.Init()) LOG_ERROR("Game Object Fac failed to init.");
-	//
+	
 	if (!PhysicsSys.Init()) LOG_ERROR("Physics System failed to init.");
-	//
+	
 
 	UISys.GrabWindow(GraphicsSys.pWindow);
 	if (!UISys.Init()) LOG_ERROR("UI System failed to init.");
@@ -64,10 +61,6 @@ bool Engine::Init()
 	
 	Framerate = std::make_shared<FramerateController>();
 	Framerate->Init(60);
-
-	
-
-	
 
 	//temp: for game object factory demo
 	CommandSys.GetCommand("Attack3").SetActionToExecute([&]()

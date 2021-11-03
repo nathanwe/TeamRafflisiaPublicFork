@@ -8,6 +8,7 @@ go to GtxdankEngine/Assets/Scripts/WhereTheGameAt.lua, make line 4 either SetGam
 ### **Keyboard:** ###
 * Press 1：create lions badly
 * Press 3: deletes lions
+* Press G: Toggle Debug Drawing Mode
 * Press T: Toggle Debug Menu
 * Press WASD: move camera & pokeball!
 * Press <- and ->: switch scene
