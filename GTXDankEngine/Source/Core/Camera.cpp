@@ -146,10 +146,10 @@ void Camera::Inputs(GLFWwindow* window)
 	if (updated)
 	{
 		if (pitch > M_PI / 2.f) {
-			pitch = M_PI / 2.f;
+			pitch = (float)M_PI / 2.f;
 		}
 		if (pitch < -M_PI / 2.f) {
-			pitch = -M_PI / 2.f;
+			pitch = -(float)M_PI / 2.f;
 		}
 
 		glm::quat qPitch = glm::angleAxis(pitch, glm::vec3(1, 0, 0));

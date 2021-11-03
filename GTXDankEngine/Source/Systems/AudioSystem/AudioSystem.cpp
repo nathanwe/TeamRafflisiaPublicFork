@@ -65,8 +65,8 @@ void AudioSystem::Update(float timeStamp)
         channelMaps.erase(it);
     }
 
-    SetChannelGroupVolume(BGM, BGMVolume);
-    SetChannelGroupVolume(SFX, SFXVolume);
+    SetChannelGroupVolume(BGM, (float)BGMVolume);
+    SetChannelGroupVolume(SFX, (float)SFXVolume);
 
     MuteAll();
     ERRCHECK(fmodStudioSystem->update());
