@@ -53,6 +53,8 @@ void AudioSystem::Update(float timeStamp)
 
     Timer timer("Audio Update");
 
+    if (SFXMuted && BGMMuted) { return; }
+
     Set3dListenerAndOrientation(engine.GraphicsSys.camera);
 
     std::vector<ChannelMap::iterator> pStoppedChannels;
