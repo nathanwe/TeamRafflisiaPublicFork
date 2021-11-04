@@ -101,12 +101,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Image Include="Assets\Textures\brick.png" />
-    <Image Include="Assets\Textures\planks.png" />
-    <Image Include="Assets\Textures\planksSpec.png" />
-    <Image Include="Assets\Textures\popcat.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\SandBox1\Assets\audio\Master.bank" />
     <None Include="..\SandBox1\Assets\audio\Master.strings.bank" />
     <None Include="..\SandBox1\Assets\Configs\commands.json" />
@@ -118,13 +112,13 @@
     <None Include="..\SandBox1\Assets\Scripts\DoLionThings.lua" />
     <None Include="..\SandBox1\Assets\Scripts\DoPokeballThings.lua" />
     <None Include="..\SandBox1\Assets\Scripts\FirstScript.lua" />
+    <None Include="..\Sandbox2\Assets\Levels\gameObjects.json" />
+    <None Include="..\Sandbox2\Assets\Levels\levels.json" />
     <None Include="..\Sandbox2\Assets\Scripts\DoEverything.lua" />
     <None Include="..\Sandbox2\Assets\Scripts\DoLightThings.lua" />
     <None Include="..\Sandbox2\Assets\Scripts\DoLionThings.lua" />
     <None Include="..\Sandbox2\Assets\Scripts\DoPokeballThings.lua" />
     <None Include="..\Sandbox2\Assets\Scripts\FirstScript.lua" />
-    <None Include="Assets\Levels\gameObjects.json" />
-    <None Include="Assets\Levels\levels.json" />
     <None Include="Assets\Scripts\Menu.lua" />
     <None Include="Assets\Scripts\WhereTheGameAt.lua" />
     <None Include="Skybox.shader" />

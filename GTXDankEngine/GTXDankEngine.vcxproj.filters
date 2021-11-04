@@ -16,9 +16,6 @@
     <Filter Include="Resource Files\Shaders">
       <UniqueIdentifier>{52c38847-f4b6-46be-981e-94da2c25e118}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Textures">
-      <UniqueIdentifier>{6ba63ae1-136f-42c2-ad06-5933792f7306}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\utils">
       <UniqueIdentifier>{f4707167-4efc-4b11-adeb-383dc43b6923}</UniqueIdentifier>
     </Filter>
@@ -187,9 +184,6 @@
     <Filter Include="Header Files\Systems\GraphicsSystem\DebugRender">
       <UniqueIdentifier>{e36491d0-281f-49be-b371-f8aaa0f96113}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\Levels">
-      <UniqueIdentifier>{612aa5d4-f79d-4190-990c-0206d9898772}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Systems\SceneSystem">
       <UniqueIdentifier>{9a5641ae-c20d-426c-a5d1-48ec0232d1ca}</UniqueIdentifier>
     </Filter>
@@ -268,20 +262,9 @@
     <Filter Include="SandBox2\Scripts">
       <UniqueIdentifier>{d786e3a1-03cd-4e57-9e30-1998226fdaf7}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="Assets\Textures\brick.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-    <Image Include="Assets\Textures\planks.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-    <Image Include="Assets\Textures\planksSpec.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
-    <Image Include="Assets\Textures\popcat.png">
-      <Filter>Resource Files\Textures</Filter>
-    </Image>
+    <Filter Include="SandBox2\Levels">
+      <UniqueIdentifier>{747da6ce-3c7b-4a15-8977-dd27c975d650}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Skybox.shader">
@@ -313,12 +296,6 @@
     </None>
     <None Include="Source\Shaders\DebugRender\NormalVec.shader">
       <Filter>Resource Files\Shaders\DebugRender</Filter>
-    </None>
-    <None Include="Assets\Levels\levels.json">
-      <Filter>Resource Files\Levels</Filter>
-    </None>
-    <None Include="Assets\Levels\gameObjects.json">
-      <Filter>Resource Files\Levels</Filter>
     </None>
     <None Include="Source\Shaders\OIT\TransparentPass.shader">
       <Filter>Resource Files\Shaders\OIT</Filter>
@@ -385,6 +362,12 @@
     </None>
     <None Include="..\Sandbox2\Assets\Scripts\FirstScript.lua">
       <Filter>SandBox2\Scripts</Filter>
+    </None>
+    <None Include="..\Sandbox2\Assets\Levels\gameObjects.json">
+      <Filter>SandBox2\Levels</Filter>
+    </None>
+    <None Include="..\Sandbox2\Assets\Levels\levels.json">
+      <Filter>SandBox2\Levels</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

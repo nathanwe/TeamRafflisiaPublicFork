@@ -22,7 +22,7 @@
       "MetallicPath": "../SandBox2/Assets/models/PokemonBall/metallic.jpg",
       "NormalPath": "../SandBox2/Assets/models/PokemonBall/normal.jpg",
       "RoughnessPath": "../SandBox2/Assets/models/PokemonBall/roughness.jpg",
-      "Alpha": 0.8
+      "Alpha": 1.0
     },
     "GAME_LOGIC": [
       "POKEBALL"
