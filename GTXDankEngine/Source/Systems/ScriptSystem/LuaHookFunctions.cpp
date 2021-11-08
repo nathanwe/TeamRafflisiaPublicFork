@@ -1,4 +1,5 @@
 #include "pch.h"
+#include "../utils/JsonFile.h"
 #include "../Systems/ScriptSystem/ScriptSystem.h"
 
 #include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
@@ -639,4 +640,47 @@ int lua_SetGamePath(lua_State* L)
 {
     GAME_PATH = lua_tostring(L, 1);
     return 0;
+}
+
+int lua_SaveIntFloatTableAsJson(lua_State* L)
+{
+    
+    nlohmann::ordered_json objectJson;
+    int t = 1;
+    // table is in the stack at index 't' 
+    lua_pushnil(L);  // first key 
+    while (lua_next(L, t) != 0)
+    {
+        int keynum = lua_tointeger(L, -2);
+        // uses 'key' (at index -2) and 'value' (at index -1) 
+        std::string key = json(std::to_string(keynum));
+        objectJson[key] = lua_tonumber(L, -1);
+        
+
+        // removes 'value'; keeps 'key' for next iteration 
+        lua_pop(L, 1);
+    }
+    std::string location = lua_tostring(L, 2);
+    std::ofstream outputStream(GAME_PATH + location);
+    outputStream << objectJson.dump(4);
+    return 0;
+}
+
+int lua_LoadIntFloatTableFromJson(lua_State* L)
+{
+    std::string location = lua_tostring(L, 1);
+    auto* handle = SerializationResourceManager.GetResourceHandleNoThread(GAME_PATH + location);
+    ordered_json table = handle->GetPointer()->data;
+
+    lua_newtable(L);
+    int top = lua_gettop(L);
+    for (auto itr = table.begin(); itr != table.end(); ++itr)
+    {
+        std::string key = itr.key();
+        lua_pushnumber(L, std::stoi(key));
+        lua_pushnumber(L, table[key]);
+        lua_settable(L, top);
+    }
+    
+    return 1;
 }

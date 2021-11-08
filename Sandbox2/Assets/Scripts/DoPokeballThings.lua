@@ -21,6 +21,15 @@ function HandleEventPerEntityPokeball(e, EventData)
 		x,y,z = GetPosition(e)
 		ent = CreateEntity("LION")
 		SetPosition(ent,x,y,z)
+		testtable = {}
+		testtable[1] = -1
+		testtable[3] = 3.14159
+		print("about to save")
+		SaveIntFloatTableAsJson(testtable, "/Assets/Levels/testLuaSave.json")
+		tabletest = {}
+		tabletest = LoadIntFloatTableFromJson("/Assets/Levels/testLuaSave.json")
+		print(tabletest[1])
+		print(tabletest[3])
 	end
 	if EventData.type == 8 then
 		if EventData.stringData1 == "Up" then
