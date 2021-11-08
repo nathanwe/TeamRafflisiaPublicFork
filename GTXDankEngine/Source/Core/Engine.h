@@ -17,8 +17,6 @@
 #include "../Systems/SceneSystem/SceneSystem.h"
 #include "../Systems/PhysicsSystem/PhysicsSystem.h"
 
-extern std::vector<Entity> EntityList;
-
 extern std::string GAME_PATH;
 
 extern ResourceManager<Model> ModelResourceManager;

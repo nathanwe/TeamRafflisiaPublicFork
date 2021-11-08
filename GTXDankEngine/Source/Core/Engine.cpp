@@ -16,7 +16,6 @@
 #include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
 #include "../utils/common.h"
 
-std::vector<Entity> EntityList;
 std::string GAME_PATH;
 ResourceManager<JsonFile> SerializationResourceManager;
 ResourceManager<Model> ModelResourceManager;
@@ -27,14 +26,10 @@ bool Engine::Init()
 {
 	// Format of Engine Init
 	// TODO: Profiler will record how long it takes to init all system
-	ScriptResourceManager.Init("Assets/Scripts/WhereTheGameAt.lua");
+	ScriptResourceManager.Init("Assets/Defaults/DefaultScript.lua");
 	if (!FindGameSys.Init("Assets/Scripts/WhereTheGameAt.lua")) LOG_ERROR("Game not Found");
 	//preload resouces
-	ScriptResourceManager.GetResourceHandle(GAME_PATH + std::string("Assets/Scripts/DoEverything.lua"));
 	ScriptResourceManager.GetResourceHandle("Assets/Scripts/Menu.lua");
-	ScriptResourceManager.GetResourceHandle(GAME_PATH + std::string("Assets/Scripts/DoLionThings.lua"));
-	ScriptResourceManager.GetResourceHandle(GAME_PATH + std::string("Assets/Scripts/DoPokeballThings.lua"));
-	ScriptResourceManager.GetResourceHandle(GAME_PATH + std::string("Assets/Scripts/DoLightThings.lua"));
 
 	SerializationResourceManager.Init(GAME_PATH + std::string("Assets/Levels/GameObjects.json"));
 	//preload resouces
@@ -44,8 +39,8 @@ bool Engine::Init()
 	if (!CommandSys.Init()) LOG_ERROR("Command System failed to init.");
 	if (!GraphicsSys.Init()) LOG_ERROR("Graphics System failed to init.");
 
-	ModelResourceManager.Init(GAME_PATH + std::string("Assets/models/PokemonBall/model.obj"));
-	TextureResourceManger.Init(GAME_PATH + std::string("Assets/models/PokemonBall/albedo.jpg"));
+	ModelResourceManager.Init(std::string("Assets/Defaults/Sphere.obj"));
+	TextureResourceManger.Init(std::string("Assets/Defaults/BlackPurpleChecker.png"));
 	
 	if (!EntitySys.Init()) LOG_ERROR("Entity System failed to init.");
 	if (!AudioSys.Init()) LOG_ERROR("Audio System failed to init.");

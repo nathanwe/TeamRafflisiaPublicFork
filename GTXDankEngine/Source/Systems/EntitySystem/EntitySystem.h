@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ENTITYSYSTEM_H
+#define ENTITYSYSTEM_H
 
 #include "pch.h"
 #include "../../Core/System.h"
@@ -37,3 +38,4 @@ private:
 	int entityCount;
 
 };
+#endif // !ENTITYSYSTEM_H

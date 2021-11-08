@@ -150,7 +150,6 @@ Entity GameObjectFactory::CreateObject(std::string name)
 {
     ordered_json entityJson = archetypes[name];
     Entity newEntity = engine.EntitySys.CreateEntity();
-    EntityList.push_back(newEntity);
     
     for (auto itr = entityJson.begin(); itr != entityJson.end(); ++itr)
     {

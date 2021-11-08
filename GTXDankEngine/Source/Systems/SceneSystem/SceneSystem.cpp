@@ -43,7 +43,6 @@ void SceneSystem::UnloadScene()
     Event ev = Event(true);
     ev.type = EventType::DESTROY_ALL_ENTITIYS;
     engine.DoGameLogicScriptSys.HandleEvent(ev);
-    EntityList.clear();
 }
 
 void SceneSystem::LoadScene(int level)

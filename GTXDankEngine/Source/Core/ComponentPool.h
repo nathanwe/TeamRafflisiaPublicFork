@@ -101,11 +101,6 @@ template<class T>
 template<typename ...constructorArguments>
 bool AbstractComponentPool<T>::Add(Entity e, constructorArguments... args)
 {
-	if (EntityList.size() <= e || EntityList[e] == -1) // if entity does not exist
-	{
-		LOG_ERROR("Failed to add component, Entity {0} does not exist", e);
-	}
-
 	void* location = memory.GetFreeBlock();
 	T* component = new (location) T(e, args...);
 	componentList.insert(std::make_pair(e, component));
