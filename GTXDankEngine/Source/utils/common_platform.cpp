@@ -7,6 +7,7 @@ Copyright (c), Firelight Technologies Pty, Ltd 2012-2021.
 
 #include "pch.h"
 #include "common.h"
+#include "../Core/Engine.h"
 //#include <stdio.h>
 //#include <conio.h>
 //#include <Windows.h>
@@ -231,13 +232,13 @@ const char *Common_BtnStr(Common_Button btn)
 
 const char *Common_MediaPath(const char *fileName)
 {
-    char *filePath = (char *)calloc(256, sizeof(char));
-
-    static const char* pathPrefix = nullptr;
+    char *filePath = (char *)calloc(512, sizeof(char));
+    std::string a = GAME_PATH + "Assets/audio/";
+    const char* pathPrefix = nullptr;
     if (!pathPrefix)
     {
         const char *emptyPrefix = "";
-        const char *mediaPrefix = "Assets/audio/";
+        const char* mediaPrefix = a.c_str();
         FILE *file = fopen(fileName, "r");
         if (file)
         {

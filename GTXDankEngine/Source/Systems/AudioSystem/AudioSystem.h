@@ -34,7 +34,7 @@ public:
 	void UnLoadSound(const char* strSoundName);
 	void Set3dListenerAndOrientation(Camera camera);
 	void Set3dListenerAndOrientation(const glm::vec3& vPos = glm::vec3(0));
-	int PlaySound(const char* strSoundName, const glm::vec3& vPos = glm::vec3(0), float fVolumedB = 0.0f);
+	int fmodPlaySound(const char* strSoundName, const glm::vec3& vPos = glm::vec3(0), float fVolumedB = 0.0f);
 	void PlayEvent(const char* event_filename);
 	void StopChannel(int nChannelId);
 	void StopEvent(const char* strEventName, bool bImmediate = false);

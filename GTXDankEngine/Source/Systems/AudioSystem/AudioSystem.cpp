@@ -29,19 +29,17 @@ bool AudioSystem::Init()
     LoadSound("SaberRelay.mp3", true);
     LoadSound("Dash.wav", true);
     LoadSound("DeadEffect.wav", true);
+    LoadSound("WinEffect.wav", true, true);
     LoadSound("DeadEffectRev.wav", true);
     LoadSound("JumpSFX.wav", true);
     LoadSound("jumpSFX2.wav", true);
     LoadSound("Maozon & C-Show - Realize feat. Kyte (MV).mp3", false, true, true, true);
-    int channel = PlaySound("SaberRelay.mp3");
-    SetChannelVolume(channel,0.0f);
-    SetChannel3dPosition(channel, glm::vec3(-10.0f, -10.0f, 0.0f));
-    int channel2 = PlaySound("Maozon & C-Show - Realize feat. Kyte (MV).mp3");
-    SetChannelVolume(channel2, -3.0f);
+    int channel = fmodPlaySound("WinEffect.wav", glm::vec3(-10.0f, -10.0f, 0.0f), 0.0f);
+    int channel2 = fmodPlaySound("Maozon & C-Show - Realize feat. Kyte (MV).mp3", glm::vec3(0), -18.0f);
 
-    ERRCHECK(fmodStudioSystem->getBus("bus:/", &masterBus));
+   /* ERRCHECK(fmodStudioSystem->getBus("bus:/", &masterBus));
 
-    masterBus->setVolume(0.05f);
+    masterBus->setVolume(0.05f);*/
 
    /* eventInstance->start();
     eventInstance->setVolume(0.1f);*/
@@ -53,6 +51,7 @@ void AudioSystem::Update(float timeStamp)
 
     Timer timer("Audio Update");
 
+    MuteAll();
     if (SFXMuted && BGMMuted) { return; }
 
     Set3dListenerAndOrientation(engine.GraphicsSys.camera);
@@ -78,19 +77,19 @@ void AudioSystem::Update(float timeStamp)
     SetChannelGroupVolume(BGM, static_cast<float>(BGMVolume));
     SetChannelGroupVolume(SFX, static_cast<float>(SFXVolume));
 
-    MuteAll();
+   
     ERRCHECK(fmodStudioSystem->update());
     
 }
 
 void AudioSystem::TryPlayWaitingList() 
 {
-    int size = waitingList.size();
+    int size = waitingList.size(); 
     for (int i = 0; i < size; i++)
     {
         WaitingSound cur = waitingList.front();
-        PlaySound(cur.strSoundName, cur.vPos, cur.fVolumedB);
         waitingList.pop_front();
+        fmodPlaySound(cur.strSoundName, cur.vPos, cur.fVolumedB);
     }
 }
 bool AudioSystem::Destroy()
@@ -106,6 +105,7 @@ void AudioSystem::LoadBank(const char* bank_filename, FMOD_STUDIO_LOAD_BANK_FLAG
     auto mapIter = bankMaps.find(bank_filename);
     if (mapIter != bankMaps.end()) { return; }
     FMOD::Studio::Bank* pBank;
+    const char* a = Common_MediaPath(bank_filename);
     ERRCHECK(fmodStudioSystem->loadBankFile(Common_MediaPath(bank_filename), flags, &pBank));
     if (pBank) { bankMaps[bank_filename] = pBank; }
 }
@@ -149,7 +149,7 @@ void AudioSystem::UnLoadSound(const char* sound_filename)
     ERRCHECK(mapIter->second->release());
     soundMaps.erase(mapIter);
 }
-int AudioSystem::PlaySound(const char* sound_filename, const glm::vec3& vPos, float fVolumedB)
+int AudioSystem::fmodPlaySound(const char* sound_filename, const glm::vec3& vPos, float fVolumedB)
 {
     int nChannelId = nextChannelId++;
     auto mapIter = soundMaps.find(sound_filename);
@@ -166,7 +166,9 @@ int AudioSystem::PlaySound(const char* sound_filename, const glm::vec3& vPos, fl
     FMOD_OPENSTATE openstate;
     ERRCHECK((mapIter->second->getOpenState(&openstate, nullptr, nullptr, nullptr)));
     //printf("%s state %d\n", sound_filename, (int)openstate);
-    if (openstate != FMOD_OPENSTATE_READY) { waitingList.push_back(WaitingSound{ sound_filename ,vPos,fVolumedB }); return -1; }
+
+    if (openstate == FMOD_OPENSTATE_PLAYING) {}
+    else if (openstate != FMOD_OPENSTATE_READY&& openstate != FMOD_OPENSTATE_PLAYING) { waitingList.push_back(WaitingSound{ sound_filename ,vPos,fVolumedB }); return -1; }
     
     ERRCHECK(coreSystem->playSound(mapIter->second, nullptr, true, &pChannel));
     if (pChannel)
@@ -322,7 +324,7 @@ void AudioSystem::HandleEvent(Event event)
     }
     if (event.type == EventType::PLAY_SOUND)
     {
-        PlaySound(event.stringData1.c_str(), glm::vec3(event.floatData2, event.floatData3, event.floatData4), event.floatData1);
+        fmodPlaySound(event.stringData1.c_str(), glm::vec3(event.floatData2, event.floatData3, event.floatData4), event.floatData1);
     }
 }
 
