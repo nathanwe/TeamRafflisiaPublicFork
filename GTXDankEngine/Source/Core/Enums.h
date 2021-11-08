@@ -106,8 +106,7 @@ enum Shape
 {
 	SPHERE,
 	PLANE,
-	CUBE,
-	CUBOID,
+	AABB,
 
 	SHAPE
 };

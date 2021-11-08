@@ -2,6 +2,7 @@
 #define PHYSICS_SYSTEM_H
 //#include "pch.h"
 
+#define GRAVITY 3.0f
 #include "../Core/System.h"
 
 class MovingBodyComponent;

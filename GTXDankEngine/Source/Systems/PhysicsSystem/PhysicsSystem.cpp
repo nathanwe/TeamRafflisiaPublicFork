@@ -77,34 +77,51 @@ void PhysicsSystem::Update(float timeStamp = 0)
 void PhysicsSystem::DetectCollision(float dt)
 {
 	//Hard Coded for now
-	// Moving Sphere - Moving Sphere
+	// Moving - Moving
 	for (auto itr1 = MovingBodyComponentPool.componentList.begin(); itr1 != MovingBodyComponentPool.componentList.end(); ++itr1)
 	{
 		for (auto itr2 = next(itr1, 1); itr2 != MovingBodyComponentPool.componentList.end(); ++itr2)
 		{
-			if (ReflectMovingSphereMovingSphere(itr1->second, itr2->second, dt))
-			{
-				Event ev = Event(true);
-				ev.type = EventType::PHYSICS_COLLISION;
-				ev.e1 = itr1->first;
-				ev.e2 = itr2->first;
-				engine.DoGameLogicScriptSys.HandleEvent(ev);
-			}
+			if (itr1->second->BroadPhase.shape == Shape::SPHERE && itr2->second->BroadPhase.shape == Shape::SPHERE)
+				if (ReflectMovingSphereMovingSphere(itr1->second, itr2->second, dt))
+				{
+					Event ev = Event(true);
+					ev.type = EventType::PHYSICS_COLLISION;
+					ev.e1 = itr1->first;
+					ev.e2 = itr2->first;
+					engine.DoGameLogicScriptSys.HandleEvent(ev);
+				}
 		}
 	}
 
-	// Moving Sphere - Still Sphere
+	// Moving - Still
 	for (auto itr1 = MovingBodyComponentPool.componentList.begin(); itr1 != MovingBodyComponentPool.componentList.end(); ++itr1)
 	{
-		for (auto itr2 = StillBodyComponentPool.componentList.begin() ; itr2 != StillBodyComponentPool.componentList.end(); ++itr2)
+		for (auto itr2 = StillBodyComponentPool.componentList.begin(); itr2 != StillBodyComponentPool.componentList.end(); ++itr2)
 		{
-			if(ReflectStaticSphereStaticSphere(itr1->second, itr2->second))
+			// Sphere - Sphere
+			if (itr1->second->BroadPhase.shape == Shape::SPHERE && itr2->second->BroadPhase.shape == Shape::SPHERE)
 			{
-				Event ev = Event(true);
-				ev.type = EventType::PHYSICS_COLLISION;
-				ev.e1 = itr1->first;
-				ev.e2 = itr2->first;
-				engine.DoGameLogicScriptSys.HandleEvent(ev);
+				if (ReflectMovingSphereStaticSphere(itr1->second, itr2->second))
+				{
+					Event ev = Event(true);
+					ev.type = EventType::PHYSICS_COLLISION;
+					ev.e1 = itr1->first;
+					ev.e2 = itr2->first;
+					engine.DoGameLogicScriptSys.HandleEvent(ev);
+				}
+			}
+			// Sphere - Plane
+			else if (itr1->second->BroadPhase.shape == Shape::SPHERE && itr2->second->BroadPhase.shape == Shape::PLANE)
+			{
+				if (ReflectMovingSphereStaticPlane(itr1->second, itr2->second, dt))
+				{
+					Event ev = Event(true);
+					ev.type = EventType::PHYSICS_COLLISION;
+					ev.e1 = itr1->first;
+					ev.e2 = itr2->first;
+					engine.DoGameLogicScriptSys.HandleEvent(ev);
+				}
 			}
 		}
 	}
@@ -117,7 +134,7 @@ void PhysicsSystem::UpdatePosition()
 		movingBodyComponent->rigidBody.position = TransformComponentPool.componentList[physicsEntity]->transform.position;
 		movingBodyComponent->rigidBody.orientation = TransformComponentPool.componentList[physicsEntity]->transform.rotation;
 
-		
+
 
 		movingBodyComponent->rigidBody.angularVelocity = glm::quat(1.0, 0.0, 0.0, 0.0);
 		movingBodyComponent->rigidBody.torque = glm::quat(1.0, 0.0, 0.0, 0.0);
@@ -144,9 +161,9 @@ void PhysicsSystem::Integrate(MovingBodyComponent* movingBody, float dt)
 
 	if (movingBody->rigidBody.isGravity)
 		if (movingBody->rigidBody.velocity.y < 0)
-			movingBody->rigidBody.velocity += movingBody->rigidBody.mass * dt * glm::vec3(0, -1, 0);
+			movingBody->rigidBody.velocity += movingBody->rigidBody.mass * GRAVITY * dt * glm::vec3(0, -1, 0);
 		else
-			movingBody->rigidBody.velocity += 0.8f * movingBody->rigidBody.mass * dt * glm::vec3(0, -1, 0);
+			movingBody->rigidBody.velocity += 1.2f * movingBody->rigidBody.mass * GRAVITY * dt * glm::vec3(0, -1, 0);
 
 
 	movingBody->rigidBody.prevPosition = movingBody->rigidBody.position;

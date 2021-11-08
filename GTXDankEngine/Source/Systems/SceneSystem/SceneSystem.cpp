@@ -86,10 +86,20 @@ void SceneSystem::Update(float dt)
             transCom->transform.position.x = j["px"];
             transCom->transform.position.y = j["py"];
             transCom->transform.position.z = j["pz"];
-            transCom->transform.rotation.x = j["rx"];
+
+            glm::quat temp;
+            temp.x = j["rx"];
+            temp.y = j["ry"];
+            temp.z = j["rz"];
+            temp.w = j["rw"];
+
+            // Temp
+            /*transCom->transform.rotation.x = j["rx"];
             transCom->transform.rotation.y = j["ry"];
             transCom->transform.rotation.z = j["rz"];
-            transCom->transform.rotation.w = j["rw"];
+            transCom->transform.rotation.w = j["rw"];*/
+
+            transCom->transform.rotation = glm::normalize(temp);
 
             // For Physics
             engine.PhysicsSys.UpdatePosition();

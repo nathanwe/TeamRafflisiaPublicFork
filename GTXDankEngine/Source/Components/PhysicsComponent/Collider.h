@@ -14,19 +14,45 @@ public:
 	// In case of sphere
 	float radius;
 
-	//// In case of Plane
-	//glm::vec3 normal;
-	//float magnitude;
+	// In case of Plane
+	glm::vec3 normal;
+	float magnitude;
+
+	// In case of AABB
+	glm::vec3 minPoint;
+	glm::vec3 max_point;
 };
 
 inline void to_json(ordered_json& j, const Collider& collider) {
 	to_json(j["Shape"], collider.shape);
-	to_json(j["Radius"], collider.radius);
+	if (collider.shape == Shape::SPHERE)
+		to_json(j["Radius"], collider.radius);
+	else if (collider.shape == Shape::PLANE)
+	{
+		to_json(j["Normal"], collider.normal);
+		to_json(j["Magnitude"], collider.magnitude);
+	}
+	else if (collider.shape == Shape::AABB)
+	{
+		to_json(j["MinPoint"], collider.minPoint);
+		to_json(j["MaxPoint"], collider.max_point);
+	}
 }
 
 inline void from_json(const ordered_json& j, Collider& collider) {
 	collider.shape = static_cast<Shape>(j["Shape"]);
-	from_json(j["Radius"], collider.radius);
+	if (collider.shape == Shape::SPHERE)
+		from_json(j["Radius"], collider.radius);
+	else if (collider.shape == Shape::PLANE)
+	{
+		from_json(j["Normal"], collider.normal);
+		from_json(j["Magnitude"], collider.magnitude);
+	}
+	else if (collider.shape == Shape::AABB)
+	{
+		from_json(j["MinPoint"], collider.minPoint);
+		from_json(j["MaxPoint"], collider.max_point);
+	}
 }
 
 

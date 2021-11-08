@@ -4,7 +4,7 @@
 #include "../Components/PhysicsComponent/StillBodyComponent.h"
 
 
-//
+
 int StaticPointToStaticSphere(glm::vec3* pP, glm::vec3* pCenter, float Radius)
 {
 	glm::vec3 pointToCenter = *pP - *pCenter;
@@ -22,7 +22,6 @@ int StaticPointToStaticSphere(glm::vec3* pP, glm::vec3* pCenter, float Radius)
 }
 
 
-
 int StaticSphereToStaticSphere(glm::vec3* pCenter0, float Radius0, glm::vec3* pCenter1, float Radius1)
 {
 	glm::vec3 centerToCenter = *pCenter0 - *pCenter1;
@@ -38,9 +37,8 @@ int StaticSphereToStaticSphere(glm::vec3* pCenter0, float Radius0, glm::vec3* pC
 	}
 	return 0;
 }
-//
-//
-//
+
+
 int StaticSphereToStacticPlane(glm::vec3* pCenter, float Radius, glm::vec3* normal, float magnitude)
 {
 	float distanceFromSphereCenter = (float)fabs(glm::dot(*pCenter, *normal) + magnitude);
@@ -54,23 +52,243 @@ int StaticSphereToStacticPlane(glm::vec3* pCenter, float Radius, glm::vec3* norm
 		return 1;
 	}
 }
-//
-//
+
+
+int StaticAABBToStaticAABB(glm::vec3* p1, glm::vec3* max1, glm::vec3* min1, glm::vec3* p2, glm::vec3* max2, glm::vec3* min2)
+{
+	if (p1->x > p2->x && (p1->x + min1->x) > (p2->x + max2->x))
+	{
+		return 0;
+	}
+	else if (p1->x < p2->x && (p1->x + max1->x) < (p2->x + min2->x))
+	{
+		return 0;
+	}
+	else if (p1->y > p2->y && (p1->y + min1->y) > (p2->y + max2->y))
+	{
+		return 0;
+	}
+	else if (p1->y < p2->y && (p1->y + max1->y) < (p2->y + min2->y))
+	{
+		return 0;
+	}
+	else if (p1->z > p2->z && (p1->z + min1->z) > (p2->z + max2->z))
+	{
+		return 0;
+	}
+	else if (p1->z < p2->z && (p1->z + max1->z) < (p2->z + min2->z))
+	{
+		return 0;
+	}
+	else
+	{
+		return 1;
+	}
+}
+int StaticSphereToStaticAABB(glm::vec3* pCenter0, float Radius0, glm::vec3* p1, glm::vec3* max1, glm::vec3* min1)
+{
+
+	std::vector<glm::vec3> temp;
+	glm::vec3 temp1;
+
+	// 1,1,1
+	temp.push_back(*p1 + *max1);
+	// -1,-1,-1
+	temp.push_back(*p1 + *min1);
+
+	// 1,1,-1
+	temp1.x = p1->x + max1->x;
+	temp1.x = p1->y + max1->y;
+	temp1.x = p1->z + min1->z;
+	temp.push_back(temp1);
+
+	// 1,-1,1
+	temp1.x = p1->x + max1->x;
+	temp1.x = p1->y + min1->y;
+	temp1.x = p1->z + max1->z;
+	temp.push_back(temp1);
+
+	// -1,1,1
+	temp1.x = p1->x + min1->x;
+	temp1.x = p1->y + max1->y;
+	temp1.x = p1->z + max1->z;
+	temp.push_back(temp1);
+
+	// 1,-1,-1
+	temp1.x = p1->x + max1->x;
+	temp1.x = p1->y + min1->y;
+	temp1.x = p1->z + min1->z;
+	temp.push_back(temp1);
+
+	// -1,-1,1
+	temp1.x = p1->x + min1->x;
+	temp1.x = p1->y + min1->y;
+	temp1.x = p1->z + max1->z;
+	temp.push_back(temp1);
+
+	// -1,1,-1
+	temp1.x = p1->x + min1->x;
+	temp1.x = p1->y + max1->y;
+	temp1.x = p1->z + min1->z;
+	temp.push_back(temp1);
+
+	// Sphere center is 
+	if (pCenter0->x - Radius0 > p1->x + max1->x)
+	{
+		return 0;
+	}
+	else if (pCenter0->x + Radius0 < p1->x + min1->x)
+	{
+		return 0;
+	}
+	else if (pCenter0->y - Radius0 > p1->y + max1->y)
+	{
+		return 0;
+	}
+	else if (pCenter0->y + Radius0 < p1->y + min1->y)
+	{
+		return 0;
+	}
+	else if (pCenter0->z - Radius0 > p1->z + max1->z)
+	{
+		return 0;
+	}
+	else if (pCenter0->z + Radius0 < p1->z + min1->z)
+	{
+		return 0;
+	}
+	else if (pCenter0->x + Radius0 < p1->x + max1->x && pCenter0->x + Radius0 > p1->x + min1->x)
+	{
+		return 1;
+	}
+	else if (pCenter0->y + Radius0 < p1->y + max1->y && pCenter0->y + Radius0 > p1->y + min1->y)
+	{
+		return 1;
+	}
+	else if (pCenter0->z + Radius0 < p1->z + max1->z && pCenter0->z + Radius0 > p1->z + min1->z)
+	{
+		return 1;
+	}
+	else
+	{
+		for (auto i : temp)
+		{
+			if (StaticPointToStaticSphere(&i, pCenter0, Radius0) == 1)
+			{
+				return 1;
+			}
+		}
+		return 0;
+	}
+
+}
+
+int StaticAABBToStaticPlane(glm::vec3* p1, glm::vec3* max1, glm::vec3* min1, glm::vec3* normal, float magnitude)
+{
+	std::vector<glm::vec3> temp;
+	glm::vec3 temp1;
+	
+	// 1,1,1
+	temp.push_back(*p1 + *max1);
+	// -1,-1,-1
+	temp.push_back(*p1 + *min1);
+
+	// 1,1,-1
+	temp1.x = p1->x + max1->x;
+	temp1.x = p1->y + max1->y;
+	temp1.x = p1->z + min1->z;
+	temp.push_back(temp1);
+
+	// 1,-1,1
+	temp1.x = p1->x + max1->x;
+	temp1.x = p1->y + min1->y;
+	temp1.x = p1->z + max1->z;
+	temp.push_back(temp1);
+
+	// -1,1,1
+	temp1.x = p1->x + min1->x;
+	temp1.x = p1->y + max1->y;
+	temp1.x = p1->z + max1->z;
+	temp.push_back(temp1);
+
+	// 1,-1,-1
+	temp1.x = p1->x + max1->x;
+	temp1.x = p1->y + min1->y;
+	temp1.x = p1->z + min1->z;
+	temp.push_back(temp1);
+
+	// -1,-1,1
+	temp1.x = p1->x + min1->x;
+	temp1.x = p1->y + min1->y;
+	temp1.x = p1->z + max1->z;
+	temp.push_back(temp1);
+
+	// -1,1,-1
+	temp1.x = p1->x + min1->x;
+	temp1.x = p1->y + max1->y;
+	temp1.x = p1->z + min1->z;
+	temp.push_back(temp1);
+
+	int sign = glm::dot(temp[0], *normal) - magnitude / fabs(glm::dot(temp[0], *normal) - magnitude);
+
+	for (auto i : temp)
+	{
+		if (glm::dot(i, *normal) - magnitude / fabs(glm::dot(temp[0], *normal) - magnitude) != sign)
+			return 1;
+	}
+
+	return 0;
+}
+
+
+
+
+float DynamicPointToStaticPlane(glm::vec3* pCenter0, glm::vec3* pCenter1, glm::vec3* velocity, glm::vec3* normal, float magnitude)
+{
+	float dt = 0;
+
+	if (((glm::dot(*pCenter0, *normal) - magnitude) * (glm::dot(*pCenter1, *normal) - magnitude)) > 0)
+	{
+		return -1;
+	}
+	//Velocity Parallel to Plane
+	else if (glm::dot(*normal, *velocity) == 0)
+	{
+		return -1;
+	}
+	else
+	{
+		dt = (float)fabs(glm::dot(*pCenter0, *normal) - magnitude) / (float)fabs(glm::dot(*velocity, *normal));
+	}
+
+}
+
+
 float DynamicSphereToStaticPlane(glm::vec3* pCenter0, glm::vec3* pCenter1, float radius, glm::vec3* velocity, glm::vec3* normal, float magnitude)
 {
 	//float d = 0;
 	//float t = 0;
 	float dt = 0;
+
 	//Same Side of Plane
-	if (glm::dot(*pCenter0, *normal) * glm::dot(*pCenter0, *normal) > 0)
+	//auto d1 = glm::dot(*pCenter0, *normal);
+	//auto d2 = glm::dot(*pCenter1, *normal);
+
+	//if ((glm::dot(*pCenter0, *normal) * glm::dot(*pCenter1, *normal)) > 0 && fabs(glm::dot(*pCenter1, *normal) > magnitude + radius))
+	//{
+	//	return -1;
+	//}
+	////Velocity Parallel to Plane
+	//else if (glm::dot(*normal, *velocity))
+	//{
+	//	return -1;
+	//}
+
+	/*if ((glm::dot(*pCenter0, *normal)) - magnitude < radius)
 	{
-		return -1;
-	}
-	//Velocity Parallel to Plane
-	else if (glm::dot(*normal, *velocity))
-	{
-		return -1;
-	}
+		*pCenter0 += (magnitude - glm::dot(*pCenter0, *normal)) * *normal;
+		*pCenter1 += (magnitude - glm::dot(*pCenter0, *normal)) * *normal;
+	}*/
 
 	//Shifting Plane based on Spheres Position
 	if (glm::dot(*velocity, *normal) > 0)
@@ -82,12 +300,13 @@ float DynamicSphereToStaticPlane(glm::vec3* pCenter0, glm::vec3* pCenter1, float
 		magnitude += radius;
 	}
 
-	dt = (float)fabs(glm::dot(*pCenter0, *normal) + magnitude) / (float)fabs(glm::dot(*velocity, *normal) + magnitude);
+
+	dt = DynamicPointToStaticPlane(pCenter0, pCenter1, velocity, normal, magnitude);
 
 	return dt;
 }
-//
-//
+
+
 float DynamicPointToStaticSphere(glm::vec3* p1, glm::vec3* p2, glm::vec3* velocity, glm::vec3* pCenter, float Radius)
 {
 	float pToCenterSq = glm::dot((*pCenter - *p1), (*pCenter - *p1));
@@ -118,8 +337,8 @@ float DynamicPointToStaticSphere(glm::vec3* p1, glm::vec3* p2, glm::vec3* veloci
 	return (m - s) / v;
 
 }
-//
-//
+
+
 float DynamicSphereToStaticSphere(glm::vec3* pCenter0i, glm::vec3* pCenter0f, float Radius0, glm::vec3* velocity, glm::vec3* pCenter1, float Radius1)
 {
 
@@ -150,7 +369,8 @@ float DynamicSphereToStaticSphere(glm::vec3* pCenter0i, glm::vec3* pCenter0f, fl
 	return dt;
 
 }
-//
+
+
 float DynamicSphereToDynamicSphere(glm::vec3* pCenter0i, float Radius0, glm::vec3* velocity0, glm::vec3* pCenter1, float Radius1, glm::vec3* velocity1, float t)
 {
 	glm::vec3 velocityCombined = *velocity0 - *velocity1;
@@ -185,36 +405,44 @@ float DynamicSphereToDynamicSphere(glm::vec3* pCenter0i, float Radius0, glm::vec
 	return dt;
 
 }
-//
-//
-//void ReflectSpherePlane(RigidBodyComponent* rb1, RigidBodyComponent* rb2)
-//{
-//	if (rb1->bodyType == Body_Type::STATIC && rb2->bodyType == Body_Type::STATIC)
-//	{
-//		auto t = StaticSphereToStacticPlane(&rb2->position, rb2->collider.radius, &rb1->collider.normal, rb1->collider.magnitude);
-//
-//		if (t == 0)
-//			return;
-//
-//		float distanceFromSphereCenter = (float)glm::dot(rb2->position, rb1->collider.normal) + rb1->collider.magnitude;
-//		float distanceFromSphereCenterMod = (float)fabs(glm::dot(rb2->position, rb1->collider.normal) + rb1->collider.magnitude);
-//
-//		//Position Adjustment
-//		glm::vec3 n = glm::normalize(rb1->collider.normal) * (distanceFromSphereCenter / distanceFromSphereCenterMod) * (rb2->collider.radius - distanceFromSphereCenterMod);
-//		rb2->position += n;
-//
-//		//Velocity Adjustment
-//		glm::vec3 v = glm::dot(rb2->velocity, rb1->collider.normal) * glm::normalize(rb1->collider.normal);
-//		v *= rb2->elasticity;
-//		rb2->velocity -= 2.0f * v;
-//	}
-//}
-//
-//
-//
 
 
-bool ReflectStaticSphereStaticSphere(MovingBodyComponent* mb1, StillBodyComponent* sb2)
+//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+bool ReflectMovingSphereStaticPlane(MovingBodyComponent* mb1, StillBodyComponent* sb2, float dt)
+{
+	auto delT = DynamicSphereToStaticPlane(&mb1->rigidBody.prevPosition, &mb1->rigidBody.position, mb1->BroadPhase.radius, &mb1->rigidBody.velocity, &sb2->BroadPhase.normal, sb2->BroadPhase.magnitude);
+
+	if (delT == -1)
+		return false;
+
+	glm::vec3 contactPostion = mb1->rigidBody.prevPosition + mb1->rigidBody.velocity * delT;
+
+
+	/*float distanceFromSphereCenter = (float)glm::dot(mb1->rigidBody.position, sb2->BroadPhase.normal) + sb2->BroadPhase.magnitude;
+	float distanceFromSphereCenterMod = (float)fabs(glm::dot(mb1->rigidBody.position, sb2->BroadPhase.normal) + sb2->BroadPhase.magnitude);*/
+
+
+
+	//Velocity Adjustment
+	glm::vec3 v = glm::dot(mb1->rigidBody.velocity, sb2->BroadPhase.normal) * glm::normalize(sb2->BroadPhase.normal);
+	v *= (1 + mb1->rigidBody.elasticity) / 2;
+
+	mb1->rigidBody.velocity -= 2.0f * v;
+
+	// Reflected Vector
+	glm::vec3 r = mb1->rigidBody.velocity * (dt - delT);
+
+	//Position Adjustment
+	//glm::vec3 n = glm::normalize(sb2->BroadPhase.normal) * (distanceFromSphereCenter / distanceFromSphereCenterMod) * (mb1->BroadPhase.radius - distanceFromSphereCenterMod);
+	mb1->rigidBody.position = contactPostion + r;
+
+	return true;
+
+}
+
+
+bool ReflectMovingSphereStaticSphere(MovingBodyComponent* mb1, StillBodyComponent* sb2)
 {
 	float delT = DynamicSphereToStaticSphere(&mb1->rigidBody.prevPosition, &mb1->rigidBody.position, mb1->BroadPhase.radius, &mb1->rigidBody.velocity, &sb2->position, sb2->BroadPhase.radius);
 
@@ -234,9 +462,9 @@ bool ReflectStaticSphereStaticSphere(MovingBodyComponent* mb1, StillBodyComponen
 	// Reflected Vector
 	glm::vec3 r = (2 * (glm::dot(m, n)) * n) - m;
 
-	
+
 	mb1->rigidBody.position = contactPostion + r;
-  
+
 	if (mb1->rigidBody.elasticity == 0)
 	{
 		mb1->rigidBody.velocity -= glm::dot(n, mb1->rigidBody.velocity) * n;
@@ -246,8 +474,8 @@ bool ReflectStaticSphereStaticSphere(MovingBodyComponent* mb1, StillBodyComponen
 		mb1->rigidBody.velocity -= 2 * glm::dot(n, mb1->rigidBody.velocity) * n;
 		mb1->rigidBody.velocity *= (mb1->rigidBody.elasticity + 1) / 2;
 	}
-  
-  return true;
+
+	return true;
 }
 
 
@@ -283,7 +511,7 @@ bool ReflectMovingSphereMovingSphere(MovingBodyComponent* mb1, MovingBodyCompone
 		V1 *= (mb1->rigidBody.elasticity + mb2->rigidBody.elasticity) / 2;
 		V2 *= (mb1->rigidBody.elasticity + mb2->rigidBody.elasticity) / 2;
 	}
-	
+
 
 	mb1->rigidBody.position = contactPostion1 + V1 * (dt - delT);
 	mb2->rigidBody.position = contactPostion2 + V2 * (dt - delT);
