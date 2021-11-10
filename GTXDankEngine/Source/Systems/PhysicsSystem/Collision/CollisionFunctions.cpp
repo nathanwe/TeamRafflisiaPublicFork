@@ -407,7 +407,6 @@ float DynamicSphereToDynamicSphere(glm::vec3* pCenter0i, float Radius0, glm::vec
 }
 
 
-//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 bool ReflectMovingSphereStaticPlane(MovingBodyComponent* mb1, StillBodyComponent* sb2, float dt)
 {
@@ -438,7 +437,6 @@ bool ReflectMovingSphereStaticPlane(MovingBodyComponent* mb1, StillBodyComponent
 	mb1->rigidBody.position = contactPostion + r;
 
 	return true;
-
 }
 
 

@@ -8,7 +8,7 @@ void Texture::OnLoad()
 {
 	if (!bytes)
 	{
-		LOG_ERROR("Loading texture failed");
+		LOG_ERROR("Loading texture {0} failed", debugPath);
 	}
 
 	// initialize texture
@@ -52,7 +52,7 @@ void Texture::OnLoad()
 Texture::Texture(const char* path)
 {
 	//LOG_INFO("Loading texture: {0}", path);
-
+	debugPath = std::string(path);
 	stbi_set_flip_vertically_on_load(true);
 	bytes = stbi_load(path, &widthImg, &heightImg, &numColCh, 0);
 

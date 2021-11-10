@@ -1,4 +1,3 @@
-#pragma once
 #ifndef COLLISION_FUNCTIONS_H
 #define COLLISION_FUNCTIONS_H
 
@@ -24,11 +23,10 @@ float DynamicSphereToStaticSphere(glm::vec3* pCenter0i, glm::vec3* pCenter0f, fl
 
 float DynamicSphereToDynamicSphere(glm::vec3* pCenter0i, float Radius0, glm::vec3* velocity0, glm::vec3* pCenter1, float Radius1, glm::vec3* velocity1, float t);
 
-
-
 bool ReflectMovingSphereStaticPlane(MovingBodyComponent* mb1, StillBodyComponent* sb2, float dt);
 
 bool ReflectMovingSphereStaticSphere(MovingBodyComponent* mb1, StillBodyComponent* sb2);
+
 bool ReflectMovingSphereMovingSphere(MovingBodyComponent* mb1, MovingBodyComponent* mb2, float dt);
 
 #endif // !COLLISION_FUNCTIONS_H

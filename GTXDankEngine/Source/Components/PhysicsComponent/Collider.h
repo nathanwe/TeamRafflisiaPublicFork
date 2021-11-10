@@ -26,7 +26,9 @@ public:
 inline void to_json(ordered_json& j, const Collider& collider) {
 	to_json(j["Shape"], collider.shape);
 	if (collider.shape == Shape::SPHERE)
+	{
 		to_json(j["Radius"], collider.radius);
+	}	
 	else if (collider.shape == Shape::PLANE)
 	{
 		to_json(j["Normal"], collider.normal);

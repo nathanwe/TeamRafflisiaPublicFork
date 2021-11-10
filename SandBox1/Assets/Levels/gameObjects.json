@@ -295,7 +295,7 @@
       },
       "Velocity": {
         "x": 0.0,
-        "y": 0.0,
+        "y": 1.0,
         "z": 0.0
       },
       "Accelereation": {
@@ -382,7 +382,296 @@
     "STILL_BODY": {
       "Shape": 0,
       "Radius": 0.64
-
+    }
+  },
+  "Physics4": {
+    "MODEL": {
+      "path": "../SandBox1/Assets/models/Sphere/model.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 0.64,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": 0.01,
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+      "Alpha": 1.0
+    },
+    "MOVING_BODY": {
+      "Elasticity": 0.5,
+      "Friction": 1.0,
+      "Gravity": true,
+      "Mass": 3.0,
+      "Velocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Accelereation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "CollisionType": 0,
+      "Shape": 0,
+      "Radius": 0.64
+    }
+  },
+  "PhysicsPlane1": {
+    "MODEL": {
+      "path": "../SandBox1/Assets/models/plane.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": 1.0,
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+      "Alpha": 1.0
+    },
+    "STILL_BODY": {
+      "Shape": 1,
+      "Normal": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "Magnitude": 0.0
+    }
+  },
+  "PhysicsPlane2": {
+    "MODEL": {
+      "path": "../SandBox1/Assets/models/plane.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": 1.0,
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+      "Alpha": 1.0
+    },
+    "STILL_BODY": {
+      "Shape": 1,
+      "Normal": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "Magnitude": -2.0
+    }
+  },
+  "PhysicsPlane3": {
+    "MODEL": {
+      "path": "../SandBox1/Assets/models/plane.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": 1.0,
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+      "Alpha": 1.0
+    },
+    "STILL_BODY": {
+      "Shape": 1,
+      "Normal": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "Magnitude": 0.0
+    }
+  },
+  "PhysicsPlane4": {
+    "MODEL": {
+      "path": "../SandBox1/Assets/models/plane.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": 1.0,
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+      "Alpha": 1.0
+    },
+    "STILL_BODY": {
+      "Shape": 1,
+      "Normal": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "Magnitude": 0.0
+    }
+  },
+  "PhysicsPlane5": {
+    "MODEL": {
+      "path": "../SandBox1/Assets/models/plane.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": 1.0,
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+      "Alpha": 1.0
+    },
+    "STILL_BODY": {
+      "Shape": 1,
+      "Normal": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "Magnitude": 0.0
+    }
+  },
+  "PhysicsPlane6": {
+    "MODEL": {
+      "path": "../SandBox1/Assets/models/plane.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": 1.0,
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+      "Alpha": 1.0
+    },
+    "STILL_BODY": {
+      "Shape": 1,
+      "Normal": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "Magnitude": 0.0
+    }
+  },
+  "PhysicsPlane7": {
+    "MODEL": {
+      "path": "../SandBox1/Assets/models/plane.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": 1.0,
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+      "Alpha": 1.0
+    },
+    "STILL_BODY": {
+      "Shape": 1,
+      "Normal": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "Magnitude": 0.0
     }
   }
 }

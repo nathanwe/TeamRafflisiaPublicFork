@@ -1,8 +1,8 @@
 --WhereTheGameAt
 
 function Init()
-	--SetGamePath("../SandBox1/")
-	SetGamePath("../SandBox2/")
+	SetGamePath("../SandBox1/")
+	--SetGamePath("../SandBox2/")
 end
 
 function Update(dt)

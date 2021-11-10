@@ -145,9 +145,141 @@
       "rw": 1.0
     },
     "plane": {
-      "name": "plane",
+      "name": "PhysicsPlane2",
       "px": 0.0,
       "py": -2.0,
+      "pz": 0.0,
+      "rx": 0.0,
+      "ry": 0.0,
+      "rz": 0.0,
+      "rw": 1.0
+    },
+    "plane2": {
+      "name": "plane",
+      "px": 10.0,
+      "py": 8.0,
+      "pz": 0.0,
+      "rx": 0.0,
+      "ry": 0.0,
+      "rz": 1.0,
+      "rw": 1.0
+    },
+    "plane3": {
+      "name": "plane",
+      "px": -10.0,
+      "py": 8.0,
+      "pz": 0.0,
+      "rx": 0.0,
+      "ry": 0.0,
+      "rz": -1.0,
+      "rw": 1.0
+    },
+    "plane4": {
+      "name": "plane",
+      "px": 0.0,
+      "py": 18.0,
+      "pz": 0.0,
+      "rx": 0.0,
+      "ry": 1.0,
+      "rz": 0.0,
+      "rw": 0.0
+    },
+    "plane5": {
+      "name": "plane",
+      "px": 0.0,
+      "py": 8.0,
+      "pz": -10.0,
+      "rx": 1.0,
+      "ry": 0.0,
+      "rz": 0.0,
+      "rw": 1.0
+    },
+    "plane6": {
+      "name": "plane",
+      "px": 0.0,
+      "py": 8.0,
+      "pz": 10.0,
+      "rx": -1.0,
+      "ry": 0.0,
+      "rz": 0.0,
+      "rw": 1.0
+    }
+  },
+  "3": {
+    "DirLightSource": {
+      "name": "DirLightSource",
+      "px": -20.0,
+      "py": 20.0,
+      "pz": 20.0,
+      "rx": 0.0,
+      "ry": 0.0,
+      "rz": 0.0,
+      "rw": 1.0
+    },
+    "Ball1": {
+      "name": "Physics4",
+      "px": 0.0,
+      "py": 2.0,
+      "pz": 0.0,
+      "rx": 0.0,
+      "ry": 0.0,
+      "rz": 0.0,
+      "rw": 1.0
+    },
+    "Ball2": {
+      "name": "Physics4",
+      "px": 4.0,
+      "py": 1.0,
+      "pz": 7.0,
+      "rx": 0.0,
+      "ry": 0.0,
+      "rz": 0.0,
+      "rw": 1.0
+    },
+    "Ball3": {
+      "name": "Physics4",
+      "px": 3.0,
+      "py": 2.0,
+      "pz": 2.0,
+      "rx": 0.0,
+      "ry": 0.0,
+      "rz": 0.0,
+      "rw": 1.0
+    },
+    "Ball4": {
+      "name": "Physics4",
+      "px": 0.0,
+      "py": 5.0,
+      "pz": 9.0,
+      "rx": 0.0,
+      "ry": 0.0,
+      "rz": 0.0,
+      "rw": 1.0
+    },
+    "Ball5": {
+      "name": "Physics4",
+      "px": 5.0,
+      "py": 3.0,
+      "pz": 0.0,
+      "rx": 0.0,
+      "ry": 0.0,
+      "rz": 0.0,
+      "rw": 1.0
+    },
+    "Ball6": {
+      "name": "Physics4",
+      "px": 4.0,
+      "py": 9.0,
+      "pz": 0.0,
+      "rx": 0.0,
+      "ry": 0.0,
+      "rz": 0.0,
+      "rw": 1.0
+    },
+    "PhysicsPlane1": {
+      "name": "PhysicsPlane1",
+      "px": 0.0,
+      "py": 0.0,
       "pz": 0.0,
       "rx": 0.0,
       "ry": 0.0,

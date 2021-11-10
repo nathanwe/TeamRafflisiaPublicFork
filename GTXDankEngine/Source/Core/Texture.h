@@ -25,6 +25,7 @@ private:
 	//temp but its easyer then passing them around
 		unsigned char* bytes;
 		int widthImg, heightImg, numColCh;
+		std::string debugPath;
 
 };
 #endif // !TEXTURE_H
