@@ -7,6 +7,7 @@
 #include "../UISystem/UISystem.h"
 
 #include "../ProfileSystem/ProfileSystem.h"
+#include "Quad.h"
 
 extern UISystem UISys;
 extern Engine engine;
@@ -62,7 +63,6 @@ bool GraphicsSystem::Init()
 	glEnable(GL_CULL_FACE);
 
 	glViewport(0, 0, WIDTH, HEIGHT);
-	
 
 	camera.Init();
 
@@ -75,6 +75,8 @@ bool GraphicsSystem::Init()
 	TransparentRenderer.Init(camera.width, camera.height);
 
 	skybox.Init();
+
+	Sky.initialize();
 
 	PS.Init(100000);
 
@@ -98,7 +100,7 @@ void GraphicsSystem::Update(float timeStamp)
 	Timer timer("Graphics Update");
 
 	// clear default framebuffer
-	glClearColor(0.106f, 0.204f, 0.002f, 1.0f);
+	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 
@@ -165,7 +167,9 @@ void GraphicsSystem::Render(float timeStamp)
 	PS.Draw(timeStamp, view, proj, HdrFBO.GetFBO());
 	glEnable(GL_CULL_FACE);
 
-	skybox.Render(view, proj, HdrFBO.GetFBO());
+	//skybox.Render(view, proj, HdrFBO.GetFBO());
+
+	Sky.Render(view, proj, HdrFBO.GetFBO());
 
 	// Forward Rendering
 	// Render transparent objects
@@ -188,6 +192,7 @@ bool GraphicsSystem::Destroy()
 
 	TransparentRenderer.Destroy();
 
+	Sky.Destroy();
 	skybox.Destroy();
 	Shadow.Destroy();
 
@@ -214,6 +219,21 @@ void GraphicsSystem::BindLightSource(Shader* shader)
 		++lightIndex;
 	}
 	shader->setInt("numberOfLights", lightIndex);
+}
+
+
+void GraphicsSystem::SetSunDir(glm::vec3 dir)
+{
+	std::set<Entity> LTEntitys = LightComponentPool.Get2SharedEntitys(TransformComponentPool.componentList);
+	for (auto e : LTEntitys)
+	{
+		auto lightComponent = LightComponentPool.GetComponentByEntity(e);
+		auto transformComponent = TransformComponentPool.GetComponentByEntity(e);
+
+		if (lightComponent->LightSource.Type == LightType::Directional)
+			transformComponent->transform.position = glm::normalize(-dir) * glm::vec3(10) + lightComponent->LightSource.Target;
+	}
+
 }
 
 
@@ -296,6 +316,16 @@ void GraphicsSystem::RenderGraphicsUI(void)
 		ImGui::Checkbox("Enable PCF", &(DeferredRender.EnablePCF));
 		ImGui::Checkbox("Enable Cel Shading", &(DeferredRender.EnableCelShading));
 		ImGui::SliderFloat("Cel Fractor", &(DeferredRender.CelFraction), 0.01f, 10.0f);
+
+		float turbidity = 0.0f;
+		turbidity = Sky.turbidity();
+
+		ImGui::SliderFloat("Turbidity", &turbidity, 2.0f, 30.0f);
+		Sky.set_turbidity(turbidity);
+	
+		ImGui::SliderAngle("Sun Angle", &m_sun_angle, -1, -179.0f);
+		glm::vec3 sunDir = glm::normalize(glm::vec3(0.0f, sin(m_sun_angle), cos(m_sun_angle)));
+		SetSunDir(sunDir);
 	}
 	ImGui::End();
 
@@ -307,3 +337,6 @@ void GraphicsSystem::RenderGraphicsUI(void)
 	}
 	ImGui::End();
 }
+
+
+

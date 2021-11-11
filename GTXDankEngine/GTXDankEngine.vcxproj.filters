@@ -259,6 +259,12 @@
     <Filter Include="SandBox2\Levels">
       <UniqueIdentifier>{747da6ce-3c7b-4a15-8977-dd27c975d650}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Systems\GraphicsSystem\Sky">
+      <UniqueIdentifier>{cce46407-fd94-45aa-aae6-d22721448cfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\Sky">
+      <UniqueIdentifier>{dd9e2d51-0776-4d5d-a1af-46f1b1b419f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Skybox.shader">
@@ -362,6 +368,12 @@
     </None>
     <None Include="..\Sandbox2\Assets\Levels\levels.json">
       <Filter>SandBox2\Levels</Filter>
+    </None>
+    <None Include="Source\Shaders\test.shader">
+      <Filter>Resource Files\Shaders</Filter>
+    </None>
+    <None Include="Source\Shaders\Sky\Sky.shader">
+      <Filter>Resource Files\Shaders\Sky</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -569,6 +581,12 @@
     <ClInclude Include="Source\Systems\CommandSystem\PlayerSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\GraphicsSystem\Sky\Sky.h">
+      <Filter>Source Files\Systems\GraphicsSystem\Sky</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\GraphicsSystem\Sky\Coefficients.h">
+      <Filter>Source Files\Systems\GraphicsSystem\Sky</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -753,6 +771,9 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\ParticleSystem\ParticleSystem.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\GraphicsSystem\Sky\Sky.cpp">
+      <Filter>Source Files\Systems\GraphicsSystem\Sky</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,7 @@
 #include "DebugRender/DebugRender.h"
 #include "OIT/OIT.h"
 #include "ParticleSystem/ParticleSystem.h"
+#include "Sky/Sky.h"
 
 
 class Light;
@@ -61,9 +62,10 @@ private:
 
 	void RenderGraphicsUI(void);
 
+	void SetSunDir(glm::vec3 dir);
+
 
 private:
-
 	Skybox skybox;
 
 	Shadow Shadow;
@@ -81,6 +83,8 @@ private:
 
 	DebugRender DebugRenderer;
 
+	HosekWilkieSkyModel Sky;
+	float m_sun_angle = 0.0;
 	bool RenderingDebugMode = false;
 };
 #endif // !GRAPHICSSYSTEM_H

@@ -135,6 +135,8 @@
     <None Include="Source\Shaders\ParticleSystem\Render.shader" />
     <None Include="Source\Shaders\PostProcess\PostProcess.shader" />
     <None Include="Source\Shaders\Shadow\DefaultShadowMap.shader" />
+    <None Include="Source\Shaders\Sky\Sky.shader" />
+    <None Include="Source\Shaders\test.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Components\AudioComponent\AudioBus.h" />
@@ -145,6 +147,8 @@
     <ClInclude Include="Source\Components\PhysicsComponent\RigidBody.h" />
     <ClInclude Include="Source\Components\PhysicsComponent\StillBodyComponent.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\ParticleSystem\ParticleSystem.h" />
+    <ClInclude Include="Source\Systems\GraphicsSystem\Sky\Coefficients.h" />
+    <ClInclude Include="Source\Systems\GraphicsSystem\Sky\Sky.h" />
     <ClInclude Include="Source\Systems\PhysicsSystem\Collision\CollisionFunctions.h" />
     <ClInclude Include="Source\Systems\PhysicsSystem\PhysicsSystem.h" />
     <ClInclude Include="Source\utils\JsonFile.h" />
@@ -213,6 +217,7 @@
     <ClCompile Include="Source\Components\PhysicsComponent\RigidBody.cpp" />
     <ClCompile Include="Source\Components\PhysicsComponent\StillBodyComponent.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\ParticleSystem\ParticleSystem.cpp" />
+    <ClCompile Include="Source\Systems\GraphicsSystem\Sky\Sky.cpp" />
     <ClCompile Include="Source\Systems\PhysicsSystem\Collision\CollisionFunctions.cpp" />
     <ClCompile Include="Source\Systems\PhysicsSystem\PhysicsSystem.cpp" />
     <ClCompile Include="Source\Systems\SceneSystem\SceneSystem.cpp" />
