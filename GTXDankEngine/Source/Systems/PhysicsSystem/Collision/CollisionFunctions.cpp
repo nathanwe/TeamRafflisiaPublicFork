@@ -229,7 +229,7 @@ int StaticAABBToStaticPlane(glm::vec3* p1, glm::vec3* max1, glm::vec3* min1, glm
 	temp1.x = p1->z + min1->z;
 	temp.push_back(temp1);
 
-	int sign = glm::dot(temp[0], *normal) - magnitude / fabs(glm::dot(temp[0], *normal) - magnitude);
+	int sign = static_cast<int>(glm::dot(temp[0], *normal) - magnitude / fabs(glm::dot(temp[0], *normal) - magnitude));
 
 	for (auto i : temp)
 	{
@@ -259,6 +259,7 @@ float DynamicPointToStaticPlane(glm::vec3* pCenter0, glm::vec3* pCenter1, glm::v
 	else
 	{
 		dt = (float)fabs(glm::dot(*pCenter0, *normal) - magnitude) / (float)fabs(glm::dot(*velocity, *normal));
+		return dt;
 	}
 
 }

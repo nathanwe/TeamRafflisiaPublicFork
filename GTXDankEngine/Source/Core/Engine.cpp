@@ -8,11 +8,8 @@
 #include "../Components/TransformComponent/TransformComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
 #include "../Components/LightComponent/LightComponent.h"
-//
 #include "../Components/PhysicsComponent/StillBodyComponent.h"
 #include "../Components/PhysicsComponent/MovingBodyComponent.h"
-//
-//#include "../Components/RoutineComponent/RoutineComponent.h"
 #include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
 #include "../utils/common.h"
 
@@ -95,12 +92,7 @@ void Engine::Run()
 		PhysicsSys.Update(0);
 		
 		// Game loop format
-		// TODO: Profiler records time spent for each update()
 
-		//for (auto [entity, rComponent] : RoutineComponentPool.componentList)
-		//{
-		//	rComponent->list->Update(DeltaTime(), &InputSys);
-		//}
 
 		DoGameLogicScriptSys.Update(DeltaTime());
 		//MenuSys.Update(DeltaTime());

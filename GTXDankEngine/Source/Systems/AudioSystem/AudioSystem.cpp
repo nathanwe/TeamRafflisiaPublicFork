@@ -84,7 +84,7 @@ void AudioSystem::Update(float timeStamp)
 
 void AudioSystem::TryPlayWaitingList() 
 {
-    int size = waitingList.size(); 
+    int size = static_cast<int>(waitingList.size()); 
     for (int i = 0; i < size; i++)
     {
         WaitingSound cur = waitingList.front();

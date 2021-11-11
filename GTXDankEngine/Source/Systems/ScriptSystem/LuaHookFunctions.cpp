@@ -651,7 +651,7 @@ int lua_SaveIntFloatTableAsJson(lua_State* L)
     lua_pushnil(L);  // first key 
     while (lua_next(L, t) != 0)
     {
-        int keynum = lua_tointeger(L, -2);
+        int keynum = static_cast<int>(lua_tointeger(L, -2));
         // uses 'key' (at index -2) and 'value' (at index -1) 
         std::string key = json(std::to_string(keynum));
         objectJson[key] = lua_tonumber(L, -1);
