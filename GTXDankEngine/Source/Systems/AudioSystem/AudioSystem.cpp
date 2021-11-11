@@ -200,7 +200,7 @@ void AudioSystem::Set3dListenerAndOrientation(Camera camera)
     x = glm::rotate(x, -camera.yaw, y);
     z = glm::rotate(z, -camera.yaw, y);
 
-    std::cout << camera.yaw << camera.pitch << std::endl;
+    //std::cout << camera.yaw << camera.pitch << std::endl;
 
     //y = glm::rotate(, -camera.yaw, camera.Up);
     up = vec3GLMtoFMOD(y);
@@ -208,7 +208,7 @@ void AudioSystem::Set3dListenerAndOrientation(Camera camera)
     
     coreSystem->set3DListenerAttributes(0, &pos, nullptr, &orient, &up);
     //coreSystem->get3DListenerAttributes(0, &p, nullptr, &f, &u);
-    std::cout << glm::to_string(camera.Position) << glm::to_string(-z) << glm::to_string(y) << std::endl;
+    //std::cout << glm::to_string(camera.Position) << glm::to_string(-z) << glm::to_string(y) << std::endl;
     //ERRCHECK(coreSystem->set3DListenerAttributes(0, camera.Position, nullptr, camera.Orientation, camera.Up));
 }
 
