@@ -17,7 +17,7 @@ bool AudioSystem::Init()
     coreSystem = NULL;
     ERRCHECK(fmodStudioSystem->getCoreSystem(&coreSystem));
     ERRCHECK(coreSystem->setSoftwareFormat(0, FMOD_SPEAKERMODE_5POINT1, 0));
-    ERRCHECK(fmodStudioSystem->initialize(1024, FMOD_STUDIO_INIT_NORMAL, FMOD_INIT_NORMAL| FMOD_INIT_3D_RIGHTHANDED, 0));
+    ERRCHECK(fmodStudioSystem->initialize(1024, FMOD_STUDIO_INIT_NORMAL, FMOD_INIT_NORMAL|FMOD_INIT_3D_RIGHTHANDED, 0));
 
     ERRCHECK(coreSystem->createChannelGroup("BGM", &BGM));
     ERRCHECK(coreSystem->createChannelGroup("SFX", &SFX));
@@ -34,7 +34,7 @@ bool AudioSystem::Init()
     LoadSound("JumpSFX.wav", true);
     LoadSound("jumpSFX2.wav", true);
     LoadSound("Maozon & C-Show - Realize feat. Kyte (MV).mp3", false, true, true, true);
-    int channel = fmodPlaySound("WinEffect.wav", glm::vec3(-10.0f, -10.0f, 0.0f), 0.0f);
+    int channel = fmodPlaySound("WinEffect.wav", glm::vec3(-10.0f, 0.0f, 10.0f), 0.0f);
     int channel2 = fmodPlaySound("Maozon & C-Show - Realize feat. Kyte (MV).mp3", glm::vec3(0), -18.0f);
 
    /* ERRCHECK(fmodStudioSystem->getBus("bus:/", &masterBus));
@@ -44,6 +44,7 @@ bool AudioSystem::Init()
    /* eventInstance->start();
     eventInstance->setVolume(0.1f);*/
     Set3dListenerAndOrientation(engine.GraphicsSys.camera);
+    //coreSystem->set3DSettings(1.0f, 1.0f, 1.0f);
 	return true;
 }
 void AudioSystem::Update(float timeStamp)
@@ -54,7 +55,7 @@ void AudioSystem::Update(float timeStamp)
     MuteAll();
     if (SFXMuted && BGMMuted) { return; }
 
-    Set3dListenerAndOrientation(engine.GraphicsSys.camera);
+   
 
     std::vector<ChannelMap::iterator> pStoppedChannels;
     for (auto it = channelMaps.begin(), itEnd = channelMaps.end(); it != itEnd; ++it)
@@ -77,14 +78,15 @@ void AudioSystem::Update(float timeStamp)
     SetChannelGroupVolume(BGM, static_cast<float>(BGMVolume));
     SetChannelGroupVolume(SFX, static_cast<float>(SFXVolume));
 
-   
+    Set3dListenerAndOrientation(engine.GraphicsSys.camera);
+
     ERRCHECK(fmodStudioSystem->update());
     
 }
 
 void AudioSystem::TryPlayWaitingList() 
 {
-    int size = static_cast<int>(waitingList.size()); 
+    int size = waitingList.size(); 
     for (int i = 0; i < size; i++)
     {
         WaitingSound cur = waitingList.front();
@@ -188,21 +190,26 @@ int AudioSystem::fmodPlaySound(const char* sound_filename, const glm::vec3& vPos
 }
 void AudioSystem::Set3dListenerAndOrientation(Camera camera)
 {
-    FMOD_VECTOR pos = vec3GLMtoFMOD(camera.GetPosition());
-    FMOD_VECTOR forward = vec3GLMtoFMOD(camera.Orientation);
-    glm::vec3 side = glm::cross(camera.Orientation, camera.Up);
-    glm::vec3 top = glm::cross(side, camera.Orientation);
-    top = glm::normalize(top);
-    if (glm::dot(top, camera.Up) < 0)
-    {
-        top = -top;
-    }
-    FMOD_VECTOR up = vec3GLMtoFMOD(top);
+    FMOD_VECTOR pos = vec3GLMtoFMOD(camera.Position);
+    FMOD_VECTOR orient;
+    FMOD_VECTOR up;
     
+    glm::vec3 x = glm::vec3(1.0f, 0.0f, 0.0f);
+    glm::vec3 y = glm::vec3(0.0f, 1.0f, 0.0f);
+    glm::vec3 z = glm::vec3(0.0f, 0.0f, 1.0f);
+    x = glm::rotate(x, -camera.yaw, y);
+    z = glm::rotate(z, -camera.yaw, y);
 
-    //std::cout << glm::to_string(camera.Position) << glm::to_string(camera.Orientation) << glm::to_string(camera.Up) << std::endl;
-    ERRCHECK(coreSystem->set3DListenerAttributes(0, &pos, nullptr, &forward, &up));
-    //ERRCHECK(coreSystem->set3DListenerAttributes(0, &pos, nullptr, nullptr, nullptr));
+    std::cout << camera.yaw << camera.pitch << std::endl;
+
+    //y = glm::rotate(, -camera.yaw, camera.Up);
+    up = vec3GLMtoFMOD(y);
+    orient = vec3GLMtoFMOD(-z);
+    
+    coreSystem->set3DListenerAttributes(0, &pos, nullptr, &orient, &up);
+    //coreSystem->get3DListenerAttributes(0, &p, nullptr, &f, &u);
+    std::cout << glm::to_string(camera.Position) << glm::to_string(-z) << glm::to_string(y) << std::endl;
+    //ERRCHECK(coreSystem->set3DListenerAttributes(0, camera.Position, nullptr, camera.Orientation, camera.Up));
 }
 
 void AudioSystem::PlayEvent(const char* event_filename)
