@@ -2,7 +2,7 @@
 #include "Light.h"
 #include "../utils/Log.h"
 
-Light::Light() {};
+Light::Light() : Type(LightType::Point), Color(glm::vec3(1, 1, 1)), Intensity(glm::vec3(1, 1, 1)), Target(glm::vec3(0, 0, 0)) {};
 
 Light::Light(LightType type, glm::vec3 c, glm::vec3 i)
 	: Type(type), Color(c), Intensity(i)

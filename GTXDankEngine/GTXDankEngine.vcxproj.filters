@@ -581,6 +581,12 @@
     <ClInclude Include="Source\Systems\CommandSystem\PlayerSettings.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\LevelEditorSystem\LevelEditorSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\TagComponent\TagComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Systems\GraphicsSystem\Sky\Sky.h">
       <Filter>Source Files\Systems\GraphicsSystem\Sky</Filter>
     </ClInclude>
@@ -771,6 +777,12 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\ParticleSystem\ParticleSystem.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\ParticleSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\LevelEditorSystem\LevelEditorSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\TagComponent\TagComponent.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\Sky\Sky.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\Sky</Filter>

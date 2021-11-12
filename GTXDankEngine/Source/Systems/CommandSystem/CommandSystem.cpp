@@ -160,6 +160,14 @@ void CommandSystem::Update(float timeStamp)
 		}
 	}
 
+	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_F1))
+	{
+		editMode = !editMode;
+		engine.setEditMode(editMode);
+	}
+	if (editMode)
+		return;
+
 	//toggle debug mode
 	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_T))
 	{

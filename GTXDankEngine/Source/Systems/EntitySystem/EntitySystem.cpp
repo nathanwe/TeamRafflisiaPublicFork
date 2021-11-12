@@ -10,13 +10,12 @@
 #include "../Components/ModelComponent/ModelComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
 #include "../Components/LightComponent/LightComponent.h"
-
-#include "../ProfileSystem/ProfileSystem.h"
-
-//
 #include "../Components/PhysicsComponent/StillBodyComponent.h"
 #include "../Components/PhysicsComponent/MovingBodyComponent.h"
-//
+#include "../Components/TagComponent/TagComponent.h"
+
+
+#include "../ProfileSystem/ProfileSystem.h"
 
 extern Engine engine;
 
@@ -78,6 +77,12 @@ void EntitySystem::DeleteAllEntities()
 
 void EntitySystem::DestroyQueuedEntity(Entity e)
 {
+	if (allocatedEntities.find(e) == allocatedEntities.end())
+	{
+		LOG_TRACE("[Entity ID: {}] Entity not destroyed", e);
+		return;
+	}
+
 	allocatedEntities.erase(e);
 	availableEntities.insert(e);
 	--entityCount;
@@ -87,11 +92,9 @@ void EntitySystem::DestroyQueuedEntity(Entity e)
 	MaterialComponentPool.Delete(e);
 	ModelComponentPool.Delete(e);
 	LightComponentPool.Delete(e);
-	//
 	StillBodyComponentPool.Delete(e);
 	MovingBodyComponentPool.Delete(e);
-	//
-	
+	TagComponentPool.Delete(e);
 }
 
 void EntitySystem::DeleteAllQueuedEntities()
@@ -105,6 +108,7 @@ void EntitySystem::DeleteAllQueuedEntities()
 	MovingBodyComponentPool.DeleteAll();
 	//
 	GameLogicCategoryComponentPool.DeleteAll();
+	TagComponentPool.DeleteAll();
 	TransformComponentPool.DeleteAll();
 	for (Entity e : allocatedEntities)
 	{

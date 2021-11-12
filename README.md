@@ -13,6 +13,7 @@ go to GtxdankEngine/Assets/Scripts/WhereTheGameAt.lua, make line 4 either SetGam
 * Press WASD: move camera & pokeball!
 * Press <- and ->: switch scene
 * Press ECS: Toggle In-Game Menu
+* Press F1: Toggle Editor Mode
 
 Keys can be re-mapped through the menu
 

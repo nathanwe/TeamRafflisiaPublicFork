@@ -24,12 +24,16 @@ void UISystem::Update(float timeStamp)
 {
 	Timer timer("UI Update");
 
-	if (engine.getMenuMode() || engine.getDebugMode())
+	// Render UI
+	if (engine.getMenuMode() || engine.getDebugMode() || engine.getEditMode())
 	{
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+
 		if (engine.getDebugMode())
 		{
-			// Renders UI for each system
-			ProfileSys.Update(0);		
+			UISys.Update(0);
 			engine.GraphicsSys.RenderUI();
 		}
 
@@ -37,8 +41,13 @@ void UISystem::Update(float timeStamp)
 		{
 			engine.MenuSys.Update(0);
 		}
+
+		if (engine.getEditMode())
+		{
+			engine.LevelEditorSys.UpdateGUI();
+		}
+
 	}
-	
 }
 
 bool UISystem::Destroy()

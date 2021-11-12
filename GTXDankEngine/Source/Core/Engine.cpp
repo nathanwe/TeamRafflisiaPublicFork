@@ -50,7 +50,8 @@ bool Engine::Init()
 	UISys.GrabWindow(GraphicsSys.pWindow);
 	if (!UISys.Init()) LOG_ERROR("UI System failed to init.");
 	if (!InputSys.Init(GraphicsSys.pWindow)) LOG_ERROR("Input System failed to init.");
-	
+	if (!LevelEditorSys.Init()) LOG_ERROR("LevelEditorSys failed to init.");
+
 	Framerate = std::make_shared<FramerateController>();
 	Framerate->Init(60);
 
@@ -101,10 +102,12 @@ void Engine::Run()
 		InputSys.Update();
 		CommandSys.Update();
 
-		PhysicsSys.Update(0);
-
-		DoGameLogicScriptSys.Update(DeltaTime());
-			
+		if (!pause)
+		{
+			PhysicsSys.Update(0);
+			DoGameLogicScriptSys.Update(DeltaTime());
+		}
+		
 		// hard code timestamp to 0 for now
 		//ScriptResourceManager.Update(0);
 		ModelResourceManager.Update(0);
@@ -161,7 +164,7 @@ void Engine::Destroy()
 	TextureResourceManger.Destroy();
 	ModelResourceManager.Destroy();
 	SerializationResourceManager.Destroy();
-	
+	LevelEditorSys.Destroy();
 	
 	/*
 	
@@ -197,14 +200,20 @@ bool Engine::getMenuMode()
 void Engine::setMenuMode(bool mode)
 {
 	menuMode = mode;
-	if (menuMode || debugMode)
-	{
-		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
-	}
-	else
-	{
-		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
-	}
+	pause = menuMode || editMode;
+	ToggleCursor();
+}
+
+bool Engine::getEditMode()
+{
+	return editMode;
+}
+
+void Engine::setEditMode(bool mode)
+{
+	editMode = mode;
+	pause = menuMode || editMode;
+	ToggleCursor();
 }
 
 bool Engine::getDebugMode()
@@ -215,7 +224,12 @@ bool Engine::getDebugMode()
 void Engine::setDebugMode(bool mode)
 {
 	debugMode = mode;
-	if (menuMode || debugMode)
+	ToggleCursor();
+}
+
+void Engine::ToggleCursor()
+{
+	if (menuMode || debugMode || editMode)
 	{
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	}

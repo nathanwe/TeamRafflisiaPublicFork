@@ -8,6 +8,8 @@
 #include "../Components/LightComponent/LightComponent.h"
 #include "../Components/PhysicsComponent/StillBodyComponent.h"
 #include "../Components/PhysicsComponent/MovingBodyComponent.h"
+#include "../Components/TagComponent/TagComponent.h"
+
 #include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
 #include "../utils/common.h"
 #include "../utils/JsonFile.h"
@@ -76,8 +78,12 @@ void DeserializeStillBody(ordered_json j, Entity e)
     //MovingBodyComponentPool.Add(e);
 }
 
-
-//
+void DeserializeTag(ordered_json j, Entity e)
+{
+    TagComponentPool.Add(e);
+    auto* tag = TagComponentPool.GetComponentByEntity(e);
+    from_json(j, *tag);
+}
 
 void DeserializeModel(ordered_json j, Entity e)
 {
@@ -137,15 +143,15 @@ bool GameObjectFactory::Init()
     DeserializeFunctions[5] = DeserializeGameLogic;
     DeserializeFunctions[6] = DeserializeMovingBody;
     DeserializeFunctions[7] = DeserializeStillBody;
+    DeserializeFunctions[8] = DeserializeTag;
 
     return true;
 }
 
-Entity GameObjectFactory::CreateObject(std::string name)
+Entity GameObjectFactory::CreateObjectFromJson(ordered_json entityJson)
 {
-    ordered_json entityJson = archetypes[name];
     Entity newEntity = engine.EntitySys.CreateEntity();
-    
+
     for (auto itr = entityJson.begin(); itr != entityJson.end(); ++itr)
     {
         std::string componentName = itr.key();
@@ -153,12 +159,30 @@ Entity GameObjectFactory::CreateObject(std::string name)
         ordered_json componentJson = itr.value();
         DeserializeFunctions[componentType](componentJson, newEntity);
     }
-    
+
     return newEntity;
 }
 
-//temp function, optimize when archetype system is done
-void GameObjectFactory::SaveObject(std::string name, Entity entity)
+Entity GameObjectFactory::CreateObject(std::string name)
+{
+    ordered_json entityJson = archetypes[name];
+
+    Entity e = CreateObjectFromJson(entityJson);
+
+    //temp
+    auto* tag = TagComponentPool.GetComponentByEntity(e);
+    if (tag == nullptr)
+    {
+        TagComponentPool.Add(e);
+        tag = TagComponentPool.GetComponentByEntity(e);
+        tag->uniqueName = name;
+        tag->category = name;
+    }
+
+    return e;
+}
+
+ordered_json GameObjectFactory::SerializeObject(Entity entity)
 {
     ordered_json objectJson;
 
@@ -194,32 +218,19 @@ void GameObjectFactory::SaveObject(std::string name, Entity entity)
     // Physics
     ////////////
 
-    //auto* stillBodyCom = StillBodyComponentPool.GetComponentByEntity(entity);
-    //if (stillBodyCom != nullptr)
-    //{
-    //   /* std::string key = json(ComponentType::STILL_BODY);
-    //    objectJson[key] = *stillBodyCom->BroadPhase;*/
-    //}
-
-    //auto* movingBodyCom = MovingBodyComponentPool.GetComponentByEntity(entity);
-    //if (movingBodyCom != nullptr)
-    //{
-    //   /* std::string key = json(ComponentType::MOVING_BODY);
-    //    objectJson[key] = *movingBodyCom->BroadPhase;*/
-    //}
+    auto* stillBodyCom = StillBodyComponentPool.GetComponentByEntity(entity);
+    if (stillBodyCom != nullptr)
+    {
+        std::string key = json(ComponentType::STILL_BODY);
+        objectJson[key] = stillBodyCom->BroadPhase;
+    }
 
     auto* movingBodyCom = MovingBodyComponentPool.GetComponentByEntity(entity);
     if (movingBodyCom != nullptr)
     {
         std::string key = json(ComponentType::MOVING_BODY);
-        objectJson[key] = (movingBodyCom->rigidBody);
+        objectJson[key] = *movingBodyCom;
     }
-
-
-    //
-
-    
-
 
     auto* gameLogicCom = GameLogicCategoryComponentPool.GetComponentByEntity(entity);
     if (gameLogicCom != nullptr)
@@ -228,7 +239,20 @@ void GameObjectFactory::SaveObject(std::string name, Entity entity)
         objectJson[key] = gameLogicCom->categories;
     }
 
-    archetypes[name] = objectJson;
+    auto* TagCom = TagComponentPool.GetComponentByEntity(entity);
+    if (TagCom != nullptr)
+    {
+        std::string key = json(ComponentType::TAG);
+        objectJson[key] = *TagCom;
+    }
+
+    return objectJson;
+}
+
+//todo optimize when archetype system
+void GameObjectFactory::SaveObject(std::string name, Entity entity)
+{
+    archetypes[name] = SerializeObject(entity);
 
     ordered_json output;
     for (const auto& [key, value] : archetypes)
@@ -239,30 +263,30 @@ void GameObjectFactory::SaveObject(std::string name, Entity entity)
     outputStream << output.dump(2);
 }
 
-/*
-    temperary leave here for reference only, delete soon
-    //ordered_json j;
-    //std::string pokeBallCategory = json(GameLogicCategories::POKEBALL);
-    //j[pokeBallCategory];
-    //j[pokeBallCategory][(std::string)json(ComponentType::MODEL)] = *ModelComponentPool.GetComponentByEntity(pokemonBall)->model->GetPointer();
-    //j[pokeBallCategory][(std::string)json(ComponentType::TRANSFORM)] = *pokemonBallTransform;
-    //j[pokeBallCategory][(std::string)json(ComponentType::MATERIAL)] = *pokemonBallMat;
-    //std::string vaseCategory = json(GameLogicCategories::VASE);
-    //j[vaseCategory];
-    //j[vaseCategory][(std::string)json(ComponentType::MODEL)] = *ModelComponentPool.GetComponentByEntity(vase)->model->GetPointer();
-    //j[vaseCategory][(std::string)json(ComponentType::TRANSFORM)] = *vaseTransform;
-    //j[vaseCategory][(std::string)json(ComponentType::MATERIAL)] = *vaseMat;
-    //std::ofstream outputStream(GAME_PATH + std::string("Assets/Levels/gameObjects.json"));
-    //outputStream << j.dump(2);
-*/
-/*
-todo save things in level editor:
+bool GameObjectFactory::SaveObject(Entity entity)
+{
+    auto* tag = TagComponentPool.GetComponentByEntity(entity);
+    if (tag == nullptr)
+    {
+        return false;
+    }
 
-    //GameObjectFac.SaveObject(GameLogicCategories::POKEBALL, pokemonBall);
-    //GameObjectFac.SaveObject(GameLogicCategories::VASE, vase);
-    //GameObjectFac.SaveObject(GameLogicCategories::POINTLIGHTSOURCE, LightSource1);
-    //GameObjectFac.SaveObject(GameLogicCategories::POINTLIGHTSOURCE, LightSource2);
-    //GameObjectFac.SaveObject(GameLogicCategories::LION, lion);
+    SaveObject(tag->category, entity);
+    return true;
+}
+
+std::vector<std::string> GameObjectFactory::GetTemplateObjectNames()
+{
+    std::vector<std::string> result;
+    result.push_back("");
+    
+    std::transform(
+        archetypes.begin(),
+        archetypes.end(),
+        std::back_inserter(result),
+        [](const std::unordered_map<std::string, ordered_json>::value_type& pair) {return pair.first; });
+
+    return result;
+}
 
 
-*/

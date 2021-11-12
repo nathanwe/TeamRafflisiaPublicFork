@@ -36,6 +36,16 @@ function HandleEventLion(EventData)
 		timers = {}
 		directions = {}
 	end
+	if EventData.type == 13 then
+		level = string.format("%i", EventData.intData1)
+		SaveIntFloatTableAsJson(timers, "/Assets/Levels/Level" .. level .."LionTimerSave.json")
+		SaveIntFloatTableAsJson(directions, "/Assets/Levels/Level" .. level .."LionDirectionSave.json")
+	end
+	if EventData.type == 14 then
+		level = string.format("%i", EventData.intData1)
+		timers = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. level .."LionTimerSave.json")
+		directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. level .."LionDirectionSave.json")
+	end
 end
 
 function HandleEventPerEntityLion(e, EventData)

@@ -1,0 +1,830 @@
+{
+  "0": [
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/PokemonBall/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -0.2800000011920929,
+          "y": 1.0800000429153442,
+          "z": 1.0
+        },
+        "scale": 0.009999999776482582,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox2/Assets/models/PokemonBall/albedo.jpg",
+        "MetallicPath": "../SandBox2/Assets/models/PokemonBall/metallic.jpg",
+        "NormalPath": "../SandBox2/Assets/models/PokemonBall/normal.jpg",
+        "RoughnessPath": "../SandBox2/Assets/models/PokemonBall/roughness.jpg",
+        "Alpha": 1.0
+      },
+      "GAME_LOGIC": [
+        "POKEBALL"
+      ]
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Vase/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 2.0,
+          "y": -1.0,
+          "z": 4.0
+        },
+        "scale": 0.5,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox2/Assets/models/Vase/albedo.jpg",
+        "MetallicPath": "../SandBox2/Assets/models/Vase/metallic.jpg",
+        "NormalPath": "../SandBox2/Assets/models/Vase/normal.jpg",
+        "RoughnessPath": "../SandBox2/Assets/models/Vase/roughness.jpg",
+        "Alpha": 0.5
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 1.5,
+          "y": -1.3573423624038696,
+          "z": 1.5
+        },
+        "scale": 0.00800000037997961,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "LIGHT": {
+        "Color": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "Intensity": {
+          "x": 10.0,
+          "y": 10.0,
+          "z": 10.0
+        },
+        "LightType": 1,
+        "Target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "GAME_LOGIC": [
+        "POINT_LIGHT_SOURCE"
+      ]
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 3.5,
+          "y": 1.156672716140747,
+          "z": 4.0
+        },
+        "scale": 0.004999999888241291,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "LIGHT": {
+        "Color": {
+          "x": 1.0,
+          "y": 0.800000011920929,
+          "z": 0.0
+        },
+        "Intensity": {
+          "x": 5.0,
+          "y": 5.0,
+          "z": 5.0
+        },
+        "LightType": 1,
+        "Target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "GAME_LOGIC": [
+        "POINT_LIGHT_SOURCE"
+      ]
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -20.0,
+          "y": 20.0,
+          "z": 20.0
+        },
+        "scale": 0.004999999888241291,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "LIGHT": {
+        "Color": {
+          "x": 1.0,
+          "y": 0.6000000238418579,
+          "z": 0.6000000238418579
+        },
+        "Intensity": {
+          "x": 3.0,
+          "y": 3.0,
+          "z": 3.0
+        },
+        "LightType": 0,
+        "Target": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        }
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Lion/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 1.9896495342254639,
+          "y": 0.20321136713027954,
+          "z": 0.0
+        },
+        "scale": 1.0,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox2/Assets/models/Lion/albedo.jpg",
+        "MetallicPath": "../SandBox2/Assets/models/Lion/metallic.jpg",
+        "NormalPath": "../SandBox2/Assets/models/Lion/normal.jpg",
+        "RoughnessPath": "../SandBox2/Assets/models/Lion/roughness.jpg",
+        "Alpha": 1.0
+      },
+      "GAME_LOGIC": [
+        "LION"
+      ]
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 0.0,
+          "y": -2.0,
+          "z": 0.0
+        },
+        "scale": 1.0,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox2/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox2/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox2/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox2/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      }
+    }
+  ],
+  "1": [
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -20.0,
+          "y": 20.0,
+          "z": 20.0
+        },
+        "scale": 0.004999999888241291,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "LIGHT": {
+        "Color": {
+          "x": 1.0,
+          "y": 0.6000000238418579,
+          "z": 0.6000000238418579
+        },
+        "Intensity": {
+          "x": 3.0,
+          "y": 3.0,
+          "z": 3.0
+        },
+        "LightType": 0,
+        "Target": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        }
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Lion/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -1.0,
+          "y": -1.0,
+          "z": 3.0
+        },
+        "scale": 1.0,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox2/Assets/models/Lion/albedo.jpg",
+        "MetallicPath": "../SandBox2/Assets/models/Lion/metallic.jpg",
+        "NormalPath": "../SandBox2/Assets/models/Lion/normal.jpg",
+        "RoughnessPath": "../SandBox2/Assets/models/Lion/roughness.jpg",
+        "Alpha": 1.0
+      },
+      "GAME_LOGIC": [
+        "LION"
+      ]
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Lion/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 2.0,
+          "y": 1.0,
+          "z": 5.0
+        },
+        "scale": 1.0,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox2/Assets/models/Lion/albedo.jpg",
+        "MetallicPath": "../SandBox2/Assets/models/Lion/metallic.jpg",
+        "NormalPath": "../SandBox2/Assets/models/Lion/normal.jpg",
+        "RoughnessPath": "../SandBox2/Assets/models/Lion/roughness.jpg",
+        "Alpha": 1.0
+      },
+      "GAME_LOGIC": [
+        "LION"
+      ]
+    }
+  ],
+  "2": [
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -20.0,
+          "y": 20.0,
+          "z": 20.0
+        },
+        "scale": 0.004999999888241291,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "LIGHT": {
+        "Color": {
+          "x": 1.0,
+          "y": 0.6000000238418579,
+          "z": 0.6000000238418579
+        },
+        "Intensity": {
+          "x": 3.0,
+          "y": 3.0,
+          "z": 3.0
+        },
+        "LightType": 0,
+        "Target": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        }
+      }
+    },
+    {
+      "MODEL": {
+        "path": "Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -0.6399999856948853,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": 0.009999999776482582,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox2/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox2/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox2/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox2/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "MOVING_BODY": {
+        "Elasticity": 1.0,
+        "Friction": 1.0,
+        "Gravity": false,
+        "Mass": 1.0,
+        "Velocity": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "Accelereation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "CollisionType": 1,
+        "Shape": 0,
+        "Radius": 0.6399999856948853
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 3.5,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "scale": 0.009999999776482582,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox2/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox2/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox2/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox2/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "MOVING_BODY": {
+        "Elasticity": 1.0,
+        "Friction": 1.0,
+        "Gravity": false,
+        "Mass": 3.0,
+        "Velocity": {
+          "x": -0.5,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "Accelereation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "CollisionType": 0,
+        "Shape": 0,
+        "Radius": 0.6399999856948853
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 1.0,
+          "y": 0.5,
+          "z": 0.0
+        },
+        "scale": 0.009999999776482582,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox2/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox2/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox2/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox2/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "STILL_BODY": {
+        "Shape": 0,
+        "Radius": 0.6399999856948853
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 0.0,
+          "y": -2.0,
+          "z": 0.0
+        },
+        "scale": 1.0,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox2/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox2/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox2/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox2/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      }
+    }
+  ],
+  "3": [
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": 0.009999999776482582,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox2/Assets/models/PokemonBall/albedo.jpg",
+        "MetallicPath": "../SandBox2/Assets/models/PokemonBall/metallic.jpg",
+        "NormalPath": "../SandBox2/Assets/models/PokemonBall/normal.jpg",
+        "RoughnessPath": "../SandBox2/Assets/models/PokemonBall/roughness.jpg",
+        "Alpha": 1.0
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": 0.009999999776482582,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "Alpha": 1.0
+      }
+    }
+  ],
+  "4": null,
+  "5": [
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/PokemonBall/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "scale": 0.009999999776482582,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox2/Assets/models/PokemonBall/albedo.jpg",
+        "MetallicPath": "../SandBox2/Assets/models/PokemonBall/metallic.jpg",
+        "NormalPath": "../SandBox2/Assets/models/PokemonBall/normal.jpg",
+        "RoughnessPath": "../SandBox2/Assets/models/PokemonBall/roughness.jpg",
+        "Alpha": 1.0
+      },
+      "GAME_LOGIC": [
+        "POKEBALL"
+      ]
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Vase/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 3.9200000762939453,
+          "y": -1.0,
+          "z": 4.0
+        },
+        "scale": 0.5,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox2/Assets/models/Vase/albedo.jpg",
+        "MetallicPath": "../SandBox2/Assets/models/Vase/metallic.jpg",
+        "NormalPath": "../SandBox2/Assets/models/Vase/normal.jpg",
+        "RoughnessPath": "../SandBox2/Assets/models/Vase/roughness.jpg",
+        "Alpha": 0.5
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 1.5,
+          "y": -1.0063929557800293,
+          "z": 1.5
+        },
+        "scale": 0.00800000037997961,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "LIGHT": {
+        "Color": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "Intensity": {
+          "x": 10.0,
+          "y": 10.0,
+          "z": 10.0
+        },
+        "LightType": 1,
+        "Target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "GAME_LOGIC": [
+        "POINT_LIGHT_SOURCE"
+      ]
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 3.5,
+          "y": 1.2833291292190552,
+          "z": 4.0
+        },
+        "scale": 0.004999999888241291,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "LIGHT": {
+        "Color": {
+          "x": 1.0,
+          "y": 0.800000011920929,
+          "z": 0.0
+        },
+        "Intensity": {
+          "x": 5.0,
+          "y": 5.0,
+          "z": 5.0
+        },
+        "LightType": 1,
+        "Target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
+      },
+      "GAME_LOGIC": [
+        "POINT_LIGHT_SOURCE"
+      ]
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -20.0,
+          "y": 20.0,
+          "z": 20.0
+        },
+        "scale": 0.004999999888241291,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "LIGHT": {
+        "Color": {
+          "x": 1.0,
+          "y": 0.6000000238418579,
+          "z": 0.6000000238418579
+        },
+        "Intensity": {
+          "x": 3.0,
+          "y": 3.0,
+          "z": 3.0
+        },
+        "LightType": 0,
+        "Target": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        }
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/Lion/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 1.9413394927978516,
+          "y": -0.4808335602283478,
+          "z": 0.0
+        },
+        "scale": 1.0,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox2/Assets/models/Lion/albedo.jpg",
+        "MetallicPath": "../SandBox2/Assets/models/Lion/metallic.jpg",
+        "NormalPath": "../SandBox2/Assets/models/Lion/normal.jpg",
+        "RoughnessPath": "../SandBox2/Assets/models/Lion/roughness.jpg",
+        "Alpha": 1.0
+      },
+      "GAME_LOGIC": [
+        "LION"
+      ]
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 0.0,
+          "y": -2.0,
+          "z": 0.0
+        },
+        "scale": 1.0,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox2/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox2/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox2/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox2/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox2/Assets/models/PokemonBall/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -2.2799999713897705,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": 0.009999999776482582,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox2/Assets/models/PokemonBall/albedo.jpg",
+        "MetallicPath": "../SandBox2/Assets/models/PokemonBall/metallic.jpg",
+        "NormalPath": "../SandBox2/Assets/models/PokemonBall/normal.jpg",
+        "RoughnessPath": "../SandBox2/Assets/models/PokemonBall/roughness.jpg",
+        "Alpha": 1.0
+      },
+      "GAME_LOGIC": [
+        "POKEBALL"
+      ],
+      "TAG": {
+        "uniqueName": "POKEBALL",
+        "category": "POKEBALL"
+      }
+    }
+  ]
+}

@@ -14,7 +14,7 @@ public:
 
 	// Default constructor
 	// position: origin, scale: 1.0, rotation: zero rotation
-	VQS(void) : position(glm::vec3(0.0)), scale(1.0), rotation(glm::quat(1.0, 0.0, 0.0, 0.0)) {}
+	VQS(void) : position(glm::vec3(0.0)), scale(0.01f), rotation(glm::quat(1.0, 0.0, 0.0, 0.0)) {}
 
 	// quaternion get normalized automatically
 	VQS(glm::vec3 v, glm::quat q, float s) : position(v), scale(s), rotation(glm::normalize(q)) {}

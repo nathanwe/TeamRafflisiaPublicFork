@@ -16,6 +16,7 @@
 #include "../utils/JsonFile.h"
 #include "../Systems/SceneSystem/SceneSystem.h"
 #include "../Systems/PhysicsSystem/PhysicsSystem.h"
+#include "../Systems/LevelEditorSystem/LevelEditorSystem.h"
 
 extern std::string GAME_PATH;
 
@@ -83,6 +84,7 @@ public:
 	ScriptSystem MenuSys;
 	ScriptSystem FindGameSys;
 	PhysicsSystem PhysicsSys;
+	LevelEditorSystem LevelEditorSys;
 
 	GLFWwindow* window;
 
@@ -90,11 +92,17 @@ public:
 	void setMenuMode(bool mode);
 	bool getDebugMode();
 	void setDebugMode(bool mode);
+	bool getEditMode();
+	void setEditMode(bool mode);
 
+private:
+	void ToggleCursor();
 
 private:
 	bool menuMode = false;
 	bool debugMode = false;
+	bool editMode = false;
+	bool pause = false;
 
 };
 #endif // !ENGINE_H

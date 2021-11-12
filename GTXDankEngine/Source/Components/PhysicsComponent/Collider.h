@@ -9,6 +9,15 @@ class Collider
 {
 public:
 
+	Collider() : 
+		shape(Shape::SPHERE), 
+		radius(1.0f), 
+		normal(glm::vec3(0, 0, 0)), 
+		magnitude(1.0f), 
+		minPoint(glm::vec3(0, 0, 0)), 
+		max_point(glm::vec3(1, 1, 1)) 
+	{}
+
 	Shape shape;
 
 	// In case of sphere

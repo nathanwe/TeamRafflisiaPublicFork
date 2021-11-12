@@ -55,9 +55,14 @@ Texture::Texture(const char* path)
 	debugPath = std::string(path);
 	stbi_set_flip_vertically_on_load(true);
 	bytes = stbi_load(path, &widthImg, &heightImg, &numColCh, 0);
-
-	LOG_INFO("Texture data loading succeed {0}", path);
-	
+	//if (stbi_failure_reason())
+	//{
+	//	LOG_ERROR("Texture load problem because {0}",stbi_failure_reason());
+	//}
+	//else
+	//{
+		LOG_INFO("Texture data loading succeed {0}", path);
+	//}
 	
 }
 Texture::Texture(std::string path) : Texture::Texture(path.c_str())

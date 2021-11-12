@@ -48,6 +48,11 @@ public:
 
 };
 
+inline void to_json(ordered_json& j, const MovingBodyComponent& component) {
+	to_json(j, component.rigidBody);
+	to_json(j, component.BroadPhase);
+}
+
 extern AbstractComponentPool<MovingBodyComponent> MovingBodyComponentPool;
 
 

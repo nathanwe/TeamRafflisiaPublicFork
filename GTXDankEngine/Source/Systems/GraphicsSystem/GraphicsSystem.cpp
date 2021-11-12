@@ -111,6 +111,7 @@ void GraphicsSystem::Update(float timeStamp)
 	// Render
 	if (!RenderingDebugMode) Render(timeStamp);
 	else DebugDraw();
+	
 }
 
 

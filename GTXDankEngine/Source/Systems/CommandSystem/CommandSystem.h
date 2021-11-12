@@ -28,6 +28,7 @@ public:
 
 	bool menuMode;
 	bool debugMode;
+	bool editMode;
 
 private:
 	void ExecuteGameplayCommands();

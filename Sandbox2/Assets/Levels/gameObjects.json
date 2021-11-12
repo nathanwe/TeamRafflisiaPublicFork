@@ -260,7 +260,7 @@
   },
   "Physics1": {
     "MODEL": {
-      "path": "Assets/models/Sphere/model.obj"
+      "path": "../SandBox2/Assets/models/Sphere/model.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -386,7 +386,7 @@
   },
   "Physics4": {
     "MODEL": {
-      "path": "Assets/models/Sphere/model.obj"
+      "path": "../SandBox2/Assets/models/Sphere/model.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -403,10 +403,10 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "Assets/Textures/PBR_Ice/albedo.tga",
-      "MetallicPath": "Assets/Textures/plater/New_Graph_height.png",
-      "NormalPath": "Assets/Textures/PBR_Ice/normal.tga",
-      "RoughnessPath": "Assets/Textures/plater/roughness.png",
+      "AlbedoPath": "../SandBox2/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox2/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox2/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox2/Assets/Textures/plater/roughness.png",
       "Alpha": 1.0
     },
     "MOVING_BODY": {
@@ -431,7 +431,7 @@
   },
   "PhysicsPlane1": {
     "MODEL": {
-      "path": "Assets/models/plane.obj"
+      "path": "../SandBox2/Assets/models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -448,10 +448,10 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "Assets/Textures/PBR_Ice/albedo.tga",
-      "MetallicPath": "Assets/Textures/plater/New_Graph_height.png",
-      "NormalPath": "Assets/Textures/PBR_Ice/normal.tga",
-      "RoughnessPath": "Assets/Textures/plater/roughness.png",
+      "AlbedoPath": "../SandBox2/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox2/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox2/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox2/Assets/Textures/plater/roughness.png",
       "Alpha": 1.0
     },
     "STILL_BODY": {
@@ -466,7 +466,7 @@
   },
   "PhysicsPlane2": {
     "MODEL": {
-      "path": "Assets/models/plane.obj"
+      "path": "../SandBox2/Assets/models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -483,10 +483,10 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "Assets/Textures/PBR_Ice/albedo.tga",
-      "MetallicPath": "Assets/Textures/plater/New_Graph_height.png",
-      "NormalPath": "Assets/Textures/PBR_Ice/normal.tga",
-      "RoughnessPath": "Assets/Textures/plater/roughness.png",
+      "AlbedoPath": "../SandBox2/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox2/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox2/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox2/Assets/Textures/plater/roughness.png",
       "Alpha": 1.0
     },
     "STILL_BODY": {
@@ -501,7 +501,7 @@
   },
   "PhysicsPlane3": {
     "MODEL": {
-      "path": "Assets/models/plane.obj"
+      "path": "../SandBox2/Assets/models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -518,10 +518,10 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "Assets/Textures/PBR_Ice/albedo.tga",
-      "MetallicPath": "Assets/Textures/plater/New_Graph_height.png",
-      "NormalPath": "Assets/Textures/PBR_Ice/normal.tga",
-      "RoughnessPath": "Assets/Textures/plater/roughness.png",
+      "AlbedoPath": "../SandBox2/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox2/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox2/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox2/Assets/Textures/plater/roughness.png",
       "Alpha": 1.0
     },
     "STILL_BODY": {
@@ -536,7 +536,7 @@
   },
   "PhysicsPlane4": {
     "MODEL": {
-      "path": "Assets/models/plane.obj"
+      "path": "../SandBox2/Assets/models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -553,10 +553,10 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "Assets/Textures/PBR_Ice/albedo.tga",
-      "MetallicPath": "Assets/Textures/plater/New_Graph_height.png",
-      "NormalPath": "Assets/Textures/PBR_Ice/normal.tga",
-      "RoughnessPath": "Assets/Textures/plater/roughness.png",
+      "AlbedoPath": "../SandBox2/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox2/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox2/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox2/Assets/Textures/plater/roughness.png",
       "Alpha": 1.0
     },
     "STILL_BODY": {
@@ -571,7 +571,7 @@
   },
   "PhysicsPlane5": {
     "MODEL": {
-      "path": "Assets/models/plane.obj"
+      "path": "../SandBox2/Assets/models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -588,10 +588,10 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "Assets/Textures/PBR_Ice/albedo.tga",
-      "MetallicPath": "Assets/Textures/plater/New_Graph_height.png",
-      "NormalPath": "Assets/Textures/PBR_Ice/normal.tga",
-      "RoughnessPath": "Assets/Textures/plater/roughness.png",
+      "AlbedoPath": "../SandBox2/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox2/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox2/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox2/Assets/Textures/plater/roughness.png",
       "Alpha": 1.0
     },
     "STILL_BODY": {
@@ -606,7 +606,7 @@
   },
   "PhysicsPlane6": {
     "MODEL": {
-      "path": "Assets/models/plane.obj"
+      "path": "../SandBox2/Assets/models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -623,10 +623,10 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "Assets/Textures/PBR_Ice/albedo.tga",
-      "MetallicPath": "Assets/Textures/plater/New_Graph_height.png",
-      "NormalPath": "Assets/Textures/PBR_Ice/normal.tga",
-      "RoughnessPath": "Assets/Textures/plater/roughness.png",
+      "AlbedoPath": "../SandBox2/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox2/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox2/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox2/Assets/Textures/plater/roughness.png",
       "Alpha": 1.0
     },
     "STILL_BODY": {
@@ -641,7 +641,7 @@
   },
   "PhysicsPlane7": {
     "MODEL": {
-      "path": "Assets/models/plane.obj"
+      "path": "../SandBox2/Assets/models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -658,10 +658,10 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "Assets/Textures/PBR_Ice/albedo.tga",
-      "MetallicPath": "Assets/Textures/plater/New_Graph_height.png",
-      "NormalPath": "Assets/Textures/PBR_Ice/normal.tga",
-      "RoughnessPath": "Assets/Textures/plater/roughness.png",
+      "AlbedoPath": "../SandBox2/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox2/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox2/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox2/Assets/Textures/plater/roughness.png",
       "Alpha": 1.0
     },
     "STILL_BODY": {

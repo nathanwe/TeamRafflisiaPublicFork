@@ -16,10 +16,14 @@ public:
 
 	void UnloadScene();
 	void LoadScene(int level);
+	void LoadCurrentLevel();
 	void LoadNextLevel();
 	void LoadPreviousLevel();
+	void SaveCurrentLevel();
+	void SaveAsNewLevel();
 	void Update(float dt);
 	bool Destroy();
+	int GetCurrentLevel();
 
 private:
 	

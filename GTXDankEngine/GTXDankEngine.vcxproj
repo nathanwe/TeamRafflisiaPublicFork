@@ -139,6 +139,7 @@
     <None Include="Source\Shaders\test.shader" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Systems\LevelEditorSystem\LevelEditorSystem.h" />
     <ClInclude Include="Source\Components\AudioComponent\AudioBus.h" />
     <ClInclude Include="Source\Systems\CommandSystem\PlayerSettings.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\OIT\OIT.h" />
@@ -209,8 +210,11 @@
     <ClInclude Include="Source\utils\Log.h" />
     <ClInclude Include="Source\utils\Timer.h" />
     <ClInclude Include="Source\utils\VQS.h" />
+    <ClInclude Include="Source\Components\TagComponent\TagComponent.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Components\TagComponent\TagComponent.cpp" />
+    <ClCompile Include="Source\Systems\LevelEditorSystem\LevelEditorSystem.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\OIT\OIT.cpp" />
     <ClCompile Include="Source\Components\PhysicsComponent\Collider.cpp" />
     <ClCompile Include="Source\Components\PhysicsComponent\MovingBodyComponent.cpp" />

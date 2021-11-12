@@ -13,11 +13,10 @@
 
 
 extern Engine engine;
-//extern PhysicsSystem PhysicsSys;
 
 bool SceneSystem::Init()
 {
-    auto* handle = SerializationResourceManager.GetResourceHandleNoThread(GAME_PATH + std::string("Assets/Levels/levels.json"));
+    auto* handle = SerializationResourceManager.GetResourceHandleNoThread(GAME_PATH + std::string("Assets/Levels/level.json"));
     levels = handle->GetPointer()->data;
 
     LoadScene(0);
@@ -50,6 +49,11 @@ void SceneSystem::LoadScene(int level)
     
 }
 
+void SceneSystem::LoadCurrentLevel()
+{
+    LoadScene(currentLevel);
+}
+
 void SceneSystem::LoadNextLevel()
 {
     currentLevel++;
@@ -60,6 +64,49 @@ void SceneSystem::LoadPreviousLevel()
 {
     currentLevel--;
     LoadScene(currentLevel);
+}
+
+void SceneSystem::SaveCurrentLevel()
+{
+    ordered_json levelJson;
+
+    for (auto entity : engine.EntitySys.allocatedEntities)
+    {
+        levelJson[entity] = engine.GameObjectFac.SerializeObject(entity);
+    }
+
+    levels[std::to_string(currentLevel)] = levelJson;
+
+    std::ofstream outputStream(GAME_PATH + std::string("Assets/Levels/level.json"));
+    outputStream << levels.dump(2);
+
+    Event ev = Event(true);
+    ev.type = EventType::SAVE_LUA;
+    ev.intData1 = currentLevel;
+    engine.DoGameLogicScriptSys.HandleEvent(ev);
+}
+
+void SceneSystem::SaveAsNewLevel()
+{
+    ordered_json levelJson;
+
+    for (auto entity : engine.EntitySys.allocatedEntities)
+    {
+        levelJson[entity] = engine.GameObjectFac.SerializeObject(entity);
+    }
+
+    int newLevel = static_cast<int>(levels.size());
+    levels[std::to_string(levels.size())] = levelJson;
+
+    std::ofstream outputStream(GAME_PATH + std::string("Assets/Levels/level.json"));
+    outputStream << levels.dump(2);
+
+    Event ev = Event(true);
+    ev.type = EventType::SAVE_LUA;
+    ev.intData1 = newLevel;
+    engine.DoGameLogicScriptSys.HandleEvent(ev);
+
+    LoadScene(newLevel);
 }
 
 void SceneSystem::Update(float dt)
@@ -74,33 +121,16 @@ void SceneSystem::Update(float dt)
         for (auto itr = levelJson.begin(); itr != levelJson.end(); ++itr)
         {
             ordered_json j = itr.value();
-            std::string objectName = j["name"];
-            Entity entity = engine.GameObjectFac.CreateObject(objectName);
-
-            //assume we only need position and rotation at this moment
-            auto* transCom = TransformComponentPool.GetComponentByEntity(entity);
-            transCom->transform.position.x = j["px"];
-            transCom->transform.position.y = j["py"];
-            transCom->transform.position.z = j["pz"];
-
-            glm::quat temp;
-            temp.x = j["rx"];
-            temp.y = j["ry"];
-            temp.z = j["rz"];
-            temp.w = j["rw"];
-
-            // Temp
-            /*transCom->transform.rotation.x = j["rx"];
-            transCom->transform.rotation.y = j["ry"];
-            transCom->transform.rotation.z = j["rz"];
-            transCom->transform.rotation.w = j["rw"];*/
-
-            transCom->transform.rotation = glm::normalize(temp);
-
-            // For Physics
-            engine.PhysicsSys.UpdatePosition();
-            //
+            Entity entity = engine.GameObjectFac.CreateObjectFromJson(j);
         }
+
+        Event ev = Event(true);
+        ev.type = EventType::LOAD_LUA;
+        ev.intData1 = currentLevel;
+        engine.DoGameLogicScriptSys.HandleEvent(ev);
+
+        // For Physics
+        engine.PhysicsSys.UpdatePosition();
     }
     shouldLoadLevel = false;
 }
@@ -108,4 +138,9 @@ void SceneSystem::Update(float dt)
 bool SceneSystem::Destroy()
 {
     return false;
+}
+
+int SceneSystem::GetCurrentLevel()
+{
+    return currentLevel;
 }
