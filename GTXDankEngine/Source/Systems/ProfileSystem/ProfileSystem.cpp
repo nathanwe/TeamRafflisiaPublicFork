@@ -21,6 +21,10 @@ void ProfileSystem::Update(float timeStamp)
 	//Defines the things to show in Imgui
 	Timer timer("Profile Update");
 
+	ImGui::Begin("ImGui Window");
+	//every output on imgui is contained within this scope
+	{
+
 	ImGui::Text("average %2.2f FPS", engine.Framerate->CurrentFramerate());
 
 	for (auto& result : profileResults)
@@ -36,6 +40,9 @@ void ProfileSystem::Update(float timeStamp)
 	engine.Framerate->SetFramerate(targetFramerate);
 	
 	profileResults.clear();
+
+	}
+	ImGui::End();
 }
 
 bool ProfileSystem::Destroy()

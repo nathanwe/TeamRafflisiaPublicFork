@@ -1,9 +1,11 @@
 #include "pch.h"
 #include "UISystem.h"
 #include "../ProfileSystem/ProfileSystem.h"
+#include "../Core/Engine.h"
 
 UISystem UISys;
 extern ProfileSystem ProfileSys;
+extern Engine engine;
 
 bool UISystem::Init()
 {
@@ -16,21 +18,27 @@ bool UISystem::Init()
 	ImGui_ImplOpenGL3_Init("#version 330");
 	return true;
 }
+
+
 void UISystem::Update(float timeStamp)
 {
-	//Creates the Imgui new frame
-	
 	Timer timer("UI Update");
 
-	ImGui::Begin("ImGui Window");
-	//every output on imgui is contained within this scope
-	{	
-		ProfileSys.Update(0);
-	}
-	ImGui::End();
+	if (engine.getMenuMode() || engine.getDebugMode())
+	{
+		if (engine.getDebugMode())
+		{
+			// Renders UI for each system
+			ProfileSys.Update(0);		
+			engine.GraphicsSys.RenderUI();
+		}
 
-	//ImGui::Render();
-	//ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		if (engine.getMenuMode())
+		{
+			engine.MenuSys.Update(0);
+		}
+	}
+	
 }
 
 bool UISystem::Destroy()

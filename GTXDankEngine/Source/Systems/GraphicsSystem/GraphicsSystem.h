@@ -36,6 +36,7 @@ public:
 	GraphicsSystem(const GraphicsSystem&) = delete;
 	GraphicsSystem& operator= (const GraphicsSystem&) = delete;
 
+	void RenderUI(void);
 
 public:
 	bool Init();
@@ -60,7 +61,7 @@ private:
 
 	void DebugDraw();
 
-	void RenderGraphicsUI(void);
+	
 
 	void SetSunDir(glm::vec3 dir);
 

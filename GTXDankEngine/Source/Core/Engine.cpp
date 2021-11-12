@@ -85,43 +85,47 @@ void Engine::Run()
 	
 	while (!glfwWindowShouldClose(GraphicsSys.pWindow))
 	{
+		//---------------------------------------
+		// imGUI new frame create
+		// DO NOT CHANGE THIS CODE
+		ImGui_ImplOpenGL3_NewFrame();
+		ImGui_ImplGlfw_NewFrame();
+		ImGui::NewFrame();
+		//----------------------------------------
+
 		Framerate->StartFrame();
+
+		EntitySys.Update(0);
+		SceneSys.Update(0);
+
 		InputSys.Update();
 		CommandSys.Update();
 
 		PhysicsSys.Update(0);
-		
-		// Game loop format
-
 
 		DoGameLogicScriptSys.Update(DeltaTime());
-		//MenuSys.Update(DeltaTime());
-		/*
-		MemorySystem.Update();
-
-		ResourceSystem.Update();
-
-		EntitySystem.Update();
-
-		float timeStamp = FrameRateSystem.GetTimeStamp();
-
-			......
-
-		PhysicsSystem.Update(timeStamp);
-
-		*/
-		
-		
+			
 		// hard code timestamp to 0 for now
 		//ScriptResourceManager.Update(0);
 		ModelResourceManager.Update(0);
 		TextureResourceManger.Update(0);
 
-		GraphicsSys.Update(DeltaTime());
 		AudioSys.Update(0);
-		
-		EntitySys.Update(0);
-		SceneSys.Update(0);
+
+		GraphicsSys.Update(DeltaTime());
+		UISys.Update(DeltaTime());
+			
+		//---------------------------------------------------------
+		// imGUI UI render
+		// renders at the end of game loop
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+		//---------------------------------------------------------
+
+
+		// swap buffer
+		glfwSwapBuffers(GraphicsSys.pWindow);
+		glfwPollEvents();
 
 		Framerate->EndFrame();
 	}

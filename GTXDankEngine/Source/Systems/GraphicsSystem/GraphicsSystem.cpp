@@ -111,32 +111,6 @@ void GraphicsSystem::Update(float timeStamp)
 	// Render
 	if (!RenderingDebugMode) Render(timeStamp);
 	else DebugDraw();
-	
-	// Render UI
-	if (engine.getMenuMode() || engine.getDebugMode())
-	{
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
-
-		if (engine.getDebugMode())
-		{
-			UISys.Update(0);
-			RenderGraphicsUI();
-		}
-		
-		if (engine.getMenuMode())
-		{
-			engine.MenuSys.Update(0);
-		}
-
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-	}
-	
-	// swap buffer
-	glfwSwapBuffers(pWindow);
-	glfwPollEvents();
 }
 
 
@@ -268,7 +242,7 @@ void GraphicsSystem::DebugDraw()
 }
 
 
-void GraphicsSystem::RenderGraphicsUI(void)
+void GraphicsSystem::RenderUI(void)
 {
 	ImGui::Begin("Metallic");
 	{
