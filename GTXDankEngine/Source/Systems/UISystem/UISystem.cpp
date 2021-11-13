@@ -27,9 +27,10 @@ void UISystem::Update(float timeStamp)
 	// Render UI
 	if (engine.getMenuMode() || engine.getDebugMode() || engine.getEditMode())
 	{
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
+		//now in engine.run
+		//ImGui_ImplOpenGL3_NewFrame();
+		//ImGui_ImplGlfw_NewFrame();
+		//ImGui::NewFrame();
 
 		if (engine.getDebugMode())
 		{

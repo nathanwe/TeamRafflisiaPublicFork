@@ -101,6 +101,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\FPS\Assets\Levels\gameObjects.json" />
+    <None Include="..\FPS\Assets\Levels\levels.json" />
+    <None Include="..\FPS\Assets\Scripts\DoEverything.lua" />
+    <None Include="..\Platformer\Assets\Levels\gameObjects.json" />
+    <None Include="..\Platformer\Assets\Levels\levels.json" />
+    <None Include="..\Platformer\Assets\Scripts\DoEverything.lua" />
     <None Include="..\SandBox1\Assets\audio\Master.bank" />
     <None Include="..\SandBox1\Assets\audio\Master.strings.bank" />
     <None Include="..\SandBox1\Assets\Configs\commands.json" />
@@ -112,13 +118,9 @@
     <None Include="..\SandBox1\Assets\Scripts\DoLionThings.lua" />
     <None Include="..\SandBox1\Assets\Scripts\DoPokeballThings.lua" />
     <None Include="..\SandBox1\Assets\Scripts\FirstScript.lua" />
-    <None Include="..\Sandbox2\Assets\Levels\gameObjects.json" />
-    <None Include="..\Sandbox2\Assets\Levels\levels.json" />
-    <None Include="..\Sandbox2\Assets\Scripts\DoEverything.lua" />
-    <None Include="..\Sandbox2\Assets\Scripts\DoLightThings.lua" />
-    <None Include="..\Sandbox2\Assets\Scripts\DoLionThings.lua" />
-    <None Include="..\Sandbox2\Assets\Scripts\DoPokeballThings.lua" />
-    <None Include="..\Sandbox2\Assets\Scripts\FirstScript.lua" />
+    <None Include="..\TopDownFighter\Assets\Levels\gameObjects.json" />
+    <None Include="..\TopDownFighter\Assets\Levels\levels.json" />
+    <None Include="..\TopDownFighter\Assets\Scripts\DoEverything.lua" />
     <None Include="Assets\Scripts\Menu.lua" />
     <None Include="Assets\Scripts\WhereTheGameAt.lua" />
     <None Include="Skybox.shader" />

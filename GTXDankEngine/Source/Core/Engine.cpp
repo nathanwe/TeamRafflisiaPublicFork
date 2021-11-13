@@ -24,13 +24,12 @@ bool Engine::Init()
 	// Format of Engine Init
 	// TODO: Profiler will record how long it takes to init all system
 	ScriptResourceManager.Init("Assets/Defaults/DefaultScript.lua");
-	if (!FindGameSys.Init("Assets/Scripts/WhereTheGameAt.lua")) LOG_ERROR("Game not Found");
+	if (!FindGameSys.Init("../WhereTheGameAt.lua")) LOG_ERROR("Game not Found");
 	//preload resouces
 	ScriptResourceManager.GetResourceHandle("Assets/Scripts/Menu.lua");
 
 	SerializationResourceManager.Init(GAME_PATH + std::string("Assets/Levels/GameObjects.json"));
 	//preload resouces
-	SerializationResourceManager.GetResourceHandle(GAME_PATH + std::string("Assets/Levels/GameObjects.json"));
 
 
 	if (!CommandSys.Init()) LOG_ERROR("Command System failed to init.");

@@ -250,14 +250,32 @@
     <Filter Include="SandBox1\Textures">
       <UniqueIdentifier>{b041af44-ae96-46c2-a395-360fa359aa59}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SandBox2">
-      <UniqueIdentifier>{37dc948c-4d22-4324-b6f0-8dc5c9af0582}</UniqueIdentifier>
+    <Filter Include="FPS">
+      <UniqueIdentifier>{c97d1efb-86f7-4e53-bc6c-2c1e9015a9b1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SandBox2\Scripts">
-      <UniqueIdentifier>{d786e3a1-03cd-4e57-9e30-1998226fdaf7}</UniqueIdentifier>
+    <Filter Include="FPS\Levels">
+      <UniqueIdentifier>{bf4c977d-6aea-43bb-9ef7-1133f0b16452}</UniqueIdentifier>
     </Filter>
-    <Filter Include="SandBox2\Levels">
-      <UniqueIdentifier>{747da6ce-3c7b-4a15-8977-dd27c975d650}</UniqueIdentifier>
+    <Filter Include="FPS\Scripts">
+      <UniqueIdentifier>{723c0163-d905-4177-96f1-926410548304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platformer">
+      <UniqueIdentifier>{7d1401c5-ed3e-4bfb-a110-ee8c50328019}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platformer\Levels">
+      <UniqueIdentifier>{d816dc43-2814-4515-9230-211ddcf1a423}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platformer\Scripts">
+      <UniqueIdentifier>{abb00348-28d4-4544-9bd1-d907b91c18d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TopDownFighter">
+      <UniqueIdentifier>{9e5543a7-a30f-48a1-9303-ac8859abf1b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TopDownFighter\Levles">
+      <UniqueIdentifier>{386eb69e-1ee2-4b7c-b02b-db326986aaf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TopDownFighter\Scripts">
+      <UniqueIdentifier>{3168119a-dd33-4819-abc7-7ed114e5cffa}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Systems\GraphicsSystem\Sky">
       <UniqueIdentifier>{cce46407-fd94-45aa-aae6-d22721448cfd}</UniqueIdentifier>
@@ -348,26 +366,32 @@
     <None Include="..\SandBox1\Assets\Scripts\FirstScript.lua">
       <Filter>SandBox1\Scripts</Filter>
     </None>
-    <None Include="..\Sandbox2\Assets\Scripts\DoEverything.lua">
-      <Filter>SandBox2\Scripts</Filter>
+    <None Include="..\FPS\Assets\Scripts\DoEverything.lua">
+      <Filter>FPS\Scripts</Filter>
     </None>
-    <None Include="..\Sandbox2\Assets\Scripts\DoLightThings.lua">
-      <Filter>SandBox2\Scripts</Filter>
+    <None Include="..\FPS\Assets\Levels\gameObjects.json">
+      <Filter>FPS\Levels</Filter>
     </None>
-    <None Include="..\Sandbox2\Assets\Scripts\DoLionThings.lua">
-      <Filter>SandBox2\Scripts</Filter>
+    <None Include="..\FPS\Assets\Levels\levels.json">
+      <Filter>FPS\Levels</Filter>
     </None>
-    <None Include="..\Sandbox2\Assets\Scripts\DoPokeballThings.lua">
-      <Filter>SandBox2\Scripts</Filter>
+    <None Include="..\Platformer\Assets\Levels\gameObjects.json">
+      <Filter>Platformer\Levels</Filter>
     </None>
-    <None Include="..\Sandbox2\Assets\Scripts\FirstScript.lua">
-      <Filter>SandBox2\Scripts</Filter>
+    <None Include="..\Platformer\Assets\Levels\levels.json">
+      <Filter>Platformer\Levels</Filter>
     </None>
-    <None Include="..\Sandbox2\Assets\Levels\gameObjects.json">
-      <Filter>SandBox2\Levels</Filter>
+    <None Include="..\Platformer\Assets\Scripts\DoEverything.lua">
+      <Filter>Platformer\Scripts</Filter>
     </None>
-    <None Include="..\Sandbox2\Assets\Levels\levels.json">
-      <Filter>SandBox2\Levels</Filter>
+    <None Include="..\TopDownFighter\Assets\Levels\gameObjects.json">
+      <Filter>TopDownFighter\Levles</Filter>
+    </None>
+    <None Include="..\TopDownFighter\Assets\Levels\levels.json">
+      <Filter>TopDownFighter\Levles</Filter>
+    </None>
+    <None Include="..\TopDownFighter\Assets\Scripts\DoEverything.lua">
+      <Filter>TopDownFighter\Scripts</Filter>
     </None>
     <None Include="Source\Shaders\test.shader">
       <Filter>Resource Files\Shaders</Filter>
