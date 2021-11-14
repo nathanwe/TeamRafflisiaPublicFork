@@ -30,7 +30,9 @@ void DebugRender::RenderLightSource(GLuint fbo)
 
 		LightSourceShader->setVec3("lightColor", lightComponent->LightSource.Color);
 		LightSourceShader->setMat4("model", transformComponent->transform.Matrix());
-		modelComponent->model->GetPointer()->Draw(*LightSourceShader);
+		ResourceHandle<Model>* model = ModelResourceManager.GetResourceHandle("Assets/Models/LightBulb.obj");
+		model->GetPointer()->Draw(*LightSourceShader);
+		//modelComponent->model->GetPointer()->Draw(*LightSourceShader);
 	}
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
