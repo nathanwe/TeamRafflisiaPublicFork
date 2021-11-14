@@ -34,7 +34,7 @@ void UISystem::Update(float timeStamp)
 
 		if (engine.getDebugMode())
 		{
-			UISys.Update(0);
+			//UISys.Update(0);
 			engine.GraphicsSys.RenderUI();
 		}
 
