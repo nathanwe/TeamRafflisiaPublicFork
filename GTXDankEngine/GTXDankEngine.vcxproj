@@ -113,6 +113,7 @@
     <None Include="..\SandBox1\Assets\Configs\default.json" />
     <None Include="..\SandBox1\Assets\Levels\gameObjects.json" />
     <None Include="..\SandBox1\Assets\Levels\levels.json" />
+    <None Include="..\SandBox1\Assets\Scripts\CategoryList.lua" />
     <None Include="..\SandBox1\Assets\Scripts\DoEverything.lua" />
     <None Include="..\SandBox1\Assets\Scripts\DoLightThings.lua" />
     <None Include="..\SandBox1\Assets\Scripts\DoLionThings.lua" />

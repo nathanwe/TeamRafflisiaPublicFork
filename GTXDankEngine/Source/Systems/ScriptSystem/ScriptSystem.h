@@ -76,6 +76,7 @@ int lua_SetRotation(lua_State* L);
 int lua_SetGamePath(lua_State* L);
 int lua_SaveIntFloatTableAsJson(lua_State* L);
 int lua_LoadIntFloatTableFromJson(lua_State* L);
+int lua_GetGamePath(lua_State* L);
 
 
 class LuaFile

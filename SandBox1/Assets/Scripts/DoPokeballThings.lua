@@ -1,6 +1,17 @@
 --pokeballthings
+function SavePokeball( levelnum )
+	levelstr = string.format("%i", levelnum)
+	--SaveIntFloatTableAsJson(timers, "/Assets/Levels/Level" .. levelstr .."PokeballTimerSave.json")
+	--SaveIntFloatTableAsJson(directions, "/Assets/Levels/Level" .. levelstr .."PokeballDirectionSave.json")
+end
 
-function InitPokeball(e)
+function LoadPokeballs( levelnum )
+	levelstr = string.format("%i", levelnum)
+	--timers = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."PokeballTimerSave.json")
+	--directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."PokeballDirectionSave.json")
+end
+
+function ClearPokeballs()
 
 end
 

@@ -399,6 +399,9 @@
     <None Include="Source\Shaders\Sky\Sky.shader">
       <Filter>Resource Files\Shaders\Sky</Filter>
     </None>
+    <None Include="..\SandBox1\Assets\Scripts\CategoryList.lua">
+      <Filter>SandBox1\Scripts</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">

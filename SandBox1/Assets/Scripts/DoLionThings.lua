@@ -4,10 +4,21 @@ local directions = {}
 local cycleTime = 5
 local speed = 1
 
+function SaveLions( levelnum )
+	levelstr = string.format("%i", levelnum)
+	SaveIntFloatTableAsJson(timers, "/Assets/Levels/Level" .. levelstr .."LionTimerSave.json")
+	SaveIntFloatTableAsJson(directions, "/Assets/Levels/Level" .. levelstr .."LionDirectionSave.json")
+end
 
-function InitLion(e)
-	timers[e] = e
-	directions[e] = 1
+function LoadLions( levelnum )
+	levelstr = string.format("%i", levelnum)
+	timers = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."LionTimerSave.json")
+	directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."LionDirectionSave.json")
+end
+
+function ClearLions()
+	timers = {}
+	directions = {}
 end
 
 function DestroyLion(e)
@@ -28,23 +39,9 @@ function UpdateLion(dt, e)
 	AddToVQS(e, 0, 0, speed*directions[e]*dt)
 end
 
-function HandleEventLion(EventData)
-	if EventData.type == 5 then
-		DestroyLion(EventData.e1)
-	end
-	if EventData.type == 6 then
-		timers = {}
-		directions = {}
-	end
-	if EventData.type == 13 then
-		level = string.format("%i", EventData.intData1)
-		SaveIntFloatTableAsJson(timers, "/Assets/Levels/Level" .. level .."LionTimerSave.json")
-		SaveIntFloatTableAsJson(directions, "/Assets/Levels/Level" .. level .."LionDirectionSave.json")
-	end
-	if EventData.type == 14 then
-		level = string.format("%i", EventData.intData1)
-		timers = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. level .."LionTimerSave.json")
-		directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. level .."LionDirectionSave.json")
+function HandleEventLion(eventData)
+	if eventData.type == 5 then
+		DestroyLion(eventData.e1)
 	end
 end
 
@@ -52,4 +49,11 @@ function HandleEventPerEntityLion(e, EventData)
 	if EventData.type == 7 then
 		DeleteEntity(e)
 	end
+end
+
+--custom functions
+
+function InitLion(e)
+	timers[e] = e
+	directions[e] = 1
 end

@@ -684,3 +684,9 @@ int lua_LoadIntFloatTableFromJson(lua_State* L)
     
     return 1;
 }
+
+int lua_GetGamePath(lua_State* L)
+{
+    lua_pushstring(L, GAME_PATH.c_str());
+    return 1;
+}

@@ -1,9 +1,9 @@
---TopDownFighterDoEverything
+--doeverything
 categoryNames = {}
 deltaTime = 0
 thisEntity = 0
 gEventData = {}
-
+GAME_PATH = ""
 
 function DoStringWithErrorCheck(str)
 	local tempfunc
@@ -19,8 +19,11 @@ end
 
 
 function Init()
+	GAME_PATH = GetGamePath()
+	LoadScript(GAME_PATH .."Assets/Scripts/CategoryList.lua")
+	categoryNames = GetCategoryNames()
 	for index,name in pairs(categoryNames) do
-		LoadScript("../TopDownFighter/Assets/Scripts/Do"..name.."Things.lua")
+		LoadScript(GAME_PATH .."Assets/Scripts/Do"..name.."Things.lua")
 		--DoStringWithErrorCheck("Update".. name .."(deltaTime, e)")
 	end
 
@@ -45,7 +48,17 @@ end
 function HandleEvent(thingsToEffect, eventData)
 	for index,thing in pairs(thingsToEffect) do
 		gEventData = eventData
-		DoStringWithErrorCheck("HandleEvent".. categoryNames[thing] .."(gEventData)")
+		if eventData.type == 5 then
+			DoStringWithErrorCheck("Destroy" .."(gEventData.e1)")
+		elseif eventData.type == 6 then
+			DoStringWithErrorCheck("Clear".. categoryNames[thing] .."s()")
+		elseif eventData.type == 13 then
+			DoStringWithErrorCheck("Save".. categoryNames[thing] .."s(gEventData.intData1)")
+		elseif eventData.type == 14 then
+			DoStringWithErrorCheck("Load".. categoryNames[thing] .."s(gEventData.intData1)")
+		else
+			DoStringWithErrorCheck("HandleEvent".. categoryNames[thing] .."(gEventData)")
+		end
 	end
 end
 

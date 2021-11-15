@@ -5,16 +5,27 @@ local cycleTime = 2
 local speed = 1
 
 
-function InitLight(e)
-	timers[e] = e
-	directions[e] = 1
+function SaveLight( levelnum )
+	levelstr = string.format("%i", levelnum)
+	SaveIntFloatTableAsJson(timers, "/Assets/Levels/Level" .. levelstr .."LightTimerSave.json")
+	SaveIntFloatTableAsJson(directions, "/Assets/Levels/Level" .. levelstr .."LightDirectionSave.json")
+end
+
+function LoadLights( levelnum )
+	levelstr = string.format("%i", levelnum)
+	timers = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."LightTimerSave.json")
+	directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."LightDirectionSave.json")
+end
+
+function ClearLights()
+	timers = {}
+	directions = {}
 end
 
 function DestroyLight(e)
 	timers[e] = nil;
 	directions[e] = nil
 end
-
 
 function UpdateLight (dt, e)
 	if timers[e] == nil then
@@ -29,11 +40,13 @@ function UpdateLight (dt, e)
 end
 
 function HandleEventLight(EventData)
-	if EventData.type == 5 then
-		DestroyLight(EventData.e1)
-	end
-	if EventData.type == 6 then
-		timers = {}
-		directions = {}
-	end
+
+end
+
+--custom functions
+
+
+function InitLight(e)
+	timers[e] = e
+	directions[e] = 1
 end
