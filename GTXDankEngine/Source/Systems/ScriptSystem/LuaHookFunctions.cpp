@@ -7,10 +7,9 @@
 #include "../Components/ModelComponent/ModelComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
 #include "../Components/LightComponent/LightComponent.h"
-//
 #include "../Components/PhysicsComponent/StillBodyComponent.h"
 #include "../Components/PhysicsComponent/MovingBodyComponent.h"
-//
+
 #include "../Core/Engine.h"
 #include "../Core/ResourceManager.h"
 #include "../Core/GameObjectFactory.h"
@@ -690,3 +689,7 @@ int lua_GetGamePath(lua_State* L)
     lua_pushstring(L, GAME_PATH.c_str());
     return 1;
 }
+
+float imguifloats[3] = { 0.0f, 0.0f, 0.0f };
+
+int lua_ImguiControledFloat(lua_State* L);

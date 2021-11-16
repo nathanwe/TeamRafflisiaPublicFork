@@ -122,6 +122,7 @@
     <None Include="..\TopDownFighter\Assets\Levels\gameObjects.json" />
     <None Include="..\TopDownFighter\Assets\Levels\levels.json" />
     <None Include="..\TopDownFighter\Assets\Scripts\DoEverything.lua" />
+    <None Include="Assets\Scripts\DoEverything.lua" />
     <None Include="Assets\Scripts\Menu.lua" />
     <None Include="Assets\Scripts\WhereTheGameAt.lua" />
     <None Include="Skybox.shader" />

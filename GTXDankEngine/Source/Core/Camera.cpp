@@ -62,7 +62,7 @@ void Camera::Inputs(GLFWwindow* window)
 			auto gLCComponent = comp.second;
 			if (gLCComponent != nullptr)
 			{
-				if (gLCComponent->categories.find(GameLogicCategories::POKEBALL) != gLCComponent->categories.end())
+				if (gLCComponent->categories.find(GameLogicCategories::PLAYER) != gLCComponent->categories.end())
 				{
 					e = comp.first;
 					break;

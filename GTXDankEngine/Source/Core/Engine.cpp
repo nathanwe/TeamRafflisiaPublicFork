@@ -29,7 +29,6 @@ bool Engine::Init()
 	ScriptResourceManager.GetResourceHandle("Assets/Scripts/Menu.lua");
 
 	SerializationResourceManager.Init(GAME_PATH + std::string("Assets/Levels/GameObjects.json"));
-	//preload resouces
 
 
 	if (!CommandSys.Init()) LOG_ERROR("Command System failed to init.");
@@ -55,17 +54,17 @@ bool Engine::Init()
 	Framerate->Init(60);
 
 	//temp: for game object factory demo
-	CommandSys.GetCommand("Attack3").SetActionToExecute([&]()
-		{
-			Entity newBall = GameObjectFac.CreateObject("POKEBALL");
-			auto* trans = TransformComponentPool.GetComponentByEntity(newBall);
-			trans->transform.position.x += rand() % 5;
-			trans->transform.position.y += rand() % 5;
-			trans->transform.position.z += rand() % 5;
-		});
+	//CommandSys.GetCommand("Attack3").SetActionToExecute([&]()
+	//	{
+	//		Entity newBall = GameObjectFac.CreateObject("POKEBALL");
+	//		auto* trans = TransformComponentPool.GetComponentByEntity(newBall);
+	//		trans->transform.position.x += rand() % 5;
+	//		trans->transform.position.y += rand() % 5;
+	//		trans->transform.position.z += rand() % 5;
+	//	});
 
 	//-----------------------------------------------------------------------
-	if (!DoGameLogicScriptSys.Init(GAME_PATH + std::string("Assets/Scripts/DoEverything.lua"))) LOG_ERROR("Game Logic Script System failed to init.");
+	if (!DoGameLogicScriptSys.Init(std::string("Assets/Scripts/DoEverything.lua"))) LOG_ERROR("Game Logic Script System failed to init.");
 	if (!MenuSys.Init("Assets/Scripts/Menu.lua")) LOG_ERROR("Menu System failed to init.");
 
 

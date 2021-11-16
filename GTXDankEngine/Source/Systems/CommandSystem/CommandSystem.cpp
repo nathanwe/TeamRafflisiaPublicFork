@@ -13,7 +13,7 @@ void SendLionEmitEvent()
 	ev.runPerEntity = true;
 	ev.e1 = 1;
 	ev.type = EventType::EMIT_LION;
-	ev.thingsToEffect.insert(GameLogicCategories::POKEBALL);
+	ev.thingsToEffect.insert(GameLogicCategories::PLAYER);
 	engine.DoGameLogicScriptSys.HandleEvent(ev);
 }
 void SendMenuToggleEvent()
@@ -27,7 +27,7 @@ void SendLionDeleteEvent()
 	Event ev;
 	ev.runPerEntity = true;
 	ev.type = EventType::DESTROY_LIONS;
-	ev.thingsToEffect.insert(GameLogicCategories::LION);
+	ev.thingsToEffect.insert(GameLogicCategories::ENEMY);
 	engine.DoGameLogicScriptSys.HandleEvent(ev);
 }
 bool CommandSystem::Init()
@@ -47,7 +47,7 @@ bool CommandSystem::Init()
 				Event ev = Event();
 				ev.type = EventType::MOVE_POKEBALL;
 				ev.runPerEntity = true;
-				ev.thingsToEffect.insert(GameLogicCategories::POKEBALL);
+				ev.thingsToEffect.insert(GameLogicCategories::PLAYER);
 				ev.floatData1 = engine.DeltaTime();
 				glm::vec3 quatOrientation(sin(engine.GraphicsSys.camera.yaw) * cos(engine.GraphicsSys.camera.pitch), -sin(engine.GraphicsSys.camera.pitch), -cos(engine.GraphicsSys.camera.yaw) * cos(engine.GraphicsSys.camera.pitch));
 

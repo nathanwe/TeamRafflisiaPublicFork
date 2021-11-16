@@ -47,17 +47,19 @@ end
 
 function HandleEvent(thingsToEffect, eventData)
 	for index,thing in pairs(thingsToEffect) do
-		gEventData = eventData
-		if eventData.type == 5 then
-			DoStringWithErrorCheck("Destroy" .."(gEventData.e1)")
-		elseif eventData.type == 6 then
-			DoStringWithErrorCheck("Clear".. categoryNames[thing] .."s()")
-		elseif eventData.type == 13 then
-			DoStringWithErrorCheck("Save".. categoryNames[thing] .."s(gEventData.intData1)")
-		elseif eventData.type == 14 then
-			DoStringWithErrorCheck("Load".. categoryNames[thing] .."s(gEventData.intData1)")
-		else
-			DoStringWithErrorCheck("HandleEvent".. categoryNames[thing] .."(gEventData)")
+		if categoryNames[thing] ~= nil then
+			gEventData = eventData
+			if eventData.type == 5 then
+				DoStringWithErrorCheck("Destroy" .."(gEventData.e1)")
+			elseif eventData.type == 6 then
+				DoStringWithErrorCheck("Clear".. categoryNames[thing] .."s()")
+			elseif eventData.type == 13 then
+				DoStringWithErrorCheck("Save".. categoryNames[thing] .."s(gEventData.intData1)")
+			elseif eventData.type == 14 then
+				DoStringWithErrorCheck("Load".. categoryNames[thing] .."s(gEventData.intData1)")
+			else
+				DoStringWithErrorCheck("HandleEvent".. categoryNames[thing] .."(gEventData)")
+			end
 		end
 	end
 end

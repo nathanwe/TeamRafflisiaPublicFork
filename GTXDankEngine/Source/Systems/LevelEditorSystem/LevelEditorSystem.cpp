@@ -400,7 +400,10 @@ void LevelEditorSystem::UpdateGUI()
 		if (ImGui::CollapsingHeader("GameLogic(unfinished)"))
 		{
 			auto* gameLogicCom = GameLogicCategoryComponentPool.GetComponentByEntity(entityID);
-
+			for (auto& category : gameLogicCom->categories)
+			{
+				
+			}
 		}
 	}
 	ImGui::End();

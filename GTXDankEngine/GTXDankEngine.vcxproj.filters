@@ -402,6 +402,9 @@
     <None Include="..\SandBox1\Assets\Scripts\CategoryList.lua">
       <Filter>SandBox1\Scripts</Filter>
     </None>
+    <None Include="Assets\Scripts\DoEverything.lua">
+      <Filter>Resource Files\Scripts</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">
@@ -772,9 +775,6 @@
     <ClCompile Include="Source\Systems\GraphicsSystem\PostProcess\PostProcess.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\PostProcess</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Systems\ScriptSystem\ScriptSystem.cpp">
-      <Filter>Source Files\Systems\UISystem</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\DebugRender\DebugRender.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\DebugRender</Filter>
     </ClCompile>
@@ -813,6 +813,9 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\Sky\Sky.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\Sky</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\ScriptSystem\ScriptSystem.cpp">
+      <Filter>Source Files\Systems\ScriptSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

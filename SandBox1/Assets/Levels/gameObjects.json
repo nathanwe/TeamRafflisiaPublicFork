@@ -62,7 +62,7 @@
       "Alpha": 1.0
     },
     "GAME_LOGIC": [
-      "LION"
+      "ENEMY"
     ]
   },
   "Light1": {
@@ -100,10 +100,7 @@
         "y": 0.0,
         "z": 0.0
       }
-    },
-    "GAME_LOGIC": [
-      "POINT_LIGHT_SOURCE"
-    ]
+    }
   },
   "Light2": {
     "MODEL": {
@@ -140,10 +137,7 @@
         "y": 0.0,
         "z": 0.0
       }
-    },
-    "GAME_LOGIC": [
-      "POINT_LIGHT_SOURCE"
-    ]
+    }
   },
   "POINT_LIGHT_SOURCE": {
     "MODEL": {
@@ -203,7 +197,7 @@
       "Alpha": 1.0
     },
     "GAME_LOGIC": [
-      "POKEBALL"
+      "PLAYER"
     ]
   },
   "Physics1": {
