@@ -68,7 +68,11 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "SaveIntFloatTableAsJson", lua_SaveIntFloatTableAsJson);
     lua_register(L, "LoadIntFloatTableFromJson", lua_LoadIntFloatTableFromJson);
     lua_register(L, "GetGamePath", lua_GetGamePath);
-    
+    lua_register(L, "GetImguiControledFloat", lua_GetImguiControledFloat);
+    lua_register(L, "ImguiControledFloat", lua_ImguiControledFloat);
+    lua_register(L, "ImguiText", lua_ImguiText);
+
+
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));
     lua_getglobal(L, "Init");
     if (lua_isfunction(L, -1))

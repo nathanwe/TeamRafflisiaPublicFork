@@ -643,7 +643,11 @@
       "NormalPath": "../SandBox1/Assets/models/Vase/normal.jpg",
       "RoughnessPath": "../SandBox1/Assets/models/Vase/roughness.jpg",
       "Alpha": 0.5
-    }
+    },
+    "GAME_LOGIC": [
+      "PLAYER", "ENEMY"
+    ]
+    
   },
   "plane": {
     "MODEL": {

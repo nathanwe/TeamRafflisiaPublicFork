@@ -123,6 +123,10 @@ void Engine::Run()
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 		//---------------------------------------------------------
 
+		//occurs after IMGUI so it can get data set by imgui
+		Event ev = Event(true);
+		ev.type = EventType::LOAD_DATA_FROM_IMGUI;
+		DoGameLogicScriptSys.HandleEvent(ev);
 
 		// swap buffer
 		glfwSwapBuffers(GraphicsSys.pWindow);

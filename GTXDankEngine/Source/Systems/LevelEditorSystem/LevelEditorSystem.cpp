@@ -400,9 +400,15 @@ void LevelEditorSystem::UpdateGUI()
 		if (ImGui::CollapsingHeader("GameLogic(unfinished)"))
 		{
 			auto* gameLogicCom = GameLogicCategoryComponentPool.GetComponentByEntity(entityID);
-			for (auto& category : gameLogicCom->categories)
-			{
-				
+			if (gameLogicCom != nullptr){
+				for (auto category : gameLogicCom->categories)
+				{
+					Event ev = Event();
+					ev.thingsToEffect.insert(category);
+					ev.type = EventType::SEND_DATA_TO_IMGUI;
+					ev.e1 = entityID;
+					engine.DoGameLogicScriptSys.HandleEvent(ev);
+				}
 			}
 		}
 	}

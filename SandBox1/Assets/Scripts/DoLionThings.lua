@@ -1,6 +1,7 @@
 --lionthings
 local timers = {}
 local directions = {}
+local imguiControledEntity = -1
 local cycleTime = 5
 local speed = 1
 
@@ -31,6 +32,7 @@ function UpdateLion(dt, e)
 	if timers[e] == nil then
 		InitLion(e)
 	end
+
 	timers[e] = timers[e] + dt
 		if timers[e] > cycleTime then
 			timers[e] = timers[e] - cycleTime
@@ -43,10 +45,23 @@ function HandleEventLion(eventData)
 	if eventData.type == 5 then
 		DestroyLion(eventData.e1)
 	end
+	if eventData.type == 16 then
+		ImguiText("Lion")
+		ImguiControledFloat(0, "timers", timers[eventData.e1])
+		ImguiControledFloat(1, "directions", directions[eventData.e1])
+		imguiControledEntity = eventData.e1
+	end
+	if eventData.type == 17 then
+		if imguiControledEntity ~= -1 then
+			timers[imguiControledEntity] = GetImguiControledFloat(0)
+			directions[imguiControledEntity] = GetImguiControledFloat(1)
+		imguiControledEntity = -1
+		end
+	end
 end
 
-function HandleEventPerEntityLion(e, EventData)
-	if EventData.type == 7 then
+function HandleEventPerEntityLion(e, eventData)
+	if eventData.type == 7 then
 		DeleteEntity(e)
 	end
 end

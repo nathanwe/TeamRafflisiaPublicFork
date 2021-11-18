@@ -692,4 +692,26 @@ int lua_GetGamePath(lua_State* L)
 
 float imguifloats[3] = { 0.0f, 0.0f, 0.0f };
 
-int lua_ImguiControledFloat(lua_State* L);
+int lua_ImguiControledFloat(lua_State* L)
+{
+    int index = static_cast<int>(lua_tointeger(L, 1));
+    std::string title = std::string(lua_tostring(L, 2));
+    float value = static_cast<float>(lua_tonumber(L, 3));
+    imguifloats[index] = value;
+    ImGui::InputFloat(title.c_str(), &imguifloats[index]);
+    return 0;
+}
+
+int lua_GetImguiControledFloat(lua_State* L)
+{
+    int index = static_cast<int>(lua_tonumber(L, 1));
+    lua_pushnumber(L, imguifloats[index]);
+    return 1;
+}
+
+int lua_ImguiText(lua_State* L)
+{
+    std::string text = std::string(lua_tostring(L, 1));
+    ImGui::Text(text.c_str());
+    return 0;
+}

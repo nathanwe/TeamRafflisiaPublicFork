@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -348,12 +348,6 @@
     <None Include="..\SandBox1\Assets\Levels\gameObjects.json">
       <Filter>SandBox1\Levels</Filter>
     </None>
-    <None Include="..\SandBox1\Assets\Levels\levels.json">
-      <Filter>SandBox1\Levels</Filter>
-    </None>
-    <None Include="..\SandBox1\Assets\Scripts\DoEverything.lua">
-      <Filter>SandBox1\Scripts</Filter>
-    </None>
     <None Include="..\SandBox1\Assets\Scripts\DoLightThings.lua">
       <Filter>SandBox1\Scripts</Filter>
     </None>
@@ -404,6 +398,9 @@
     </None>
     <None Include="Assets\Scripts\DoEverything.lua">
       <Filter>Resource Files\Scripts</Filter>
+    </None>
+    <None Include="..\SandBox1\Assets\Levels\level.json">
+      <Filter>SandBox1\Levels</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
