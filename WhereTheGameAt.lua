@@ -5,6 +5,7 @@ function Init()
 	--SetGamePath("../FPS/")
 	--SetGamePath("../Platformer/")
 	--SetGamePath("../TopDownFighter/")
+	--SetGamePath("../Speed/")
 end
 
 function Update(dt)
