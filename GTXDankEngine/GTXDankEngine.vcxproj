@@ -102,10 +102,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="..\FPS\Assets\Levels\gameObjects.json" />
-    <None Include="..\FPS\Assets\Levels\levels.json" />
+    <None Include="..\FPS\Assets\Levels\level.json" />
     <None Include="..\FPS\Assets\Scripts\DoEverything.lua" />
     <None Include="..\Platformer\Assets\Levels\gameObjects.json" />
-    <None Include="..\Platformer\Assets\Levels\levels.json" />
+    <None Include="..\Platformer\Assets\Levels\level.json" />
     <None Include="..\Platformer\Assets\Scripts\DoEverything.lua" />
     <None Include="..\SandBox1\Assets\audio\Master.bank" />
     <None Include="..\SandBox1\Assets\audio\Master.strings.bank" />
@@ -117,13 +117,16 @@
     <None Include="..\SandBox1\Assets\Scripts\DoLightThings.lua" />
     <None Include="..\SandBox1\Assets\Scripts\DoLionThings.lua" />
     <None Include="..\SandBox1\Assets\Scripts\DoPokeballThings.lua" />
-    <None Include="..\SandBox1\Assets\Scripts\FirstScript.lua" />
+    <None Include="..\Speed\Assets\Levels\gameObjects.json" />
+    <None Include="..\Speed\Assets\Levels\level.json" />
+    <None Include="..\Speed\Assets\Scripts\CategoryList.lua" />
+    <None Include="..\Speed\Assets\Scripts\DoGoalZoneThings.lua" />
+    <None Include="..\Speed\Assets\Scripts\DoPlayerThings.lua" />
     <None Include="..\TopDownFighter\Assets\Levels\gameObjects.json" />
-    <None Include="..\TopDownFighter\Assets\Levels\levels.json" />
-    <None Include="..\TopDownFighter\Assets\Scripts\DoEverything.lua" />
+    <None Include="..\TopDownFighter\Assets\Levels\level.json" />
+    <None Include="..\WhereTheGameAt.lua" />
     <None Include="Assets\Scripts\DoEverything.lua" />
     <None Include="Assets\Scripts\Menu.lua" />
-    <None Include="Assets\Scripts\WhereTheGameAt.lua" />
     <None Include="Skybox.shader" />
     <None Include="Source\Shaders\basic.shader" />
     <None Include="Source\Shaders\basicPBR.shader" />

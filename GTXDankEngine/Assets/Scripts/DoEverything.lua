@@ -19,12 +19,13 @@ end
 
 
 function Init()
+print("begin script load")
 	GAME_PATH = GetGamePath()
 	LoadScript(GAME_PATH .."Assets/Scripts/CategoryList.lua")
 	categoryNames = GetCategoryNames()
 	for index,name in pairs(categoryNames) do
 		LoadScript(GAME_PATH .."Assets/Scripts/Do"..name.."Things.lua")
-		--DoStringWithErrorCheck("Update".. name .."(deltaTime, e)")
+		print("loaded" .. categoryNames[index])
 	end
 
 end

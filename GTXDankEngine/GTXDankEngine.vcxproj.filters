@@ -283,6 +283,15 @@
     <Filter Include="Resource Files\Shaders\Sky">
       <UniqueIdentifier>{dd9e2d51-0776-4d5d-a1af-46f1b1b419f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Speed">
+      <UniqueIdentifier>{fa4c1c3f-289c-4a47-88ce-a5b7db35ed69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Speed\Scripts">
+      <UniqueIdentifier>{7fa7b922-89bc-460f-9994-a1a9d5161dac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Speed\Levels">
+      <UniqueIdentifier>{9751c2af-84d7-41d6-99fa-2396ea2df551}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Skybox.shader">
@@ -330,9 +339,6 @@
     <None Include="Assets\Scripts\Menu.lua">
       <Filter>Resource Files\Scripts</Filter>
     </None>
-    <None Include="Assets\Scripts\WhereTheGameAt.lua">
-      <Filter>Resource Files\Scripts</Filter>
-    </None>
     <None Include="..\SandBox1\Assets\audio\Master.bank">
       <Filter>SandBox1\audio</Filter>
     </None>
@@ -357,22 +363,16 @@
     <None Include="..\SandBox1\Assets\Scripts\DoPokeballThings.lua">
       <Filter>SandBox1\Scripts</Filter>
     </None>
-    <None Include="..\SandBox1\Assets\Scripts\FirstScript.lua">
-      <Filter>SandBox1\Scripts</Filter>
-    </None>
     <None Include="..\FPS\Assets\Scripts\DoEverything.lua">
       <Filter>FPS\Scripts</Filter>
     </None>
     <None Include="..\FPS\Assets\Levels\gameObjects.json">
       <Filter>FPS\Levels</Filter>
     </None>
-    <None Include="..\FPS\Assets\Levels\levels.json">
-      <Filter>FPS\Levels</Filter>
-    </None>
     <None Include="..\Platformer\Assets\Levels\gameObjects.json">
       <Filter>Platformer\Levels</Filter>
     </None>
-    <None Include="..\Platformer\Assets\Levels\levels.json">
+    <None Include="..\Platformer\Assets\Levels\level.json">
       <Filter>Platformer\Levels</Filter>
     </None>
     <None Include="..\Platformer\Assets\Scripts\DoEverything.lua">
@@ -381,11 +381,8 @@
     <None Include="..\TopDownFighter\Assets\Levels\gameObjects.json">
       <Filter>TopDownFighter\Levles</Filter>
     </None>
-    <None Include="..\TopDownFighter\Assets\Levels\levels.json">
+    <None Include="..\TopDownFighter\Assets\Levels\level.json">
       <Filter>TopDownFighter\Levles</Filter>
-    </None>
-    <None Include="..\TopDownFighter\Assets\Scripts\DoEverything.lua">
-      <Filter>TopDownFighter\Scripts</Filter>
     </None>
     <None Include="Source\Shaders\test.shader">
       <Filter>Resource Files\Shaders</Filter>
@@ -401,6 +398,27 @@
     </None>
     <None Include="..\SandBox1\Assets\Levels\level.json">
       <Filter>SandBox1\Levels</Filter>
+    </None>
+    <None Include="..\Speed\Assets\Levels\gameObjects.json">
+      <Filter>Speed\Levels</Filter>
+    </None>
+    <None Include="..\Speed\Assets\Levels\level.json">
+      <Filter>Speed\Levels</Filter>
+    </None>
+    <None Include="..\FPS\Assets\Levels\level.json">
+      <Filter>FPS\Levels</Filter>
+    </None>
+    <None Include="..\Speed\Assets\Scripts\CategoryList.lua">
+      <Filter>Speed\Scripts</Filter>
+    </None>
+    <None Include="..\WhereTheGameAt.lua">
+      <Filter>Resource Files\Scripts</Filter>
+    </None>
+    <None Include="..\Speed\Assets\Scripts\DoGoalZoneThings.lua">
+      <Filter>Speed\Scripts</Filter>
+    </None>
+    <None Include="..\Speed\Assets\Scripts\DoPlayerThings.lua">
+      <Filter>Speed\Scripts</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
