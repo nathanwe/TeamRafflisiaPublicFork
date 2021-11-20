@@ -80,11 +80,11 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": 5.0,
-          "y": 5.0,
-          "z": 5.0
+          "x": 2.0,
+          "y": 200.0,
+          "z": 3.0
         },
-        "scale": 0.009999999776482582,
+        "scale": 0.004999999888241291,
         "rotation": {
           "x": 0.0,
           "y": 0.0,
@@ -99,9 +99,6 @@
         "RoughnessPath": "../SandBox1/Assets/models/PokemonBall/roughness.jpg",
         "Alpha": 1.0
       },
-      "GAME_LOGIC": [
-        "PLAYER"
-      ],
       "MOVING_BODY": {
         "Elasticity": 0.5,
         "Friction": 1.0,
@@ -119,8 +116,11 @@
         },
         "CollisionType": 0,
         "Shape": 0,
-        "Radius": 0.6399999856948853
-      }
+        "Radius": 1.0
+      },
+      "GAME_LOGIC": [
+        "PLAYER"
+      ]
     },
     {
       "MODEL": {
@@ -129,8 +129,8 @@
       "TRANSFORM": {
         "position": {
           "x": 0.0,
-          "y": 0.0,
-          "z": -0.23999999463558197
+          "y": -5.0,
+          "z": 0.0
         },
         "scale": 1.0,
         "rotation": {
@@ -160,6 +160,118 @@
         "uniqueName": "PhysicsPlane1",
         "category": "PhysicsPlane1"
       }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 15.0,
+          "y": -0.0,
+          "z": 0.0
+        },
+        "scale": 1.0,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.5,
+          "w": 0.5
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "STILL_BODY": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.5,
+          "y": 0.5,
+          "z": 0.0
+        },
+        "Magnitude": 0.0
+      },
+      "TAG": {
+        "uniqueName": "PhysicsPlane2",
+        "category": "PhysicsPlane1"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -20.0,
+          "y": -10.0,
+          "z": 0.0
+        },
+        "scale": 1.0,
+        "rotation": {
+          "x": 0.5,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.5
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "STILL_BODY": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 0.5,
+          "z": 0.5
+        },
+        "Magnitude": 0.0
+      },
+      "TAG": {
+        "uniqueName": "PhysicsPlane3",
+        "category": "PhysicsPlane1"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/Vase/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": 1.0,
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/models/Vase/albedo.jpg",
+        "MetallicPath": "../SandBox1/Assets/models/Vase/metallic.jpg",
+        "NormalPath": "../SandBox1/Assets/models/Vase/normal.jpg",
+        "RoughnessPath": "../SandBox1/Assets/models/Vase/roughness.jpg",
+        "Alpha": 1.0
+      },
+      "GAME_LOGIC": [
+        "GOAL_ZONE"
+      ],
+      "STILL_BODY": {
+        "Shape": 0,
+        "Radius": 2.0
+      }
     }
   ]
 }
+

@@ -542,8 +542,8 @@ int lua_SetPhysicsVelocity(lua_State* L)
     if (bod != nullptr)
     {
         bod->rigidBody.velocity.x = x;
-        bod->rigidBody.velocity.x = x;
-        bod->rigidBody.velocity.x = x;
+        bod->rigidBody.velocity.y = y;
+        bod->rigidBody.velocity.z = z;
     }
     else
     {

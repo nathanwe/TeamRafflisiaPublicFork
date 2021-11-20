@@ -34,14 +34,14 @@ bool PhysicsSystem::Init()
 	return true;
 }
 
-void PhysicsSystem::Update(float timeStamp = 0)
+void PhysicsSystem::Update(float time = 0)
 {
 	Timer timer("Physics Update");
 
 	/*if (RigidBodyComponentPool.componentList.size() == 0)
 		return;*/
 
-	float dt = engine.Framerate->DeltaSeconds();
+	float dt = 10* engine.Framerate->DeltaSeconds();
 
 	//LOG_INFO("Delta time in Seconds {}", dt);
 

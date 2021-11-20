@@ -102,7 +102,7 @@ void Engine::Run()
 
 		if (!pause)
 		{
-			PhysicsSys.Update(0);
+			PhysicsSys.Update(DeltaTime());
 			DoGameLogicScriptSys.Update(DeltaTime());
 		}
 		
