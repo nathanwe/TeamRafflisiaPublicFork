@@ -66,6 +66,7 @@ bool Engine::Init()
 	//-----------------------------------------------------------------------
 	if (!DoGameLogicScriptSys.Init(std::string("Assets/Scripts/DoEverything.lua"))) LOG_ERROR("Game Logic Script System failed to init.");
 	if (!MenuSys.Init("Assets/Scripts/Menu.lua")) LOG_ERROR("Menu System failed to init.");
+	if (!CameraControlSys.Init(GAME_PATH + std::string("Assets/Scripts/Camera.lua"))) LOG_ERROR("Camera Control System failed to init.");
 
 
 	if (!SceneSys.Init())  LOG_ERROR("Scene System failed to init.");
@@ -104,6 +105,7 @@ void Engine::Run()
 		{
 			PhysicsSys.Update(DeltaTime());
 			DoGameLogicScriptSys.Update(DeltaTime());
+			CameraControlSys.Update(DeltaTime());
 		}
 		
 		// hard code timestamp to 0 for now
@@ -161,12 +163,20 @@ void Engine::Destroy()
 	{
 		LOG_ERROR("Menu System failed to destory properly.");
 	}
+	if (!CameraControlSys.Destroy())
+	{
+		LOG_ERROR("Camera System failed to destory properly.");
+	}
+	if (!LevelEditorSys.Destroy())
+	{
+		LOG_ERROR("Level Editor System failed to destory properly.");
+	}
 
 	ScriptResourceManager.Destroy();
 	TextureResourceManger.Destroy();
 	ModelResourceManager.Destroy();
 	SerializationResourceManager.Destroy();
-	LevelEditorSys.Destroy();
+
 	
 	/*
 	

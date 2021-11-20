@@ -36,8 +36,8 @@ public:
 	bool gamepadInvertX = false;
 	bool gamepadInvertY = false;
 
-	bool objectTrack = true;
-	bool thirdPerson = true;
+	bool objectTrack = false;
+	bool thirdPerson = false;
 	float thirdPersonOffset = 5.f;
 
 	

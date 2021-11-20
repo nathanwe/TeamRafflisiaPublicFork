@@ -71,6 +71,8 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "GetImguiControledFloat", lua_GetImguiControledFloat);
     lua_register(L, "ImguiControledFloat", lua_ImguiControledFloat);
     lua_register(L, "ImguiText", lua_ImguiText);
+    lua_register(L, "UpdateCameraOld", lua_UpdateCameraOld);
+    lua_register(L, "Set3rdPerson", lua_Set3rdPerson);
 
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));

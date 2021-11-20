@@ -1,14 +1,11 @@
---WhereTheGameAt
+--Camera
 
 function Init()
-	SetGamePath("../SandBox1/")
-	--SetGamePath("../FPS/")
-	--SetGamePath("../Platformer/")
-	--SetGamePath("../TopDownFighter/")
-	--SetGamePath("../Speed/")
+	Set3rdPerson(true)
 end
 
 function Update(dt)
+	UpdateCameraOld()
 end
 
 function HandleEvent(thingsToEffect, eventData)

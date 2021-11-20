@@ -715,3 +715,18 @@ int lua_ImguiText(lua_State* L)
     ImGui::Text(text.c_str());
     return 0;
 }
+
+int lua_UpdateCameraOld(lua_State* L)
+{
+    engine.GraphicsSys.camera.Inputs(engine.GraphicsSys.pWindow);
+    engine.GraphicsSys.camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
+    return 0;
+}
+
+int lua_Set3rdPerson(lua_State* L)
+{
+    bool third = lua_toboolean(L, 1);
+    engine.GraphicsSys.camera.thirdPerson = third;
+    engine.GraphicsSys.camera.objectTrack = third;
+    return 0;
+}

@@ -105,8 +105,8 @@ void GraphicsSystem::Update(float timeStamp)
 	
 
 	// update camera
-	camera.Inputs(pWindow);
-	camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
+	//camera.Inputs(pWindow);
+	//camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
 
 	// Render
 	if (!RenderingDebugMode) Render(timeStamp);

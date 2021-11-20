@@ -271,9 +271,6 @@
     <Filter Include="TopDownFighter">
       <UniqueIdentifier>{9e5543a7-a30f-48a1-9303-ac8859abf1b1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="TopDownFighter\Levles">
-      <UniqueIdentifier>{386eb69e-1ee2-4b7c-b02b-db326986aaf0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="TopDownFighter\Scripts">
       <UniqueIdentifier>{3168119a-dd33-4819-abc7-7ed114e5cffa}</UniqueIdentifier>
     </Filter>
@@ -291,6 +288,9 @@
     </Filter>
     <Filter Include="Speed\Levels">
       <UniqueIdentifier>{9751c2af-84d7-41d6-99fa-2396ea2df551}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TopDownFighter\Levels">
+      <UniqueIdentifier>{386eb69e-1ee2-4b7c-b02b-db326986aaf0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -363,9 +363,6 @@
     <None Include="..\SandBox1\Assets\Scripts\DoPokeballThings.lua">
       <Filter>SandBox1\Scripts</Filter>
     </None>
-    <None Include="..\FPS\Assets\Scripts\DoEverything.lua">
-      <Filter>FPS\Scripts</Filter>
-    </None>
     <None Include="..\FPS\Assets\Levels\gameObjects.json">
       <Filter>FPS\Levels</Filter>
     </None>
@@ -375,14 +372,11 @@
     <None Include="..\Platformer\Assets\Levels\level.json">
       <Filter>Platformer\Levels</Filter>
     </None>
-    <None Include="..\Platformer\Assets\Scripts\DoEverything.lua">
-      <Filter>Platformer\Scripts</Filter>
-    </None>
     <None Include="..\TopDownFighter\Assets\Levels\gameObjects.json">
-      <Filter>TopDownFighter\Levles</Filter>
+      <Filter>TopDownFighter\Levels</Filter>
     </None>
     <None Include="..\TopDownFighter\Assets\Levels\level.json">
-      <Filter>TopDownFighter\Levles</Filter>
+      <Filter>TopDownFighter\Levels</Filter>
     </None>
     <None Include="Source\Shaders\test.shader">
       <Filter>Resource Files\Shaders</Filter>
@@ -418,6 +412,24 @@
       <Filter>Speed\Scripts</Filter>
     </None>
     <None Include="..\Speed\Assets\Scripts\DoPlayerThings.lua">
+      <Filter>Speed\Scripts</Filter>
+    </None>
+    <None Include="..\SandBox1\Assets\Scripts\Camera.lua">
+      <Filter>SandBox1\Scripts</Filter>
+    </None>
+    <None Include="..\Platformer\Assets\Scripts\Camera.lua">
+      <Filter>Platformer\Scripts</Filter>
+    </None>
+    <None Include="..\Platformer\Assets\Scripts\CategoryList.lua">
+      <Filter>Platformer\Scripts</Filter>
+    </None>
+    <None Include="..\FPS\Assets\Scripts\Camera.lua">
+      <Filter>FPS\Scripts</Filter>
+    </None>
+    <None Include="..\FPS\Assets\Scripts\CategoryList.lua">
+      <Filter>FPS\Scripts</Filter>
+    </None>
+    <None Include="..\Speed\Assets\Scripts\Camera.lua">
       <Filter>Speed\Scripts</Filter>
     </None>
   </ItemGroup>

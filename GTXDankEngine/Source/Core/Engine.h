@@ -83,6 +83,7 @@ public:
 	ScriptSystem DoGameLogicScriptSys;
 	ScriptSystem MenuSys;
 	ScriptSystem FindGameSys;
+	ScriptSystem CameraControlSys;
 	PhysicsSystem PhysicsSys;
 	LevelEditorSystem LevelEditorSys;
 
