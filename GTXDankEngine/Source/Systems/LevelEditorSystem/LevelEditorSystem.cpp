@@ -148,10 +148,12 @@ void LevelEditorSystem::UpdateGUI()
 		{
 			if (entityCategoryIndex > 0)
 			{
+				LOG_INFO("Game Object created");
 				entityID = engine.GameObjectFac.CreateObject(names[entityCategoryIndex]);
 			}
 			else
 			{
+				LOG_INFO("Empty Game Object created");
 				entityID = engine.EntitySys.CreateEntity();
 			}
 		}
@@ -161,17 +163,27 @@ void LevelEditorSystem::UpdateGUI()
 
 		if (ImGui::Button("Save Entity"))
 		{
-			engine.GameObjectFac.SaveObject(entityID);
+			auto* tag = TagComponentPool.GetComponentByEntity(entityID);
+			if (tag == nullptr || tag->uniqueName.empty() || tag->category.empty())
+			{
+				LOG_INFO("Tag Component (Name/Category) cannot be empty.");
+			}
+			else
+			{
+				LOG_INFO("Game Object Saved");
+				engine.GameObjectFac.SaveObject(entityID);
+			}
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("Delete Entity"))
 		{
+			LOG_INFO("Game Object Deleted");
 			engine.EntitySys.DestroyEntity(entityID);
 		}
 
 		ImGui::InputInt("Entity ID", &entityID);
 
-		if (ImGui::CollapsingHeader("Tag"))
+		if (ImGui::CollapsingHeader("Name (Tag)"))
 		{
 			auto* tagCom = TagComponentPool.GetComponentByEntity(entityID);
 			if (tagCom != nullptr)
@@ -185,10 +197,8 @@ void LevelEditorSystem::UpdateGUI()
 			}
 			else
 			{
-				if (ImGui::Button("Add Tag"))
-				{
-					TagComponentPool.Add(entityID);
-				}
+				LOG_INFO("Name tag is added to this entity automatically");
+				TagComponentPool.Add(entityID);
 			}
 		}
 
@@ -199,7 +209,15 @@ void LevelEditorSystem::UpdateGUI()
 			{
 				ImGui::DragFloat3("Position", &transCom->transform.position.x, 0.01f);
 				ImGui::DragFloat("Scale", &transCom->transform.scale, 0.001f);
-				ImGui::DragFloat4("Rotation", &transCom->transform.rotation.x, 0.01f);
+				//ImGui::DragFloat4("Rotation", &transCom->transform.rotation.x, 0.01f);
+				
+				auto eulerAngle = glm::eulerAngles(transCom->transform.rotation) / glm::pi<float>() * 180.0f;
+				ImGui::DragFloat("Euler Angle X", &eulerAngle.x, 1.0f);
+				ImGui::DragFloat("Euler Angle Y", &eulerAngle.y, eulerAngleIncrement ? -1.0f : 1.0f);
+				ImGui::DragFloat("Euler Angle Z", &eulerAngle.z, 1.0f);
+				eulerAngleIncrement = eulerAngle.y > 90 || eulerAngle.y < -90 ? !eulerAngleIncrement : eulerAngleIncrement;
+				transCom->transform.rotation = glm::quat(eulerAngle * glm::pi<float>() / 180.0f);
+				eulerAngle = glm::eulerAngles(transCom->transform.rotation);
 			}
 			else
 			{
@@ -216,16 +234,35 @@ void LevelEditorSystem::UpdateGUI()
 			auto* modelCom = ModelComponentPool.GetComponentByEntity(entityID);
 			if (modelCom != nullptr)
 			{
-
-				InputText("ModelPath",
-					&modelCom->model->GetPointer()->path,
-					ImGuiInputTextFlags_CallbackCharFilter);
-				ImGui::SameLine();
 				CopyButton("CopyModelPath", modelCom->model->GetPointer()->path);
 				ImGui::SameLine();
 				if (ImGui::Button("PasteModelPath", ImVec2(32, 20)))
 				{
 					modelCom->model->GetPointer()->path = PasteFromClipboard();
+				}
+				ImGui::SameLine();
+				if (ImGui::Button("RefreshModel", ImVec2(32, 20)))
+				{
+					auto path = modelCom->model->GetPointer()->path;
+					if (!path.empty())
+					{
+						ModelComponentPool.Delete(entityID);
+						ResourceHandle<Model>* model = ModelResourceManager.GetResourceHandle(path);
+						ModelComponentPool.Add(entityID, model);
+					}
+					else
+					{
+						LOG_INFO("model path cannot be empty!");
+					}
+				}
+				ImGui::SameLine();
+				InputText("ModelPath",
+					&modelCom->model->GetPointer()->path,
+					ImGuiInputTextFlags_CallbackCharFilter);
+				
+				if (ImGui::Button("Remove Model"))
+				{
+					ModelComponentPool.Delete(entityID);
 				}
 			}
 			else
@@ -243,51 +280,78 @@ void LevelEditorSystem::UpdateGUI()
 			auto* matCom = MaterialComponentPool.GetComponentByEntity(entityID);
 			if (matCom != nullptr)
 			{
-				InputText("AlbedoPath",
-					&matCom->material.AlbedoPath,
-					ImGuiInputTextFlags_CallbackCharFilter);
-				ImGui::SameLine();
 				CopyButton("CopyAlbedoPath", matCom->material.AlbedoPath);
 				ImGui::SameLine();
 				if (ImGui::Button("PasteAlbedoPath", ImVec2(32, 20)))
 				{
 					matCom->material.AlbedoPath = PasteFromClipboard();
 				}
-
-				InputText("MetallicPath",
-					&matCom->material.MetallicPath,
-					ImGuiInputTextFlags_CallbackCharFilter);
 				ImGui::SameLine();
+				InputText("AlbedoPath",
+					&matCom->material.AlbedoPath,
+					ImGuiInputTextFlags_CallbackCharFilter);
+
 				CopyButton("CopyMetallicPath", matCom->material.MetallicPath);
 				ImGui::SameLine();
 				if (ImGui::Button("PasteMetallicPath", ImVec2(32, 20)))
 				{
 					matCom->material.MetallicPath = PasteFromClipboard();
 				}
-
-				InputText("NormalPath",
-					&matCom->material.NormalPath,
-					ImGuiInputTextFlags_CallbackCharFilter);
 				ImGui::SameLine();
+				InputText("MetallicPath",
+					&matCom->material.MetallicPath,
+					ImGuiInputTextFlags_CallbackCharFilter);
+
 				CopyButton("CopyNormalPath", matCom->material.NormalPath);
 				ImGui::SameLine();
 				if (ImGui::Button("PasteNormalPath", ImVec2(32, 20)))
 				{
 					matCom->material.NormalPath = PasteFromClipboard();
 				}
-
-				InputText("RoughnessPath",
-					&matCom->material.RoughnessPath,
-					ImGuiInputTextFlags_CallbackCharFilter);
 				ImGui::SameLine();
+				InputText("NormalPath",
+					&matCom->material.NormalPath,
+					ImGuiInputTextFlags_CallbackCharFilter);
+				
 				CopyButton("CopyRoughnessPath", matCom->material.RoughnessPath);
 				ImGui::SameLine();
 				if (ImGui::Button("PasteRoughnessPath", ImVec2(32, 20)))
 				{
 					matCom->material.RoughnessPath = PasteFromClipboard();
 				}
-
+				ImGui::SameLine();
+				InputText("RoughnessPath",
+					&matCom->material.RoughnessPath,
+					ImGuiInputTextFlags_CallbackCharFilter);
+				
 				ImGui::DragFloat("Alpha", &matCom->material.Alpha, 0.01f);
+
+				if (ImGui::Button("Refresh Material"))
+				{
+					auto albedoPath = matCom->material.AlbedoPath;
+					auto metallicPath = matCom->material.MetallicPath;
+					auto normalPath = matCom->material.NormalPath;
+					auto roughnessPath = matCom->material.RoughnessPath;
+					if (!albedoPath.empty())
+					{
+						MaterialComponentPool.Delete(entityID);
+						ResourceHandle<Texture>* albedo = TextureResourceManger.GetResourceHandle(albedoPath);
+						ResourceHandle<Texture>* metallic = TextureResourceManger.GetResourceHandle(metallicPath);
+						ResourceHandle<Texture>* normal = TextureResourceManger.GetResourceHandle(normalPath);
+						ResourceHandle<Texture>* roughness = TextureResourceManger.GetResourceHandle(roughnessPath);
+						Material material = Material(albedo, metallic, normal, roughness);
+						material.AlbedoPath = albedoPath;
+						material.MetallicPath = metallicPath;
+						material.NormalPath = normalPath;
+						material.RoughnessPath = roughnessPath;
+						MaterialComponentPool.Add(entityID, material);
+					}
+				}
+
+				if (ImGui::Button("Remove Material"))
+				{
+					MaterialComponentPool.Delete(entityID);
+				}
 			}
 			else
 			{
@@ -314,6 +378,11 @@ void LevelEditorSystem::UpdateGUI()
 				ImGui::DragFloat3("Intensity", &ligthCom->LightSource.Intensity.x, 0.01f);
 				ImGui::DragFloat3("Target", &ligthCom->LightSource.Target.x, 0.01f);
 				ImGui::InputInt("Type", reinterpret_cast<int*>(&ligthCom->LightSource.Type));
+
+				if (ImGui::Button("Remove Light"))
+				{
+					LightComponentPool.Delete(entityID);
+				}
 			}
 			else
 			{
@@ -344,6 +413,11 @@ void LevelEditorSystem::UpdateGUI()
 				{
 					ImGui::DragFloat3("Normal", &stillBodyCom->BroadPhase.minPoint.x, 0.01f);
 					ImGui::DragFloat3("Normal", &stillBodyCom->BroadPhase.max_point.x, 0.01f);
+				}
+
+				if (ImGui::Button("Remove StillBody"))
+				{
+					StillBodyComponentPool.Delete(entityID);
 				}
 			}
 			else
@@ -384,6 +458,10 @@ void LevelEditorSystem::UpdateGUI()
 				ImGui::DragFloat3("acceleration", &movingBodyCom->rigidBody.acceleration.x, 0.01f);
 				ImGui::InputInt("collisionType", reinterpret_cast<int*>(&movingBodyCom->rigidBody.collisionType));
 
+				if (ImGui::Button("Remove MovingBody"))
+				{
+					MovingBodyComponentPool.Delete(entityID);
+				}
 			}
 			else
 			{

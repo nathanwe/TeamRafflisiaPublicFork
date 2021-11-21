@@ -12,12 +12,13 @@ public:
 	void Update(float timeStamp);
 	bool Destroy();
 	void UpdateGUI();
+	int entityID;
 
 private:
-	int entityID;
 	std::string entityCategory;
 	int entityCategoryIndex = -1;
-
+	glm::vec3 angleToRotate;
+	bool eulerAngleIncrement;
 };
 
 #endif
