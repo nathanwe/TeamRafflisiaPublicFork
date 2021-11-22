@@ -16,8 +16,11 @@ enum ComponentType
 	MOVING_BODY = 6,
 	STILL_BODY = 7,
 	TAG = 8,
+	SPECIAL_BODY = 9,
+	COLLIDER = 10,
 	TOTAL
 };
+//add new component above here
 
 NLOHMANN_JSON_SERIALIZE_ENUM(ComponentType, {
 	REGISTER_STRING(TRANSFORM)
@@ -28,7 +31,10 @@ NLOHMANN_JSON_SERIALIZE_ENUM(ComponentType, {
 	REGISTER_STRING(MOVING_BODY)
 	REGISTER_STRING(STILL_BODY)
 	REGISTER_STRING(TAG)
+	REGISTER_STRING(SPECIAL_BODY)
+	REGISTER_STRING(COLLIDER)
 	});
+//add new component above here
 
 static std::unordered_map<std::string, int> ComponentNameToType
 {
@@ -40,7 +46,10 @@ static std::unordered_map<std::string, int> ComponentNameToType
 	{"MOVING_BODY", 6},
 	{"STILL_BODY", 7},
 	{"TAG", 8},
+	{"SPECIAL_BODY", 9},
+	{"COLLIDER", 10},
 };
+//add new component above here
 
 enum class ErrorEnum
 {

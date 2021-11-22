@@ -7,8 +7,10 @@
 #include "../../Components/LightComponent/LightComponent.h"
 #include "../../Components/PhysicsComponent/StillBodyComponent.h"
 #include "../../Components/PhysicsComponent/MovingBodyComponent.h"
+#include "../../Components/PhysicsComponent/ColliderComponent.h"
 #include "../../Components/TagComponent/TagComponent.h"
 #include "../../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
+#include "../PhysicsSystem/Raycasting/Raycasting.h"
 
 extern Engine engine;
 
@@ -114,6 +116,18 @@ bool LevelEditorSystem::Init()
 
 void LevelEditorSystem::Update(float timeStamp)
 {
+	//level editor mode, assume it wouldnt change a lot so command pattern is not applied here
+	if (engine.InputSys.IsMouseTriggered())
+	{
+		if (ImGui::IsAnyItemHovered())
+			return;
+		auto e = RayCast(engine.GraphicsSys.camera, false);
+		prevEntityID = entityID;
+		engine.LevelEditorSys.entityID = e;
+		ChangeSelectedObject();
+		//LOG_INFO("Selected Entity");
+		//LOG_INFO(e);
+	}
 }
 
 bool LevelEditorSystem::Destroy()
@@ -123,6 +137,7 @@ bool LevelEditorSystem::Destroy()
 
 void LevelEditorSystem::UpdateGUI()
 {
+	prevEntityID = entityID;
 	ImGui::Begin("Level Editor");
 	{
 		std::string text = "Current Level: " + std::to_string(engine.SceneSys.GetCurrentLevel());
@@ -156,6 +171,7 @@ void LevelEditorSystem::UpdateGUI()
 				LOG_INFO("Empty Game Object created");
 				entityID = engine.EntitySys.CreateEntity();
 			}
+			ChangeSelectedObject();
 		}
 		ImGui::SameLine();
 		//InputText("Entity Category: ", &entityCategory, ImGuiInputTextFlags_CallbackCharFilter);
@@ -181,7 +197,16 @@ void LevelEditorSystem::UpdateGUI()
 			engine.EntitySys.DestroyEntity(entityID);
 		}
 
-		ImGui::InputInt("Entity ID", &entityID);
+		if (ImGui::InputInt("Entity ID", &entityID))
+		{
+			ChangeSelectedObject();
+		}
+
+		if (!engine.EntitySys.IsEntityActive(entityID))
+		{
+			ImGui::End();
+			return;
+		}
 
 		if (ImGui::CollapsingHeader("Name (Tag)"))
 		{
@@ -398,6 +423,37 @@ void LevelEditorSystem::UpdateGUI()
 				}
 			}
 		}
+		if (ImGui::CollapsingHeader("Collider"))
+		{
+			auto* collider = ColliderComponentPool.GetComponentByEntity(entityID);
+			if (collider != nullptr)
+			{
+				ImGui::InputInt("Shape", reinterpret_cast<int*>(&collider->NarrowPhase.shape));
+				if (collider->NarrowPhase.shape == Shape::SPHERE)
+				{
+					ImGui::DragFloat("Radius", &collider->NarrowPhase.radius, 0.01f);
+					if (collider->NarrowPhase.radius < 0)
+						collider->NarrowPhase.radius = 0;
+				}
+				else if (collider->NarrowPhase.shape == Shape::PLANE)
+				{
+					ImGui::DragFloat3("Normal", &collider->NarrowPhase.normal.x, 0.01f);
+					ImGui::DragFloat("Magnitude", &collider->NarrowPhase.magnitude, 0.01f);
+				}
+				else if (collider->NarrowPhase.shape == Shape::AABB)
+				{
+					ImGui::DragFloat3("MinPoint", &collider->NarrowPhase.minPoint.x, 0.01f);
+					ImGui::DragFloat3("MaxPoint", &collider->NarrowPhase.maxPoint.x, 0.01f);
+				}
+			}
+			else
+			{
+				if (ImGui::Button("Add Collider"))
+				{
+					ColliderComponentPool.Add(entityID);
+				}
+			}
+		}
 
 		if (ImGui::CollapsingHeader("StillBody"))
 		{
@@ -416,8 +472,8 @@ void LevelEditorSystem::UpdateGUI()
 				}
 				else if (stillBodyCom->BroadPhase.shape == Shape::AABB)
 				{
-					ImGui::DragFloat3("minPoint", &stillBodyCom->BroadPhase.minPoint.x, 0.01f);
-					ImGui::DragFloat3("max_point", &stillBodyCom->BroadPhase.max_point.x, 0.01f);
+					ImGui::DragFloat3("MinPoint", &stillBodyCom->BroadPhase.minPoint.x, 0.01f);
+					ImGui::DragFloat3("MaxPoint", &stillBodyCom->BroadPhase.maxPoint.x, 0.01f);
 				}
 
 				if (ImGui::Button("Remove StillBody"))
@@ -451,8 +507,8 @@ void LevelEditorSystem::UpdateGUI()
 				}
 				else if (movingBodyCom->BroadPhase.shape == Shape::AABB)
 				{
-					ImGui::DragFloat3("minPoint", &movingBodyCom->BroadPhase.minPoint.x, 0.01f);
-					ImGui::DragFloat3("max_point", &movingBodyCom->BroadPhase.max_point.x, 0.01f);
+					ImGui::DragFloat3("MinPoint", &movingBodyCom->BroadPhase.minPoint.x, 0.01f);
+					ImGui::DragFloat3("MaxPoint", &movingBodyCom->BroadPhase.maxPoint.x, 0.01f);
 				}
 
 				ImGui::DragFloat("elasticity", &movingBodyCom->rigidBody.elasticity, 0.01f);
@@ -494,6 +550,29 @@ void LevelEditorSystem::UpdateGUI()
 				}
 			}
 		}
+
+		//add new component above here
 	}
 	ImGui::End();
 }
+
+void LevelEditorSystem::ChangeSelectedObject()
+{
+	if (engine.EntitySys.IsEntityActive(prevEntityID))
+	{
+		auto* mat = MaterialComponentPool.GetComponentByEntity(prevEntityID);
+		if (mat != nullptr)
+		{
+			mat->material.wireMode = false;
+		}
+	}
+	if (engine.EntitySys.IsEntityActive(entityID))
+	{
+		auto* mat = MaterialComponentPool.GetComponentByEntity(entityID);
+		if (mat != nullptr)
+		{
+			mat->material.wireMode = true;
+		}
+	}
+}
+

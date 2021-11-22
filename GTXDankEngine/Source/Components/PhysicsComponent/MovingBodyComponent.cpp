@@ -4,9 +4,9 @@
 AbstractComponentPool<MovingBodyComponent> MovingBodyComponentPool;
 
 MovingBodyComponent::MovingBodyComponent(Entity e, RigidBody rigidBody)
-	:AbstractComponent{ entity }, rigidBody(rigidBody)
+	:AbstractComponent(e), rigidBody(rigidBody)
 {
-	LOG_INFO("Creating Moving Body component to entity: {}", entity);
+	LOG_INFO("Creating Moving Body component to entity: {}", e);
 }
 
 

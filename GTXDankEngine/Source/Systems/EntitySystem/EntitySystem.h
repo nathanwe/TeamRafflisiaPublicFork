@@ -21,6 +21,7 @@ public:
 
 	void DestroyEntity(Entity e);
 	void DeleteAllEntities();
+	bool IsEntityActive(Entity e);
 	//void DestroyEntity(Entity e);
 	//void SetArchetype();
 	//Archetype GetArchetype();

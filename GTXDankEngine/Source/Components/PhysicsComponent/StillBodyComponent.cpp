@@ -4,9 +4,9 @@
 AbstractComponentPool<StillBodyComponent> StillBodyComponentPool;
 
 StillBodyComponent::StillBodyComponent(Entity e)
-	:AbstractComponent{ entity }
+	:AbstractComponent(e)
 {
-	LOG_INFO("Creating Still Body component to entity: {}", entity);
+	LOG_INFO("Creating Still Body component to entity: {}", e);
 }
 
 

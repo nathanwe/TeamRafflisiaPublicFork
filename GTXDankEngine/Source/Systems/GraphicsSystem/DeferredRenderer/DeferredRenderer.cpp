@@ -127,7 +127,13 @@ void DeferredRenderer::Fill_G_Buffer(glm::mat4 view, glm::mat4 projection)
 		auto modelComponent = ModelComponentPool.GetComponentByEntity(e);
 
 		// PBR and opaque
-		if (matComponent->material.IsPBR && matComponent->material.Alpha == 1.0f)
+		if (matComponent->material.wireMode)
+		{
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+			Fill_G_BufferRender(&matComponent->material, &transformComponent->transform, modelComponent->model->GetPointer());
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+		}
+		else if (matComponent->material.IsPBR && matComponent->material.Alpha == 1.0f)
 			Fill_G_BufferRender(&matComponent->material, &transformComponent->transform, modelComponent->model->GetPointer());
 	}
 

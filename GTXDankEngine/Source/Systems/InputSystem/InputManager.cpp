@@ -11,6 +11,7 @@ Authors: Dylan Washburne
 - End Header --------------------------------------------------------*/
 #include "pch.h"
 #include "InputManager.h"
+#include "../../utils/Log.h"
 
 
 
@@ -34,6 +35,9 @@ InputManager::~InputManager() {
 
 void InputManager::Update()
 {
+	//LOG_INFO("Mouse Positions");
+	//LOG_INFO(mouseX);
+	//LOG_INFO(mouseY);
 
 	mouseXPrev = mouseX;
 	mouseYPrev = mouseY;

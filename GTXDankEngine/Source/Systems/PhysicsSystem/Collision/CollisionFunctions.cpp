@@ -2,6 +2,7 @@
 #include "CollisionFunctions.h"
 #include "../Components/PhysicsComponent/MovingBodyComponent.h"
 #include "../Components/PhysicsComponent/StillBodyComponent.h"
+#include "../Components/PhysicsComponent/ColliderComponent.h"
 
 
 
@@ -56,27 +57,27 @@ int StaticSphereToStacticPlane(glm::vec3* pCenter, float Radius, glm::vec3* norm
 
 int StaticAABBToStaticAABB(glm::vec3* p1, glm::vec3* max1, glm::vec3* min1, glm::vec3* p2, glm::vec3* max2, glm::vec3* min2)
 {
-	if (p1->x > p2->x && (p1->x + min1->x) > (p2->x + max2->x))
+	if (p1->x > p2->x && (p1->x + min1->x) >= (p2->x + max2->x))
 	{
 		return 0;
 	}
-	else if (p1->x < p2->x && (p1->x + max1->x) < (p2->x + min2->x))
+	else if (p1->x < p2->x && (p1->x + max1->x) <= (p2->x + min2->x))
 	{
 		return 0;
 	}
-	else if (p1->y > p2->y && (p1->y + min1->y) > (p2->y + max2->y))
+	else if (p1->y > p2->y && (p1->y + min1->y) >= (p2->y + max2->y))
 	{
 		return 0;
 	}
-	else if (p1->y < p2->y && (p1->y + max1->y) < (p2->y + min2->y))
+	else if (p1->y < p2->y && (p1->y + max1->y) <= (p2->y + min2->y))
 	{
 		return 0;
 	}
-	else if (p1->z > p2->z && (p1->z + min1->z) > (p2->z + max2->z))
+	else if (p1->z > p2->z && (p1->z + min1->z) >= (p2->z + max2->z))
 	{
 		return 0;
 	}
-	else if (p1->z < p2->z && (p1->z + max1->z) < (p2->z + min2->z))
+	else if (p1->z < p2->z && (p1->z + max1->z) <= (p2->z + min2->z))
 	{
 		return 0;
 	}
@@ -243,6 +244,7 @@ int StaticAABBToStaticPlane(glm::vec3* p1, glm::vec3* max1, glm::vec3* min1, glm
 
 
 
+// For RayCast
 float DynamicPointToStaticPlane(glm::vec3* pCenter0, glm::vec3* pCenter1, glm::vec3* velocity, glm::vec3* normal, float magnitude)
 {
 	float dt = 0;
@@ -263,6 +265,7 @@ float DynamicPointToStaticPlane(glm::vec3* pCenter0, glm::vec3* pCenter1, glm::v
 	}
 
 }
+//
 
 
 float DynamicSphereToStaticPlane(glm::vec3* pCenter0, glm::vec3* pCenter1, float radius, glm::vec3* velocity, glm::vec3* normal, float magnitude)
@@ -308,6 +311,7 @@ float DynamicSphereToStaticPlane(glm::vec3* pCenter0, glm::vec3* pCenter1, float
 }
 
 
+// For RayCast
 float DynamicPointToStaticSphere(glm::vec3* p1, glm::vec3* p2, glm::vec3* velocity, glm::vec3* pCenter, float Radius)
 {
 	float pToCenterSq = glm::dot((*pCenter - *p1), (*pCenter - *p1));
@@ -338,6 +342,7 @@ float DynamicPointToStaticSphere(glm::vec3* p1, glm::vec3* p2, glm::vec3* veloci
 	return (m - s) / v;
 
 }
+//
 
 
 float DynamicSphereToStaticSphere(glm::vec3* pCenter0i, glm::vec3* pCenter0f, float Radius0, glm::vec3* velocity, glm::vec3* pCenter1, float Radius1)
@@ -408,10 +413,163 @@ float DynamicSphereToDynamicSphere(glm::vec3* pCenter0i, float Radius0, glm::vec
 }
 
 
+// For RayCast
+//// Intersection Check
+//float CheckInt(float dist1, float dist2, glm::vec3* pCenter0, glm::vec3* pCenter1, glm::vec3& Intersection, float t, glm::vec3* velocity) {
+//	//dist1, dist2
+//	/*float dist1 = *pCenter0 - *point;
+//	float dist2 = *pCenter1 - *point;*/
+//	if (dist1 * dist2 >= 0.0f) return 0; // Same Side
+//	if (dist1 == dist2) return 0;
+//	Intersection = *pCenter0 + (*pCenter1 - *pCenter0) * (-dist1 / (dist2 - dist1));
+//	return (Intersection.x - pCenter0->x) / velocity->x;
+//}
+//int inline WithinLimits(glm::vec3& Intersection, glm::vec3* min, glm::vec3* max, const int Axis) {
+//	if (Axis == 1 && Intersection.z > min->z && Intersection.z < max->z && Intersection.y > min->y && Intersection.y < max->y) return 1;
+//	if (Axis == 2 && Intersection.z > min->z && Intersection.z < max->z && Intersection.x > min->x && Intersection.x < max->x) return 1;
+//	if (Axis == 3 && Intersection.x > min->x && Intersection.x < max->x && Intersection.y > min->y && Intersection.y < max->y) return 1;
+//	return 0;
+//}
+//
+//float DynamicPointToStaticAABB(glm::vec3* pCenter0, glm::vec3* pCenter1, glm::vec3* velocity, glm::vec3* p, glm::vec3* max, glm::vec3* min, float t)
+//{
+//	glm::vec3 Intersection;
+//	if (pCenter1->x < min->x && pCenter0->x < min->x) return -1;
+//	if (pCenter1->x > max->x && pCenter0->x > max->x) return -1;
+//	if (pCenter1->y < min->y && pCenter0->y < min->y) return -1;
+//	if (pCenter1->y > max->y && pCenter0->y > max->y) return -1;
+//	if (pCenter1->z < min->z && pCenter0->z < min->z) return -1;
+//	if (pCenter1->z > max->z && pCenter0->z > max->z) return -1;
+//	if (pCenter0->x > min->x && pCenter0->x < max->x &&
+//		pCenter0->y > min->y && pCenter0->y < max->y &&
+//		pCenter0->z > min->z && pCenter0->z < max->z)
+//	{
+//		return 0;
+//		Intersection = *pCenter0; // starting point is within bounding volume
+//	}
+//	else
+//	{
+//		if ((CheckInt(pCenter0->x - min->x, pCenter1->x - min->x, pCenter0, pCenter1, Intersection, t, velocity) != 0 && WithinLimits(Intersection, min, max, 1)))
+//		{
+//			return CheckInt(pCenter0->x - min->x, pCenter1->x - min->x, pCenter0, pCenter1, Intersection, t, velocity);
+//		}
+//		else if ((CheckInt(pCenter0->y - min->y, pCenter1->y - min->y, pCenter0, pCenter1, Intersection, t, velocity) != 0 && WithinLimits(Intersection, min, max, 2)))
+//		{
+//			return CheckInt(pCenter0->y - min->y, pCenter1->y - min->y, pCenter0, pCenter1, Intersection, t, velocity);
+//		}
+//		else if ((CheckInt(pCenter0->z - min->z, pCenter1->z - min->z, pCenter0, pCenter1, Intersection, t, velocity) != 0 && WithinLimits(Intersection, min, max, 3)))
+//		{
+//			return CheckInt(pCenter0->z - min->z, pCenter1->z - min->z, pCenter0, pCenter1, Intersection, t, velocity);
+//		}
+//		else if ((CheckInt(pCenter0->x - max->x, pCenter1->x - max->x, pCenter0, pCenter1, Intersection, t, velocity) != 0 && WithinLimits(Intersection, min, max, 1)))
+//		{
+//			return CheckInt(pCenter0->x - max->x, pCenter1->x - max->x, pCenter0, pCenter1, Intersection, t, velocity);
+//		}
+//		else if ((CheckInt(pCenter0->y - max->y, pCenter1->y - max->y, pCenter0, pCenter1, Intersection, t, velocity) != 0 && WithinLimits(Intersection, min, max, 2)))
+//		{
+//			return CheckInt(pCenter0->y - max->y, pCenter1->y - max->y, pCenter0, pCenter1, Intersection, t, velocity);
+//		}
+//		else if ((CheckInt(pCenter0->z - max->z, pCenter1->z - max->z, pCenter0, pCenter1, Intersection, t, velocity) != 0 && WithinLimits(Intersection, min, max, 3)))
+//		{
+//			return CheckInt(pCenter0->z - max->z, pCenter1->z - max->z, pCenter0, pCenter1, Intersection, t, velocity);
+//		}
+//	}
+//	return -1;
+//}
 
-bool ReflectMovingSphereStaticPlane(MovingBodyComponent* mb1, StillBodyComponent* sb2, float dt)
+float DynamicPointToStaticAABB(glm::vec3* pCenter0, glm::vec3* pCenter1, glm::vec3* velocity, glm::vec3* p, glm::vec3* max, glm::vec3* min, float t)
 {
-	auto delT = DynamicSphereToStaticPlane(&mb1->rigidBody.prevPosition, &mb1->rigidBody.position, mb1->BroadPhase.radius, &mb1->rigidBody.velocity, &sb2->BroadPhase.normal, sb2->BroadPhase.magnitude);
+	float t1, t2, t3, t4, t5, t6;
+	if (velocity->x != 0)
+	{
+		t1 = (p->x + min->x - pCenter0->x) / velocity->x;
+		t2 = (p->x + max->x - pCenter0->x) / velocity->x;
+	}
+	else
+	{
+		t1 = INT_MAX;
+		t2 = INT_MAX;
+	}
+
+	if (velocity->y != 0)
+	{
+		t3 = (p->y + min->y - pCenter0->y) / velocity->y;
+		t4 = (p->y + max->y - pCenter0->y) / velocity->y;
+	}
+	else
+	{
+		t3 = INT_MAX;
+		t4 = INT_MAX;
+	}
+
+	if (velocity->z != 0)
+	{
+		t5 = (p->z + min->z - pCenter0->z) / velocity->z;
+		t6 = (p->z + max->z - pCenter0->z) / velocity->z;
+	}
+	else
+	{
+		t5 = INT_MAX;
+		t6 = INT_MAX;
+	}
+	/*t1 = (p->x + min->x - pCenter0->x) / velocity->x;
+	t2 = (p->x + max->x - pCenter0->x) / velocity->x;
+	t3 = (p->y + min->y - pCenter0->y) / velocity->y;
+	t4 = (p->y + max->y - pCenter0->y) / velocity->y;
+	t5 = (p->z + min->z - pCenter0->z) / velocity->z;
+	t6 = (p->z + max->z - pCenter0->z) / velocity->z;*/
+
+	float tmin = std::max(std::max(std::min(t1, t2), std::min(t3, t4)), std::min(t5, t6));
+	float tmax = std::min(std::min(std::max(t1, t2), std::max(t3, t4)), std::max(t5, t6));
+
+	// if tmax < 0, ray (line) is intersecting AABB, but whole AABB is behing us
+	if (tmax < 0) {
+		return -1;
+	}
+
+	// if tmin > tmax, ray doesn't intersect AABB
+	if (tmin > tmax) {
+		return -1;
+	}
+
+	if (tmin < 0.0f) {
+		return tmax;
+		LOG_INFO(pCenter0->x + velocity->x * tmax);
+		LOG_INFO(pCenter0->y + velocity->y * tmax);
+		LOG_INFO(pCenter0->z + velocity->z * tmax);
+	}
+
+
+	LOG_INFO(pCenter0->x + velocity->x * tmin);
+	LOG_INFO(pCenter0->y + velocity->y * tmin);
+	LOG_INFO(pCenter0->z + velocity->z * tmin);
+	return tmin;
+}
+
+
+//
+//float DynamicSphereToStaticAABB(glm::vec3* pCenter0, glm::vec3* pCenter1, float radius, glm::vec3* velocity, glm::vec3* p, glm::vec3* max, glm::vec3* min, float t)
+//{
+//	glm::vec3 Intersection;
+//	if (pCenter1->x < min->x && pCenter1->x + radius < min->x && pCenter0->x < min->x && pCenter0->x + radius < min->x) return -1;
+//	if (pCenter1->x > max->x && pCenter1->x - radius > max->x && pCenter0->x > max->x && pCenter0->x - radius > max->x) return -1;
+//	if (pCenter1->y < min->y && pCenter1->y + radius < min->y && pCenter0->y < min->y && pCenter0->y + radius < min->y) return -1;
+//	if (pCenter1->y > max->y && pCenter1->y - radius > max->y && pCenter0->y > max->y && pCenter0->y - radius > max->y) return -1;
+//	if (pCenter1->z < min->z && pCenter1->z + radius < min->z && pCenter0->z < min->z && pCenter0->z + radius < min->z) return -1;
+//	if (pCenter1->z > max->z && pCenter1->z - radius > max->z && pCenter0->z > max->z && pCenter0->z - radius > max->z) return -1;
+//	if (StaticSphereToStaticAABB(pCenter0, radius, p, max, min))
+//	{
+//		return 0;
+//	}
+//
+//
+//}
+
+
+
+bool ReflectMovingSphereStaticPlane(MovingBodyComponent* mb1, ColliderComponent* c1, StillBodyComponent* sb2, ColliderComponent* c2, float dt)
+{
+	auto delT = DynamicSphereToStaticPlane(&mb1->rigidBody.prevPosition, &mb1->rigidBody.position, c1->NarrowPhase.radius, &mb1->rigidBody.velocity, &(c2->NarrowPhase.normal), c2->NarrowPhase.magnitude);
 
 	if (delT == -1)
 		return false;
@@ -425,7 +583,7 @@ bool ReflectMovingSphereStaticPlane(MovingBodyComponent* mb1, StillBodyComponent
 
 
 	//Velocity Adjustment
-	glm::vec3 v = glm::dot(mb1->rigidBody.velocity, sb2->BroadPhase.normal) * glm::normalize(sb2->BroadPhase.normal);
+	glm::vec3 v = glm::dot(mb1->rigidBody.velocity, c2->NarrowPhase.normal) * glm::normalize(c2->NarrowPhase.normal);
 	v *= (1 + mb1->rigidBody.elasticity) / 2;
 
 	mb1->rigidBody.velocity -= 2.0f * v;
@@ -441,9 +599,9 @@ bool ReflectMovingSphereStaticPlane(MovingBodyComponent* mb1, StillBodyComponent
 }
 
 
-bool ReflectMovingSphereStaticSphere(MovingBodyComponent* mb1, StillBodyComponent* sb2)
+bool ReflectMovingSphereStaticSphere(MovingBodyComponent* mb1, ColliderComponent* c1, StillBodyComponent* sb2, ColliderComponent* c2)
 {
-	float delT = DynamicSphereToStaticSphere(&mb1->rigidBody.prevPosition, &mb1->rigidBody.position, mb1->BroadPhase.radius, &mb1->rigidBody.velocity, &sb2->position, sb2->BroadPhase.radius);
+	float delT = DynamicSphereToStaticSphere(&mb1->rigidBody.prevPosition, &mb1->rigidBody.position, c1->NarrowPhase.radius, &mb1->rigidBody.velocity, &sb2->position, c2->NarrowPhase.radius);
 
 	if (delT == -1)
 		return false;
@@ -478,11 +636,11 @@ bool ReflectMovingSphereStaticSphere(MovingBodyComponent* mb1, StillBodyComponen
 }
 
 
-bool ReflectMovingSphereMovingSphere(MovingBodyComponent* mb1, MovingBodyComponent* mb2, float dt)
+bool ReflectMovingSphereMovingSphere(MovingBodyComponent* mb1, ColliderComponent* c1, MovingBodyComponent* mb2, ColliderComponent* c2, float dt)
 {
 	glm::vec3 V1, vNorm1;
 	glm::vec3 V2, vNorm2;
-	float delT = DynamicSphereToDynamicSphere(&mb1->rigidBody.prevPosition, mb1->BroadPhase.radius, &mb1->rigidBody.velocity, &mb2->rigidBody.prevPosition, mb2->BroadPhase.radius, &mb2->rigidBody.velocity, dt);
+	float delT = DynamicSphereToDynamicSphere(&mb1->rigidBody.prevPosition, c1->NarrowPhase.radius, &mb1->rigidBody.velocity, &mb2->rigidBody.prevPosition, c2->NarrowPhase.radius, &mb2->rigidBody.velocity, dt);
 
 	if (delT == -1)
 		return false;
@@ -494,7 +652,7 @@ bool ReflectMovingSphereMovingSphere(MovingBodyComponent* mb1, MovingBodyCompone
 
 
 	vNorm1 = glm::dot(normal, mb1->rigidBody.velocity) * normal;
-	vNorm2 = glm::dot(-normal, mb2->rigidBody.velocity) * normal;
+	vNorm2 = glm::dot(normal, mb2->rigidBody.velocity) * normal;
 
 	if (mb1->rigidBody.elasticity + mb2->rigidBody.elasticity == 0)
 	{
@@ -519,4 +677,270 @@ bool ReflectMovingSphereMovingSphere(MovingBodyComponent* mb1, MovingBodyCompone
 	mb2->rigidBody.velocity = V2;
 	return true;
 
+}
+
+bool ReflectMovingAABBStaticAABB(MovingBodyComponent* mb1, ColliderComponent* c1, StillBodyComponent* sb1, ColliderComponent* c2)
+{
+	//glm::vec3* p1, glm::vec3* max1, glm::vec3* min1, glm::vec3* p2, glm::vec3* max2, glm::vec3* min2
+	int CollisionCheck = StaticAABBToStaticAABB(&mb1->rigidBody.position, &c1->NarrowPhase.maxPoint, &c1->NarrowPhase.minPoint, &sb1->position, &c2->NarrowPhase.maxPoint, &c2->NarrowPhase.minPoint);
+
+	if (CollisionCheck == 0)
+	{
+		return false;
+	}
+
+	// Time to exit AABB in 3 axial direction
+	float t1 = -1;
+	float t2 = -1;
+	float t3 = -1;
+	
+	// Object moving toward right - +ve x
+	if (mb1->rigidBody.velocity.x > 0)
+	{
+		t1 = (mb1->rigidBody.position.x + c1->NarrowPhase.maxPoint.x - (sb1->position.x + c2->NarrowPhase.minPoint.x)) / mb1->rigidBody.velocity.x;
+	}
+	// Object moving toward left - -ve x
+	else
+	{
+		t1 = (mb1->rigidBody.position.x + c1->NarrowPhase.minPoint.x - (sb1->position.x + c2->NarrowPhase.maxPoint.x)) / mb1->rigidBody.velocity.x;
+	}
+
+	// Object moving up - +ve y
+	if (mb1->rigidBody.velocity.y > 0)
+	{
+		t2 = (mb1->rigidBody.position.y + c1->NarrowPhase.maxPoint.y - (sb1->position.y + c2->NarrowPhase.minPoint.y)) / mb1->rigidBody.velocity.y;
+	}
+	// Object moving down - -ve y
+	else
+	{
+		t2 = (mb1->rigidBody.position.y + c1->NarrowPhase.minPoint.y - (sb1->position.y + c2->NarrowPhase.maxPoint.y)) / mb1->rigidBody.velocity.y;
+	}
+
+	// Object moving out of - +ve z
+	if (mb1->rigidBody.velocity.z > 0)
+	{
+		t3 = (mb1->rigidBody.position.z + c1->NarrowPhase.maxPoint.z - (sb1->position.z + c2->NarrowPhase.minPoint.z)) / mb1->rigidBody.velocity.z;
+	}
+	// Object moving into - -ve z
+	else
+	{
+		t3 = (mb1->rigidBody.position.z + c1->NarrowPhase.minPoint.z - (sb1->position.z + c2->NarrowPhase.maxPoint.z)) / mb1->rigidBody.velocity.z;
+	}
+
+
+	if (t1 < t2 && t1 < t3)
+	{
+		mb1->rigidBody.position = mb1->rigidBody.position - mb1->rigidBody.velocity * t1;
+		mb1->rigidBody.velocity.x = -mb1->rigidBody.velocity.x * mb1->rigidBody.elasticity;
+	}
+	else if (t2 < t1 && t2 < t3)
+	{
+		mb1->rigidBody.position = mb1->rigidBody.position - mb1->rigidBody.velocity * t2;
+		mb1->rigidBody.velocity.y = -mb1->rigidBody.velocity.y * mb1->rigidBody.elasticity;
+	}
+	else if (t3 < t1 && t3 < t2)
+	{
+		mb1->rigidBody.position = mb1->rigidBody.position - mb1->rigidBody.velocity * t3;
+		mb1->rigidBody.velocity.z = -mb1->rigidBody.velocity.z * mb1->rigidBody.elasticity;
+	}
+	else if (t1 == t2)
+	{
+		mb1->rigidBody.position = mb1->rigidBody.position - mb1->rigidBody.velocity * t1;
+
+		mb1->rigidBody.velocity.x = -mb1->rigidBody.velocity.x * mb1->rigidBody.elasticity;
+		mb1->rigidBody.velocity.y = -mb1->rigidBody.velocity.y * mb1->rigidBody.elasticity;
+	}
+	else if (t3 == t2)
+	{
+		mb1->rigidBody.position = mb1->rigidBody.position - mb1->rigidBody.velocity * t2;
+
+		mb1->rigidBody.velocity.y = -mb1->rigidBody.velocity.y * mb1->rigidBody.elasticity;
+		mb1->rigidBody.velocity.z = -mb1->rigidBody.velocity.z * mb1->rigidBody.elasticity;
+	}
+	else if(t1 == t3)
+	{
+		mb1->rigidBody.position = mb1->rigidBody.position - mb1->rigidBody.velocity * t2;
+
+		mb1->rigidBody.velocity.x = -mb1->rigidBody.velocity.x * mb1->rigidBody.elasticity;
+		mb1->rigidBody.velocity.z = -mb1->rigidBody.velocity.z * mb1->rigidBody.elasticity;		
+	}
+	return true;
+}
+bool ReflectMovingAABBMovingAABB(MovingBodyComponent* mb1, ColliderComponent* c1, MovingBodyComponent* mb2, ColliderComponent* c2)
+{
+	int CollisionCheck = StaticAABBToStaticAABB(&mb1->rigidBody.position, &c1->NarrowPhase.maxPoint, &c1->NarrowPhase.minPoint, &mb1->rigidBody.position, &c2->NarrowPhase.maxPoint, &c2->NarrowPhase.minPoint);
+
+	if (CollisionCheck == 0)
+	{
+		return false;
+	}
+
+
+	// Time to exit AABB in 3 axial direction
+	float t1 = -1;
+	float t2 = -1;
+	float t3 = -1;
+
+	glm::vec3 velocity = mb1->rigidBody.velocity - mb2->rigidBody.velocity;
+
+	// Objects as a system moving toward right - +ve x
+	if (velocity.x > 0)
+	{
+		t1 = (mb1->rigidBody.position.x + c1->NarrowPhase.maxPoint.x - (mb2->rigidBody.position.x + c2->NarrowPhase.minPoint.x)) / velocity.x;
+	}
+	// Object as a system moving toward left - -ve x
+	else
+	{
+		t1 = (mb1->rigidBody.position.x + c1->NarrowPhase.minPoint.x - (mb2->rigidBody.position.x + c2->NarrowPhase.maxPoint.x)) / velocity.x;
+	}
+
+	// Object as a system moving up - +ve y
+	if (velocity.y > 0)
+	{
+		t2 = (mb1->rigidBody.position.y + c1->NarrowPhase.maxPoint.y - (mb2->rigidBody.position.y + c2->NarrowPhase.minPoint.y)) / velocity.y;
+	}
+	// Object as a system moving down - -ve y
+	else
+	{
+		t2 = (mb1->rigidBody.position.y + c1->NarrowPhase.minPoint.y - (mb2->rigidBody.position.y + c2->NarrowPhase.maxPoint.y)) / velocity.y;
+	}
+
+	// Object as a system moving out of - +ve z
+	if (velocity.z > 0)
+	{
+		t3 = (mb1->rigidBody.position.z + c1->NarrowPhase.maxPoint.z - (mb2->rigidBody.position.z + c2->NarrowPhase.minPoint.z)) / velocity.z;
+	}
+	// Object as a system moving into - -ve z
+	else
+	{
+		t3 = (mb1->rigidBody.position.z + c1->NarrowPhase.minPoint.z - (mb2->rigidBody.position.z + c2->NarrowPhase.maxPoint.z)) / velocity.z;
+	}
+
+
+	if (t1 < t2 && t1 < t3)
+	{
+		mb1->rigidBody.position = mb1->rigidBody.position - mb1->rigidBody.velocity * t1;
+		mb1->rigidBody.velocity.x = -mb1->rigidBody.velocity.x * mb1->rigidBody.elasticity;
+
+		mb2->rigidBody.position = mb2->rigidBody.position - mb2->rigidBody.velocity * t1;
+		mb2->rigidBody.velocity.x = -mb2->rigidBody.velocity.x * mb2->rigidBody.elasticity;
+	}
+	else if (t2 < t1 && t2 < t3)
+	{
+		mb1->rigidBody.position = mb1->rigidBody.position - mb1->rigidBody.velocity * t2;
+		mb1->rigidBody.velocity.y = -mb1->rigidBody.velocity.y * mb1->rigidBody.elasticity;
+
+		mb2->rigidBody.position = mb2->rigidBody.position - mb2->rigidBody.velocity * t2;
+		mb2->rigidBody.velocity.y = -mb2->rigidBody.velocity.y * mb2->rigidBody.elasticity;
+	}
+	else if (t3 < t1 && t3 < t2)
+	{
+		mb1->rigidBody.position = mb1->rigidBody.position - mb1->rigidBody.velocity * t3;
+		mb1->rigidBody.velocity.z = -mb1->rigidBody.velocity.z * mb1->rigidBody.elasticity;
+
+		mb2->rigidBody.position = mb2->rigidBody.position - mb2->rigidBody.velocity * t3;
+		mb2->rigidBody.velocity.z = -mb2->rigidBody.velocity.z * mb2->rigidBody.elasticity;
+	}
+	else if (t1 == t2)
+	{
+		mb1->rigidBody.position = mb1->rigidBody.position - mb1->rigidBody.velocity * t1;
+
+		mb1->rigidBody.velocity.x = -mb1->rigidBody.velocity.x * mb1->rigidBody.elasticity;
+		mb1->rigidBody.velocity.y = -mb1->rigidBody.velocity.y * mb1->rigidBody.elasticity;
+
+		mb2->rigidBody.position = mb2->rigidBody.position - mb2->rigidBody.velocity * t1;
+
+		mb2->rigidBody.velocity.x = -mb2->rigidBody.velocity.x * mb2->rigidBody.elasticity;
+		mb2->rigidBody.velocity.y = -mb2->rigidBody.velocity.y * mb2->rigidBody.elasticity;
+	}
+	else if (t3 == t2)
+	{
+		mb1->rigidBody.position = mb1->rigidBody.position - mb1->rigidBody.velocity * t2;
+
+		mb1->rigidBody.velocity.y = -mb1->rigidBody.velocity.y * mb1->rigidBody.elasticity;
+		mb1->rigidBody.velocity.z = -mb1->rigidBody.velocity.z * mb1->rigidBody.elasticity;
+
+		mb2->rigidBody.position = mb2->rigidBody.position - mb2->rigidBody.velocity * t2;
+
+		mb2->rigidBody.velocity.y = -mb2->rigidBody.velocity.y * mb2->rigidBody.elasticity;
+		mb2->rigidBody.velocity.z = -mb2->rigidBody.velocity.z * mb2->rigidBody.elasticity;
+	}
+	else if (t1 == t3)
+	{
+		mb1->rigidBody.position = mb1->rigidBody.position - mb1->rigidBody.velocity * t2;
+
+		mb1->rigidBody.velocity.x = -mb1->rigidBody.velocity.x * mb1->rigidBody.elasticity;
+		mb1->rigidBody.velocity.z = -mb1->rigidBody.velocity.z * mb1->rigidBody.elasticity;
+
+		mb2->rigidBody.position = mb2->rigidBody.position - mb2->rigidBody.velocity * t2;
+
+		mb2->rigidBody.velocity.x = -mb2->rigidBody.velocity.x * mb2->rigidBody.elasticity;
+		mb2->rigidBody.velocity.z = -mb2->rigidBody.velocity.z * mb2->rigidBody.elasticity;
+	}
+
+	return true;
+}
+
+bool ReflectMovingAABBStaticPlane(MovingBodyComponent* mb1, ColliderComponent* c1, StillBodyComponent* sb1, ColliderComponent* c2)
+{
+	int CollisionCheck = StaticAABBToStaticPlane(&mb1->rigidBody.position, &c1->NarrowPhase.maxPoint, &c1->NarrowPhase.minPoint, &c2->NarrowPhase.normal, c2->NarrowPhase.magnitude);
+	return false;
+
+	std::vector<glm::vec3> temp;
+	glm::vec3 temp1;
+
+	// 1,1,1
+	temp.push_back(mb1->rigidBody.position + c1->NarrowPhase.maxPoint);
+	// -1,-1,-1
+	temp.push_back(mb1->rigidBody.position + c1->NarrowPhase.minPoint);
+
+	// 1,1,-1
+	temp1.x = mb1->rigidBody.position.x + c1->NarrowPhase.maxPoint.x;
+	temp1.x = mb1->rigidBody.position.y + c1->NarrowPhase.maxPoint.y;
+	temp1.x = mb1->rigidBody.position.z + c1->NarrowPhase.minPoint.z;
+	temp.push_back(temp1);
+
+	// 1,-1,1
+	temp1.x = mb1->rigidBody.position.x + c1->NarrowPhase.maxPoint.x;
+	temp1.x = mb1->rigidBody.position.y + c1->NarrowPhase.minPoint.y;
+	temp1.x = mb1->rigidBody.position.z + c1->NarrowPhase.maxPoint.z;
+	temp.push_back(temp1);
+
+	// -1,1,1
+	temp1.x = mb1->rigidBody.position.x + c1->NarrowPhase.minPoint.x;
+	temp1.x = mb1->rigidBody.position.y + c1->NarrowPhase.maxPoint.y;
+	temp1.x = mb1->rigidBody.position.z + c1->NarrowPhase.maxPoint.z;
+	temp.push_back(temp1);
+
+	// 1,-1,-1
+	temp1.x = mb1->rigidBody.position.x + c1->NarrowPhase.maxPoint.x;
+	temp1.x = mb1->rigidBody.position.y + c1->NarrowPhase.minPoint.y;
+	temp1.x = mb1->rigidBody.position.z + c1->NarrowPhase.minPoint.z;
+	temp.push_back(temp1);
+
+	// -1,-1,1
+	temp1.x = mb1->rigidBody.position.x + c1->NarrowPhase.minPoint.x;
+	temp1.x = mb1->rigidBody.position.y + c1->NarrowPhase.minPoint.y;
+	temp1.x = mb1->rigidBody.position.z + c1->NarrowPhase.maxPoint.z;
+	temp.push_back(temp1);
+
+	// -1,1,-1
+	temp1.x = mb1->rigidBody.position.x + c1->NarrowPhase.minPoint.x;
+	temp1.x = mb1->rigidBody.position.y + c1->NarrowPhase.maxPoint.y;
+	temp1.x = mb1->rigidBody.position.z + c1->NarrowPhase.minPoint.z;
+	temp.push_back(temp1);
+
+	float min = 0;
+	for (auto i : temp)
+	{
+		if (glm::dot(i, c2->NarrowPhase.normal) - c2->NarrowPhase.magnitude < min)
+			min = glm::dot(i, c2->NarrowPhase.normal);
+	}
+
+	if (min < 0)
+	{
+		mb1->rigidBody.position = mb1->rigidBody.position + (c2->NarrowPhase.normal * min * (-1.0f));
+		mb1->rigidBody.velocity -= (glm::dot(c2->NarrowPhase.normal, mb1->rigidBody.velocity)) * c2->NarrowPhase.normal;
+		mb1->rigidBody.velocity += (mb1->rigidBody.elasticity * glm::dot(c2->NarrowPhase.normal, mb1->rigidBody.velocity)) * c2->NarrowPhase.normal;
+	}
 }

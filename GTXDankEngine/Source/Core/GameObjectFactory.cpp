@@ -6,9 +6,12 @@
 #include "../Components/TransformComponent/TransformComponent.h"
 #include "../Components/MaterialComponent/MaterialComponent.h"
 #include "../Components/LightComponent/LightComponent.h"
+#include "../Components/PhysicsComponent/ColliderComponent.h"
 #include "../Components/PhysicsComponent/StillBodyComponent.h"
 #include "../Components/PhysicsComponent/MovingBodyComponent.h"
+#include "../Components/PhysicsComponent/SpecialBodyComponent.h"
 #include "../Components/TagComponent/TagComponent.h"
+//add new component above here
 
 #include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
 #include "../utils/common.h"
@@ -21,14 +24,14 @@ void DeserializeVQS(ordered_json j, Entity e)
 {
     VQS vqs = VQS();
     from_json(j, vqs);
-    TransformComponentPool.Add(e, (vqs));
+    TransformComponentPool.Add(e, vqs);
 }
 
 void DeserializeLight(ordered_json j, Entity e)
 {
     Light light = Light();
     from_json(j, light);
-    LightComponentPool.Add(e, (light));
+    LightComponentPool.Add(e, light);
 }
 
 ////////////
@@ -42,40 +45,47 @@ void DeserializeLight(ordered_json j, Entity e)
 //    StillBodyComponentPool.Add(e);
 //}
 //
-void DeserializeRigidBody(ordered_json j, Entity e)
+
+void DeserializeCollider(ordered_json j, Entity e)
+{
+    Collider collider;
+    from_json(j, collider);
+    ColliderComponentPool.Add(e, collider);
+}
+
+RigidBody DeserializeRigidBody(ordered_json j, Entity e)
 {
     RigidBody rigidBody = RigidBody();
     from_json(j, rigidBody);
-    MovingBodyComponentPool.Add(e, (rigidBody));
+    return rigidBody;
 }
 
-void DeserializeColliderMovingBody(ordered_json j, Entity e)
+void DeserializeSpecialBody(ordered_json j, Entity e)
 {
-    Collider* collider = new Collider();
-    from_json(j, *collider);
-    MovingBodyComponentPool.GetComponentByEntity(e)->BroadPhase = *collider;
-}
+    auto rigidBody = DeserializeRigidBody(j, e);
+    SpecialBodyComponentPool.Add(e, rigidBody);
 
-void DeserializeColliderStillBody(ordered_json j, Entity e)
-{
-    Collider* collider = new Collider();
-    from_json(j, *collider);
-    StillBodyComponentPool.GetComponentByEntity(e)->BroadPhase = *collider;
+    Collider collider;
+    from_json(j, collider);
+    SpecialBodyComponentPool.GetComponentByEntity(e)->BroadPhase = collider;
 }
 
 void DeserializeMovingBody(ordered_json j, Entity e)
 {
-    DeserializeRigidBody(j, e);
-    //MovingBodyComponentPool.GetComponentByEntity(e)->rigidBody.position = TransformComponentPool.GetComponentByEntity(e)->transform->position;
-    DeserializeColliderMovingBody(j, e);
-    //MovingBodyComponentPool.Add(e);
+    auto rigidBody = DeserializeRigidBody(j, e);
+    MovingBodyComponentPool.Add(e, rigidBody);
+
+    Collider collider;
+    from_json(j, collider);
+    MovingBodyComponentPool.GetComponentByEntity(e)->BroadPhase = collider;
 }
 void DeserializeStillBody(ordered_json j, Entity e)
 {
     StillBodyComponentPool.Add(e);
-    //StillBodyComponentPool.GetComponentByEntity(e)->position = TransformComponentPool.GetComponentByEntity(e)->transform->position;
-    DeserializeColliderStillBody(j, e);
-    //MovingBodyComponentPool.Add(e);
+
+    Collider collider;
+    from_json(j, collider);
+    StillBodyComponentPool.GetComponentByEntity(e)->BroadPhase = collider;
 }
 
 void DeserializeTag(ordered_json j, Entity e)
@@ -125,6 +135,7 @@ void DeserializeGameLogic(ordered_json j, Entity e)
     auto args = j.get<std::vector<GameLogicCategories>>();
     GameLogicCategoryComponentPool.Add(e, args);
 }
+//add new component above here
 
 bool GameObjectFactory::Init()
 {
@@ -144,6 +155,9 @@ bool GameObjectFactory::Init()
     DeserializeFunctions[6] = DeserializeMovingBody;
     DeserializeFunctions[7] = DeserializeStillBody;
     DeserializeFunctions[8] = DeserializeTag;
+    DeserializeFunctions[9] = DeserializeSpecialBody;
+    DeserializeFunctions[10] = DeserializeCollider;
+    //add new component above here
 
     return true;
 }
@@ -214,9 +228,19 @@ ordered_json GameObjectFactory::SerializeObject(Entity entity)
         objectJson[key] = ligthCom->LightSource;
     }
 
-    ////////////
-    // Physics
-    ////////////
+    auto* collider = ColliderComponentPool.GetComponentByEntity(entity);
+    if (collider != nullptr)
+    {
+        std::string key = json(ComponentType::COLLIDER);
+        objectJson[key] = collider->NarrowPhase;
+    }
+
+    auto* specialBody = SpecialBodyComponentPool.GetComponentByEntity(entity);
+    if (specialBody != nullptr)
+    {
+        std::string key = json(ComponentType::SPECIAL_BODY);
+        objectJson[key] = *specialBody;
+    }
 
     auto* stillBodyCom = StillBodyComponentPool.GetComponentByEntity(entity);
     if (stillBodyCom != nullptr)
@@ -245,6 +269,8 @@ ordered_json GameObjectFactory::SerializeObject(Entity entity)
         std::string key = json(ComponentType::TAG);
         objectJson[key] = *TagCom;
     }
+
+    //add new component above here
 
     return objectJson;
 }

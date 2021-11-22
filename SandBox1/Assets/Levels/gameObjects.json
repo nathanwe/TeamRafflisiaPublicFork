@@ -1,4 +1,57 @@
 {
+  "ColliderComponentTest": {
+    "MODEL": {
+      "path": "../SandBox1/Assets/models/Sphere/model.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "scale": 0.009999999776482582,
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+      "Alpha": 1.0
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "MOVING_BODY": {
+      "Elasticity": 1.0,
+      "Friction": 1.0,
+      "Gravity": false,
+      "Mass": 3.0,
+      "Velocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Accelereation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "CollisionType": 0,
+      "Shape": 0,
+      "Radius": 0.6399999856948853
+    },
+    "TAG": {
+      "uniqueName": "ColliderComponentTest",
+      "category": "ColliderComponentTest"
+    }
+  },
   "DirLightSource": {
     "MODEL": {
       "path": "../SandBox1/Assets/models/Sphere/model.obj"
@@ -367,9 +420,9 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 0.6399999856948853,
-        "y": 2.5799999237060547,
-        "z": 0.5799999833106995
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
       },
 		"scale": {
           "y": 0.01,
@@ -391,9 +444,9 @@
       "Alpha": 1.0
     },
     "MOVING_BODY": {
-      "Elasticity": 0.5,
+      "Elasticity": 1.0,
       "Friction": 1.0,
-      "Gravity": true,
+      "Gravity": false,
       "Mass": 3.0,
       "Velocity": {
         "x": 0.0,
@@ -717,9 +770,9 @@
       "Alpha": 0.5
     },
     "GAME_LOGIC": [
-      "PLAYER", "ENEMY"
+      "PLAYER",
+      "ENEMY"
     ]
-    
   },
   "plane": {
     "MODEL": {

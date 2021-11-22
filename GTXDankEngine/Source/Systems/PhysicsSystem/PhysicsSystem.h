@@ -1,8 +1,8 @@
 #ifndef PHYSICS_SYSTEM_H
 #define PHYSICS_SYSTEM_H
-//#include "pch.h"
+#include "pch.h"
 
-#define GRAVITY 3.0f
+#define GRAVITY 2.0f
 #include "../Core/System.h"
 
 class MovingBodyComponent;

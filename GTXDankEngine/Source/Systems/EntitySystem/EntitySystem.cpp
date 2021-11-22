@@ -12,7 +12,10 @@
 #include "../Components/LightComponent/LightComponent.h"
 #include "../Components/PhysicsComponent/StillBodyComponent.h"
 #include "../Components/PhysicsComponent/MovingBodyComponent.h"
+#include "../Components/PhysicsComponent/SpecialBodyComponent.h"
+#include "../Components/PhysicsComponent/ColliderComponent.h"
 #include "../Components/TagComponent/TagComponent.h"
+//add new component above here
 
 
 #include "../ProfileSystem/ProfileSystem.h"
@@ -75,6 +78,11 @@ void EntitySystem::DeleteAllEntities()
 	deleteAllQueue = true;
 }
 
+bool EntitySystem::IsEntityActive(Entity e)
+{
+	return allocatedEntities.find(e) != allocatedEntities.end();
+}
+
 void EntitySystem::DestroyQueuedEntity(Entity e)
 {
 	if (allocatedEntities.find(e) == allocatedEntities.end())
@@ -94,7 +102,11 @@ void EntitySystem::DestroyQueuedEntity(Entity e)
 	LightComponentPool.Delete(e);
 	StillBodyComponentPool.Delete(e);
 	MovingBodyComponentPool.Delete(e);
+	SpecialBodyComponentPool.Delete(e);
 	TagComponentPool.Delete(e);
+	ColliderComponentPool.Delete(e);
+	
+	//add new component above here
 }
 
 void EntitySystem::DeleteAllQueuedEntities()
@@ -103,13 +115,16 @@ void EntitySystem::DeleteAllQueuedEntities()
 	ModelComponentPool.DeleteAll();
 	MaterialComponentPool.DeleteAll();
 	LightComponentPool.DeleteAll();
-	//
 	StillBodyComponentPool.DeleteAll();
 	MovingBodyComponentPool.DeleteAll();
-	//
 	GameLogicCategoryComponentPool.DeleteAll();
 	TagComponentPool.DeleteAll();
 	TransformComponentPool.DeleteAll();
+	SpecialBodyComponentPool.DeleteAll();
+	ColliderComponentPool.DeleteAll();
+
+	//add new component above here
+
 	for (Entity e : allocatedEntities)
 	{
 		availableEntities.insert(e);

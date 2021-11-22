@@ -289,6 +289,18 @@
     <Filter Include="Speed\Levels">
       <UniqueIdentifier>{9751c2af-84d7-41d6-99fa-2396ea2df551}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Systems\PhysicsSystem\RayCasting">
+      <UniqueIdentifier>{dd9a2a15-c23d-4688-85aa-a6844ed512be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Components\TagComponent">
+      <UniqueIdentifier>{12b52205-ec9c-4b4a-afeb-4e98e18a6a3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\LevelEditorSystem">
+      <UniqueIdentifier>{cd33e50f-625a-47eb-bb2b-892af7841677}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems\PhysicsSystem\RayCasting">
+      <UniqueIdentifier>{3804bf84-6a5a-43f8-b954-48279eff0652}</UniqueIdentifier>
+    </Filter>
     <Filter Include="TopDownFighter\Levels">
       <UniqueIdentifier>{386eb69e-1ee2-4b7c-b02b-db326986aaf0}</UniqueIdentifier>
     </Filter>
@@ -650,6 +662,15 @@
     <ClInclude Include="Source\Systems\GraphicsSystem\Sky\Coefficients.h">
       <Filter>Source Files\Systems\GraphicsSystem\Sky</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Components\PhysicsComponent\ColliderComponent.h">
+      <Filter>Header Files\Components\PhysicsComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Components\PhysicsComponent\SpecialBodyComponent.h">
+      <Filter>Header Files\Components\PhysicsComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\PhysicsSystem\Raycasting\Raycasting.h">
+      <Filter>Header Files\Systems\PhysicsSystem\RayCasting</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -732,9 +753,6 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\CommandSystem\CommandSystem.cpp">
       <Filter>Source Files\Systems\CommandSystem</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Systems\CommandSystem\DirectionCommand.cpp">
-      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\IndexBuffer.cpp">
       <Filter>Source Files\Core</Filter>
@@ -832,17 +850,29 @@
     <ClCompile Include="Source\Systems\GraphicsSystem\ParticleSystem\ParticleSystem.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\ParticleSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Systems\LevelEditorSystem\LevelEditorSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\Components\TagComponent\TagComponent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\Sky\Sky.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\Sky</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\ScriptSystem\ScriptSystem.cpp">
       <Filter>Source Files\Systems\ScriptSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\PhysicsSystem\Raycasting\Raycasting.cpp">
+      <Filter>Source Files\Systems\PhysicsSystem\RayCasting</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\CommandSystem\DirectionCommand.cpp">
+      <Filter>Source Files\Systems\CommandSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\TagComponent\TagComponent.cpp">
+      <Filter>Source Files\Components\TagComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\LevelEditorSystem\LevelEditorSystem.cpp">
+      <Filter>Source Files\Systems\LevelEditorSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\PhysicsComponent\SpecialBodyComponent.cpp">
+      <Filter>Source Files\Components\PhysicsComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Components\PhysicsComponent\ColliderComponent.cpp">
+      <Filter>Source Files\Components\PhysicsComponent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

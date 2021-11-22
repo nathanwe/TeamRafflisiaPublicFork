@@ -5,6 +5,8 @@
 #include "../Core/Camera.h"
 
 class Shader;
+class ColliderComponent;
+class TransformComponent;
 
 class DebugRender
 {
@@ -39,12 +41,19 @@ public:
 	// Disable wireframe mode
 	void DrawWireFrameObj();
 
+
+	void DrawCollider();
+
 	bool EnableNormalVisual = false;
 
 private:
 	Shader* LightSourceShader;
 	Shader* NormalVecShader;
 	Camera* camera;
+
+
+	void RenderDebugSphereCollider(Shader* shader, ColliderComponent* collierCom, TransformComponent* transCom);
+	void RenderDebugPlaneCollider(Shader* shader, ColliderComponent* collierCom, TransformComponent* transCom);
 };
 
 

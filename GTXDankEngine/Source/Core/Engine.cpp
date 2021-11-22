@@ -117,7 +117,12 @@ void Engine::Run()
 
 		GraphicsSys.Update(DeltaTime());
 		UISys.Update(DeltaTime());
-			
+
+		if (editMode)
+		{
+			LevelEditorSys.Update(DeltaTime());
+		}
+
 		//---------------------------------------------------------
 		// imGUI UI render
 		// renders at the end of game loop

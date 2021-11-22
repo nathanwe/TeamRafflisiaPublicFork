@@ -25,6 +25,9 @@ public:
 	std::string NormalPath;
 	std::string RoughnessPath;
 	float Alpha;
+
+	//for level editor
+	bool wireMode;
 };
 
 inline void to_json(ordered_json& j, const Material& material) {

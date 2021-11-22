@@ -4,8 +4,27 @@
 #include "../../Core/Camera.h"
 #include "../GraphicsSystem/GraphicsSystem.h"
 #include "../ProfileSystem/ProfileSystem.h"
+#include "../Components/TransformComponent/TransformComponent.h"
+#include "../PhysicsSystem/Raycasting/Raycasting.h"
 
 extern Engine engine;
+
+
+glm::vec3 mouse_click_callback(int width, int height, int mouse_x, int mouse_y)
+{
+	float x = (2.0f * mouse_x) / width - 1.0f;
+	float y = 1.0f - (2.0f * mouse_y) / height;
+	float z = 1.0f;
+	glm::vec3 ray_nds = glm::vec3(x, y, z);
+	// NDC
+	glm::vec4 ray_clip = glm::vec4(ray_nds.x, ray_nds.y, -1.0, 1.0);
+	// back in view
+	glm::vec4 ray_eye = glm::inverse(engine.GraphicsSys.camera.projectionMatrix) * ray_clip;
+	// back to world
+	glm::vec3 ray_wor = glm::vec3((glm::inverse(engine.GraphicsSys.camera.viewMatrix) * ray_eye));
+	ray_wor = glm::normalize(ray_wor);
+	return ray_wor;
+}
 
 void SendLionEmitEvent()
 {
@@ -166,7 +185,9 @@ void CommandSystem::Update(float timeStamp)
 		engine.setEditMode(editMode);
 	}
 	if (editMode)
+	{
 		return;
+	}
 
 	//toggle debug mode
 	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_T))
@@ -273,6 +294,7 @@ void CommandSystem::LoadDefaultCommands()
 
 void CommandSystem::ExecuteGameplayCommands()
 {
+	//command pattern applied here for every gameplay commands
 	setting.directionCommand.Execute();
 	for (auto& [key, command] : setting.commands)
 	{

@@ -15,7 +15,7 @@ public:
 		normal(glm::vec3(0, 0, 0)), 
 		magnitude(1.0f), 
 		minPoint(glm::vec3(0, 0, 0)), 
-		max_point(glm::vec3(1, 1, 1)) 
+		maxPoint(glm::vec3(1, 1, 1)) 
 	{}
 
 	Shape shape;
@@ -29,7 +29,7 @@ public:
 
 	// In case of AABB
 	glm::vec3 minPoint;
-	glm::vec3 max_point;
+	glm::vec3 maxPoint;
 };
 
 inline void to_json(ordered_json& j, const Collider& collider) {
@@ -46,7 +46,7 @@ inline void to_json(ordered_json& j, const Collider& collider) {
 	else if (collider.shape == Shape::AABB)
 	{
 		to_json(j["MinPoint"], collider.minPoint);
-		to_json(j["MaxPoint"], collider.max_point);
+		to_json(j["MaxPoint"], collider.maxPoint);
 	}
 }
 
@@ -62,7 +62,7 @@ inline void from_json(const ordered_json& j, Collider& collider) {
 	else if (collider.shape == Shape::AABB)
 	{
 		from_json(j["MinPoint"], collider.minPoint);
-		from_json(j["MaxPoint"], collider.max_point);
+		from_json(j["MaxPoint"], collider.maxPoint);
 	}
 }
 

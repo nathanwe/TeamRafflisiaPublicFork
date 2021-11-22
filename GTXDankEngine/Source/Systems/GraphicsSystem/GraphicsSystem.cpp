@@ -240,6 +240,7 @@ void GraphicsSystem::DebugDraw()
 	skybox.Render(camera.GetViewMat(), camera.GetProjMat(45.0f, 0.1f, 100.0f), 0);
 
 	DebugRenderer.RenderLightSource(0);
+	DebugRenderer.DrawCollider();
 }
 
 

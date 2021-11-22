@@ -15,6 +15,11 @@ public:
 	int entityID;
 
 private:
+	int prevEntityID;
+	// std::string entityCategory;
+	// int entityCategoryIndex = -1;
+
+	void ChangeSelectedObject();
 	std::string entityCategory;
 	int entityCategoryIndex = -1;
 	glm::vec3 angleToRotate;

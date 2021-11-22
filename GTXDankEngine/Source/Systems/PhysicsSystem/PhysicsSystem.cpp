@@ -11,6 +11,7 @@
 
 #include "../Components/PhysicsComponent/StillBodyComponent.h"
 #include "../Components/PhysicsComponent/MovingBodyComponent.h"
+#include "../Components/PhysicsComponent/ColliderComponent.h"
 
 #include "../utils/Log.h"
 #include "PhysicsSystem.h"
@@ -41,10 +42,17 @@ void PhysicsSystem::Update(float time = 0)
 	/*if (RigidBodyComponentPool.componentList.size() == 0)
 		return;*/
 
-	float dt = 10* engine.Framerate->DeltaSeconds();
+	float dt = engine.Framerate->DeltaSeconds();
 
 	//LOG_INFO("Delta time in Seconds {}", dt);
 
+	for (const auto& [colliderEntity, colliderComponent] : ColliderComponentPool.componentList)
+	{
+		/*if (rigidBodyComponent->bodyType == Body_Type::STATIC)
+			continue;*/
+		auto transformComponent = TransformComponentPool.GetComponentByEntity(colliderEntity);
+		colliderComponent->setPostion(transformComponent->transform.position);
+	}
 
 
 	for (const auto& [physicsEntity, movingBodyComponent] : MovingBodyComponentPool.componentList)
@@ -82,8 +90,11 @@ void PhysicsSystem::DetectCollision(float dt)
 	{
 		for (auto itr2 = next(itr1, 1); itr2 != MovingBodyComponentPool.componentList.end(); ++itr2)
 		{
-			if (itr1->second->BroadPhase.shape == Shape::SPHERE && itr2->second->BroadPhase.shape == Shape::SPHERE)
-				if (ReflectMovingSphereMovingSphere(itr1->second, itr2->second, dt))
+			ColliderComponent* c1 = ColliderComponentPool.GetComponentByEntity(itr1->first);
+			ColliderComponent* c2 = ColliderComponentPool.GetComponentByEntity(itr2->first);
+
+			if (c1->NarrowPhase.shape == Shape::SPHERE && c2->NarrowPhase.shape == Shape::SPHERE)
+				if (ReflectMovingSphereMovingSphere(itr1->second, c1, itr2->second, c2, dt))
 				{
 					Event ev = Event(true);
 					ev.type = EventType::PHYSICS_COLLISION;
@@ -99,10 +110,13 @@ void PhysicsSystem::DetectCollision(float dt)
 	{
 		for (auto itr2 = StillBodyComponentPool.componentList.begin(); itr2 != StillBodyComponentPool.componentList.end(); ++itr2)
 		{
+			ColliderComponent* c1 = ColliderComponentPool.GetComponentByEntity(itr1->first);
+			ColliderComponent* c2 = ColliderComponentPool.GetComponentByEntity(itr2->first);
+
 			// Sphere - Sphere
-			if (itr1->second->BroadPhase.shape == Shape::SPHERE && itr2->second->BroadPhase.shape == Shape::SPHERE)
+			if (c1->NarrowPhase.shape == Shape::SPHERE && c2->NarrowPhase.shape == Shape::SPHERE)
 			{
-				if (ReflectMovingSphereStaticSphere(itr1->second, itr2->second))
+				if (ReflectMovingSphereStaticSphere(itr1->second,c1, itr2->second, c2))
 				{
 					Event ev = Event(true);
 					ev.type = EventType::PHYSICS_COLLISION;
@@ -112,9 +126,9 @@ void PhysicsSystem::DetectCollision(float dt)
 				}
 			}
 			// Sphere - Plane
-			else if (itr1->second->BroadPhase.shape == Shape::SPHERE && itr2->second->BroadPhase.shape == Shape::PLANE)
+			else if (c1->NarrowPhase.shape == Shape::SPHERE && c2->NarrowPhase.shape == Shape::PLANE)
 			{
-				if (ReflectMovingSphereStaticPlane(itr1->second, itr2->second, dt))
+				if (ReflectMovingSphereStaticPlane(itr1->second, c1, itr2->second, c2, dt))
 				{
 					Event ev = Event(true);
 					ev.type = EventType::PHYSICS_COLLISION;
@@ -134,7 +148,8 @@ void PhysicsSystem::UpdatePosition()
 		movingBodyComponent->rigidBody.position = TransformComponentPool.componentList[physicsEntity]->transform.position;
 		movingBodyComponent->rigidBody.orientation = TransformComponentPool.componentList[physicsEntity]->transform.rotation;
 
-
+		// Updating Posiyion of Collider Component
+		//ColliderComponentPool.componentList[physicsEntity]->position = TransformComponentPool.componentList[physicsEntity]->transform.position;
 
 		movingBodyComponent->rigidBody.angularVelocity = glm::quat(1.0, 0.0, 0.0, 0.0);
 		movingBodyComponent->rigidBody.torque = glm::quat(1.0, 0.0, 0.0, 0.0);
