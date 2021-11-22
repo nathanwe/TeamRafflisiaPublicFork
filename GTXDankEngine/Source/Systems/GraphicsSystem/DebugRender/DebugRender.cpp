@@ -33,7 +33,7 @@ void DebugRender::RenderLightSource(GLuint fbo)
 		// light bulb is too small, make it larger
 		//float oldScale = transformComponent->transform.scale;
 
-		transformComponent->transform.scale = 5;
+		transformComponent->transform.scale = glm::vec3(5);
 		LightSourceShader->setMat4("model", transformComponent->transform.Matrix());
 
 		ResourceHandle<Model>* model = ModelResourceManager.GetResourceHandle("Assets/Models/LightBulb.obj");

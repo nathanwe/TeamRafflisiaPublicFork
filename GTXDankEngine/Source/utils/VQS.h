@@ -8,19 +8,19 @@ class VQS
 {
 public:
 	glm::vec3 position;
-	float scale;
+	glm::vec3 scale;
 	glm::quat rotation;
 
 
 	// Default constructor
 	// position: origin, scale: 1.0, rotation: zero rotation
-	VQS(void) : position(glm::vec3(0.0)), scale(0.01f), rotation(glm::quat(1.0, 0.0, 0.0, 0.0)) {}
+	VQS(void) : position(glm::vec3(0.0)), scale(glm::vec3(1.0)), rotation(glm::quat(1.0, 0.0, 0.0, 0.0)) {}
 
 	// quaternion get normalized automatically
-	VQS(glm::vec3 v, glm::quat q, float s) : position(v), scale(s), rotation(glm::normalize(q)) {}
+	VQS(glm::vec3 v, glm::quat q, glm::vec3 s) : position(v), scale(s), rotation(glm::normalize(q)) {}
 
 	// quaternion will be set to zero rotation
-	VQS(glm::vec3 v, float s) : position(v), scale(s), rotation(glm::quat(1.0, 0.0, 0.0, 0.0)) {}
+	VQS(glm::vec3 v, glm::vec3 s) : position(v), scale(s), rotation(glm::quat(1.0, 0.0, 0.0, 0.0)) {}
 
 
 	glm::mat4 Matrix(void) const;

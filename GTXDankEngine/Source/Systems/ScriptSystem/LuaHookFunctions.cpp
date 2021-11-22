@@ -565,24 +565,30 @@ int lua_GetScale(lua_State* L)
     TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
     if (trans != nullptr)
     {
-        lua_pushnumber(L, trans->transform.scale);
+        lua_pushnumber(L, trans->transform.scale.x);
+        lua_pushnumber(L, trans->transform.scale.y);
+        lua_pushnumber(L, trans->transform.scale.z);
     }
     else
     {
         lua_pushnumber(L, 0);
         LOG_ERROR("Transform not found");
     }
-    return 1;
+    return 3;
 }
 
 int lua_SetScale(lua_State* L)
 {
     Entity e = static_cast<Entity>(lua_tointeger(L, 1));
     float x = static_cast<float>(lua_tonumber(L, 2));
+    float y = static_cast<float>(lua_tonumber(L, 3));
+    float z = static_cast<float>(lua_tonumber(L, 4));
     TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
     if (trans != nullptr)
     {
-        trans->transform.scale = x;
+        trans->transform.scale.x = x;
+        trans->transform.scale.y = y;
+        trans->transform.scale.z = z;
     }
     else
     {

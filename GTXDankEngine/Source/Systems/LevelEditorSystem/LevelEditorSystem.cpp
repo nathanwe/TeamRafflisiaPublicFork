@@ -208,9 +208,14 @@ void LevelEditorSystem::UpdateGUI()
 			if (transCom != nullptr)
 			{
 				ImGui::DragFloat3("Position", &transCom->transform.position.x, 0.01f);
-				ImGui::DragFloat("Scale", &transCom->transform.scale, 0.001f);
+				ImGui::DragFloat3("Scale", &transCom->transform.scale.x, 0.001f);
+				if (transCom->transform.scale.x < 0)
+					transCom->transform.scale.x = 0;
+				if (transCom->transform.scale.y < 0)
+					transCom->transform.scale.y = 0;
+				if (transCom->transform.scale.z < 0)
+					transCom->transform.scale.z = 0;
 				//ImGui::DragFloat4("Rotation", &transCom->transform.rotation.x, 0.01f);
-				
 				auto eulerAngle = glm::eulerAngles(transCom->transform.rotation) / glm::pi<float>() * 180.0f;
 				ImGui::DragFloat("Euler Angle X", &eulerAngle.x, 1.0f);
 				ImGui::DragFloat("Euler Angle Y", &eulerAngle.y, eulerAngleIncrement ? -1.0f : 1.0f);
@@ -411,8 +416,8 @@ void LevelEditorSystem::UpdateGUI()
 				}
 				else if (stillBodyCom->BroadPhase.shape == Shape::AABB)
 				{
-					ImGui::DragFloat3("Normal", &stillBodyCom->BroadPhase.minPoint.x, 0.01f);
-					ImGui::DragFloat3("Normal", &stillBodyCom->BroadPhase.max_point.x, 0.01f);
+					ImGui::DragFloat3("minPoint", &stillBodyCom->BroadPhase.minPoint.x, 0.01f);
+					ImGui::DragFloat3("max_point", &stillBodyCom->BroadPhase.max_point.x, 0.01f);
 				}
 
 				if (ImGui::Button("Remove StillBody"))
@@ -446,8 +451,8 @@ void LevelEditorSystem::UpdateGUI()
 				}
 				else if (movingBodyCom->BroadPhase.shape == Shape::AABB)
 				{
-					ImGui::DragFloat3("Normal", &movingBodyCom->BroadPhase.minPoint.x, 0.01f);
-					ImGui::DragFloat3("Normal", &movingBodyCom->BroadPhase.max_point.x, 0.01f);
+					ImGui::DragFloat3("minPoint", &movingBodyCom->BroadPhase.minPoint.x, 0.01f);
+					ImGui::DragFloat3("max_point", &movingBodyCom->BroadPhase.max_point.x, 0.01f);
 				}
 
 				ImGui::DragFloat("elasticity", &movingBodyCom->rigidBody.elasticity, 0.01f);
