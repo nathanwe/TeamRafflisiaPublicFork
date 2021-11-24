@@ -736,3 +736,26 @@ int lua_Set3rdPerson(lua_State* L)
     engine.GraphicsSys.camera.objectTrack = third;
     return 0;
 }
+
+int lua_TravelToLocationPathingly(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    float x = static_cast<float>(lua_tonumber(L, 2));
+    float y = static_cast<float>(lua_tonumber(L, 3));
+    float z = static_cast<float>(lua_tonumber(L, 4));
+    float dt = static_cast<float>(lua_tonumber(L, 5));
+    float speed = static_cast<float>(lua_tonumber(L, 6));
+    TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
+    if (trans != nullptr)
+    {
+        glm::vec3 mylocation = glm::vec3(trans->transform.position.x, trans->transform.position.y, trans->transform.position.z);
+        glm::vec3 goal = glm::vec3(x, y, z);
+        glm::vec3 nextWaypoint = engine.pathfinder.GetNextWaypoint(mylocation, goal);
+        glm::vec3 direction = nextWaypoint - mylocation;
+        glm::normalize(direction);
+        direction *= dt * speed;
+        trans->transform.position += direction;
+
+    }
+    return 0;
+}

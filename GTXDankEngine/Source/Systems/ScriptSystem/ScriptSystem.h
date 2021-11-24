@@ -82,6 +82,7 @@ int lua_GetImguiControledFloat(lua_State* L);
 int lua_ImguiText(lua_State* L);
 int lua_UpdateCameraOld(lua_State* L);
 int lua_Set3rdPerson(lua_State* L);
+int lua_TravelToLocationPathingly(lua_State* L);
 
 class LuaFile
 {

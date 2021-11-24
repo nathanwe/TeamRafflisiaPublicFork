@@ -17,6 +17,7 @@
 #include "../Systems/SceneSystem/SceneSystem.h"
 #include "../Systems/PhysicsSystem/PhysicsSystem.h"
 #include "../Systems/LevelEditorSystem/LevelEditorSystem.h"
+#include "../Core/Pathfinder.h"
 
 extern std::string GAME_PATH;
 
@@ -79,13 +80,15 @@ public:
 	CommandSystem CommandSys;
 	EntitySystem EntitySys;
 	SceneSystem SceneSys;
-	GameObjectFactory GameObjectFac;
 	ScriptSystem DoGameLogicScriptSys;
 	ScriptSystem MenuSys;
 	ScriptSystem FindGameSys;
 	ScriptSystem CameraControlSys;
 	PhysicsSystem PhysicsSys;
 	LevelEditorSystem LevelEditorSys;
+
+	GameObjectFactory GameObjectFac;
+	Pathfinder pathfinder;
 
 	GLFWwindow* window;
 

@@ -149,6 +149,7 @@
     <None Include="Source\Shaders\test.shader" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Core\Pathfinder.h" />
     <ClInclude Include="Source\Components\PhysicsComponent\ColliderComponent.h" />
     <ClInclude Include="Source\Components\PhysicsComponent\SpecialBodyComponent.h" />
     <ClInclude Include="Source\Systems\PhysicsSystem\Raycasting\Raycasting.h" />
@@ -230,6 +231,7 @@
     <ClCompile Include="Source\Components\PhysicsComponent\SpecialBodyComponent.cpp" />
     <ClCompile Include="Source\Systems\PhysicsSystem\Raycasting\Raycasting.cpp" />
     <ClCompile Include="Source\Components\TagComponent\TagComponent.cpp" />
+    <ClCompile Include="Source\Core\Pathfinder.cpp" />
     <ClCompile Include="Source\Systems\LevelEditorSystem\LevelEditorSystem.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\OIT\OIT.cpp" />
     <ClCompile Include="Source\Components\PhysicsComponent\Collider.cpp" />

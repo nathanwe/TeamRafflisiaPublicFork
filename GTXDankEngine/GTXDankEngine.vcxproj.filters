@@ -662,6 +662,9 @@
     <ClInclude Include="Source\Systems\GraphicsSystem\Sky\Coefficients.h">
       <Filter>Source Files\Systems\GraphicsSystem\Sky</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Core\Pathfinder.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
     <ClInclude Include="Source\Components\PhysicsComponent\ColliderComponent.h">
       <Filter>Header Files\Components\PhysicsComponent</Filter>
     </ClInclude>
@@ -855,6 +858,9 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\ScriptSystem\ScriptSystem.cpp">
       <Filter>Source Files\Systems\ScriptSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Core\Pathfinder.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\PhysicsSystem\Raycasting\Raycasting.cpp">
       <Filter>Source Files\Systems\PhysicsSystem\RayCasting</Filter>
