@@ -40,15 +40,24 @@ public:
 	bool thirdPerson = false;
 	float thirdPersonOffset = 5.f;
 
-	
+	bool autoScroll = false;
+	float autoScrollMaxTime, autoScrollTimer;
+	glm::vec3 autoScrollBegin, autoScrollDest;
+
+
+public:
 	Camera(int width, int height, glm::vec3 position);
 
 	void Init();
+	void Update(float dt);
 
 	void UpdateMatrix(float FOVdeg, float nearPlane, float farPlane);
 	void Matrix(Shader& shader, const char* uniform);
 	void Inputs(GLFWwindow* window);
 
+	void SetAutoScroll(glm::vec3 begin, glm::vec3 dest, float time);
+
+public:
 	inline glm::mat4 GetViewMat() { return viewMatrix; }
 	inline glm::mat4 GetProjMat(float FOV, float n, float f) { return glm::perspective(glm::radians(FOV), (float)(width) / (height), n, f); }
 	inline glm::vec3 GetPosition() { return (Position - glm::vec3(thirdPersonOffset) * orientationScale); }

@@ -722,8 +722,10 @@ int lua_ImguiText(lua_State* L)
     return 0;
 }
 
+/**** Camera ****/
 int lua_UpdateCameraOld(lua_State* L)
 {
+    engine.GraphicsSys.camera.Update(engine.DeltaTime());
     engine.GraphicsSys.camera.Inputs(engine.GraphicsSys.pWindow);
     engine.GraphicsSys.camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
     return 0;
@@ -734,5 +736,14 @@ int lua_Set3rdPerson(lua_State* L)
     bool third = lua_toboolean(L, 1);
     engine.GraphicsSys.camera.thirdPerson = third;
     engine.GraphicsSys.camera.objectTrack = third;
+    return 0;
+}
+
+int lua_SetCameraAutoScroll(lua_State* L)
+{
+    glm::vec3 begin = glm::vec3(lua_tonumber(L, 1), lua_tonumber(L, 2), lua_tonumber(L, 3));
+    glm::vec3 dest = glm::vec3(lua_tonumber(L, 4), lua_tonumber(L, 5), lua_tonumber(L, 6));
+    float time = lua_tonumber(L, 7);
+    engine.GraphicsSys.camera.SetAutoScroll(begin, dest, time);
     return 0;
 }
