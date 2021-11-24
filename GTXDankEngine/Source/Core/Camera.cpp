@@ -26,7 +26,18 @@ Camera::Camera(int width, int height, glm::vec3 position)
 
 void Camera::Init()
 {
+	/*
+	autoScroll = true;
+	autoScrollMaxTime = 10.f;
+	autoScrollTimer = 0.f;
+	autoScrollBegin = glm::vec3(0, 5, -20);
+	autoScrollDest = glm::vec3(-5, -5, 5);
+	*/
+}
 
+void Camera::Update(float dt)
+{
+	autoScrollTimer += dt;
 }
 
 void Camera::UpdateMatrix(float FOVdeg, float nearPlane, float farPlane)
@@ -54,28 +65,6 @@ void Camera::Matrix(Shader& shader, const char* uniform)
 void Camera::Inputs(GLFWwindow* window)
 {
 	bool updated = false;
-
-	if (objectTrack) {
-		Entity e = UINT32_MAX;
-		for (auto comp : GameLogicCategoryComponentPool.componentList)
-		{
-			auto gLCComponent = comp.second;
-			if (gLCComponent != nullptr)
-			{
-				if (gLCComponent->categories.find(GameLogicCategories::PLAYER) != gLCComponent->categories.end())
-				{
-					e = comp.first;
-					break;
-				}
-			}
-		}
-
-		if (e != UINT32_MAX) {
-			updated = true;
-			TransformComponent* pTrans = TransformComponentPool.GetComponentByEntity(e);
-			Position = pTrans->transform.position;
-		}
-	}
 
 	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
 	{
@@ -159,4 +148,47 @@ void Camera::Inputs(GLFWwindow* window)
 	speed = 10.0f;
 
 	//LOG_INFO("camera position: {0}, {1}, {2}", Position.x, Position.y, Position.z);
+
+	if (autoScroll) {
+		if (autoScrollTimer >= autoScrollMaxTime) {
+			autoScroll = false;
+			Position = autoScrollDest;
+			return;
+		}
+
+		Position = glm::mix(autoScrollBegin, autoScrollDest, autoScrollTimer / autoScrollMaxTime);
+		return;
+	}
+
+	if (objectTrack) {
+		Entity e = UINT32_MAX;
+		for (auto comp : GameLogicCategoryComponentPool.componentList)
+		{
+			auto gLCComponent = comp.second;
+			if (gLCComponent != nullptr)
+			{
+				if (gLCComponent->categories.find(GameLogicCategories::PLAYER) != gLCComponent->categories.end())
+				{
+					e = comp.first;
+					break;
+				}
+			}
+		}
+
+		if (e != UINT32_MAX) {
+			updated = true;
+			TransformComponent* pTrans = TransformComponentPool.GetComponentByEntity(e);
+			Position = pTrans->transform.position;
+		}
+	}
+
+}
+
+void Camera::SetAutoScroll(glm::vec3 begin, glm::vec3 dest, float time) {
+	autoScrollMaxTime = time;
+	autoScrollTimer = 0.f;
+	autoScroll = true;
+
+	autoScrollBegin = begin;
+	autoScrollDest = dest;
 }
