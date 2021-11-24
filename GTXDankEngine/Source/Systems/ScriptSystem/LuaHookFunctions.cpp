@@ -739,8 +739,16 @@ int lua_Set3rdPerson(lua_State* L)
     return 0;
 }
 
+int lua_SetCameraPosition(lua_State* L)
+{
+    glm::vec3 pos = glm::vec3(lua_tonumber(L, 1), lua_tonumber(L, 2), lua_tonumber(L, 3));
+    engine.GraphicsSys.camera.Position = pos;
+    return 0;
+}
+
 int lua_SetCameraAutoScroll(lua_State* L)
 {
+    // x1, y1, z1,    x2, y2, z2,    scrollTime
     glm::vec3 begin = glm::vec3(lua_tonumber(L, 1), lua_tonumber(L, 2), lua_tonumber(L, 3));
     glm::vec3 dest = glm::vec3(lua_tonumber(L, 4), lua_tonumber(L, 5), lua_tonumber(L, 6));
     float time = lua_tonumber(L, 7);
