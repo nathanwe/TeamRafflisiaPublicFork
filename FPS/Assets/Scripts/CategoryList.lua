@@ -1,4 +1,4 @@
 --categorylist
 function GetCategoryNames()
-	return {}
+	return {[1] = "Player", [2] = "Lion"}
 end
