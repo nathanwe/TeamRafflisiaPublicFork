@@ -13,6 +13,7 @@
 #include "../Core/Engine.h"
 #include "../Core/ResourceManager.h"
 #include "../Core/GameObjectFactory.h"
+#include "../PhysicsSystem/Raycasting/Raycasting.h"
 
 
 extern Engine engine;
@@ -101,7 +102,7 @@ Event ReceiveEvent(lua_State* L)
     Event retvalue = Event();
     lua_settop(L, 1);
     luaL_checktype(L, 1, LUA_TTABLE);
-    //dumpstack(L);
+
     int rettype = lua_getfield(L, -1, "type");
     if (rettype != LUA_TNIL)
     {
@@ -112,7 +113,7 @@ Event ReceiveEvent(lua_State* L)
         retvalue.type = EventType::DEFAULT_EVENT;
     }
     lua_pop(L,1);
-    //dumpstack(L);
+
     rettype = lua_getfield(L, -1, "e1");
     if (rettype != LUA_TNIL)
     {
@@ -193,6 +194,30 @@ Event ReceiveEvent(lua_State* L)
     else
     {
         retvalue.stringData1 = "noStringProvided";
+    }
+    lua_pop(L, 1);
+    rettype = lua_getfield(L, -1, "thingsToEffect");
+    if (rettype != LUA_TNIL)
+    {
+        //lua_settop(L, 1);
+        luaL_checktype(L, 1, LUA_TTABLE);
+        int t = 2;
+        // table is in the stack at index 't' 
+        lua_pushnil(L);  // first key 
+        while (lua_next(L, t) != 0)
+        {
+            int keynum = static_cast<int>(lua_tointeger(L, -2));
+            // uses 'key' (at index -2) and 'value' (at index -1) 
+            GameLogicCategories cat = static_cast<GameLogicCategories>(lua_tonumber(L, -1));
+            retvalue.thingsToEffect.insert(cat);
+
+
+            // removes 'value'; keeps 'key' for next iteration 
+            lua_pop(L, 1);
+        }
+    }
+    else
+    {
     }
     lua_pop(L, 1);
 
@@ -776,5 +801,19 @@ int lua_SetCameraAutoScroll(lua_State* L)
     glm::vec3 dest = glm::vec3(lua_tonumber(L, 4), lua_tonumber(L, 5), lua_tonumber(L, 6));
     float time = lua_tonumber(L, 7);
     engine.GraphicsSys.camera.SetAutoScroll(begin, dest, time);
+    return 0;
+}
+
+int lua_Raycast(lua_State* L)
+{
+    int e = RayCast(engine.GraphicsSys.camera, false);
+    lua_pushnumber(L, e);
+    return 1;
+}
+
+int lua_SendEvent(lua_State* L)
+{
+    Event ev = ReceiveEvent(L);
+    engine.DoGameLogicScriptSys.HandleEvent(ev);
     return 0;
 }

@@ -73,6 +73,8 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "ImguiText", lua_ImguiText);
     lua_register(L, "UpdateCameraOld", lua_UpdateCameraOld);
     lua_register(L, "Set3rdPerson", lua_Set3rdPerson);
+    lua_register(L, "Raycast", lua_Raycast);
+    lua_register(L, "SendEvent", lua_SendEvent);
 
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));

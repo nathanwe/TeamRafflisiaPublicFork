@@ -444,6 +444,12 @@
     <None Include="..\Speed\Assets\Scripts\Camera.lua">
       <Filter>Speed\Scripts</Filter>
     </None>
+    <None Include="..\FPS\Assets\Scripts\DoLionThings.lua">
+      <Filter>FPS\Scripts</Filter>
+    </None>
+    <None Include="..\FPS\Assets\Scripts\DoPlayerThings.lua">
+      <Filter>FPS\Scripts</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">
