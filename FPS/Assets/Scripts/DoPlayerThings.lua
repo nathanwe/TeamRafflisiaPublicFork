@@ -1,7 +1,7 @@
 --Playerthings
 local imguiControledEntity = -1
 
-function SavePlayer( levelnum )
+function SavePlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
 	--SaveIntFloatTableAsJson(timers, "/Assets/Levels/Level" .. levelstr .."PlayerTimerSave.json")
 	--SaveIntFloatTableAsJson(directions, "/Assets/Levels/Level" .. levelstr .."PlayerDirectionSave.json")
@@ -30,10 +30,22 @@ function HandleEventPlayer(eventData)
 		ImguiText("Player")
 		imguiControledEntity = eventData.e1
 	end
+	if eventData.type == 8 then
+		if eventData.stringData1 == "Space" then
+			target = Raycast()
+			--print("target", target)
+			if target ~= -1 then
+				local EventTable = {}
+				EventTable["type"] = 18
+				EventTable["e1"] = target
+				EventTable["thingsToEffect"] = {[1] = 2}
+				SendEvent(EventTable)
+			end
+		end
+	end
 end
 
 function HandleEventPerEntityPlayer(e, eventData)
-
 	if eventData.type == 8 then
 		if eventData.stringData1 == "Up" then
 			AddToVQS(e, 0, 10 *eventData.floatData1, 0)

@@ -95,6 +95,12 @@ bool CommandSystem::Init()
 
 		engine.CommandSys.GetCommand("Space").SetActionToExecute([&]()
 			{
+				Event ev = Event();
+				ev.type = EventType::MOVE_POKEBALL;
+				ev.thingsToEffect.insert(GameLogicCategories::PLAYER);
+				ev.floatData1 = engine.DeltaTime();
+				ev.stringData1 = "Space";
+				engine.DoGameLogicScriptSys.HandleEvent(ev);
 				engine.GraphicsSys.camera.Position += engine.GraphicsSys.camera.speed / 2.f * engine.GraphicsSys.camera.Up * engine.DeltaTime();
 			});
 		engine.CommandSys.GetCommand("Ctrl").SetActionToExecute([&]()

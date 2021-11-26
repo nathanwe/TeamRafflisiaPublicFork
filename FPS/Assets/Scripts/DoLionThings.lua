@@ -58,6 +58,9 @@ function HandleEventLion(eventData)
 		imguiControledEntity = -1
 		end
 	end
+	if eventData.type == 18 then
+		DeleteEntity(eventData.e1);
+	end
 end
 
 function HandleEventPerEntityLion(e, eventData)
