@@ -206,9 +206,8 @@ Event ReceiveEvent(lua_State* L)
         lua_pushnil(L);  // first key 
         while (lua_next(L, t) != 0)
         {
-            int keynum = static_cast<int>(lua_tointeger(L, -2));
             // uses 'key' (at index -2) and 'value' (at index -1) 
-            GameLogicCategories cat = static_cast<GameLogicCategories>(lua_tonumber(L, -1));
+            GameLogicCategories cat = static_cast<GameLogicCategories>(static_cast<int>(lua_tonumber(L, -1)));
             retvalue.thingsToEffect.insert(cat);
 
 
