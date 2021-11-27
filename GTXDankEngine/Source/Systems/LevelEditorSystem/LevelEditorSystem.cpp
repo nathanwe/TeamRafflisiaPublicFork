@@ -123,7 +123,8 @@ void LevelEditorSystem::Update(float timeStamp)
 			return;
 		auto e = RayCast(engine.GraphicsSys.camera, false);
 		prevEntityID = entityID;
-		engine.LevelEditorSys.entityID = e;
+		if(e != -1)
+			engine.LevelEditorSys.entityID = e;
 		ChangeSelectedObject();
 		//LOG_INFO("Selected Entity");
 		//LOG_INFO(e);
