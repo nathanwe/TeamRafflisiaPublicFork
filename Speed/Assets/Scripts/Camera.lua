@@ -1,7 +1,7 @@
 --Camera
 
 function Init()
-	Set3rdPerson(true)
+	Set3rdPerson(false)
 end
 
 function Update(dt)
