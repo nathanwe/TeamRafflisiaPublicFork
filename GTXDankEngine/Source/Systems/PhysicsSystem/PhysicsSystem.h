@@ -22,6 +22,9 @@ public:
 	void Update(float timeStamp);
 	void UpdatePosition();
 
+	void UpdateColliders();
+	void UpdateMovingColliders();
+
 	void Integrate(MovingBodyComponent* movingBody, float dt);
 
 	void DetectCollision(float dt);

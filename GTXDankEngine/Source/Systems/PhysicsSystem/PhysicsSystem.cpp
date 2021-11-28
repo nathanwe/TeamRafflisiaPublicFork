@@ -46,14 +46,7 @@ void PhysicsSystem::Update(float time = 0)
 
 	//LOG_INFO("Delta time in Seconds {}", dt);
 
-	for (const auto& [colliderEntity, colliderComponent] : ColliderComponentPool.componentList)
-	{
-		/*if (rigidBodyComponent->bodyType == Body_Type::STATIC)
-			continue;*/
-		auto transformComponent = TransformComponentPool.GetComponentByEntity(colliderEntity);
-		colliderComponent->setPostion(transformComponent->transform.position);
-	}
-
+	UpdateMovingColliders();
 
 	for (const auto& [physicsEntity, movingBodyComponent] : MovingBodyComponentPool.componentList)
 	{
@@ -93,7 +86,9 @@ void PhysicsSystem::DetectCollision(float dt)
 			ColliderComponent* c1 = ColliderComponentPool.GetComponentByEntity(itr1->first);
 			ColliderComponent* c2 = ColliderComponentPool.GetComponentByEntity(itr2->first);
 
+			// SPHERE - SPHERE
 			if (c1->NarrowPhase.shape == Shape::SPHERE && c2->NarrowPhase.shape == Shape::SPHERE)
+			{
 				if (ReflectMovingSphereMovingSphere(itr1->second, c1, itr2->second, c2, dt))
 				{
 					Event ev = Event(true);
@@ -102,6 +97,19 @@ void PhysicsSystem::DetectCollision(float dt)
 					ev.e2 = itr2->first;
 					engine.DoGameLogicScriptSys.HandleEvent(ev);
 				}
+			}
+			// AABB - AABB
+			if (c1->NarrowPhase.shape == Shape::AABB && c2->NarrowPhase.shape == Shape::AABB)
+			{
+				if (ReflectMovingAABBMovingAABB(itr1->second, c1, itr2->second, c2))
+				{
+					Event ev = Event(true);
+					ev.type = EventType::PHYSICS_COLLISION;
+					ev.e1 = itr1->first;
+					ev.e2 = itr2->first;
+					engine.DoGameLogicScriptSys.HandleEvent(ev);
+				}
+			}
 		}
 	}
 
@@ -116,7 +124,7 @@ void PhysicsSystem::DetectCollision(float dt)
 			// Sphere - Sphere
 			if (c1->NarrowPhase.shape == Shape::SPHERE && c2->NarrowPhase.shape == Shape::SPHERE)
 			{
-				if (ReflectMovingSphereStaticSphere(itr1->second,c1, itr2->second, c2))
+				if (ReflectMovingSphereStaticSphere(itr1->second,c1, itr2->second, c2, dt))
 				{
 					Event ev = Event(true);
 					ev.type = EventType::PHYSICS_COLLISION;
@@ -129,6 +137,42 @@ void PhysicsSystem::DetectCollision(float dt)
 			else if (c1->NarrowPhase.shape == Shape::SPHERE && c2->NarrowPhase.shape == Shape::PLANE)
 			{
 				if (ReflectMovingSphereStaticPlane(itr1->second, c1, itr2->second, c2, dt))
+				{
+					Event ev = Event(true);
+					ev.type = EventType::PHYSICS_COLLISION;
+					ev.e1 = itr1->first;
+					ev.e2 = itr2->first;
+					engine.DoGameLogicScriptSys.HandleEvent(ev);
+				}
+			}
+			// AABB - AABB
+			else if (c1->NarrowPhase.shape == Shape::AABB && c2->NarrowPhase.shape == Shape::AABB)
+			{
+				if (ReflectMovingAABBStaticAABB(itr1->second, c1, itr2->second, c2))
+				{
+					Event ev = Event(true);
+					ev.type = EventType::PHYSICS_COLLISION;
+					ev.e1 = itr1->first;
+					ev.e2 = itr2->first;
+					engine.DoGameLogicScriptSys.HandleEvent(ev);
+				}
+			}
+			// AABB - Plane
+			/*else if (c1->NarrowPhase.shape == Shape::AABB && c2->NarrowPhase.shape == Shape::PLANE)
+			{
+				if (ReflectMovingAABBStaticPlane(itr1->second, c1, itr2->second, c2))
+				{
+					Event ev = Event(true);
+					ev.type = EventType::PHYSICS_COLLISION;
+					ev.e1 = itr1->first;
+					ev.e2 = itr2->first;
+					engine.DoGameLogicScriptSys.HandleEvent(ev);
+				}
+			}*/
+			// Sphere - AABB
+			else if (c1->NarrowPhase.shape == Shape::SPHERE && c2->NarrowPhase.shape == Shape::AABB)
+			{
+				if (ReflectMovingSphereStaticAABB(itr1->second, c1, itr2->second, c2, dt))
 				{
 					Event ev = Event(true);
 					ev.type = EventType::PHYSICS_COLLISION;
@@ -194,4 +238,84 @@ void PhysicsSystem::Integrate(MovingBodyComponent* movingBody, float dt)
 	movingBody->rigidBody.prevOrientation = movingBody->rigidBody.orientation;
 	movingBody->rigidBody.orientation *= glm::normalize(movingBody->rigidBody.angularVelocity);
 
+}
+
+void PhysicsSystem::UpdateColliders()
+{
+	for (const auto& [colliderEntity, colliderComponent] : ColliderComponentPool.componentList)
+	{
+		/*if (rigidBodyComponent->bodyType == Body_Type::STATIC)
+			continue;*/
+		auto transformComponent = TransformComponentPool.GetComponentByEntity(colliderEntity);
+		colliderComponent->setPostion(transformComponent->transform.position);
+
+		if (colliderComponent->NarrowPhase.shape == Shape::SPHERE)
+		{
+
+		}
+		else if (colliderComponent->NarrowPhase.shape == Shape::PLANE)
+		{
+			glm::vec3 up = glm::vec3(0, 1, 0);
+			glm::vec3 right = glm::vec3(1, 0, 0);
+			glm::vec3 out = glm::vec3(0, 0, 1);
+
+			//Scale
+			/*right *= transformComponent->transform.scale.x;
+			out *= transformComponent->transform.scale.z;*/
+
+			/*colliderComponent->NarrowPhase.p1 = right + out;
+			colliderComponent->NarrowPhase.p2 = right + (-1.0f * out);
+			colliderComponent->NarrowPhase.p3 = (-1.0f * right) + out;
+			colliderComponent->NarrowPhase.p4 = (-1.0f * right) + (-1.0f * out);*/
+
+			// Rotate
+			colliderComponent->NarrowPhase.p1 = colliderComponent->NarrowPhase.p1 * transformComponent->transform.rotation;
+			colliderComponent->NarrowPhase.p2 = colliderComponent->NarrowPhase.p2 * transformComponent->transform.rotation;
+			colliderComponent->NarrowPhase.p3 = colliderComponent->NarrowPhase.p3 * transformComponent->transform.rotation;
+			colliderComponent->NarrowPhase.p4 = colliderComponent->NarrowPhase.p4 * transformComponent->transform.rotation;
+
+			// Rotate Normal
+			up = transformComponent->transform.rotation * up;
+			colliderComponent->NarrowPhase.normal = glm::normalize(up);
+
+			colliderComponent->NarrowPhase.magnitude = glm::dot(colliderComponent->NarrowPhase.normal, transformComponent->transform.position);
+
+			// Rotate Plane boundaries
+			right = transformComponent->transform.rotation * right;
+			out = transformComponent->transform.rotation * out;
+
+			// Scale 
+			right *= transformComponent->transform.scale.x;
+			out *= transformComponent->transform.scale.z;
+
+			// Assign Boundaries
+			colliderComponent->NarrowPhase.p1 = right + out;
+			colliderComponent->NarrowPhase.p2 = right + (-1.0f * out);
+			colliderComponent->NarrowPhase.p3 = (-1.0f * right) + out;
+			colliderComponent->NarrowPhase.p4 = (-1.0f * right) + (-1.0f * out);
+
+			// Translate
+			colliderComponent->NarrowPhase.p1 = colliderComponent->NarrowPhase.p1 + transformComponent->transform.position;
+			colliderComponent->NarrowPhase.p2 = colliderComponent->NarrowPhase.p2 + transformComponent->transform.position;
+			colliderComponent->NarrowPhase.p3 = colliderComponent->NarrowPhase.p3 + transformComponent->transform.position;
+			colliderComponent->NarrowPhase.p4 = colliderComponent->NarrowPhase.p4 + transformComponent->transform.position;
+
+		}
+		else if (colliderComponent->NarrowPhase.shape == Shape::AABB)
+		{
+
+		}
+	}
+}
+
+void PhysicsSystem::UpdateMovingColliders()
+{
+	for (const auto& [colliderEntity, movingBodyComponent] : MovingBodyComponentPool.componentList)
+	{
+		/*if (rigidBodyComponent->bodyType == Body_Type::STATIC)
+			continue;*/
+		auto transformComponent = TransformComponentPool.GetComponentByEntity(colliderEntity);
+		auto colliderComponent = ColliderComponentPool.GetComponentByEntity(colliderEntity);
+		colliderComponent->setPostion(transformComponent->transform.position);
+	}
 }

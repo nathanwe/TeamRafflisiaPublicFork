@@ -12,7 +12,11 @@ public:
 	Collider() : 
 		shape(Shape::SPHERE), 
 		radius(1.0f), 
-		normal(glm::vec3(0, 0, 0)), 
+		normal(glm::vec3(0, 1, 0)),
+		p1(glm::vec3(1, 0, 0)),
+		p2(glm::vec3(0, 0, 1)),
+		p3(glm::vec3(0, 0, 1)),
+		p4(glm::vec3(0, 0, 1)),
 		magnitude(1.0f), 
 		minPoint(glm::vec3(0, 0, 0)), 
 		maxPoint(glm::vec3(1, 1, 1)) 
@@ -26,6 +30,10 @@ public:
 	// In case of Plane
 	glm::vec3 normal;
 	float magnitude;
+	glm::vec3 p1;
+	glm::vec3 p2;
+	glm::vec3 p3;
+	glm::vec3 p4;
 
 	// In case of AABB
 	glm::vec3 minPoint;

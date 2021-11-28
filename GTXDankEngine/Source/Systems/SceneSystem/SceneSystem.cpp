@@ -131,6 +131,7 @@ void SceneSystem::Update(float dt)
 
         // For Physics
         engine.PhysicsSys.UpdatePosition();
+        engine.PhysicsSys.UpdateColliders();
     }
     shouldLoadLevel = false;
 }

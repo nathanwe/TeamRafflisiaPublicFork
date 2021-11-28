@@ -794,7 +794,7 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": 0.0,
+          "x": 0.12999999523162842,
           "y": 0.0,
           "z": 0.0
         },
@@ -839,8 +839,8 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": 2.760111093521118,
-          "y": -0.03092116117477417,
+          "x": 12.0,
+          "y": 8.0,
           "z": 0.015702152624726295
         },
         "scale": {
@@ -849,10 +849,10 @@
           "z": 0.009999999776482582
         },
         "rotation": {
-          "x": 0.0,
+          "x": 0.15643450617790222,
           "y": 0.0,
           "z": 0.0,
-          "w": 1.0
+          "w": 0.9876883625984192
         }
       },
       "MATERIAL": {
@@ -872,7 +872,7 @@
         "Gravity": true,
         "Mass": 5.670000076293945,
         "Velocity": {
-          "x": 0.5559999942779541,
+          "x": 0.0,
           "y": 0.0,
           "z": 0.0
         },
@@ -896,8 +896,8 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": -0.968999981880188,
-          "y": -1.1749999523162842,
+          "x": 0.6447616815567017,
+          "y": 4.425000190734863,
           "z": -0.6626490950584412
         },
         "scale": {
@@ -929,8 +929,8 @@
         "Gravity": false,
         "Mass": 0.0,
         "Velocity": {
-          "x": 1.4429999589920044,
-          "y": 0.06450450420379639,
+          "x": 0.0,
+          "y": 0.0,
           "z": 0.0
         },
         "Accelereation": {
@@ -949,8 +949,8 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": 4.5,
-          "y": -2.430000066757202,
+          "x": 15.979999542236328,
+          "y": -2.3399999141693115,
           "z": 0.0
         },
         "scale": {
@@ -959,10 +959,10 @@
           "z": 10.0
         },
         "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
+          "x": 0.08682478219270706,
+          "y": -0.007596276234835386,
+          "z": -0.08682478219270706,
+          "w": 0.9924038052558899
         }
       },
       "MATERIAL": {
@@ -975,11 +975,11 @@
       "COLLIDER": {
         "Shape": 1,
         "Normal": {
-          "x": 0.0,
-          "y": 1.0,
-          "z": 0.0
+          "x": 0.017308363690972328,
+          "y": 0.9969481229782104,
+          "z": -0.07612525671720505
         },
-        "Magnitude": -2.430000066757202
+        "Magnitude": -2.0562708377838135
       },
       "STILL_BODY": {
         "Shape": 0,
@@ -1578,5 +1578,828 @@
     }
   ],
   "10": null,
-  "11": null
+  "11": null,
+  "12": [
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 5.0,
+          "y": 5.0,
+          "z": 5.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "LIGHT": {
+        "Color": {
+          "x": 1.0,
+          "y": 0.6000000238418579,
+          "z": 0.6000000238418579
+        },
+        "Intensity": {
+          "x": 3.0,
+          "y": 3.0,
+          "z": 3.0
+        },
+        "LightType": 0,
+        "Target": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        }
+      },
+      "TAG": {
+        "uniqueName": "DirLightSource",
+        "category": "DirLightSource"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/PokemonBall/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 3.3819069862365723,
+          "y": 4.632641315460205,
+          "z": 0.015702152624726295
+        },
+        "scale": {
+          "x": 0.009999999776482582,
+          "y": 0.009999999776482582,
+          "z": 0.009999999776482582
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "MOVING_BODY": {
+        "Elasticity": 0.3799999952316284,
+        "Friction": 1.0,
+        "Gravity": true,
+        "Mass": 5.670000076293945,
+        "Velocity": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "Accelereation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "CollisionType": 0,
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "TAG": {
+        "uniqueName": "ColliderComponentTest",
+        "category": "ColliderComponentTest"
+      }
+    }
+  ],
+  "13": [
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 0.12999999523162842,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 5.0,
+          "y": 5.0,
+          "z": 5.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "LIGHT": {
+        "Color": {
+          "x": 1.0,
+          "y": 0.6000000238418579,
+          "z": 0.6000000238418579
+        },
+        "Intensity": {
+          "x": 3.0,
+          "y": 3.0,
+          "z": 3.0
+        },
+        "LightType": 0,
+        "Target": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        }
+      },
+      "TAG": {
+        "uniqueName": "DirLightSource",
+        "category": "DirLightSource"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/PokemonBall/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 0.3089999854564667,
+          "y": 2.194999933242798,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 0.009999999776482582,
+          "y": 0.009999999776482582,
+          "z": 0.009999999776482582
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "MOVING_BODY": {
+        "Elasticity": 0.5,
+        "Friction": 1.0,
+        "Gravity": true,
+        "Mass": 1.0,
+        "Velocity": {
+          "x": 0.0,
+          "y": -10.0,
+          "z": 0.0
+        },
+        "Accelereation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "CollisionType": 0,
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "TAG": {
+        "uniqueName": "ColliderComponentTest",
+        "category": "ColliderComponentTest"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/PokemonBall/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 4.0,
+          "y": -4.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 0.019999999552965164,
+          "y": 0.019999999552965164,
+          "z": 0.019999999552965164
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 2,
+        "MinPoint": {
+          "x": -2.0,
+          "y": -2.0,
+          "z": -2.0
+        },
+        "MaxPoint": {
+          "x": 2.0,
+          "y": 2.0,
+          "z": 2.0
+        }
+      },
+      "MOVING_BODY": {
+        "Elasticity": 0.5,
+        "Friction": 0.0,
+        "Gravity": false,
+        "Mass": 1.0,
+        "Velocity": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "Accelereation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "CollisionType": 0,
+        "Shape": 0,
+        "Radius": 1.0
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/PokemonBall/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 0.0,
+          "y": -4.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 0.019999999552965164,
+          "y": 0.019999999552965164,
+          "z": 0.019999999552965164
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 2,
+        "MinPoint": {
+          "x": -2.0,
+          "y": -2.0,
+          "z": -2.0
+        },
+        "MaxPoint": {
+          "x": 2.0,
+          "y": 2.0,
+          "z": 2.0
+        }
+      },
+      "STILL_BODY": {
+        "Shape": 0,
+        "Radius": 1.0
+      }
+    }
+  ],
+  "14": [
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 0.12999999523162842,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 5.0,
+          "y": 5.0,
+          "z": 5.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "LIGHT": {
+        "Color": {
+          "x": 1.0,
+          "y": 0.6000000238418579,
+          "z": 0.6000000238418579
+        },
+        "Intensity": {
+          "x": 3.0,
+          "y": 3.0,
+          "z": 3.0
+        },
+        "LightType": 0,
+        "Target": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        }
+      },
+      "TAG": {
+        "uniqueName": "DirLightSource",
+        "category": "DirLightSource"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/PokemonBall/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 12.0,
+          "y": 8.0,
+          "z": 0.015702152624726295
+        },
+        "scale": {
+          "x": 0.009999999776482582,
+          "y": 0.009999999776482582,
+          "z": 0.009999999776482582
+        },
+        "rotation": {
+          "x": 0.15643450617790222,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.9876883625984192
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "MOVING_BODY": {
+        "Elasticity": 0.3799999952316284,
+        "Friction": 1.0,
+        "Gravity": true,
+        "Mass": 5.670000076293945,
+        "Velocity": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "Accelereation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "CollisionType": 0,
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "TAG": {
+        "uniqueName": "ColliderComponentTest",
+        "category": "ColliderComponentTest"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/PokemonBall/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 0.6447616815567017,
+          "y": 4.425000190734863,
+          "z": -0.6626490950584412
+        },
+        "scale": {
+          "x": 0.009999999776482582,
+          "y": 0.009999999776482582,
+          "z": 0.009999999776482582
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "MOVING_BODY": {
+        "Elasticity": 0.0,
+        "Friction": 0.0,
+        "Gravity": false,
+        "Mass": 0.0,
+        "Velocity": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "Accelereation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "CollisionType": 0,
+        "Shape": 0,
+        "Radius": 1.0
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 15.979999542236328,
+          "y": -2.3399999141693115,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 10.0,
+          "y": 10.0,
+          "z": 10.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": -0.0,
+          "z": -0.9063078165054321,
+          "w": 0.42261824011802673
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": -0.7660444378852844,
+          "y": -0.6427876949310303,
+          "z": 0.0
+        },
+        "Magnitude": -2.430000066757202
+      },
+      "STILL_BODY": {
+        "Shape": 0,
+        "Radius": 1.0
+      }
+    }
+  ],
+  "15": [
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 0.12999999523162842,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 5.0,
+          "y": 5.0,
+          "z": 5.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "LIGHT": {
+        "Color": {
+          "x": 1.0,
+          "y": 0.6000000238418579,
+          "z": 0.6000000238418579
+        },
+        "Intensity": {
+          "x": 3.0,
+          "y": 3.0,
+          "z": 3.0
+        },
+        "LightType": 0,
+        "Target": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        }
+      },
+      "TAG": {
+        "uniqueName": "DirLightSource",
+        "category": "DirLightSource"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/PokemonBall/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 12.0,
+          "y": 5.747811794281006,
+          "z": 0.015702152624726295
+        },
+        "scale": {
+          "x": 0.009999999776482582,
+          "y": 0.009999999776482582,
+          "z": 0.009999999776482582
+        },
+        "rotation": {
+          "x": 0.15643450617790222,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.9876883625984192
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "MOVING_BODY": {
+        "Elasticity": 0.3799999952316284,
+        "Friction": 1.0,
+        "Gravity": true,
+        "Mass": 5.670000076293945,
+        "Velocity": {
+          "x": 0.0,
+          "y": -7.0533928871154785,
+          "z": 0.0
+        },
+        "Accelereation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "CollisionType": 0,
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "TAG": {
+        "uniqueName": "ColliderComponentTest",
+        "category": "ColliderComponentTest"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/PokemonBall/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 5.625,
+          "y": 4.26800012588501,
+          "z": -0.5230000019073486
+        },
+        "scale": {
+          "x": 0.009999999776482582,
+          "y": 0.009999999776482582,
+          "z": 0.009999999776482582
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "MOVING_BODY": {
+        "Elasticity": 0.0,
+        "Friction": 0.0,
+        "Gravity": true,
+        "Mass": 1.0,
+        "Velocity": {
+          "x": 0.0,
+          "y": -1.243984580039978,
+          "z": 0.0
+        },
+        "Accelereation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "CollisionType": 0,
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "TAG": {
+        "uniqueName": "",
+        "category": ""
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 15.979999542236328,
+          "y": -2.3399999141693115,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 10.0,
+          "y": 10.0,
+          "z": 10.0
+        },
+        "rotation": {
+          "x": 0.0868239551782608,
+          "y": -0.007596136536449194,
+          "z": -0.08682402223348618,
+          "w": 0.9924039244651794
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.17100994288921356,
+          "y": 0.9698463678359985,
+          "z": 0.1736479252576828
+        },
+        "Magnitude": 0.46329832077026367
+      },
+      "STILL_BODY": {
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "TAG": {
+        "uniqueName": "",
+        "category": ""
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 20.200000762939453,
+          "y": -2.3399999141693115,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 9.819999694824219,
+          "y": 9.944000244140625,
+          "z": 10.0
+        },
+        "rotation": {
+          "x": -0.06933261454105377,
+          "y": 0.7620348930358887,
+          "z": -0.0779305025935173,
+          "w": -0.6390795111656189
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": -0.20527531206607819,
+          "y": 0.9782396554946899,
+          "z": -0.030153416097164154
+        },
+        "Magnitude": -6.435642242431641
+      },
+      "STILL_BODY": {
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "TAG": {
+        "uniqueName": "PLANEAABB",
+        "category": "PLANEAABB"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 19.200000762939453,
+          "y": 0.10000000149011612,
+          "z": 8.920000076293945
+        },
+        "scale": {
+          "x": 9.991999626159668,
+          "y": 9.991999626159668,
+          "z": 10.0
+        },
+        "rotation": {
+          "x": 0.024677978828549385,
+          "y": -0.7066758871078491,
+          "z": -0.7066761255264282,
+          "w": -0.02467736043035984
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": -0.06975647062063217,
+          "y": -2.3841860752327193e-07,
+          "z": 0.9975641369819641
+        },
+        "Magnitude": 7.558948516845703
+      },
+      "STILL_BODY": {
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "TAG": {
+        "uniqueName": "PLANEAABB",
+        "category": "PLANEAABB"
+      }
+    }
+  ],
+  "16": null,
+  "17": null,
+  "18": null,
+  "19": null
 }
