@@ -1,44 +1,36 @@
 --Playerthings
-local timers = {}
-local directions = {}
+--local timers = {}
+--local directions = {}
 local imguiControledEntity = -1
-local cycleTime = 5
-local speed = 1
+local speed = 10
 
 function SavePlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
-	SaveIntFloatTableAsJson(timers, "/Assets/Levels/Level" .. levelstr .."PlayerTimerSave.json")
-	SaveIntFloatTableAsJson(directions, "/Assets/Levels/Level" .. levelstr .."PlayerDirectionSave.json")
+	--SaveIntFloatTableAsJson(timers, "/Assets/Levels/Level" .. levelstr .."PlayerTimerSave.json")
+	--SaveIntFloatTableAsJson(directions, "/Assets/Levels/Level" .. levelstr .."PlayerDirectionSave.json")
 end
 
 function LoadPlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
-	timers = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."PlayerTimerSave.json")
-	directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."PlayerDirectionSave.json")
+	--timers = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."PlayerTimerSave.json")
+	--directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."PlayerDirectionSave.json")
 end
 
 function ClearPlayers()
-	timers = {}
-	directions = {}
+	--timers = {}
+	--directions = {}
 end
 
 function DestroyPlayer(e)
-	timers[e] = nil;
-	directions[e] = nil
+	--timers[e] = nil;
+	--directions[e] = nil
 end
 
 
 function UpdatePlayer(dt, e)
-	if timers[e] == nil then
-		InitPlayer(e)
-	end
-
-	timers[e] = timers[e] + dt
-		if timers[e] > cycleTime then
-			timers[e] = timers[e] - cycleTime
-			directions[e] = directions[e] * -1
-		end
-	--AddToVQS(e, 0, 0, speed*directions[e]*dt)
+	--if timers[e] == nil then
+		--InitPlayer(e)
+	--end
 end
 
 function HandleEventPlayer(eventData)
@@ -46,26 +38,33 @@ function HandleEventPlayer(eventData)
 		DestroyPlayer(eventData.e1)
 	end
 	if eventData.type == 12 then
-		if eventData.e1 == 1 and eventData.e2 ==5 then
-			print("You Win!")
+		categories = {}
+		categories = GetCategorysOfEntity(eventData.e1)
+		for index, cat in pairs(categories) do
+			if cat == 4 then
+				print("You Win!")
+			end
 		end
-		if eventData.e1 == 5 and eventData.e2 ==1 then
-			print("You Win!")
+		categories = GetCategorysOfEntity(eventData.e2)
+		for index, cat in pairs(categories) do
+			if cat == 4 then
+				print("You Win!")
+			end
 		end
 	end
 	if eventData.type == 16 then
 		ImguiText("Player")
-		ImguiControledFloat(0, "timers", timers[eventData.e1])
-		ImguiControledFloat(1, "directions", directions[eventData.e1])
+		--ImguiControledFloat(0, "timers", timers[eventData.e1])
+		--ImguiControledFloat(1, "directions", directions[eventData.e1])
 		imguiControledEntity = eventData.e1
 	end
-	if eventData.type == 17 then
-		if imguiControledEntity ~= -1 then
-			timers[imguiControledEntity] = GetImguiControledFloat(0)
-			directions[imguiControledEntity] = GetImguiControledFloat(1)
-		imguiControledEntity = -1
-		end
-	end
+	--if eventData.type == 17 then
+	--	if imguiControledEntity ~= -1 then
+	--		timers[imguiControledEntity] = GetImguiControledFloat(0)
+	--		directions[imguiControledEntity] = GetImguiControledFloat(1)
+	--	imguiControledEntity = -1
+	--	end
+	--end
 end
 
 function HandleEventPerEntityPlayer(e, eventData)
@@ -73,17 +72,22 @@ function HandleEventPerEntityPlayer(e, eventData)
 		DeleteEntity(e)
 	end
 	if eventData.type == 8 then
+		camerax, cameray, cameraz = GetCameraOrientation()
+		--print( "camera at", camerax, cameray, cameraz)
+		mag = math.sqrt(camerax * camerax + cameraz * cameraz)
+		newx = camerax/mag
+		newz = cameraz/mag
 		if eventData.stringData1 == "Up" then
-			SetPhysicsVelocity(e, 0, 0, -10 * eventData.floatData1)
+			AddPhysicsVelocity(e, speed * eventData.floatData1 * newx, 0, speed * eventData.floatData1 * newz)
 		end
 		if eventData.stringData1 == "Down" then
-			SetPhysicsVelocity(e, 0, 0, 10 * eventData.floatData1)
+			AddPhysicsVelocity(e, -speed * eventData.floatData1 * newx, 0, -speed * eventData.floatData1 * newz)
 		end
 		if eventData.stringData1 == "Left" then
-			SetPhysicsVelocity(e, -10 * eventData.floatData1, 0, 0)
+			AddPhysicsVelocity(e, speed * eventData.floatData1 * newz, 0, -speed * eventData.floatData1 * newx)
 		end
 		if eventData.stringData1 == "Right" then
-			SetPhysicsVelocity(e, 10 * eventData.floatData1, 0, 0)
+			AddPhysicsVelocity(e, -speed * eventData.floatData1 * newz, 0, speed * eventData.floatData1 * newx)
 		end
 	end
 end
@@ -91,6 +95,6 @@ end
 --custom functions
 
 function InitPlayer(e)
-	timers[e] = e
-	directions[e] = 1
+	--timers[e] = e
+	--directions[e] = 1
 end

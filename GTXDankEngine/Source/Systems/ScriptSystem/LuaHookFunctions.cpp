@@ -291,15 +291,16 @@ int lua_GetCategorysOfEntity(lua_State* L)
     int top = lua_gettop(L);
     int index = 0;
     auto GLCC = GameLogicCategoryComponentPool.GetComponentByEntity(e);
-    for (int i = 1; i < static_cast<int>(GameLogicCategories::MAX_CATEGORIES); ++i)
-    {
-        if (GLCC->categories.find(static_cast<GameLogicCategories>(i)) != GLCC->categories.end())
+    if(GLCC != nullptr){
+        for (int i = 1; i < static_cast<int>(GameLogicCategories::MAX_CATEGORIES); ++i)
         {
-            lua_pushnumber(L, index);
-            lua_pushnumber(L, i);
-            lua_settable(L, top);
+            if (GLCC->categories.find(static_cast<GameLogicCategories>(i)) != GLCC->categories.end())
+            {
+                lua_pushnumber(L, index);
+                lua_pushnumber(L, i);
+                lua_settable(L, top);
+            }
         }
-
     }
 
     return 1;
@@ -571,7 +572,7 @@ int lua_SetPhysicsVelocity(lua_State* L)
     }
     else
     {
-        LOG_ERROR("Transform not found");
+        LOG_ERROR("body not found");
     }
     return 0;
 }
@@ -814,5 +815,79 @@ int lua_SendEvent(lua_State* L)
 {
     Event ev = ReceiveEvent(L);
     engine.DoGameLogicScriptSys.HandleEvent(ev);
+    return 0;
+}
+
+int lua_AddPhysicsVelocity(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    float x = static_cast<float>(lua_tonumber(L, 2));
+    float y = static_cast<float>(lua_tonumber(L, 3));
+    float z = static_cast<float>(lua_tonumber(L, 4));
+    MovingBodyComponent* bod = MovingBodyComponentPool.GetComponentByEntity(e);
+    if (bod != nullptr)
+    {
+        bod->rigidBody.velocity.x += x;
+        bod->rigidBody.velocity.y += y;
+        bod->rigidBody.velocity.z += z;
+    }
+    else
+    {
+        LOG_ERROR("body not found");
+    }
+    return 0;
+}
+
+int lua_SetPhysicsAcceleration(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    float x = static_cast<float>(lua_tonumber(L, 2));
+    float y = static_cast<float>(lua_tonumber(L, 3));
+    float z = static_cast<float>(lua_tonumber(L, 4));
+    MovingBodyComponent* bod = MovingBodyComponentPool.GetComponentByEntity(e);
+    if (bod != nullptr)
+    {
+        bod->rigidBody.acceleration.x = x;
+        bod->rigidBody.acceleration.y = y;
+        bod->rigidBody.acceleration.z = z;
+    }
+    else
+    {
+        LOG_ERROR("body not found");
+    }
+    return 0;
+}
+
+int lua_AddPhysicsAcceleration(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    float x = static_cast<float>(lua_tonumber(L, 2));
+    float y = static_cast<float>(lua_tonumber(L, 3));
+    float z = static_cast<float>(lua_tonumber(L, 4));
+    MovingBodyComponent* bod = MovingBodyComponentPool.GetComponentByEntity(e);
+    if (bod != nullptr)
+    {
+        bod->rigidBody.acceleration.x += x;
+        bod->rigidBody.acceleration.y += y;
+        bod->rigidBody.acceleration.z += z;
+    }
+    else
+    {
+        LOG_ERROR("body not found");
+    }
+    return 0;
+}
+
+int lua_GetCameraOrientation(lua_State* L)
+{
+    lua_pushnumber(L, engine.GraphicsSys.camera.orientationScale.x);
+    lua_pushnumber(L, engine.GraphicsSys.camera.orientationScale.y);
+    lua_pushnumber(L, engine.GraphicsSys.camera.orientationScale.z);
+    return 3;
+}
+
+int lua_Set3rdPersonDistance(lua_State* L)
+{
+    engine.GraphicsSys.camera.thirdPersonOffset = static_cast<float>(lua_tonumber(L, 1));
     return 0;
 }

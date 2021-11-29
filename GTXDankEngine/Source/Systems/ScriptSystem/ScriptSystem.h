@@ -87,6 +87,11 @@ int lua_SetCameraPosition(lua_State* L);
 int lua_SetCameraAutoScroll(lua_State* L);
 int lua_Raycast(lua_State* L);
 int lua_SendEvent(lua_State* L);
+int lua_AddPhysicsVelocity(lua_State* L);
+int lua_SetPhysicsAcceleration(lua_State* L);
+int lua_AddPhysicsAcceleration(lua_State* L);
+int lua_GetCameraOrientation(lua_State* L);
+int lua_Set3rdPersonDistance(lua_State* L);
 
 class LuaFile
 {

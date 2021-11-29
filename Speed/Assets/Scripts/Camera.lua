@@ -2,6 +2,7 @@
 
 function Init()
 	Set3rdPerson(true)
+	Set3rdPersonDistance(10)
 end
 
 function Update(dt)
