@@ -48,6 +48,15 @@ public:
 	GLFWwindow* pWindow;
 
 	Camera camera{ WIDTH, HEIGHT, glm::vec3(0.0f, 0.0f, 10.0f) };
+
+
+
+	// setter and getters
+	inline void SetSunAngle(float angle) { m_sun_angle = angle; }
+	inline void SetCelFactor(float factor) { DeferredRender.CelFraction = factor; }
+	inline void SetCelStatus(bool status) { DeferredRender.EnableCelShading = status; }
+
+
 private:
 	void InitGLFW();
 	void InitWindow();
