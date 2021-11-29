@@ -81,6 +81,9 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "GetCameraOrientation", lua_GetCameraOrientation);
     lua_register(L, "Set3rdPersonDistance", lua_Set3rdPersonDistance);
     lua_register(L, "UpdatePhysicsCollider", lua_UpdatePhysicsCollider);
+    lua_register(L, "SetCameraOffest", lua_SetCameraOffest);
+    lua_register(L, "SetCellShade", lua_SetCellShade);
+    lua_register(L, "SetSunAngle", lua_SetSunAngle);
 
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));

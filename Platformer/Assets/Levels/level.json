@@ -218,6 +218,43 @@
         "uniqueName": "1",
         "category": "Cube"
       }
+    },
+    {
+      "MODEL": {
+        "path": "Assets/Defaults/Sphere.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "Alpha": 1.0
+      },
+      "TAG": {
+        "uniqueName": "ball",
+        "category": "adsfad"
+      },
+      "GAME_LOGIC": [
+        "PLAYER"
+      ]
     }
   ]
 }

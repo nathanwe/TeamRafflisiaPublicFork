@@ -897,3 +897,26 @@ int lua_UpdatePhysicsCollider(lua_State* L)
     engine.PhysicsSys.UpdateColliders();
     return 0;
 }
+
+int lua_SetCameraOffest(lua_State* L)
+{
+    engine.GraphicsSys.camera.isOffset = lua_toboolean(L, 1);
+    engine.GraphicsSys.camera.offset.x = lua_tonumber(L, 2);
+    engine.GraphicsSys.camera.offset.y = lua_tonumber(L, 3);
+    engine.GraphicsSys.camera.offset.z = lua_tonumber(L, 4);
+    return 0;
+}
+
+int lua_SetCellShade(lua_State* L)
+{
+    engine.GraphicsSys.SetCelStatus(lua_toboolean(L, 1));
+    engine.GraphicsSys.SetCelFactor(lua_tonumber(L, 2));
+    return 0;
+}
+
+int lua_SetSunAngle(lua_State* L)
+{
+    float value = lua_tonumber(L, 1);
+    engine.GraphicsSys.SetSunAngle(std::min(-1.0f, std::max(-179.0f, value)));
+    return 0;
+}
