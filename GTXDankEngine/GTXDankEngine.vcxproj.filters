@@ -450,6 +450,15 @@
     <None Include="..\FPS\Assets\Scripts\DoPlayerThings.lua">
       <Filter>FPS\Scripts</Filter>
     </None>
+    <None Include="..\Platformer\Assets\Scripts\DoBlockThings.lua">
+      <Filter>Platformer\Scripts</Filter>
+    </None>
+    <None Include="..\Platformer\Assets\Scripts\DoPlayerThings.lua">
+      <Filter>Platformer\Scripts</Filter>
+    </None>
+    <None Include="..\Speed\Assets\Scripts\DoSliderThings.lua">
+      <Filter>Speed\Scripts</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">

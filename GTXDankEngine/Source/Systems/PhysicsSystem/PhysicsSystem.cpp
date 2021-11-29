@@ -136,6 +136,7 @@ void PhysicsSystem::DetectCollision(float dt)
 			// Sphere - Plane
 			else if (c1->NarrowPhase.shape == Shape::SPHERE && c2->NarrowPhase.shape == Shape::PLANE)
 			{
+
 				if (ReflectMovingSphereStaticPlane(itr1->second, c1, itr2->second, c2, dt))
 				{
 					Event ev = Event(true);
@@ -143,6 +144,7 @@ void PhysicsSystem::DetectCollision(float dt)
 					ev.e1 = itr1->first;
 					ev.e2 = itr2->first;
 					engine.DoGameLogicScriptSys.HandleEvent(ev);
+					
 				}
 			}
 			// AABB - AABB

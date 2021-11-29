@@ -111,6 +111,8 @@
     <None Include="..\Platformer\Assets\Levels\level.json" />
     <None Include="..\Platformer\Assets\Scripts\Camera.lua" />
     <None Include="..\Platformer\Assets\Scripts\CategoryList.lua" />
+    <None Include="..\Platformer\Assets\Scripts\DoBlockThings.lua" />
+    <None Include="..\Platformer\Assets\Scripts\DoPlayerThings.lua" />
     <None Include="..\SandBox1\Assets\audio\Master.bank" />
     <None Include="..\SandBox1\Assets\audio\Master.strings.bank" />
     <None Include="..\SandBox1\Assets\Configs\commands.json" />
@@ -128,6 +130,7 @@
     <None Include="..\Speed\Assets\Scripts\CategoryList.lua" />
     <None Include="..\Speed\Assets\Scripts\DoGoalZoneThings.lua" />
     <None Include="..\Speed\Assets\Scripts\DoPlayerThings.lua" />
+    <None Include="..\Speed\Assets\Scripts\DoSliderThings.lua" />
     <None Include="..\TopDownFighter\Assets\Levels\gameObjects.json" />
     <None Include="..\TopDownFighter\Assets\Levels\level.json" />
     <None Include="..\WhereTheGameAt.lua" />

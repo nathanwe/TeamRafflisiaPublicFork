@@ -827,6 +827,7 @@ bool ReflectMovingSphereStaticPlane(MovingBodyComponent* mb1, ColliderComponent*
 	//glm::vec3 n = glm::normalize(sb2->BroadPhase.normal) * (distanceFromSphereCenter / distanceFromSphereCenterMod) * (mb1->BroadPhase.radius - distanceFromSphereCenterMod);
 	mb1->rigidBody.position = contactPostion + r;
 
+
 	return true;
 }
 

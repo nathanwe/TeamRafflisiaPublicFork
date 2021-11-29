@@ -1,3 +1,43 @@
 {
-
+  "Cube": {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/Cube.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 5.055999755859375,
+        "y": 40.87900161743164,
+        "z": 42.66999816894531
+      },
+      "scale": {
+        "x": 3.0199999809265137,
+        "y": 3.0199999809265137,
+        "z": 3.0859999656677246
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
+      "NormalPath": "../Platformer/Assets/Textures/metal_Tex/normal.png",
+      "RoughnessPath": "../Platformer/Assets/Textures/metal_Tex/roughness.png",
+      "Alpha": 1.0
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 4.340000152587891
+    },
+    "GAME_LOGIC": [
+      "ENEMY"
+    ],
+    "TAG": {
+      "uniqueName": "1",
+      "category": "Cube"
+    }
+  }
 }

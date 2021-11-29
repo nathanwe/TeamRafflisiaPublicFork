@@ -1,12 +1,8 @@
 --Camera
 
 function Init()
-<<<<<<< Updated upstream
-	Set3rdPerson(true)
-=======
 	Set3rdPerson(false)
 	Set3rdPersonDistance(10)
->>>>>>> Stashed changes
 end
 
 function Update(dt)
