@@ -891,3 +891,9 @@ int lua_Set3rdPersonDistance(lua_State* L)
     engine.GraphicsSys.camera.thirdPersonOffset = static_cast<float>(lua_tonumber(L, 1));
     return 0;
 }
+
+int lua_UpdatePhysicsCollider(lua_State* L)
+{
+    engine.PhysicsSys.UpdateColliders();
+    return 0;
+}

@@ -80,6 +80,7 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "AddPhysicsAcceleration", lua_AddPhysicsAcceleration);
     lua_register(L, "GetCameraOrientation", lua_GetCameraOrientation);
     lua_register(L, "Set3rdPersonDistance", lua_Set3rdPersonDistance);
+    lua_register(L, "UpdatePhysicsCollider", lua_UpdatePhysicsCollider);
 
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));

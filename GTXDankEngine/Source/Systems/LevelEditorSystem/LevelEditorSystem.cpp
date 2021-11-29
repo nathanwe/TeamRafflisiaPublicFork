@@ -440,6 +440,10 @@ void LevelEditorSystem::UpdateGUI()
 				{
 					ImGui::DragFloat3("Normal", &collider->NarrowPhase.normal.x, 0.01f);
 					ImGui::DragFloat("Magnitude", &collider->NarrowPhase.magnitude, 0.01f);
+					ImGui::DragFloat3("p1", &collider->NarrowPhase.p1.x, 0.01f);
+					ImGui::DragFloat3("p2", &collider->NarrowPhase.p2.x, 0.01f);
+					ImGui::DragFloat3("p3", &collider->NarrowPhase.p3.x, 0.01f);
+					ImGui::DragFloat3("p4", &collider->NarrowPhase.p4.x, 0.01f);
 				}
 				else if (collider->NarrowPhase.shape == Shape::AABB)
 				{

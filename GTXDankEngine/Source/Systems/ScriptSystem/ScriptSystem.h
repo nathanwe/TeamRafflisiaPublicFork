@@ -92,6 +92,7 @@ int lua_SetPhysicsAcceleration(lua_State* L);
 int lua_AddPhysicsAcceleration(lua_State* L);
 int lua_GetCameraOrientation(lua_State* L);
 int lua_Set3rdPersonDistance(lua_State* L);
+int lua_UpdatePhysicsCollider(lua_State* L);
 
 class LuaFile
 {
