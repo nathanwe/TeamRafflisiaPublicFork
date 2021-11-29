@@ -44,6 +44,9 @@ public:
 	float autoScrollMaxTime, autoScrollTimer;
 	glm::vec3 autoScrollBegin, autoScrollDest;
 
+	bool isOffset = false;
+	glm::vec3 offset = glm::vec3(0, 2, 0);
+
 
 public:
 	Camera(int width, int height, glm::vec3 position);
@@ -60,7 +63,8 @@ public:
 public:
 	inline glm::mat4 GetViewMat() { return viewMatrix; }
 	inline glm::mat4 GetProjMat(float FOV, float n, float f) { return glm::perspective(glm::radians(FOV), (float)(width) / (height), n, f); }
-	inline glm::vec3 GetPosition() { return (Position - glm::vec3(thirdPersonOffset) * orientationScale); }
+	// inline glm::vec3 GetPosition() { return (Position - glm::vec3(thirdPersonOffset) * orientationScale); }
+	inline glm::vec3 GetPosition() { return (Position + (isOffset ? offset : glm::vec3(0.f)) - (thirdPerson ? glm::vec3(thirdPersonOffset) : glm::vec3(0.f)) * orientationScale); }
 	//inline glm::vec3 GetRotation() { return glm::eulerAngles(orientationQuat) * 180.0f / 3.141f; }
 
 
