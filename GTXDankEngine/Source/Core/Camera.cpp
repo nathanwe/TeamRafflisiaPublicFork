@@ -48,7 +48,7 @@ void Camera::UpdateMatrix(float FOVdeg, float nearPlane, float farPlane)
 	// view = glm::lookAt(Position, Position + Orientation, Up);
 	if (thirdPerson) {
 		if (isOffset) {
-			viewMatrix = glm::translate(glm::mat4(1.f), glm::vec3(0, 0, -thirdPersonOffset)) * glm::mat4_cast(orientationQuat) * glm::translate(glm::mat4(1.0f), -Position - offset);
+			viewMatrix = glm::translate(glm::mat4(1.f), glm::vec3(0, 0, -thirdPersonOffset)) * glm::mat4_cast(orientationQuat) * glm::translate(glm::mat4(1.0f), -Position - offset*orientationQuat);
 		}
 		else {
 			viewMatrix = glm::translate(glm::mat4(1.f), glm::vec3(0, 0, -thirdPersonOffset)) * glm::mat4_cast(orientationQuat) * glm::translate(glm::mat4(1.0f), -Position);
@@ -56,7 +56,7 @@ void Camera::UpdateMatrix(float FOVdeg, float nearPlane, float farPlane)
 	}
 	else {
 		if (isOffset) {
-			viewMatrix = glm::mat4_cast(orientationQuat) * glm::translate(glm::mat4(1.0f), -Position - offset);
+			viewMatrix = glm::mat4_cast(orientationQuat) * glm::translate(glm::mat4(1.0f), -Position - offset*orientationQuat);
 		}
 		else {
 			viewMatrix = glm::mat4_cast(orientationQuat) * glm::translate(glm::mat4(1.0f), -Position);
