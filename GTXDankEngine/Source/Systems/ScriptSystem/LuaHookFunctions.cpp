@@ -806,7 +806,7 @@ int lua_SetCameraAutoScroll(lua_State* L)
 
 int lua_Raycast(lua_State* L)
 {
-    int e = RayCast(engine.GraphicsSys.camera, false);
+    int e = RayCast(engine.GraphicsSys.camera, true);
     lua_pushnumber(L, e);
     return 1;
 }

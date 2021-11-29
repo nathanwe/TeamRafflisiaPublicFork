@@ -111,6 +111,8 @@
     <None Include="..\Platformer\Assets\Levels\level.json" />
     <None Include="..\Platformer\Assets\Scripts\Camera.lua" />
     <None Include="..\Platformer\Assets\Scripts\CategoryList.lua" />
+    <None Include="..\Platformer\Assets\Scripts\DoBlockThings.lua" />
+    <None Include="..\Platformer\Assets\Scripts\DoPlayerThings.lua" />
     <None Include="..\SandBox1\Assets\audio\Master.bank" />
     <None Include="..\SandBox1\Assets\audio\Master.strings.bank" />
     <None Include="..\SandBox1\Assets\Configs\commands.json" />
