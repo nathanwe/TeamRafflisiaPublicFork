@@ -425,9 +425,15 @@
       },
       "TRANSFORM": {
         "position": {
+<<<<<<< Updated upstream
           "x": -10.071999549865723,
           "y": -2.7995553016662598,
           "z": 3.5902504920959473
+=======
+          "x": -8.755854606628418,
+          "y": -2.7995543479919434,
+          "z": 2.9750657081604004
+>>>>>>> Stashed changes
         },
         "scale": {
           "x": 0.009999999776482582,
@@ -458,9 +464,15 @@
         "Gravity": true,
         "Mass": 3.0,
         "Velocity": {
+<<<<<<< Updated upstream
           "x": 0.16668200492858887,
           "y": 0.04000367224216461,
           "z": 0.0
+=======
+          "x": -0.10880181193351746,
+          "y": 0.04004385322332382,
+          "z": -0.05437885597348213
+>>>>>>> Stashed changes
         },
         "Accelereation": {
           "x": 0.0,
@@ -533,9 +545,15 @@
       },
       "TRANSFORM": {
         "position": {
+<<<<<<< Updated upstream
           "x": 15.0,
           "y": -0.0,
           "z": 0.0
+=======
+          "x": -6.809999942779541,
+          "y": -2.450000047683716,
+          "z": -8.172667503356934
+>>>>>>> Stashed changes
         },
         "scale": {
           "x": 1.0,
@@ -563,11 +581,16 @@
           "y": 5.960465188081798e-08,
           "z": 0.0
         },
+<<<<<<< Updated upstream
         "Magnitude": -15.0
+=======
+        "Magnitude": 6.666329860687256
+>>>>>>> Stashed changes
       },
       "STILL_BODY": {
         "Shape": 1,
         "Normal": {
+<<<<<<< Updated upstream
           "x": 0.5,
           "y": 0.5,
           "z": 0.0
@@ -623,8 +646,13 @@
           "x": 0.0,
           "y": 0.5,
           "z": 0.5
+=======
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+>>>>>>> Stashed changes
         },
-        "Magnitude": 0.0
+        "Magnitude": 1.0
       },
       "TAG": {
         "uniqueName": "PhysicsPlane3",
@@ -923,9 +951,15 @@
       },
       "TRANSFORM": {
         "position": {
+<<<<<<< Updated upstream
           "x": 15.0,
           "y": -0.0,
           "z": 0.0
+=======
+          "x": -9.482003211975098,
+          "y": -2.7989258766174316,
+          "z": 2.0504026412963867
+>>>>>>> Stashed changes
         },
         "scale": {
           "x": 1.0,
@@ -947,11 +981,26 @@
         "Alpha": 1.0
       },
       "COLLIDER": {
+<<<<<<< Updated upstream
         "Shape": 1,
         "Normal": {
           "x": -1.0,
           "y": 5.960465188081798e-08,
           "z": 0.0
+=======
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "MOVING_BODY": {
+        "Elasticity": 0.5,
+        "Friction": 1.0,
+        "Gravity": true,
+        "Mass": 3.0,
+        "Velocity": {
+          "x": 0.16679340600967407,
+          "y": 0.07333368062973022,
+          "z": -0.008227810263633728
+>>>>>>> Stashed changes
         },
         "Magnitude": -15.0
       },
@@ -969,6 +1018,7 @@
         "category": "PhysicsPlane1"
       }
     },
+<<<<<<< Updated upstream
     {
       "MODEL": {
         "path": "../SandBox1/Assets/models/plane.obj"
@@ -1021,6 +1071,11 @@
         "category": "PhysicsPlane1"
       }
     },
+=======
+    null,
+    null,
+    null,
+>>>>>>> Stashed changes
     {
       "MODEL": {
         "path": "../SandBox1/Assets/models/Vase/model.obj"
@@ -1204,9 +1259,15 @@
       },
       "TRANSFORM": {
         "position": {
+<<<<<<< Updated upstream
           "x": -19.468015670776367,
           "y": 1.4604445695877075,
           "z": 3.888545036315918
+=======
+          "x": -19.89913558959961,
+          "y": 1.4604445695877075,
+          "z": 3.208954095840454
+>>>>>>> Stashed changes
         },
         "scale": {
           "x": 0.009999999776482582,
@@ -1237,9 +1298,15 @@
         "Gravity": true,
         "Mass": 3.0,
         "Velocity": {
+<<<<<<< Updated upstream
           "x": 0.16667699813842773,
           "y": 0.04000372439622879,
           "z": 0.0
+=======
+          "x": 0.023154810070991516,
+          "y": 0.04000042378902435,
+          "z": -0.019093751907348633
+>>>>>>> Stashed changes
         },
         "Accelereation": {
           "x": 0.0,
@@ -1258,6 +1325,7 @@
         "category": ""
       }
     },
+<<<<<<< Updated upstream
     {
       "MODEL": {
         "path": "../SandBox1/Assets/models/plane.obj"
@@ -1414,6 +1482,11 @@
         "category": "PhysicsPlane1"
       }
     },
+=======
+    null,
+    null,
+    null,
+>>>>>>> Stashed changes
     {
       "MODEL": {
         "path": "../SandBox1/Assets/models/Vase/model.obj"
@@ -1706,9 +1779,15 @@
       },
       "TRANSFORM": {
         "position": {
+<<<<<<< Updated upstream
           "x": -22.03700065612793,
           "y": 27.3799991607666,
           "z": 2.3057665824890137
+=======
+          "x": -23.1299991607666,
+          "y": 28.139999389648438,
+          "z": 3.319999933242798
+>>>>>>> Stashed changes
         },
         "scale": {
           "x": 0.009999999776482582,
@@ -1740,8 +1819,13 @@
         "Mass": 3.0,
         "Velocity": {
           "x": 0.0,
+<<<<<<< Updated upstream
           "y": 0.04000348597764969,
           "z": 0.16667601466178894
+=======
+          "y": 0.04000032693147659,
+          "z": 0.0
+>>>>>>> Stashed changes
         },
         "Accelereation": {
           "x": 0.0,
@@ -1754,6 +1838,7 @@
       },
       "GAME_LOGIC": [
         "PLAYER"
+<<<<<<< Updated upstream
       ]
     },
     {
@@ -1907,11 +1992,17 @@
         },
         "Magnitude": 0.0
       },
+=======
+      ],
+>>>>>>> Stashed changes
       "TAG": {
-        "uniqueName": "PhysicsPlane3",
-        "category": "PhysicsPlane1"
+        "uniqueName": "",
+        "category": ""
       }
     },
+    null,
+    null,
+    null,
     {
       "MODEL": {
         "path": "../SandBox1/Assets/models/Vase/model.obj"
@@ -2109,5 +2200,11 @@
         "category": "PhysicsPlane1"
       }
     }
-  ]
+  ],
+  "-1": null,
+  "-2": null,
+  "-3": null,
+  "4": null,
+  "5": null,
+  "6": null
 }
