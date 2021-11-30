@@ -38,7 +38,7 @@ function UpdateSlider(dt, e)
 			timers[e] = timers[e] - cycleTime
 			directions[e] = directions[e] * -1
 		end
-	--AddToVQS(e, 0, 0, speed*directions[e]*dt)
+	AddToVQS(e, 0, 0, speed*directions[e]*dt)
 	--UpdatePhysicsCollider()
 end
 
