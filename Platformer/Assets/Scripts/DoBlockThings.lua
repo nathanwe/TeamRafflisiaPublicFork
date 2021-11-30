@@ -57,12 +57,12 @@ function HandleEventBlock(eventData)
 			--	print(x,y, "pair")
 			--end
 			if totaloutblocks[1] < 3 then
-				AddToVQS(eventData.e1, 0, 10, 0)
+				AddToVQS(eventData.e1, 0, 0, 6)
 				blockStatus[eventData.e1] = 1
 				totaloutblocks[1] = totaloutblocks[1] +1
 			end
 		elseif blockStatus[eventData.e1] == 1 then
-			AddToVQS(eventData.e1, 0, -10, 0)
+			AddToVQS(eventData.e1, 0, 0, -6)
 			blockStatus[eventData.e1] = 0
 			totaloutblocks[1] = totaloutblocks[1] -1
 		end

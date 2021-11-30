@@ -350,6 +350,9 @@
     <Media Include="..\SandBox1\Assets\audio\VaporMaster.wav" />
     <Media Include="..\SandBox1\Assets\audio\WinEffect.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Platformer\Assets\Scripts\DoBallThings.lua" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

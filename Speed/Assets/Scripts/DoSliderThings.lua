@@ -39,7 +39,7 @@ function UpdateSlider(dt, e)
 			directions[e] = directions[e] * -1
 		end
 	--AddToVQS(e, 0, 0, speed*directions[e]*dt)
-	UpdatePhysicsCollider()
+	--UpdatePhysicsCollider()
 end
 
 function HandleEventSlider(eventData)

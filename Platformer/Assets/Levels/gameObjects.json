@@ -39,5 +39,65 @@
       "uniqueName": "1",
       "category": "Cube"
     }
+  },
+  "ball": {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/PokemonBall/model.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 24.215999603271484,
+        "y": 31.628999710083008,
+        "z": 37.40999984741211
+      },
+      "scale": {
+        "x": 0.029999999329447746,
+        "y": 0.029999999329447746,
+        "z": 0.029999999329447746
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/models/PokemonBall/albedo.jpg",
+      "MetallicPath": "../Platformer/Assets/models/PokemonBall/metallic.jpg",
+      "NormalPath": "../Platformer/Assets/models/PokemonBall/normal.jpg",
+      "RoughnessPath": "../Platformer/Assets/models/PokemonBall/roughness.jpg",
+      "Alpha": 1.0
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 2.930000066757202
+    },
+    "MOVING_BODY": {
+      "Elasticity": 0.0,
+      "Friction": 0.0,
+      "Gravity": true,
+      "Mass": 1.1799999475479126,
+      "Velocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Accelereation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "CollisionType": 0,
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "TAG": {
+      "uniqueName": "ball",
+      "category": "ball"
+    },
+    "GAME_LOGIC": [
+      "PLATFORMER_BALL"
+    ]
   }
 }

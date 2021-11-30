@@ -105,6 +105,10 @@ void Engine::Run()
 		{
 			PhysicsSys.Update(DeltaTime());
 			DoGameLogicScriptSys.Update(DeltaTime());
+			//update physics after lua changes stuff
+			PhysicsSys.UpdatePosition();
+			PhysicsSys.UpdateColliders();
+
 			CameraControlSys.Update(DeltaTime());
 		}
 		

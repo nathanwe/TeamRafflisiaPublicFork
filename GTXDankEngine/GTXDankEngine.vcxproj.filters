@@ -937,4 +937,9 @@
       <Filter>SandBox1\audio</Filter>
     </Media>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\Platformer\Assets\Scripts\DoBallThings.lua">
+      <Filter>Platformer\Scripts</Filter>
+    </Text>
+  </ItemGroup>
 </Project>

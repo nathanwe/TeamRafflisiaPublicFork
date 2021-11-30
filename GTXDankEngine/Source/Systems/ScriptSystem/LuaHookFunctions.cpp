@@ -437,6 +437,8 @@ int lua_CreateEntity(lua_State* L)
     std::string str = lua_tostring(L, 1);
     Entity e = engine.GameObjectFac.CreateObject(str);
     lua_pushinteger(L, static_cast<int>(e));
+
+    
     return 1;
 }
 
