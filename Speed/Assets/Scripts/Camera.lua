@@ -1,6 +1,7 @@
 --Camera
 
 function Init()
+	SetCameraPitchYaw(0, 3.14)
 	Set3rdPerson(true)
 	Set3rdPersonDistance(10)
 end

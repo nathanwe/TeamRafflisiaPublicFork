@@ -900,6 +900,13 @@ int lua_UpdatePhysicsCollider(lua_State* L)
     return 0;
 }
 
+int lua_SetCameraPitchYaw(lua_State* L)
+{
+    engine.GraphicsSys.camera.pitch = lua_tonumber(L, 1);
+    engine.GraphicsSys.camera.yaw = lua_tonumber(L, 2);
+    return 0;
+}
+
 int lua_SetCameraOffest(lua_State* L)
 {
     engine.GraphicsSys.camera.isOffset = lua_toboolean(L, 1);

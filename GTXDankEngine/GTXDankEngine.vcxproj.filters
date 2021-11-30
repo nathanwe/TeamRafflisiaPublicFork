@@ -136,9 +136,6 @@
     <Filter Include="Header Files\Systems\ScriptSystem">
       <UniqueIdentifier>{71857346-95df-4347-9750-96a52bc59b2a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Systems\ScriptSystem">
-      <UniqueIdentifier>{360e0d18-7e70-4fd1-93e2-b870d53a068e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Components\GameLogicCatagoryComponent">
       <UniqueIdentifier>{1dad89c4-adf2-4a71-b54b-0a1bb1019505}</UniqueIdentifier>
     </Filter>
@@ -304,6 +301,9 @@
     <Filter Include="TopDownFighter\Levels">
       <UniqueIdentifier>{386eb69e-1ee2-4b7c-b02b-db326986aaf0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Speed\Levels\ScriptSystem">
+      <UniqueIdentifier>{360e0d18-7e70-4fd1-93e2-b870d53a068e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Skybox.shader">
@@ -429,9 +429,6 @@
     <None Include="..\SandBox1\Assets\Scripts\Camera.lua">
       <Filter>SandBox1\Scripts</Filter>
     </None>
-    <None Include="..\Platformer\Assets\Scripts\Camera.lua">
-      <Filter>Platformer\Scripts</Filter>
-    </None>
     <None Include="..\Platformer\Assets\Scripts\CategoryList.lua">
       <Filter>Platformer\Scripts</Filter>
     </None>
@@ -458,6 +455,9 @@
     </None>
     <None Include="..\Speed\Assets\Scripts\DoSliderThings.lua">
       <Filter>Speed\Scripts</Filter>
+    </None>
+    <None Include="..\Platformer\Assets\Scripts\Camera.lua">
+      <Filter>Speed\Levels</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -830,7 +830,7 @@
       <Filter>Source Files\Systems\GraphicsSystem\Shadow</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\ScriptSystem\LuaHookFunctions.cpp">
-      <Filter>Source Files\Systems\ScriptSystem</Filter>
+      <Filter>Speed\Levels\ScriptSystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\FBO.cpp">
       <Filter>Source Files\Systems\GraphicsSystem</Filter>
@@ -872,7 +872,7 @@
       <Filter>Source Files\Systems\GraphicsSystem\Sky</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\ScriptSystem\ScriptSystem.cpp">
-      <Filter>Source Files\Systems\ScriptSystem</Filter>
+      <Filter>Speed\Levels\ScriptSystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\Core\Pathfinder.cpp">
       <Filter>Source Files\Core</Filter>
