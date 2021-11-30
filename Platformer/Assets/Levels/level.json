@@ -113,7 +113,7 @@
       "TRANSFORM": {
         "position": {
           "x": 24.215999603271484,
-          "y": 61.3489990234375,
+          "y": 31.628999710083008,
           "z": 37.40999984741211
         },
         "scale": {
@@ -139,10 +139,32 @@
         "Shape": 0,
         "Radius": 2.930000066757202
       },
+      "MOVING_BODY": {
+        "Elasticity": 0.0,
+        "Friction": 0.0,
+        "Gravity": true,
+        "Mass": 1.1799999475479126,
+        "Velocity": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "Accelereation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "CollisionType": 0,
+        "Shape": 0,
+        "Radius": 1.0
+      },
       "TAG": {
         "uniqueName": "ball",
-        "category": ""
-      }
+        "category": "ball"
+      },
+      "GAME_LOGIC": [
+        "PLATFORMER_BALL"
+      ]
     },
     {
       "MODEL": {
@@ -151,7 +173,7 @@
       "TRANSFORM": {
         "position": {
           "x": 25.055999755859375,
-          "y": 53.659000396728516,
+          "y": 24.979000091552734,
           "z": 37.33000183105469
         },
         "scale": {
@@ -184,9 +206,9 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": 5.055999755859375,
-          "y": 50.87900161743164,
-          "z": 42.66999816894531
+          "x": -5.173999786376953,
+          "y": 15.529000282287598,
+          "z": 43.47999954223633
         },
         "scale": {
           "x": 3.0199999809265137,
@@ -217,6 +239,43 @@
       "TAG": {
         "uniqueName": "1",
         "category": "Cube"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "Assets/Defaults/Sphere.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -5.720911026000977,
+          "y": 2.195723295211792,
+          "z": 2.90484356880188
+        },
+        "scale": {
+          "x": 0.5,
+          "y": 0.5,
+          "z": 0.5
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "Alpha": 1.0
+      },
+      "GAME_LOGIC": [
+        "PLAYER"
+      ],
+      "TAG": {
+        "uniqueName": "ball",
+        "category": "adsfad"
       }
     }
   ]

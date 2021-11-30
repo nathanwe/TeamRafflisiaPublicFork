@@ -1,5 +1,6 @@
 --Playerthings
 local imguiControledEntity = -1
+local speed = 10
 
 function SavePlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
@@ -45,19 +46,29 @@ function HandleEventPlayer(eventData)
 	end
 end
 
+
+
 function HandleEventPerEntityPlayer(e, eventData)
+	if eventData.type == 7 then
+		DeleteEntity(e)
+	end
 	if eventData.type == 8 then
+		camerax, cameray, cameraz = GetCameraOrientation()
+		--print( "camera at", camerax, cameray, cameraz)
+		mag = math.sqrt(camerax * camerax + cameraz * cameraz)
+		newx = camerax/mag
+		newz = cameraz/mag
 		if eventData.stringData1 == "Up" then
-			AddToVQS(e, 0, 10 *eventData.floatData1, 0)
+			AddToVQS(e, speed * eventData.floatData1 * newx, speed * eventData.floatData1 * newz, 0)
 		end
 		if eventData.stringData1 == "Down" then
-			AddToVQS(e, 0, -10 * eventData.floatData1, 0)
+			AddToVQS(e, -speed * eventData.floatData1 * newx,  -speed * eventData.floatData1 * newz, 0)
 		end
 		if eventData.stringData1 == "Left" then
-			AddToVQS(e, -10 * eventData.floatData1, 0, 0)
+			AddToVQS(e, speed * eventData.floatData1 * newz, 0, -speed * eventData.floatData1 * newx)
 		end
 		if eventData.stringData1 == "Right" then
-			AddToVQS(e, 10 * eventData.floatData1, 0, 0)
+			AddToVQS(e, -speed * eventData.floatData1 * newz, 0, speed * eventData.floatData1 * newx)
 		end
 	end
 end

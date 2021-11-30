@@ -2,7 +2,10 @@
 #include "PostProcess.h"
 #include "../Quad.h"
 #include "../FBO.h"
+#include "../Core/ResourceManager.h"
 
+#include "../Core/Texture.h"
+#include "../Core/Engine.h"
 
 bool PostProcess::Init()
 {
@@ -26,6 +29,14 @@ void PostProcess::Render(const FBO& fbo)
 	shader->setFloat("exposure", Exposure);
 
 	shader->setTexture("Scene", fbo.GetColorAttachment());
+
+	// should be replaced by using resource manager
+
+	ResourceHandle<Texture>* crossHair = TextureResourceManger.GetResourceHandle("Assets/Textures/CrossHair.png");
+	//Texture crossHair("Assets/Textures/CrossHair.png");
+	//crossHair.OnLoad();
+	shader->setTexture("CrossHair", crossHair->GetPointer()->GetID());
+
 	Quad().Draw(*shader);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);

@@ -88,9 +88,6 @@ void Skybox::Init()
 
 void Skybox::Render(glm::mat4 view, glm::mat4 proj, GLuint fbo)
 {
-
-
-
 	glBindFramebuffer(GL_FRAMEBUFFER, fbo);
 
 	// draw skybox as last

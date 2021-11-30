@@ -1,11 +1,11 @@
 --WhereTheGameAt
 
 function Init()
-	--SetGamePath("../SandBox1/")
+	SetGamePath("../SandBox1/")
 	--SetGamePath("../FPS/")
 	--SetGamePath("../Platformer/")
 	--SetGamePath("../TopDownFighter/")
-	SetGamePath("../Speed/")
+	--SetGamePath("../Speed/")
 end
 
 function Update(dt)
