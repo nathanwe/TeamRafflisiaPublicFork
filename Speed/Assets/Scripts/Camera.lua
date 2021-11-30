@@ -1,7 +1,7 @@
 --Camera
 
 function Init()
-	Set3rdPerson(false)
+	Set3rdPerson(true)
 	Set3rdPersonDistance(10)
 end
 

@@ -39,6 +39,241 @@
           "y": 0.0,
           "z": 0.0
         }
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -20.0,
+          "y": 20.0,
+          "z": 20.0
+        },
+        "scale": {
+          "x": 5.0,
+          "y": 5.0,
+          "z": 5.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "LIGHT": {
+        "Color": {
+          "x": 1.0,
+          "y": 0.6000000238418579,
+          "z": 0.6000000238418579
+        },
+        "Intensity": {
+          "x": 3.0,
+          "y": 3.0,
+          "z": 3.0
+        },
+        "LightType": 0,
+        "Target": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        }
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/PokemonBall/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -20.700000762939453,
+          "y": -2.799703598022461,
+          "z": 2.6500000953674316
+        },
+        "scale": {
+          "x": 0.009999999776482582,
+          "y": 0.009999999776482582,
+          "z": 0.009999999776482582
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/models/PokemonBall/albedo.jpg",
+        "MetallicPath": "../SandBox1/Assets/models/PokemonBall/metallic.jpg",
+        "NormalPath": "../SandBox1/Assets/models/PokemonBall/normal.jpg",
+        "RoughnessPath": "../SandBox1/Assets/models/PokemonBall/roughness.jpg",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "MOVING_BODY": {
+        "Elasticity": 0.5,
+        "Friction": 1.0,
+        "Gravity": true,
+        "Mass": 3.0,
+        "Velocity": {
+          "x": 0.0,
+          "y": -0.04666631668806076,
+          "z": 0.0
+        },
+        "Accelereation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "CollisionType": 0,
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "GAME_LOGIC": [
+        "PLAYER"
+      ]
+    },
+    null,
+    null,
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/Vase/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 14.569999694824219,
+          "y": -3.6700000762939453,
+          "z": 1.8799999952316284
+        },
+        "scale": {
+          "x": 1.0,
+          "y": 1.0,
+          "z": 1.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/models/Vase/albedo.jpg",
+        "MetallicPath": "../SandBox1/Assets/models/Vase/metallic.jpg",
+        "NormalPath": "../SandBox1/Assets/models/Vase/normal.jpg",
+        "RoughnessPath": "../SandBox1/Assets/models/Vase/roughness.jpg",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 0,
+        "Radius": 2.0
+      },
+      "STILL_BODY": {
+        "Shape": 0,
+        "Radius": 2.0
+      },
+      "GAME_LOGIC": [
+        "GOAL_ZONE"
+      ]
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -2.609999895095825,
+          "y": -3.799999952316284,
+          "z": 2.0199999809265137
+        },
+        "scale": {
+          "x": 20.0,
+          "y": 1.0,
+          "z": 3.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": -3.799999952316284
+      },
+      "STILL_BODY": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 0.0
+      },
+      "TAG": {
+        "uniqueName": "PhysicsPlane1",
+        "category": "PhysicsPlane1"
+      }
+    }
+  ],
+  "1": [
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/Sphere/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 3.5,
+          "y": 2.9617629051208496,
+          "z": 4.0
+        },
+        "scale": {
+          "x": 5.0,
+          "y": 5.0,
+          "z": 5.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "LIGHT": {
+        "Color": {
+          "x": 1.0,
+          "y": 0.800000011920929,
+          "z": 0.0
+        },
+        "Intensity": {
+          "x": 5.0,
+          "y": 5.0,
+          "z": 5.0
+        },
+        "LightType": 1,
+        "Target": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        }
       },
       "TAG": {
         "uniqueName": "",
@@ -305,7 +540,7 @@
       }
     }
   ],
-  "1": [
+  "2": [
     {
       "MODEL": {
         "path": "../SandBox1/Assets/models/Sphere/model.obj"
@@ -394,9 +629,9 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": -8.755854606628418,
-          "y": -2.7995543479919434,
-          "z": 2.9750657081604004
+          "x": -23.1299991607666,
+          "y": 27.090444564819336,
+          "z": 3.319999933242798
         },
         "scale": {
           "x": 0.009999999776482582,
@@ -427,9 +662,9 @@
         "Gravity": true,
         "Mass": 3.0,
         "Velocity": {
-          "x": -0.10880181193351746,
-          "y": 0.04004385322332382,
-          "z": -0.05437885597348213
+          "x": 0.0,
+          "y": 0.03999992460012436,
+          "z": 0.0
         },
         "Accelereation": {
           "x": 0.0,
@@ -444,117 +679,21 @@
         "PLAYER"
       ]
     },
-    {
-      "MODEL": {
-        "path": "../SandBox1/Assets/models/plane.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 0.0,
-          "y": -5.0,
-          "z": 0.0
-        },
-        "scale": {
-          "x": 1.0,
-          "y": 1.0,
-          "z": 1.0
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
-        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
-        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
-        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
-        "Alpha": 1.0
-      },
-      "COLLIDER": {
-        "Shape": 1,
-        "Normal": {
-          "x": 0.0,
-          "y": 1.0,
-          "z": 0.0
-        },
-        "Magnitude": -5.0
-      },
-      "STILL_BODY": {
-        "Shape": 1,
-        "Normal": {
-          "x": 0.0,
-          "y": 1.0,
-          "z": 0.0
-        },
-        "Magnitude": 0.0
-      },
-      "TAG": {
-        "uniqueName": "PhysicsPlane1",
-        "category": "PhysicsPlane1"
-      }
-    },
-    {
-      "MODEL": {
-        "path": "../SandBox1/Assets/models/plane.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": -6.809999942779541,
-          "y": -2.450000047683716,
-          "z": -8.172667503356934
-        },
-        "scale": {
-          "x": 1.0,
-          "y": 1.0,
-          "z": 1.0
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.7071067690849304,
-          "w": 0.7071067690849304
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
-        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
-        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
-        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
-        "Alpha": 1.0
-      },
-      "COLLIDER": {
-        "Shape": 1,
-        "Normal": {
-          "x": -1.0,
-          "y": 5.960465188081798e-08,
-          "z": 0.0
-        },
-        "Magnitude": 6.666329860687256
-      },
-      "STILL_BODY": {
-        "Shape": 1,
-        "Normal": {
-          "x": 0.0,
-          "y": 1.0,
-          "z": 0.0
-        },
-        "Magnitude": 1.0
-      },
-      "TAG": {
-        "uniqueName": "PhysicsPlane3",
-        "category": "PhysicsPlane1"
-      }
-    },
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
+    null,
     {
       "MODEL": {
         "path": "../SandBox1/Assets/models/Vase/model.obj"
       },
       "TRANSFORM": {
         "position": {
-          "x": 3.4200000762939453,
+          "x": 82.37000274658203,
           "y": -3.6700000762939453,
           "z": 2.7699999809265137
         },
@@ -595,7 +734,7 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": -2.609999895095825,
+          "x": 76.66999816894531,
           "y": -3.799999952316284,
           "z": 2.0199999809265137
         },
@@ -638,6 +777,110 @@
       },
       "TAG": {
         "uniqueName": "PhysicsPlane1",
+        "category": "PhysicsPlane1"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 25.420000076293945,
+          "y": 13.1899995803833,
+          "z": 2.0199999809265137
+        },
+        "scale": {
+          "x": 2.368000030517578,
+          "y": 1.0,
+          "z": 2.868000030517578
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.2164396047592163,
+          "w": 0.9762960076332092
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": -0.42261824011802673,
+          "y": 0.9063078165054321,
+          "z": 0.0
+        },
+        "Magnitude": 1.2112436294555664
+      },
+      "STILL_BODY": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 0.0
+      },
+      "TAG": {
+        "uniqueName": "PhysicsPlane2",
+        "category": "PhysicsPlane1"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -21.950000762939453,
+          "y": 26.09000015258789,
+          "z": 2.0199999809265137
+        },
+        "scale": {
+          "x": 3.2739999294281006,
+          "y": 1.0,
+          "z": 4.177999973297119
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 26.09000015258789
+      },
+      "STILL_BODY": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 0.0
+      },
+      "TAG": {
+        "uniqueName": "PhysicsPlane2",
         "category": "PhysicsPlane1"
       }
     }
@@ -732,7 +975,7 @@
       "TRANSFORM": {
         "position": {
           "x": -23.1299991607666,
-          "y": 28.139999389648438,
+          "y": 27.090444564819336,
           "z": 3.319999933242798
         },
         "scale": {
@@ -765,7 +1008,7 @@
         "Mass": 3.0,
         "Velocity": {
           "x": 0.0,
-          "y": 0.04000032693147659,
+          "y": 0.04000052064657211,
           "z": 0.0
         },
         "Accelereation": {
@@ -781,164 +1024,11 @@
         "PLAYER"
       ]
     },
-    {
-      "MODEL": {
-        "path": "../SandBox1/Assets/models/plane.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 0.0,
-          "y": -5.0,
-          "z": 0.0
-        },
-        "scale": {
-          "x": 1.0,
-          "y": 1.0,
-          "z": 1.0
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
-        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
-        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
-        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
-        "Alpha": 1.0
-      },
-      "COLLIDER": {
-        "Shape": 1,
-        "Normal": {
-          "x": 0.0,
-          "y": 1.0,
-          "z": 0.0
-        },
-        "Magnitude": -5.0
-      },
-      "STILL_BODY": {
-        "Shape": 1,
-        "Normal": {
-          "x": 0.0,
-          "y": 1.0,
-          "z": 0.0
-        },
-        "Magnitude": 0.0
-      },
-      "TAG": {
-        "uniqueName": "PhysicsPlane1",
-        "category": "PhysicsPlane1"
-      }
-    },
-    {
-      "MODEL": {
-        "path": "../SandBox1/Assets/models/plane.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 15.0,
-          "y": -0.0,
-          "z": 0.0
-        },
-        "scale": {
-          "x": 1.0,
-          "y": 1.0,
-          "z": 1.0
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.7071067690849304,
-          "w": 0.7071067690849304
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
-        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
-        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
-        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
-        "Alpha": 1.0
-      },
-      "COLLIDER": {
-        "Shape": 1,
-        "Normal": {
-          "x": -1.0,
-          "y": 5.960465188081798e-08,
-          "z": 0.0
-        },
-        "Magnitude": -15.0
-      },
-      "STILL_BODY": {
-        "Shape": 1,
-        "Normal": {
-          "x": 0.5,
-          "y": 0.5,
-          "z": 0.0
-        },
-        "Magnitude": 0.0
-      },
-      "TAG": {
-        "uniqueName": "PhysicsPlane2",
-        "category": "PhysicsPlane1"
-      }
-    },
     null,
     null,
-    {
-      "MODEL": {
-        "path": "../SandBox1/Assets/models/plane.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": -20.0,
-          "y": -10.0,
-          "z": 0.0
-        },
-        "scale": {
-          "x": 1.0,
-          "y": 1.0,
-          "z": 1.0
-        },
-        "rotation": {
-          "x": 0.7071067690849304,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 0.7071067690849304
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
-        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
-        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
-        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
-        "Alpha": 1.0
-      },
-      "COLLIDER": {
-        "Shape": 1,
-        "Normal": {
-          "x": 0.0,
-          "y": 5.960465188081798e-08,
-          "z": 1.0
-        },
-        "Magnitude": -5.960465045973251e-07
-      },
-      "STILL_BODY": {
-        "Shape": 1,
-        "Normal": {
-          "x": 0.0,
-          "y": 0.5,
-          "z": 0.5
-        },
-        "Magnitude": 0.0
-      },
-      "TAG": {
-        "uniqueName": "",
-        "category": ""
-      }
-    },
+    null,
+    null,
+    null,
     null,
     null,
     null,
@@ -948,9 +1038,9 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": 3.4200000762939453,
-          "y": -3.6700000762939453,
-          "z": 2.7699999809265137
+          "x": -8.130000114440918,
+          "y": -7.269999980926514,
+          "z": -0.6499999761581421
         },
         "scale": {
           "x": 1.0,
@@ -989,7 +1079,7 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": -2.609999895095825,
+          "x": 76.66999816894531,
           "y": -3.799999952316284,
           "z": 2.0199999809265137
         },
@@ -1041,8 +1131,8 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": -15.449999809265137,
-          "y": 11.789999961853027,
+          "x": 25.420000076293945,
+          "y": 13.1899995803833,
           "z": 2.0199999809265137
         },
         "scale": {
@@ -1052,9 +1142,9 @@
         },
         "rotation": {
           "x": 0.0,
-          "y": -0.0,
-          "z": -0.13917310535907745,
-          "w": 0.9902680516242981
+          "y": 0.0,
+          "z": 0.2164396047592163,
+          "w": 0.9762960076332092
         }
       },
       "MATERIAL": {
@@ -1067,11 +1157,11 @@
       "COLLIDER": {
         "Shape": 1,
         "Normal": {
-          "x": 0.27563735842704773,
-          "y": 0.9612616896629333,
+          "x": -0.42261824011802673,
+          "y": 0.9063078165054321,
           "z": 0.0
         },
-        "Magnitude": 7.07467794418335
+        "Magnitude": 1.2112436294555664
       },
       "STILL_BODY": {
         "Shape": 1,
@@ -1123,7 +1213,527 @@
           "y": 1.0,
           "z": 0.0
         },
-        "Magnitude": 0.20000000298023224
+        "Magnitude": 26.09000015258789
+      },
+      "STILL_BODY": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 0.0
+      },
+      "TAG": {
+        "uniqueName": "PhysicsPlane2",
+        "category": "PhysicsPlane1"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -13.149999618530273,
+          "y": 23.75,
+          "z": 2.0199999809265137
+        },
+        "scale": {
+          "x": 6.0,
+          "y": 1.0,
+          "z": 4.177999973297119
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": -0.0,
+          "z": -0.1993679255247116,
+          "w": 0.9799246788024902
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.3907310962677002,
+          "y": 0.9205048680305481,
+          "z": 0.0
+        },
+        "Magnitude": 16.723876953125
+      },
+      "STILL_BODY": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 0.0
+      },
+      "TAG": {
+        "uniqueName": "PhysicsPlane2",
+        "category": "PhysicsPlane1"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -4.019999980926514,
+          "y": 21.420000076293945,
+          "z": 2.0199999809265137
+        },
+        "scale": {
+          "x": 3.628000020980835,
+          "y": 1.0,
+          "z": 4.177999973297119
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 21.420000076293945
+      },
+      "STILL_BODY": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 0.0
+      },
+      "TAG": {
+        "uniqueName": "PhysicsPlane2",
+        "category": "PhysicsPlane1"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -4.019999980926514,
+          "y": 18.399999618530273,
+          "z": 12.65999984741211
+        },
+        "scale": {
+          "x": 3.638000011444092,
+          "y": 1.0,
+          "z": 7.133999824523926
+        },
+        "rotation": {
+          "x": 0.2164396047592163,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 0.9762960076332092
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 0.9063078165054321,
+          "z": 0.42261824011802673
+        },
+        "Magnitude": 22.026411056518555
+      },
+      "STILL_BODY": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 0.0
+      },
+      "TAG": {
+        "uniqueName": "PhysicsPlane2",
+        "category": "PhysicsPlane1"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -4.019999980926514,
+          "y": 15.390000343322754,
+          "z": 23.290000915527344
+        },
+        "scale": {
+          "x": 3.628000020980835,
+          "y": 1.0,
+          "z": 4.177999973297119
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 15.390000343322754
+      },
+      "STILL_BODY": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 0.0
+      },
+      "TAG": {
+        "uniqueName": "PhysicsPlane2",
+        "category": "PhysicsPlane1"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -14.574999809265137,
+          "y": 11.390000343322754,
+          "z": 23.290000915527344
+        },
+        "scale": {
+          "x": 8.0,
+          "y": 1.0,
+          "z": 4.177999973297119
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.258819043636322,
+          "w": 0.9659258127212524
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": -0.5,
+          "y": 0.8660253882408142,
+          "z": 0.0
+        },
+        "Magnitude": 17.15152931213379
+      },
+      "STILL_BODY": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 0.0
+      },
+      "TAG": {
+        "uniqueName": "PhysicsPlane2",
+        "category": "PhysicsPlane1"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -25.3799991607666,
+          "y": 7.389999866485596,
+          "z": 23.290000915527344
+        },
+        "scale": {
+          "x": 3.882999897003174,
+          "y": 1.0,
+          "z": 4.177999973297119
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 7.389999866485596
+      },
+      "STILL_BODY": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 0.0
+      },
+      "TAG": {
+        "uniqueName": "PhysicsPlane2",
+        "category": "PhysicsPlane1"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -25.3799991607666,
+          "y": 2.700000047683716,
+          "z": 10.989999771118164
+        },
+        "scale": {
+          "x": 3.882999897003174,
+          "y": 1.0,
+          "z": 9.378999710083008
+        },
+        "rotation": {
+          "x": -0.258819043636322,
+          "y": -0.0,
+          "z": 0.0,
+          "w": 0.9659258127212524
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 0.8660253882408142,
+          "z": -0.5
+        },
+        "Magnitude": -3.156731367111206
+      },
+      "STILL_BODY": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 0.0
+      },
+      "TAG": {
+        "uniqueName": "PhysicsPlane2",
+        "category": "PhysicsPlane1"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -25.3700008392334,
+          "y": -1.9900000095367432,
+          "z": -1.309999942779541
+        },
+        "scale": {
+          "x": 3.882999897003174,
+          "y": 1.0,
+          "z": 4.177999973297119
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": -1.9900000095367432
+      },
+      "STILL_BODY": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 0.0
+      },
+      "TAG": {
+        "uniqueName": "PhysicsPlane2",
+        "category": "PhysicsPlane1"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -16.75,
+          "y": -4.730000019073486,
+          "z": -1.309999942779541
+        },
+        "scale": {
+          "x": 5.474999904632568,
+          "y": 1.0,
+          "z": 4.177999973297119
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": -0.0,
+          "z": -0.258819043636322,
+          "w": 0.9659258127212524
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.5,
+          "y": 0.8660253882408142,
+          "z": 0.0
+        },
+        "Magnitude": -12.47130012512207
+      },
+      "STILL_BODY": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 0.0
+      },
+      "TAG": {
+        "uniqueName": "PhysicsPlane2",
+        "category": "PhysicsPlane1"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../SandBox1/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -8.149999618530273,
+          "y": -7.460000038146973,
+          "z": -1.309999942779541
+        },
+        "scale": {
+          "x": 3.882999897003174,
+          "y": 1.0,
+          "z": 4.177999973297119
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+        "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+        "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+        "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": -1.9900000095367432
       },
       "STILL_BODY": {
         "Shape": 1,
@@ -1139,5 +1749,6 @@
         "category": "PhysicsPlane1"
       }
     }
-  ]
+  ],
+  "4": null
 }
