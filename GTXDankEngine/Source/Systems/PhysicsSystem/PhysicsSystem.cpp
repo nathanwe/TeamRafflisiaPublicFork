@@ -183,6 +183,42 @@ void PhysicsSystem::DetectCollision(float dt)
 					engine.DoGameLogicScriptSys.HandleEvent(ev);
 				}
 			}
+			// AABB - AABB
+			else if (c1->NarrowPhase.shape == Shape::AABB && c2->NarrowPhase.shape == Shape::AABB)
+			{
+				if (ReflectMovingAABBStaticAABB(itr1->second, c1, itr2->second, c2))
+				{
+					Event ev = Event(true);
+					ev.type = EventType::PHYSICS_COLLISION;
+					ev.e1 = itr1->first;
+					ev.e2 = itr2->first;
+					engine.DoGameLogicScriptSys.HandleEvent(ev);
+				}
+			}
+			// AABB - Plane
+			/*else if (c1->NarrowPhase.shape == Shape::AABB && c2->NarrowPhase.shape == Shape::PLANE)
+			{
+				if (ReflectMovingAABBStaticPlane(itr1->second, c1, itr2->second, c2))
+				{
+					Event ev = Event(true);
+					ev.type = EventType::PHYSICS_COLLISION;
+					ev.e1 = itr1->first;
+					ev.e2 = itr2->first;
+					engine.DoGameLogicScriptSys.HandleEvent(ev);
+				}
+			}*/
+			// Sphere - AABB
+			else if (c1->NarrowPhase.shape == Shape::SPHERE && c2->NarrowPhase.shape == Shape::AABB)
+			{
+				if (ReflectMovingSphereStaticAABB(itr1->second, c1, itr2->second, c2, dt))
+				{
+					Event ev = Event(true);
+					ev.type = EventType::PHYSICS_COLLISION;
+					ev.e1 = itr1->first;
+					ev.e2 = itr2->first;
+					engine.DoGameLogicScriptSys.HandleEvent(ev);
+				}
+			}
 		}
 	}
 }

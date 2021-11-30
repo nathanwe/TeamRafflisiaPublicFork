@@ -1850,7 +1850,7 @@
     },
     {
       "MODEL": {
-        "path": "../SandBox1/Assets/models/PokemonBall/model.obj"
+        "path": "../SandBox1/Assets/models/Cube.obj"
       },
       "TRANSFORM": {
         "position": {
@@ -1859,9 +1859,9 @@
           "z": 0.0
         },
         "scale": {
-          "x": 0.019999999552965164,
-          "y": 0.019999999552965164,
-          "z": 0.019999999552965164
+          "x": 2.0,
+          "y": 2.0,
+          "z": 2.0
         },
         "rotation": {
           "x": 0.0,
