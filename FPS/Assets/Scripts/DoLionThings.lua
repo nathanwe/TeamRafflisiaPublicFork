@@ -29,6 +29,8 @@ end
 
 
 function UpdateLion(dt, e)
+	--print("test")
+
 	if timers[e] == nil then
 		InitLion(e)
 	end

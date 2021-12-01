@@ -55,38 +55,67 @@ void DirectionCommand::Execute()
 
 	if (engine.InputSys.IsKeyPressed(keyboardCode[0]))
 	{
-		this->actionToExecute(MoveDirection::UP, 1.0f);
+		if (actionToExecute)
+			this->actionToExecute(MoveDirection::UP, 1.0f);
+		triggerEvent("Up");
 	}
 	if (axisValue2 < -engine.InputSys.deadzone)
 	{
-		this->actionToExecute(MoveDirection::UP, abs(axisValue2));
+		if (actionToExecute)
+			this->actionToExecute(MoveDirection::UP, abs(axisValue2));
+		triggerEvent("Up");
 	}
 
 	if (engine.InputSys.IsKeyPressed(keyboardCode[1]))
 	{
-		this->actionToExecute(MoveDirection::LEFT, 1.0f);
+		if (actionToExecute)
+			this->actionToExecute(MoveDirection::LEFT, 1.0f);
+		triggerEvent("Left");
 	}
 	if (axisValue < -engine.InputSys.deadzone)
 	{
-		this->actionToExecute(MoveDirection::LEFT, abs(axisValue));
+		if (actionToExecute)
+			this->actionToExecute(MoveDirection::LEFT, abs(axisValue));
+		triggerEvent("Left");
 	}
 
 	if (engine.InputSys.IsKeyPressed(keyboardCode[2]))
 	{
-		this->actionToExecute(MoveDirection::DOWN, 1.0f);
+		if (actionToExecute)
+			this->actionToExecute(MoveDirection::DOWN, 1.0f);
+		triggerEvent("Down");
 	}
 	if (axisValue2 > engine.InputSys.deadzone)
 	{
-		this->actionToExecute(MoveDirection::DOWN, axisValue2);
+		if (actionToExecute)
+			this->actionToExecute(MoveDirection::DOWN, axisValue2);
+		triggerEvent("Down");
 	}
 
 	if (engine.InputSys.IsKeyPressed(keyboardCode[3]))
 	{
-		this->actionToExecute(MoveDirection::RIGHT, 1.0f);
+		if (actionToExecute)
+			this->actionToExecute(MoveDirection::RIGHT, 1.0f);
+		triggerEvent("Right");
 	}
 	if (axisValue > engine.InputSys.deadzone)
 	{
-		this->actionToExecute(MoveDirection::RIGHT, axisValue);
+		if (actionToExecute)
+			this->actionToExecute(MoveDirection::RIGHT, axisValue);
+		triggerEvent("Right");
 	}
 
 }
+
+//event that send to lua script
+void DirectionCommand::triggerEvent(std::string commandName)
+{
+	Event ev = Event();
+	ev.type = EventType::COMMAND;
+	ev.thingsToEffect.insert(GameLogicCategories::PLAYER);
+	ev.floatData1 = engine.DeltaTime();
+	ev.stringData1 = commandName;
+	engine.DoGameLogicScriptSys.HandleEvent(ev);
+
+}
+

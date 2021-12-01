@@ -37,9 +37,12 @@ public:
 
 	double mouseX, mouseY;
 	//double* GetMouseChange();
-	bool IsMousePressed();
-	bool IsMouseTriggered();
-	bool IsMouseReleased();
+	bool IsLeftMousePressed();
+	bool IsLeftMouseTriggered();
+	bool IsLeftMouseReleased();
+	bool IsRightMousePressed();
+	bool IsRightMouseTriggered();
+	bool IsRightMouseReleased();
 
 	bool IsControllerActive(int controllerNo) { return gamepads[controllerNo].active; }
 	float GetControllerAxis(int controllerNo, int axis);

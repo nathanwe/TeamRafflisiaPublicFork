@@ -117,7 +117,7 @@ bool LevelEditorSystem::Init()
 void LevelEditorSystem::Update(float timeStamp)
 {
 	//level editor mode, assume it wouldnt change a lot so command pattern is not applied here
-	if (engine.InputSys.IsMouseTriggered())
+	if (engine.InputSys.IsLeftMouseTriggered())
 	{
 		if (ImGui::IsAnyItemHovered())
 			return;
@@ -290,7 +290,7 @@ void LevelEditorSystem::UpdateGUI()
 				InputText("ModelPath",
 					&modelCom->model->GetPointer()->path,
 					ImGuiInputTextFlags_CallbackCharFilter);
-				
+
 				if (ImGui::Button("Remove Model"))
 				{
 					ModelComponentPool.Delete(entityID);
@@ -343,7 +343,7 @@ void LevelEditorSystem::UpdateGUI()
 				InputText("NormalPath",
 					&matCom->material.NormalPath,
 					ImGuiInputTextFlags_CallbackCharFilter);
-				
+
 				CopyButton("CopyRoughnessPath", matCom->material.RoughnessPath);
 				ImGui::SameLine();
 				if (ImGui::Button("PasteRoughnessPath", ImVec2(32, 20)))
@@ -354,7 +354,7 @@ void LevelEditorSystem::UpdateGUI()
 				InputText("RoughnessPath",
 					&matCom->material.RoughnessPath,
 					ImGuiInputTextFlags_CallbackCharFilter);
-				
+
 				ImGui::DragFloat("Alpha", &matCom->material.Alpha, 0.01f);
 
 				if (ImGui::Button("Refresh Material"))
@@ -544,17 +544,41 @@ void LevelEditorSystem::UpdateGUI()
 		if (ImGui::CollapsingHeader("GameLogic(unfinished)"))
 		{
 			auto* gameLogicCom = GameLogicCategoryComponentPool.GetComponentByEntity(entityID);
-			if (gameLogicCom != nullptr){
-				for (auto category : gameLogicCom->categories)
+			if (gameLogicCom != nullptr)
+			{
+				for (int i = 1; i < static_cast<int>(GameLogicCategories::MAX_CATEGORIES); ++i)
 				{
-					Event ev = Event();
-					ev.thingsToEffect.insert(category);
-					ev.type = EventType::SEND_DATA_TO_IMGUI;
-					ev.e1 = entityID;
-					engine.DoGameLogicScriptSys.HandleEvent(ev);
+					
+					if (gameLogicCom->categories.find(static_cast<GameLogicCategories>(i)) != gameLogicCom->categories.end())
+					{
+						if (ImGui::Button((std::string("remove game logic ") + std::to_string(i)).c_str()))
+						{
+							gameLogicCom->categories.erase((static_cast<GameLogicCategories>(i)));
+						}
+						Event ev = Event();
+						ev.thingsToEffect.insert(static_cast<GameLogicCategories>(i));
+						ev.type = EventType::SEND_DATA_TO_IMGUI;
+						ev.e1 = entityID;
+						engine.DoGameLogicScriptSys.HandleEvent(ev);
+					}
+					else
+					{
+						if (ImGui::Button((std::string("Add game logic ") + std::to_string(i)).c_str()))
+						{
+							gameLogicCom->categories.insert(static_cast<GameLogicCategories>(i));
+						}
+					}
+				}
+			}
+			else
+			{
+				if (ImGui::Button("Add GameLogic"))
+				{
+					GameLogicCategoryComponentPool.Add(entityID, (std::vector<GameLogicCategories>()));
 				}
 			}
 		}
+
 
 		//add new component above here
 	}

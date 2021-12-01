@@ -1,3 +1,168 @@
 {
-
+  "LION": {
+    "MODEL": {
+      "path": "../FPS/Assets/models/Lion/model.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": -4.550000190734863,
+        "y": 0.08299999684095383,
+        "z": -7.2257914543151855
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../FPS/Assets/models/Lion/albedo.jpg",
+      "MetallicPath": "../FPS/Assets/models/Lion/metallic.jpg",
+      "NormalPath": "../FPS/Assets/models/Lion/normal.jpg",
+      "RoughnessPath": "../FPS/Assets/models/Lion/roughness.jpg",
+      "Alpha": 0.800000011920929
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "GAME_LOGIC": [
+      "ENEMY"
+    ],
+    "TAG": {
+      "uniqueName": "LION",
+      "category": "LION"
+    }
+  },
+  "PISTOL": {
+    "MODEL": {
+      "path": "../FPS/Assets/Models/Handgun/Handgun_obj.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 0.03999999910593033,
+        "y": -0.07999999821186066,
+        "z": 9.5
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.10452847182750702,
+        "z": 0.0,
+        "w": 0.9945219159126282
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../FPS/Assets/Models/Handgun/glock_17_gem5_low_DefaultMaterial_BaseColor.png",
+      "MetallicPath": "../FPS/Assets/Models/Handgun/glock_17_gem5_low_DefaultMaterial_Metallic.png",
+      "NormalPath": "../FPS/Assets/Models/Handgun/glock_17_gem5_low_DefaultMaterial_Normal.png",
+      "RoughnessPath": "../FPS/Assets/Models/Handgun/glock_17_gem5_low_DefaultMaterial_Roughness.png",
+      "Alpha": 1.0
+    },
+    "TAG": {
+      "uniqueName": "PISTOL",
+      "category": "PISTOL"
+    }
+  },
+  "PLANE": {
+    "MODEL": {
+      "path": "../FPS/Assets/models/plane.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": -0.10000000149011612,
+        "y": -0.6600000262260437,
+        "z": 7.860000133514404
+      },
+      "scale": {
+        "x": 10.0,
+        "y": 10.0,
+        "z": 10.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../SandBox1/Assets/Textures/PBR_Ice/albedo.tga",
+      "MetallicPath": "../SandBox1/Assets/Textures/plater/New_Graph_height.png",
+      "NormalPath": "../SandBox1/Assets/Textures/PBR_Ice/normal.tga",
+      "RoughnessPath": "../SandBox1/Assets/Textures/plater/roughness.png",
+      "Alpha": 1.0
+    },
+    "TAG": {
+      "uniqueName": "PLANE",
+      "category": "PLANE"
+    }
+  },
+  "Target": {
+    "MODEL": {
+      "path": "Assets/Defaults/Sphere.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": -1.702528476715088,
+        "y": 0.5,
+        "z": -3.200000047683716
+      },
+      "scale": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
+      "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+      "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
+      "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
+      "Alpha": 1.0
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "MOVING_BODY": {
+      "Elasticity": 0.0,
+      "Friction": 0.0,
+      "Gravity": true,
+      "Mass": 5.0,
+      "Velocity": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "Accelereation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "CollisionType": 0,
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "TAG": {
+      "uniqueName": "Target",
+      "category": "Target"
+    }
+  }
 }

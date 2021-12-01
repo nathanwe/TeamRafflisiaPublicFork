@@ -76,18 +76,18 @@ void Camera::Inputs(GLFWwindow* window)
 {
 	bool updated = false;
 
-	if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
-	{
-		if (firstClick)
-		{
-			glfwSetCursorPos(window, (width / 2), (height / 2));
-			firstClick = false;
-		}
+	//if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
+	//{
+		//if (firstClick)
+		//{
+		//	glfwSetCursorPos(window, (width / 2), (height / 2));
+		//	firstClick = false;
+		//}
 
 		updated = true;
 
-		double mouseX;
-		double mouseY;
+		double mouseX = 0;
+		double mouseY = 0;
 
 		glfwGetCursorPos(window, &mouseX, &mouseY);
 
@@ -104,9 +104,9 @@ void Camera::Inputs(GLFWwindow* window)
 		// Support for sound system; TODO remove
 		Orientation = glm::rotate(Orientation, glm::radians(-rotX * 180.f), glm::normalize(glm::cross(Orientation, Up)));
 		Orientation = glm::rotate(Orientation, glm::radians(-rotY * 180.f), Up);
-	}
-	else if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_RELEASE) {
-		firstClick = true;
+	//}
+	//else if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_RELEASE) {
+		//firstClick = true;
 
 		if (engine.InputSys.IsControllerActive(0)) {
 			updated = true;
@@ -134,7 +134,7 @@ void Camera::Inputs(GLFWwindow* window)
 			yaw += rotX;
 			pitch += rotY;
 		}
-	}
+	//}
 
 	if (updated)
 	{

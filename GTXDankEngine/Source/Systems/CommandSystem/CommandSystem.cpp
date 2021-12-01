@@ -61,6 +61,7 @@ bool CommandSystem::Init()
 	toggleMenuCommand.gamepadCode = 7;
 	toggleMenuCommand.keyPressType = KeyPressType::Press;
 
+	//all below control functions should be called at script side
 		setting.directionCommand.SetActionToExecute([&](auto dir, float scale)
 			{
 				Event ev = Event();
@@ -69,7 +70,7 @@ bool CommandSystem::Init()
 				ev.thingsToEffect.insert(GameLogicCategories::PLAYER);
 				ev.floatData1 = engine.DeltaTime();
 				glm::vec3 quatOrientation(sin(engine.GraphicsSys.camera.yaw) * cos(engine.GraphicsSys.camera.pitch), -sin(engine.GraphicsSys.camera.pitch), -cos(engine.GraphicsSys.camera.yaw) * cos(engine.GraphicsSys.camera.pitch));
-
+		
 				if (dir == MoveDirection::UP)
 				{
 					ev.stringData1 = "Up";
@@ -92,7 +93,7 @@ bool CommandSystem::Init()
 				}
 				engine.DoGameLogicScriptSys.HandleEvent(ev);
 			});
-
+		
 		engine.CommandSys.GetCommand("Space").SetActionToExecute([&]()
 			{
 				Event ev = Event();
@@ -112,9 +113,9 @@ bool CommandSystem::Init()
 				engine.GraphicsSys.camera.speed = 0.5f;
 			});
 
-		engine.CommandSys.GetCommand("Skill1").SetActionToExecute(SendLionEmitEvent);
+		//engine.CommandSys.GetCommand("Skill1").SetActionToExecute(SendLionEmitEvent);
 		engine.CommandSys.toggleMenuCommand.SetActionToExecute(SendMenuToggleEvent);
-		engine.CommandSys.GetCommand("Skill3").SetActionToExecute(SendLionDeleteEvent);
+		//engine.CommandSys.GetCommand("Skill3").SetActionToExecute(SendLionDeleteEvent);
 
 	return true;
 }
@@ -165,21 +166,36 @@ void CommandSystem::Update(float timeStamp)
 		}
 		else
 		{
-			int key = engine.InputSys.IsAnyKeyTriggered();
-			if (key != -1)
+			if (engine.InputSys.IsLeftMouseTriggered())
 			{
 				pendingKeyUpdate = false;
-				GetCommand(commandNamePendingKeyUpdate).keyboardcode = key;
+				GetCommand(commandNamePendingKeyUpdate).mouseLeftClick = true;
+				SerializeCommands();
+			}
+			else if (engine.InputSys.IsRightMouseTriggered())
+			{
+				pendingKeyUpdate = false;
+				GetCommand(commandNamePendingKeyUpdate).mouseRightClick = true;
 				SerializeCommands();
 			}
 			else
 			{
-				int key2 = engine.InputSys.IsAnyControllerTriggered();
-				if (key2 != -1)
+				int key = engine.InputSys.IsAnyKeyTriggered();
+				if (key != -1)
 				{
 					pendingKeyUpdate = false;
-					GetCommand(commandNamePendingKeyUpdate).gamepadCode = key2;
+					GetCommand(commandNamePendingKeyUpdate).keyboardcode = key;
 					SerializeCommands();
+				}
+				else
+				{
+					int key2 = engine.InputSys.IsAnyControllerTriggered();
+					if (key2 != -1)
+					{
+						pendingKeyUpdate = false;
+						GetCommand(commandNamePendingKeyUpdate).gamepadCode = key2;
+						SerializeCommands();
+					}
 				}
 			}
 		}
@@ -226,7 +242,12 @@ Command& CommandSystem::GetCommand(std::string name)
 {
 	auto command = setting.commands.find(name);
 	if (command == setting.commands.end())
-		assert("Command is not setup correcly.");
+	{
+		Command newCommand;
+		setting.commands[name] = newCommand;
+		return setting.commands[name];
+		//assert("Command is not setup correcly.");
+	}
 	return command->second;
 }
 

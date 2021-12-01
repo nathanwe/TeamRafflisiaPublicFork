@@ -29,6 +29,10 @@ inline void from_json(const ordered_json& j, PlayerSettings& settings) {
 	from_json(j["gamepadInvertedY"], settings.gamepadInvertedY);
 	from_json(j["directionCommand"], settings.directionCommand);
 	settings.commands = j["commands"].get<std::unordered_map<std::string, Command>>();
+	for (auto& [key, command] : settings.commands)
+	{
+		command.commandName = key;
+	}
 }
 
 #endif

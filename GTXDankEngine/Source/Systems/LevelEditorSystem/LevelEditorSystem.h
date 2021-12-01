@@ -13,6 +13,7 @@ public:
 	bool Destroy();
 	void UpdateGUI();
 	int entityID;
+	int gameLogicID;
 
 private:
 	int prevEntityID;

@@ -73,6 +73,8 @@ int lua_GetScale(lua_State* L);
 int lua_SetScale(lua_State* L);
 int lua_GetRotation(lua_State* L);
 int lua_SetRotation(lua_State* L);
+int lua_SetRotationEuler(lua_State* L);
+int lua_SetRotationFromDirection(lua_State* L);
 int lua_SetGamePath(lua_State* L);
 int lua_SaveIntFloatTableAsJson(lua_State* L);
 int lua_LoadIntFloatTableFromJson(lua_State* L);
@@ -85,6 +87,8 @@ int lua_Set3rdPerson(lua_State* L);
 int lua_TravelToLocationPathingly(lua_State* L);
 int lua_SetCameraPosition(lua_State* L);
 int lua_SetCameraAutoScroll(lua_State* L);
+int lua_GetCameraDirection(lua_State* L);
+int lua_GetCameraPosition(lua_State* L);
 int lua_Raycast(lua_State* L);
 int lua_SendEvent(lua_State* L);
 int lua_AddPhysicsVelocity(lua_State* L);
@@ -93,9 +97,12 @@ int lua_AddPhysicsAcceleration(lua_State* L);
 int lua_GetCameraOrientation(lua_State* L);
 int lua_Set3rdPersonDistance(lua_State* L);
 int lua_UpdatePhysicsCollider(lua_State* L);
+int lua_SetCameraPitchYaw(lua_State* L);
 int lua_SetCameraOffest(lua_State* L);
 int lua_SetCellShade(lua_State* L);
 int lua_SetSunAngle(lua_State* L);
+int lua_LoadNextLevel(lua_State* L);
+int lua_RestartGame(lua_State* L);
 
 class LuaFile
 {

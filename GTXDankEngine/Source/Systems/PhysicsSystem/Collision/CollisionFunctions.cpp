@@ -575,8 +575,50 @@ float DynamicPointToStaticAABB(glm::vec3* pCenter0, glm::vec3* pCenter1, glm::ve
 	t5 = (p->z + min->z - pCenter0->z) / velocity->z;
 	t6 = (p->z + max->z - pCenter0->z) / velocity->z;*/
 
-	float tmin = std::max(std::max(std::min(t1, t2), std::min(t3, t4)), std::min(t5, t6));
-	float tmax = std::min(std::min(std::max(t1, t2), std::max(t3, t4)), std::max(t5, t6));
+	float tmin, tmax;
+
+	if (t1 == std::numeric_limits<float>::max() && t3 == std::numeric_limits<float>::max() && t5 == std::numeric_limits<float>::max())
+	{
+		return -1;
+	}
+	else if (t1 == std::numeric_limits<float>::max() && t3 == std::numeric_limits<float>::max())
+	{
+		tmin = std::min(t5, t6);
+		tmax = std::max(t5, t6);
+	}
+	else if (t3 == std::numeric_limits<float>::max() && t5 == std::numeric_limits<float>::max())
+	{
+		tmin = std::min(t1, t2);
+		tmax = std::max(t1, t2);
+	}
+	else if (t1 == std::numeric_limits<float>::max() && t5 == std::numeric_limits<float>::max())
+	{
+		tmin = std::min(t3, t4);
+		tmax = std::max(t3, t4);
+	}
+	else if (t1 == std::numeric_limits<float>::max())
+	{
+		tmin = std::max(std::min(t3, t4), std::min(t5, t6));
+		tmax = std::min(std::max(t3, t4), std::max(t5, t6));
+	}
+	else if (t3 == std::numeric_limits<float>::max())
+	{
+		tmin = std::max(std::min(t1, t2), std::min(t5, t6));
+		tmax = std::min(std::max(t1, t2), std::max(t5, t6));
+	}
+	else if (t5 == std::numeric_limits<float>::max())
+	{
+		tmin = std::max(std::min(t1, t2), std::min(t3, t4));
+		tmax = std::min(std::max(t1, t2), std::max(t3, t4));
+	}
+	else
+	{
+		tmin = std::max(std::max(std::min(t1, t2), std::min(t3, t4)), std::min(t5, t6));
+		tmax = std::min(std::min(std::max(t1, t2), std::max(t3, t4)), std::max(t5, t6));
+	}
+
+	/*float tmin = std::max(std::max(std::min(t1, t2), std::min(t3, t4)), std::min(t5, t6));
+	float tmax = std::min(std::min(std::max(t1, t2), std::max(t3, t4)), std::max(t5, t6));*/
 
 	// if tmax < 0, ray (line) is intersecting AABB, but whole AABB is behing us
 	if (tmax < 0) {
@@ -605,12 +647,12 @@ float DynamicPointToStaticAABB(glm::vec3* pCenter0, glm::vec3* pCenter1, glm::ve
 float DynamicSphereToStaticAABB(glm::vec3* pCenter0, glm::vec3* pCenter1, float radius, glm::vec3* velocity, glm::vec3* p, glm::vec3* max, glm::vec3* min, float t, glm::vec3* normal)
 {
 	//glm::vec3 Intersection;
-	if (pCenter1->x < min->x && pCenter1->x + radius < min->x && pCenter0->x < min->x && pCenter0->x + radius < min->x) return -1;
-	if (pCenter1->x > max->x && pCenter1->x - radius > max->x && pCenter0->x > max->x && pCenter0->x - radius > max->x) return -1;
-	if (pCenter1->y < min->y && pCenter1->y + radius < min->y && pCenter0->y < min->y && pCenter0->y + radius < min->y) return -1;
-	if (pCenter1->y > max->y && pCenter1->y - radius > max->y && pCenter0->y > max->y && pCenter0->y - radius > max->y) return -1;
-	if (pCenter1->z < min->z && pCenter1->z + radius < min->z && pCenter0->z < min->z && pCenter0->z + radius < min->z) return -1;
-	if (pCenter1->z > max->z && pCenter1->z - radius > max->z && pCenter0->z > max->z && pCenter0->z - radius > max->z) return -1;
+	if (pCenter1->x < p->x + min->x && pCenter1->x + radius < p->x + min->x && pCenter0->x < p->x + min->x && pCenter0->x + radius < p->x + min->x) return -1;
+	if (pCenter1->x > p->x + max->x && pCenter1->x - radius > p->x + max->x && pCenter0->x > p->x + max->x && pCenter0->x - radius > p->x + max->x) return -1;
+	if (pCenter1->y < p->y + min->y && pCenter1->y + radius < p->y + min->y && pCenter0->y < p->y + min->y && pCenter0->y + radius < p->y + min->y) return -1;
+	if (pCenter1->y > p->y + max->y && pCenter1->y - radius > p->y + max->y && pCenter0->y > p->y + max->y && pCenter0->y - radius > p->y + max->y) return -1;
+	if (pCenter1->z < p->z + min->z && pCenter1->z + radius < p->z + min->z && pCenter0->z < p->z + min->z && pCenter0->z + radius < p->z + min->z) return -1;
+	if (pCenter1->z > p->z + max->z && pCenter1->z - radius > p->z + max->z && pCenter0->z > p->z + max->z && pCenter0->z - radius > p->z + max->z) return -1;
 
 	glm::vec3 minNew;
 	minNew.x = min->x - radius;
@@ -624,6 +666,8 @@ float DynamicSphereToStaticAABB(glm::vec3* pCenter0, glm::vec3* pCenter1, float 
 
 	float t1 = 0, t2 = 0, t3 = 0;
 	glm::vec3 correction = -(*velocity);
+
+	LOG_INFO(correction.y);
 
 	// Initial position in intersecting the AABB / Correct it to move to 
 	if (StaticSphereToStaticAABB(pCenter0, radius, p, max, min) > 0)
@@ -714,35 +758,41 @@ float DynamicSphereToStaticAABB(glm::vec3* pCenter0, glm::vec3* pCenter1, float 
 	glm::vec3 p1, p2;
 	float temp;
 
-	if (pNew.x < min->x)
+	if (pNew.x < p->x + min->x)
 	{
 		u |= 1;
 		pointOfContact.x += min->x;
+		*normal = glm::normalize(glm::vec3(-1,0,0));
 	}
-	if (pNew.x > max->x)
+	if (pNew.x > p->x + max->x)
 	{
 		v |= 1;
 		pointOfContact.x += max->x;
+		*normal = glm::normalize(glm::vec3(1, 0, 0));
 	}
-	if (pNew.y < min->y)
+	if (pNew.y < p->y + min->y)
 	{
 		u |= 2;
-		pointOfContact.x += min->y;
+		pointOfContact.y += min->y;
+		*normal = glm::normalize(glm::vec3(0, -1, 0));
 	}
-	if (pNew.y > max->y)
+	if (pNew.y > p->y + max->y)
 	{
 		v |= 2;
-		pointOfContact.x += max->y;
+		pointOfContact.y += max->y;
+		*normal = glm::normalize(glm::vec3(0, 1, 0));
 	}
-	if (pNew.z < min->z) 
+	if (pNew.z < p->z + min->z) 
 	{ 
 		u |= 4;
-		pointOfContact.x += min->z;
+		pointOfContact.z += min->z;
+		*normal = glm::normalize(glm::vec3(0, 0, -1));
 	}
-	if (pNew.z > max->z)
+	if (pNew.z > p->z + max->z)
 	{
 		v |= 4;
-		pointOfContact.x += max->z;
+		pointOfContact.z += max->z;
+		*normal = glm::normalize(glm::vec3(0, 0, 1));
 	}
 
 	int m = u + v;
@@ -1322,8 +1372,11 @@ bool ReflectMovingSphereStaticAABB(MovingBodyComponent* mb1, ColliderComponent* 
 
 	mb1->rigidBody.position = mb1->rigidBody.prevPosition + t * mb1->rigidBody.velocity;
 
+	LOG_INFO(glm::dot(mb1->rigidBody.velocity, normal));
+
 	// Calculate reflected velocity
-	mb1->rigidBody.velocity += 2 * mb1->rigidBody.elasticity * glm::dot(mb1->rigidBody.velocity, normal) * normal;
+	mb1->rigidBody.velocity -= glm::dot(mb1->rigidBody.velocity, normal) * normal;
+	mb1->rigidBody.velocity -= glm::dot(mb1->rigidBody.velocity, normal) * normal * mb1->rigidBody.elasticity;
 
 	mb1->rigidBody.position = mb1->rigidBody.position + (dt - t) * mb1->rigidBody.velocity;
 
