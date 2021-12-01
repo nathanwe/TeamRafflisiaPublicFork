@@ -90,8 +90,9 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "SetCellShade", lua_SetCellShade);
 	lua_register(L, "SetSunAngle", lua_SetSunAngle);
 	lua_register(L, "LoadNextLevel", lua_LoadNextLevel);
-	lua_register(L, "RestartGame", lua_RestartGame);
-
+    lua_register(L, "RestartGame", lua_RestartGame);
+    lua_register(L, "GetLevelNumber", lua_GetLevelNumber);
+    
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));
     lua_getglobal(L, "Init");

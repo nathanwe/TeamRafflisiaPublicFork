@@ -9,6 +9,7 @@
 #include "../Components/LightComponent/LightComponent.h"
 #include "../Components/PhysicsComponent/StillBodyComponent.h"
 #include "../Components/PhysicsComponent/MovingBodyComponent.h"
+#include "../Components/PhysicsComponent/ColliderComponent.h"
 
 #include "../Core/Engine.h"
 #include "../Core/ResourceManager.h"
@@ -621,6 +622,13 @@ int lua_SetScale(lua_State* L)
     {
         LOG_ERROR("Transform not found");
     }
+
+	auto* collider = ColliderComponentPool.GetComponentByEntity(e);
+	if (collider != nullptr)
+	{
+		collider->NarrowPhase.radius = x;
+	}
+
     return 0;
 }
 
@@ -996,4 +1004,10 @@ int lua_RestartGame(lua_State* L)
 {
 	engine.SceneSys.LoadScene(0);
 	return 0;
+}
+
+int lua_GetLevelNumber(lua_State* L)
+{
+    lua_pushnumber(L, engine.SceneSys.GetCurrentLevel());
+    return 1;
 }
