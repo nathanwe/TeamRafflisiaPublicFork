@@ -16,11 +16,6 @@
     ]
   },
   "commands": {
-    "Space": {
-      "keyboardcode": 32,
-      "gamepadCode": 0,
-      "keyPressType": 0
-    },
     "Skill1": {
       "keyboardcode": 49,
       "gamepadCode": -1,
@@ -32,7 +27,7 @@
       "keyPressType": 1
     },
     "Shift": {
-      "keyboardcode": 32,
+      "keyboardcode": 340,
       "gamepadCode": -1,
       "keyPressType": 0
     },
@@ -40,11 +35,6 @@
       "keyboardcode": 50,
       "gamepadCode": -1,
       "keyPressType": 1
-    },
-    "Ctrl": {
-      "keyboardcode": 341,
-      "gamepadCode": 1,
-      "keyPressType": 0
     },
     "Attack3": {
       "keyboardcode": 76,
@@ -70,6 +60,12 @@
       "keyboardcode": 263,
       "gamepadCode": -1,
       "keyPressType": 1
+    },
+    "Fire": {
+      "keyboardcode": -1,
+      "gamepadCode": 1,
+      "keyPressType": 1,
+	  "mouseLeftClick" : true
     }
   }
 }

@@ -7,7 +7,6 @@
 #include "../Core/ComponentPool.h"
 #include "../../Core/Enums.h"
 #include "../../Core/Engine.h"
-#include "../Core/ComponentPool.h"
 
 
 class GameLogicCategoryComponent : public AbstractComponent

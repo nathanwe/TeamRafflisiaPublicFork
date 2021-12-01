@@ -83,6 +83,7 @@ void Engine::Run()
 {
 	Framerate->BeginTotal();
 	
+
 	while (!glfwWindowShouldClose(GraphicsSys.pWindow))
 	{
 		//---------------------------------------
@@ -91,16 +92,18 @@ void Engine::Run()
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
+		if(!(menuMode || debugMode || editMode))
+			ImGui::SetMouseCursor(ImGuiMouseCursor_None);
 		//----------------------------------------
 
 		Framerate->StartFrame();
 
 		EntitySys.Update(0);
 		SceneSys.Update(0);
-
+		
 		InputSys.Update();
 		CommandSys.Update();
-
+		
 		if (!pause)
 		{
 			PhysicsSys.Update(DeltaTime());
@@ -116,9 +119,9 @@ void Engine::Run()
 		//ScriptResourceManager.Update(0);
 		ModelResourceManager.Update(0);
 		TextureResourceManger.Update(0);
-
+		
 		AudioSys.Update(0);
-
+		
 		GraphicsSys.Update(DeltaTime());
 		UISys.Update(DeltaTime());
 

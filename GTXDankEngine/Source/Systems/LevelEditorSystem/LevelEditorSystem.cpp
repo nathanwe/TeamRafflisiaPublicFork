@@ -117,7 +117,7 @@ bool LevelEditorSystem::Init()
 void LevelEditorSystem::Update(float timeStamp)
 {
 	//level editor mode, assume it wouldnt change a lot so command pattern is not applied here
-	if (engine.InputSys.IsMouseTriggered())
+	if (engine.InputSys.IsLeftMouseTriggered())
 	{
 		if (ImGui::IsAnyItemHovered())
 			return;

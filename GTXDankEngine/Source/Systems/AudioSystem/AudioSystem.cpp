@@ -49,7 +49,6 @@ bool AudioSystem::Init()
 }
 void AudioSystem::Update(float timeStamp)
 {
-
     Timer timer("Audio Update");
 
     MuteAll();

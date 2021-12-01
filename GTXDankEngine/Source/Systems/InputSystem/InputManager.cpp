@@ -233,16 +233,28 @@ int InputManager::IsAnyControllerTriggered()
 //	return output;
 //}
 
-bool InputManager::IsMousePressed() {
+bool InputManager::IsLeftMousePressed() {
 	return mCurrentMouse.left;
 }
 
-bool InputManager::IsMouseTriggered() {
+bool InputManager::IsLeftMouseTriggered() {
 	return (mCurrentMouse.left && !mPreviousMouse.left);
 }
 
-bool InputManager::IsMouseReleased() {
+bool InputManager::IsLeftMouseReleased() {
 	return (!mCurrentMouse.left && mPreviousMouse.left);
+}
+
+bool InputManager::IsRightMousePressed() {
+	return mCurrentMouse.right;
+}
+
+bool InputManager::IsRightMouseTriggered() {
+	return (mCurrentMouse.right && !mPreviousMouse.right);
+}
+
+bool InputManager::IsRightMouseReleased() {
+	return (!mCurrentMouse.right && mPreviousMouse.right);
 }
 
 

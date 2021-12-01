@@ -668,6 +668,44 @@ int lua_SetRotation(lua_State* L)
     return 0;
 }
 
+int lua_SetRotationEuler(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    float x = static_cast<float>(lua_tonumber(L, 2));
+    float y = static_cast<float>(lua_tonumber(L, 3));
+    float z = static_cast<float>(lua_tonumber(L, 4));
+    TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
+    if (trans != nullptr)
+    {
+        glm::quat rot = glm::quat(glm::vec3(x, y, z));
+        trans->transform.rotation = rot;
+    }
+    else
+    {
+        LOG_ERROR("Transform not found");
+    }
+    return 0;
+}
+
+int lua_SetRotationFromDirection(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    float x = static_cast<float>(lua_tonumber(L, 2));
+    float y = static_cast<float>(lua_tonumber(L, 3));
+    float z = static_cast<float>(lua_tonumber(L, 4));
+    TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
+    if (trans != nullptr)
+    {
+        glm::quat rot = glm::quatLookAt(glm::vec3(x, y, z), glm::vec3(0, 1, 0));
+        trans->transform.rotation = rot;
+    }
+    else
+    {
+        LOG_ERROR("Transform not found");
+    }
+    return 0;
+}
+
 int lua_SetGamePath(lua_State* L)
 {
     GAME_PATH = lua_tostring(L, 1);
@@ -813,6 +851,24 @@ int lua_Raycast(lua_State* L)
     return 1;
 }
 
+int lua_GetCameraDirection(lua_State* L)
+{
+    glm::vec3 direction = engine.GraphicsSys.camera.orientationScale;
+    lua_pushnumber(L, direction.x);
+    lua_pushnumber(L, direction.y);
+    lua_pushnumber(L, direction.z);
+    return 3;
+}
+
+int lua_GetCameraPosition(lua_State* L)
+{
+    glm::vec3 position = engine.GraphicsSys.camera.GetPosition();
+    lua_pushnumber(L, position.x);
+    lua_pushnumber(L, position.y);
+    lua_pushnumber(L, position.z);
+    return 3;
+}
+
 int lua_SendEvent(lua_State* L)
 {
     Event ev = ReceiveEvent(L);
@@ -928,4 +984,16 @@ int lua_SetSunAngle(lua_State* L)
     float value = lua_tonumber(L, 1);
     engine.GraphicsSys.SetSunAngle(std::min(-1.0f, std::max(-179.0f, value)));
     return 0;
+}
+
+int lua_LoadNextLevel(lua_State* L)
+{
+	engine.SceneSys.LoadNextLevel();
+	return 0;
+}
+
+int lua_RestartGame(lua_State* L)
+{
+	engine.SceneSys.LoadScene(0);
+	return 0;
 }

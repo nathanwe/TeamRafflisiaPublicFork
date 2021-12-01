@@ -34,7 +34,8 @@ public:
 	int gamepadCode[2];
 private:
 	std::function<void(MoveDirection, float)> actionToExecute;
-	
+	void triggerEvent(std::string commandName);
+
 };
 
 inline void to_json(ordered_json& j, const DirectionCommand& command) {

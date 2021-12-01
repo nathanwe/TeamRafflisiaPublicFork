@@ -42,6 +42,7 @@ function UpdateEntity( e )
 		if categoryNames[cat] ~= nil then
 			thisEntity = e
 			DoStringWithErrorCheck("Update".. categoryNames[cat] .."(deltaTime, thisEntity)")
+			--print("Update".. categoryNames[cat] .."(deltaTime, thisEntity)")
 		end
 	end
 end
