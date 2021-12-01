@@ -111,6 +111,7 @@ void EntitySystem::DestroyQueuedEntity(Entity e)
 
 void EntitySystem::DeleteAllQueuedEntities()
 {
+	deleteQueue.clear();
 	GameLogicCategoryComponentPool.DeleteAll();
 	ModelComponentPool.DeleteAll();
 	MaterialComponentPool.DeleteAll();

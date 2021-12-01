@@ -2,6 +2,43 @@
   "0": [
     {
       "MODEL": {
+        "path": "../SandBox1/Assets/models/Vase/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 2.0,
+          "y": -1.0,
+          "z": 4.0
+        },
+        "scale": {
+          "x": 0.5,
+          "y": 0.5,
+          "z": 0.5
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../SandBox1/Assets/models/Vase/albedo.jpg",
+        "MetallicPath": "../SandBox1/Assets/models/Vase/metallic.jpg",
+        "NormalPath": "../SandBox1/Assets/models/Vase/normal.jpg",
+        "RoughnessPath": "../SandBox1/Assets/models/Vase/roughness.jpg",
+        "Alpha": 0.0
+      },
+      "GAME_LOGIC": [
+        "PLAYER"
+      ],
+      "TAG": {
+        "uniqueName": "",
+        "category": ""
+      }
+    },
+    {
+      "MODEL": {
         "path": "../FPS/Assets/models/Sphere/model.obj"
       },
       "TRANSFORM": {
@@ -79,8 +116,6 @@
         "category": "PLANE"
       }
     },
-    null,
-    null,
     {
       "MODEL": {
         "path": "../FPS/Assets/Models/Handgun/Handgun_obj.obj"
@@ -119,44 +154,6 @@
         "category": "PISTOL"
       }
     },
-    {
-      "MODEL": {
-        "path": "../SandBox1/Assets/models/Vase/model.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 2.0,
-          "y": -1.0,
-          "z": 4.0
-        },
-        "scale": {
-          "x": 0.5,
-          "y": 0.5,
-          "z": 0.5
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/models/Vase/albedo.jpg",
-        "MetallicPath": "../SandBox1/Assets/models/Vase/metallic.jpg",
-        "NormalPath": "../SandBox1/Assets/models/Vase/normal.jpg",
-        "RoughnessPath": "../SandBox1/Assets/models/Vase/roughness.jpg",
-        "Alpha": 0.0
-      },
-      "GAME_LOGIC": [
-        "PLAYER"
-      ],
-      "TAG": {
-        "uniqueName": "",
-        "category": ""
-      }
-    },
-    null,
     {
       "MODEL": {
         "path": "Assets/Defaults/Sphere.obj"
@@ -276,17 +273,15 @@
         "category": "PLANE"
       }
     },
-    null,
-    null,
     {
       "MODEL": {
         "path": "../FPS/Assets/Models/Handgun/Handgun_obj.obj"
       },
       "TRANSFORM": {
         "position": {
-          "x": 0.03999999910593033,
-          "y": -0.07999999821186066,
-          "z": 9.5
+          "x": 0.015481692738831043,
+          "y": -0.08849118649959564,
+          "z": 9.700620651245117
         },
         "scale": {
           "x": 1.0,
@@ -294,10 +289,10 @@
           "z": 1.0
         },
         "rotation": {
-          "x": 0.0,
-          "y": 0.10452847182750702,
-          "z": 0.0,
-          "w": 0.9945219159126282
+          "x": 0.0191784854978323,
+          "y": -0.02582569606602192,
+          "z": 0.0004955542390234768,
+          "w": 0.9994823336601257
         }
       },
       "MATERIAL": {
@@ -353,45 +348,7 @@
         "category": ""
       }
     },
-    null,
-    {
-      "MODEL": {
-        "path": "Assets/Defaults/Sphere.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 0.0,
-          "y": 1.409999966621399,
-          "z": 0.0
-        },
-        "scale": {
-          "x": 1.0,
-          "y": 1.0,
-          "z": 1.0
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "Alpha": 1.0
-      },
-      "COLLIDER": {
-        "Shape": 0,
-        "Radius": 1.0
-      },
-      "TAG": {
-        "uniqueName": "Target",
-        "category": "Target"
-      }
-    }
+    null
   ],
   "2": [
     {
@@ -473,8 +430,6 @@
         "category": "PLANE"
       }
     },
-    null,
-    null,
     {
       "MODEL": {
         "path": "../FPS/Assets/Models/Handgun/Handgun_obj.obj"
@@ -550,7 +505,6 @@
         "category": ""
       }
     },
-    null,
     {
       "MODEL": {
         "path": "Assets/Defaults/Sphere.obj"
@@ -670,17 +624,15 @@
         "category": "PLANE"
       }
     },
-    null,
-    null,
     {
       "MODEL": {
         "path": "../FPS/Assets/Models/Handgun/Handgun_obj.obj"
       },
       "TRANSFORM": {
         "position": {
-          "x": 0.03999999910593033,
-          "y": -0.07999999821186066,
-          "z": 9.5
+          "x": 0.025564925745129585,
+          "y": -0.02240397036075592,
+          "z": 9.711338996887207
         },
         "scale": {
           "x": 1.0,
@@ -688,10 +640,10 @@
           "z": 1.0
         },
         "rotation": {
-          "x": 0.0,
-          "y": 0.10452847182750702,
-          "z": 0.0,
-          "w": 0.9945219159126282
+          "x": 0.13031400740146637,
+          "y": -0.043775059282779694,
+          "z": 0.005759278312325478,
+          "w": 0.9904891848564148
         }
       },
       "MATERIAL": {
@@ -747,45 +699,7 @@
         "category": ""
       }
     },
-    null,
-    {
-      "MODEL": {
-        "path": "Assets/Defaults/Sphere.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 0.0,
-          "y": 1.409999966621399,
-          "z": 0.0
-        },
-        "scale": {
-          "x": 1.0,
-          "y": 1.0,
-          "z": 1.0
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "Alpha": 1.0
-      },
-      "COLLIDER": {
-        "Shape": 0,
-        "Radius": 1.0
-      },
-      "TAG": {
-        "uniqueName": "Target",
-        "category": "Target"
-      }
-    }
+    null
   ],
   "4": [
     {
@@ -867,8 +781,6 @@
         "category": "PLANE"
       }
     },
-    null,
-    null,
     {
       "MODEL": {
         "path": "../FPS/Assets/Models/Handgun/Handgun_obj.obj"
@@ -944,7 +856,6 @@
         "category": ""
       }
     },
-    null,
     {
       "MODEL": {
         "path": "Assets/Defaults/Sphere.obj"
@@ -1064,17 +975,15 @@
         "category": "PLANE"
       }
     },
-    null,
-    null,
     {
       "MODEL": {
         "path": "../FPS/Assets/Models/Handgun/Handgun_obj.obj"
       },
       "TRANSFORM": {
         "position": {
-          "x": 0.03999999910593033,
-          "y": -0.07999999821186066,
-          "z": 9.5
+          "x": -0.0123371547088027,
+          "y": -0.005696249194443226,
+          "z": 9.715475082397461
         },
         "scale": {
           "x": 1.0,
@@ -1082,10 +991,10 @@
           "z": 1.0
         },
         "rotation": {
-          "x": 0.0,
-          "y": 0.10452847182750702,
-          "z": 0.0,
-          "w": 0.9945219159126282
+          "x": 0.15916608273983002,
+          "y": 0.021388662979006767,
+          "z": -0.0034491396509110928,
+          "w": 0.9870140552520752
         }
       },
       "MATERIAL": {
@@ -1141,45 +1050,7 @@
         "category": ""
       }
     },
-    null,
-    {
-      "MODEL": {
-        "path": "Assets/Defaults/Sphere.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 0.0,
-          "y": 1.409999966621399,
-          "z": 0.0
-        },
-        "scale": {
-          "x": 1.0,
-          "y": 1.0,
-          "z": 1.0
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "Alpha": 1.0
-      },
-      "COLLIDER": {
-        "Shape": 0,
-        "Radius": 1.0
-      },
-      "TAG": {
-        "uniqueName": "Target",
-        "category": "Target"
-      }
-    }
+    null
   ],
   "6": [
     {
@@ -1261,8 +1132,6 @@
         "category": "PLANE"
       }
     },
-    null,
-    null,
     {
       "MODEL": {
         "path": "../FPS/Assets/Models/Handgun/Handgun_obj.obj"
@@ -1338,7 +1207,6 @@
         "category": ""
       }
     },
-    null,
     {
       "MODEL": {
         "path": "Assets/Defaults/Sphere.obj"
@@ -1458,8 +1326,6 @@
         "category": "PLANE"
       }
     },
-    null,
-    null,
     {
       "MODEL": {
         "path": "../FPS/Assets/Models/Handgun/Handgun_obj.obj"
@@ -1533,45 +1399,6 @@
       "TAG": {
         "uniqueName": "",
         "category": ""
-      }
-    },
-    null,
-    {
-      "MODEL": {
-        "path": "Assets/Defaults/Sphere.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 0.0,
-          "y": 1.409999966621399,
-          "z": 0.0
-        },
-        "scale": {
-          "x": 1.0,
-          "y": 1.0,
-          "z": 1.0
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "Alpha": 1.0
-      },
-      "COLLIDER": {
-        "Shape": 0,
-        "Radius": 1.0
-      },
-      "TAG": {
-        "uniqueName": "Target",
-        "category": "Target"
       }
     }
   ],
@@ -1655,8 +1482,6 @@
         "category": "PLANE"
       }
     },
-    null,
-    null,
     {
       "MODEL": {
         "path": "../FPS/Assets/Models/Handgun/Handgun_obj.obj"
@@ -1852,8 +1677,6 @@
         "category": "PLANE"
       }
     },
-    null,
-    null,
     {
       "MODEL": {
         "path": "../FPS/Assets/Models/Handgun/Handgun_obj.obj"
@@ -1929,7 +1752,6 @@
         "category": ""
       }
     },
-    null,
     {
       "MODEL": {
         "path": "Assets/Defaults/Sphere.obj"
