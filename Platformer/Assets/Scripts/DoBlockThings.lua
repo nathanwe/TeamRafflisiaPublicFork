@@ -69,8 +69,11 @@ function HandleEventBlock(eventData)
 					blockStatus[eventData.e1] = 0
 					totaloutblocks[1] = totaloutblocks[1] -1
 				end
-			end
+			
 		end
+
+	end
+
 end
 
 function HandleEventPerEntityBlock(e, eventData)

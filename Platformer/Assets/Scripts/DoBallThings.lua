@@ -2,7 +2,7 @@
 local timers = {}
 local directions = {}
 local imguiControledEntity = -1
-local cycleTime = 5
+local cycleTime = 10
 local speed = 1
 --local onlymake1 = true
 
@@ -32,6 +32,17 @@ end
 
 
 function UpdateBall(dt, e)
+
+	if timers[e] == nil then
+		InitBall(e)
+	end
+	timers[e] = timers[e] + dt
+	if timers[e] > cycleTime then
+		timers[e] = timers[e] - cycleTime
+		ent = CreateEntity("ball")
+		print("created", ent)
+		DeleteEntity(e)
+	end
 	x,y,z = GetPosition(e)
 	--print("UpdateBall", e, y)
 	if y < 0 then
@@ -70,6 +81,6 @@ end
 --custom functions
 
 function InitBall(e)
-	timers[e] = e
+	timers[e] = cycleTime
 	directions[e] = 1
 end
