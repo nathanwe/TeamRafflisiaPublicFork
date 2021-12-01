@@ -290,15 +290,14 @@ int lua_GetCategorysOfEntity(lua_State* L)
     Entity e = static_cast<Entity>(lua_tonumber(L, 1));
     lua_newtable(L);
     int top = lua_gettop(L);
-    int index = 0;
     auto GLCC = GameLogicCategoryComponentPool.GetComponentByEntity(e);
     if(GLCC != nullptr){
         for (int i = 1; i < static_cast<int>(GameLogicCategories::MAX_CATEGORIES); ++i)
         {
             if (GLCC->categories.find(static_cast<GameLogicCategories>(i)) != GLCC->categories.end())
             {
-                lua_pushnumber(L, index);
                 lua_pushnumber(L, i);
+                lua_pushboolean(L, true);
                 lua_settable(L, top);
             }
         }

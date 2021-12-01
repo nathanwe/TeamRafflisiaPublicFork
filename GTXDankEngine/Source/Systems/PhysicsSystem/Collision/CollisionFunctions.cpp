@@ -1372,11 +1372,20 @@ bool ReflectMovingSphereStaticAABB(MovingBodyComponent* mb1, ColliderComponent* 
 
 	mb1->rigidBody.position = mb1->rigidBody.prevPosition + t * mb1->rigidBody.velocity;
 
-	LOG_INFO(glm::dot(mb1->rigidBody.velocity, normal));
+	float velocityAlongNormal = glm::dot(mb1->rigidBody.velocity, normal);
+
+	LOG_INFO(velocityAlongNormal);
 
 	// Calculate reflected velocity
-	mb1->rigidBody.velocity -= glm::dot(mb1->rigidBody.velocity, normal) * normal;
-	mb1->rigidBody.velocity -= glm::dot(mb1->rigidBody.velocity, normal) * normal * mb1->rigidBody.elasticity;
+	if (glm::dot(mb1->rigidBody.velocity, normal) < 0)
+	{
+		mb1->rigidBody.velocity += fabs(velocityAlongNormal) * normal;
+		mb1->rigidBody.velocity += fabs(velocityAlongNormal) * normal * mb1->rigidBody.elasticity;
+	}
+	else
+	{
+		mb1->rigidBody.velocity += fabs(velocityAlongNormal) * normal * mb1->rigidBody.elasticity;
+	}
 
 	mb1->rigidBody.position = mb1->rigidBody.position + (dt - t) * mb1->rigidBody.velocity;
 

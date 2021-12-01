@@ -38,7 +38,7 @@ end
 function UpdateEntity( e )
 	local thisEntiysCategories = {}
 	thisEntiysCategories = GetCategorysOfEntity(e)
-	for index,cat in pairs(thisEntiysCategories) do
+	for cat,exist in pairs(thisEntiysCategories) do
 		if categoryNames[cat] ~= nil then
 			thisEntity = e
 			DoStringWithErrorCheck("Update".. categoryNames[cat] .."(deltaTime, thisEntity)")

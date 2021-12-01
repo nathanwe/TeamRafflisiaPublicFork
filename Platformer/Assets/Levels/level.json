@@ -67,6 +67,19 @@
         "RoughnessPath": "../Platformer/Assets/Textures/desert/Roughness.png",
         "Alpha": 1.0
       },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.0,
+          "y": 1.0,
+          "z": 0.0
+        },
+        "Magnitude": 0.0
+      },
+      "STILL_BODY": {
+        "Shape": 0,
+        "Radius": 1.0
+      },
       "TAG": {
         "uniqueName": "desert",
         "category": "Infinite plane"
@@ -107,63 +120,9 @@
       }
     },
     {
-      "MODEL": {
-        "path": "../Platformer/Assets/models/PokemonBall/model.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 24.215999603271484,
-          "y": 34.0,
-          "z": 37.40999984741211
-        },
-        "scale": {
-          "x": 0.029999999329447746,
-          "y": 0.029999999329447746,
-          "z": 0.029999999329447746
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../Platformer/Assets/models/PokemonBall/albedo.jpg",
-        "MetallicPath": "../Platformer/Assets/models/PokemonBall/metallic.jpg",
-        "NormalPath": "../Platformer/Assets/models/PokemonBall/normal.jpg",
-        "RoughnessPath": "../Platformer/Assets/models/PokemonBall/roughness.jpg",
-        "Alpha": 1.0
-      },
-      "COLLIDER": {
-        "Shape": 0,
-        "Radius": 2.930000066757202
-      },
-      "MOVING_BODY": {
-        "Elasticity": 0.20000000298023224,
-        "Friction": 0.0,
-        "Gravity": true,
-        "Mass": 3.0,
-        "Velocity": {
-          "x": 0.0,
-          "y": -10.0,
-          "z": 0.0
-        },
-        "Accelereation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0
-        },
-        "CollisionType": 0,
-        "Shape": 0,
-        "Radius": 1.0
-      },
-      "GAME_LOGIC": [
-        "PLATFORMER_BALL"
-      ],
       "TAG": {
-        "uniqueName": "ball",
-        "category": "ball"
+        "uniqueName": "",
+        "category": ""
       }
     },
     {
@@ -273,9 +232,9 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": -5.720911026000977,
-          "y": 2.195723295211792,
-          "z": 2.90484356880188
+          "x": -0.04946652799844742,
+          "y": 17.836244583129883,
+          "z": 19.0
         },
         "scale": {
           "x": 0.5,
@@ -294,7 +253,30 @@
         "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
         "NormalPath": "Assets/Defaults/BlackPurpleChecker.png",
         "RoughnessPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "Alpha": 1.0
+        "Alpha": 0.9300000071525574
+      },
+      "COLLIDER": {
+        "Shape": 0,
+        "Radius": 0.47999998927116394
+      },
+      "MOVING_BODY": {
+        "Elasticity": 0.0,
+        "Friction": 0.0,
+        "Gravity": true,
+        "Mass": 5.0,
+        "Velocity": {
+          "x": 0.0,
+          "y": -6.50418758392334,
+          "z": 0.0
+        },
+        "Accelereation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "CollisionType": 0,
+        "Shape": 0,
+        "Radius": 0.47999998927116394
       },
       "GAME_LOGIC": [
         "PLAYER"
@@ -400,12 +382,69 @@
         "Shape": 0,
         "Radius": 1.0
       },
+      "TAG": {
+        "uniqueName": "slope",
+        "category": ""
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../Platformer/Assets/models/PokemonBall/model.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 27.0,
+          "y": 20.0,
+          "z": 37.40999984741211
+        },
+        "scale": {
+          "x": 0.029999999329447746,
+          "y": 0.029999999329447746,
+          "z": 0.029999999329447746
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../Platformer/Assets/models/PokemonBall/albedo.jpg",
+        "MetallicPath": "../Platformer/Assets/models/PokemonBall/metallic.jpg",
+        "NormalPath": "../Platformer/Assets/models/PokemonBall/normal.jpg",
+        "RoughnessPath": "../Platformer/Assets/models/PokemonBall/roughness.jpg",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 0,
+        "Radius": 2.930000066757202
+      },
+      "MOVING_BODY": {
+        "Elasticity": 0.0,
+        "Friction": 0.0,
+        "Gravity": true,
+        "Mass": 5.0,
+        "Velocity": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "Accelereation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "CollisionType": 0,
+        "Shape": 0,
+        "Radius": 1.0
+      },
       "GAME_LOGIC": [
-        "ENEMY"
+        "PLATFORMER_BALL"
       ],
       "TAG": {
-        "uniqueName": "",
-        "category": ""
+        "uniqueName": "ball",
+        "category": "ball"
       }
     }
   ],

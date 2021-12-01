@@ -9,6 +9,10 @@ local score = 0
 local level = 0
 local gameOver = false
 
+local lightEntity = -1
+local lightTimer = 0.04
+local lightTime = 0.04
+
 function SavePlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
 	--SaveIntFloatTableAsJson(timers, "/Assets/Levels/Level" .. levelstr .."PlayerTimerSave.json")
@@ -36,6 +40,21 @@ end
 function UpdatePlayer(dt, e)
 	level = GetLevelNumber()
 
+	--print(lightEntity)
+
+	--print(lightTimer <= 0)
+	if(lightTimer >= 0.0) then
+		lightTimer = lightTimer - dt
+		--print(lightTimer)
+	end
+
+	if(lightEntity >= 0 and lightTimer <= 0.0) then
+		--delete light
+		--print("destroyed")
+		DeleteEntity(lightEntity)
+		lightEntity = -1
+	end
+
 	if(level == 0) then
 		if(score == 1) then
 			print("next level")
@@ -59,8 +78,8 @@ function UpdatePlayer(dt, e)
 			print("next level")
 			score = 0
 			LoadNextLevel()
-			spawnTime = 0.5
-			timer = 0.5
+			spawnTime = 0.8
+			timer = 0.8
 		end
 	end
 	
@@ -84,7 +103,7 @@ function UpdatePlayer(dt, e)
 			timer = spawnTime
 		end
 		
-		if(score == 8) then
+		if(score == 14) then
 			print("next level")
 			score = 0
 			LoadNextLevel()
@@ -124,16 +143,19 @@ function UpdatePlayer(dt, e)
 	
 	if(level == 6) then
 		if(score == 1) then
+			lightEntity = -1
 			print("next level")
+			timer = 1
+			spawnTime = 1
 			score = 0
 			LoadNextLevel()
 		end
 	end
 	
 	if(level == 7) then
-		--timer = timer - dt
-		--print(timer)
+		timer = timer - dt
 		--if(timer <= 0) then
+		if(timer <= 0) then
 			while(entityToSpawn > 0) do
 				entityToSpawn = entityToSpawn - 1
 				print("spawn")
@@ -142,6 +164,7 @@ function UpdatePlayer(dt, e)
 				SetScale(e, 0.5, 0.5, 0.5)
 				SetPhysicsVelocity(e, 0, 0, 0)
 			end
+		end
 		--	timer = 200000000
 		--end
 
@@ -163,6 +186,27 @@ function HandleEventPlayer(eventData)
 	end
 	if eventData.type == 19 then
 		if eventData.stringData1 == "Fire" then
+
+			local AudioEventTable = {}
+			AudioEventTable["type"] = 9
+			AudioEventTable["stringData1"] = "shot.mp3"
+			local positionx, positiony, positionz = GetCameraPosition()
+			AudioEventTable["floatData1"] = positionx
+			AudioEventTable["floatData2"] = positiony
+			AudioEventTable["floatData3"] = positionz
+			AudioEventTable["floatData4"] = -2.0
+			SendAudioEvent(AudioEventTable)
+
+			if lightEntity == -1 then
+				print("fire light")
+				
+				lightEntity = CreateEntity("FireLight")
+				print(lightEntity)
+				local positionx, positiony, positionz = GetCameraPosition()
+				SetPosition(lightEntity, positionx, positiony, positionz)
+				lightTimer = lightTime
+			end
+
 			target = Raycast()
 			print("target", target)
 			if target ~= -1 then

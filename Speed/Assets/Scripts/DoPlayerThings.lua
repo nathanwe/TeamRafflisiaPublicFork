@@ -40,16 +40,12 @@ function HandleEventPlayer(eventData)
 	if eventData.type == 12 then
 		categories = {}
 		categories = GetCategorysOfEntity(eventData.e1)
-		for index, cat in pairs(categories) do
-			if cat == 4 then
+		if categories[4] then
 				print("You Win!")
-			end
 		end
 		categories = GetCategorysOfEntity(eventData.e2)
-		for index, cat in pairs(categories) do
-			if cat == 4 then
+		if categories[4] then
 				print("You Win!")
-			end
 		end
 	end
 	if eventData.type == 16 then

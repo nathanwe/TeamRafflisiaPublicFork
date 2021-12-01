@@ -1,6 +1,7 @@
 --Playerthings
 local imguiControledEntity = -1
-local speed = 10
+local speed = 200
+local jumpspeed = 5
 
 function SavePlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
@@ -24,6 +25,36 @@ end
 
 function UpdatePlayer(dt, e)
 
+	rigidData = {}
+	rigidData=GetRigidData(e)
+	velY=rigidData.velocity.y
+	SetPhysicsVelocity(e,0,velY,0)
+	if GetKeyTriggered(32) then
+		--print("Jump")
+		AddPhysicsVelocity(e, 0, jumpspeed, 0)
+
+		x, y, z =GetPosition(e)
+		local AudioEventTable = {}
+		AudioEventTable["type"] = 9
+		AudioEventTable["stringData1"] = "JumpSFX.wav"
+		AudioEventTable["floatData1"] = x
+		AudioEventTable["floatData2"] = y
+		AudioEventTable["floatData3"] = z
+		AudioEventTable["floatData4"] = -10.0
+		SendAudioEvent(AudioEventTable)
+		--print(x,y,z)
+	end
+	if  GetKeyTriggered(69) then
+		target = Raycast()
+		--print("target", target)
+		if target ~= -1 then
+			local EventTable = {}
+			EventTable["type"] = 18
+			EventTable["e1"] = target
+			EventTable["thingsToEffect"] = {[1] = 2}
+			SendEvent(EventTable)
+		end
+	end
 end
 
 function HandleEventPlayer(eventData)
@@ -33,15 +64,7 @@ function HandleEventPlayer(eventData)
 	end
 	if eventData.type == 8 then
 		if eventData.stringData1 == "Space" then
-			target = Raycast()
-			--print("target", target)
-			if target ~= -1 then
-				local EventTable = {}
-				EventTable["type"] = 18
-				EventTable["e1"] = target
-				EventTable["thingsToEffect"] = {[1] = 2}
-				SendEvent(EventTable)
-			end
+			
 		end
 	end
 end
@@ -58,17 +81,18 @@ function HandleEventPerEntityPlayer(e, eventData)
 		mag = math.sqrt(camerax * camerax + cameraz * cameraz)
 		newx = camerax/mag
 		newz = cameraz/mag
+
 		if eventData.stringData1 == "Up" then
-			AddToVQS(e, speed * eventData.floatData1 * newx, speed * eventData.floatData1 * newz, 0)
+			AddPhysicsVelocity(e, speed * eventData.floatData1 * newx, 0, speed * eventData.floatData1 * newz)
 		end
 		if eventData.stringData1 == "Down" then
-			AddToVQS(e, -speed * eventData.floatData1 * newx,  -speed * eventData.floatData1 * newz, 0)
+			AddPhysicsVelocity(e, -speed * eventData.floatData1 * newx, 0,  -speed * eventData.floatData1 * newz)
 		end
 		if eventData.stringData1 == "Left" then
-			AddToVQS(e, speed * eventData.floatData1 * newz, 0, -speed * eventData.floatData1 * newx)
+			AddPhysicsVelocity(e, speed * eventData.floatData1 * newz, 0, -speed * eventData.floatData1 * newx)
 		end
 		if eventData.stringData1 == "Right" then
-			AddToVQS(e, -speed * eventData.floatData1 * newz, 0, speed * eventData.floatData1 * newx)
+			AddPhysicsVelocity(e, -speed * eventData.floatData1 * newz, 0, speed * eventData.floatData1 * newx)
 		end
 	end
 end
