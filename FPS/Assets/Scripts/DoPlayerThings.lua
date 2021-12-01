@@ -78,8 +78,8 @@ function UpdatePlayer(dt, e)
 			print("next level")
 			score = 0
 			LoadNextLevel()
-			spawnTime = 0.5
-			timer = 0.5
+			spawnTime = 0.8
+			timer = 0.8
 		end
 	end
 	
