@@ -31,6 +31,10 @@ function UpdatePlayer(dt, e)
 	--if timers[e] == nil then
 		--InitPlayer(e)
 	--end
+	x,y,z = GetPosition(e)
+	if y < -50 then
+		RestartGame()
+	end
 end
 
 function HandleEventPlayer(eventData)
@@ -41,10 +45,12 @@ function HandleEventPlayer(eventData)
 		categories = {}
 		categories = GetCategorysOfEntity(eventData.e1)
 		if categories[4] then
+			LoadNextLevel()
 				print("You Win!")
 		end
 		categories = GetCategorysOfEntity(eventData.e2)
 		if categories[4] then
+				LoadNextLevel()
 				print("You Win!")
 		end
 	end
