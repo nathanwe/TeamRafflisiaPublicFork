@@ -751,6 +751,7 @@ float DynamicSphereToStaticAABB(glm::vec3* pCenter0, glm::vec3* pCenter1, float 
 	pNew.x = pCenter0->x + tNew * velocity->x;
 	pNew.y = pCenter0->y + tNew * velocity->y;
 	pNew.z = pCenter0->z + tNew * velocity->z;
+
 	
 	int u = 0, v = 0;
 
@@ -1387,6 +1388,18 @@ bool ReflectMovingSphereStaticAABB(MovingBodyComponent* mb1, ColliderComponent* 
 		mb1->rigidBody.velocity += fabs(velocityAlongNormal) * normal * mb1->rigidBody.elasticity;
 	}
 
+
+	// Calculate reflected velocity
+	if (glm::dot(mb1->rigidBody.velocity, normal) < 0)
+	{
+		mb1->rigidBody.velocity += fabs(velocityAlongNormal) * normal;
+		mb1->rigidBody.velocity += fabs(velocityAlongNormal) * normal * mb1->rigidBody.elasticity;
+	}
+	else
+	{
+		mb1->rigidBody.velocity += fabs(velocityAlongNormal) * normal * mb1->rigidBody.elasticity;
+	}
+	
 	mb1->rigidBody.position = mb1->rigidBody.position + (dt - t) * mb1->rigidBody.velocity;
 
 	return true;

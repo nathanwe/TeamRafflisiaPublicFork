@@ -2,22 +2,22 @@
 local timers = {}
 local blockStatus = {}
 local imguiControledEntity = -1
-local totaloutblocks = {[1] = 0.0}
+--local totaloutblocks = {[1] = 0.0}
 
 function SaveBlocks( levelnum )
 	levelstr = string.format("%i", levelnum)
-	SaveIntFloatTableAsJson(totaloutblocks, "/Assets/Levels/Level" .. levelstr .."BlockTotalSave.json")
+	--SaveIntFloatTableAsJson(totaloutblocks, "/Assets/Levels/Level" .. levelstr .."BlockTotalSave.json")
 	SaveIntFloatTableAsJson(blockStatus, "/Assets/Levels/Level" .. levelstr .."BlockStatusSave.json")
 end
 
 function LoadBlocks( levelnum )
 	levelstr = string.format("%i", levelnum)
-	totaloutblocks = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."BlockTotalSave.json")
+	--totaloutblocks = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."BlockTotalSave.json")
 	blockStatus = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."BlockStatusSave.json")
 end
 
 function ClearBlocks()
-	totaloutblocks = {[1] = 0.0 }
+	--totaloutblocks = {[1] = 0.0 }
 	blockStatus = {}
 end
 
@@ -53,27 +53,18 @@ function HandleEventBlock(eventData)
 		cats = {}
 		cats = GetCategorysOfEntity(eventData.e1)
 		if cats[2] then
-			--print("shot" , eventData.e1)
-				if blockStatus[eventData.e1] == 0 then
-					--print(totaloutblocks, totaloutblocks[1], pairs(totaloutblocks))
-					--for x,y in pairs(totaloutblocks) do
-					--	print(x,y, "pair")
-					--end
-					if totaloutblocks[1] < 3 then
-						AddToVQS(eventData.e1, 0, 0, 6)
-						blockStatus[eventData.e1] = 1
-						totaloutblocks[1] = totaloutblocks[1] +1
-					end
-				elseif blockStatus[eventData.e1] == 1 then
-					AddToVQS(eventData.e1, 0, 0, -6)
-					blockStatus[eventData.e1] = 0
-					totaloutblocks[1] = totaloutblocks[1] -1
+			--print("shot")
+			if blockStatus[eventData.e1] == 0 then
+				if totaloutblocks() < 3 then
+					AddToVQS(eventData.e1, 0, 0, 6)
+					blockStatus[eventData.e1] = 1
 				end
-			
+			elseif blockStatus[eventData.e1] == 1 then
+				AddToVQS(eventData.e1, 0, 0, -6)
+				blockStatus[eventData.e1] = 0
+			end
 		end
-
 	end
-
 end
 
 function HandleEventPerEntityBlock(e, eventData)
@@ -86,4 +77,12 @@ end
 
 function InitBlock(e)
 	blockStatus[e] = 0
+end
+
+function totaloutblocks()
+	total = 0;
+	for x,y in pairs(blockStatus) do
+		total = total+y
+	end
+	return total;
 end
