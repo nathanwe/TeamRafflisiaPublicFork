@@ -34,12 +34,22 @@ function UpdatePlayer(dt, e)
 	x,y,z = GetPosition(e)
 	if y < -50 then
 		RestartGame()
+		local AudioEventTable = {}
+				AudioEventTable["type"] = 9 
+				AudioEventTable["stringData1"] = "DeadEffect.wav" 
+				AudioEventTable["floatData1"] = x
+				AudioEventTable["floatData2"] = y
+				AudioEventTable["floatData3"] = z
+				AudioEventTable["floatData4"] = -6.0
+				SendAudioEvent(AudioEventTable)
 	end
 end
 
 function HandleEventPlayer(eventData)
+
 	if eventData.type == 5 then
 		DestroyPlayer(eventData.e1)
+		
 	end
 	if eventData.type == 12 then
 		categories = {}
@@ -47,11 +57,29 @@ function HandleEventPlayer(eventData)
 		if categories[4] then
 			LoadNextLevel()
 				print("You Win!")
+				x,y,z = GetPosition(eventData.e1)
+				local AudioEventTable = {}
+				AudioEventTable["type"] = 9 
+				AudioEventTable["stringData1"] = "WinEffect.wav" 
+				AudioEventTable["floatData1"] = x
+				AudioEventTable["floatData2"] = y
+				AudioEventTable["floatData3"] = z
+				AudioEventTable["floatData4"] = -6.0 
+				SendAudioEvent(AudioEventTable)
 		end
 		categories = GetCategorysOfEntity(eventData.e2)
 		if categories[4] then
 				LoadNextLevel()
 				print("You Win!")
+				x,y,z = GetPosition(eventData.e2)
+				local AudioEventTable = {}
+				AudioEventTable["type"] = 9 
+				AudioEventTable["stringData1"] = "WinEffect.wav" 
+				AudioEventTable["floatData1"] = x
+				AudioEventTable["floatData2"] = y
+				AudioEventTable["floatData3"] = z
+				AudioEventTable["floatData4"] = -6.0 
+				SendAudioEvent(AudioEventTable)
 		end
 	end
 	if eventData.type == 16 then

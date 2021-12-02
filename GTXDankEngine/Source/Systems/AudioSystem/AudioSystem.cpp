@@ -34,8 +34,8 @@ bool AudioSystem::Init()
     LoadSound("JumpSFX.wav", true);
     LoadSound("jumpSFX2.wav", true);
     LoadSound("Maozon & C-Show - Realize feat. Kyte (MV).mp3", false, true, true, true);
-    int channel = fmodPlaySound("WinEffect.wav", glm::vec3(-10.0f, 0.0f, 10.0f), 0.0f);
-    int channel2 = fmodPlaySound("Maozon & C-Show - Realize feat. Kyte (MV).mp3", glm::vec3(0), -18.0f);
+    //int channel = fmodPlaySound("WinEffect.wav", glm::vec3(-10.0f, 0.0f, 10.0f), 0.0f);
+    //int channel2 = fmodPlaySound("Maozon & C-Show - Realize feat. Kyte (MV).mp3", glm::vec3(0), -18.0f);
 
    /* ERRCHECK(fmodStudioSystem->getBus("bus:/", &masterBus));
 
