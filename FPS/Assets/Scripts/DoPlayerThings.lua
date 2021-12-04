@@ -8,6 +8,7 @@ local entityToSpawn = 3
 local score = 0
 local level = 0
 local gameOver = false
+local scoresToBeat = {[0] = 1, [1] = 8, [2] = 1, [3] = 14, [4] = 1, [5] = 8, [6] = 1, [7] = "Infinity"}
 
 local lightEntity = -1
 local lightTimer = 0.04
@@ -56,7 +57,7 @@ function UpdatePlayer(dt, e)
 	end
 
 	if(level == 0) then
-		if(score == 1) then
+		if(score == scoresToBeat[level]) then
 			print("next level")
 			score = 0
 			LoadNextLevel()
@@ -74,7 +75,7 @@ function UpdatePlayer(dt, e)
 			timer = spawnTime
 		end
 		
-		if(score == 8) then
+		if(score == scoresToBeat[level]) then
 			print("next level")
 			score = 0
 			LoadNextLevel()
@@ -84,7 +85,7 @@ function UpdatePlayer(dt, e)
 	end
 	
 	if(level == 2) then
-		if(score == 1) then
+		if(score == scoresToBeat[level]) then
 			print("next level")
 			score = 0
 			LoadNextLevel()
@@ -103,7 +104,7 @@ function UpdatePlayer(dt, e)
 			timer = spawnTime
 		end
 		
-		if(score == 14) then
+		if(score == scoresToBeat[level]) then
 			print("next level")
 			score = 0
 			LoadNextLevel()
@@ -113,7 +114,7 @@ function UpdatePlayer(dt, e)
 	end
 	
 	if(level == 4) then
-		if(score == 1) then
+		if(score == scoresToBeat[level]) then
 			print("next level")
 			score = 0
 			LoadNextLevel()
@@ -132,7 +133,7 @@ function UpdatePlayer(dt, e)
 			timer = spawnTime
 		end
 
-		if(score == 8) then
+		if(score == scoresToBeat[level]) then
 			print("next level")
 			score = 0
 			LoadNextLevel()
@@ -142,7 +143,7 @@ function UpdatePlayer(dt, e)
 	end
 	
 	if(level == 6) then
-		if(score == 1) then
+		if(score == scoresToBeat[level]) then
 			lightEntity = -1
 			print("next level")
 			timer = 1
@@ -176,6 +177,12 @@ function UpdatePlayer(dt, e)
 		--	timer = 1
 		--end
 	end
+
+	BeginImgui("Score")
+	scorestr = string.format("%i", score)
+	ImguiText("Score:" .. scorestr)
+	ImguiText(scoresToBeat[level] .. " to win.")
+	EndImgui()
 	
 end
 

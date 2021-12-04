@@ -44,6 +44,7 @@ function UpdateGun(dt, e)
 	--print(directionx)
 	--print(directiony)
 	--print(directionz)
+
 end
 
 function HandleEventGun(eventData)

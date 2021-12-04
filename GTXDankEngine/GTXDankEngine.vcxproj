@@ -105,6 +105,7 @@
     <None Include="..\FPS\Assets\Levels\level.json" />
     <None Include="..\FPS\Assets\Scripts\Camera.lua" />
     <None Include="..\FPS\Assets\Scripts\CategoryList.lua" />
+    <None Include="..\FPS\Assets\Scripts\DoGunThings.lua" />
     <None Include="..\FPS\Assets\Scripts\DoLionThings.lua" />
     <None Include="..\FPS\Assets\Scripts\DoPlayerThings.lua" />
     <None Include="..\Platformer\Assets\Levels\gameObjects.json" />

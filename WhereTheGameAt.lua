@@ -2,8 +2,8 @@
 
 function Init()
 	--SetGamePath("../SandBox1/")
-	--SetGamePath("../FPS/")
-	SetGamePath("../Platformer/")
+	SetGamePath("../FPS/")
+	--SetGamePath("../Platformer/")
 	--SetGamePath("../TopDownFighter/")
 	--SetGamePath("../Speed/")
 end

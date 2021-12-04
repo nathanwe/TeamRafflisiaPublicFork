@@ -2,43 +2,6 @@
   "0": [
     {
       "MODEL": {
-        "path": "../SandBox1/Assets/models/Vase/model.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 2.0,
-          "y": -1.0,
-          "z": 4.0
-        },
-        "scale": {
-          "x": 0.5,
-          "y": 0.5,
-          "z": 0.5
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/models/Vase/albedo.jpg",
-        "MetallicPath": "../SandBox1/Assets/models/Vase/metallic.jpg",
-        "NormalPath": "../SandBox1/Assets/models/Vase/normal.jpg",
-        "RoughnessPath": "../SandBox1/Assets/models/Vase/roughness.jpg",
-        "Alpha": 0.0
-      },
-      "GAME_LOGIC": [
-        "PLAYER"
-      ],
-      "TAG": {
-        "uniqueName": "",
-        "category": ""
-      }
-    },
-    {
-      "MODEL": {
         "path": "../FPS/Assets/models/Sphere/model.obj"
       },
       "TRANSFORM": {
@@ -311,43 +274,6 @@
         "category": "PISTOL"
       }
     },
-    {
-      "MODEL": {
-        "path": "../SandBox1/Assets/models/Vase/model.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 2.0,
-          "y": -1.0,
-          "z": 4.0
-        },
-        "scale": {
-          "x": 0.5,
-          "y": 0.5,
-          "z": 0.5
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/models/Vase/albedo.jpg",
-        "MetallicPath": "../SandBox1/Assets/models/Vase/metallic.jpg",
-        "NormalPath": "../SandBox1/Assets/models/Vase/normal.jpg",
-        "RoughnessPath": "../SandBox1/Assets/models/Vase/roughness.jpg",
-        "Alpha": 0.0
-      },
-      "GAME_LOGIC": [
-        "PLAYER"
-      ],
-      "TAG": {
-        "uniqueName": "",
-        "category": ""
-      }
-    },
     null
   ],
   "2": [
@@ -466,43 +392,6 @@
       "TAG": {
         "uniqueName": "PISTOL",
         "category": "PISTOL"
-      }
-    },
-    {
-      "MODEL": {
-        "path": "../SandBox1/Assets/models/Vase/model.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 2.0,
-          "y": -1.0,
-          "z": 4.0
-        },
-        "scale": {
-          "x": 0.5,
-          "y": 0.5,
-          "z": 0.5
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/models/Vase/albedo.jpg",
-        "MetallicPath": "../SandBox1/Assets/models/Vase/metallic.jpg",
-        "NormalPath": "../SandBox1/Assets/models/Vase/normal.jpg",
-        "RoughnessPath": "../SandBox1/Assets/models/Vase/roughness.jpg",
-        "Alpha": 0.0
-      },
-      "GAME_LOGIC": [
-        "PLAYER"
-      ],
-      "TAG": {
-        "uniqueName": "",
-        "category": ""
       }
     },
     {
@@ -662,43 +551,6 @@
         "category": "PISTOL"
       }
     },
-    {
-      "MODEL": {
-        "path": "../SandBox1/Assets/models/Vase/model.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 2.0,
-          "y": -1.0,
-          "z": 4.0
-        },
-        "scale": {
-          "x": 0.5,
-          "y": 0.5,
-          "z": 0.5
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/models/Vase/albedo.jpg",
-        "MetallicPath": "../SandBox1/Assets/models/Vase/metallic.jpg",
-        "NormalPath": "../SandBox1/Assets/models/Vase/normal.jpg",
-        "RoughnessPath": "../SandBox1/Assets/models/Vase/roughness.jpg",
-        "Alpha": 0.0
-      },
-      "GAME_LOGIC": [
-        "PLAYER"
-      ],
-      "TAG": {
-        "uniqueName": "",
-        "category": ""
-      }
-    },
     null
   ],
   "4": [
@@ -817,43 +669,6 @@
       "TAG": {
         "uniqueName": "PISTOL",
         "category": "PISTOL"
-      }
-    },
-    {
-      "MODEL": {
-        "path": "../SandBox1/Assets/models/Vase/model.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 2.0,
-          "y": -1.0,
-          "z": 4.0
-        },
-        "scale": {
-          "x": 0.5,
-          "y": 0.5,
-          "z": 0.5
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/models/Vase/albedo.jpg",
-        "MetallicPath": "../SandBox1/Assets/models/Vase/metallic.jpg",
-        "NormalPath": "../SandBox1/Assets/models/Vase/normal.jpg",
-        "RoughnessPath": "../SandBox1/Assets/models/Vase/roughness.jpg",
-        "Alpha": 0.0
-      },
-      "GAME_LOGIC": [
-        "PLAYER"
-      ],
-      "TAG": {
-        "uniqueName": "",
-        "category": ""
       }
     },
     {
@@ -1013,43 +828,6 @@
         "category": "PISTOL"
       }
     },
-    {
-      "MODEL": {
-        "path": "../SandBox1/Assets/models/Vase/model.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 2.0,
-          "y": -1.0,
-          "z": 4.0
-        },
-        "scale": {
-          "x": 0.5,
-          "y": 0.5,
-          "z": 0.5
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/models/Vase/albedo.jpg",
-        "MetallicPath": "../SandBox1/Assets/models/Vase/metallic.jpg",
-        "NormalPath": "../SandBox1/Assets/models/Vase/normal.jpg",
-        "RoughnessPath": "../SandBox1/Assets/models/Vase/roughness.jpg",
-        "Alpha": 0.0
-      },
-      "GAME_LOGIC": [
-        "PLAYER"
-      ],
-      "TAG": {
-        "uniqueName": "",
-        "category": ""
-      }
-    },
     null
   ],
   "6": [
@@ -1168,43 +946,6 @@
       "TAG": {
         "uniqueName": "PISTOL",
         "category": "PISTOL"
-      }
-    },
-    {
-      "MODEL": {
-        "path": "../SandBox1/Assets/models/Vase/model.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 2.0,
-          "y": -1.0,
-          "z": 4.0
-        },
-        "scale": {
-          "x": 0.5,
-          "y": 0.5,
-          "z": 0.5
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/models/Vase/albedo.jpg",
-        "MetallicPath": "../SandBox1/Assets/models/Vase/metallic.jpg",
-        "NormalPath": "../SandBox1/Assets/models/Vase/normal.jpg",
-        "RoughnessPath": "../SandBox1/Assets/models/Vase/roughness.jpg",
-        "Alpha": 0.0
-      },
-      "GAME_LOGIC": [
-        "PLAYER"
-      ],
-      "TAG": {
-        "uniqueName": "",
-        "category": ""
       }
     },
     {
@@ -1363,43 +1104,6 @@
         "uniqueName": "PISTOL",
         "category": "PISTOL"
       }
-    },
-    {
-      "MODEL": {
-        "path": "../SandBox1/Assets/models/Vase/model.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 2.0,
-          "y": -1.0,
-          "z": 4.0
-        },
-        "scale": {
-          "x": 0.5,
-          "y": 0.5,
-          "z": 0.5
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/models/Vase/albedo.jpg",
-        "MetallicPath": "../SandBox1/Assets/models/Vase/metallic.jpg",
-        "NormalPath": "../SandBox1/Assets/models/Vase/normal.jpg",
-        "RoughnessPath": "../SandBox1/Assets/models/Vase/roughness.jpg",
-        "Alpha": 0.0
-      },
-      "GAME_LOGIC": [
-        "PLAYER"
-      ],
-      "TAG": {
-        "uniqueName": "",
-        "category": ""
-      }
     }
   ],
   "8": [
@@ -1518,43 +1222,6 @@
       "TAG": {
         "uniqueName": "PISTOL",
         "category": "PISTOL"
-      }
-    },
-    {
-      "MODEL": {
-        "path": "../SandBox1/Assets/models/Vase/model.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 2.0,
-          "y": -1.0,
-          "z": 4.0
-        },
-        "scale": {
-          "x": 0.5,
-          "y": 0.5,
-          "z": 0.5
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/models/Vase/albedo.jpg",
-        "MetallicPath": "../SandBox1/Assets/models/Vase/metallic.jpg",
-        "NormalPath": "../SandBox1/Assets/models/Vase/normal.jpg",
-        "RoughnessPath": "../SandBox1/Assets/models/Vase/roughness.jpg",
-        "Alpha": 0.0
-      },
-      "GAME_LOGIC": [
-        "PLAYER"
-      ],
-      "TAG": {
-        "uniqueName": "",
-        "category": ""
       }
     },
     null,
@@ -1713,43 +1380,6 @@
       "TAG": {
         "uniqueName": "PISTOL",
         "category": "PISTOL"
-      }
-    },
-    {
-      "MODEL": {
-        "path": "../SandBox1/Assets/models/Vase/model.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 2.0,
-          "y": -1.0,
-          "z": 4.0
-        },
-        "scale": {
-          "x": 0.5,
-          "y": 0.5,
-          "z": 0.5
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/models/Vase/albedo.jpg",
-        "MetallicPath": "../SandBox1/Assets/models/Vase/metallic.jpg",
-        "NormalPath": "../SandBox1/Assets/models/Vase/normal.jpg",
-        "RoughnessPath": "../SandBox1/Assets/models/Vase/roughness.jpg",
-        "Alpha": 0.0
-      },
-      "GAME_LOGIC": [
-        "PLAYER"
-      ],
-      "TAG": {
-        "uniqueName": "",
-        "category": ""
       }
     },
     {

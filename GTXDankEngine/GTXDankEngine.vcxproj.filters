@@ -459,6 +459,9 @@
     <None Include="..\Platformer\Assets\Scripts\Camera.lua">
       <Filter>Speed\Levels</Filter>
     </None>
+    <None Include="..\FPS\Assets\Scripts\DoGunThings.lua">
+      <Filter>FPS\Scripts</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">
