@@ -1,4 +1,8 @@
 --Playerthings
+
+local gameTime = 0.0
+local gameStarted = false
+
 local imguiControledEntity = -1
 
 local timer = 2.5
@@ -8,7 +12,7 @@ local entityToSpawn = 3
 local score = 0
 local level = 0
 local gameOver = false
-local scoresToBeat = {[0] = 1, [1] = 8, [2] = 1, [3] = 14, [4] = 1, [5] = 8, [6] = 1, [7] = "Infinity"}
+local scoresToBeat = {[0] = 1, [1] = 8, [2] = 1, [3] = 14, [4] = 1, [5] = 8, [6] = 1, [7] = 20}
 
 local lightEntity = -1
 local lightTimer = 0.04
@@ -39,6 +43,10 @@ function DestroyPlayer(e)
 end
 
 function UpdatePlayer(dt, e)
+	if gameStarted then
+		gameTime = gameTime + dt
+	end
+
 	level = GetLevelNumber()
 
 	--print(lightEntity)
@@ -60,6 +68,7 @@ function UpdatePlayer(dt, e)
 		if(score == scoresToBeat[level]) then
 			print("next level")
 			score = 0
+			gameStarted = true
 			LoadNextLevel()
 		end
 	end
@@ -157,7 +166,7 @@ function UpdatePlayer(dt, e)
 		timer = timer - dt
 		--if(timer <= 0) then
 		if(timer <= 0) then
-			while(entityToSpawn > 0) do
+			while(entityToSpawn > 0 and score <= 17) do
 				entityToSpawn = entityToSpawn - 1
 				print("spawn")
 				local e = CreateEntity("Target2")
@@ -169,19 +178,21 @@ function UpdatePlayer(dt, e)
 		--	timer = 200000000
 		--end
 
-		--if(score == 50) then
-		--	print("next level")
-		--	score = 0
-		--	LoadNextLevel()
-		--	spawnTime = 1
-		--	timer = 1
-		--end
+		if(score == 20) then
+			--print("next level")
+			gameStarted = false
+			--score = 0
+			--LoadNextLevel()
+			spawnTime = 1
+			timer = 1
+		end
 	end
 
 	BeginImgui("Score")
 	scorestr = string.format("%i", score)
 	ImguiText("Score:" .. scorestr)
 	ImguiText(scoresToBeat[level] .. " to win.")
+	ImguiText("Time:" .. gameTime)
 	EndImgui()
 	
 end
