@@ -118,7 +118,6 @@ void EntitySystem::DeleteAllQueuedEntities()
 	LightComponentPool.DeleteAll();
 	StillBodyComponentPool.DeleteAll();
 	MovingBodyComponentPool.DeleteAll();
-	GameLogicCategoryComponentPool.DeleteAll();
 	TagComponentPool.DeleteAll();
 	TransformComponentPool.DeleteAll();
 	SpecialBodyComponentPool.DeleteAll();

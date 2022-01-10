@@ -18,10 +18,12 @@ end
 
 function ClearBlocks()
 	--totaloutblocks = {[1] = 0.0 }
+	timers = {}
 	blockStatus = {}
 end
 
 function DestroyBlock(e)
+	timers[e] = nil
 	blockStatus[e] = nil
 end
 
