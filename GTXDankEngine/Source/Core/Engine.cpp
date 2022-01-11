@@ -19,6 +19,7 @@ ResourceManager<Model> ModelResourceManager;
 ResourceManager<LuaFile> ScriptResourceManager;
 ResourceManager<Texture> TextureResourceManger;
 
+
 bool Engine::Init()
 {
 	// Format of Engine Init
@@ -106,13 +107,18 @@ void Engine::Run()
 		
 		if (!pause)
 		{
-			PhysicsSys.Update(DeltaTime());
-			DoGameLogicScriptSys.Update(DeltaTime());
-			//update physics after lua changes stuff
-			PhysicsSys.UpdatePosition();
-			PhysicsSys.UpdateColliders();
+			accumulatedFrameDt += DeltaTime();
+			while (accumulatedFrameDt > 0)
+			{
+				accumulatedFrameDt -= Framerate->GetTargetFrameTime();
+				PhysicsSys.Update(Framerate->GetTargetFrameTime());
+				DoGameLogicScriptSys.Update(Framerate->GetTargetFrameTime());
+				//update physics after lua changes stuff
+				PhysicsSys.UpdatePosition();
+				PhysicsSys.UpdateColliders();
 
-			CameraControlSys.Update(DeltaTime());
+				CameraControlSys.Update(Framerate->GetTargetFrameTime());
+			}
 		}
 		
 		// hard code timestamp to 0 for now

@@ -107,6 +107,7 @@ private:
 	bool debugMode = false;
 	bool editMode = false;
 	bool pause = false;
+	float accumulatedFrameDt = 0;
 
 };
 #endif // !ENGINE_H

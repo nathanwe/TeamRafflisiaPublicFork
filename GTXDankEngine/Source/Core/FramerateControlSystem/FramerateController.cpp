@@ -101,6 +101,11 @@ float FramerateController::TotalSeconds() const
 	return std::chrono::duration_cast<float_seconds>(diff).count();
 }
 
+float FramerateController::GetTargetFrameTime()
+{
+	return std::chrono::duration_cast<float_seconds>(targetFrameTime).count();
+}
+
 void FramerateController::Wait()
 {
 	auto waitTime = targetFrameTime - CurrentFrameTime();

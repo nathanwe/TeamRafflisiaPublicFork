@@ -27,6 +27,7 @@ public:
 	float CurrentFrameSeconds() const;
 	std::string FrameInfo() const;
 	float TotalSeconds() const;
+	float GetTargetFrameTime();
 
 private:
 	std::uint32_t targetFramerate;
