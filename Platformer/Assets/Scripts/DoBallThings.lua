@@ -31,7 +31,7 @@ function UpdateBall(dt, e)
 	--print("UpdateBall", e, y)
 	if y < 0 then
 		ent = CreateEntity("ball")
-		print("created", ent)
+		LOG_INFO("created", ent)
 		DeleteEntity(e)
 	end
 
@@ -43,14 +43,14 @@ function HandleEventBall(eventData)
 	end
 	if eventData.type == 16 then
 		ImguiText("Ball")
-		ImguiControledFloat(0, "timers", timers[eventData.e1])
-		ImguiControledFloat(1, "directions", directions[eventData.e1])
+		--ImguiControledFloat(0, "timers", timers[eventData.e1])
+		--ImguiControledFloat(1, "directions", directions[eventData.e1])
 		imguiControledEntity = eventData.e1
 	end
 	if eventData.type == 17 then
 		if imguiControledEntity ~= -1 then
-			timers[imguiControledEntity] = GetImguiControledFloat(0)
-			directions[imguiControledEntity] = GetImguiControledFloat(1)
+			--timers[imguiControledEntity] = GetImguiControledFloat(0)
+			--directions[imguiControledEntity] = GetImguiControledFloat(1)
 		imguiControledEntity = -1
 		end
 	end

@@ -92,6 +92,7 @@ bool ScriptSystem::Init(std::string filePath)
 	lua_register(L, "LoadNextLevel", lua_LoadNextLevel);
     lua_register(L, "RestartGame", lua_RestartGame);
     lua_register(L, "GetLevelNumber", lua_GetLevelNumber);
+    lua_register(L, "LOG_INFO", lua_LOG_INFO);
     
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));

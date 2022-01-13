@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "Shader.h"
+#include "../utils/Log.h"
 
 
 Shader::Shader(const std::string& path)
@@ -134,13 +135,21 @@ void Shader::shaderErrorInfo(unsigned int shader, unsigned int type)
     {
         glGetShaderInfoLog(shader, 512, NULL, infoLog);
         if (type == GL_VERTEX_SHADER)
-            std::cout << "File Name: " << shaderFilePath << " ERROR: Vertex Shader Compilation Error. " << infoLog << std::endl;
+        {
+            LOG_ERROR("File Name: {0} ERROR: Vertex Shader Compilation Error. {1}", shaderFilePath, infoLog);
+        }
         else if (type == GL_FRAGMENT_SHADER)
-            std::cout << "File Name: " << shaderFilePath << " ERROR: Fragment Shader Compilation Error. " << infoLog << std::endl;
+        {
+            LOG_ERROR("File Name: {0} ERROR: Fragment Shader Compilation Error. {1}", shaderFilePath, infoLog);
+        }
         else if (type == GL_GEOMETRY_SHADER)
-            std::cout << "File Name: " << shaderFilePath << " ERROR: Geometry Shader Compilation Error. " << infoLog << std::endl;
+        {
+            LOG_ERROR("File Name: {0} ERROR: Geometry Shader Compilation Error. {1}", shaderFilePath, infoLog);
+        }
         else
-            std::cout << "ERROR: Compute Shader Compilation Error." << infoLog << std::endl;
+        {
+            LOG_ERROR("ERROR: Compute Shader Compilation Error.", infoLog);
+        }
     }
 }
 

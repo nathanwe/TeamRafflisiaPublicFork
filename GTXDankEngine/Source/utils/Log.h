@@ -26,12 +26,21 @@ private:
 };
 
 
-
-
+// only log info for debug mode
+// we don't want logging when we ship the game (release mode)
+#ifdef _DEBUG 
 #define LOG_ERROR(...)	Log::GetLogger()->error(__VA_ARGS__);
 #define LOG_WARN(...)	Log::GetLogger()->warn(__VA_ARGS__);
 #define LOG_INFO(...)	Log::GetLogger()->info(__VA_ARGS__);
 #define LOG_TRACE(...)	Log::GetLogger()->trace(__VA_ARGS__);
+
+#else
+#define LOG_ERROR(...)	
+#define LOG_WARN(...)	
+#define LOG_INFO(...)	
+#define LOG_TRACE(...)	
+
+#endif
 
 #endif
 

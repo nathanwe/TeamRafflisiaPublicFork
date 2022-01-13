@@ -104,6 +104,7 @@ int lua_SetSunAngle(lua_State* L);
 int lua_LoadNextLevel(lua_State* L);
 int lua_RestartGame(lua_State* L);
 int lua_GetLevelNumber(lua_State* L);
+int lua_LOG_INFO(lua_State* L);
 
 class LuaFile
 {

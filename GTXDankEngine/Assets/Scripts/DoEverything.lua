@@ -10,7 +10,7 @@ function DoStringWithErrorCheck(str)
 	local errmsg
 	tempfunc, errmsg = load(str)
 	if (errmsg) then
-		print(errmsg)
+		LOG_INFO(errmsg)
 	else
 		--print("string done ".. str)
 		tempfunc()
@@ -19,13 +19,13 @@ end
 
 
 function Init()
-print("begin script load")
+LOG_INFO("begin script load")
 	GAME_PATH = GetGamePath()
 	LoadScript(GAME_PATH .."Assets/Scripts/CategoryList.lua")
 	categoryNames = GetCategoryNames()
 	for index,name in pairs(categoryNames) do
 		LoadScript(GAME_PATH .."Assets/Scripts/Do"..name.."Things.lua")
-		print("loaded" .. categoryNames[index])
+		LOG_INFO("loaded" .. categoryNames[index])
 	end
 
 end
@@ -42,7 +42,7 @@ function UpdateEntity( e )
 		if categoryNames[cat] ~= nil then
 			thisEntity = e
 			DoStringWithErrorCheck("Update".. categoryNames[cat] .."(deltaTime, thisEntity)")
-			--print("Update".. categoryNames[cat] .."(deltaTime, thisEntity)")
+			--LOG_INFO("Update".. categoryNames[cat] .."(deltaTime, thisEntity)")
 		end
 	end
 end
@@ -70,7 +70,7 @@ function HandleEventPerEntity(e, categoriesToEffect, eventData)
 	for index,thing in pairs(categoriesToEffect) do
 		thisEntity = e
 		gEventData = eventData
-		--print("HandleEventPerEntity for " .. e)
+		--LOG_INFO("HandleEventPerEntity for " .. e)
 		DoStringWithErrorCheck("HandleEventPerEntity".. categoryNames[thing] .."(thisEntity, gEventData)")
 	end		
 end

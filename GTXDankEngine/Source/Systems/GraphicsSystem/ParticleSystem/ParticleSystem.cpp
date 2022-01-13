@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "ParticleSystem.h"
 
-
+#include "../utils/Log.h"
 
 
 void ParticleSystem::Init(int num_particles)
@@ -84,7 +84,7 @@ void ParticleSystem::Print()
 
 	ss << "Number of Particles: " << Particles.size() << std::endl;
 
-	std::cout << ss.str() << std::endl;
+	LOG_INFO(ss.str());
 }
 
 

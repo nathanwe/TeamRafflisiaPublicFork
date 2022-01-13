@@ -17,6 +17,7 @@
 #include "../PhysicsSystem/Raycasting/Raycasting.h"
 
 
+
 extern Engine engine;
 static void dumpstack(lua_State* L)
 {
@@ -228,7 +229,7 @@ int lua_HostFunction(lua_State* L)
 {
     float a = (float)lua_tonumber(L, 1);
     float b = (float)lua_tonumber(L, 2);
-    std::cout << "[C++] Hostfunc a = " << a << ", b = " << b << std::endl;
+    LOG_INFO("[C++] Hostfunc a = {0}, b = {1}", a, b);
     float c = a * b;
     lua_pushnumber(L, c);
     return 1;
@@ -1009,4 +1010,10 @@ int lua_GetLevelNumber(lua_State* L)
 {
     lua_pushnumber(L, engine.SceneSys.GetCurrentLevel());
     return 1;
+}
+
+int lua_LOG_INFO(lua_State* L)
+{
+    LOG_INFO(lua_tostring(L, 1));
+    return 0;
 }

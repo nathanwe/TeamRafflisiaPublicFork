@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "Model.h"
-
+#include "../utils/Log.h"
 
 
 
@@ -42,15 +42,16 @@ void Model::loadModel(std::string path)
 
     if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
     {
-        std::cout << "ERROR::ASSIMP::" << import.GetErrorString() << std::endl;
+        LOG_ERROR("ERROR::ASSIMP:: {}", import.GetErrorString());
         return;
     }
     directory = path.substr(0, path.find_last_of('/'));
 
-    std::cout << "Loading model, model address: " << path << std::endl;
+    LOG_INFO("Loading model, model address: {}", path);
     double before = glfwGetTime();
     processNode(scene->mRootNode, scene);
-    std::cout << "Model loading complete, loading time: " << glfwGetTime() - before << "s " << std::endl;
+
+    LOG_INFO("Model loading complete, loading time : {}s ", glfwGetTime() - before);
 }
 
 
