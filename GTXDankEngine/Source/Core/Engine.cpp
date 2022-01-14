@@ -99,8 +99,7 @@ void Engine::Run()
 
 		Framerate->StartFrame();
 
-		EntitySys.Update(0);
-		SceneSys.Update(0);
+		
 		
 		InputSys.Update();
 		CommandSys.Update();
@@ -108,16 +107,20 @@ void Engine::Run()
 		if (!pause)
 		{
 			accumulatedFrameDt += DeltaTime();
+			float dt = Framerate->GetTargetFrameTime();
 			while (accumulatedFrameDt > 0)
 			{
-				accumulatedFrameDt -= Framerate->GetTargetFrameTime();
-				PhysicsSys.Update(Framerate->GetTargetFrameTime());
-				DoGameLogicScriptSys.Update(Framerate->GetTargetFrameTime());
+				accumulatedFrameDt -= dt;
+
+				EntitySys.Update(dt);
+				SceneSys.Update(dt);
+				PhysicsSys.Update(dt);
+				DoGameLogicScriptSys.Update(dt);
 				//update physics after lua changes stuff
 				PhysicsSys.UpdatePosition();
 				PhysicsSys.UpdateColliders();
 
-				CameraControlSys.Update(Framerate->GetTargetFrameTime());
+				CameraControlSys.Update(dt);
 			}
 		}
 		
