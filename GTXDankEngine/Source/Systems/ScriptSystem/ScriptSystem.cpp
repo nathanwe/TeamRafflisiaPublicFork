@@ -93,6 +93,17 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "RestartGame", lua_RestartGame);
     lua_register(L, "GetLevelNumber", lua_GetLevelNumber);
     lua_register(L, "LOG_INFO", lua_LOG_INFO);
+
+    lua_register(L, "LoadAudioBank", lua_LoadAudioBank);
+    lua_register(L, "UnloadAudioBank", lua_UnloadAudioBank);
+    lua_register(L, "PlayAudioEvent", lua_PlayAudioEvent);
+    lua_register(L, "GetAudioEventInstanceParameter", lua_GetEventInstanceParameter);
+    lua_register(L, "SetAudioEventInstanceParameter", lua_SetEventInstanceParameter);
+    lua_register(L, "IsAudioEventPlaying", lua_IsAudioEventPlaying);
+    lua_register(L, "SetBusMuted", lua_SetBusMuted);
+    lua_register(L, "SetBusVolume", lua_SetBusVolume);
+    lua_register(L, "SetAllMuted", lua_MuteAll);
+   
     
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));

@@ -13,10 +13,13 @@ struct WaitingSound
 	float fVolumedB = 0.0f;
 };
 
+typedef int EventID;
+
 class AudioSystem : public System
 {
 
 public:
+
 	// default constructor
 	AudioSystem() = default;
 
@@ -29,29 +32,51 @@ public:
 	bool Destroy();
 
 	void LoadBank(const char*, FMOD_STUDIO_LOAD_BANK_FLAGS flags);
+	void UnloadBank(const char*);
+	void LoadBus(const char*);
+	void UnloadBus(const char*);
 	void LoadEvent(const char* event_filename);
-	void LoadSound(const char* strSoundName, bool b3d = true, bool bLooping = false, bool bus = 0, bool bStream = false);
-	void UnLoadSound(const char* strSoundName);
-	void Set3dListenerAndOrientation(Camera camera);
-	void Set3dListenerAndOrientation(const glm::vec3& vPos = glm::vec3(0));
-	int fmodPlaySound(const char* strSoundName, const glm::vec3& vPos = glm::vec3(0), float fVolumedB = 0.0f);
-	void PlayEvent(const char* event_filename);
-	void StopChannel(int nChannelId);
+	EventID PlayEvent(const char* event_filename);
+	//void PlayEvent(EventID);
 	void StopEvent(const char* strEventName, bool bImmediate = false);
-	void GetEventParameter(const char* strEventName, const char* strEventParameter, float* parameter);
-	void SetEventParameter(const char* strEventName, const char* strParameterName, float fValue);
-	void StopAllChannels();
-	void SetChannel3dPosition(int nChannelId, const glm::vec3& vPosition);
-	void SetChannelVolume(int nChannelId, float fVolumedB);
-	void SetChannelGroupVolume(FMOD::ChannelGroup* channelGroup, float fVolumedB);
-	bool IsPlaying(int nChannelId) const;
-	bool IsEventPlaying(const char* strEventName) const;
+	void StopEvent(EventID, bool bImmediate = false);
+	//void PauseEvent(const char* strEventName, bool bImmediate = false);
+	//void PauseEvent(EventID, bool bImmediate = false);
+	float GetEventInstanceParameter(EventID id, const char* parameter_name);
+	void SetEventInstanceParameter(EventID id, const char* parameter_name, float value);
+	bool IsEventPlaying(EventID) const;
+
+	//void LoadSound(const char* strSoundName, bool b3d = true, bool bLooping = false, bool bus = 0, bool bStream = false);
+	//void UnLoadSound(const char* strSoundName);
+
+	void SetBusMuted(FMOD::Studio::Bus*, bool = true);
+	void SetBusMuted(const char*, bool = true);
+	void SetBusVolume(FMOD::Studio::Bus*, float fVolumedB);
+	void SetBusVolume(const char*, float fVolumedB);
+	void MuteAll();
+
+	void Set3dListenerAndOrientation(Camera camera);
+	//void Set3dListenerAndOrientation(const glm::vec3& vPos = glm::vec3(0));
+	//int fmodPlaySound(const char* strSoundName, const glm::vec3& vPos = glm::vec3(0), float fVolumedB = 0.0f);
+	//void StopChannel(int nChannelId);
+	
+
+	//void GetEventParameter(const char* strEventName, const char* strEventParameter, float* parameter);
+	//void SetEventParameter(const char* strEventName, const char* strParameterName, float fValue);
+	//void StopAllChannels();
+	//void SetChannel3dPosition(int nChannelId, const glm::vec3& vPosition);
+	//void SetChannelVolume(int nChannelId, float fVolumedB);
+	
+	//bool IsPlaying(int nChannelId) const;
+	
+
+	//Convertering functions
 	float dBtoVolume(float db);
 	float VolumeTOdB(float volume);
-	//FMOD_VECTOR VectorToFmod(const Vector& vPosition);
 	FMOD_VECTOR vec3GLMtoFMOD(const glm::vec3& vec3);
+
 	void HandleEvent(Event event);
-	void MuteAll();
+	
 	void TryPlayWaitingList();
 
 public:
@@ -61,19 +86,29 @@ public:
 	FMOD::System* coreSystem;
 	FMOD::Studio::System* fmodStudioSystem;
 
+	FMOD::Studio::Bus* MasterBus;
+	FMOD::Studio::Bus* BGMbus;
+	FMOD::Studio::Bus* SFXbus;
+
 	int nextChannelId;
+
+	EventID currentEventID = 0;
 
 	typedef std::map<const char*, FMOD::Sound*> SoundMap;
 	typedef std::map<int, FMOD::Channel*> ChannelMap;
-	typedef std::map<const char*, int> GroupMap;
-	typedef std::map<const char*, FMOD::Studio::EventInstance*> EventMap;
+	typedef std::map<const char*, FMOD::Studio::Bus*> BusMap;
+	typedef std::map<const char*, FMOD::Studio::EventDescription*> EventMap;
+	typedef std::map<EventID, std::pair< const char*, FMOD::Studio::EventInstance*>*> EventInstanceMap;
 	typedef std::map<const char*, FMOD::Studio::Bank*> BankMap;
+
+	
 
 	BankMap bankMaps;
 	EventMap eventMaps;
+	EventInstanceMap  eventInstanceMaps;
 	SoundMap soundMaps;
 	ChannelMap channelMaps;
-	GroupMap groupMaps;
+	BusMap busMaps;
 
 	bool BGMMuted;
 	bool SFXMuted;
