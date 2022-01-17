@@ -106,6 +106,19 @@ int lua_RestartGame(lua_State* L);
 int lua_GetLevelNumber(lua_State* L);
 int lua_LOG_INFO(lua_State* L);
 
+
+int lua_LoadAudioBank(lua_State* L);
+int lua_UnloadAudioBank(lua_State* L);
+int lua_PlayAudioEvent(lua_State* L);
+int lua_IsAudioEventPlaying(lua_State* L);
+int lua_GetEventInstanceParameter(lua_State* L);
+int lua_SetEventInstanceParameter(lua_State* L);
+
+int lua_SetBusMuted(lua_State* L);
+int lua_SetBusVolume(lua_State* L);
+int lua_MuteAll(lua_State* L);
+
+
 class LuaFile
 {
 public:

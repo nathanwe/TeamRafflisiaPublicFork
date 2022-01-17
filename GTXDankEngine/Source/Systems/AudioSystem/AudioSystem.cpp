@@ -8,8 +8,18 @@
 
 extern Engine engine;
 
+template <typename T1, typename T2>
+T2 IsKeyInMap(std::map<T1, T2>map, T1 key)
+{
+    auto mapIter = map.find(key);
+    if (mapIter != map.end()) { return mapIter->second; }
+    return nullptr;
+}
+
 bool AudioSystem::Init()
 {
+    Timer timer("Audio Init");
+
     fmodStudioSystem = NULL;
     ERRCHECK(FMOD::Studio::System::create(&fmodStudioSystem));
 
@@ -19,42 +29,83 @@ bool AudioSystem::Init()
     ERRCHECK(coreSystem->setSoftwareFormat(0, FMOD_SPEAKERMODE_5POINT1, 0));
     ERRCHECK(fmodStudioSystem->initialize(1024, FMOD_STUDIO_INIT_NORMAL, FMOD_INIT_NORMAL|FMOD_INIT_3D_RIGHTHANDED, 0));
 
-    ERRCHECK(coreSystem->createChannelGroup("BGM", &BGM));
-    ERRCHECK(coreSystem->createChannelGroup("SFX", &SFX));
-
     LoadBank("Master.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     LoadBank("Master.strings.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
-    LoadEvent("event:/BGM");
-    //PlayEvent("event:/BGM");
-    LoadSound("SaberRelay.mp3", true);
-    LoadSound("Dash.wav", true);
-    LoadSound("DeadEffect.wav", true);
-    LoadSound("WinEffect.wav", true, true);
-    LoadSound("DeadEffectRev.wav", true);
-    LoadSound("JumpSFX.wav", true);
-    LoadSound("jumpSFX2.wav", true);
-    LoadSound("Maozon & C-Show - Realize feat. Kyte (MV).mp3", false, true, true, true);
-    //int channel = fmodPlaySound("WinEffect.wav", glm::vec3(-10.0f, 0.0f, 10.0f), 0.0f);
-    //int channel2 = fmodPlaySound("Maozon & C-Show - Realize feat. Kyte (MV).mp3", glm::vec3(0), -18.0f);
+    LoadBank("BackGround.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
 
-   /* ERRCHECK(fmodStudioSystem->getBus("bus:/", &masterBus));
+    LoadBus("Bus:/");
+    LoadBus("Bus:/BGMBus");
+    LoadBus("Bus:/SFXBus");
 
-    masterBus->setVolume(0.05f);*/
+    MasterBus = busMaps["Bus:/"];
+    BGMbus = busMaps["Bus:/BGMBus"];
+    SFXbus = busMaps["Bus:/SFXBus"];
 
-   /* eventInstance->start();
-    eventInstance->setVolume(0.1f);*/
+    //EventID a = PlayEvent("event:/BGM");
+
     Set3dListenerAndOrientation(engine.GraphicsSys.camera);
-    //coreSystem->set3DSettings(1.0f, 1.0f, 1.0f);
 	return true;
 }
-void AudioSystem::Update(float timeStamp)
+void AudioSystem::LoadBank(const char* bank_filename, FMOD_STUDIO_LOAD_BANK_FLAGS flags)
 {
+    //IF already loaded, then return
+    if (IsKeyInMap(bankMaps, bank_filename)) { return; }
+
+    //ELSE load the bank
+    FMOD::Studio::Bank* pBank;
+    ERRCHECK(fmodStudioSystem->loadBankFile(Common_MediaPath(bank_filename), flags, &pBank));
+
+    //IF load bank success, Load non-streaming sample data of the bank, store it in map
+    if (pBank) 
+    {
+        bankMaps[bank_filename] = pBank; 
+        pBank->loadSampleData();
+    } 
+}
+void AudioSystem::UnloadBank(const char* bank_filename)
+{
+   
+    auto pBank = IsKeyInMap(bankMaps, bank_filename);
+    //IF bank isn't loaded, then return
+    if (!pBank) { return; }
+
+    //ELSE unload the bank, clear from map
+    ERRCHECK(pBank->unloadSampleData());
+    ERRCHECK(pBank->unload());
+    bankMaps.erase(bank_filename);
+}
+void AudioSystem::LoadBus(const char* bus_filename)
+{
+    //IF already loaded, then return
+    if (IsKeyInMap(busMaps, bus_filename)) { return; }
+
+    //ELSE load the bus
+    FMOD::Studio::Bus* pBus;
+    ERRCHECK(fmodStudioSystem->getBus(bus_filename, &pBus));
+
+    //IF load bus success, store it in map
+    if (pBus)
+    {
+        busMaps[bus_filename] = pBus;
+    }
+}
+void AudioSystem::UnloadBus(const char* bus_filename)
+{
+
+    auto pBus = IsKeyInMap(busMaps, bus_filename);
+    //IF bus isn't loaded, then return
+    if (!pBus) { return; }
+
+    //ELSE clear from map
+    busMaps.erase(bus_filename);
+}
+
+void AudioSystem::Update(float timeStamp)
+{ 
     Timer timer("Audio Update");
 
-    MuteAll();
-    if (SFXMuted && BGMMuted) { return; }
-
-   
+    //MuteAll();
+    //if (SFXMuted && BGMMuted) { return; }
 
     std::vector<ChannelMap::iterator> pStoppedChannels;
     for (auto it = channelMaps.begin(), itEnd = channelMaps.end(); it != itEnd; ++it)
@@ -71,18 +122,17 @@ void AudioSystem::Update(float timeStamp)
         channelMaps.erase(it);
     }
 
-    TryPlayWaitingList();
+    //TryPlayWaitingList();
 
 
-    SetChannelGroupVolume(BGM, static_cast<float>(BGMVolume));
-    SetChannelGroupVolume(SFX, static_cast<float>(SFXVolume));
+    SetBusVolume(BGMbus, static_cast<float>(BGMVolume));
+    SetBusVolume(SFXbus, static_cast<float>(SFXVolume));
 
     Set3dListenerAndOrientation(engine.GraphicsSys.camera);
 
     ERRCHECK(fmodStudioSystem->update());
     
 }
-
 void AudioSystem::TryPlayWaitingList() 
 {
     int size = waitingList.size(); 
@@ -90,109 +140,209 @@ void AudioSystem::TryPlayWaitingList()
     {
         WaitingSound cur = waitingList.front();
         waitingList.pop_front();
-        fmodPlaySound(cur.strSoundName, cur.vPos, cur.fVolumedB);
+        //fmodPlaySound(cur.strSoundName, cur.vPos, cur.fVolumedB);
     }
 }
 bool AudioSystem::Destroy()
 {
+    //UnloadBank("Master.bank");
     result = fmodStudioSystem->release();
     ERRCHECK(result);
     return !result;
 }
 
-
-void AudioSystem::LoadBank(const char* bank_filename, FMOD_STUDIO_LOAD_BANK_FLAGS flags)
-{
-    auto mapIter = bankMaps.find(bank_filename);
-    if (mapIter != bankMaps.end()) { return; }
-    FMOD::Studio::Bank* pBank;
-    const char* a = Common_MediaPath(bank_filename);
-    ERRCHECK(fmodStudioSystem->loadBankFile(Common_MediaPath(bank_filename), flags, &pBank));
-    if (pBank) { bankMaps[bank_filename] = pBank; }
-}
 void AudioSystem::LoadEvent(const char* event_filename)
 {
-    auto mapIter = eventMaps.find(event_filename);
-    if (mapIter != eventMaps.end()) { return; }
+    //IF already loaded, then return
+    if (IsKeyInMap(eventMaps, event_filename)) { return; }
+
+    //ELSE get eventDescription
     FMOD::Studio::EventDescription* pEventDescription = NULL;
     ERRCHECK(fmodStudioSystem->getEvent(event_filename, &pEventDescription));
-    if (pEventDescription) {
-        FMOD::Studio::EventInstance* pEventInstance = NULL;
-        ERRCHECK(pEventDescription->createInstance(&pEventInstance));
-        if (pEventInstance) {
-            eventMaps[event_filename] = pEventInstance;
-        }
-    }
-}
-void AudioSystem::LoadSound(const char* sound_filename, bool b3d, bool bLooping, bool BUS, bool bStream)
-{
-    auto mapIter = soundMaps.find(sound_filename);
-    if (mapIter != soundMaps.end())
-        return;
 
-    FMOD_MODE eMode = FMOD_DEFAULT;
-    eMode |= b3d ? FMOD_3D : FMOD_2D;
-    eMode |= bLooping ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF;
-    eMode |= bStream ? FMOD_CREATESTREAM : FMOD_CREATECOMPRESSEDSAMPLE;
-    eMode |= FMOD_NONBLOCKING;
-
-    FMOD::Sound* pSound = nullptr;
-    ERRCHECK(coreSystem->createSound(Common_MediaPath(sound_filename), eMode, nullptr, &pSound));
-    if (pSound) {
-        soundMaps[sound_filename] = pSound;
-        groupMaps[sound_filename] = (int)BUS;
-    }
-}
-void AudioSystem::UnLoadSound(const char* sound_filename)
-{
-    auto mapIter = soundMaps.find(sound_filename);
-    if (mapIter == soundMaps.end()) { return; }
-    ERRCHECK(mapIter->second->release());
-    soundMaps.erase(mapIter);
-}
-int AudioSystem::fmodPlaySound(const char* sound_filename, const glm::vec3& vPos, float fVolumedB)
-{
-    int nChannelId = nextChannelId++;
-    auto mapIter = soundMaps.find(sound_filename);
-    if (mapIter == soundMaps.end())
+    //IF getEvent success, store it in map
+    if (pEventDescription) 
     {
-        LoadSound(sound_filename);
-        mapIter = soundMaps.find(sound_filename);
-        if (mapIter == soundMaps.end())
+        eventMaps[event_filename] = pEventDescription;
+    }
+}
+EventID AudioSystem::PlayEvent(const char* event_filename)
+{
+    //IF not event not loaded, load it
+    if (!IsKeyInMap(eventMaps, event_filename)) { LoadEvent(event_filename); }
+
+    //IF event still not loaded, then the event filename is wrong
+    FMOD::Studio::EventDescription* pEventDescription = IsKeyInMap(eventMaps, event_filename);
+    if (!pEventDescription) { return -1; }
+
+    //ELSE create an instance of the description
+    FMOD::Studio::EventInstance* pEventInstance = NULL;
+    ERRCHECK(pEventDescription->createInstance(&pEventInstance));
+
+    //IF successfully created, store it in map, then play it, and return its ID
+    if (pEventInstance) {
+        std::pair<const char*, FMOD::Studio::EventInstance*>* pEventPair = new std::pair<const char*, FMOD::Studio::EventInstance*>(event_filename, pEventInstance);
+        eventInstanceMaps[currentEventID] = pEventPair;
+        pEventInstance->start();
+        return currentEventID++;
+    }
+
+    return -1;
+}
+void AudioSystem::StopEvent(const char* event_filename, bool bImmediate)
+{
+    //Find every instance that is the target event, then mute them
+    for (auto it = eventInstanceMaps.begin(), itEnd = eventInstanceMaps.end(); it != itEnd; it++)
+    {
+        if (it->second->first)
         {
-            return nChannelId;
+            FMOD_STUDIO_STOP_MODE eMode;
+            eMode = bImmediate ? FMOD_STUDIO_STOP_IMMEDIATE : FMOD_STUDIO_STOP_ALLOWFADEOUT;
+            ERRCHECK(it->second->second->stop(eMode));
         }
     }
-    FMOD::Channel* pChannel = nullptr; 
-    FMOD_OPENSTATE openstate;
-    ERRCHECK((mapIter->second->getOpenState(&openstate, nullptr, nullptr, nullptr)));
-    //printf("%s state %d\n", sound_filename, (int)openstate);
-
-    if (openstate == FMOD_OPENSTATE_PLAYING) {}
-    else if (openstate != FMOD_OPENSTATE_READY&& openstate != FMOD_OPENSTATE_PLAYING) { waitingList.push_back(WaitingSound{ sound_filename ,vPos,fVolumedB }); return -1; }
-    
-    ERRCHECK(coreSystem->playSound(mapIter->second, nullptr, true, &pChannel));
-    if (pChannel)
-    {
-        FMOD_MODE currMode;
-        mapIter->second->getMode(&currMode);
-        if (currMode & FMOD_3D) {
-            FMOD_VECTOR position = vec3GLMtoFMOD(vPos);
-            ERRCHECK(pChannel->set3DAttributes(&position, nullptr));
-        }
-        ERRCHECK(pChannel->setVolume(dBtoVolume(fVolumedB)));
-        ERRCHECK(pChannel->setPaused(false));
-        channelMaps[nChannelId] = pChannel;
-        ERRCHECK(pChannel->setChannelGroup(groupMaps[sound_filename] ? BGM : SFX));
-    }
-    return nChannelId;
 }
+void AudioSystem::StopEvent(EventID id, bool bImmediate)
+{
+    //IF eventInstance isn't in the map, then return
+    auto pEventPair = IsKeyInMap(eventInstanceMaps, id);
+    if (!pEventPair) { return; }
+
+    //ELSE Stop the Instance
+    FMOD_STUDIO_STOP_MODE eMode;
+    eMode = bImmediate ? FMOD_STUDIO_STOP_IMMEDIATE : FMOD_STUDIO_STOP_ALLOWFADEOUT;
+    ERRCHECK(pEventPair->second->stop(eMode));
+}
+bool AudioSystem::IsEventPlaying(EventID id) const
+{
+    //IF eventInstance isn't in the map, then return
+    auto pEventPair = IsKeyInMap(eventInstanceMaps, id);
+    if (!pEventPair) { return false; }
+
+    //ELSE check if the Instance is playing
+    FMOD_STUDIO_PLAYBACK_STATE state;
+    ERRCHECK(pEventPair->second->getPlaybackState(&state));
+    if (state == FMOD_STUDIO_PLAYBACK_PLAYING)
+    {
+        return true;
+    }
+    return false;
+}
+float AudioSystem::GetEventInstanceParameter(EventID id, const char* parameter_name)
+{
+    //IF eventInstance isn't in the map, then return
+    auto pEventPair = IsKeyInMap(eventInstanceMaps, id);
+    if (!pEventPair) { return NAN; }
+
+    //ELSE get parameter value
+    float* parameterValue = nullptr;
+    ERRCHECK(pEventPair->second->getParameterByName(parameter_name, parameterValue));
+    if (!parameterValue) { return NAN; }
+    return *parameterValue;
+}
+void AudioSystem::SetEventInstanceParameter(EventID id, const char* parameter_name, float value)
+{
+    //IF eventInstance isn't in the map, then return
+    auto pEventPair = IsKeyInMap(eventInstanceMaps, id);
+    if (!pEventPair) { return; }
+
+    //ELSE Set parameter
+    ERRCHECK(pEventPair->second->setParameterByName(parameter_name, value));
+}
+
+void AudioSystem::SetBusMuted(FMOD::Studio::Bus* bus,bool isMuted)
+{
+    ERRCHECK(bus->setMute(isMuted));
+}
+void AudioSystem::SetBusMuted(const char* bus_name, bool isMuted)
+{
+    if (!IsKeyInMap(busMaps, bus_name)) { return; }
+    ERRCHECK(busMaps[bus_name]->setMute(isMuted));
+}
+void AudioSystem::SetBusVolume(FMOD::Studio::Bus* bus, float fVolumedB)
+{
+    ERRCHECK(bus->setVolume(fVolumedB / 10.0f));
+}
+void AudioSystem::SetBusVolume(const char* bus_name, float fVolumedB)
+{
+    if (!IsKeyInMap(busMaps, bus_name)) { return; }
+    ERRCHECK(busMaps[bus_name]->setVolume(fVolumedB / 10.0f));
+}
+void AudioSystem::MuteAll()
+{
+    MasterBus->setMute(true);
+}
+
+//void AudioSystem::LoadSound(const char* sound_filename, bool b3d, bool bLooping, bool BUS, bool bStream)
+//{
+//    auto mapIter = soundMaps.find(sound_filename);
+//    if (mapIter != soundMaps.end())
+//        return;
+//
+//    FMOD_MODE eMode = FMOD_DEFAULT;
+//    eMode |= b3d ? FMOD_3D : FMOD_2D;
+//    eMode |= bLooping ? FMOD_LOOP_NORMAL : FMOD_LOOP_OFF;
+//    eMode |= bStream ? FMOD_CREATESTREAM : FMOD_CREATECOMPRESSEDSAMPLE;
+//    eMode |= FMOD_NONBLOCKING;
+//
+//    FMOD::Sound* pSound = nullptr;
+//    ERRCHECK(coreSystem->createSound(Common_MediaPath(sound_filename), eMode, nullptr, &pSound));
+//    if (pSound) {
+//        soundMaps[sound_filename] = pSound;
+//        groupMaps[sound_filename] = (int)BUS;
+//    }
+//}
+//void AudioSystem::UnLoadSound(const char* sound_filename)
+//{
+//    auto mapIter = soundMaps.find(sound_filename);
+//    if (mapIter == soundMaps.end()) { return; }
+//    ERRCHECK(mapIter->second->release());
+//    soundMaps.erase(mapIter);
+//}
+//int AudioSystem::fmodPlaySound(const char* sound_filename, const glm::vec3& vPos, float fVolumedB)
+//{
+//    int nChannelId = nextChannelId++;
+//    auto mapIter = soundMaps.find(sound_filename);
+//    if (mapIter == soundMaps.end())
+//    {
+//        LoadSound(sound_filename);
+//        mapIter = soundMaps.find(sound_filename);
+//        if (mapIter == soundMaps.end())
+//        {
+//            return nChannelId;
+//        }
+//    }
+//    FMOD::Channel* pChannel = nullptr; 
+//    FMOD_OPENSTATE openstate;
+//    ERRCHECK((mapIter->second->getOpenState(&openstate, nullptr, nullptr, nullptr)));
+//    //printf("%s state %d\n", sound_filename, (int)openstate);
+//
+//    if (openstate == FMOD_OPENSTATE_PLAYING) {}
+//    else if (openstate != FMOD_OPENSTATE_READY&& openstate != FMOD_OPENSTATE_PLAYING) { waitingList.push_back(WaitingSound{ sound_filename ,vPos,fVolumedB }); return -1; }
+//    
+//    ERRCHECK(coreSystem->playSound(mapIter->second, nullptr, true, &pChannel));
+//    if (pChannel)
+//    {
+//        FMOD_MODE currMode;
+//        mapIter->second->getMode(&currMode);
+//        if (currMode & FMOD_3D) {
+//            FMOD_VECTOR position = vec3GLMtoFMOD(vPos);
+//            ERRCHECK(pChannel->set3DAttributes(&position, nullptr));
+//        }
+//        ERRCHECK(pChannel->setVolume(dBtoVolume(fVolumedB)));
+//        ERRCHECK(pChannel->setPaused(false));
+//        channelMaps[nChannelId] = pChannel;
+//        ERRCHECK(pChannel->setChannelGroup(groupMaps[sound_filename] ? BGM : SFX));
+//    }
+//    return nChannelId;
+//}
 void AudioSystem::Set3dListenerAndOrientation(Camera camera)
 {
     FMOD_VECTOR pos = vec3GLMtoFMOD(camera.Position);
     FMOD_VECTOR orient;
     FMOD_VECTOR up;
-    
+    FMOD_VECTOR vel = vec3GLMtoFMOD(glm::vec3(0));
+
     glm::vec3 x = glm::vec3(1.0f, 0.0f, 0.0f);
     glm::vec3 y = glm::vec3(0.0f, 1.0f, 0.0f);
     glm::vec3 z = glm::vec3(0.0f, 0.0f, 1.0f);
@@ -205,83 +355,61 @@ void AudioSystem::Set3dListenerAndOrientation(Camera camera)
     up = vec3GLMtoFMOD(y);
     orient = vec3GLMtoFMOD(-z);
     
+    
     coreSystem->set3DListenerAttributes(0, &pos, nullptr, &orient, &up);
+    FMOD_3D_ATTRIBUTES p3Dattributes;
+    p3Dattributes.position = pos;
+    p3Dattributes.velocity = vel;
+    p3Dattributes.forward = orient;
+    p3Dattributes.up = up;
+    fmodStudioSystem->setListenerAttributes(0, &p3Dattributes);
+
     //coreSystem->get3DListenerAttributes(0, &p, nullptr, &f, &u);
     //std::cout << glm::to_string(camera.Position) << glm::to_string(-z) << glm::to_string(y) << std::endl;
     //ERRCHECK(coreSystem->set3DListenerAttributes(0, camera.Position, nullptr, camera.Orientation, camera.Up));
 }
 
-void AudioSystem::PlayEvent(const char* event_filename)
-{
-    auto mapIter = eventMaps.find(event_filename);
-    if (mapIter == eventMaps.end()) {
-        LoadEvent(event_filename);
-        mapIter = eventMaps.find(event_filename);
-        if (mapIter == eventMaps.end()) { return; }
-    }
-    mapIter->second->start();
-}
-void AudioSystem::StopEvent(const char* event_filename, bool bImmediate) {
-    auto mapIter = eventMaps.find(event_filename);
-    if (mapIter == eventMaps.end()) { return; }
+//void AudioSystem::SetChannel3dPosition(int nChannelId, const glm::vec3& vPosition)
+//{
+//
+//    auto mapIter = channelMaps.find(nChannelId);
+//    if (mapIter == channelMaps.end()) { return; }
+//
+//    FMOD_VECTOR position = vec3GLMtoFMOD(vPosition);
+//    ERRCHECK(mapIter->second->set3DAttributes(&position, NULL));
+//}
 
-    FMOD_STUDIO_STOP_MODE eMode;
-    eMode = bImmediate ? FMOD_STUDIO_STOP_IMMEDIATE : FMOD_STUDIO_STOP_ALLOWFADEOUT;
-    ERRCHECK(mapIter->second->stop(eMode));
-}
-
-bool AudioSystem::IsEventPlaying(const char* event_filename) const {
-    auto mapIter = eventMaps.find(event_filename);
-    if (mapIter == eventMaps.end()) { return false; }
+//void AudioSystem::SetChannelVolume(int nChannelId, float fVolumedB)
+//{
+//    auto mapIter = channelMaps.find(nChannelId);
+//    if (mapIter == channelMaps.end()) { return; }
+//
+//    ERRCHECK(mapIter->second->setVolume(dBtoVolume(fVolumedB)));
+//}
+//
 
 
-    FMOD_STUDIO_PLAYBACK_STATE* state = NULL;
-    if (mapIter->second->getPlaybackState(state) == FMOD_STUDIO_PLAYBACK_PLAYING) {
-        return true;
-    }
-    return false;
-}
+//void AudioSystem::GetEventParameter(const char* event_filename, const char* parameter_name, float* value) {
+//    auto mapIter = eventMaps.find(event_filename);
+//    if (mapIter == eventMaps.end()) { return; }
+//    ERRCHECK(mapIter->second->getParameterByName(parameter_name, value));
+//
+//
+//    //    FMOD::Studio::ParameterInstance* pParameter = NULL;
+//    //    CAudioEngine::ErrorCheck(tFoundIt->second->getParameter(strParameterName.c_str(), &pParameter));
+//    //    CAudioEngine::ErrorCheck(pParameter->setValue(fValue));
+//}
 
-void AudioSystem::SetChannel3dPosition(int nChannelId, const glm::vec3& vPosition)
-{
 
-    auto mapIter = channelMaps.find(nChannelId);
-    if (mapIter == channelMaps.end()) { return; }
+//void AudioSystem::SetEventParameter(const char* event_filename, const char* parameter_name, float value) {
+//    auto mapIter = eventMaps.find(event_filename);
+//    if (mapIter == eventMaps.end()) { return; }
+//    ERRCHECK(mapIter->second->setParameterByName(parameter_name, value));
+////    FMOD::Studio::ParameterInstance* pParameter = NULL;
+////    CAudioEngine::ErrorCheck(tFoundIt->second->getParameter(strParameterName.c_str(), &pParameter));
+////    CAudioEngine::ErrorCheck(pParameter->setValue(fValue));
+//}
 
-    FMOD_VECTOR position = vec3GLMtoFMOD(vPosition);
-    ERRCHECK(mapIter->second->set3DAttributes(&position, NULL));
-}
-
-void AudioSystem::SetChannelVolume(int nChannelId, float fVolumedB)
-{
-    auto mapIter = channelMaps.find(nChannelId);
-    if (mapIter == channelMaps.end()) { return; }
-
-    ERRCHECK(mapIter->second->setVolume(dBtoVolume(fVolumedB)));
-}
-
-void AudioSystem::SetChannelGroupVolume(FMOD::ChannelGroup* channelGroup, float fVolumedB)
-{
-    ERRCHECK(channelGroup->setVolume(fVolumedB / 10.0f));
-}
-
-void AudioSystem::GetEventParameter(const char* event_filename, const char* parameter_name, float* value) {
-    auto mapIter = eventMaps.find(event_filename);
-    if (mapIter == eventMaps.end()) { return; }
-    ERRCHECK(mapIter->second->getParameterByName(parameter_name, value));
-    //    FMOD::Studio::ParameterInstance* pParameter = NULL;
-    //    CAudioEngine::ErrorCheck(tFoundIt->second->getParameter(strParameterName.c_str(), &pParameter));
-    //    CAudioEngine::ErrorCheck(pParameter->setValue(fValue));
-}
-
-void AudioSystem::SetEventParameter(const char* event_filename, const char* parameter_name, float value) {
-    auto mapIter = eventMaps.find(event_filename);
-    if (mapIter == eventMaps.end()) { return; }
-    ERRCHECK(mapIter->second->setParameterByName(parameter_name, value));
-//    FMOD::Studio::ParameterInstance* pParameter = NULL;
-//    CAudioEngine::ErrorCheck(tFoundIt->second->getParameter(strParameterName.c_str(), &pParameter));
-//    CAudioEngine::ErrorCheck(pParameter->setValue(fValue));
-}
 
 
 FMOD_VECTOR AudioSystem::vec3GLMtoFMOD(const glm::vec3& vec3)
@@ -304,33 +432,30 @@ float AudioSystem::VolumeTOdB(float volume)
     return 20.0f * log10f(volume);
 }
 
-void AudioSystem::MuteAll()
-{
-    BGM->setMute(BGMMuted);
-    SFX->setMute(SFXMuted);
-}
 
 void AudioSystem::HandleEvent(Event event)
 {
     if (event.type == EventType::MUTE_BGM)
     {
-        BGMMuted = true;
+        SetBusMuted(BGMbus);
     }
     if (event.type == EventType::UNMUTE_BGM)
     {
-        BGMMuted = false;
+        SetBusMuted(BGMbus, false);
     }
     if (event.type == EventType::MUTE_SFX)
     {
-        SFXMuted = true;
+        SetBusMuted(SFXbus);
     }
     if (event.type == EventType::UNMUTE_SFX)
     {
-        SFXMuted = false;
+        SetBusMuted(SFXbus, false);
     }
     if (event.type == EventType::PLAY_SOUND)
     {
-        fmodPlaySound(event.stringData1.c_str(), glm::vec3(event.floatData2, event.floatData3, event.floatData4), event.floatData1);
+        //PlayEvent("event:/BGM");
+        StopEvent(0,false);
+        //fmodPlaySound(event.stringData1.c_str(), glm::vec3(event.floatData2, event.floatData3, event.floatData4), event.floatData1);
     }
 }
 
