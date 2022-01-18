@@ -97,7 +97,7 @@ bool GraphicsSystem::Init()
 
 void GraphicsSystem::Update(float timeStamp)
 {
-	Timer timer("Graphics Update");
+	PROFILE_THIS("Graphics Update");
 
 	// clear default framebuffer
 	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);

@@ -22,7 +22,7 @@ bool UISystem::Init()
 
 void UISystem::Update(float timeStamp)
 {
-	Timer timer("UI Update");
+	PROFILE_THIS("UI Update");
 
 	// Render UI
 	if (engine.getMenuMode() || engine.getDebugMode() || engine.getEditMode())
@@ -32,10 +32,17 @@ void UISystem::Update(float timeStamp)
 		//ImGui_ImplGlfw_NewFrame();
 		//ImGui::NewFrame();
 
+#ifdef _DEBUG
+		ProfileSys.Update(0);
+#endif // DEBUG
+
+		
+
 		if (engine.getDebugMode())
 		{
 			//UISys.Update(0);
 			engine.GraphicsSys.RenderUI();
+			
 		}
 
 		if (engine.getMenuMode())

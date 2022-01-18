@@ -33,7 +33,7 @@ bool EntitySystem::Init()
 
 void EntitySystem::Update(float timeStamp)
 {
-	Timer timer("Entity Update");
+	PROFILE_THIS("Entity Update");
 
 	if (deleteAllQueue)
 	{

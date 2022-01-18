@@ -18,7 +18,7 @@ T2 IsKeyInMap(std::map<T1, T2>map, T1 key)
 
 bool AudioSystem::Init()
 {
-    Timer timer("Audio Init");
+    PROFILE_THIS("Audio Init");
 
     fmodStudioSystem = NULL;
     ERRCHECK(FMOD::Studio::System::create(&fmodStudioSystem));
@@ -102,7 +102,7 @@ void AudioSystem::UnloadBus(const char* bus_filename)
 
 void AudioSystem::Update(float timeStamp)
 { 
-    Timer timer("Audio Update");
+    PROFILE_THIS("Audio Update");
 
     //MuteAll();
     //if (SFXMuted && BGMMuted) { return; }
