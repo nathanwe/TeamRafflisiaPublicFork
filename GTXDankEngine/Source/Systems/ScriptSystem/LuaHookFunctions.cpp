@@ -1018,6 +1018,24 @@ int lua_LOG_INFO(lua_State* L)
     return 0;
 }
 
+int lua_LOG_ERROR(lua_State* L)
+{
+    LOG_ERROR(lua_tostring(L, 1));
+    return 0;
+}
+
+int lua_SetBGM(lua_State* L)
+{
+    engine.AudioSys.BGMMuted = lua_toboolean(L, 1);
+    return 0;
+}
+
+int lua_SetSFX(lua_State* L)
+{
+    engine.AudioSys.SFXMuted = lua_toboolean(L, 1);
+    return 0;
+}
+
 int lua_LoadAudioBank(lua_State* L)
 {
     engine.AudioSys.LoadBank(lua_tostring(L, 1), FMOD_STUDIO_LOAD_BANK_NORMAL);

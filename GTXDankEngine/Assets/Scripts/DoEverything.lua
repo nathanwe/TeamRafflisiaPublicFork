@@ -10,9 +10,8 @@ function DoStringWithErrorCheck(str)
 	local errmsg
 	tempfunc, errmsg = load(str)
 	if (errmsg) then
-		LOG_INFO(errmsg)
+		LOG_ERROR(errmsg)
 	else
-		--print("string done ".. str)
 		tempfunc()
 	end
 end

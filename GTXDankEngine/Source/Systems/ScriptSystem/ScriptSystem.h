@@ -105,7 +105,9 @@ int lua_LoadNextLevel(lua_State* L);
 int lua_RestartGame(lua_State* L);
 int lua_GetLevelNumber(lua_State* L);
 int lua_LOG_INFO(lua_State* L);
-
+int lua_LOG_ERROR(lua_State* L);
+int lua_SetBGM(lua_State* L);
+int lua_SetSFX(lua_State* L);
 
 int lua_LoadAudioBank(lua_State* L);
 int lua_UnloadAudioBank(lua_State* L);
