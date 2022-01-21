@@ -5,9 +5,10 @@
 #ifndef _UI_BUTTON_
 #define _UI_BUTTON_
 
-#include <pch.h>
+#include "pch.h"
 
 class Shader;
+class Quad;
 
 /// Button class is a quad that can be hovered over
 /// and pressed on with a LMB/A button
@@ -17,14 +18,14 @@ class MenuButton
 /// methods
 public:
     MenuButton();
-    MenuButton(glm::vec2 nPos, glm::vec2 nDimensions, glm::vec3 nRGBTint,
+    MenuButton(glm::vec2 nPos, glm::vec2 nDimensions, glm::vec4 nRGBTint,
         std::pair<bool, bool> nRelativePos = std::make_pair(false, false),
         std::pair<bool, bool> nRelativeDimns = std::make_pair(false, false));
     ~MenuButton() {};
 
     void SetPosition(glm::vec2 nPos, std::pair<bool, bool> nRelativePos = std::make_pair(false, false));
     void SetDimensions(glm::vec2 nDimensions, std::pair<bool, bool> nRelativeDimns = std::make_pair(false, false));
-    void SetColor(glm::vec3 nRGBTint);
+    void SetColor(glm::vec4 nRGBTint);
 
     void Draw(Shader& shader);
 
@@ -40,6 +41,8 @@ private:
 
 /// parameters
 private:
+    Quad* mQuad;
+
     /// if we want to use relative values for position
     std::pair<bool, bool> relativePos;
     glm::vec2 position;                 /// middle point of quad
@@ -49,15 +52,15 @@ private:
     glm::vec2 dimensions;
 
     /// color tint
-    glm::vec3 rgbTint;
+    glm::vec4 rgbTint;
 
     /// calculated vertices
-    std::vector<int> quadVerticesColorTexture;
+    std::vector<float> quadVerticesColorTexture;
 
     
 	unsigned int VAO;
     std::vector<unsigned int> indices;
-}
+};
 
 
 #endif
