@@ -96,7 +96,7 @@ bool GraphicsSystem::Init()
 	pauseMenu.AddButton(
 		glm::vec2(0.1,0.05),std::make_pair(true,true),
 		glm::vec2(0.1,0.04),std::make_pair(true,true),
-		glm::vec4(255.0f/255.0f,248.0f/255.0f,220.0f/255.0f,0.8f)
+		glm::vec4(173.0f/255.0f,216.0f/255.0f,230.0f/255.0f,0.5f)
 	);
 	pauseMenu.Setup();
 	engine.CommandSys.GetCommand("Pause").SetActionToExecute(

@@ -8,13 +8,13 @@ Quad::Quad()
 {
     float quadVertices[] = { // vertex attributes for a quad that fills the entire screen in Normalized Device Coordinates.
         // positions   // texCoords
-        -0.5f,  0.5f,  0.0f, 1.0f,
-        -0.5f, -0.5f,  0.0f, 0.0f,
-         0.5f, -0.5f,  1.0f, 0.0f,
+        -1.0f,  1.0f,  0.0f, 1.0f,
+        -1.0f, -1.0f,  0.0f, 0.0f,
+         1.0f, -1.0f,  1.0f, 0.0f,
 
-        -0.5f,  0.5f,  0.0f, 1.0f,
-         0.5f, -0.5f,  1.0f, 0.0f,
-         0.5f,  0.5f,  1.0f, 1.0f
+        -1.0f,  1.0f,  0.0f, 1.0f,
+         1.0f, -1.0f,  1.0f, 0.0f,
+         1.0f,  1.0f,  1.0f, 1.0f
     };
 
     glGenBuffers(1, &quadVBO);
@@ -46,10 +46,7 @@ void Quad::Draw(Shader& shader) const
     shader.Bind();
 
     glBindVertexArray(VAO);
-    glDisable(GL_DEPTH_TEST);
-    shader.setMat4("orthoMat", glm::ortho(0.0f, float(WIDTH), 0.0f, float(HEIGHT), 0.1f, 100.0f));
     glDrawArrays(GL_TRIANGLES, 0, 6);
-    glEnable(GL_DEPTH_TEST);
     glBindVertexArray(0);
 
     shader.unBind();

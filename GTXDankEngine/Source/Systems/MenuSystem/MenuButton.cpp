@@ -67,17 +67,16 @@ void MenuButton::SetColor(glm::vec4 nRGBTint)
 
 void MenuButton::Draw(Shader& shader)
 {
+    //shader.setMat4("orthoMat", glm::ortho(0.0f, float(WIDTH), 0.0f, float(HEIGHT), 0.1f, 100.0f));
+
     // draw button
-/*    shader.Bind();
+    shader.Bind();
     glBindVertexArray(VAO);
     glDisable(GL_DEPTH_TEST);
-    shader.setMat4("orthoMat", glm::ortho(0.0f, float(WIDTH), 0.0f, float(HEIGHT), 0.1f, 100.0f));
     glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, 0);
     glEnable(GL_DEPTH_TEST);
     glBindVertexArray(0);
-    shader.unBind();*/
-
-    mQuad->Draw(shader);
+    shader.unBind();
 }
 
 
@@ -116,7 +115,7 @@ void MenuButton::Setup()
     //VertexBuffer vbo(&quadVerticesColorTexture[0], quadVerticesColorTexture.size() * sizeof(Vertex));
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, quadVerticesColorTexture.size() * sizeof(int) * (2 + 4 + 2), quadVerticesColorTexture.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, quadVerticesColorTexture.size() * sizeof(float) * (2 + 4 + 2), quadVerticesColorTexture.data(), GL_STATIC_DRAW);
 
 
 
