@@ -66,6 +66,8 @@ private:
 	Shader* RenderShader;
 	Shader* ComputeShader;
 
-	std::vector<Particle> Particles;
+	int size = 0;
+
+	//std::vector<Particle> Particles;
 };
 
