@@ -456,11 +456,14 @@
     <None Include="..\Speed\Assets\Scripts\DoSliderThings.lua">
       <Filter>Speed\Scripts</Filter>
     </None>
-    <None Include="..\Platformer\Assets\Scripts\Camera.lua">
-      <Filter>Speed\Levels</Filter>
-    </None>
     <None Include="..\FPS\Assets\Scripts\DoGunThings.lua">
       <Filter>FPS\Scripts</Filter>
+    </None>
+    <None Include="..\Platformer\Assets\Scripts\Camera.lua">
+      <Filter>Platformer\Scripts</Filter>
+    </None>
+    <None Include="..\Platformer\Assets\Scripts\DoPlateThings.lua">
+      <Filter>Platformer\Scripts</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

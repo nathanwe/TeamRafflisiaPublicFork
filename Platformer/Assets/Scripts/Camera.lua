@@ -4,7 +4,7 @@ function Init()
 	
 	Set3rdPerson(true)
 	SetCameraPitchYaw(0, 3.14)
-	SetCameraOffest(true, 1,1,1)
+	SetCameraOffest(true, 2,2,2)
 	SetCellShade(false, 1.0)
 	SetSunAngle(-28)
 end

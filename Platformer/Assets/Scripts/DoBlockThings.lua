@@ -56,15 +56,13 @@ function HandleEventBlock(eventData)
 		cats = GetCategorysOfEntity(eventData.e1)
 		if cats[2] then
 			--print("shot")
-			if blockStatus[eventData.e1] == 0 then
-				if totaloutblocks() < 3 then
-					AddToVQS(eventData.e1, 0, 0, 6)
-					blockStatus[eventData.e1] = 1
-				end
-			elseif blockStatus[eventData.e1] == 1 then
-				AddToVQS(eventData.e1, 0, 0, -6)
-				blockStatus[eventData.e1] = 0
-			end
+			--if blockStatus[eventData.e1] == 0 then
+			--	AddToVQS(eventData.e1, 0, 0, 6)
+			--	blockStatus[eventData.e1] = 1
+			--elseif blockStatus[eventData.e1] == 1 then
+			--	AddToVQS(eventData.e1, 0, 0, -6)
+			--	blockStatus[eventData.e1] = 0
+			--end
 		end
 	end
 end
