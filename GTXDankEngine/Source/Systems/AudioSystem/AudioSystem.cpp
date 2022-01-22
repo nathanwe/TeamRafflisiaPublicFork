@@ -41,7 +41,7 @@ bool AudioSystem::Init()
     BGMbus = busMaps["Bus:/BGMBus"];
     SFXbus = busMaps["Bus:/SFXBus"];
 
-    //EventID a = PlayEvent("event:/BGM");
+    EventID a = PlayEvent("event:/BGM");
 
     Set3dListenerAndOrientation(engine.GraphicsSys.camera);
 	return true;
