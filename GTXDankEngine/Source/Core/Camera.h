@@ -1,7 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#define M_PI 3.141592653
+#define M_PI 3.141592653f
 
 #include "pch.h"
 
@@ -81,62 +81,11 @@ public:
 	std::vector<float> railTimes;
 	float railTimer, railMaxTime;
 
-	void createCameraSpline(float time, std::vector<glm::vec3> points, std::vector<float> yaw = std::vector<float>(), std::vector<float> pitch = std::vector<float>()) {
-		isOnRail = true;
-		railPoints.clear();
-		railPoints = points;
+	void createCameraSpline(float time, std::vector<glm::vec3> points, std::vector<float> yaw, std::vector<float> pitch);
 
-		railMaxTime = time;
-		railTimer = 0.f;
-		/*
-		railTimes.clear();
-		railTimes = time;
-		railMaxTime = 0.f;
-		for (auto t : railTimes) {
-			railMaxTime += t;
-		}
-		*/
+	glm::vec3 railSpline(float t);
 
-		if (pitch.size() > 0 && pitch.size() == yaw.size()) {
-			isRailAngles = true;
-
-			railPitch.clear();
-			railPitch = pitch;
-
-			railYaw.clear();
-			railYaw = yaw;
-
-			railAngles.clear();
-			for (int i = 0; i < pitch.size(); i++) {
-				railAngles.push_back(glm::angleAxis(pitch[i], glm::vec3(1, 0, 0)) * glm::angleAxis(yaw[i], glm::vec3(0, 1, 0)));
-			}
-		}
-	}
-
-	glm::vec3 railSpline(float t) {
-		int p0, p1, p2, p3;
-
-		p1 = (int)t % railPoints.size();
-		p2 = (p1 + 1) % railPoints.size();
-		p3 = (p2 + 1) % railPoints.size();
-		p0 = p1 >= 1 ? (p1 - 1) % railPoints.size() : railPoints.size() - 1;
-
-		t = t - (int)t;
-
-		float tt = t * t;
-		float ttt = tt * t;
-
-		float q1 = -ttt + 2.0f * tt - t;
-		float q2 = 3.0f * ttt - 5.0f * tt + 2.0f;
-		float q3 = -3.0f * ttt + 4.0f * tt + t;
-		float q4 = ttt - tt;
-
-		float tx = 0.5f * (railPoints[p0].x * q1 + railPoints[p1].x * q2 + railPoints[p2].x * q3 + railPoints[p3].x * q4);
-		float ty = 0.5f * (railPoints[p0].y * q1 + railPoints[p1].y * q2 + railPoints[p2].y * q3 + railPoints[p3].y * q4);
-		float tz = 0.5f * (railPoints[p0].z * q1 + railPoints[p1].z * q2 + railPoints[p2].z * q3 + railPoints[p3].z * q4);
-
-		return{ tx, ty, tz };
-	}
+	void createStatic(float FOVdeg, float nearPlane, float farPlane, glm::vec3 _position = glm::vec3(0.f, 0.f, 0.f), float _pitch = 0.f, float _yaw = 0.f, float _roll = 0.f);
 
 
 };

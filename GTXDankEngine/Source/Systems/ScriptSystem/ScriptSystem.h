@@ -120,6 +120,8 @@ int lua_SetBusMuted(lua_State* L);
 int lua_SetBusVolume(lua_State* L);
 int lua_MuteAll(lua_State* L);
 
+int lua_SetCameraStatic(lua_State* L);
+int lua_SetCameraStaticScene(lua_State* L);
 
 class LuaFile
 {

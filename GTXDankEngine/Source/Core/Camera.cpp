@@ -26,6 +26,8 @@ Camera::Camera(int width, int height, glm::vec3 position)
 
 void Camera::Init()
 {
+	//createStatic(45.f, 0.1f, 100.f, { 15,20,-20 }, 0, M_PI);
+
 	/*
 	std::vector<glm::vec3> p{ {0,0,0}, {5,5,5}, {30, 0, 5} };
 
@@ -145,10 +147,10 @@ void Camera::Inputs(GLFWwindow* window)
 	if (updated)
 	{
 		if (pitch > M_PI / 2.f) {
-			pitch = static_cast<float>(M_PI / 2.f);
+			pitch = M_PI / 2.f;
 		}
 		if (pitch < -M_PI / 2.f) {
-			pitch = static_cast<float>(-M_PI / 2.f);
+			pitch = -M_PI / 2.f;
 		}
 
 		glm::quat qPitch = glm::angleAxis(pitch, glm::vec3(1, 0, 0));
@@ -235,4 +237,82 @@ void Camera::SetAutoScroll(glm::vec3 begin, glm::vec3 dest, float time) {
 
 	autoScrollBegin = begin;
 	autoScrollDest = dest;
+}
+
+void Camera::createCameraSpline(float time, std::vector<glm::vec3> points, std::vector<float> yaw = std::vector<float>(), std::vector<float> pitch = std::vector<float>()) {
+	isOnRail = true;
+	railPoints.clear();
+	railPoints = points;
+
+	railMaxTime = time;
+	railTimer = 0.f;
+	/*
+	railTimes.clear();
+	railTimes = time;
+	railMaxTime = 0.f;
+	for (auto t : railTimes) {
+		railMaxTime += t;
+	}
+	*/
+
+	if (pitch.size() > 0 && pitch.size() == yaw.size()) {
+		isRailAngles = true;
+
+		railPitch.clear();
+		railPitch = pitch;
+
+		railYaw.clear();
+		railYaw = yaw;
+
+		railAngles.clear();
+		for (int i = 0; i < pitch.size(); i++) {
+			railAngles.push_back(glm::angleAxis(pitch[i], glm::vec3(1, 0, 0)) * glm::angleAxis(yaw[i], glm::vec3(0, 1, 0)));
+		}
+	}
+}
+
+glm::vec3 Camera::railSpline(float t) {
+	int p0, p1, p2, p3;
+
+	p1 = (int)t % railPoints.size();
+	p2 = (p1 + 1) % railPoints.size();
+	p3 = (p2 + 1) % railPoints.size();
+	p0 = p1 >= 1 ? (p1 - 1) % railPoints.size() : railPoints.size() - 1;
+
+	t = t - (int)t;
+
+	float tt = t * t;
+	float ttt = tt * t;
+
+	float q1 = -ttt + 2.0f * tt - t;
+	float q2 = 3.0f * ttt - 5.0f * tt + 2.0f;
+	float q3 = -3.0f * ttt + 4.0f * tt + t;
+	float q4 = ttt - tt;
+
+	float tx = 0.5f * (railPoints[p0].x * q1 + railPoints[p1].x * q2 + railPoints[p2].x * q3 + railPoints[p3].x * q4);
+	float ty = 0.5f * (railPoints[p0].y * q1 + railPoints[p1].y * q2 + railPoints[p2].y * q3 + railPoints[p3].y * q4);
+	float tz = 0.5f * (railPoints[p0].z * q1 + railPoints[p1].z * q2 + railPoints[p2].z * q3 + railPoints[p3].z * q4);
+
+	return{ tx, ty, tz };
+}
+
+void Camera::createStatic(float FOVdeg, float nearPlane, float farPlane, glm::vec3 _position, float _pitch, float _yaw, float _roll) {
+	pitch = _pitch;
+	yaw = _yaw;
+	roll = _roll;
+
+	Position = _position;
+
+	glm::quat qPitch = glm::angleAxis(pitch, glm::vec3(1, 0, 0));
+	glm::quat qYaw = glm::angleAxis(yaw, glm::vec3(0, 1, 0));
+	glm::quat qRoll = glm::angleAxis(roll, glm::vec3(0, 0, 1));
+
+	orientationQuat = qRoll * qPitch * qYaw;
+	orientationQuat = glm::normalize(orientationQuat);
+
+	orientationScale = glm::vec3(sin(yaw) * cos(pitch), -sin(pitch), -cos(yaw) * cos(pitch));
+
+	isStatic = false;
+	UpdateMatrix(FOVdeg, nearPlane, farPlane);
+	isStatic = true;
 }

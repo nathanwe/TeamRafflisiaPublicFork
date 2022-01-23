@@ -1097,3 +1097,22 @@ int lua_MuteAll(lua_State* L)
     engine.AudioSys.MuteAll();
     return 0;
 }
+
+int lua_SetCameraStatic(lua_State* L)
+{
+    engine.GraphicsSys.camera.isStatic = lua_toboolean(L, 1);
+    return 0;
+}
+int lua_SetCameraStaticScene(lua_State* L)
+{
+    // (x,y,z), yaw, pitch, roll
+    engine.GraphicsSys.camera.createStatic(   // until further notice, I am assuming that the camera's FOV and near/far planes will always be the hard-coded values I provided here
+        45.f, 0.1, 100.f,
+        glm::vec3(lua_tonumber(L, 1), lua_tonumber(L, 2), lua_tonumber(L, 3)),
+        lua_tonumber(L, 4),
+        lua_tonumber(L, 5),
+        lua_tonumber(L, 6)
+    );
+    return 0;
+}
+
