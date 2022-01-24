@@ -27,7 +27,7 @@ public:
     void SetDimensions(glm::vec2 nDimensions, std::pair<bool, bool> nRelativeDimns = std::make_pair(false, false));
     void SetColor(glm::vec4 nRGBTint);
 
-    void Draw(Shader& shader);
+    void Draw(Shader& shader) const;
 
     void SetVertices();
 
@@ -41,8 +41,6 @@ private:
 
 /// parameters
 private:
-    Quad* mQuad;
-
     /// if we want to use relative values for position
     std::pair<bool, bool> relativePos;
     glm::vec2 position;                 /// middle point of quad

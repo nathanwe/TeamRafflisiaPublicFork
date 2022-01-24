@@ -304,14 +304,14 @@
     <Filter Include="Speed\Levels\ScriptSystem">
       <UniqueIdentifier>{360e0d18-7e70-4fd1-93e2-b870d53a068e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Systems\MenuSystem">
-      <UniqueIdentifier>{67e06cbc-ec23-4a41-81d1-bf7d25739bcb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Systems\MenuSystem">
-      <UniqueIdentifier>{33091c31-4128-49f7-a1d1-edd4a316a175}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Shaders\MenuRenderer">
       <UniqueIdentifier>{2fef4a7b-dd18-401b-a82a-998469bca294}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Systems\GraphicsSystem\MenuSystem">
+      <UniqueIdentifier>{c6514009-0ee3-4167-9451-fb7e85fedbd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\GraphicsSystem\MenuSystem">
+      <UniqueIdentifier>{d27b4359-bfef-4b03-a908-d33c4b51278e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -704,11 +704,14 @@
     <ClInclude Include="Source\Systems\PhysicsSystem\Raycasting\Raycasting.h">
       <Filter>Header Files\Systems\PhysicsSystem\RayCasting</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Systems\MenuSystem\Menu.h">
-      <Filter>Header Files\Systems\MenuSystem</Filter>
+    <ClInclude Include="Source\Systems\GraphicsSystem\MenuSystem\Menu.h">
+      <Filter>Header Files\Systems\GraphicsSystem\MenuSystem</Filter>
     </ClInclude>
-    <ClInclude Include="Source\Systems\MenuSystem\MenuButton.h">
-      <Filter>Header Files\Systems\MenuSystem</Filter>
+    <ClInclude Include="Source\Systems\GraphicsSystem\MenuSystem\MenuButton.h">
+      <Filter>Header Files\Systems\GraphicsSystem\MenuSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Systems\GraphicsSystem\MenuSystem\MenuSystem.h">
+      <Filter>Header Files\Systems\GraphicsSystem\MenuSystem</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -916,11 +919,14 @@
     <ClCompile Include="Source\Components\PhysicsComponent\ColliderComponent.cpp">
       <Filter>Source Files\Components\PhysicsComponent</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Systems\MenuSystem\Menu.cpp">
-      <Filter>Source Files\Systems\MenuSystem</Filter>
+    <ClCompile Include="Source\Systems\GraphicsSystem\MenuSystem\Menu.cpp">
+      <Filter>Source Files\Systems\GraphicsSystem\MenuSystem</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Systems\MenuSystem\MenuButton.cpp">
-      <Filter>Source Files\Systems\MenuSystem</Filter>
+    <ClCompile Include="Source\Systems\GraphicsSystem\MenuSystem\MenuButton.cpp">
+      <Filter>Source Files\Systems\GraphicsSystem\MenuSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\GraphicsSystem\MenuSystem\MenuSystem.cpp">
+      <Filter>Source Files\Systems\GraphicsSystem\MenuSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

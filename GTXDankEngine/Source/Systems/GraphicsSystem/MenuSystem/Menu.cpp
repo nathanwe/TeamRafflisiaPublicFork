@@ -2,10 +2,10 @@
 
 #include "Menu.h"
 #include "MenuButton.h"
-#include "../../Source/Core/Shader.h"
+#include "../Core/Shader.h"
 
 /// used to get WIDTH and HEIGHT
-#include "../GraphicsSystem/GraphicsSystem.h"
+#include "../Systems/GraphicsSystem/GraphicsSystem.h"
 
 
 Menu::Menu()
@@ -78,7 +78,7 @@ void Menu::Setup()
         mb->Setup();
 }
 
-void Menu::Draw(Shader& shader)
+void Menu::Draw(Shader& shader) const
 {
 /*    shader.Bind();
     glBindVertexArray(VAO);

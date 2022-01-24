@@ -8,10 +8,9 @@
 
 #include "../Core/Engine.h"
 #include "../Core/Shader.h"
-#include "../GraphicsSystem/Quad.h"
 
 /// used to get WIDTH and HEIGHT
-#include "../GraphicsSystem/GraphicsSystem.h"
+#include "../Systems/GraphicsSystem/GraphicsSystem.h"
 
 
 /// Engine is used to access the window and camera
@@ -25,9 +24,10 @@ relativeDimns(std::make_pair(false, false)), dimensions(glm::vec2(0,0)),
 rgbTint(0,0,0,1),
 /// 2D position     RGB color       Texture coordinates
 quadVerticesColorTexture((2 + 4 + 2) * 4),
-indices({ 0,1,2, 1,2,3 }),
-mQuad(new Quad())
-{}
+indices({ 0,1,2, 1,2,3 })
+{
+    SetVertices();
+}
 
 MenuButton::MenuButton(glm::vec2 nPos, glm::vec2 nDimensions, glm::vec4 nRGBTint,
         std::pair<bool, bool> nRelativePos,
@@ -38,8 +38,7 @@ relativeDimns(nRelativeDimns), dimensions(nDimensions),
 rgbTint(nRGBTint),
 /// 2D position     RGB color       Texture coordinates
 quadVerticesColorTexture((2 + 4 + 2) * 4),
-indices({ 0,1,2, 1,2,3 }),
-mQuad(new Quad())
+indices({ 0,1,2, 1,2,3 })
 {
     SetVertices();
 }
@@ -65,7 +64,7 @@ void MenuButton::SetColor(glm::vec4 nRGBTint)
 }
 
 
-void MenuButton::Draw(Shader& shader)
+void MenuButton::Draw(Shader& shader) const
 {
     //shader.setMat4("orthoMat", glm::ortho(0.0f, float(WIDTH), 0.0f, float(HEIGHT), 0.1f, 100.0f));
 
@@ -91,8 +90,10 @@ void MenuButton::SetVertices()
     {
         int startIdx = (2 + 4 + 2) * i;
         /// set position
-        quadVerticesColorTexture[startIdx]    = (xPos + btnWidth  / 2 * (i % 2 == 0 ? -1.0f : 1.0f) - float(WIDTH)  / 2.0f) / (float(WIDTH)  / 2.0f);
-        quadVerticesColorTexture[startIdx+1]  = (yPos + btnHeight / 2 * (i / 2 == 0 ? -1.0f : 1.0f) - float(HEIGHT) / 2.0f) / (float(HEIGHT) / 2.0f);
+        /// since window goes from bottom to top [-1,1] and we work from top to bottom
+        /// y-value must be flipped to reflect the correct orientation
+        quadVerticesColorTexture[startIdx]    =  (xPos + btnWidth  / 2 * (i % 2 == 0 ? -1.0f : 1.0f) - float(WIDTH)  / 2.0f) / (float(WIDTH)  / 2.0f);
+        quadVerticesColorTexture[startIdx+1]  = -(yPos + btnHeight / 2 * (i / 2 == 0 ? -1.0f : 1.0f) - float(HEIGHT) / 2.0f) / (float(HEIGHT) / 2.0f);
         /// set color
         quadVerticesColorTexture[startIdx+2]  = rgbTint.r;
         quadVerticesColorTexture[startIdx+3]  = rgbTint.g;

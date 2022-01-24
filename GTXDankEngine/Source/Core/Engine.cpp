@@ -93,7 +93,7 @@ void Engine::Run()
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
-		if(!(menuMode || debugMode || editMode))
+		if(!(menuMode || debugMode || editMode || pauseMenuMode))
 			ImGui::SetMouseCursor(ImGuiMouseCursor_None);
 		//----------------------------------------
 
@@ -233,7 +233,7 @@ bool Engine::getMenuMode()
 void Engine::setMenuMode(bool mode)
 {
 	menuMode = mode;
-	pause = menuMode || editMode;
+	pause = menuMode || editMode || pauseMenuMode;
 	ToggleCursor();
 }
 
@@ -245,7 +245,19 @@ bool Engine::getEditMode()
 void Engine::setEditMode(bool mode)
 {
 	editMode = mode;
-	pause = menuMode || editMode;
+	pause = menuMode || editMode || pauseMenuMode;
+	ToggleCursor();
+}
+
+bool Engine::getPauseMenuMode()
+{
+	return pauseMenuMode;
+}
+
+void Engine::setPauseMenuMode(bool mode)
+{
+	pauseMenuMode = mode;
+	pause = menuMode || editMode || pauseMenuMode;
 	ToggleCursor();
 }
 
@@ -262,7 +274,7 @@ void Engine::setDebugMode(bool mode)
 
 void Engine::ToggleCursor()
 {
-	if (menuMode || debugMode || editMode)
+	if (menuMode || debugMode || editMode || pauseMenuMode)
 	{
 		glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
 	}

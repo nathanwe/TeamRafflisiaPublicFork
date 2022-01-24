@@ -23,7 +23,7 @@ public:
                     glm::vec2 dimensions, std::pair<bool, bool> isDimRelative,
                     glm::vec4 rgba);
     
-    void Draw(Shader& shader);
+    void Draw(Shader& shader) const;
     void Setup();
 
 /// parameters

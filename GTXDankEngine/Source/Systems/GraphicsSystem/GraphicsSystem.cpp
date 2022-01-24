@@ -89,22 +89,7 @@ bool GraphicsSystem::Init()
 			RenderingDebugMode = !RenderingDebugMode;
 		});
 
-	/// setup pause menu for use
-	/// put these lines into a Menu system
-	menuShader = new Shader("Source/Shaders/MenuRenderer/UIMenuShader.shader");
-
-	pauseMenu.AddButton(
-		glm::vec2(0.1,0.05),std::make_pair(true,true),
-		glm::vec2(0.1,0.04),std::make_pair(true,true),
-		glm::vec4(173.0f/255.0f,216.0f/255.0f,230.0f/255.0f,0.5f)
-	);
-	pauseMenu.Setup();
-	engine.CommandSys.GetCommand("Pause").SetActionToExecute(
-		[&]()
-		{
-			paused = !paused;
-		}
-	);
+	MenuSystem.Init();
 
 	return true;
 }
@@ -129,8 +114,7 @@ void GraphicsSystem::Update(float timeStamp)
 	if (!RenderingDebugMode) Render(timeStamp);
 	else DebugDraw();
 	
-	if(paused)
-		pauseMenu.Draw(*menuShader);
+	MenuSystem.Draw();
 }
 
 

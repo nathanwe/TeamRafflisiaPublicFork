@@ -14,7 +14,8 @@
 #include "OIT/OIT.h"
 #include "ParticleSystem/ParticleSystem.h"
 #include "Sky/Sky.h"
-#include "../MenuSystem/Menu.h"
+#include "MenuSystem/MenuSystem.h"
+#include "MenuSystem/Menu.h"
 
 
 class Light;
@@ -98,12 +99,6 @@ private:
 	float m_sun_angle = 0.0;
 	bool RenderingDebugMode = false;
 
-	// Different Menu's for rendering player UI
-	Shader* menuShader;
-
-	Menu mainMenu;
-
-	bool paused = true;
-	Menu pauseMenu;
+	MenuSystem MenuSystem;
 };
 #endif // !GRAPHICSSYSTEM_H
