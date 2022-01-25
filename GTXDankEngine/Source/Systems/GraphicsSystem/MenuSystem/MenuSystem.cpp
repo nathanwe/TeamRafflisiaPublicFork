@@ -5,6 +5,7 @@
 #include "../Core/Shader.h"
 #include "../Core/Engine.h"
 #include "Menu.h"
+#include "MenuButton.h"
 
 
 extern Engine engine;
@@ -22,26 +23,33 @@ MenuSystem::~MenuSystem()
 void MenuSystem::Init()
 {
     auto pMenu = this->AddMenu("PauseMenu");
-    pMenu->AddButton(
+    pMenu->AddButton("Continue",
         glm::vec2(0.1, 0.05), std::make_pair(true, true),
         glm::vec2(0.1, 0.04), std::make_pair(true, true),
         glm::vec4(173.0f / 255.0f, 216.0f / 255.0f, 230.0f / 255.0f, 1.0f)
-    );
-    pMenu->AddButton(
+    )->SetActionToExecute([&](){
+            display = !display;
+		    engine.setPauseMenuMode(display);
+            engine.InputSys.mouseX = WIDTH  / 2;
+            engine.InputSys.mouseY = HEIGHT / 2;
+    });
+    pMenu->AddButton("Test1",
         glm::vec2(0.1, 0.11), std::make_pair(true, true),
         glm::vec2(0.1, 0.04), std::make_pair(true, true),
         glm::vec4(255.0f / 255.0f, 0.0f / 255.0f, 0.0f / 255.0f, 1.0f)
     );
-    pMenu->AddButton(
+    pMenu->AddButton("Test2",
         glm::vec2(0.1, 0.17), std::make_pair(true, true),
         glm::vec2(0.1, 0.04), std::make_pair(true, true),
         glm::vec4(0.0f / 255.0f, 255.0f / 255.0f, 0.0f / 255.0f, 1.0f)
     );
-    pMenu->AddButton(
+    pMenu->AddButton("Exit",
         glm::vec2(0.1, 0.23), std::make_pair(true, true),
         glm::vec2(0.1, 0.04), std::make_pair(true, true),
         glm::vec4(0.0f / 255.0f, 0.0f / 255.0f, 255.0f / 255.0f, 1.0f)
-    );
+    )->SetActionToExecute([&](){
+        glfwSetWindowShouldClose(engine.window, true);
+    });
     pMenu->Setup();
 
     menuShader = new Shader("Source/Shaders/MenuRenderer/UIMenuShader.shader");

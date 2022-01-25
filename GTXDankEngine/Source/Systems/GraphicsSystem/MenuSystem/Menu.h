@@ -19,11 +19,14 @@ public:
     Menu();
     ~Menu();
 
-    void AddButton (glm::vec2 position,   std::pair<bool, bool> isPosRelative,
-                    glm::vec2 dimensions, std::pair<bool, bool> isDimRelative,
-                    glm::vec4 rgba);
+    MenuButton* AddButton(std::string name,
+        glm::vec2 position,   std::pair<bool, bool> isPosRelative,
+        glm::vec2 dimensions, std::pair<bool, bool> isDimRelative,
+        glm::vec4 rgba);
     
-    void Draw(Shader& shader) const;
+    MenuButton* GetButton(std::string name);
+
+    void Draw(Shader& shader);
     void Setup();
 
 /// parameters
@@ -34,7 +37,7 @@ private:
 
 /// parameters
 private:
-    std::vector<MenuButton*> buttons;
+    std::map<std::string, MenuButton*> buttons;
     
     /// values for drawing the menu background
     std::vector<int> vertices;

@@ -10,7 +10,7 @@
 
 Menu::Menu()
     :
-buttons(std::vector<MenuButton*>()),
+buttons(std::map<std::string, MenuButton*>()),
 vertices(std::vector<int>(4 * (2 + 4 + 2))), indices({0,1,2,1,2,3})
 {
     for (int i = 0; i < 4; ++i)
@@ -22,18 +22,37 @@ vertices(std::vector<int>(4 * (2 + 4 + 2))), indices({0,1,2,1,2,3})
 
 Menu::~Menu()
 {
-    for (auto mb : buttons)
+    for (auto [_,mb] : buttons)
         delete mb;
     
     buttons.clear();
 }
 
 
-void Menu::AddButton(glm::vec2 position,   std::pair<bool, bool> isPosRelative,
-                     glm::vec2 dimensions, std::pair<bool, bool> isDimRelative,
-                     glm::vec4 rgba)
+MenuButton* Menu::AddButton(std::string name,
+    glm::vec2 position,   std::pair<bool, bool> isPosRelative,
+    glm::vec2 dimensions, std::pair<bool, bool> isDimRelative,
+    glm::vec4 rgba)
 {
-    buttons.push_back(new MenuButton(position, dimensions, rgba, isPosRelative, isDimRelative));
+    if (buttons.find(name) == buttons.end())
+        buttons[name] = new MenuButton(position, dimensions, rgba, isPosRelative, isDimRelative);
+    else
+        LOG_WARN("Attempt to override an existing button {0}", name);
+    return buttons[name];
+}
+
+MenuButton* Menu::GetButton(std::string name)
+{
+    MenuButton* fButton = nullptr;
+    if (buttons.find(name) == buttons.end())
+    {
+        LOG_WARN("No button with name {0}", name);
+    }
+    else
+    {
+        fButton = buttons[name];
+    }
+    return fButton;
 }
 
 void Menu::Setup()
@@ -74,11 +93,11 @@ void Menu::Setup()
 
 
     /// setup all of the buttons
-    for (auto& mb : buttons)
+    for (auto& [_,mb] : buttons)
         mb->Setup();
 }
 
-void Menu::Draw(Shader& shader) const
+void Menu::Draw(Shader& shader)
 {
 /*    shader.Bind();
     glBindVertexArray(VAO);
@@ -88,7 +107,7 @@ void Menu::Draw(Shader& shader) const
     glBindVertexArray(0);
     shader.unBind();*/
 
-    for (auto& mb : buttons)
+    for (auto& [_,mb] : buttons)
         mb->Draw(shader);
 }
 

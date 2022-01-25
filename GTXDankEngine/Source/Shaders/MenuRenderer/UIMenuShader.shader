@@ -29,11 +29,13 @@ out vec4 FragColor;
 
 uniform sampler2D txtr;
 
+uniform vec3 shade;
+
 void main()
 {
     // no texture at the moment
     //gl_FragColor = texture(txtr, texCoordOut) * rgbaOut;
-    FragColor = rgbaOut;
+    FragColor = rgbaOut * vec4(shade,1.0f);
     //FragColor = vec4(1.0, 0.0, 0.0, 1.0f); /// debug
 }
 

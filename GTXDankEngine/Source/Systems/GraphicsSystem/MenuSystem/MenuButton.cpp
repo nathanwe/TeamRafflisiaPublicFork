@@ -64,9 +64,31 @@ void MenuButton::SetColor(glm::vec4 nRGBTint)
 }
 
 
-void MenuButton::Draw(Shader& shader) const
+void MenuButton::Draw(Shader& shader)
 {
     //shader.setMat4("orthoMat", glm::ortho(0.0f, float(WIDTH), 0.0f, float(HEIGHT), 0.1f, 100.0f));
+
+    double xMPos, yMPos;
+    glfwGetCursorPos(engine.window, &xMPos, &yMPos);
+    if (std::abs(xMPos - xPos) <= btnWidth/2.0f && std::abs(yMPos - yPos) <= btnHeight/2.0f)
+    {
+        if (engine.InputSys.IsLeftMousePressed())
+        {
+            shader.setVec3("shade", glm::vec3(0.6f,0.6f,0.6f));
+            readyToExecute = true;
+        }
+        else
+        {
+            shader.setVec3("shade", glm::vec3(0.93f, 0.93f, 0.93f));
+            if (readyToExecute)
+                this->Execute();
+        }
+    }
+    else
+    {
+        shader.setVec3("shade", glm::vec3(0.82f,0.82f,0.82f));
+        readyToExecute = false;
+    }
 
     // draw button
     shader.Bind();
@@ -81,10 +103,10 @@ void MenuButton::Draw(Shader& shader) const
 
 void MenuButton::SetVertices()
 {
-    float xPos        = relativePos.first    ? position.x   * float(WIDTH)   : position.x;
-    float yPos        = relativePos.second   ? position.y   * float(HEIGHT)  : position.y;
-    float btnWidth    = relativeDimns.first  ? dimensions.x * float(WIDTH)   : dimensions.x;
-    float btnHeight   = relativeDimns.second ? dimensions.y * float(HEIGHT)  : dimensions.y;
+    xPos        = relativePos.first    ? position.x   * float(WIDTH)   : position.x;
+    yPos        = relativePos.second   ? position.y   * float(HEIGHT)  : position.y;
+    btnWidth    = relativeDimns.first  ? dimensions.x * float(WIDTH)   : dimensions.x;
+    btnHeight   = relativeDimns.second ? dimensions.y * float(HEIGHT)  : dimensions.y;
 
     for (int i = 0; i < 4; ++i)
     {
@@ -142,4 +164,17 @@ void MenuButton::Setup()
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
+
+
+void MenuButton::SetActionToExecute(std::function<void()> actionToExecute)
+{
+	this->actionToExecute = actionToExecute;
+}
+
+void MenuButton::Execute()
+{
+    if (actionToExecute)
+        this->actionToExecute();
+}
+
 

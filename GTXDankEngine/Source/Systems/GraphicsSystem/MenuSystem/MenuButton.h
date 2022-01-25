@@ -27,11 +27,15 @@ public:
     void SetDimensions(glm::vec2 nDimensions, std::pair<bool, bool> nRelativeDimns = std::make_pair(false, false));
     void SetColor(glm::vec4 nRGBTint);
 
-    void Draw(Shader& shader) const;
+    void Draw(Shader& shader);
 
     void SetVertices();
 
     void Setup();
+
+    
+    void SetActionToExecute(std::function<void()> actionToExecute);
+    void Execute();
 
 /// parameters
 public:
@@ -58,6 +62,13 @@ private:
     
 	unsigned int VAO;
     std::vector<unsigned int> indices;
+
+    float xPos, yPos;
+    float btnWidth, btnHeight;
+
+
+    bool readyToExecute = false;
+    std::function<void()> actionToExecute;
 };
 
 
