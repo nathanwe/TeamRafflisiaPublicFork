@@ -2,7 +2,9 @@
 local imguiControledEntity = -1
 local blockStatus = {} -- not the blockStatus from doblockthings, that does nothing now
 local lv0Pairs = {[12] = 4}
-local pairs = {[0] = lv0Pairs}
+local lv1Pairs = {[18] = 7}
+local pairs = {[0] = lv0Pairs, [1] = lv1Pairs}
+local lvPairs = {}
 function SavePlates( levelnum )
 	levelstr = string.format("%i", levelnum)
 	--SaveIntFloatTableAsJson(timers, "/Assets/Levels/Level" .. levelstr .."PlateTimerSave.json")
@@ -66,11 +68,13 @@ function HandleEventPlate(eventData)
 				plateid = eventData.e1
 			end
 			LOG_INFO("On Plate " .. plateid)
-			lvpairs = pairs[GetLevelNumber()]
-			if lvpairs[plateid] ~= nil then --if on the list
-				if blockStatus[lvpairs[plateid]] == 0 then  -- if its in
-					AddToVQS(lvpairs[plateid], 0, 0, -6) --push it out
-					blockStatus[lvpairs[plateid]] = 1 --mark it out
+			lvPairs = pairs[GetLevelNumber()]
+			--LOG_INFO("level number = " ..GetLevelNumber())
+			--LOG_INFO("box id" .. (pairs[GetLevelNumber()])[plateid])
+			if lvPairs[plateid] ~= nil then --if on the list
+				if blockStatus[lvPairs[plateid]] == 0 then  -- if its in
+					AddToVQS(lvPairs[plateid], 0, 0, -6) --push it out
+					blockStatus[lvPairs[plateid]] = 1 --mark it out
 				end
 			end
 		end
