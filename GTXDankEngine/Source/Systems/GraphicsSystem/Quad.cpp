@@ -2,6 +2,7 @@
 #include "Quad.h"
 
 #include "../Core/Shader.h"
+#include "../Core/Engine.h"
 
 Quad::Quad()
 {

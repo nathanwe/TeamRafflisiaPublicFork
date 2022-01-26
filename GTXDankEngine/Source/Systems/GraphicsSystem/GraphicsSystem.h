@@ -14,6 +14,8 @@
 #include "OIT/OIT.h"
 #include "ParticleSystem/ParticleSystem.h"
 #include "Sky/Sky.h"
+#include "MenuSystem/MenuSystem.h"
+#include "MenuSystem/Menu.h"
 
 
 class Light;
@@ -96,5 +98,7 @@ private:
 	HosekWilkieSkyModel Sky;
 	float m_sun_angle = 0.0;
 	bool RenderingDebugMode = false;
+
+	MenuSystem MenuSystem;
 };
 #endif // !GRAPHICSSYSTEM_H

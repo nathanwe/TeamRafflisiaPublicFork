@@ -89,6 +89,8 @@ bool GraphicsSystem::Init()
 			RenderingDebugMode = !RenderingDebugMode;
 		});
 
+	MenuSystem.Init();
+
 	return true;
 }
 
@@ -112,6 +114,7 @@ void GraphicsSystem::Update(float timeStamp)
 	if (!RenderingDebugMode) Render(timeStamp);
 	else DebugDraw();
 	
+	MenuSystem.Draw();
 }
 
 
