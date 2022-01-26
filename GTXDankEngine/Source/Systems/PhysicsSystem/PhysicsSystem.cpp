@@ -37,7 +37,7 @@ bool PhysicsSystem::Init()
 
 void PhysicsSystem::Update(float time = 0)
 {
-	Timer timer("Physics Update");
+	PROFILE_THIS("Physics Update");
 
 	/*if (RigidBodyComponentPool.componentList.size() == 0)
 		return;*/

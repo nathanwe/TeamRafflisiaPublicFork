@@ -69,6 +69,7 @@ end
 --custom functions
 
 function InitLion(e)
+	PlayAudioEvent("BGM");
 	timers[e] = e
 	directions[e] = 1
 end

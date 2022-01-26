@@ -111,7 +111,7 @@ void SceneSystem::SaveAsNewLevel()
 
 void SceneSystem::Update(float dt)
 {
-    Timer timer("Scene Update");
+    PROFILE_THIS("Scene Update");
     
     if (shouldLoadLevel)
     {

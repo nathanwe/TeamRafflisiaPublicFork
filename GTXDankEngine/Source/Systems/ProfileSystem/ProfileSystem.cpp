@@ -19,7 +19,7 @@ int targetFramerate = 60;
 void ProfileSystem::Update(float timeStamp)
 {
 	//Defines the things to show in Imgui
-	Timer timer("Profile Update");
+	PROFILE_THIS("Profile Update");
 
 	ImGui::Begin("ImGui Window");
 	//every output on imgui is contained within this scope

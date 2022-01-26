@@ -4,6 +4,7 @@
 
 extern ProfileSystem ProfileSys;
 
+
 Timer::Timer(const char* name) :timerName(name), isTimerStopped(false)
 {
 	//Add a this on stack memory in a scope of any function
@@ -37,3 +38,9 @@ void Timer::Stop()
 	//std::cout << timerName << " uses " << microsecond << " microseconds\n";
 }
 
+void profile_this(const char* name) 
+{
+#ifdef _DEBUG
+	Timer timer(name);
+#endif // _DEBUG
+}

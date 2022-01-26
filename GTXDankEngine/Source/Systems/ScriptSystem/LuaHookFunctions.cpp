@@ -1017,3 +1017,102 @@ int lua_LOG_INFO(lua_State* L)
     LOG_INFO(lua_tostring(L, 1));
     return 0;
 }
+
+int lua_LOG_ERROR(lua_State* L)
+{
+    LOG_ERROR(lua_tostring(L, 1));
+    return 0;
+}
+
+int lua_SetBGM(lua_State* L)
+{
+    engine.AudioSys.BGMMuted = lua_toboolean(L, 1);
+    return 0;
+}
+
+int lua_SetSFX(lua_State* L)
+{
+    engine.AudioSys.SFXMuted = lua_toboolean(L, 1);
+    return 0;
+}
+
+int lua_LoadAudioBank(lua_State* L)
+{
+    engine.AudioSys.LoadBank(lua_tostring(L, 1), FMOD_STUDIO_LOAD_BANK_NORMAL);
+
+    return 1;
+}
+
+int lua_UnloadAudioBank(lua_State* L)
+{
+    engine.AudioSys.UnloadBank(lua_tostring(L, 1));
+
+    return 1;
+}
+
+int lua_PlayAudioEvent(lua_State* L)
+{
+    char eventDir[100] = "event:/";
+    int ID = engine.AudioSys.PlayEvent(strcat(eventDir, lua_tostring(L, 1)));
+    lua_pushinteger(L, ID);
+
+    return 1;
+}
+
+int lua_IsAudioEventPlaying(lua_State* L)
+{
+    lua_pushboolean(L, engine.AudioSys.IsEventPlaying(lua_tointeger(L, 1)));
+    return 1;
+}
+
+int lua_GetEventInstanceParameter(lua_State* L)
+{
+    lua_pushnumber(L, engine.AudioSys.GetEventInstanceParameter(lua_tointeger(L, 1), lua_tostring(L, 2)));
+    return 0;
+}
+
+int lua_SetEventInstanceParameter(lua_State* L)
+{
+    engine.AudioSys.SetEventInstanceParameter(lua_tointeger(L, 1), lua_tostring(L, 2), lua_tonumber(L, 3));
+    return 0;
+}
+
+
+int lua_SetBusMuted(lua_State* L)
+{
+    char busDir[100] = "Bus:/";
+    engine.AudioSys.SetBusMuted(strcat(busDir, lua_tostring(L, 1)), lua_toboolean(L, 2));
+
+    return 0;
+}
+int lua_SetBusVolume(lua_State* L)
+{
+    char busDir[100] = "Bus:/";
+    engine.AudioSys.SetBusVolume(strcat(busDir, lua_tostring(L, 1)), lua_tonumber(L, 2));
+
+    return 0;
+}
+int lua_MuteAll(lua_State* L)
+{
+    engine.AudioSys.MuteAll();
+    return 0;
+}
+
+int lua_SetCameraStatic(lua_State* L)
+{
+    engine.GraphicsSys.camera.isStatic = lua_toboolean(L, 1);
+    return 0;
+}
+int lua_SetCameraStaticScene(lua_State* L)
+{
+    // (x,y,z), yaw, pitch, roll
+    engine.GraphicsSys.camera.createStatic(   // until further notice, I am assuming that the camera's FOV and near/far planes will always be the hard-coded values I provided here
+        45.f, 0.1, 100.f,
+        glm::vec3(lua_tonumber(L, 1), lua_tonumber(L, 2), lua_tonumber(L, 3)),
+        lua_tonumber(L, 4),
+        lua_tonumber(L, 5),
+        lua_tonumber(L, 6)
+    );
+    return 0;
+}
+

@@ -1,7 +1,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#define M_PI 3.141592653
+#define M_PI 3.141592653f
 
 #include "pch.h"
 
@@ -23,6 +23,7 @@ public:
 	float roll = glm::radians(0.0f);
 
 	bool firstClick = true;
+	bool isStatic = false;
 
 	int width;
 	int height;
@@ -66,6 +67,25 @@ public:
 	// inline glm::vec3 GetPosition() { return (Position - glm::vec3(thirdPersonOffset) * orientationScale); }
 	inline glm::vec3 GetPosition() { return (Position + (isOffset ? -offset : glm::vec3(0.f)) - (thirdPerson ? glm::vec3(thirdPersonOffset) : glm::vec3(0.f)) * orientationScale); }
 	//inline glm::vec3 GetRotation() { return glm::eulerAngles(orientationQuat) * 180.0f / 3.141f; }
+
+
+public:
+	bool isOnRail = false;
+	bool isRailAngles = false;
+	std::vector<glm::vec3> railPoints;
+
+	std::vector<glm::quat> railAngles;
+	std::vector<float> railPitch;
+	std::vector<float> railYaw;
+
+	std::vector<float> railTimes;
+	float railTimer, railMaxTime;
+
+	void createCameraSpline(float time, std::vector<glm::vec3> points, std::vector<float> yaw, std::vector<float> pitch);
+
+	glm::vec3 railSpline(float t);
+
+	void createStatic(float FOVdeg, float nearPlane, float farPlane, glm::vec3 _position = glm::vec3(0.f, 0.f, 0.f), float _pitch = 0.f, float _yaw = 0.f, float _roll = 0.f);
 
 
 };
