@@ -11,6 +11,7 @@ SFXVolumeLocation = nil
 function Init()
 	BGMVolumeLocation, SFXVolumeLocation =GetSoundVolumes();
 	LoadAudioBank("SFXs.bank")
+	PlayAudioEvent("BGM")
 end
 
 function Update(dt)
