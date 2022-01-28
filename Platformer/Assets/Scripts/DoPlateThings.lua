@@ -54,7 +54,7 @@ function HandleEventPlate(eventData)
 		end
 	end
 	if eventData.type == 12 then
-		LOG_INFO("coltion between " .. eventData.e1 .. " and " .. eventData.e2)
+		--LOG_INFO("coltion between " .. eventData.e1 .. " and " .. eventData.e2)
 		local plateid = 69
 		categoriesA = {}
 		categoriesB = {}
@@ -78,34 +78,11 @@ function HandleEventPlate(eventData)
 				end
 			end
 		end
-		
 	end
-
 end
 
 
 
 function HandleEventPerEntityPlate(e, eventData)
-	LOG_INFO("handleing plate event")
-	if eventData.type == 7 then
-		DeleteEntity(e)
-	end
-	if eventData.type == 12 then
-		LOG_INFO("coltion between " .. eventData.e1 .. " and " .. eventData.e2)
-		if e == eventData.e1 or e == eventData.e2 then --if collide with me
-			categories = {}
-			categoriesA = GetCategorysOfEntity(eventData.e1)
-			categoriesB = GetCategorysOfEntity(eventData.e2)
-			if categoriesA[1] or categoriesB[1] then --if collide with player
-				LOG_INFO("onPlate")
-				lvpairs = pairs[GetLevelNumber()]
-				if lvpairs[e] ~= nil then --if on the list
-					if blockStatus[lvpairs[e]] == 0 then-- if its in
-						AddToVQS(lvpairs[e], 0, 0, -6) --push it out
-						blockStatus[lvpairs[e]] = 1 --mark it out
-					end
-				end
-			end
-		end
-	end
+
 end
