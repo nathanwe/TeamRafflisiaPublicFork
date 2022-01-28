@@ -11,6 +11,7 @@ SFXVolumeLocation = nil
 function Init()
 	BGMVolumeLocation, SFXVolumeLocation =GetSoundVolumes();
 	LoadAudioBank("SFXs.bank")
+	PlayAudioEvent("BGM")
 end
 
 function Update(dt)
@@ -23,7 +24,7 @@ function Update(dt)
 				--local AudioEventTable = {}
 				--AudioEventTable["type"] = 3
 				--SendAudioEvent(AudioEventTable)
-				SetBGM(false)
+				SetBusMuted("BGMBus",false)
 				BGMMuted = false
 			end
 		else
@@ -32,7 +33,7 @@ function Update(dt)
 				--local AudioEventTable = {}
 				--AudioEventTable["type"] = 2
 				--SendAudioEvent(AudioEventTable)
-				SetBGM(true)
+				SetBusMuted("BGMBus",true)
 				BGMMuted = true
 			end
 		end
@@ -43,7 +44,7 @@ function Update(dt)
 				--local AudioEventTable = {}
 				--AudioEventTable["type"] = 11
 				--SendAudioEvent(AudioEventTable)
-				SetSFX(false)
+				SetBusMuted("SFXBus",false)
 				SFXMuted = false
 			end
 		else
@@ -52,6 +53,7 @@ function Update(dt)
 				--local AudioEventTable = {}
 				--AudioEventTable["type"] = 10
 				--SendAudioEvent(AudioEventTable)
+				SetBusMuted("SFXBus",true)
 				SFXMuted = true
 			end
 		end
@@ -66,7 +68,12 @@ function Update(dt)
 			--AudioEventTable["floatData3"] = 1.0
 			--AudioEventTable["floatData4"] = 1.0
 			--SendAudioEvent(AudioEventTable)
-			PlayAudioEvent("JumpSFX")
+			local ID = PlayAudioEvent("BallJump")
+			SetAudioEventPosition(ID,20.0,40.0,-80.0)
+			local ID2 = PlayAudioEvent("JumpSFX")
+			SetAudioEventPosition(ID2,40.0,40.0,-80.0)
+			local ID3 = PlayAudioEvent("J")
+			--SetAudioEventPosition(ID3,30.0,40.0,-80.0)
 		end
 	
 		ResetControl();

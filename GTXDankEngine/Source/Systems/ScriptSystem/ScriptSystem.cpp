@@ -107,6 +107,7 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "SetAllMuted", lua_MuteAll);
     lua_register(L, "SetCameraStatic", lua_SetCameraStatic);
     lua_register(L, "SetCameraStaticScene", lua_SetCameraStaticScene);
+    lua_register(L, "SetAudioEventPosition", lua_SetAudioEventPosition);
     
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));

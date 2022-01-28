@@ -115,6 +115,7 @@ int lua_PlayAudioEvent(lua_State* L);
 int lua_IsAudioEventPlaying(lua_State* L);
 int lua_GetEventInstanceParameter(lua_State* L);
 int lua_SetEventInstanceParameter(lua_State* L);
+int lua_SetAudioEventPosition(lua_State* L);
 
 int lua_SetBusMuted(lua_State* L);
 int lua_SetBusVolume(lua_State* L);
