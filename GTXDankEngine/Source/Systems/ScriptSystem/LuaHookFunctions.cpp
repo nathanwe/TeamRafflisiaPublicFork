@@ -1081,14 +1081,15 @@ int lua_SetEventInstanceParameter(lua_State* L)
 int lua_SetBusMuted(lua_State* L)
 {
     char busDir[100] = "Bus:/";
-    engine.AudioSys.SetBusMuted(strcat(busDir, lua_tostring(L, 1)), lua_toboolean(L, 2));
+    const char* constDir(strcat(busDir, lua_tostring(L, 1)));
+    engine.AudioSys.SetBusMuted(constDir, lua_toboolean(L, 2));
 
     return 0;
 }
 int lua_SetBusVolume(lua_State* L)
 {
     char busDir[100] = "Bus:/";
-    engine.AudioSys.SetBusVolume(strcat(busDir, lua_tostring(L, 1)), lua_tonumber(L, 2));
+    engine.AudioSys.SetBusVolume((const char*)(strcat(busDir, lua_tostring(L, 1))), lua_tonumber(L, 2));
 
     return 0;
 }
@@ -1113,6 +1114,13 @@ int lua_SetCameraStaticScene(lua_State* L)
         lua_tonumber(L, 5),
         lua_tonumber(L, 6)
     );
+    return 0;
+}
+
+int lua_SetAudioEventPosition(lua_State* L)
+{
+    engine.AudioSys.Set3DAudioEventPos(lua_tointeger(L, 1), glm::vec3(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4)));
+
     return 0;
 }
 
