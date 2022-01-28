@@ -15,6 +15,7 @@ struct WaitingSound
 
 struct ConstCharStarComparator
 {
+	//Custom Comparator for char*
 	bool operator()(const char* s1, const char* s2) const
 	{
 		return strcmp(s1, s2) < 0;
@@ -88,7 +89,7 @@ public:
 	
 	void TryPlayWaitingList();
 
-	int FindWordIndex(const char* word);
+	const char* FindWord(const char* word);
 	
 public:
 
@@ -112,7 +113,7 @@ public:
 	typedef std::map<EventID, std::pair< const char*, FMOD::Studio::EventInstance*>*> EventInstanceMap;
 	typedef std::map<const char*, FMOD::Studio::Bank*, ConstCharStarComparator> BankMap;
 
-	std::vector <std::string> wordVec;
+	std::deque <std::string> wordDeque;
 
 	BankMap bankMaps;
 	EventMap eventMaps;

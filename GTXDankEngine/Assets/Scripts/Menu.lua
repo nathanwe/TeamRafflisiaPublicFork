@@ -72,7 +72,7 @@ function Update(dt)
 			SetAudioEventPosition(ID,20.0,40.0,-80.0)
 			local ID2 = PlayAudioEvent("JumpSFX")
 			SetAudioEventPosition(ID2,40.0,40.0,-80.0)
-			local ID3 = PlayAudioEvent("J")
+			--local ID3 = PlayAudioEvent("J")
 			--SetAudioEventPosition(ID3,30.0,40.0,-80.0)
 		end
 	

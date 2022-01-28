@@ -44,7 +44,6 @@ bool AudioSystem::Init()
 
     Set3dListenerAndOrientation(engine.GraphicsSys.camera);
     
-
     //EventID a = PlayEvent("event:/JumpSFX");
     //Set3DAudioEventPos(a, glm::vec3(20.0f, 40.0f, -80.0f));
    
@@ -52,17 +51,19 @@ bool AudioSystem::Init()
 }
 void AudioSystem::LoadBank(const char* bank_filename, FMOD_STUDIO_LOAD_BANK_FLAGS flags)
 {
+    const char* word = FindWord(bank_filename);
+
     //IF already loaded, then return
-    if (IsKeyInMap(bankMaps, bank_filename)) { return; }
+    if (IsKeyInMap(bankMaps, word)) { return; }
 
     //ELSE load the bank
     FMOD::Studio::Bank* pBank;
-    ERRCHECK(fmodStudioSystem->loadBankFile(Common_MediaPath(bank_filename), flags, &pBank));
+    ERRCHECK(fmodStudioSystem->loadBankFile(Common_MediaPath(word), flags, &pBank));
 
     //IF load bank success, Load non-streaming sample data of the bank, store it in map
     if (pBank) 
     {
-        bankMaps[bank_filename] = pBank; 
+        bankMaps[word] = pBank; 
         pBank->loadSampleData();
     } 
 }
@@ -80,17 +81,18 @@ void AudioSystem::UnloadBank(const char* bank_filename)
 }
 void AudioSystem::LoadBus(const char* bus_filename)
 {
+    const char* word = FindWord(bus_filename);
     //IF already loaded, then return
-    if (IsKeyInMap(busMaps, bus_filename)) { return; }
+    if (IsKeyInMap(busMaps, word)) { return; }
 
     //ELSE load the bus
     FMOD::Studio::Bus* pBus;
-    ERRCHECK(fmodStudioSystem->getBus(bus_filename, &pBus));
+    ERRCHECK(fmodStudioSystem->getBus(word, &pBus));
 
     //IF load bus success, store it in map
     if (pBus)
     {
-        busMaps[bus_filename] = pBus;
+        busMaps[word] = pBus;
     }
 }
 void AudioSystem::UnloadBus(const char* bus_filename)
@@ -159,28 +161,30 @@ bool AudioSystem::Destroy()
 
 void AudioSystem::LoadEvent(const char* event_filename)
 {
-    int wordIndex = FindWordIndex(event_filename);
+    const char* word = FindWord(event_filename);
 
     //IF already loaded, then return
-    if (IsKeyInMap(eventMaps, wordVec[wordIndex].c_str())) { return; }
+    if (IsKeyInMap(eventMaps, word)) { return; }
 
     //ELSE get eventDescription
     FMOD::Studio::EventDescription* pEventDescription = NULL;
-    ERRCHECK(fmodStudioSystem->getEvent(wordVec[wordIndex].c_str(), &pEventDescription));
+    ERRCHECK(fmodStudioSystem->getEvent(word, &pEventDescription));
 
     //IF getEvent success, store it in map
     if (pEventDescription) 
     {
-        eventMaps[wordVec[wordIndex].c_str()] = pEventDescription;
+        eventMaps[word] = pEventDescription;
     }
 }
 EventID AudioSystem::PlayEvent(const char* event_filename)
 {
+    const char* word = FindWord(event_filename);
+
     //IF not event not loaded, load it
-    if (!IsKeyInMap(eventMaps, event_filename)) { LoadEvent(event_filename); }
+    if (!IsKeyInMap(eventMaps, word)) { LoadEvent(word); }
 
     //IF event still not loaded, then the event filename is wrong
-    FMOD::Studio::EventDescription* pEventDescription = IsKeyInMap(eventMaps, event_filename);
+    FMOD::Studio::EventDescription* pEventDescription = IsKeyInMap(eventMaps, word);
     if (!pEventDescription) { return -1; }
 
     //ELSE create an instance of the description
@@ -189,7 +193,7 @@ EventID AudioSystem::PlayEvent(const char* event_filename)
 
     //IF successfully created, store it in map, then play it, and return its ID
     if (pEventInstance) {
-        std::pair<const char*, FMOD::Studio::EventInstance*>* pEventPair = new std::pair<const char*, FMOD::Studio::EventInstance*>(event_filename, pEventInstance);
+        std::pair<const char*, FMOD::Studio::EventInstance*>* pEventPair = new std::pair<const char*, FMOD::Studio::EventInstance*>(word, pEventInstance);
         eventInstanceMaps[currentEventID] = pEventPair;
         pEventInstance->start();
         return currentEventID++;
@@ -450,18 +454,19 @@ float AudioSystem::VolumeTOdB(float volume)
     return 20.0f * log10f(volume);
 }
 
-int AudioSystem::FindWordIndex(const char* word)
+
+const char* AudioSystem::FindWord(const char* word)
 {
     std::string stringWord(word);
-    auto iter = std::find(wordVec.begin(), wordVec.end(), stringWord);
-    if (iter != wordVec.end())
+    auto iter = std::find(wordDeque.begin(), wordDeque.end(), stringWord);
+    if (iter != wordDeque.end())
     {
-        return iter - wordVec.begin();
+        return (*iter).c_str();
     }
     else
     {
-        wordVec.push_back(stringWord);
-        return wordVec.size() - 1;
+        wordDeque.push_back(stringWord);
+        return (wordDeque[wordDeque.size() - 1]).c_str();
     }
 }
 
