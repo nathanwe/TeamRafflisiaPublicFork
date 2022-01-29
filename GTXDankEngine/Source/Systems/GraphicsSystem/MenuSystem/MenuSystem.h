@@ -36,6 +36,14 @@ private:
     std::string currentMenu;
 
     Shader* menuShader;
+
+    /// WARNING!!!
+    /// ACHTUNG!!!
+    /// ВНИМАНИЕ!!!
+    /// ALERTE!!!
+    /// CURRENTLY NO MORE THAN TWO LEVELS OF MENUS!!!
+    int prevMenu = -1;
+    std::string menuStack[2];
 };
 
 

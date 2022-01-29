@@ -82,7 +82,7 @@ void Camera::Inputs(GLFWwindow* window)
 {
 	bool updated = false;
 
-	if (isStatic) { return; }
+	if (isStatic) { glfwSetCursorPos(window, (width / 2), (height / 2)); return; }
 
 	//if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT) == GLFW_PRESS)
 	//{

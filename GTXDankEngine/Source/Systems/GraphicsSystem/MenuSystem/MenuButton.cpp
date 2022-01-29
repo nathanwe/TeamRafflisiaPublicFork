@@ -8,6 +8,7 @@
 
 #include "../Core/Engine.h"
 #include "../Core/Shader.h"
+#include "../Core/Texture.h"
 
 /// used to get WIDTH and HEIGHT
 #include "../Systems/GraphicsSystem/GraphicsSystem.h"
@@ -44,23 +45,26 @@ indices({ 0,1,2, 1,2,3 })
 }
 
 
-void MenuButton::SetPosition(glm::vec2 nPos, std::pair<bool, bool> nRelativePos)
+MenuButton* MenuButton::SetPosition(glm::vec2 nPos, std::pair<bool, bool> nRelativePos)
 {
     position = nPos;
     relativePos = nRelativePos;
     SetVertices();
+    return this;
 }
 
-void MenuButton::SetDimensions(glm::vec2 nDimensions, std::pair<bool, bool> nRelativeDimns)
+MenuButton* MenuButton::SetDimensions(glm::vec2 nDimensions, std::pair<bool, bool> nRelativeDimns)
 {
     dimensions = nDimensions;
     relativeDimns = nRelativeDimns;
     SetVertices();
+    return this;
 }
 
-void MenuButton::SetColor(glm::vec4 nRGBTint)
+MenuButton* MenuButton::SetColor(glm::vec4 nRGBTint)
 {
     rgbTint = nRGBTint;
+    return this;
 }
 
 
@@ -81,13 +85,23 @@ void MenuButton::Draw(Shader& shader)
         {
             shader.setVec3("shade", glm::vec3(0.93f, 0.93f, 0.93f));
             if (readyToExecute)
+            {
+                readyToExecute = false;
                 this->Execute();
+            }
         }
     }
     else
     {
         shader.setVec3("shade", glm::vec3(0.82f,0.82f,0.82f));
         readyToExecute = false;
+    }
+
+    shader.setInt("haveTxtr", haveTexture);
+    if (haveTexture)
+    {
+        auto bTxtr = TextureResourceManger.GetResourceHandle(buttonTexture);
+        shader.setTexture("txtr", bTxtr->GetPointer()->GetID());
     }
 
     // draw button
@@ -123,7 +137,7 @@ void MenuButton::SetVertices()
         quadVerticesColorTexture[startIdx+5]  = rgbTint.a;
         /// set texture coordinates
         quadVerticesColorTexture[startIdx+6]  = i % 2;
-        quadVerticesColorTexture[startIdx+7]  = i / 2;
+        quadVerticesColorTexture[startIdx+7]  = i / 2 == 0;
     }
 }
 
@@ -166,9 +180,10 @@ void MenuButton::Setup()
 }
 
 
-void MenuButton::SetActionToExecute(std::function<void()> actionToExecute)
+MenuButton* MenuButton::SetActionToExecute(std::function<void()> actionToExecute)
 {
 	this->actionToExecute = actionToExecute;
+    return this;
 }
 
 void MenuButton::Execute()
@@ -177,4 +192,12 @@ void MenuButton::Execute()
         this->actionToExecute();
 }
 
+
+
+MenuButton* MenuButton::SetTexture(std::string texturePath)
+{
+    haveTexture = true;
+    buttonTexture = texturePath;
+    return this;
+}
 

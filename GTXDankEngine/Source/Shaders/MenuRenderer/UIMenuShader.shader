@@ -27,6 +27,7 @@ in vec2 texCoordOut;
 
 out vec4 FragColor;
 
+uniform bool haveTxtr;
 uniform sampler2D txtr;
 
 uniform vec3 shade;
@@ -35,7 +36,16 @@ void main()
 {
     // no texture at the moment
     //gl_FragColor = texture(txtr, texCoordOut) * rgbaOut;
-    FragColor = rgbaOut * vec4(shade,1.0f);
+    vec4 outColor;
+    if (haveTxtr)
+    {
+        outColor = texture(txtr, texCoordOut);
+    }
+    else
+    {
+        outColor = rgbaOut;
+    }
+    FragColor = outColor * vec4(shade,1.0f);
     //FragColor = vec4(1.0, 0.0, 0.0, 1.0f); /// debug
 }
 
