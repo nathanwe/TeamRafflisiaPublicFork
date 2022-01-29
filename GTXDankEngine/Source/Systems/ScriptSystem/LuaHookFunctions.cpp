@@ -980,12 +980,6 @@ int lua_SetCameraOffest(lua_State* L)
     return 0;
 }
 
-int lua_SetCellShade(lua_State* L)
-{
-    engine.GraphicsSys.SetCelStatus(lua_toboolean(L, 1));
-    engine.GraphicsSys.SetCelFactor(lua_tonumber(L, 2));
-    return 0;
-}
 
 int lua_SetSunAngle(lua_State* L)
 {

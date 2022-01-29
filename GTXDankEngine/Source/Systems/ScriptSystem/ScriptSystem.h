@@ -99,7 +99,6 @@ int lua_Set3rdPersonDistance(lua_State* L);
 int lua_UpdatePhysicsCollider(lua_State* L);
 int lua_SetCameraPitchYaw(lua_State* L);
 int lua_SetCameraOffest(lua_State* L);
-int lua_SetCellShade(lua_State* L);
 int lua_SetSunAngle(lua_State* L);
 int lua_LoadNextLevel(lua_State* L);
 int lua_RestartGame(lua_State* L);

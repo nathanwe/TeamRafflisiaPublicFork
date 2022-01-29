@@ -151,7 +151,7 @@ void GraphicsSystem::Render(float timeStamp)
 
 	// Forward Rendering
 	// Render transparent objects
-	TransparentRenderer.Render(HdrFBO.GetFBO(), view, proj, HdrFBO.GetDepth());
+	//TransparentRenderer.Render(HdrFBO.GetFBO(), view, proj, HdrFBO.GetDepth());
 
 	// post processing
 	PostProcesser.Render(HdrFBO);
@@ -293,7 +293,6 @@ void GraphicsSystem::RenderUI(void)
 		ImGui::Checkbox("Enable Debug Mode", &RenderingDebugMode);
 		ImGui::Checkbox("Visualize Normal Vec", &DebugRenderer.EnableNormalVisual);
 		ImGui::Checkbox("Enable PCF", &(DeferredRender.EnablePCF));
-		ImGui::Checkbox("Enable Cel Shading", &(DeferredRender.EnableCelShading));
 		ImGui::SliderFloat("Cel Fractor", &(DeferredRender.CelFraction), 0.01f, 10.0f);
 
 		float turbidity = 0.0f;

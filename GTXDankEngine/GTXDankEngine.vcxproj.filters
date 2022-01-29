@@ -193,12 +193,6 @@
     <Filter Include="Source Files\Components\PhysicsComponent">
       <UniqueIdentifier>{8de5d571-7f98-4959-ac8c-beeed856506e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Systems\PhysicsSystem">
-      <UniqueIdentifier>{4711b89e-9080-4bd1-b090-b9e4fadef584}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Systems\PhysicsSystem\Collision">
-      <UniqueIdentifier>{ca2c8314-0016-4927-8409-d797986356b3}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Components\PhysicsComponent">
       <UniqueIdentifier>{699edc9e-9089-40c3-a6c6-1154aabdb5ca}</UniqueIdentifier>
     </Filter>
@@ -286,9 +280,6 @@
     <Filter Include="Speed\Levels">
       <UniqueIdentifier>{9751c2af-84d7-41d6-99fa-2396ea2df551}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Systems\PhysicsSystem\RayCasting">
-      <UniqueIdentifier>{dd9a2a15-c23d-4688-85aa-a6844ed512be}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Components\TagComponent">
       <UniqueIdentifier>{12b52205-ec9c-4b4a-afeb-4e98e18a6a3c}</UniqueIdentifier>
     </Filter>
@@ -301,9 +292,6 @@
     <Filter Include="TopDownFighter\Levels">
       <UniqueIdentifier>{386eb69e-1ee2-4b7c-b02b-db326986aaf0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Speed\Levels\ScriptSystem">
-      <UniqueIdentifier>{360e0d18-7e70-4fd1-93e2-b870d53a068e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resource Files\Shaders\MenuRenderer">
       <UniqueIdentifier>{2fef4a7b-dd18-401b-a82a-998469bca294}</UniqueIdentifier>
     </Filter>
@@ -313,6 +301,18 @@
     <Filter Include="Source Files\Systems\GraphicsSystem\MenuSystem">
       <UniqueIdentifier>{d27b4359-bfef-4b03-a908-d33c4b51278e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Systems\ScriptSystem">
+      <UniqueIdentifier>{8b032399-b7d4-47ac-aa3b-e5bdc0cf5834}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\ProfileSystem\PhysicsSystem">
+      <UniqueIdentifier>{4711b89e-9080-4bd1-b090-b9e4fadef584}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\ProfileSystem\PhysicsSystem\Collision">
+      <UniqueIdentifier>{ca2c8314-0016-4927-8409-d797986356b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\ProfileSystem\PhysicsSystem\RayCasting">
+      <UniqueIdentifier>{dd9a2a15-c23d-4688-85aa-a6844ed512be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Skybox.shader">
@@ -321,14 +321,8 @@
     <None Include="Source\Shaders\basic.shader">
       <Filter>Resource Files\Shaders</Filter>
     </None>
-    <None Include="Source\Shaders\basicPBR.shader">
-      <Filter>Resource Files\Shaders</Filter>
-    </None>
     <None Include="Source\Shaders\LightSource.shader">
       <Filter>Resource Files\Shaders</Filter>
-    </None>
-    <None Include="Source\Shaders\DeferredRenderer\DeferredLighting.shader">
-      <Filter>Resource Files\Shaders\DeferredRenderer</Filter>
     </None>
     <None Include="Source\Shaders\DeferredRenderer\Fill_G_Buffer.shader">
       <Filter>Resource Files\Shaders\DeferredRenderer</Filter>
@@ -856,9 +850,6 @@
     <ClCompile Include="Source\Systems\GraphicsSystem\Shadow\Shadow.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\Shadow</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Systems\ScriptSystem\LuaHookFunctions.cpp">
-      <Filter>Speed\Levels\ScriptSystem</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\FBO.cpp">
       <Filter>Source Files\Systems\GraphicsSystem</Filter>
     </ClCompile>
@@ -887,10 +878,10 @@
       <Filter>Source Files\Components\PhysicsComponent</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\PhysicsSystem\PhysicsSystem.cpp">
-      <Filter>Source Files\Systems\PhysicsSystem</Filter>
+      <Filter>Source Files\Systems\ProfileSystem\PhysicsSystem</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\PhysicsSystem\Collision\CollisionFunctions.cpp">
-      <Filter>Source Files\Systems\PhysicsSystem\Collision</Filter>
+      <Filter>Source Files\Systems\ProfileSystem\PhysicsSystem\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\ParticleSystem\ParticleSystem.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\ParticleSystem</Filter>
@@ -898,14 +889,11 @@
     <ClCompile Include="Source\Systems\GraphicsSystem\Sky\Sky.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\Sky</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Systems\ScriptSystem\ScriptSystem.cpp">
-      <Filter>Speed\Levels\ScriptSystem</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Core\Pathfinder.cpp">
       <Filter>Source Files\Core</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\PhysicsSystem\Raycasting\Raycasting.cpp">
-      <Filter>Source Files\Systems\PhysicsSystem\RayCasting</Filter>
+      <Filter>Source Files\Systems\ProfileSystem\PhysicsSystem\RayCasting</Filter>
     </ClCompile>
     <ClCompile Include="Source\Systems\CommandSystem\DirectionCommand.cpp">
       <Filter>Source Files\Systems\CommandSystem</Filter>
@@ -930,6 +918,12 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\MenuSystem\MenuSystem.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\MenuSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\ScriptSystem\LuaHookFunctions.cpp">
+      <Filter>Source Files\Systems\ScriptSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\ScriptSystem\ScriptSystem.cpp">
+      <Filter>Source Files\Systems\ScriptSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

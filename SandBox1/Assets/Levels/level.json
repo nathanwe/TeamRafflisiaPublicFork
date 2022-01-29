@@ -2,7 +2,7 @@
   "0": [
     {
       "MODEL": {
-        "path": "../SandBox1/Assets/models/PokemonBall/model.obj"
+        "path": "Assets/Models/placeholder_platforms.obj"
       },
       "TRANSFORM": {
         "position": {
@@ -11,9 +11,9 @@
           "z": 1.0
         },
         "scale": {
-          "x": 0.009999999776482582,
-          "y": 0.009999999776482582,
-          "z": 0.009999999776482582
+          "x": 0.9999999776482582,
+          "y": 0.9999999776482582,
+          "z": 0.9999999776482582
         },
         "rotation": {
           "x": 0.0,
@@ -23,10 +23,9 @@
         }
       },
       "MATERIAL": {
-        "AlbedoPath": "../SandBox1/Assets/models/PokemonBall/albedo.jpg",
-        "MetallicPath": "../SandBox1/Assets/models/PokemonBall/metallic.jpg",
-        "NormalPath": "../SandBox1/Assets/models/PokemonBall/normal.jpg",
-        "RoughnessPath": "../SandBox1/Assets/models/PokemonBall/roughness.jpg",
+        "AlbedoPath": "Assets/Textures/PlatformBaseColor.png",
+        "MetallicPath": "Assets/Textures/PlatformSpecular.png",
+
         "Alpha": 1.0
       },
       "GAME_LOGIC": [

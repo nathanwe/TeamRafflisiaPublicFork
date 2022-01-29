@@ -106,12 +106,10 @@ void DeserializeMaterial(ordered_json j, Entity e)
 {
     std::string AlbedoPath = j["AlbedoPath"];
     std::string MetallicPath = j["MetallicPath"];
-    std::string NormalPath = j["NormalPath"];
-    std::string RoughnessPath = j["RoughnessPath"];
 
     ResourceHandle<Texture>* diffuse = TextureResourceManger.GetResourceHandle(AlbedoPath);
 
-    if (NormalPath.empty())
+    if (MetallicPath.empty())
     {
         Material material = Material(diffuse);
         from_json(j, material);
@@ -120,10 +118,9 @@ void DeserializeMaterial(ordered_json j, Entity e)
     }
     else
     {
-        ResourceHandle<Texture>* normal = TextureResourceManger.GetResourceHandle(NormalPath);
         ResourceHandle<Texture>* metallic = TextureResourceManger.GetResourceHandle(MetallicPath);
-        ResourceHandle<Texture>* roughness = TextureResourceManger.GetResourceHandle(RoughnessPath);
-        Material material = Material(diffuse, metallic, normal, roughness);
+
+        Material material = Material(diffuse, metallic);
         from_json(j, material);
         MaterialComponentPool.Add(e, (material));
         return;
