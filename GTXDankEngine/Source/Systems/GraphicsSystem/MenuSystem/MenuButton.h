@@ -9,6 +9,7 @@
 
 class Shader;
 class Quad;
+class Texture;
 
 /// Button class is a quad that can be hovered over
 /// and pressed on with a LMB/A button
@@ -23,9 +24,9 @@ public:
         std::pair<bool, bool> nRelativeDimns = std::make_pair(false, false));
     ~MenuButton() {};
 
-    void SetPosition(glm::vec2 nPos, std::pair<bool, bool> nRelativePos = std::make_pair(false, false));
-    void SetDimensions(glm::vec2 nDimensions, std::pair<bool, bool> nRelativeDimns = std::make_pair(false, false));
-    void SetColor(glm::vec4 nRGBTint);
+    MenuButton* SetPosition(glm::vec2 nPos, std::pair<bool, bool> nRelativePos = std::make_pair(false, false));
+    MenuButton* SetDimensions(glm::vec2 nDimensions, std::pair<bool, bool> nRelativeDimns = std::make_pair(false, false));
+    MenuButton* SetColor(glm::vec4 nRGBTint);
 
     void Draw(Shader& shader);
 
@@ -34,8 +35,11 @@ public:
     void Setup();
 
     
-    void SetActionToExecute(std::function<void()> actionToExecute);
+    MenuButton* SetActionToExecute(std::function<void()> actionToExecute);
     void Execute();
+
+
+    MenuButton* SetTexture(std::string texturePath);
 
 /// parameters
 public:
@@ -69,6 +73,10 @@ private:
 
     bool readyToExecute = false;
     std::function<void()> actionToExecute;
+
+
+    bool haveTexture = false;
+    std::string buttonTexture;
 };
 
 

@@ -108,6 +108,9 @@ void Menu::Draw(Shader& shader)
     shader.unBind();*/
 
     for (auto& [_,mb] : buttons)
+    {
+        bool isTest2 = _.compare("Test2") == 0;
         mb->Draw(shader);
+    }
 }
 
