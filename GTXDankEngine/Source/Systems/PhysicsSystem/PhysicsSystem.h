@@ -31,6 +31,8 @@ public:
 
 
 	bool Destroy();
+private:
+	void SendEvent(Entity e1, Entity e2);
 };
 
 #endif // !PHYSICS_SYSTEM_H

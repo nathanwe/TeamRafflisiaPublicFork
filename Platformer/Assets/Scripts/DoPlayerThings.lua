@@ -37,22 +37,7 @@ function HandleEventPlayer(eventData)
 		imguiControledEntity = eventData.e1
 	end
 	if eventData.type == 12 then
-		--LOG_INFO("coltion between " .. eventData.e1 .. " and " .. eventData.e2)
-		local playerid = 69
-		categoriesA = {}
-		categoriesB = {}
-		categoriesA = GetCategorysOfEntity(eventData.e1)
-		categoriesB = GetCategorysOfEntity(eventData.e2)
-		if categoriesA[1] or categoriesB[1] then --if player
-			if categoriesA[1] then
-				playerid = eventData.e1
-			end
-			if categoriesB[1] then
-				playerid = eventData.e2
-			end
-			--LOG_INFO("On Plate " .. plateid)
-			airTime[playerid] = 0
-		end
+		airTime[eventData.e1] = 0
 	end
 end
 
@@ -70,8 +55,8 @@ function HandleEventPerEntityPlayer(e, eventData)
 		--newz = cameraz/mag
 
 		if eventData.stringData1 == "Up" then
-			LOG_INFO("airTime = " .. airTime[e])
-			if airTime[e] < .3 then
+			--LOG_INFO("airTime = " .. airTime[e])
+			if airTime[e] < .4 then
 				AddPhysicsVelocity(e, 0, speed * eventData.floatData1 * 5, 0)
 			end
 		end

@@ -632,15 +632,16 @@ float DynamicPointToStaticAABB(glm::vec3* pCenter0, glm::vec3* pCenter1, glm::ve
 
 	if (tmin < 0.0f) {
 		return tmax;
-		LOG_INFO(pCenter0->x + velocity->x * tmax);
-		LOG_INFO(pCenter0->y + velocity->y * tmax);
-		LOG_INFO(pCenter0->z + velocity->z * tmax);
+		//LOG_INFO("tmin < 0. X,Y,Z are:");
+		//LOG_INFO(pCenter0->x + velocity->x * tmax);
+		//LOG_INFO(pCenter0->y + velocity->y * tmax);
+		//LOG_INFO(pCenter0->z + velocity->z * tmax);
 	}
 
-
-	LOG_INFO(pCenter0->x + velocity->x * tmin);
-	LOG_INFO(pCenter0->y + velocity->y * tmin);
-	LOG_INFO(pCenter0->z + velocity->z * tmin);
+	//LOG_INFO("tmin >= 0. X,Y,Z are:");
+	//LOG_INFO(pCenter0->x + velocity->x * tmin);
+	//LOG_INFO(pCenter0->y + velocity->y * tmin);
+	//LOG_INFO(pCenter0->z + velocity->z * tmin);
 	return tmin;
 }
 //
