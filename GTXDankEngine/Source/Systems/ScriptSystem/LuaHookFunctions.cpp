@@ -512,7 +512,7 @@ int lua_GetRigidData(lua_State* L)
             lua_pushnumber(L, bod->rigidBody.position.y);
             lua_settable(L, top1);
 
-            lua_pushstring(L, "x");
+            lua_pushstring(L, "z");
             lua_pushnumber(L, bod->rigidBody.position.z);
             lua_settable(L, top1);
         }
@@ -531,7 +531,7 @@ int lua_GetRigidData(lua_State* L)
             lua_pushnumber(L, bod->rigidBody.velocity.y);
             lua_settable(L, top1);
 
-            lua_pushstring(L, "x");
+            lua_pushstring(L, "z");
             lua_pushnumber(L, bod->rigidBody.velocity.z);
             lua_settable(L, top1);
         }
@@ -550,7 +550,7 @@ int lua_GetRigidData(lua_State* L)
             lua_pushnumber(L, bod->rigidBody.acceleration.y);
             lua_settable(L, top1);
 
-            lua_pushstring(L, "x");
+            lua_pushstring(L, "z");
             lua_pushnumber(L, bod->rigidBody.acceleration.z);
             lua_settable(L, top1);
         }
@@ -668,6 +668,28 @@ int lua_SetRotation(lua_State* L)
         trans->transform.rotation.x = x;
         trans->transform.rotation.y = y;
         trans->transform.rotation.z = z;
+    }
+    else
+    {
+        LOG_ERROR("Transform not found");
+    }
+    return 0;
+}
+
+int lua_AddRotation(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    float x = static_cast<float>(lua_tonumber(L, 2));
+    float y = static_cast<float>(lua_tonumber(L, 3));
+    float z = static_cast<float>(lua_tonumber(L, 4));
+    TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
+    if (trans != nullptr)
+    {
+        auto eulerAngle = glm::eulerAngles(trans->transform.rotation) / glm::pi<float>() * 180.0f;
+        eulerAngle.x += x;
+        eulerAngle.y += y;
+        eulerAngle.z += z;
+        trans->transform.rotation = glm::quat(eulerAngle * glm::pi<float>() / 180.0f);
     }
     else
     {

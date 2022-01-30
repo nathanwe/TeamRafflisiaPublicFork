@@ -64,6 +64,7 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "SetScale", lua_SetScale);
     lua_register(L, "GetRotation", lua_GetRotation);
     lua_register(L, "SetRotation", lua_SetRotation);
+    lua_register(L, "AddRotation", lua_AddRotation);
     lua_register(L, "SetRotationEuler", lua_SetRotationEuler);
     lua_register(L, "SetRotationFromDirection", lua_SetRotationFromDirection);
     lua_register(L, "SetGamePath", lua_SetGamePath);

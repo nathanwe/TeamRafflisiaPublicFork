@@ -25,10 +25,18 @@ function DestroyPlayer(e)
 end
 
 function UpdatePlayer(dt, e)
+	--update airTime
 	if airTime[e] == nil then 
 		airTime[e] = 0 
 	end
 	airTime[e] = airTime[e] + dt
+	--roll
+	data = {}
+	data = GetRigidData(e)
+
+	AddRotation(e, 0,0,-data.velocity.x*dt*20)
+
+
 end
 
 function HandleEventPlayer(eventData)
