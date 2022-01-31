@@ -6,7 +6,6 @@
 
 #include "MenuButton.h"
 
-#include "../Core/Engine.h"
 #include "../Core/Shader.h"
 #include "../Core/Texture.h"
 
@@ -14,8 +13,19 @@
 #include "../Systems/GraphicsSystem/GraphicsSystem.h"
 
 
-/// Engine is used to access the window and camera
+#include "../Core/Engine.h"
+
+/// Engine is used to access the window, camera and the GraphicsSystem
 extern Engine engine;
+
+std::function<void ()> buttonBackCommand = [&]()
+{
+    engine.GraphicsSys.GetMenuSystem().GoToPreviousMenu();
+};
+std::function<void (std::string)> buttonNextCommand = [&](std::string nextMenu)
+{
+    engine.GraphicsSys.GetMenuSystem().SetCurrentMenu(nextMenu);
+};
 
 
 MenuButton::MenuButton()
@@ -63,7 +73,11 @@ MenuButton* MenuButton::SetDimensions(glm::vec2 nDimensions, std::pair<bool, boo
 
 MenuButton* MenuButton::SetColor(glm::vec4 nRGBTint)
 {
-    rgbTint = nRGBTint;
+    rgbTint.x = nRGBTint.x / 255.0f;
+    rgbTint.y = nRGBTint.y / 255.0f;
+    rgbTint.z = nRGBTint.z / 255.0f;
+    rgbTint.a = nRGBTint.a;
+    SetVertices();
     return this;
 }
 
@@ -199,5 +213,89 @@ MenuButton* MenuButton::SetTexture(std::string texturePath)
     haveTexture = true;
     buttonTexture = texturePath;
     return this;
+}
+
+
+
+const glm::vec2& MenuButton::GetPosition() const
+{
+    return position;
+}
+
+const glm::vec2& MenuButton::GetDimensions() const
+{
+    return dimensions;
+}
+
+
+
+/// JSON functionality
+/// Since inline functions must be defined in the header
+/// but engine cannot be used there, I must go around it
+/// by defining separate json functions to use engine
+
+void button_from_json(const ordered_json& j, MenuButton& menuBut)
+{
+    bool changed = false;
+    if (j.find("Texture") != j.end())
+    {
+        menuBut.SetTexture(j["Texture"]);
+        changed = true;
+    }
+    if (j.find("Color") != j.end())
+    {
+        glm::vec4 nColor;
+        from_json(j["Color"], nColor);
+        menuBut.SetColor(nColor);
+        changed = true;
+    }
+
+    if (changed)
+    {
+        menuBut.SetVertices();
+    }
+
+    std::string command;
+    from_json(j["Command"], command);
+
+    if (command.compare("Back") == 0)
+    {
+        menuBut.SetActionToExecute(buttonBackCommand);
+    }
+    /// Add new menus
+    else if (command.compare("Continue") == 0)
+    {
+        menuBut.SetActionToExecute([&](){
+            engine.GraphicsSys.GetMenuSystem().ResetMenus();
+        });
+    }
+    else if (command.compare("Exit") == 0)
+    {
+        menuBut.SetActionToExecute([&](){
+            glfwSetWindowShouldClose(engine.window, true);
+        });
+    }
+    /// in this case command is the name of the next menu
+    else
+    {
+        menuBut.nMenu = command;
+        std::function<void ()> nextMenu = [&]()
+        {
+            engine.GraphicsSys.GetMenuSystem().SetCurrentMenu(menuBut.nMenu);
+        };
+        menuBut.SetActionToExecute(nextMenu);
+    }
+}
+
+void button_to_json(ordered_json& j, MenuButton& menuBut)
+{
+    if (menuBut.haveTexture)
+    {
+        to_json(j["Texture"],menuBut.buttonTexture);
+    }
+    else
+    {
+        to_json(j["Color"],menuBut.rgbTint);
+    }
 }
 

@@ -2,8 +2,11 @@
 #define _M_SYSTEM_H_
 
 #include "pch.h"
+#include "../utils/SerializationHelper.h"
 
-class Menu;
+#include "Menu.h"
+
+
 class Shader;
 
 class MenuSystem
@@ -20,8 +23,11 @@ public:
     Menu* GetMenu(std::string menuName);
 
     bool SetCurrentMenu(std::string menuName);
+    void GoToPreviousMenu();
 
     void Draw();
+
+    void ResetMenus();
 
 /// parameters
 public:
@@ -44,7 +50,29 @@ private:
     /// CURRENTLY NO MORE THAN TWO LEVELS OF MENUS!!!
     int prevMenu = -1;
     std::string menuStack[2];
+
+    friend inline void to_json(ordered_json& j, MenuSystem& menuSys);
 };
+
+
+inline void from_json(const ordered_json& j, MenuSystem& menuSys)
+{
+    for (auto itr = j.begin(); itr != j.end(); itr = std::next(itr))
+    {
+        auto nMenu = menuSys.AddMenu(itr.key());
+        from_json(itr.value(), *nMenu);
+    }
+}
+
+
+inline void to_json(ordered_json& j, MenuSystem& menuSys)
+{
+    for (auto [name,menu] : menuSys.menus)
+    {
+        to_json(j[name],*menu);
+    }
+}
+
 
 
 
