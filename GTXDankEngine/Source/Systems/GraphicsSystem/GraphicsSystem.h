@@ -58,6 +58,9 @@ public:
 	inline void SetCelFactor(float factor) { DeferredRender.CelFraction = factor; }
 
 
+	MenuSystem& GetMenuSystem() { return MenuSystem; };
+
+
 private:
 	void InitGLFW();
 	void InitWindow();
