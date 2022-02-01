@@ -1,8 +1,10 @@
 --Playerthings
 local imguiControledEntity = -1
 local airTime = {}
-local speed = 10
-local jumpspeed = 5
+local accel = 100
+local jumpspeed = 40
+local decay = 200
+local maxspeed = 20
 
 function SavePlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
@@ -33,6 +35,29 @@ function UpdatePlayer(dt, e)
 	--roll
 	data = {}
 	data = GetRigidData(e)
+	
+	-- left speed cap
+	if data.velocity.x > maxspeed then
+		if data.velocity.x - decay*dt < maxspeed then
+			AddPhysicsVelocity(e, maxspeed-data.velocity.x, 0, 0)
+		else
+			AddPhysicsVelocity(e, decay*dt, 0, 0)
+		end
+	end
+
+	--right speed cap
+	if data.velocity.x < -maxspeed then
+		if data.velocity.x + decay*dt > -maxspeed then
+			AddPhysicsVelocity(e, -maxspeed-data.velocity.x, 0, 0)
+		else
+			AddPhysicsVelocity(e, -decay*dt, 0, 0)
+		end
+	end
+
+	--gravity increase, for more responsive movement
+	AddPhysicsVelocity(e, 0, dt * -50, 0)
+	
+	--AddPhysicsVelocity(e, -data.velocity.x*(1-decay), 0, 0)
 
 	AddRotation(e, 0,0,-data.velocity.x*dt*20)
 
@@ -64,18 +89,18 @@ function HandleEventPerEntityPlayer(e, eventData)
 
 		if eventData.stringData1 == "Up" then
 			--LOG_INFO("airTime = " .. airTime[e])
-			if airTime[e] < .4 then
-				AddPhysicsVelocity(e, 0, speed * eventData.floatData1 * 5, 0)
+			if airTime[e] < .02 then
+				AddPhysicsVelocity(e, 0, jumpspeed, 0)
 			end
 		end
 		if eventData.stringData1 == "Down" then
-			--AddPhysicsVelocity(e, 0, -speed * eventData.floatData1, 0)
+			--AddPhysicsVelocity(e, 0, -accel * eventData.floatData1, 0)
 		end
 		if eventData.stringData1 == "Left" then
-			AddPhysicsVelocity(e, speed * eventData.floatData1, 0, 0)
+			AddPhysicsVelocity(e, accel * eventData.floatData1, 0, 0)
 		end
 		if eventData.stringData1 == "Right" then
-			AddPhysicsVelocity(e, -speed * eventData.floatData1, 0, 0)
+			AddPhysicsVelocity(e, -accel * eventData.floatData1, 0, 0)
 		end
 	end
 	
