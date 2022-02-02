@@ -87,69 +87,20 @@ private:
     friend inline void to_json(ordered_json& j, MenuButton& menuBut);
 };
 
+
 void button_from_json(const ordered_json& j, MenuButton& menuBut);
 void button_to_json(ordered_json& j, MenuButton& menuBut);
 
-#define CHECK 1
 
 inline void from_json(const ordered_json& j, MenuButton& menuBut)
 {
-#if CHECK
     button_from_json(j, menuBut);
-#else
-    bool changed = false;
-    if (j.find("Texture") != j.end())
-    {
-        menuBut.SetTexture(j["Texture"]);
-        changed = true;
-    }
-    if (j.find("Color") != j.end())
-    {
-        glm::vec4 nColor;
-        from_json(j["Color"], nColor);
-        menuBut.SetColor(nColor);
-        changed = true;
-    }
-
-    if (changed)
-    {
-        menuBut.SetVertices();
-    }
-
-    std::string command;
-    from_json(j["Command"], command);
-
-    if (command.compare("Back") == 0)
-    {
-        menuBut.SetActionToExecute(buttonBackCommand);
-    }
-    /// Add new menus
-    else
-    {
-        std::function<void ()> nextMenu = [&]()
-        {
-            buttonNextCommand(command);
-        };
-        menuBut.SetActionToExecute(nextMenu);
-    }
-#endif
 }
 
 
 inline void to_json(ordered_json& j, MenuButton& menuBut)
 {
-#if CHECK
     button_to_json(j, menuBut);
-#else
-    if (menuBut.haveTexture)
-    {
-        to_json(j["Texture"],menuBut.buttonTexture);
-    }
-    else
-    {
-        to_json(j["Color"],menuBut.rgbTint);
-    }
-#endif
 }
 
 
