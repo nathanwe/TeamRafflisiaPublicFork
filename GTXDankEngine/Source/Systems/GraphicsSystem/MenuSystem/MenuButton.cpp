@@ -255,42 +255,45 @@ void button_from_json(const ordered_json& j, MenuButton& menuBut)
         menuBut.SetVertices();
     }
 
-    std::string command;
-    from_json(j["Command"], command);
+    if (j.find("Command") != j.end())
+    {
+        std::string command;
+        from_json(j["Command"], command);
 
-    if (command.compare("Back") == 0)
-    {
-        menuBut.SetActionToExecute(buttonBackCommand);
-    }
-    /// Add new menus
-    else if (command.compare("Continue") == 0)
-    {
-        menuBut.SetActionToExecute([&](){
-            engine.GraphicsSys.GetMenuSystem().ResetMenus();
-        });
-    }
-    else if (command.compare("Exit") == 0)
-    {
-        menuBut.SetActionToExecute([&](){
-            glfwSetWindowShouldClose(engine.window, true);
-        });
-    }
-    else if (command.compare("Start") == 0)
-    {
-        menuBut.SetActionToExecute([&](){
-            engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
-            engine.SceneSys.LoadScene(0);
-        });
-    }
-    /// in this case command is the name of the next menu
-    else
-    {
-        menuBut.nMenu = command;
-        std::function<void ()> nextMenu = [&]()
+        if (command.compare("Back") == 0)
         {
-            engine.GraphicsSys.GetMenuSystem().SetCurrentMenu(menuBut.nMenu);
-        };
-        menuBut.SetActionToExecute(nextMenu);
+            menuBut.SetActionToExecute(buttonBackCommand);
+        }
+        /// Add new menus
+        else if (command.compare("Continue") == 0)
+        {
+            menuBut.SetActionToExecute([&](){
+                engine.GraphicsSys.GetMenuSystem().ResetMenus();
+            });
+        }
+        else if (command.compare("Exit") == 0)
+        {
+            menuBut.SetActionToExecute([&](){
+                glfwSetWindowShouldClose(engine.window, true);
+            });
+        }
+        else if (command.compare("Start") == 0)
+        {
+            menuBut.SetActionToExecute([&](){
+                engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
+                engine.SceneSys.LoadScene(0);
+            });
+        }
+        /// in this case command is the name of the next menu
+        else
+        {
+            menuBut.nMenu = command;
+            std::function<void ()> nextMenu = [&]()
+            {
+                engine.GraphicsSys.GetMenuSystem().SetCurrentMenu(menuBut.nMenu);
+            };
+            menuBut.SetActionToExecute(nextMenu);
+        }
     }
 }
 

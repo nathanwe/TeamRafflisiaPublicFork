@@ -47,9 +47,6 @@ void MenuSystem::Init()
     pCommand.keyPressType = KeyPressType::Trigger;
 }
 
-bool MenuSystem::IsMain()
-{ return display && !currentMenu.empty() && menus.find(currentMenu) != menus.end() && menus[currentMenu]->isMain; }
-
 
 Menu* MenuSystem::AddMenu(std::string menuName)
 {

@@ -35,8 +35,6 @@ public:
 
 /// parameters
 public:
-
-    bool isMain = false;
     
 /// methods
 private:
@@ -59,8 +57,17 @@ private:
 inline void from_json(const ordered_json& j, Menu& menu)
 {
     glm::vec2 commonDmns, startPnt;
+    bool isCenter = false;
     from_json(j["Size"], commonDmns);
-    from_json(j["First"], startPnt);
+
+    if (j["First"]["x"].is_number())
+        from_json(j["First"], startPnt);
+    else if (j["First"]["x"].get<std::string>() == "center")
+    {
+        isCenter = true;
+        from_json(j["First"]["y"], startPnt.y);
+        startPnt.x = 0.5f;
+    }
 
     if (j.find("Background") != j.end())
     {
@@ -69,20 +76,15 @@ inline void from_json(const ordered_json& j, Menu& menu)
         menu.SetTexture(txtrPath);
     }
 
-    if (j.find("isMain") != j.end())
-    {
-        from_json(j["isMain"], menu.isMain);
-    }
-
     for (auto itr = j.begin(); itr != j.end(); itr = std::next(itr))
     {
-        if (itr.key().compare("Size")       == 0 || itr.key().compare("First")  == 0 ||
-            itr.key().compare("Background") == 0 || itr.key().compare("isMain") == 0 )
+        if (itr.key().compare("Size") == 0 || itr.key().compare("First") == 0 ||
+            itr.key().compare("Background") == 0)
             continue;
-        
+
         auto nButton = menu.AddButton(itr.key(),
-            startPnt, std::make_pair(false,false),
-            commonDmns, std::make_pair(false,false),
+            startPnt, std::make_pair(isCenter, false),
+            commonDmns, std::make_pair(false, false),
             glm::vec4(0)
         );
         startPnt.y += commonDmns.y + 10;

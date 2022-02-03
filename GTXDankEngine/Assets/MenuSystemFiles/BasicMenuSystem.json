@@ -1,15 +1,13 @@
 {
     "Main": {
         "First": {
-            "x": 920,
+            "x": "center",
             "y": 500
         },
         "Size": {
             "x": 200,
             "y": 80
         },
-
-        "isMain": true,
 
         "Background": "Assets/Textures/Continue_test.png",
 
