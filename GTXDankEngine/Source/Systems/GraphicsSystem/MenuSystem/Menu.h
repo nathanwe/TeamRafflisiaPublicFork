@@ -31,8 +31,12 @@ public:
     void Draw(Shader& shader);
     void Setup();
 
+    void SetTexture(std::string background);
+
 /// parameters
 public:
+
+    bool isMain = false;
     
 /// methods
 private:
@@ -42,9 +46,11 @@ private:
     std::map<std::string, MenuButton*> buttons;
     
     /// values for drawing the menu background
-    std::vector<int> vertices;
+    std::vector<float> vertices;
 	unsigned int VAO;
     std::vector<unsigned int> indices;
+    bool haveBackground = false;
+    std::string texture;
     
     friend inline void to_json(ordered_json& j, Menu& menu);
 };
@@ -56,9 +62,22 @@ inline void from_json(const ordered_json& j, Menu& menu)
     from_json(j["Size"], commonDmns);
     from_json(j["First"], startPnt);
 
+    if (j.find("Background") != j.end())
+    {
+        std::string txtrPath;
+        from_json(j["Background"], txtrPath);
+        menu.SetTexture(txtrPath);
+    }
+
+    if (j.find("isMain") != j.end())
+    {
+        from_json(j["isMain"], menu.isMain);
+    }
+
     for (auto itr = j.begin(); itr != j.end(); itr = std::next(itr))
     {
-        if (itr.key().compare("Size") == 0 || itr.key().compare("First") == 0)
+        if (itr.key().compare("Size")       == 0 || itr.key().compare("First")  == 0 ||
+            itr.key().compare("Background") == 0 || itr.key().compare("isMain") == 0 )
             continue;
         
         auto nButton = menu.AddButton(itr.key(),

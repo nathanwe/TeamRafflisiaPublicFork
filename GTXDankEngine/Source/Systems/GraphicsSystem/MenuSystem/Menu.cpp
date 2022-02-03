@@ -2,6 +2,7 @@
 
 #include "Menu.h"
 #include "../Core/Shader.h"
+#include "../Core/Engine.h"
 
 /// used to get WIDTH and HEIGHT
 #include "../Systems/GraphicsSystem/GraphicsSystem.h"
@@ -10,13 +11,8 @@
 Menu::Menu()
     :
 buttons(std::map<std::string, MenuButton*>()),
-vertices(std::vector<int>(4 * (2 + 4 + 2))), indices({0,1,2,1,2,3})
+vertices(std::vector<float>(4 * (2 + 2))), indices({ 0,1,2, 1,2,3 })
 {
-    for (int i = 0; i < 4; ++i)
-    {
-        vertices[8*i]   = (i % 2 == 0 ? 0 : WIDTH );
-        vertices[8*i+1] = (i / 2 == 0 ? 0 : HEIGHT);
-    }
 }
 
 Menu::~Menu()
@@ -56,6 +52,15 @@ MenuButton* Menu::GetButton(std::string name)
 
 void Menu::Setup()
 {
+    /// Setup vertices for background
+    for (int i = 0; i < 4; ++i)
+    {
+        vertices[4*i]   = (i % 2? 1 : -1);
+        vertices[4*i+1] = (i / 2? 1 : -1);
+        vertices[4*i+2] =  i % 2;
+        vertices[4*i+3] =  i / 2;
+    }
+
     // VAO
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
@@ -65,7 +70,7 @@ void Menu::Setup()
     //VertexBuffer vbo(&quadVerticesColorTexture[0], quadVerticesColorTexture.size() * sizeof(Vertex));
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(int) * (2 + 4 + 2), vertices.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, vertices.size() * sizeof(float) * (2 + 2), vertices.data(), GL_STATIC_DRAW);
 
 
     // IBO
@@ -77,13 +82,10 @@ void Menu::Setup()
 
     // vertex positions
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(int), (void*)0);
-    // vertex color
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 8 * sizeof(int), (void*)2);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(0 * sizeof(float)));
     // vertex texture coords
     glEnableVertexAttribArray(2);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(int), (void*)6);
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
 
     glBindVertexArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -96,19 +98,35 @@ void Menu::Setup()
         mb->Setup();
 }
 
+
+void Menu::SetTexture(std::string background)
+{
+    haveBackground = true;
+    texture = background;
+}
+
+
 void Menu::Draw(Shader& shader)
 {
-/*    shader.Bind();
-    glBindVertexArray(VAO);
-    glDisable(GL_DEPTH_TEST);
-    glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, 0);
-    glEnable(GL_DEPTH_TEST);
-    glBindVertexArray(0);
-    shader.unBind();*/
+    if (haveBackground)
+    {
+        /// if we have a background set the shader parameters
+        shader.setInt("haveTxtr", haveBackground);
+        auto mTxtr = TextureResourceManger.GetResourceHandle(texture);
+        shader.setTexture("txtr", mTxtr->GetPointer()->GetID());
+        shader.setVec3("shade", glm::vec3(1.0f, 1.0f, 1.0f));
+
+        shader.Bind();
+        glBindVertexArray(VAO);
+        glDisable(GL_DEPTH_TEST);
+        glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, 0);
+        glEnable(GL_DEPTH_TEST);
+        glBindVertexArray(0);
+        shader.unBind();
+    }
 
     for (auto& [_,mb] : buttons)
     {
-        bool isTest2 = _.compare("Test2") == 0;
         mb->Draw(shader);
     }
 }

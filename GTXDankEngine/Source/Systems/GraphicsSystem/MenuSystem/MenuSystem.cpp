@@ -32,8 +32,7 @@ void MenuSystem::Init()
     engine.CommandSys.GetCommand("Pause").SetActionToExecute(
         [&]()
         {
-            display = !display;
-		    engine.setPauseMenuMode(display);
+            ToggleDisplay();
             if (display)
                 this->SetCurrentMenu("Pause");
             else
@@ -47,6 +46,9 @@ void MenuSystem::Init()
     pCommand.keyboardcode = GLFW_KEY_P;
     pCommand.keyPressType = KeyPressType::Trigger;
 }
+
+bool MenuSystem::IsMain()
+{ return display && !currentMenu.empty() && menus.find(currentMenu) != menus.end() && menus[currentMenu]->isMain; }
 
 
 Menu* MenuSystem::AddMenu(std::string menuName)
@@ -96,7 +98,7 @@ void MenuSystem::GoToPreviousMenu()
 
 void MenuSystem::Draw()
 {
-    if (display && !currentMenu.empty() && menus.find(currentMenu) != menus.end())
+    if (!currentMenu.empty() && menus.find(currentMenu) != menus.end() && display)
     {
         bool isom1 = currentMenu.compare("OptionsMenu1") == 0;
         menus[currentMenu]->Draw(*menuShader);
@@ -110,6 +112,13 @@ void MenuSystem::ResetMenus()
     prevMenu = -1;
 	engine.setPauseMenuMode(display);
     glfwSetCursorPos(engine.window, (WIDTH / 2), (HEIGHT / 2));
+}
+
+
+void MenuSystem::ToggleDisplay()
+{
+    display = !display;
+    engine.setPauseMenuMode(display);
 }
 
 

@@ -29,6 +29,9 @@ public:
 
     void ResetMenus();
 
+    bool IsMain();
+    void ToggleDisplay();
+
 /// parameters
 public:
 

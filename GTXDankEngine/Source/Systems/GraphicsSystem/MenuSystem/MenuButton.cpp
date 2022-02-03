@@ -275,6 +275,13 @@ void button_from_json(const ordered_json& j, MenuButton& menuBut)
             glfwSetWindowShouldClose(engine.window, true);
         });
     }
+    else if (command.compare("Start") == 0)
+    {
+        menuBut.SetActionToExecute([&](){
+            engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
+            engine.SceneSys.LoadScene(0);
+        });
+    }
     /// in this case command is the name of the next menu
     else
     {
