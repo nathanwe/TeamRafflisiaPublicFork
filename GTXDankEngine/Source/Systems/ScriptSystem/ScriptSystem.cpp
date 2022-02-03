@@ -59,6 +59,7 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "SetPosition", lua_SetPosition);
     lua_register(L, "GetRigidData", lua_GetRigidData);
     lua_register(L, "SetPhysicsVelocity", lua_SetPhysicsVelocity);
+    lua_register(L, "GetPhysicsVelocity", lua_GetPhysicsVelocity);
     lua_register(L, "GetSoundVolumes", lua_GetSoundVolumes);
     lua_register(L, "GetScale", lua_GetScale);
     lua_register(L, "SetScale", lua_SetScale);

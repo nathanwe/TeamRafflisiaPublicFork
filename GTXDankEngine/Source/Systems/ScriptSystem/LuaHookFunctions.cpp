@@ -580,6 +580,23 @@ int lua_SetPhysicsVelocity(lua_State* L)
     return 0;
 }
 
+int lua_GetPhysicsVelocity(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    MovingBodyComponent* bod = MovingBodyComponentPool.GetComponentByEntity(e);
+    if (bod != nullptr)
+    {
+        lua_pushnumber(L, bod->rigidBody.velocity.x);
+        lua_pushnumber(L, bod->rigidBody.velocity.y);
+        lua_pushnumber(L, bod->rigidBody.velocity.z);
+    }
+    else
+    {
+        LOG_ERROR("body not found");
+    }
+    return 3;
+}
+
 int lua_GetSoundVolumes(lua_State* L)
 {
     lua_pushlightuserdata(L,static_cast<void*>(&engine.AudioSys.BGMVolume));

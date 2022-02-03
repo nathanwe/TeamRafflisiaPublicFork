@@ -471,6 +471,12 @@
     <None Include="..\Platformer\Assets\Scripts\DoPlateThings.lua">
       <Filter>Platformer\Scripts</Filter>
     </None>
+    <None Include="..\Platformer\Assets\Scripts\DoHoneySlimeThings.lua">
+      <Filter>Platformer\Scripts</Filter>
+    </None>
+    <None Include="..\Platformer\Assets\Scripts\DoFaithPlateThings.lua">
+      <Filter>Platformer\Scripts</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">

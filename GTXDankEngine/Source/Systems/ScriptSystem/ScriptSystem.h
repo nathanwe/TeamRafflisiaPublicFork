@@ -68,6 +68,7 @@ int lua_CreateEntity(lua_State* L);
 int lua_SetPosition(lua_State* L);
 int lua_GetRigidData(lua_State* L);
 int lua_SetPhysicsVelocity(lua_State* L);
+int lua_GetPhysicsVelocity(lua_State* L);
 int lua_GetSoundVolumes(lua_State* L);
 int lua_GetScale(lua_State* L);
 int lua_SetScale(lua_State* L);
