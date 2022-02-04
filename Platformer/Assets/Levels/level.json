@@ -200,7 +200,7 @@
         }
       },
       "MATERIAL": {
-        "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+        "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
         "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
         "Alpha": 1.0
       },
@@ -410,7 +410,7 @@
         }
       },
       "MATERIAL": {
-        "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+        "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
         "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
         "Alpha": 1.0
       },
@@ -504,7 +504,7 @@
         }
       },
       "MATERIAL": {
-        "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+        "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Honey Base Color.png",
         "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
         "Alpha": 1.0
       },
@@ -541,8 +541,8 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": 16.688312530517578,
-          "y": 15.954204559326172,
+          "x": 4.396591663360596,
+          "y": 9.133201599121094,
           "z": 1.0
         },
         "scale": {
@@ -553,8 +553,8 @@
         "rotation": {
           "x": 0.0,
           "y": 0.0,
-          "z": -0.12026169896125793,
-          "w": 0.9927422404289246
+          "z": 0.07460110634565353,
+          "w": 0.9972134828567505
         }
       },
       "MATERIAL": {
@@ -572,8 +572,8 @@
         "Gravity": true,
         "Mass": 5.0,
         "Velocity": {
-          "x": -0.00101623241789639,
-          "y": 0.06748374551534653,
+          "x": -2.1382665634155273,
+          "y": -0.5740672945976257,
           "z": 0.0
         },
         "Accelereation": {
@@ -635,7 +635,7 @@
         }
       },
       "MATERIAL": {
-        "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+        "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Trampoline Base Color.png",
         "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
         "Alpha": 1.0
       },
@@ -695,7 +695,7 @@
           "y": 1.0,
           "z": 0.0
         },
-        "Magnitude": 6.199999809265137
+        "Magnitude": -6.199999809265137
       },
       "STILL_BODY": {
         "Shape": 0,
@@ -708,14 +708,18 @@
       }
     },
     null,
+    null,
+    null,
+    null,
+    null,
     {
       "MODEL": {
         "path": "../Platformer/Assets/models/PokemonBall/model.obj"
       },
       "TRANSFORM": {
         "position": {
-          "x": 15.126727104187012,
-          "y": 17.30099868774414,
+          "x": 4.84678316116333,
+          "y": 9.495360374450684,
           "z": 35.0
         },
         "scale": {
@@ -745,8 +749,8 @@
         "Gravity": true,
         "Mass": 5.0,
         "Velocity": {
-          "x": -15.159429550170898,
-          "y": -7.5184526443481445,
+          "x": -15.064756393432617,
+          "y": -14.57422161102295,
           "z": 0.0
         },
         "Accelereation": {

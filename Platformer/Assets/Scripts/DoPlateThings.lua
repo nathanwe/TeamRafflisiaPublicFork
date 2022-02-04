@@ -1,7 +1,7 @@
 --Platethings
 local imguiControledEntity = -1
 local blockStatus = {} -- not the blockStatus from doblockthings, that does nothing now
-local lv0Pairs = {[12] = 4}
+local lv0Pairs = {[11] = 4}
 local lv1Pairs = {[18] = 7}
 local pairs = {[0] = lv0Pairs, [1] = lv1Pairs}
 local lvPairs = {}
