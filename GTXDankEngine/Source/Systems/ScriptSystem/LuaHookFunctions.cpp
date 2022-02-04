@@ -1027,6 +1027,17 @@ int lua_SetSunAngle(lua_State* L)
     return 0;
 }
 
+int lua_SetPostProcess(lua_State* L)
+{
+    //enum foo
+
+    // foo = lua.get values (L)
+
+    
+    //engine.GraphcsSys.SetPostProcess(foo);
+    return 0;
+}
+
 int lua_LoadNextLevel(lua_State* L)
 {
 	engine.SceneSys.LoadNextLevel();

@@ -90,6 +90,7 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "SetCameraPitchYaw", lua_SetCameraPitchYaw);
     lua_register(L, "SetCameraOffest", lua_SetCameraOffest);
 	lua_register(L, "SetSunAngle", lua_SetSunAngle);
+    lua_register(L, "SetPostProcess", lua_SetPostProcess);
 	lua_register(L, "LoadNextLevel", lua_LoadNextLevel);
     lua_register(L, "RestartGame", lua_RestartGame);
     lua_register(L, "GetLevelNumber", lua_GetLevelNumber);
