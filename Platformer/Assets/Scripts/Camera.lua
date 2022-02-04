@@ -6,7 +6,6 @@ function Init()
 	--SetCameraPitchYaw(0, 3.14)
 	--SetCameraOffest(true, 2,2,2)
 	SetCameraStaticScene( 30,40,-80 , 0.2, 3.5);
-	SetCellShade(false, 1.0)
 	SetSunAngle(-28)
 end
 

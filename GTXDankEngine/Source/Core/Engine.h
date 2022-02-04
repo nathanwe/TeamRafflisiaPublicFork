@@ -96,6 +96,8 @@ public:
 	void setMenuMode(bool mode);
 	bool getDebugMode();
 	void setDebugMode(bool mode);
+	bool getPauseMenuMode();
+	void setPauseMenuMode(bool mode);
 	bool getEditMode();
 	void setEditMode(bool mode);
 
@@ -105,6 +107,7 @@ private:
 private:
 	bool menuMode = false;
 	bool debugMode = false;
+	bool pauseMenuMode = false;
 	bool editMode = false;
 	bool pause = false;
 	float accumulatedFrameDt = 0;

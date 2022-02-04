@@ -48,7 +48,8 @@ uniform mat4 LightSpaceMatrix;
 uniform bool EnablePCF;
 
 // hard coded for specular
-float shininess = 80;
+float shininess = 16;
+float ambientFactor = 0.01;
 
 
 //--------------------------------------------------------------------
@@ -99,16 +100,18 @@ float CalculateShadow(vec3 N, vec3 worldPos)
 }
 
 
-vec3 LightLo(vec3 lightDir, vec3 lightColor, vec3 N, vec3 V, vec3 H)
+vec3 LightLo(vec3 lightDir, vec3 lightColor, vec3 N, vec3 V, vec3 H, float spec, vec3 albedo)
 {
     // calculate diffuse
-    float diffuse = max(dot(N, lightDir), 0.0);
+    vec3 diffuse = max(dot(N, lightDir), 0.0) * lightColor;
 
     // calculate specular
-    float specular = max(dot(N, H), 0.0);
-    specular = pow(specular, shininess);
+    float specularFactor = max(dot(N, H), 0.0);
+    vec3 specular = pow(specularFactor, shininess) * spec * lightColor;
 
-    return (specular + diffuse) * lightColor;
+    vec3 ambient = ambientFactor * lightColor;
+
+    return (specular + diffuse + ambient) * albedo;
 }
 
 vec4 CelShading(vec3 N)
@@ -140,6 +143,7 @@ void main()
     vec3 WorldPos = texture(gPosition, TexCoords).rgb;
 
     vec3 albedo = texture(gAlbedoMetallic, TexCoords).rgb;
+    float spec = texture(gAlbedoMetallic, TexCoords).a;
 
     vec3 N = texture(gNormalRoughness, TexCoords).rgb;
     vec3 V = normalize(camPos - WorldPos);
@@ -157,7 +161,7 @@ void main()
         float attenuation = 1.0 / (distance * distance);
         vec3 radiance = lightColors[i] * attenuation;
 
-        Lo += LightLo(L, radiance, N, V, H);
+        Lo += LightLo(L, radiance, N, V, H, spec, albedo);
     }
 
     // Directional light source
@@ -167,12 +171,8 @@ void main()
         vec3 H = normalize(V + L);
 
         float shadow = CalculateShadow(N, WorldPos);
-        Lo += LightLo(L, directionalLightColor, N, V, H) * (1.0 - shadow);
+        Lo += LightLo(L, directionalLightColor, N, V, H, spec, albedo) * (1.0 - shadow);
     }
-
-
-    vec3 ambient = vec3(0.01);
-    Lo = (Lo + ambient) * albedo;
 
 
     FragColor = CelShading(N) * vec4(Lo, 1.0);

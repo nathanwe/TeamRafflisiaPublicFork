@@ -512,7 +512,7 @@ int lua_GetRigidData(lua_State* L)
             lua_pushnumber(L, bod->rigidBody.position.y);
             lua_settable(L, top1);
 
-            lua_pushstring(L, "x");
+            lua_pushstring(L, "z");
             lua_pushnumber(L, bod->rigidBody.position.z);
             lua_settable(L, top1);
         }
@@ -531,7 +531,7 @@ int lua_GetRigidData(lua_State* L)
             lua_pushnumber(L, bod->rigidBody.velocity.y);
             lua_settable(L, top1);
 
-            lua_pushstring(L, "x");
+            lua_pushstring(L, "z");
             lua_pushnumber(L, bod->rigidBody.velocity.z);
             lua_settable(L, top1);
         }
@@ -550,7 +550,7 @@ int lua_GetRigidData(lua_State* L)
             lua_pushnumber(L, bod->rigidBody.acceleration.y);
             lua_settable(L, top1);
 
-            lua_pushstring(L, "x");
+            lua_pushstring(L, "z");
             lua_pushnumber(L, bod->rigidBody.acceleration.z);
             lua_settable(L, top1);
         }
@@ -578,6 +578,23 @@ int lua_SetPhysicsVelocity(lua_State* L)
         LOG_ERROR("body not found");
     }
     return 0;
+}
+
+int lua_GetPhysicsVelocity(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    MovingBodyComponent* bod = MovingBodyComponentPool.GetComponentByEntity(e);
+    if (bod != nullptr)
+    {
+        lua_pushnumber(L, bod->rigidBody.velocity.x);
+        lua_pushnumber(L, bod->rigidBody.velocity.y);
+        lua_pushnumber(L, bod->rigidBody.velocity.z);
+    }
+    else
+    {
+        LOG_ERROR("body not found");
+    }
+    return 3;
 }
 
 int lua_GetSoundVolumes(lua_State* L)
@@ -668,6 +685,28 @@ int lua_SetRotation(lua_State* L)
         trans->transform.rotation.x = x;
         trans->transform.rotation.y = y;
         trans->transform.rotation.z = z;
+    }
+    else
+    {
+        LOG_ERROR("Transform not found");
+    }
+    return 0;
+}
+
+int lua_AddRotation(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    float x = static_cast<float>(lua_tonumber(L, 2));
+    float y = static_cast<float>(lua_tonumber(L, 3));
+    float z = static_cast<float>(lua_tonumber(L, 4));
+    TransformComponent* trans = TransformComponentPool.GetComponentByEntity(e);
+    if (trans != nullptr)
+    {
+        auto eulerAngle = glm::eulerAngles(trans->transform.rotation) / glm::pi<float>() * 180.0f;
+        eulerAngle.x += x;
+        eulerAngle.y += y;
+        eulerAngle.z += z;
+        trans->transform.rotation = glm::quat(eulerAngle * glm::pi<float>() / 180.0f);
     }
     else
     {
@@ -980,12 +1019,6 @@ int lua_SetCameraOffest(lua_State* L)
     return 0;
 }
 
-int lua_SetCellShade(lua_State* L)
-{
-    engine.GraphicsSys.SetCelStatus(lua_toboolean(L, 1));
-    engine.GraphicsSys.SetCelFactor(lua_tonumber(L, 2));
-    return 0;
-}
 
 int lua_SetSunAngle(lua_State* L)
 {
@@ -1081,14 +1114,15 @@ int lua_SetEventInstanceParameter(lua_State* L)
 int lua_SetBusMuted(lua_State* L)
 {
     char busDir[100] = "Bus:/";
-    engine.AudioSys.SetBusMuted(strcat(busDir, lua_tostring(L, 1)), lua_toboolean(L, 2));
+    const char* constDir(strcat(busDir, lua_tostring(L, 1)));
+    engine.AudioSys.SetBusMuted(constDir, lua_toboolean(L, 2));
 
     return 0;
 }
 int lua_SetBusVolume(lua_State* L)
 {
     char busDir[100] = "Bus:/";
-    engine.AudioSys.SetBusVolume(strcat(busDir, lua_tostring(L, 1)), lua_tonumber(L, 2));
+    engine.AudioSys.SetBusVolume((const char*)(strcat(busDir, lua_tostring(L, 1))), lua_tonumber(L, 2));
 
     return 0;
 }
@@ -1113,6 +1147,13 @@ int lua_SetCameraStaticScene(lua_State* L)
         lua_tonumber(L, 5),
         lua_tonumber(L, 6)
     );
+    return 0;
+}
+
+int lua_SetAudioEventPosition(lua_State* L)
+{
+    engine.AudioSys.Set3DAudioEventPos(lua_tointeger(L, 1), glm::vec3(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4)));
+
     return 0;
 }
 

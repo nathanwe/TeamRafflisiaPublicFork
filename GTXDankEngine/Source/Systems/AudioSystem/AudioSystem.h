@@ -13,6 +13,15 @@ struct WaitingSound
 	float fVolumedB = 0.0f;
 };
 
+struct ConstCharStarComparator
+{
+	//Custom Comparator for char*
+	bool operator()(const char* s1, const char* s2) const
+	{
+		return strcmp(s1, s2) < 0;
+	}
+};
+
 typedef int EventID;
 
 class AudioSystem : public System
@@ -56,6 +65,7 @@ public:
 	void MuteAll();
 
 	void Set3dListenerAndOrientation(Camera camera);
+	void Set3DAudioEventPos(EventID id, glm::vec3 vPos = glm::vec3(0));
 	//void Set3dListenerAndOrientation(const glm::vec3& vPos = glm::vec3(0));
 	//int fmodPlaySound(const char* strSoundName, const glm::vec3& vPos = glm::vec3(0), float fVolumedB = 0.0f);
 	//void StopChannel(int nChannelId);
@@ -79,6 +89,8 @@ public:
 	
 	void TryPlayWaitingList();
 
+	const char* FindWord(const char* word);
+	
 public:
 
 	FMOD_RESULT result;
@@ -94,14 +106,14 @@ public:
 
 	EventID currentEventID = 0;
 
-	typedef std::map<const char*, FMOD::Sound*> SoundMap;
+	typedef std::map<const char*, FMOD::Sound*,ConstCharStarComparator> SoundMap;
 	typedef std::map<int, FMOD::Channel*> ChannelMap;
-	typedef std::map<const char*, FMOD::Studio::Bus*> BusMap;
-	typedef std::map<const char*, FMOD::Studio::EventDescription*> EventMap;
+	typedef std::map<const char*, FMOD::Studio::Bus*, ConstCharStarComparator> BusMap;
+	typedef std::map<const char*, FMOD::Studio::EventDescription*, ConstCharStarComparator> EventMap;
 	typedef std::map<EventID, std::pair< const char*, FMOD::Studio::EventInstance*>*> EventInstanceMap;
-	typedef std::map<const char*, FMOD::Studio::Bank*> BankMap;
+	typedef std::map<const char*, FMOD::Studio::Bank*, ConstCharStarComparator> BankMap;
 
-	
+	std::deque <std::string> wordDeque;
 
 	BankMap bankMaps;
 	EventMap eventMaps;
@@ -120,6 +132,8 @@ public:
 
 	FMOD::ChannelGroup* BGM;
 	FMOD::ChannelGroup* SFX;
+
+	FMOD_3D_ATTRIBUTES attribute;
 
 	std::list<WaitingSound> waitingList;
 };

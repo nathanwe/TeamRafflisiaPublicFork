@@ -113,6 +113,8 @@
     <None Include="..\Platformer\Assets\Scripts\Camera.lua" />
     <None Include="..\Platformer\Assets\Scripts\CategoryList.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoBlockThings.lua" />
+    <None Include="..\Platformer\Assets\Scripts\DoFaithPlateThings.lua" />
+    <None Include="..\Platformer\Assets\Scripts\DoHoneySlimeThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoPlateThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoPlayerThings.lua" />
     <None Include="..\SandBox1\Assets\audio\Master.bank" />
@@ -140,12 +142,11 @@
     <None Include="Assets\Scripts\Menu.lua" />
     <None Include="Skybox.shader" />
     <None Include="Source\Shaders\basic.shader" />
-    <None Include="Source\Shaders\basicPBR.shader" />
     <None Include="Source\Shaders\DebugRender\NormalVec.shader" />
     <None Include="Source\Shaders\DeferredRenderer\Cel.shader" />
-    <None Include="Source\Shaders\DeferredRenderer\DeferredLighting.shader" />
     <None Include="Source\Shaders\DeferredRenderer\Fill_G_Buffer.shader" />
     <None Include="Source\Shaders\LightSource.shader" />
+    <None Include="Source\Shaders\MenuRenderer\UIMenuShader.shader" />
     <None Include="Source\Shaders\OIT\CompositionPass.shader" />
     <None Include="Source\Shaders\OIT\TransparentPass.shader" />
     <None Include="Source\Shaders\ParticleSystem\ParticleSystem.cs.shader" />
@@ -159,6 +160,9 @@
     <ClInclude Include="Source\Core\Pathfinder.h" />
     <ClInclude Include="Source\Components\PhysicsComponent\ColliderComponent.h" />
     <ClInclude Include="Source\Components\PhysicsComponent\SpecialBodyComponent.h" />
+    <ClInclude Include="Source\Systems\GraphicsSystem\MenuSystem\Menu.h" />
+    <ClInclude Include="Source\Systems\GraphicsSystem\MenuSystem\MenuButton.h" />
+    <ClInclude Include="Source\Systems\GraphicsSystem\MenuSystem\MenuSystem.h" />
     <ClInclude Include="Source\Systems\PhysicsSystem\Raycasting\Raycasting.h" />
     <ClInclude Include="Source\Systems\LevelEditorSystem\LevelEditorSystem.h" />
     <ClInclude Include="Source\Components\AudioComponent\AudioBus.h" />
@@ -236,6 +240,9 @@
   <ItemGroup>
     <ClCompile Include="Source\Components\PhysicsComponent\ColliderComponent.cpp" />
     <ClCompile Include="Source\Components\PhysicsComponent\SpecialBodyComponent.cpp" />
+    <ClCompile Include="Source\Systems\GraphicsSystem\MenuSystem\Menu.cpp" />
+    <ClCompile Include="Source\Systems\GraphicsSystem\MenuSystem\MenuButton.cpp" />
+    <ClCompile Include="Source\Systems\GraphicsSystem\MenuSystem\MenuSystem.cpp" />
     <ClCompile Include="Source\Systems\PhysicsSystem\Raycasting\Raycasting.cpp" />
     <ClCompile Include="Source\Components\TagComponent\TagComponent.cpp" />
     <ClCompile Include="Source\Core\Pathfinder.cpp" />

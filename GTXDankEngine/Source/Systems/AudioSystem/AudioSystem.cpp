@@ -8,8 +8,8 @@
 
 extern Engine engine;
 
-template <typename T1, typename T2>
-T2 IsKeyInMap(std::map<T1, T2>map, T1 key)
+template <typename T1, typename T2,typename T3>
+T2 IsKeyInMap(std::map<T1, T2, T3>map, T1 key)
 {
     auto mapIter = map.find(key);
     if (mapIter != map.end()) { return mapIter->second; }
@@ -32,6 +32,7 @@ bool AudioSystem::Init()
     LoadBank("Master.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     LoadBank("Master.strings.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
     LoadBank("BackGround.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
+    LoadBank("SFXs.bank", FMOD_STUDIO_LOAD_BANK_NORMAL);
 
     LoadBus("Bus:/");
     LoadBus("Bus:/BGMBus");
@@ -41,24 +42,28 @@ bool AudioSystem::Init()
     BGMbus = busMaps["Bus:/BGMBus"];
     SFXbus = busMaps["Bus:/SFXBus"];
 
-    EventID a = PlayEvent("event:/BGM");
-
     Set3dListenerAndOrientation(engine.GraphicsSys.camera);
+    
+    //EventID a = PlayEvent("event:/JumpSFX");
+    //Set3DAudioEventPos(a, glm::vec3(20.0f, 40.0f, -80.0f));
+   
 	return true;
 }
 void AudioSystem::LoadBank(const char* bank_filename, FMOD_STUDIO_LOAD_BANK_FLAGS flags)
 {
+    const char* word = FindWord(bank_filename);
+
     //IF already loaded, then return
-    if (IsKeyInMap(bankMaps, bank_filename)) { return; }
+    if (IsKeyInMap(bankMaps, word)) { return; }
 
     //ELSE load the bank
     FMOD::Studio::Bank* pBank;
-    ERRCHECK(fmodStudioSystem->loadBankFile(Common_MediaPath(bank_filename), flags, &pBank));
+    ERRCHECK(fmodStudioSystem->loadBankFile(Common_MediaPath(word), flags, &pBank));
 
     //IF load bank success, Load non-streaming sample data of the bank, store it in map
     if (pBank) 
     {
-        bankMaps[bank_filename] = pBank; 
+        bankMaps[word] = pBank; 
         pBank->loadSampleData();
     } 
 }
@@ -76,17 +81,18 @@ void AudioSystem::UnloadBank(const char* bank_filename)
 }
 void AudioSystem::LoadBus(const char* bus_filename)
 {
+    const char* word = FindWord(bus_filename);
     //IF already loaded, then return
-    if (IsKeyInMap(busMaps, bus_filename)) { return; }
+    if (IsKeyInMap(busMaps, word)) { return; }
 
     //ELSE load the bus
     FMOD::Studio::Bus* pBus;
-    ERRCHECK(fmodStudioSystem->getBus(bus_filename, &pBus));
+    ERRCHECK(fmodStudioSystem->getBus(word, &pBus));
 
     //IF load bus success, store it in map
     if (pBus)
     {
-        busMaps[bus_filename] = pBus;
+        busMaps[word] = pBus;
     }
 }
 void AudioSystem::UnloadBus(const char* bus_filename)
@@ -104,6 +110,7 @@ void AudioSystem::Update(float timeStamp)
 { 
     PROFILE_THIS("Audio Update");
 
+    Set3dListenerAndOrientation(engine.GraphicsSys.camera);
     //MuteAll();
     //if (SFXMuted && BGMMuted) { return; }
 
@@ -125,10 +132,11 @@ void AudioSystem::Update(float timeStamp)
     //TryPlayWaitingList();
 
 
-    SetBusVolume(BGMbus, static_cast<float>(BGMVolume));
-    SetBusVolume(SFXbus, static_cast<float>(SFXVolume));
+    SetBusVolume("Bus:/BGMBus", static_cast<float>(BGMVolume));
+    SetBusVolume("Bus:/SFXBus", static_cast<float>(SFXVolume));
 
-    Set3dListenerAndOrientation(engine.GraphicsSys.camera);
+  
+    //printf(" %f, % f, %f", engine.GraphicsSys.camera.Position.x, engine.GraphicsSys.camera.Position.y, engine.GraphicsSys.camera.Position.z);
 
     ERRCHECK(fmodStudioSystem->update());
     
@@ -153,26 +161,30 @@ bool AudioSystem::Destroy()
 
 void AudioSystem::LoadEvent(const char* event_filename)
 {
+    const char* word = FindWord(event_filename);
+
     //IF already loaded, then return
-    if (IsKeyInMap(eventMaps, event_filename)) { return; }
+    if (IsKeyInMap(eventMaps, word)) { return; }
 
     //ELSE get eventDescription
     FMOD::Studio::EventDescription* pEventDescription = NULL;
-    ERRCHECK(fmodStudioSystem->getEvent(event_filename, &pEventDescription));
+    ERRCHECK(fmodStudioSystem->getEvent(word, &pEventDescription));
 
     //IF getEvent success, store it in map
     if (pEventDescription) 
     {
-        eventMaps[event_filename] = pEventDescription;
+        eventMaps[word] = pEventDescription;
     }
 }
 EventID AudioSystem::PlayEvent(const char* event_filename)
 {
+    const char* word = FindWord(event_filename);
+
     //IF not event not loaded, load it
-    if (!IsKeyInMap(eventMaps, event_filename)) { LoadEvent(event_filename); }
+    if (!IsKeyInMap(eventMaps, word)) { LoadEvent(word); }
 
     //IF event still not loaded, then the event filename is wrong
-    FMOD::Studio::EventDescription* pEventDescription = IsKeyInMap(eventMaps, event_filename);
+    FMOD::Studio::EventDescription* pEventDescription = IsKeyInMap(eventMaps, word);
     if (!pEventDescription) { return -1; }
 
     //ELSE create an instance of the description
@@ -181,7 +193,7 @@ EventID AudioSystem::PlayEvent(const char* event_filename)
 
     //IF successfully created, store it in map, then play it, and return its ID
     if (pEventInstance) {
-        std::pair<const char*, FMOD::Studio::EventInstance*>* pEventPair = new std::pair<const char*, FMOD::Studio::EventInstance*>(event_filename, pEventInstance);
+        std::pair<const char*, FMOD::Studio::EventInstance*>* pEventPair = new std::pair<const char*, FMOD::Studio::EventInstance*>(word, pEventInstance);
         eventInstanceMaps[currentEventID] = pEventPair;
         pEventInstance->start();
         return currentEventID++;
@@ -356,19 +368,29 @@ void AudioSystem::Set3dListenerAndOrientation(Camera camera)
     orient = vec3GLMtoFMOD(-z);
     
     
-    coreSystem->set3DListenerAttributes(0, &pos, nullptr, &orient, &up);
-    FMOD_3D_ATTRIBUTES p3Dattributes;
-    p3Dattributes.position = pos;
-    p3Dattributes.velocity = vel;
-    p3Dattributes.forward = orient;
-    p3Dattributes.up = up;
-    fmodStudioSystem->setListenerAttributes(0, &p3Dattributes);
+    //coreSystem->set3DListenerAttributes(0, &pos, nullptr, &orient, &up);
+    attribute.position = pos;
+    attribute.velocity = vel;
+    attribute.forward = orient;
+    attribute.up = up;
+    fmodStudioSystem->setListenerAttributes(0, &attribute);
 
     //coreSystem->get3DListenerAttributes(0, &p, nullptr, &f, &u);
     //std::cout << glm::to_string(camera.Position) << glm::to_string(-z) << glm::to_string(y) << std::endl;
     //ERRCHECK(coreSystem->set3DListenerAttributes(0, camera.Position, nullptr, camera.Orientation, camera.Up));
 }
+void AudioSystem::Set3DAudioEventPos(EventID id, glm::vec3 vPos)
+{
+    //IF eventInstance isn't in the map, then return
+    auto pEventPair = IsKeyInMap(eventInstanceMaps, id);
+    if (!pEventPair) { return; }
 
+    //ELSE set 3D attribute
+    FMOD_3D_ATTRIBUTES attributes;
+    ERRCHECK(pEventPair->second->get3DAttributes(&attributes));
+    attributes.position = vec3GLMtoFMOD(vPos);
+    ERRCHECK(pEventPair->second->set3DAttributes(&attributes));
+}
 //void AudioSystem::SetChannel3dPosition(int nChannelId, const glm::vec3& vPosition)
 //{
 //
@@ -433,6 +455,21 @@ float AudioSystem::VolumeTOdB(float volume)
 }
 
 
+const char* AudioSystem::FindWord(const char* word)
+{
+    std::string stringWord(word);
+    auto iter = std::find(wordDeque.begin(), wordDeque.end(), stringWord);
+    if (iter != wordDeque.end())
+    {
+        return (*iter).c_str();
+    }
+    else
+    {
+        wordDeque.push_back(stringWord);
+        return (wordDeque[wordDeque.size() - 1]).c_str();
+    }
+}
+
 void AudioSystem::HandleEvent(Event event)
 {
     if (event.type == EventType::MUTE_BGM)
@@ -454,8 +491,10 @@ void AudioSystem::HandleEvent(Event event)
     if (event.type == EventType::PLAY_SOUND)
     {
         //PlayEvent("event:/BGM");
-        StopEvent(0,false);
+        //StopEvent(0,false);
         //fmodPlaySound(event.stringData1.c_str(), glm::vec3(event.floatData2, event.floatData3, event.floatData4), event.floatData1);
+        EventID a = PlayEvent("event:/JumpSFX");
+        Set3DAudioEventPos(a, glm::vec3(30.0f, 40.0f, -80.0f));
     }
 }
 

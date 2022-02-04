@@ -31,7 +31,7 @@ function UpdatePlate(dt, e)
 	end
 	if blockStatus[e] > 0 then
 		blockStatus[e] = blockStatus[e] - dt
-		LOG_INFO("UpdatePlate blockStatus[e] = " .. blockStatus[e])
+		--LOG_INFO("UpdatePlate blockStatus[e] = " .. blockStatus[e])
 		if blockStatus[e] <= 0 then
 			blockStatus[e] = 0
 			AddToVQS(e, 0, 0, 6)
@@ -54,58 +54,22 @@ function HandleEventPlate(eventData)
 		end
 	end
 	if eventData.type == 12 then
-		LOG_INFO("coltion between " .. eventData.e1 .. " and " .. eventData.e2)
-		local plateid = 69
-		categoriesA = {}
-		categoriesB = {}
-		categoriesA = GetCategorysOfEntity(eventData.e1)
-		categoriesB = GetCategorysOfEntity(eventData.e2)
-		if (categoriesA[1] and categoriesB[2]) or (categoriesA[2] and categoriesB[1]) then --if player/block
-			if (categoriesA[1] and categoriesB[2]) then
-				plateid = eventData.e2
-			end
-			if (categoriesA[2] and categoriesB[1]) then
-				plateid = eventData.e1
-			end
-			LOG_INFO("On Plate " .. plateid)
-			lvPairs = pairs[GetLevelNumber()]
-			--LOG_INFO("level number = " ..GetLevelNumber())
-			--LOG_INFO("box id" .. (pairs[GetLevelNumber()])[plateid])
-			if lvPairs[plateid] ~= nil then --if on the list
-				if blockStatus[lvPairs[plateid]] == 0 then  -- if its in
-					AddToVQS(lvPairs[plateid], 0, 0, -6) --push it out
-					blockStatus[lvPairs[plateid]] = 1 --mark it out
-				end
+		--LOG_INFO("coltion between " .. eventData.e1 .. " and " .. eventData.e2)
+		LOG_INFO("On Plate " .. eventData.e1)
+		lvPairs = pairs[GetLevelNumber()]
+		--LOG_INFO("level number = " ..GetLevelNumber())
+		--LOG_INFO("box id" .. (pairs[GetLevelNumber()])[eventData.e1])
+		if lvPairs[eventData.e1] ~= nil then --if on the list
+			if blockStatus[lvPairs[eventData.e1]] == 0 then  -- if its in
+				AddToVQS(lvPairs[eventData.e1], 0, 0, -6) --push it out
+				blockStatus[lvPairs[eventData.e1]] = 1 --mark it out
 			end
 		end
-		
 	end
-
 end
 
 
 
 function HandleEventPerEntityPlate(e, eventData)
-	LOG_INFO("handleing plate event")
-	if eventData.type == 7 then
-		DeleteEntity(e)
-	end
-	if eventData.type == 12 then
-		LOG_INFO("coltion between " .. eventData.e1 .. " and " .. eventData.e2)
-		if e == eventData.e1 or e == eventData.e2 then --if collide with me
-			categories = {}
-			categoriesA = GetCategorysOfEntity(eventData.e1)
-			categoriesB = GetCategorysOfEntity(eventData.e2)
-			if categoriesA[1] or categoriesB[1] then --if collide with player
-				LOG_INFO("onPlate")
-				lvpairs = pairs[GetLevelNumber()]
-				if lvpairs[e] ~= nil then --if on the list
-					if blockStatus[lvpairs[e]] == 0 then-- if its in
-						AddToVQS(lvpairs[e], 0, 0, -6) --push it out
-						blockStatus[lvpairs[e]] = 1 --mark it out
-					end
-				end
-			end
-		end
-	end
+
 end

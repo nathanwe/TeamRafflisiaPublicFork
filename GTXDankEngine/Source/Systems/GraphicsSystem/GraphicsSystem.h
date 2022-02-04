@@ -14,6 +14,8 @@
 #include "OIT/OIT.h"
 #include "ParticleSystem/ParticleSystem.h"
 #include "Sky/Sky.h"
+#include "MenuSystem/MenuSystem.h"
+#include "MenuSystem/Menu.h"
 
 
 class Light;
@@ -54,7 +56,9 @@ public:
 	// setter and getters
 	inline void SetSunAngle(float angle) { m_sun_angle = angle; }
 	inline void SetCelFactor(float factor) { DeferredRender.CelFraction = factor; }
-	inline void SetCelStatus(bool status) { DeferredRender.EnableCelShading = status; }
+
+
+	MenuSystem& GetMenuSystem() { return MenuSystem; };
 
 
 private:
@@ -96,5 +100,7 @@ private:
 	HosekWilkieSkyModel Sky;
 	float m_sun_angle = 0.0;
 	bool RenderingDebugMode = false;
+
+	MenuSystem MenuSystem;
 };
 #endif // !GRAPHICSSYSTEM_H

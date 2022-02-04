@@ -13,7 +13,6 @@
 
 bool DeferredRenderer::Init(unsigned int gBufferWidth, unsigned int gBufferHeight)
 {
-	DeferredLightingShader = new Shader("Source/Shaders/DeferredRenderer/DeferredLighting.shader");
 	Fill_G_BufferShader = new Shader("Source/Shaders/DeferredRenderer/Fill_G_Buffer.shader");
 	CelShader = new Shader("Source/Shaders/DeferredRenderer/Cel.shader");
 
@@ -43,7 +42,6 @@ bool DeferredRenderer::Init(unsigned int gBufferWidth, unsigned int gBufferHeigh
 
 void DeferredRenderer::Destroy()
 {
-	delete DeferredLightingShader;
 	delete Fill_G_BufferShader;
 	delete CelShader;
 }
@@ -126,14 +124,14 @@ void DeferredRenderer::Fill_G_Buffer(glm::mat4 view, glm::mat4 projection)
 		auto transformComponent = TransformComponentPool.GetComponentByEntity(e);
 		auto modelComponent = ModelComponentPool.GetComponentByEntity(e);
 
-		// PBR and opaque
+		// wireframe mode or opaque (cel shading)
 		if (matComponent->material.wireMode)
 		{
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 			Fill_G_BufferRender(&matComponent->material, &transformComponent->transform, modelComponent->model->GetPointer());
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		}
-		else if (matComponent->material.IsPBR && matComponent->material.Alpha == 1.0f)
+		else if (matComponent->material.Alpha == 1.0f)
 			Fill_G_BufferRender(&matComponent->material, &transformComponent->transform, modelComponent->model->GetPointer());
 	}
 
@@ -160,14 +158,8 @@ void DeferredRenderer::Render(glm::vec3 camPos, Shadow& shadow, GLuint fbo)
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	if (EnableCelShading)
-	{
-		CelShader->setFloat("fraction", CelFraction);
-		Render(camPos, shadow, CelShader);
-	}
-	else
-		Render(camPos, shadow, DeferredLightingShader);
-
+	CelShader->setFloat("fraction", 1.3f);
+	Render(camPos, shadow, CelShader);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
@@ -178,8 +170,6 @@ void DeferredRenderer::Fill_G_BufferRender(Material* mat, VQS* transform, Model*
 {
 	Fill_G_BufferShader->setTexture("material.texture_albedo", mat->Albedo->GetPointer()->GetID());
 	Fill_G_BufferShader->setTexture("material.texture_metallic", mat->Metallic->GetPointer()->GetID());
-	Fill_G_BufferShader->setTexture("material.texture_normal", mat->Normal->GetPointer()->GetID());
-	Fill_G_BufferShader->setTexture("material.texture_roughness", mat->Roughness->GetPointer()->GetID());
 
 	Fill_G_BufferShader->setMat4("model", transform->Matrix());
 	model->Draw(*Fill_G_BufferShader);
@@ -202,5 +192,5 @@ void DeferredRenderer::CopyDepthBufferToTarget(GLuint fbo, unsigned int gBufferW
 
 Shader* DeferredRenderer::GetLightShader()
 { 
-	return EnableCelShading ? CelShader : DeferredLightingShader; 
+	return  CelShader;
 }

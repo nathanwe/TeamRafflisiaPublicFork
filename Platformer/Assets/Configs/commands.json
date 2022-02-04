@@ -19,57 +19,86 @@
     "Space": {
       "keyboardcode": 32,
       "gamepadCode": 0,
-      "keyPressType": 0
+      "keyPressType": 0,
+      "mouseLeftClick": false,
+      "mouseRightClick": false
     },
     "Skill1": {
       "keyboardcode": 49,
       "gamepadCode": -1,
-      "keyPressType": 1
-    },
-    "Skill3": {
-      "keyboardcode": 51,
-      "gamepadCode": -1,
-      "keyPressType": 1
+      "keyPressType": 1,
+      "mouseLeftClick": false,
+      "mouseRightClick": false
     },
     "Shift": {
       "keyboardcode": 32,
       "gamepadCode": -1,
-      "keyPressType": 0
+      "keyPressType": 0,
+      "mouseLeftClick": false,
+      "mouseRightClick": false
     },
-    "Skill2": {
-      "keyboardcode": 50,
+    "Skill3": {
+      "keyboardcode": 51,
       "gamepadCode": -1,
-      "keyPressType": 1
+      "keyPressType": 1,
+      "mouseLeftClick": false,
+      "mouseRightClick": false
     },
     "Ctrl": {
       "keyboardcode": 341,
       "gamepadCode": 1,
-      "keyPressType": 0
+      "keyPressType": 0,
+      "mouseLeftClick": false,
+      "mouseRightClick": false
+    },
+    "Skill2": {
+      "keyboardcode": 50,
+      "gamepadCode": -1,
+      "keyPressType": 1,
+      "mouseLeftClick": false,
+      "mouseRightClick": false
     },
     "Attack3": {
       "keyboardcode": 76,
       "gamepadCode": -1,
-      "keyPressType": 0
+      "keyPressType": 0,
+      "mouseLeftClick": false,
+      "mouseRightClick": false
     },
     "DebugMode": {
       "keyboardcode": 84,
       "gamepadCode": -1,
-      "keyPressType": 1
+      "keyPressType": 1,
+      "mouseLeftClick": false,
+      "mouseRightClick": false
     },
     "GraphicsDebugMode": {
       "keyboardcode": 71,
       "gamepadCode": -1,
-      "keyPressType": 1
+      "keyPressType": 1,
+      "mouseLeftClick": false,
+      "mouseRightClick": false
     },
     "NextLevel": {
       "keyboardcode": 262,
       "gamepadCode": -1,
-      "keyPressType": 1
+      "keyPressType": 1,
+      "mouseLeftClick": false,
+      "mouseRightClick": false
     },
     "PreviousLevel": {
       "keyboardcode": 263,
       "gamepadCode": -1,
-      "keyPressType": 1
+      "keyPressType": 1,
+      "mouseLeftClick": false,
+      "mouseRightClick": false
+    },
+    "Pause": {
+      "keyboardcode": -842150451,
+      "gamepadCode": -842150451,
+      "keyPressType": 0,
+      "mouseLeftClick": false,
+      "mouseRightClick": false
     }
   }
 }

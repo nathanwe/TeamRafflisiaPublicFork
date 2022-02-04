@@ -36,12 +36,10 @@ public:
 	inline unsigned int GetAlbedoMetallic() { return G_AlbedoMetallic; }
 	inline unsigned int GetDepth() {return RboDepth; }
 
-	bool EnableCelShading = true;
 	float CelFraction = 1.0;
 	bool EnablePCF = true;
 	 
 private:
-	Shader* DeferredLightingShader;
 	Shader* Fill_G_BufferShader;
 	Shader* CelShader;
 

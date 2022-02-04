@@ -26,6 +26,8 @@
 #include "../ProfileSystem/ProfileSystem.h"
 #include "Collision/CollisionFunctions.h"
 
+#include "../Components/GameLogicCategoryComponent/GameLogicCategoryComponent.h"
+
 extern Engine engine;
 
 
@@ -91,11 +93,7 @@ void PhysicsSystem::DetectCollision(float dt)
 			{
 				if (ReflectMovingSphereMovingSphere(itr1->second, c1, itr2->second, c2, dt))
 				{
-					Event ev = Event(true);
-					ev.type = EventType::PHYSICS_COLLISION;
-					ev.e1 = itr1->first;
-					ev.e2 = itr2->first;
-					engine.DoGameLogicScriptSys.HandleEvent(ev);
+					SendEvent(itr1->first, itr2->first);
 				}
 			}
 			// AABB - AABB
@@ -103,11 +101,7 @@ void PhysicsSystem::DetectCollision(float dt)
 			{
 				if (ReflectMovingAABBMovingAABB(itr1->second, c1, itr2->second, c2))
 				{
-					Event ev = Event(true);
-					ev.type = EventType::PHYSICS_COLLISION;
-					ev.e1 = itr1->first;
-					ev.e2 = itr2->first;
-					engine.DoGameLogicScriptSys.HandleEvent(ev);
+					SendEvent(itr1->first, itr2->first);
 				}
 			}
 		}
@@ -126,11 +120,7 @@ void PhysicsSystem::DetectCollision(float dt)
 			{
 				if (ReflectMovingSphereStaticSphere(itr1->second,c1, itr2->second, c2, dt))
 				{
-					Event ev = Event(true);
-					ev.type = EventType::PHYSICS_COLLISION;
-					ev.e1 = itr1->first;
-					ev.e2 = itr2->first;
-					engine.DoGameLogicScriptSys.HandleEvent(ev);
+					SendEvent(itr1->first, itr2->first);
 				}
 			}
 			// Sphere - Plane
@@ -139,11 +129,7 @@ void PhysicsSystem::DetectCollision(float dt)
 
 				if (ReflectMovingSphereStaticPlane(itr1->second, c1, itr2->second, c2, dt))
 				{
-					Event ev = Event(true);
-					ev.type = EventType::PHYSICS_COLLISION;
-					ev.e1 = itr1->first;
-					ev.e2 = itr2->first;
-					engine.DoGameLogicScriptSys.HandleEvent(ev);
+					SendEvent(itr1->first, itr2->first);
 					
 				}
 			}
@@ -152,11 +138,7 @@ void PhysicsSystem::DetectCollision(float dt)
 			{
 				if (ReflectMovingAABBStaticAABB(itr1->second, c1, itr2->second, c2))
 				{
-					Event ev = Event(true);
-					ev.type = EventType::PHYSICS_COLLISION;
-					ev.e1 = itr1->first;
-					ev.e2 = itr2->first;
-					engine.DoGameLogicScriptSys.HandleEvent(ev);
+					SendEvent(itr1->first, itr2->first);
 				}
 			}
 			// AABB - Plane
@@ -176,11 +158,7 @@ void PhysicsSystem::DetectCollision(float dt)
 			{
 				if (ReflectMovingSphereStaticAABB(itr1->second, c1, itr2->second, c2, dt))
 				{
-					Event ev = Event(true);
-					ev.type = EventType::PHYSICS_COLLISION;
-					ev.e1 = itr1->first;
-					ev.e2 = itr2->first;
-					engine.DoGameLogicScriptSys.HandleEvent(ev);
+					SendEvent(itr1->first, itr2->first);
 				}
 			}
 			// AABB - AABB
@@ -188,11 +166,7 @@ void PhysicsSystem::DetectCollision(float dt)
 			{
 				if (ReflectMovingAABBStaticAABB(itr1->second, c1, itr2->second, c2))
 				{
-					Event ev = Event(true);
-					ev.type = EventType::PHYSICS_COLLISION;
-					ev.e1 = itr1->first;
-					ev.e2 = itr2->first;
-					engine.DoGameLogicScriptSys.HandleEvent(ev);
+					SendEvent(itr1->first, itr2->first);
 				}
 			}
 			// AABB - Plane
@@ -212,11 +186,7 @@ void PhysicsSystem::DetectCollision(float dt)
 			{
 				if (ReflectMovingSphereStaticAABB(itr1->second, c1, itr2->second, c2, dt))
 				{
-					Event ev = Event(true);
-					ev.type = EventType::PHYSICS_COLLISION;
-					ev.e1 = itr1->first;
-					ev.e2 = itr2->first;
-					engine.DoGameLogicScriptSys.HandleEvent(ev);
+					SendEvent(itr1->first, itr2->first);
 				}
 			}
 		}
@@ -248,6 +218,32 @@ bool PhysicsSystem::Destroy()
 {
 	return true;
 }
+
+void PhysicsSystem::SendEvent(Entity e1, Entity e2)
+{
+	auto GL1 = GameLogicCategoryComponentPool.GetComponentByEntity(e1);
+	if (GL1 != nullptr)
+	{
+		Event eva = Event();
+		eva.thingsToEffect = GL1->categories;
+		eva.type = EventType::PHYSICS_COLLISION;
+		eva.e1 = e1;
+		eva.e2 = e2;
+		engine.DoGameLogicScriptSys.HandleEvent(eva);
+	}
+
+	auto GL2 = GameLogicCategoryComponentPool.GetComponentByEntity(e2);
+	if (GL2 != nullptr)
+	{
+		Event evb = Event();
+		evb.thingsToEffect = GL2->categories;
+		evb.type = EventType::PHYSICS_COLLISION;
+		evb.e1 = e2;
+		evb.e2 = e1;
+		engine.DoGameLogicScriptSys.HandleEvent(evb);
+	}
+}
+
 
 
 void PhysicsSystem::Integrate(MovingBodyComponent* movingBody, float dt)

@@ -333,27 +333,6 @@ void LevelEditorSystem::UpdateGUI()
 					&matCom->material.MetallicPath,
 					ImGuiInputTextFlags_CallbackCharFilter);
 
-				CopyButton("CopyNormalPath", matCom->material.NormalPath);
-				ImGui::SameLine();
-				if (ImGui::Button("PasteNormalPath", ImVec2(32, 20)))
-				{
-					matCom->material.NormalPath = PasteFromClipboard();
-				}
-				ImGui::SameLine();
-				InputText("NormalPath",
-					&matCom->material.NormalPath,
-					ImGuiInputTextFlags_CallbackCharFilter);
-
-				CopyButton("CopyRoughnessPath", matCom->material.RoughnessPath);
-				ImGui::SameLine();
-				if (ImGui::Button("PasteRoughnessPath", ImVec2(32, 20)))
-				{
-					matCom->material.RoughnessPath = PasteFromClipboard();
-				}
-				ImGui::SameLine();
-				InputText("RoughnessPath",
-					&matCom->material.RoughnessPath,
-					ImGuiInputTextFlags_CallbackCharFilter);
 
 				ImGui::DragFloat("Alpha", &matCom->material.Alpha, 0.01f);
 
@@ -361,20 +340,17 @@ void LevelEditorSystem::UpdateGUI()
 				{
 					auto albedoPath = matCom->material.AlbedoPath;
 					auto metallicPath = matCom->material.MetallicPath;
-					auto normalPath = matCom->material.NormalPath;
-					auto roughnessPath = matCom->material.RoughnessPath;
+
 					if (!albedoPath.empty())
 					{
 						MaterialComponentPool.Delete(entityID);
 						ResourceHandle<Texture>* albedo = TextureResourceManger.GetResourceHandle(albedoPath);
 						ResourceHandle<Texture>* metallic = TextureResourceManger.GetResourceHandle(metallicPath);
-						ResourceHandle<Texture>* normal = TextureResourceManger.GetResourceHandle(normalPath);
-						ResourceHandle<Texture>* roughness = TextureResourceManger.GetResourceHandle(roughnessPath);
-						Material material = Material(albedo, metallic, normal, roughness);
+
+						Material material = Material(albedo, metallic);
 						material.AlbedoPath = albedoPath;
 						material.MetallicPath = metallicPath;
-						material.NormalPath = normalPath;
-						material.RoughnessPath = roughnessPath;
+
 						MaterialComponentPool.Add(entityID, material);
 					}
 				}
@@ -390,11 +366,9 @@ void LevelEditorSystem::UpdateGUI()
 				{
 					std::string path = "Assets/Defaults/BlackPurpleChecker.png";
 					ResourceHandle<Texture>* dummy = TextureResourceManger.GetResourceHandle(path);
-					Material material = Material(dummy, dummy, dummy, dummy);
+					Material material = Material(dummy, dummy);
 					material.AlbedoPath = path;
 					material.MetallicPath = path;
-					material.NormalPath = path;
-					material.RoughnessPath = path;
 					MaterialComponentPool.Add(entityID, material);
 				}
 			}

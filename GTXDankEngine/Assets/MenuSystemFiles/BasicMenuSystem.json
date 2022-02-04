@@ -1,0 +1,89 @@
+{
+    "Pause": {
+        "First": {
+            "x": 100,
+            "y": 30 
+        },
+        "Size": {
+            "x": 120,
+            "y": 50 
+        },
+
+        "Pause": {
+            "Texture": "Assets/Textures/Continue_test.png",
+            "Command": "Continue"
+        },
+        "Options1": {
+            "Texture": "Assets/Textures/Options_test.png",
+            "Command": "Options1"
+        },
+        "Options2": {
+            "Color": {
+                "x": 0,
+                "y": 255,
+                "z": 0,
+                "w": 1
+            },
+            "Command": "Options2"
+        },
+        "Exit": {
+            "Texture": "Assets/Textures/Exit_test.png",
+            "Command": "Exit"
+        }
+    },
+
+
+    "Options1": {
+        "First": {
+            "x": 100,
+            "y": 30 
+        },
+        "Size": {
+            "x": 120,
+            "y": 50 
+        },
+
+        "Back": {
+            "Texture": "Assets/Textures/Exit_test.png",
+            "Command": "Back"
+        }
+    },
+    
+
+    "Options2": {
+        "First": {
+            "x": 100,
+            "y": 30 
+        },
+        "Size": {
+            "x": 120,
+            "y": 50 
+        },
+        
+        "Options2Deep": {
+            "Texture": "Assets/Textures/Options_test.png",
+            "Command": "Options2Deep"
+        },
+        "Back": {
+            "Texture": "Assets/Textures/Exit_test.png",
+            "Command": "Back"
+        }
+    },
+
+
+    "Options2Deep": {
+        "First": {
+            "x": 100,
+            "y": 30 
+        },
+        "Size": {
+            "x": 120,
+            "y": 50 
+        },
+
+        "Back": {
+            "Texture": "Assets/Textures/Exit_test.png",
+            "Command": "Back"
+        }
+    }
+}
