@@ -477,6 +477,9 @@
     <None Include="..\Platformer\Assets\Scripts\DoFaithPlateThings.lua">
       <Filter>Platformer\Scripts</Filter>
     </None>
+    <None Include="Source\Shaders\PostProcess\Neon.shader">
+      <Filter>Resource Files\Shaders\PostProcess</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">

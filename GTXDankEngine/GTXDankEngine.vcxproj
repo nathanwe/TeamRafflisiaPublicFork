@@ -151,6 +151,7 @@
     <None Include="Source\Shaders\OIT\TransparentPass.shader" />
     <None Include="Source\Shaders\ParticleSystem\ParticleSystem.cs.shader" />
     <None Include="Source\Shaders\ParticleSystem\Render.shader" />
+    <None Include="Source\Shaders\PostProcess\Neon.shader" />
     <None Include="Source\Shaders\PostProcess\PostProcess.shader" />
     <None Include="Source\Shaders\Shadow\DefaultShadowMap.shader" />
     <None Include="Source\Shaders\Sky\Sky.shader" />

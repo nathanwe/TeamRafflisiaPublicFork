@@ -33,6 +33,7 @@ vec4 GetCrossHairTexel()
 }
 
 
+
 void main()
 {
     //------------------------------------------------------------------------------------------------------
@@ -51,10 +52,13 @@ void main()
 
     //-------------------------------------------------------------------------------------------------------
 
+
+
+    // Gamma correction and HDR
     if (HasHDR)
     {
-        vec3 hdrColor = texture(Scene, TexCoords).rgb;
-
+        vec3 hdrColor = texture(Scene, TexCoords).xyz;
+            
         // exposure tone mapping
         vec3 mapped = vec3(1.0) - exp(-hdrColor * exposure);
 
@@ -67,4 +71,5 @@ void main()
     {
         FragColor = vec4(texture(Scene, TexCoords));
     }
+
 }

@@ -7,9 +7,13 @@
 #include "../Core/Texture.h"
 #include "../Core/Engine.h"
 
-bool PostProcess::Init()
+bool PostProcess::Init(unsigned int weight, unsigned int height)
 {
-	shader = new Shader("Source/Shaders/PostProcess/PostProcess.shader");
+	Standard = new Shader("Source/Shaders/PostProcess/PostProcess.shader");
+	Neon = new Shader("Source/Shaders/PostProcess/Neon.shader");
+
+	PostProcessFBO.Init(weight, height);
+
 	return true;
 }
 
@@ -18,26 +22,74 @@ bool PostProcess::Init()
 
 void PostProcess::Destroy()
 {
-	delete shader;
+	delete Neon;
+	delete Standard;
 }
+
+
 
 void PostProcess::Render(const FBO& fbo)
 {
+	// find correct shader base on post processing type
+	Shader* postProcessShader = ChooseShader();
+
+	// render post processing base on input image
+	 RenderPostProcess(postProcessShader, fbo);
+
+	// add cross hair
+	// gamma correction
+	// tone mapping
+	StandardPostProcessing(PostProcessFBO);
+}
+
+
+
+const FBO& PostProcess::RenderPostProcess(Shader* PostProcessShader, const FBO& inputFBO)
+{
+	// TODO:
+	// check if current Rendering type is standard
+	// if yes, return inputFBO
+
+	// bind post process frame buffer, clean buffer
+	glBindFramebuffer(GL_FRAMEBUFFER, PostProcessFBO.GetFBO());
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// bind input texture
+	Neon->setTexture("Scene", inputFBO.GetColorAttachment());
+
+	Quad().Draw(*Neon);
+
+	// no need to unbind fbo
+	// StandardPostProcessing() will bind to default FBO at the very beginning
+
+	return PostProcessFBO;
+}
+
+
+
+void PostProcess::StandardPostProcessing(const FBO& fbo)
+{
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-	shader->setInt("HasHDR", HasHDR);
-	shader->setFloat("exposure", Exposure);
+	Standard->setInt("HasHDR", HasHDR);
+	Standard->setFloat("exposure", Exposure);
 
-	shader->setTexture("Scene", fbo.GetColorAttachment());
+	Standard->setTexture("Scene", fbo.GetColorAttachment());
 
-	// should be replaced by using resource manager
-
+	// get cross hair from reource manager
 	ResourceHandle<Texture>* crossHair = TextureResourceManger.GetResourceHandle("Assets/Textures/CrossHair.png");
-	//Texture crossHair("Assets/Textures/CrossHair.png");
-	//crossHair.OnLoad();
-	shader->setTexture("CrossHair", crossHair->GetPointer()->GetID());
 
-	Quad().Draw(*shader);
+	// bind cross hair texture
+	Standard->setTexture("CrossHair", crossHair->GetPointer()->GetID());
+
+	Quad().Draw(*Standard);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+
+// TODO:
+Shader* PostProcess::ChooseShader( /* PostProcessingType */)
+{
+	return Neon;
 }

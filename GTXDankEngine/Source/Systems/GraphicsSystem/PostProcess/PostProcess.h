@@ -3,6 +3,7 @@
 
 #include "pch.h"
 #include "../Core/Shader.h"
+#include "../FBO.h"
 
 class FBO;
 
@@ -10,7 +11,7 @@ class PostProcess
 {
 public:
 	PostProcess() = default;
-	bool Init();
+	bool Init(unsigned int weight, unsigned int height);
 	void Destroy();
 
 	void Render(const FBO& fbo);
@@ -19,10 +20,23 @@ public:
 	float Exposure = 1.0;
 
 private:
+	Shader* ChooseShader( /* PostProcessingType */   );
 
-	//void ToneMapping();
-	Shader* shader;
-	//bool HasHDR = true;
+	const FBO& RenderPostProcess(Shader* PostProcessShader, const FBO& inputFBO);
+
+
+	// cross hair and gamma correction and tone mapping
+	// shader Standard will get invoked
+	void StandardPostProcessing(const FBO& fbo);
+
+	// basic cel shading with gamma correction and tone mapping
+	Shader* Standard;
+
+	// "Inverted color and edge detection"
+	Shader* Neon;
+
+
+	FBO PostProcessFBO;
 
 
 };

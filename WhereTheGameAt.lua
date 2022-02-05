@@ -1,9 +1,9 @@
 --WhereTheGameAt
 
 function Init()
-	--SetGamePath("../SandBox1/")
+	SetGamePath("../SandBox1/")
 	--SetGamePath("../FPS/")
-	SetGamePath("../Platformer/")
+	--SetGamePath("../Platformer/")
 	--SetGamePath("../TopDownFighter/")
 	--SetGamePath("../Speed/")
 end

@@ -80,7 +80,7 @@ bool GraphicsSystem::Init()
 
 	PS.Init(100000);
 
-	PostProcesser.Init();
+	PostProcesser.Init(camera.width, camera.height);
 
 	DebugRenderer.Init(&camera);
 
