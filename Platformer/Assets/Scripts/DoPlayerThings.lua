@@ -2,9 +2,10 @@
 local imguiControledEntity = -1
 local airTime = {}
 local accel = 100
-local jumpspeed = 40
+local jumpspeed = 25
 local decay = 200
-local maxspeed = 20
+local maxspeed = 35
+local hardcap = 40
 
 function SavePlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
@@ -38,6 +39,8 @@ function UpdatePlayer(dt, e)
 	
 	-- left speed cap
 	if data.velocity.x > maxspeed then
+		if data.velocity.x > hardcap then AddPhysicsVelocity(e, hardcap-data.velocity.x, 0, 0) end
+
 		if data.velocity.x - decay*dt < maxspeed then
 			AddPhysicsVelocity(e, maxspeed-data.velocity.x, 0, 0)
 		else
@@ -47,6 +50,8 @@ function UpdatePlayer(dt, e)
 
 	--right speed cap
 	if data.velocity.x < -maxspeed then
+		if data.velocity.x < -hardcap then AddPhysicsVelocity(e, -hardcap-data.velocity.x, 0, 0) end
+
 		if data.velocity.x + decay*dt > -maxspeed then
 			AddPhysicsVelocity(e, -maxspeed-data.velocity.x, 0, 0)
 		else
@@ -77,6 +82,9 @@ end
 
 
 function HandleEventPerEntityPlayer(e, eventData)
+	data = {}
+	data = GetRigidData(e)
+
 	if eventData.type == 7 then
 		DeleteEntity(e)
 	end
@@ -89,8 +97,17 @@ function HandleEventPerEntityPlayer(e, eventData)
 
 		if eventData.stringData1 == "Up" then
 			--LOG_INFO("airTime = " .. airTime[e])
+
+			-- Gravity reduction while holding up
+			if data.velocity.y > 0 then
+				AddPhysicsVelocity(e, 0, eventData.floatData1 * 30, 0)
+			end
+
+			-- Jump
 			if airTime[e] < .02 then
-				AddPhysicsVelocity(e, 0, jumpspeed, 0)
+				if data.velocity.y < jumpspeed then
+					AddPhysicsVelocity(e, 0, jumpspeed-data.velocity.y, 0)
+				end
 			end
 		end
 		if eventData.stringData1 == "Down" then
