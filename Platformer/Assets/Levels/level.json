@@ -3,9 +3,9 @@
     {
       "TRANSFORM": {
         "position": {
-          "x": 0.0,
-          "y": 8.925461769104004,
-          "z": -1.2186932563781738
+          "x": 2.009999990463257,
+          "y": 9.255000114440918,
+          "z": -5.11899995803833
         },
         "scale": {
           "x": 5.0,
@@ -389,7 +389,7 @@
     },
     {
       "MODEL": {
-        "path": "../Platformer/Assets/models/plane.obj"
+        "path": "../GTXDankEngine/Assets/Models/placeholder_platforms.obj"
       },
       "TRANSFORM": {
         "position": {
@@ -403,10 +403,10 @@
           "z": 7.0
         },
         "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
+          "x": 1.0675503858692537e-07,
+          "y": -0.7069846987724304,
+          "z": 1.0675503858692537e-07,
+          "w": 0.7072288393974304
         }
       },
       "MATERIAL": {
@@ -417,11 +417,11 @@
       "COLLIDER": {
         "Shape": 1,
         "Normal": {
-          "x": 0.0,
+          "x": -3.0194883038348053e-07,
           "y": 1.0,
-          "z": 0.0
+          "z": 5.212541509536095e-11
         },
-        "Magnitude": 15.0
+        "Magnitude": 15.000003814697266
       },
       "STILL_BODY": {
         "Shape": 0,
@@ -437,7 +437,7 @@
     },
     {
       "MODEL": {
-        "path": "../Platformer/Assets/models/plane.obj"
+        "path": "../GTXDankEngine/Assets/Models/placeholder_platforms.obj"
       },
       "TRANSFORM": {
         "position": {
@@ -452,9 +452,9 @@
         },
         "rotation": {
           "x": 0.0,
-          "y": 0.0,
+          "y": 0.7069846987724304,
           "z": 0.0,
-          "w": 1.0
+          "w": 0.7072288393974304
         }
       },
       "MATERIAL": {
@@ -479,7 +479,7 @@
         "PLAYER_PROJECTILE"
       ],
       "TAG": {
-        "uniqueName": "HoneyPlate",
+        "uniqueName": "Slope1",
         "category": "Slope"
       }
     },
@@ -495,7 +495,7 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": -8.221254348754883,
+          "x": -26.774669647216797,
           "y": 9.133200645446777,
           "z": 1.0
         },
@@ -507,8 +507,8 @@
         "rotation": {
           "x": 0.0,
           "y": 0.0,
-          "z": -0.11935149878263474,
-          "w": 0.9928520917892456
+          "z": -0.02379579469561577,
+          "w": 0.9997168183326721
         }
       },
       "MATERIAL": {
@@ -526,9 +526,9 @@
         "Gravity": true,
         "Mass": 5.0,
         "Velocity": {
-          "x": 0.0001385211944580078,
-          "y": -0.5740727782249451,
-          "z": 0.0
+          "x": 6.937980651855469e-05,
+          "y": -0.5740733742713928,
+          "z": 6.900823912303622e-09
         },
         "Accelereation": {
           "x": 0.0,
@@ -671,14 +671,16 @@
     null,
     null,
     null,
+    null,
+    null,
     {
       "MODEL": {
         "path": "../GTXDankEngine/Assets/Models/Ball.obj"
       },
       "TRANSFORM": {
         "position": {
-          "x": 13.391345977783203,
-          "y": 16.199811935424805,
+          "x": 24.215999603271484,
+          "y": 29.557758331298828,
           "z": 35.0
         },
         "scale": {
@@ -708,8 +710,8 @@
         "Gravity": true,
         "Mass": 5.0,
         "Velocity": {
-          "x": -15.064319610595703,
-          "y": -8.903200149536133,
+          "x": 0.0,
+          "y": -19.736820220947266,
           "z": 0.0
         },
         "Accelereation": {
