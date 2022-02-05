@@ -1143,6 +1143,12 @@ int lua_MuteAll(lua_State* L)
     return 0;
 }
 
+int lua_SetBGMPitch(lua_State* L)
+{
+    engine.AudioSys.SetBGMPitch(lua_tonumber(L, 1));
+    return 0;
+}
+
 int lua_SetCameraStatic(lua_State* L)
 {
     engine.GraphicsSys.camera.isStatic = lua_toboolean(L, 1);
