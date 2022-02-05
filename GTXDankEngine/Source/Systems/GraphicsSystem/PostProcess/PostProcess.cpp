@@ -34,12 +34,12 @@ void PostProcess::Render(const FBO& fbo)
 	Shader* postProcessShader = ChooseShader();
 
 	// render post processing base on input image
-	 RenderPostProcess(postProcessShader, fbo);
+	const FBO& postProcessFBO =  RenderPostProcess(postProcessShader, fbo);
 
 	// add cross hair
 	// gamma correction
 	// tone mapping
-	StandardPostProcessing(PostProcessFBO);
+	StandardPostProcessing(postProcessFBO);
 }
 
 
@@ -49,6 +49,7 @@ const FBO& PostProcess::RenderPostProcess(Shader* PostProcessShader, const FBO& 
 	// TODO:
 	// check if current Rendering type is standard
 	// if yes, return inputFBO
+	return inputFBO;		
 
 	// bind post process frame buffer, clean buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, PostProcessFBO.GetFBO());
