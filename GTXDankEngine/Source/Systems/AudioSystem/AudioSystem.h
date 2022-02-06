@@ -79,7 +79,7 @@ public:
 	
 	//bool IsPlaying(int nChannelId) const;
 	
-
+	void SetBGMPitch(float);
 	//Convertering functions
 	float dBtoVolume(float db);
 	float VolumeTOdB(float volume);
@@ -134,6 +134,8 @@ public:
 	FMOD::ChannelGroup* SFX;
 
 	FMOD_3D_ATTRIBUTES attribute;
+
+	FMOD::DSP* pitchShift;
 
 	std::list<WaitingSound> waitingList;
 };

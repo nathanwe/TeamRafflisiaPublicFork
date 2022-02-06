@@ -134,6 +134,7 @@ void SceneSystem::Update(float dt)
         ev.type = EventType::LOAD_LUA;
         ev.intData1 = currentLevel;
         engine.DoGameLogicScriptSys.HandleEvent(ev);
+        engine.CameraControlSys.HandleEvent(ev);
 
         // For Physics
         engine.PhysicsSys.UpdatePosition();

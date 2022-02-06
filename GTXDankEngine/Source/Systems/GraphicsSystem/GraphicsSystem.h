@@ -18,6 +18,7 @@
 #include "MenuSystem/Menu.h"
 
 
+
 class Light;
 class VQS;
 
@@ -39,6 +40,8 @@ public:
 	GraphicsSystem& operator= (const GraphicsSystem&) = delete;
 
 	void RenderUI(void);
+
+	inline void SetPostProcessType(PostProcessType type) { postProcessType = type; }
 
 public:
 	bool Init();
@@ -100,6 +103,8 @@ private:
 	HosekWilkieSkyModel Sky;
 	float m_sun_angle = 0.0;
 	bool RenderingDebugMode = false;
+
+	PostProcessType postProcessType;
 
 	MenuSystem MenuSystem;
 };

@@ -34,6 +34,9 @@ function UpdateBall(dt, e)
 		LOG_INFO("created", ent)
 		DeleteEntity(e)
 	end
+	data = {}
+	data = GetRigidData(e)
+	AddRotation(e, 0,0,-data.velocity.x*dt*20)
 
 end
 

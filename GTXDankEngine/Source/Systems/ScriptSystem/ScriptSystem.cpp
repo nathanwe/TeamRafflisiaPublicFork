@@ -59,6 +59,7 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "SetPosition", lua_SetPosition);
     lua_register(L, "GetRigidData", lua_GetRigidData);
     lua_register(L, "SetPhysicsVelocity", lua_SetPhysicsVelocity);
+    lua_register(L, "GetPhysicsVelocity", lua_GetPhysicsVelocity);
     lua_register(L, "GetSoundVolumes", lua_GetSoundVolumes);
     lua_register(L, "GetScale", lua_GetScale);
     lua_register(L, "SetScale", lua_SetScale);
@@ -89,6 +90,7 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "SetCameraPitchYaw", lua_SetCameraPitchYaw);
     lua_register(L, "SetCameraOffest", lua_SetCameraOffest);
 	lua_register(L, "SetSunAngle", lua_SetSunAngle);
+    lua_register(L, "SetPostProcess", lua_SetPostProcess);
 	lua_register(L, "LoadNextLevel", lua_LoadNextLevel);
     lua_register(L, "RestartGame", lua_RestartGame);
     lua_register(L, "GetLevelNumber", lua_GetLevelNumber);
@@ -105,6 +107,7 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "SetBusMuted", lua_SetBusMuted);
     lua_register(L, "SetBusVolume", lua_SetBusVolume);
     lua_register(L, "SetAllMuted", lua_MuteAll);
+    lua_register(L, "SetBGMPitch", lua_SetBGMPitch);
     lua_register(L, "SetCameraStatic", lua_SetCameraStatic);
     lua_register(L, "SetCameraStaticScene", lua_SetCameraStaticScene);
     lua_register(L, "SetAudioEventPosition", lua_SetAudioEventPosition);

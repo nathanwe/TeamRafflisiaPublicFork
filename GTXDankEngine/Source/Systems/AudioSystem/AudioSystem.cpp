@@ -43,7 +43,9 @@ bool AudioSystem::Init()
     SFXbus = busMaps["Bus:/SFXBus"];
 
     Set3dListenerAndOrientation(engine.GraphicsSys.camera);
-    
+
+    coreSystem->createDSPByType(FMOD_DSP_TYPE_PITCHSHIFT, &pitchShift);
+
     //EventID a = PlayEvent("event:/JumpSFX");
     //Set3DAudioEventPos(a, glm::vec3(20.0f, 40.0f, -80.0f));
    
@@ -265,11 +267,23 @@ void AudioSystem::SetEventInstanceParameter(EventID id, const char* parameter_na
 void AudioSystem::SetBusMuted(FMOD::Studio::Bus* bus,bool isMuted)
 {
     ERRCHECK(bus->setMute(isMuted));
+   
 }
 void AudioSystem::SetBusMuted(const char* bus_name, bool isMuted)
 {
     if (!IsKeyInMap(busMaps, bus_name)) { return; }
-    ERRCHECK(busMaps[bus_name]->setMute(isMuted));
+    ERRCHECK(busMaps[bus_name]->setMute(isMuted)); 
+
+    //FMOD::DSP* DSP1;
+    //FMOD_DSP_PARAMETER_DESC* desc;
+    //int DSPs,param;
+    //ERRCHECK(busMaps["Bus:/BGMBus"]->getChannelGroup(&BGM));
+    //BGM->getDSP(0, &DSP1); 
+    //DSP1->getda
+    //ERRCHECK(DSP1->getNumParameters(&param));
+    //DSP1->getParameterInfo(0, &desc);
+    //BGM->addDSP(0, pitchShift);
+    //pitchShift->setParameterFloat(0, 1.2);
 }
 void AudioSystem::SetBusVolume(FMOD::Studio::Bus* bus, float fVolumedB)
 {
@@ -390,6 +404,15 @@ void AudioSystem::Set3DAudioEventPos(EventID id, glm::vec3 vPos)
     ERRCHECK(pEventPair->second->get3DAttributes(&attributes));
     attributes.position = vec3GLMtoFMOD(vPos);
     ERRCHECK(pEventPair->second->set3DAttributes(&attributes));
+}
+
+void AudioSystem::SetBGMPitch(float pitch)
+{   
+    //pitch 0.5 octave lower 2.0 octave higher
+
+    ERRCHECK(busMaps["Bus:/BGMBus"]->getChannelGroup(&BGM));
+    BGM->getDSP(0, &pitchShift);
+    pitchShift->setParameterFloat(0, pitch);
 }
 //void AudioSystem::SetChannel3dPosition(int nChannelId, const glm::vec3& vPosition)
 //{

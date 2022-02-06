@@ -127,7 +127,7 @@
   },
   "Player": {
     "MODEL": {
-      "path": "../Platformer/Assets/models/PokemonBall/model.obj"
+      "path": "../GTXDankEngine/Assets/Models/Ball.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -148,8 +148,8 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/models/PokemonBall/albedo.jpg",
-      "MetallicPath": "../Platformer/Assets/models/PokemonBall/metallic.jpg",
+      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Hero Base Color.png",
+      "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
       "NormalPath": "../Platformer/Assets/models/PokemonBall/normal.jpg",
       "RoughnessPath": "../Platformer/Assets/models/PokemonBall/roughness.jpg",
       "Alpha": 1.0
@@ -191,9 +191,9 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": -12.819999694824219,
-        "y": 11.5600004196167,
-        "z": 1.0
+        "x": 14.479999542236328,
+        "y": 15.0,
+        "z": 1.0099999904632568
       },
       "scale": {
         "x": 7.0,
@@ -208,10 +208,8 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Honey Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "NormalPath": "../Platformer/Assets/Textures/metal_Tex/normal.png",
-      "RoughnessPath": "../Platformer/Assets/Textures/metal_Tex/roughness.png",
       "Alpha": 1.0
     },
     "COLLIDER": {
@@ -221,23 +219,23 @@
         "y": 1.0,
         "z": 0.0
       },
-      "Magnitude": 11.5600004196167
+      "Magnitude": 15.0
     },
     "STILL_BODY": {
       "Shape": 0,
       "Radius": 1.0
     },
     "GAME_LOGIC": [
-      "ENEMY"
+      "PLAYER_PROJECTILE"
     ],
     "TAG": {
-      "uniqueName": "Slope1",
+      "uniqueName": "HoneyPlate",
       "category": "Slope"
     }
   },
   "ball": {
     "MODEL": {
-      "path": "../Platformer/Assets/models/PokemonBall/model.obj"
+      "path": "../GTXDankEngine/Assets/Models/Ball.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -246,9 +244,9 @@
         "z": 35.0
       },
       "scale": {
-        "x": 0.029999999329447746,
-        "y": 0.029999999329447746,
-        "z": 0.029999999329447746
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
       },
       "rotation": {
         "x": 0.0,
@@ -258,8 +256,8 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/models/PokemonBall/albedo.jpg",
-      "MetallicPath": "../Platformer/Assets/models/PokemonBall/metallic.jpg",
+      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Friend Base Color.png",
+      "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
       "NormalPath": "../Platformer/Assets/models/PokemonBall/normal.jpg",
       "RoughnessPath": "../Platformer/Assets/models/PokemonBall/roughness.jpg",
       "Alpha": 1.0

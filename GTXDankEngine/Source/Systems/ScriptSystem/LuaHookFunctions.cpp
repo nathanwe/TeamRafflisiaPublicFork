@@ -580,6 +580,23 @@ int lua_SetPhysicsVelocity(lua_State* L)
     return 0;
 }
 
+int lua_GetPhysicsVelocity(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    MovingBodyComponent* bod = MovingBodyComponentPool.GetComponentByEntity(e);
+    if (bod != nullptr)
+    {
+        lua_pushnumber(L, bod->rigidBody.velocity.x);
+        lua_pushnumber(L, bod->rigidBody.velocity.y);
+        lua_pushnumber(L, bod->rigidBody.velocity.z);
+    }
+    else
+    {
+        LOG_ERROR("body not found");
+    }
+    return 3;
+}
+
 int lua_GetSoundVolumes(lua_State* L)
 {
     lua_pushlightuserdata(L,static_cast<void*>(&engine.AudioSys.BGMVolume));
@@ -1010,6 +1027,15 @@ int lua_SetSunAngle(lua_State* L)
     return 0;
 }
 
+int lua_SetPostProcess(lua_State* L)
+{
+
+    PostProcessType type = static_cast<PostProcessType>(lua_tointeger(L, 1));
+
+    engine.GraphicsSys.SetPostProcessType(type);
+    return 0;
+}
+
 int lua_LoadNextLevel(lua_State* L)
 {
 	engine.SceneSys.LoadNextLevel();
@@ -1112,6 +1138,12 @@ int lua_SetBusVolume(lua_State* L)
 int lua_MuteAll(lua_State* L)
 {
     engine.AudioSys.MuteAll();
+    return 0;
+}
+
+int lua_SetBGMPitch(lua_State* L)
+{
+    engine.AudioSys.SetBGMPitch(lua_tonumber(L, 1));
     return 0;
 }
 

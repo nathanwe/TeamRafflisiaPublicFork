@@ -113,6 +113,8 @@
     <None Include="..\Platformer\Assets\Scripts\Camera.lua" />
     <None Include="..\Platformer\Assets\Scripts\CategoryList.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoBlockThings.lua" />
+    <None Include="..\Platformer\Assets\Scripts\DoFaithPlateThings.lua" />
+    <None Include="..\Platformer\Assets\Scripts\DoHoneySlimeThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoPlateThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoPlayerThings.lua" />
     <None Include="..\SandBox1\Assets\audio\Master.bank" />
@@ -149,6 +151,7 @@
     <None Include="Source\Shaders\OIT\TransparentPass.shader" />
     <None Include="Source\Shaders\ParticleSystem\ParticleSystem.cs.shader" />
     <None Include="Source\Shaders\ParticleSystem\Render.shader" />
+    <None Include="Source\Shaders\PostProcess\Neon.shader" />
     <None Include="Source\Shaders\PostProcess\PostProcess.shader" />
     <None Include="Source\Shaders\Shadow\DefaultShadowMap.shader" />
     <None Include="Source\Shaders\Sky\Sky.shader" />

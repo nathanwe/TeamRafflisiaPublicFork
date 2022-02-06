@@ -80,7 +80,9 @@ bool GraphicsSystem::Init()
 
 	PS.Init(100000);
 
-	PostProcesser.Init();
+	PostProcesser.Init(camera.width, camera.height);
+	postProcessType = PostProcessType::STANDARD;
+	//SetPostProcessType(PostProcessType::NEON);
 
 	DebugRenderer.Init(&camera);
 
@@ -154,7 +156,7 @@ void GraphicsSystem::Render(float timeStamp)
 	//TransparentRenderer.Render(HdrFBO.GetFBO(), view, proj, HdrFBO.GetDepth());
 
 	// post processing
-	PostProcesser.Render(HdrFBO);
+	PostProcesser.Render(HdrFBO, postProcessType);
 }
 
 
