@@ -104,13 +104,16 @@ enum class EventType
 	SHOT = 18,
 	COMMAND = 19,
 
+
 };
 
 enum class PostProcessType
 {
-	//FOO = 1,
-	//BAR = 2,
-	//BAZ = 3
+	// standard cel shading
+	STANDARD = 1,
+
+	// "inverse color" + edge detection
+	NEON = 2
 };
 
 ///////////////////////////////////////////////////////

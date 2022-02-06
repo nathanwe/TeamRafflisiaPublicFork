@@ -16,7 +16,6 @@ function LoadFaithPlates( levelnum )
 	velX = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."FaithPlateVelXSave.json")
 	velY = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."FaithPlateVelYSave.json")
 	velZ = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."FaithPlateVelZSave.json")
-	print("velX 21" .. velX[21])
 	--directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."FaithPlateDirectionSave.json")
 end
 

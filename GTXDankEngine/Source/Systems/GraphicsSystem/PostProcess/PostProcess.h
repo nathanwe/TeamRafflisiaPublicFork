@@ -4,6 +4,7 @@
 #include "pch.h"
 #include "../Core/Shader.h"
 #include "../FBO.h"
+#include "../Core/Enums.h"
 
 class FBO;
 
@@ -14,15 +15,15 @@ public:
 	bool Init(unsigned int weight, unsigned int height);
 	void Destroy();
 
-	void Render(const FBO& fbo);
+	void Render(const FBO& fbo, PostProcessType type);
 
 	bool HasHDR = true;
 	float Exposure = 1.0;
 
 private:
-	Shader* ChooseShader( /* PostProcessingType */   );
+	Shader* ChooseShader(PostProcessType type);
 
-	const FBO& RenderPostProcess(Shader* PostProcessShader, const FBO& inputFBO);
+	void RenderPostProcess(Shader* PostProcessShader, const FBO& inputFBO);
 
 
 	// cross hair and gamma correction and tone mapping
@@ -37,6 +38,8 @@ private:
 
 
 	FBO PostProcessFBO;
+
+	
 
 
 };

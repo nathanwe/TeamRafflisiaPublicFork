@@ -1029,12 +1029,10 @@ int lua_SetSunAngle(lua_State* L)
 
 int lua_SetPostProcess(lua_State* L)
 {
-    //enum foo
 
-    // foo = lua.get values (L)
+    PostProcessType type = static_cast<PostProcessType>(lua_tointeger(L, 1));
 
-    
-    //engine.GraphcsSys.SetPostProcess(foo);
+    engine.GraphicsSys.SetPostProcessType(type);
     return 0;
 }
 

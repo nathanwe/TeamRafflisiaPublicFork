@@ -28,42 +28,41 @@ void PostProcess::Destroy()
 
 
 
-void PostProcess::Render(const FBO& fbo)
+void PostProcess::Render(const FBO& fbo, PostProcessType type)
 {
+	if (type == PostProcessType::STANDARD)
+	{
+		StandardPostProcessing(fbo);
+		return;
+	}
+
 	// find correct shader base on post processing type
-	Shader* postProcessShader = ChooseShader();
+	Shader* postProcessShader = ChooseShader(type);
 
 	// render post processing base on input image
-	const FBO& postProcessFBO =  RenderPostProcess(postProcessShader, fbo);
+	RenderPostProcess(postProcessShader, fbo);
 
 	// add cross hair
 	// gamma correction
 	// tone mapping
-	StandardPostProcessing(postProcessFBO);
+	StandardPostProcessing(PostProcessFBO);
 }
 
 
 
-const FBO& PostProcess::RenderPostProcess(Shader* PostProcessShader, const FBO& inputFBO)
+void PostProcess::RenderPostProcess(Shader* PostProcessShader, const FBO& inputFBO)
 {
-	// TODO:
-	// check if current Rendering type is standard
-	// if yes, return inputFBO
-	return inputFBO;		
-
 	// bind post process frame buffer, clean buffer
 	glBindFramebuffer(GL_FRAMEBUFFER, PostProcessFBO.GetFBO());
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	// bind input texture
-	Neon->setTexture("Scene", inputFBO.GetColorAttachment());
+	PostProcessShader->setTexture("Scene", inputFBO.GetColorAttachment());
 
-	Quad().Draw(*Neon);
+	Quad().Draw(*PostProcessShader);
 
 	// no need to unbind fbo
 	// StandardPostProcessing() will bind to default FBO at the very beginning
-
-	return PostProcessFBO;
 }
 
 
@@ -90,7 +89,10 @@ void PostProcess::StandardPostProcessing(const FBO& fbo)
 
 
 // TODO:
-Shader* PostProcess::ChooseShader( /* PostProcessingType */)
+Shader* PostProcess::ChooseShader(PostProcessType type)
 {
-	return Neon;
+	if (type == PostProcessType::NEON) return Neon;
+	
+	// this should never be returned
+	return Standard;
 }
