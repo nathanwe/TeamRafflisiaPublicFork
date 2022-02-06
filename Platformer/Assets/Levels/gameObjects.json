@@ -74,6 +74,54 @@
       "category": "DownArrow"
     }
   },
+  "FaithPlate": {
+    "MODEL": {
+      "path": "../GTXDankEngine/Assets/Models/button.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 24.920000076293945,
+        "y": 18.1200008392334,
+        "z": 32.810001373291016
+      },
+      "scale": {
+        "x": 7.0,
+        "y": 3.0199999809265137,
+        "z": 7.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.13052619993686676,
+        "w": 0.9914448857307434
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Trampoline Base Color.png",
+      "MetallicPath": "../GTXDankEngine/Assets/Textures/Button Specular.png",
+      "Alpha": 1.0
+    },
+    "COLLIDER": {
+      "Shape": 1,
+      "Normal": {
+        "x": -0.2588190734386444,
+        "y": 0.9659258127212524,
+        "z": 0.0
+      },
+      "Magnitude": 5.274928092956543
+    },
+    "STILL_BODY": {
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "GAME_LOGIC": [
+      "GOAL_ZONE"
+    ],
+    "TAG": {
+      "uniqueName": "FaithPlate",
+      "category": "FaithPlate"
+    }
+  },
   "Goal": {
     "MODEL": {
       "path": "../Platformer/Assets/models/Cube.obj"
@@ -131,27 +179,25 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": -27.823833465576172,
-        "y": 8.598209381103516,
-        "z": 0.0
+        "x": -35.421382904052734,
+        "y": 9.133200645446777,
+        "z": 1.0
       },
       "scale": {
-        "x": 0.029999999329447746,
-        "y": 0.029999999329447746,
-        "z": 0.029999999329447746
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
       },
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.0,
-        "w": 1.0
+        "z": -0.13230329751968384,
+        "w": 0.9912092685699463
       }
     },
     "MATERIAL": {
       "AlbedoPath": "../GTXDankEngine/Assets/Textures/Hero Base Color.png",
       "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
-      "NormalPath": "../Platformer/Assets/models/PokemonBall/normal.jpg",
-      "RoughnessPath": "../Platformer/Assets/models/PokemonBall/roughness.jpg",
       "Alpha": 1.0
     },
     "COLLIDER": {
@@ -164,8 +210,8 @@
       "Gravity": true,
       "Mass": 5.0,
       "Velocity": {
-        "x": -2.6670351028442383,
-        "y": 0.2373213768005371,
+        "x": 0.00019812583923339844,
+        "y": -0.5740728378295898,
         "z": 0.0
       },
       "Accelereation": {
