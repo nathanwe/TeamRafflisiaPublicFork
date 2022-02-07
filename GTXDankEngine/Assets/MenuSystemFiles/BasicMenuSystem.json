@@ -1,4 +1,28 @@
 {
+    "Main": {
+        "First": {
+            "x": "center",
+            "y": 500
+        },
+        "Size": {
+            "x": 200,
+            "y": 80
+        },
+
+        "Background": "Assets/Textures/Continue_test.png",
+
+        "Start": {
+            "Texture": "Assets/Textures/Continue_test.png",
+            "Command": "Start"
+        },
+        "Exit": {
+            "Texture": "Assets/Textures/Exit_test.png",
+            "Command": "Exit"
+        }
+    },
+
+
+
     "Pause": {
         "First": {
             "x": 100,

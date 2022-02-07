@@ -8,9 +8,6 @@
 #include "MenuButton.h"
 
 
-#define TEST_PURPOSE 0
-
-
 extern Engine engine;
 
 MenuSystem::MenuSystem()
@@ -26,116 +23,16 @@ MenuSystem::~MenuSystem()
 void MenuSystem::Init()
 {
     menuShader = new Shader("Source/Shaders/MenuRenderer/UIMenuShader.shader");
-#if TEST_PURPOSE
-    /// Add pause menu
-    auto pMenu = this->AddMenu("PauseMenu");
-    
-    pMenu->AddButton("Continue",
-        glm::vec2(0.1, 0.05), std::make_pair(true, true),
-        glm::vec2(0.1, 0.04), std::make_pair(true, true),
-        glm::vec4(173.0f, 216.0f, 230.0f, 1.0f)
-    )
-    ->SetActionToExecute([&](){
-            display = !display;
-		    engine.setPauseMenuMode(display);
-            --prevMenu;
-            glfwSetCursorPos(engine.window, (WIDTH / 2), (HEIGHT / 2));
-    })
-    ->SetTexture("Assets/Textures/Continue_test.png");
-    
-    pMenu->AddButton("Test1",
-        glm::vec2(0.1, 0.11), std::make_pair(true, true),
-        glm::vec2(0.1, 0.04), std::make_pair(true, true),
-        glm::vec4(255.0f, 0.0f, 0.0f, 1.0f)
-    )
-    ->SetActionToExecute([&](){
-        this->SetCurrentMenu("OptionsMenu1");
-    })
-    ->SetTexture("Assets/Textures/Options_test.png");
-    
-    pMenu->AddButton("Test2",
-        glm::vec2(0.1, 0.17), std::make_pair(true, true),
-        glm::vec2(0.1, 0.04), std::make_pair(true, true),
-        glm::vec4(0.0f, 255.0f, 0.0f, 1.0f)
-    )
-    ->SetActionToExecute([&](){
-        this->SetCurrentMenu("OptionsMenu2");
-    });
-    
-    pMenu->AddButton("Exit",
-        glm::vec2(0.1, 0.23), std::make_pair(true, true),
-        glm::vec2(0.1, 0.04), std::make_pair(true, true),
-        glm::vec4(0.0f, 0.0f, 255.0f, 1.0f)
-    )
-    ->SetActionToExecute([&](){
-        glfwSetWindowShouldClose(engine.window, true);
-    })
-    ->SetTexture("Assets/Textures/Exit_test.png");
-    
-    pMenu->Setup();
-
-
-    auto backCommand = [&]()
-    {
-        this->GoToPreviousMenu();
-    };
-
-    /// Something is wrong with Options Menus!!!
-    /// Add Options Menu 1
-    auto oMenu1 = this->AddMenu("OptionsMenu1");
-    oMenu1->AddButton("Back",
-        glm::vec2(0.1, 0.05), std::make_pair(true, true),
-        glm::vec2(0.1, 0.04), std::make_pair(true, true),
-        glm::vec4(173.0f, 216.0f, 230.0f, 1.0f)
-    )
-    ->SetActionToExecute(backCommand)
-    ->SetTexture("Assets/Textures/Exit_test.png");
-    oMenu1->Setup();
-
-    /// Add Options Menu 2
-    auto oMenu2 = this->AddMenu("OptionsMenu2");
-    oMenu2->AddButton("DeeperMenu",
-        glm::vec2(0.1, 0.05), std::make_pair(true, true),
-        glm::vec2(0.1, 0.04), std::make_pair(true, true),
-        glm::vec4(173.0f, 216.0f, 230.0f, 1.0f)
-    )
-    ->SetActionToExecute([&](){
-        this->SetCurrentMenu("OptionsMenu2Menu");
-    })
-    ->SetTexture("Assets/Textures/Options_test.png");
-
-    oMenu2->AddButton("Back",
-        glm::vec2(0.1, 0.11), std::make_pair(true, true),
-        glm::vec2(0.1, 0.04), std::make_pair(true, true),
-        glm::vec4(255.0f, 0.0f, 0.0f, 1.0f)
-    )
-    ->SetActionToExecute(backCommand)
-    ->SetTexture("Assets/Textures/Exit_test.png");
-    oMenu2->Setup();
-
-    /// Add Options Menu 2 Menu
-    auto oMenu2Menu = this->AddMenu("OptionsMenu2Menu");
-    oMenu2Menu->AddButton("Back",
-        glm::vec2(0.1, 0.05), std::make_pair(true, true),
-        glm::vec2(0.1, 0.04), std::make_pair(true, true),
-        glm::vec4(255.0f, 0.0f, 0.0f, 1.0f)
-    )
-    ->SetActionToExecute(backCommand)
-    ->SetTexture("Assets/Textures/Exit_test.png");
-    oMenu2Menu->Setup();
-#else
     auto* handle = SerializationResourceManager.GetResourceHandleNoThread(std::string("Assets/MenuSystemFiles/BasicMenuSystem.json"));
     ordered_json archetypeJson = handle->GetPointer()->data;
     from_json(archetypeJson, *this);
     for (auto& [_,menu] : menus)
         menu->Setup();
-#endif
 
     engine.CommandSys.GetCommand("Pause").SetActionToExecute(
         [&]()
         {
-            display = !display;
-		    engine.setPauseMenuMode(display);
+            ToggleDisplay();
             if (display)
                 this->SetCurrentMenu("Pause");
             else
@@ -198,7 +95,7 @@ void MenuSystem::GoToPreviousMenu()
 
 void MenuSystem::Draw()
 {
-    if (display && !currentMenu.empty() && menus.find(currentMenu) != menus.end())
+    if (!currentMenu.empty() && menus.find(currentMenu) != menus.end() && display)
     {
         bool isom1 = currentMenu.compare("OptionsMenu1") == 0;
         menus[currentMenu]->Draw(*menuShader);
@@ -212,6 +109,13 @@ void MenuSystem::ResetMenus()
     prevMenu = -1;
 	engine.setPauseMenuMode(display);
     glfwSetCursorPos(engine.window, (WIDTH / 2), (HEIGHT / 2));
+}
+
+
+void MenuSystem::ToggleDisplay()
+{
+    display = !display;
+    engine.setPauseMenuMode(display);
 }
 
 
