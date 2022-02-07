@@ -3424,66 +3424,8 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": 26.299999237060547,
-          "y": 10.119000434875488,
-          "z": 36.130001068115234
-        },
-        "scale": {
-          "x": 3.0199999809265137,
-          "y": 3.0199999809265137,
-          "z": 3.0859999656677246
-        },
-        "rotation": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
-        }
-      },
-      "MATERIAL": {
-        "AlbedoPath": "../Platformer/Assets/Textures/rock/albedo.png",
-        "MetallicPath": "../Platformer/Assets/Textures/rock/metallic.png",
-        "Alpha": 1.0
-      },
-      "COLLIDER": {
-        "Shape": 2,
-        "MinPoint": {
-          "x": -3.0,
-          "y": -3.0,
-          "z": -3.0
-        },
-        "MaxPoint": {
-          "x": 3.0,
-          "y": 3.0,
-          "z": 3.0
-        }
-      },
-      "STILL_BODY": {
-        "Shape": 2,
-        "MinPoint": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0
-        },
-        "MaxPoint": {
-          "x": 1.0,
-          "y": 1.0,
-          "z": 1.0
-        }
-      },
-      "TAG": {
-        "uniqueName": "Cube",
-        "category": "Cube"
-      }
-    },
-    {
-      "MODEL": {
-        "path": "../Platformer/Assets/models/Cube.obj"
-      },
-      "TRANSFORM": {
-        "position": {
-          "x": 2.1459999084472656,
-          "y": 56.52899932861328,
+          "x": -12.694000244140625,
+          "y": 54.61899948120117,
           "z": 42.0
         },
         "scale": {
@@ -3752,7 +3694,7 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": -37.156394958496094,
+          "x": -28.948848724365234,
           "y": 9.133200645446777,
           "z": 1.0
         },
@@ -3764,8 +3706,8 @@
         "rotation": {
           "x": 0.0,
           "y": 0.0,
-          "z": 0.25433871150016785,
-          "w": 0.9671152234077454
+          "z": -0.25667548179626465,
+          "w": 0.9664976596832275
         }
       },
       "MATERIAL": {
@@ -3783,9 +3725,9 @@
         "Gravity": true,
         "Mass": 5.0,
         "Velocity": {
-          "x": 0.0,
-          "y": 0.0,
-          "z": 0.0
+          "x": -0.00029158592224121094,
+          "y": -0.5740733742713928,
+          "z": 3.580980489914509e-08
         },
         "Accelereation": {
           "x": 0.0,
@@ -4035,14 +3977,107 @@
         "category": "FaithPlate"
       }
     },
+    null,
+    {
+      "MODEL": {
+        "path": "../Platformer/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": 14.890000343322754,
+          "y": 6.619999885559082,
+          "z": 32.5
+        },
+        "scale": {
+          "x": 7.0,
+          "y": 3.0199999809265137,
+          "z": 7.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.2503800094127655,
+          "w": 0.9681476354598999
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Honey Base Color.png",
+        "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": -0.48480963706970215,
+          "y": 0.874619722366333,
+          "z": 0.0
+        },
+        "Magnitude": -1.4288334846496582
+      },
+      "STILL_BODY": {
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "GAME_LOGIC": [],
+      "TAG": {
+        "uniqueName": "Slope1",
+        "category": "Slope"
+      }
+    },
+    {
+      "MODEL": {
+        "path": "../Platformer/Assets/models/plane.obj"
+      },
+      "TRANSFORM": {
+        "position": {
+          "x": -11.470000267028809,
+          "y": 6.619999885559082,
+          "z": 32.5
+        },
+        "scale": {
+          "x": 7.0,
+          "y": 3.0199999809265137,
+          "z": 7.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": -0.0,
+          "z": -0.258819043636322,
+          "w": 0.9659258127212524
+        }
+      },
+      "MATERIAL": {
+        "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Honey Base Color.png",
+        "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
+        "Alpha": 1.0
+      },
+      "COLLIDER": {
+        "Shape": 1,
+        "Normal": {
+          "x": 0.5,
+          "y": 0.8660253882408142,
+          "z": 0.0
+        },
+        "Magnitude": -0.0019121170043945313
+      },
+      "STILL_BODY": {
+        "Shape": 0,
+        "Radius": 1.0
+      },
+      "GAME_LOGIC": [],
+      "TAG": {
+        "uniqueName": "Slope1",
+        "category": "Slope"
+      }
+    },
     {
       "MODEL": {
         "path": "../GTXDankEngine/Assets/Models/Ball.obj"
       },
       "TRANSFORM": {
         "position": {
-          "x": 24.215999603271484,
-          "y": 29.886720657348633,
+          "x": 4.508478164672852,
+          "y": 57.25080871582031,
           "z": 35.0
         },
         "scale": {
@@ -4053,8 +4088,8 @@
         "rotation": {
           "x": 0.0,
           "y": 0.0,
-          "z": 0.0,
-          "w": 1.0
+          "z": 0.3145434558391571,
+          "w": 0.9492430686950684
         }
       },
       "MATERIAL": {
@@ -4072,8 +4107,8 @@
         "Gravity": true,
         "Mass": 5.0,
         "Velocity": {
-          "x": 0.0,
-          "y": -19.57013702392578,
+          "x": -10.0,
+          "y": 5.599635601043701,
           "z": 0.0
         },
         "Accelereation": {

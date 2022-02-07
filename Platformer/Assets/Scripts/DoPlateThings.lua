@@ -3,8 +3,9 @@ local imguiControledEntity = -1
 local blockStatus = {} -- not the blockStatus from doblockthings, that does nothing now
 local lv0Pairs = {[11] = 4}
 local lv1Pairs = {[18] = 7}
-local pairs = {[0] = lv0Pairs, [1] = lv1Pairs}
-local lvPairs = {}
+local lv5Pairs = {[10] = 3}
+local pairs = {[0] = lv0Pairs, [1] = lv1Pairs, [5] = lv5Pairs}
+
 function SavePlates( levelnum )
 	levelstr = string.format("%i", levelnum)
 	--SaveIntFloatTableAsJson(timers, "/Assets/Levels/Level" .. levelstr .."PlateTimerSave.json")
