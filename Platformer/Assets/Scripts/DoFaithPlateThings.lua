@@ -68,6 +68,7 @@ function HandleEventFaithPlate(eventData)
 			LOG_INFO("z was nil")
 		end
 		SetPhysicsVelocity(eventData.e2, velX[eventData.e1], velY[eventData.e1], velZ[eventData.e1])
+		PlayAudioEvent("BallJump")
 	end
 end
 

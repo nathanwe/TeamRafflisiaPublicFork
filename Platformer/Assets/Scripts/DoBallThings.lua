@@ -29,11 +29,11 @@ function UpdateBall(dt, e)
 
 	x,y,z = GetPosition(e)
 	--print("UpdateBall", e, y)
-	if y < 0 then
-		ent = CreateEntity("ball")
-		LOG_INFO("created", ent)
-		DeleteEntity(e)
-	end
+	--if y < 0 then
+	--	ent = CreateEntity("ball")
+	--	LOG_INFO("created", ent)
+	--	DeleteEntity(e)
+	--end
 	data = {}
 	data = GetRigidData(e)
 	AddRotation(e, 0,0,-data.velocity.x*dt*20)

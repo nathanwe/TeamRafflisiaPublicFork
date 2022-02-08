@@ -85,8 +85,8 @@ enum class EventType
 {
 	DEFAULT_EVENT = 0,
 	TOGGLE_MENU = 1,
-	MUTE_BGM = 2,
-	UNMUTE_BGM = 3,
+	//MUTE_BGM = 2,
+	//UNMUTE_BGM = 3,
 	EMIT_LION = 4,
 	DESTROY_ENTITY = 5,
 	DESTROY_ALL_ENTITIYS = 6,

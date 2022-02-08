@@ -6,6 +6,8 @@ local jumpspeed = 25
 local decay = 200
 local maxspeed = 35
 local hardcap = 40
+local ent
+local spawn = false
 
 function SavePlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
@@ -17,6 +19,8 @@ function LoadPlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
 	airTime = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."PlayerAirTimeSave.json")
 	--directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."PlayerDirectionSave.json")
+	ent = CreateEntity("ball")
+	LOG_INFO("PlayercontrolledBall")
 end
 
 function ClearPlayers()
@@ -65,7 +69,8 @@ function UpdatePlayer(dt, e)
 	--AddPhysicsVelocity(e, -data.velocity.x*(1-decay), 0, 0)
 
 	AddRotation(e, 0,0,-data.velocity.x*dt*20)
-
+	
+	SpawnBall()
 
 end
 
@@ -76,6 +81,11 @@ function HandleEventPlayer(eventData)
 	end
 	if eventData.type == 12 then
 		airTime[eventData.e1] = 0
+	end
+	if eventData.type == 19 then
+		if eventData.stringData1 == "Ctrl" then
+		spawn = true
+		end
 	end
 end
 
@@ -107,6 +117,7 @@ function HandleEventPerEntityPlayer(e, eventData)
 			if airTime[e] < .02 then
 				if data.velocity.y < jumpspeed then
 					AddPhysicsVelocity(e, 0, jumpspeed-data.velocity.y, 0)
+					PlayAudioEvent("BallJump")
 				end
 			end
 		end
@@ -120,5 +131,13 @@ function HandleEventPerEntityPlayer(e, eventData)
 			AddPhysicsVelocity(e, -accel * eventData.floatData1, 0, 0)
 		end
 	end
-	
+end
+
+function SpawnBall()
+	if spawn then
+	DeleteEntity(ent)
+	ent = CreateEntity("ball")
+	LOG_INFO("Created new ball", ent)
+	spawn = false
+	end
 end

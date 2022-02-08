@@ -1,6 +1,7 @@
 --HoneySlimethings
 local imguiControledEntity = -1
 local bouncyness = {}
+local pitch=1.0
 function SaveHoneySlimes( levelnum )
 	levelstr = string.format("%i", levelnum)
 	SaveIntFloatTableAsJson(bouncyness, "/Assets/Levels/Level" .. levelstr .."HoneySlimeBouncynessSave.json")
@@ -22,7 +23,11 @@ function DestroyHoneySlime(e)
 end
 
 function UpdateHoneySlime(dt, e)
-	
+	pitch = pitch + 0.01 * dt * 60
+	if pitch > 1.0 then 
+		pitch = 1.0
+	end
+	SetBGMPitch(pitch)
 end
 
 function HandleEventHoneySlime(eventData)
@@ -46,6 +51,11 @@ function HandleEventHoneySlime(eventData)
 		end
 		x,y,z = GetPhysicsVelocity(eventData.e2)
 		SetPhysicsVelocity(eventData.e2, x*bouncyness[eventData.e1], y*bouncyness[eventData.e1], z*bouncyness[eventData.e1])
+		pitch = pitch - 0.02 * eventData.floatData1 * 60
+		if pitch < 0.8 then 
+			pitch = 0.8
+		end
+		SetBGMPitch(pitch)
 	end
 end
 

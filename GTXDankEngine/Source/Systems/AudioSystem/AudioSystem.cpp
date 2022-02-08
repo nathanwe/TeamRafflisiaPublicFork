@@ -495,14 +495,14 @@ const char* AudioSystem::FindWord(const char* word)
 
 void AudioSystem::HandleEvent(Event event)
 {
-    if (event.type == EventType::MUTE_BGM)
-    {
-        SetBusMuted(BGMbus);
-    }
-    if (event.type == EventType::UNMUTE_BGM)
-    {
-        SetBusMuted(BGMbus, false);
-    }
+    //if (event.type == EventType::MUTE_BGM)
+    //{
+    //    SetBusMuted(BGMbus);
+    //}
+    //if (event.type == EventType::UNMUTE_BGM)
+    //{
+    //    SetBusMuted(BGMbus, false);
+    //}
     if (event.type == EventType::MUTE_SFX)
     {
         SetBusMuted(SFXbus);
