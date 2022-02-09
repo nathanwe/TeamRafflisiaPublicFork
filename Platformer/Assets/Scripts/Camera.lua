@@ -5,7 +5,7 @@ function Init()
 	Set3rdPerson(false)
 	--SetCameraPitchYaw(0, 3.14)
 	--SetCameraOffest(true, 2,2,2)
-	SetCameraStaticScene( 30,40,-80 , 0.2, 3.5);
+	SetCameraStaticScene( 0,30,-80 , 0.0, 3.14);
 	SetSunAngle(-28)
 	SetPostProcess(2)
 end

@@ -4,7 +4,8 @@ local blockStatus = {} -- not the blockStatus from doblockthings, that does noth
 local lv0Pairs = {[11] = 4}
 local lv1Pairs = {[18] = 7}
 local lv5Pairs = {[10] = 3}
-local pairs = {[0] = lv0Pairs, [1] = lv1Pairs, [5] = lv5Pairs}
+local lv7Pairs = {[10] = 3}
+local pairs = {[0] = lv0Pairs, [1] = lv1Pairs, [5] = lv5Pairs, [7] = lv7Pairs}
 
 function SavePlates( levelnum )
 	levelstr = string.format("%i", levelnum)
