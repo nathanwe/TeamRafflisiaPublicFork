@@ -1,26 +1,25 @@
 --Playerthings
 local imguiControledEntity = -1
 local airTime = {}
+local decaying = {}
 local accel = 100
 local jumpspeed = 25
 local decay = 200
 local maxspeed = 35
 local hardcap = 40
-local ent
-local spawn = false
+
 
 function SavePlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
 	SaveIntFloatTableAsJson(airTime, "/Assets/Levels/Level" .. levelstr .."PlayerAirTimeSave.json")
-	--SaveIntFloatTableAsJson(directions, "/Assets/Levels/Level" .. levelstr .."PlayerDirectionSave.json")
+	SaveIntFloatTableAsJson(decaying, "/Assets/Levels/Level" .. levelstr .."PlayerDecayingSave.json")
 end
 
 function LoadPlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
 	airTime = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."PlayerAirTimeSave.json")
-	--directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."PlayerDirectionSave.json")
-	ent = CreateEntity("ball")
-	LOG_INFO("PlayercontrolledBall")
+	decaying = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."PlayerDecayingSave.json")
+
 end
 
 function ClearPlayers()
@@ -40,37 +39,39 @@ function UpdatePlayer(dt, e)
 	--roll
 	data = {}
 	data = GetRigidData(e)
-	
-	-- left speed cap
-	if data.velocity.x > maxspeed then
-		if data.velocity.x > hardcap then AddPhysicsVelocity(e, hardcap-data.velocity.x, 0, 0) end
+	AddRotation(e, 0,0,-data.velocity.x*dt*20)
 
-		if data.velocity.x - decay*dt < maxspeed then
-			AddPhysicsVelocity(e, maxspeed-data.velocity.x, 0, 0)
-		else
-			AddPhysicsVelocity(e, decay*dt, 0, 0)
+	if (decaying[e] == 1.0) then
+		-- left speed cap
+		if data.velocity.x > maxspeed then
+			if data.velocity.x > hardcap then AddPhysicsVelocity(e, hardcap-data.velocity.x, 0, 0) end
+
+			if data.velocity.x - decay*dt < maxspeed then
+				AddPhysicsVelocity(e, maxspeed-data.velocity.x, 0, 0)
+			else
+				AddPhysicsVelocity(e, decay*dt, 0, 0)
+			end
+		end
+
+		--right speed cap
+		if data.velocity.x < -maxspeed then
+			if data.velocity.x < -hardcap then AddPhysicsVelocity(e, -hardcap-data.velocity.x, 0, 0) end
+
+			if data.velocity.x + decay*dt > -maxspeed then
+				AddPhysicsVelocity(e, -maxspeed-data.velocity.x, 0, 0)
+			else
+				AddPhysicsVelocity(e, -decay*dt, 0, 0)
+			end
 		end
 	end
-
-	--right speed cap
-	if data.velocity.x < -maxspeed then
-		if data.velocity.x < -hardcap then AddPhysicsVelocity(e, -hardcap-data.velocity.x, 0, 0) end
-
-		if data.velocity.x + decay*dt > -maxspeed then
-			AddPhysicsVelocity(e, -maxspeed-data.velocity.x, 0, 0)
-		else
-			AddPhysicsVelocity(e, -decay*dt, 0, 0)
-		end
-	end
-
 	--gravity increase, for more responsive movement
 	AddPhysicsVelocity(e, 0, dt * -50, 0)
 	
 	--AddPhysicsVelocity(e, -data.velocity.x*(1-decay), 0, 0)
 
-	AddRotation(e, 0,0,-data.velocity.x*dt*20)
 	
-	SpawnBall()
+	
+
 
 end
 
@@ -81,10 +82,16 @@ function HandleEventPlayer(eventData)
 	end
 	if eventData.type == 12 then
 		airTime[eventData.e1] = 0
-	end
-	if eventData.type == 19 then
-		if eventData.stringData1 == "Ctrl" then
-		spawn = true
+		types = {}
+		--print("types of other object")
+		--print(types[4])
+		types = GetCategorysOfEntity(eventData.e2)
+		if types[4] == nil then --its not a faith plate
+			decaying[eventData.e1] = 1.0
+			--LOG_INFO("decaying")
+		else 
+			decaying[eventData.e1] = 0.0
+			--LOG_INFO("not decaying")
 		end
 	end
 end
@@ -133,11 +140,3 @@ function HandleEventPerEntityPlayer(e, eventData)
 	end
 end
 
-function SpawnBall()
-	if spawn then
-	DeleteEntity(ent)
-	ent = CreateEntity("ball")
-	LOG_INFO("Created new ball", ent)
-	spawn = false
-	end
-end

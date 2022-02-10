@@ -102,8 +102,7 @@ enum class EventType
 	SEND_DATA_TO_IMGUI = 16,
 	LOAD_DATA_FROM_IMGUI = 17,
 	SHOT = 18,
-	COMMAND = 19,
-
+	COMMAND = 19
 
 };
 

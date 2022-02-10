@@ -67,8 +67,13 @@ function HandleEventFaithPlate(eventData)
 			velZ[eventData.e1] = 0.0
 			LOG_INFO("z was nil")
 		end
-		SetPhysicsVelocity(eventData.e2, velX[eventData.e1], velY[eventData.e1], velZ[eventData.e1])
-		PlayAudioEvent("BallJump")
+		playerData = {}
+		playerData = GetRigidData(eventData.e2)
+		dotProduct = velX[eventData.e1]*playerData.velocity.x + velY[eventData.e1]*playerData.velocity.y + velZ[eventData.e1]*playerData.velocity.z
+		if dotProduct > 0 then --  if you are moving tward the plate
+			SetPhysicsVelocity(eventData.e2, velX[eventData.e1], velY[eventData.e1], velZ[eventData.e1])
+			PlayAudioEvent("BallJump")
+		end
 	end
 end
 

@@ -1,6 +1,7 @@
 --Ballthings
 local imguiControledEntity = -1
---local onlymake1 = true
+local ent
+local spawn = false
 
 function SaveBalls( levelnum )
 	levelstr = string.format("%i", levelnum)
@@ -12,6 +13,8 @@ function LoadBalls( levelnum )
 	levelstr = string.format("%i", levelnum)
 	--timers = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."BallTimerSave.json")
 	--directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."BallDirectionSave.json")
+	ent = CreateEntity("ball")
+	LOG_INFO("PlayercontrolledBall")
 end
 
 function ClearBalls()
@@ -37,7 +40,7 @@ function UpdateBall(dt, e)
 	data = {}
 	data = GetRigidData(e)
 	AddRotation(e, 0,0,-data.velocity.x*dt*20)
-
+	SpawnBall()
 end
 
 function HandleEventBall(eventData)
@@ -57,6 +60,11 @@ function HandleEventBall(eventData)
 		imguiControledEntity = -1
 		end
 	end
+		if eventData.type == 19 then
+		if eventData.stringData1 == "Ctrl" then
+		spawn = true
+		end
+	end
 end
 
 function HandleEventPerEntityBall(e, eventData)
@@ -66,3 +74,12 @@ function HandleEventPerEntityBall(e, eventData)
 end
 
 --custom functions
+
+function SpawnBall()
+	if spawn then
+	DeleteEntity(ent)
+	ent = CreateEntity("ball")
+	LOG_INFO("Created new ball", ent)
+	spawn = false
+	end
+end
