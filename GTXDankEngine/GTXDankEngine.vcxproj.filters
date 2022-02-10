@@ -480,6 +480,9 @@
     <None Include="Source\Shaders\PostProcess\Neon.shader">
       <Filter>Resource Files\Shaders\PostProcess</Filter>
     </None>
+    <None Include="..\Platformer\Assets\Scripts\DoGoalThings.lua">
+      <Filter>Platformer\Scripts</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">
