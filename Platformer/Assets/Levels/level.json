@@ -3364,9 +3364,7 @@
       }
     }
   ],
-  "-1": null,
-  "5": null,
-  "7": [
+  "4": [
     {
       "TRANSFORM": {
         "position": {
@@ -3457,6 +3455,5 @@
         "category": "Slope"
       }
     }
-  ],
-  "8": null
+  ]
 }
