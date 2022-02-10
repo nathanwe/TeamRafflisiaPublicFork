@@ -93,7 +93,7 @@ void PhysicsSystem::DetectCollision(float dt)
 			{
 				if (ReflectMovingSphereMovingSphere(itr1->second, c1, itr2->second, c2, dt))
 				{
-					SendEvent(itr1->first, itr2->first);
+					SendEvent(itr1->first, itr2->first, dt);
 				}
 			}
 			// AABB - AABB
@@ -101,7 +101,7 @@ void PhysicsSystem::DetectCollision(float dt)
 			{
 				if (ReflectMovingAABBMovingAABB(itr1->second, c1, itr2->second, c2))
 				{
-					SendEvent(itr1->first, itr2->first);
+					SendEvent(itr1->first, itr2->first, dt);
 				}
 			}
 		}
@@ -120,7 +120,7 @@ void PhysicsSystem::DetectCollision(float dt)
 			{
 				if (ReflectMovingSphereStaticSphere(itr1->second,c1, itr2->second, c2, dt))
 				{
-					SendEvent(itr1->first, itr2->first);
+					SendEvent(itr1->first, itr2->first, dt);
 				}
 			}
 			// Sphere - Plane
@@ -129,7 +129,7 @@ void PhysicsSystem::DetectCollision(float dt)
 
 				if (ReflectMovingSphereStaticPlane(itr1->second, c1, itr2->second, c2, dt))
 				{
-					SendEvent(itr1->first, itr2->first);
+					SendEvent(itr1->first, itr2->first, dt);
 					
 				}
 			}
@@ -138,7 +138,7 @@ void PhysicsSystem::DetectCollision(float dt)
 			{
 				if (ReflectMovingAABBStaticAABB(itr1->second, c1, itr2->second, c2))
 				{
-					SendEvent(itr1->first, itr2->first);
+					SendEvent(itr1->first, itr2->first, dt);
 				}
 			}
 			// AABB - Plane
@@ -158,7 +158,7 @@ void PhysicsSystem::DetectCollision(float dt)
 			{
 				if (ReflectMovingSphereStaticAABB(itr1->second, c1, itr2->second, c2, dt))
 				{
-					SendEvent(itr1->first, itr2->first);
+					SendEvent(itr1->first, itr2->first, dt);
 				}
 			}
 			// AABB - AABB
@@ -166,7 +166,7 @@ void PhysicsSystem::DetectCollision(float dt)
 			{
 				if (ReflectMovingAABBStaticAABB(itr1->second, c1, itr2->second, c2))
 				{
-					SendEvent(itr1->first, itr2->first);
+					SendEvent(itr1->first, itr2->first, dt);
 				}
 			}
 			// AABB - Plane
@@ -186,7 +186,7 @@ void PhysicsSystem::DetectCollision(float dt)
 			{
 				if (ReflectMovingSphereStaticAABB(itr1->second, c1, itr2->second, c2, dt))
 				{
-					SendEvent(itr1->first, itr2->first);
+					SendEvent(itr1->first, itr2->first, dt);
 				}
 			}
 		}
@@ -219,7 +219,7 @@ bool PhysicsSystem::Destroy()
 	return true;
 }
 
-void PhysicsSystem::SendEvent(Entity e1, Entity e2)
+void PhysicsSystem::SendEvent(Entity e1, Entity e2, float dt)
 {
 	auto GL1 = GameLogicCategoryComponentPool.GetComponentByEntity(e1);
 	if (GL1 != nullptr)
@@ -229,6 +229,7 @@ void PhysicsSystem::SendEvent(Entity e1, Entity e2)
 		eva.type = EventType::PHYSICS_COLLISION;
 		eva.e1 = e1;
 		eva.e2 = e2;
+		eva.floatData1 = dt;
 		engine.DoGameLogicScriptSys.HandleEvent(eva);
 	}
 
@@ -240,6 +241,7 @@ void PhysicsSystem::SendEvent(Entity e1, Entity e2)
 		evb.type = EventType::PHYSICS_COLLISION;
 		evb.e1 = e2;
 		evb.e2 = e1;
+		evb.floatData1 = dt;
 		engine.DoGameLogicScriptSys.HandleEvent(evb);
 	}
 }

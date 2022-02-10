@@ -19,7 +19,7 @@ bool SceneSystem::Init()
     auto* handle = SerializationResourceManager.GetResourceHandleNoThread(GAME_PATH + std::string("Assets/Levels/level.json"));
     levels = handle->GetPointer()->data;
 
-    LoadScene(0);
+    LoadScene(-1);
 
     engine.CommandSys.GetCommand("NextLevel").SetActionToExecute([&]()
         {
@@ -115,6 +115,12 @@ void SceneSystem::Update(float dt)
     
     if (shouldLoadLevel)
     {
+        if (levelToLoad == -1)
+        {
+            engine.GraphicsSys.GetMenuSystem().SetCurrentMenu("Main");
+            engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
+        }
+
         currentLevel = levelToLoad;
         ordered_json levelJson = levels[std::to_string(currentLevel)];
 

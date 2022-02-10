@@ -47,7 +47,7 @@
     "Ctrl": {
       "keyboardcode": 341,
       "gamepadCode": 1,
-      "keyPressType": 0,
+      "keyPressType": 1,
       "mouseLeftClick": false,
       "mouseRightClick": false
     },

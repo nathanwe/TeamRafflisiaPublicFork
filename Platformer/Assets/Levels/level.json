@@ -364,6 +364,9 @@
         "Shape": 0,
         "Radius": 1.0
       },
+      "GAME_LOGIC": [
+        "MOVING_PLATFORM"
+      ],
       "TAG": {
         "uniqueName": "Goal",
         "category": "Goal"
@@ -495,8 +498,8 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": -26.774669647216797,
-          "y": 9.133200645446777,
+          "x": 13.696720123291016,
+          "y": 17.933570861816406,
           "z": 1.0
         },
         "scale": {
@@ -507,8 +510,8 @@
         "rotation": {
           "x": 0.0,
           "y": 0.0,
-          "z": -0.02379579469561577,
-          "w": 0.9997168183326721
+          "z": -0.7229208946228027,
+          "w": 0.6909307837486267
         }
       },
       "MATERIAL": {
@@ -526,9 +529,9 @@
         "Gravity": true,
         "Mass": 5.0,
         "Velocity": {
-          "x": 6.937980651855469e-05,
-          "y": -0.5740733742713928,
-          "z": 6.900823912303622e-09
+          "x": 2.078919952852587e-10,
+          "y": -0.6597762703895569,
+          "z": 1.1765520606391574e-31
         },
         "Accelereation": {
           "x": 0.0,
@@ -679,8 +682,8 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": 24.215999603271484,
-          "y": 29.557758331298828,
+          "x": 15.144664764404297,
+          "y": 17.178892135620117,
           "z": 35.0
         },
         "scale": {
@@ -710,8 +713,8 @@
         "Gravity": true,
         "Mass": 5.0,
         "Velocity": {
-          "x": 0.0,
-          "y": -19.736820220947266,
+          "x": -15.065043449401855,
+          "y": -7.737931251525879,
           "z": 0.0
         },
         "Accelereation": {
@@ -947,7 +950,7 @@
         "position": {
           "x": 5.0,
           "y": 17.790000915527344,
-          "z": 41.0
+          "z": 35.0
         },
         "scale": {
           "x": 8.0,
@@ -1093,6 +1096,9 @@
         "Shape": 0,
         "Radius": 1.0
       },
+      "GAME_LOGIC": [
+        "MOVING_PLATFORM"
+      ],
       "TAG": {
         "uniqueName": "",
         "category": ""
@@ -1217,7 +1223,7 @@
           "y": 1.0,
           "z": 0.0
         },
-        "Magnitude": 11.5600004196167
+        "Magnitude": 15.0
       },
       "STILL_BODY": {
         "Shape": 0,
@@ -1235,8 +1241,8 @@
       },
       "TRANSFORM": {
         "position": {
-          "x": -10.737939834594727,
-          "y": 9.069135665893555,
+          "x": -8.245495796203613,
+          "y": 17.933198928833008,
           "z": 0.0
         },
         "scale": {
@@ -1247,8 +1253,8 @@
         "rotation": {
           "x": 0.0,
           "y": 0.0,
-          "z": 0.44083037972450256,
-          "w": 0.8975903987884521
+          "z": -0.5506057143211365,
+          "w": 0.8347654342651367
         }
       },
       "MATERIAL": {
@@ -1266,8 +1272,8 @@
         "Gravity": true,
         "Mass": 5.0,
         "Velocity": {
-          "x": 10.00050163269043,
-          "y": -0.5740715265274048,
+          "x": 6.663849353790283,
+          "y": -0.5740854740142822,
           "z": 0.0
         },
         "Accelereation": {
@@ -1321,7 +1327,7 @@
           "y": 1.0,
           "z": 0.0
         },
-        "Magnitude": 11.5600004196167
+        "Magnitude": 15.0
       },
       "STILL_BODY": {
         "Shape": 0,
@@ -1338,18 +1344,18 @@
     null,
     {
       "MODEL": {
-        "path": "../Platformer/Assets/models/PokemonBall/model.obj"
+        "path": "../GTXDankEngine/Assets/Models/Ball.obj"
       },
       "TRANSFORM": {
         "position": {
-          "x": 24.215999603271484,
-          "y": 33.9102783203125,
+          "x": 15.932648658752441,
+          "y": 29.422101974487305,
           "z": 35.0
         },
         "scale": {
-          "x": 0.029999999329447746,
-          "y": 0.029999999329447746,
-          "z": 0.029999999329447746
+          "x": 3.0,
+          "y": 3.0,
+          "z": 3.0
         },
         "rotation": {
           "x": 0.0,
@@ -1359,8 +1365,8 @@
         }
       },
       "MATERIAL": {
-        "AlbedoPath": "../Platformer/Assets/models/PokemonBall/albedo.jpg",
-        "MetallicPath": "../Platformer/Assets/models/PokemonBall/metallic.jpg",
+        "AlbedoPath": "../GTXDankEngine/Assets/Textures/Friend Base Color.png",
+        "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
         "Alpha": 1.0
       },
       "COLLIDER": {
@@ -1373,8 +1379,8 @@
         "Gravity": true,
         "Mass": 5.0,
         "Velocity": {
-          "x": 0.0,
-          "y": -17.403457641601563,
+          "x": -11.309233665466309,
+          "y": -8.471226692199707,
           "z": 0.0
         },
         "Accelereation": {
@@ -3355,6 +3361,52 @@
       "TAG": {
         "uniqueName": "Slope",
         "category": "Slope"
+      }
+    }
+  ],
+  "-1": null,
+  "5": null,
+  "7": [
+    {
+      "TRANSFORM": {
+        "position": {
+          "x": 0.0,
+          "y": 8.925461769104004,
+          "z": -1.2186932563781738
+        },
+        "scale": {
+          "x": 5.0,
+          "y": 5.0,
+          "z": 5.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        }
+      },
+      "LIGHT": {
+        "Color": {
+          "x": 1.0,
+          "y": 0.6000000238418579,
+          "z": 0.6000000238418579
+        },
+        "Intensity": {
+          "x": 3.0,
+          "y": 3.0,
+          "z": 3.0
+        },
+        "LightType": 0,
+        "Target": {
+          "x": 0.0,
+          "y": -1.0,
+          "z": 0.0
+        }
+      },
+      "TAG": {
+        "uniqueName": "",
+        "category": ""
       }
     },
     {
