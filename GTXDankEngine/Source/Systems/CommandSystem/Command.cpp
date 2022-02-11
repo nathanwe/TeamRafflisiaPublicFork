@@ -49,6 +49,7 @@ void Command::triggerEvent()
 	Event ev = Event();
 	ev.type = EventType::COMMAND;
 	ev.thingsToEffect.insert(GameLogicCategories::PLAYER);
+	ev.thingsToEffect.insert(GameLogicCategories::PLATFORMER_BALL);
 	ev.floatData1 = engine.DeltaTime();
 	ev.stringData1 = commandName;
 	engine.DoGameLogicScriptSys.HandleEvent(ev);
