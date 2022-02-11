@@ -61,7 +61,7 @@ function HandleEventBall(eventData)
 		end
 	end
 		if eventData.type == 19 then
-		if eventData.stringData1 == "Ctrl" then
+		if eventData.stringData1 == "Space" then
 		spawn = true
 		end
 	end
