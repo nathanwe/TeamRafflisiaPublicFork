@@ -77,7 +77,7 @@ private:
 
 	void DebugDraw();
 
-	
+	void RendererFboResize(unsigned int width, unsigned int height);
 
 	void SetSunDir(glm::vec3 dir);
 

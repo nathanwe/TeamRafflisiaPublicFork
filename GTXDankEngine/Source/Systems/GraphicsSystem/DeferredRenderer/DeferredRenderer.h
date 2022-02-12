@@ -39,6 +39,8 @@ public:
 	inline unsigned int GetAlbedoMetallic() { return G_AlbedoMetallic; }
 	inline unsigned int GetDepth() {return RboDepth; }
 
+	void Recreate_G_Buffer(unsigned int gBufferWidth, unsigned int gBufferHeight);
+
 	float CelFraction = 1.0;
 	bool EnablePCF = true;
 	 
@@ -65,8 +67,6 @@ private:
 	void Bind_G_Buffer(Shader* shader);
 
 	void Fill_G_BufferRender(Material* mat, VQS* transform, Model* model);
-
-	void RecreateG_Buffer(unsigned int gBufferWidth, unsigned int gBufferHeight);
 };
 
 

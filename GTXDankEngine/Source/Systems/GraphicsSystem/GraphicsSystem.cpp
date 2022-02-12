@@ -108,6 +108,8 @@ void GraphicsSystem::Update(float timeStamp)
 	{
 		camera.width = nWidth;
 		camera.height = nHeight;
+
+		RendererFboResize(camera.width, camera.height);
 		MenuSystem.AdjustForWindowSize();
 	}
 	
@@ -145,8 +147,6 @@ void GraphicsSystem::Render(float timeStamp)
 	BindLightSource(DeferredRender.GetLightShader());
 
 	// clear hdr FBO
-	// resize HDR size it may resize
-	HdrFBO.Init(camera.width, camera.height);
 	glBindFramebuffer(GL_FRAMEBUFFER, HdrFBO.GetFBO());
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -323,3 +323,12 @@ void GraphicsSystem::RenderUI(void)
 
 
 
+void GraphicsSystem::RendererFboResize(unsigned int width, unsigned int height)
+{
+	DeferredRender.Recreate_G_Buffer(width, height);
+
+	HdrFBO.Init(width, height);
+	// since window may resize
+	// change fbo
+	PostProcesser.Resize(width, height);
+}

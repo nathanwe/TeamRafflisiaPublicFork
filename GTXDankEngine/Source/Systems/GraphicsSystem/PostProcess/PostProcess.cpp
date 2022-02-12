@@ -30,11 +30,6 @@ void PostProcess::Destroy()
 
 void PostProcess::Render(const FBO& fbo, PostProcessType type, unsigned int width, unsigned int height)
 {
-	// since window may resize
-	// change fbo
-	PostProcessFBO.Init(width, height);
-
-
 	if (type == PostProcessType::STANDARD)
 	{
 		StandardPostProcessing(fbo);

@@ -14,6 +14,7 @@ public:
 	PostProcess() = default;
 	bool Init(unsigned int weight, unsigned int height);
 	void Destroy();
+	inline void Resize(unsigned int width, unsigned int height) { PostProcessFBO.Init(width, height); }
 
 	void Render(const FBO& fbo, PostProcessType type, unsigned int width, unsigned int height);
 
