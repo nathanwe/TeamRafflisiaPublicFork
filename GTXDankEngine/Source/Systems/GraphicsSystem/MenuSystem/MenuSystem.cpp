@@ -115,6 +115,7 @@ void MenuSystem::ResetMenus()
 void MenuSystem::ToggleDisplay()
 {
     display = !display;
+    prevMenu = -1;
     engine.setPauseMenuMode(display);
 }
 
