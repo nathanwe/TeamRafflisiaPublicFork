@@ -131,3 +131,12 @@ void Menu::Draw(Shader& shader)
     }
 }
 
+
+void Menu::AdjustForWindowSize()
+{
+    for (auto& [_,mb] : buttons)
+    {
+        mb->AdjustForWindowSize();
+    }
+}
+

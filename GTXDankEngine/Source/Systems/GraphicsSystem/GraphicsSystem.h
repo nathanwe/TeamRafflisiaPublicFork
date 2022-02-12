@@ -54,6 +54,8 @@ public:
 
 	Camera camera{ WIDTH, HEIGHT, glm::vec3(0.0f, 0.0f, 10.0f) };
 
+	unsigned int gsWidth = WIDTH, gsHeight = HEIGHT;
+
 
 
 	// setter and getters
@@ -80,6 +82,9 @@ private:
 	
 
 	void SetSunDir(glm::vec3 dir);
+
+
+	void AdjustForWindowSize();
 
 
 private:

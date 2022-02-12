@@ -46,6 +46,9 @@ public:
     const glm::vec2& GetPosition() const;
     const glm::vec2& GetDimensions() const;
 
+    
+    void AdjustForWindowSize();
+
 /// parameters
 public:
     std::string nMenu;

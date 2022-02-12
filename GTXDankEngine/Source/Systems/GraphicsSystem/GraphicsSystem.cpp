@@ -27,7 +27,7 @@ void GraphicsSystem::InitWindow()
 	// 400 is for the UI
 	// will get removed when we have the UI system
 	//pWindow = glfwCreateWindow(WIDTH + 400, HEIGHT, "GTX Dank AF Engine", NULL, NULL);
-	pWindow = glfwCreateWindow(WIDTH, HEIGHT, "GTX Dank AF Engine", NULL, NULL);
+	pWindow = glfwCreateWindow(gsWidth, gsHeight, "GTX Dank AF Engine", NULL, NULL);
 	engine.window = pWindow;
 	glfwSetInputMode(pWindow, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
@@ -62,11 +62,11 @@ bool GraphicsSystem::Init()
 	// back face culling
 	glEnable(GL_CULL_FACE);
 
-	glViewport(0, 0, WIDTH, HEIGHT);
+	glViewport(0, 0, gsWidth, gsHeight);
 
 	camera.Init();
 
-	Shadow.Init(WIDTH, HEIGHT);
+	Shadow.Init(gsWidth, gsHeight);
 
 	DeferredRender.Init(camera.width, camera.height);
 
@@ -101,6 +101,17 @@ bool GraphicsSystem::Init()
 
 void GraphicsSystem::Update(float timeStamp)
 {
+	/// check if window has been resized
+	int nWidth, nHeight;
+	glfwGetWindowSize(engine.window, &nWidth, &nHeight);
+	if (gsWidth != nWidth || gsHeight != nHeight)
+	{
+		gsWidth = nWidth;
+		gsHeight = nHeight;
+		AdjustForWindowSize();
+	}
+	
+
 	PROFILE_THIS("Graphics Update");
 
 	// clear default framebuffer
@@ -316,6 +327,37 @@ void GraphicsSystem::RenderUI(void)
 		ImGui::Checkbox("Follow Pokeball", &camera.objectTrack);
 	}
 	ImGui::End();
+}
+
+
+void GraphicsSystem::AdjustForWindowSize()
+{
+	camera.width = gsWidth;
+	camera.height = gsHeight;
+//	camera.UpdateMatrix();
+
+
+	glViewport(0, 0, gsWidth, gsHeight);
+
+	camera.Init();
+
+	Shadow.Init(gsWidth, gsHeight);
+
+	DeferredRender.Init(camera.width, camera.height);
+
+	HdrFBO.Init(camera.width, camera.height);
+
+	TransparentRenderer.Init(camera.width, camera.height);
+
+	skybox.Init();
+
+	Sky.initialize();
+	
+	PostProcesser.Init(camera.width, camera.height);
+	
+	DebugRenderer.Init(&camera);
+
+	MenuSystem.AdjustForWindowSize();
 }
 
 
