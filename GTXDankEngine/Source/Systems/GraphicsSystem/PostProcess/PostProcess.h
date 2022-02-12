@@ -15,7 +15,7 @@ public:
 	bool Init(unsigned int weight, unsigned int height);
 	void Destroy();
 
-	void Render(const FBO& fbo, PostProcessType type);
+	void Render(const FBO& fbo, PostProcessType type, unsigned int width, unsigned int height);
 
 	bool HasHDR = true;
 	float Exposure = 1.0;

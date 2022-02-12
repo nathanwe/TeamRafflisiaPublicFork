@@ -99,7 +99,7 @@ private:
 	// post process and forward rendering FBO
 	FBO HdrFBO;
 
-	OIT TransparentRenderer;
+	//OIT TransparentRenderer;
 
 	PostProcess PostProcesser;
 

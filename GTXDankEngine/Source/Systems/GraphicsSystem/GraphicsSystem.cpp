@@ -72,7 +72,7 @@ bool GraphicsSystem::Init()
 
 	HdrFBO.Init(camera.width, camera.height);
 
-	TransparentRenderer.Init(camera.width, camera.height);
+	//TransparentRenderer.Init(camera.width, camera.height);
 
 	skybox.Init();
 
@@ -117,11 +117,10 @@ void GraphicsSystem::Update(float timeStamp)
 	// clear default framebuffer
 	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
 
-	// update camera
-	//camera.Inputs(pWindow);
-	//camera.UpdateMatrix(45.0f, 0.1f, 100.0f);
+
+	// update viewport with proper width and height from camera
+	glViewport(0, 0, camera.width, camera.height);
 
 	// Render
 	if (!RenderingDebugMode) Render(timeStamp);
@@ -141,11 +140,13 @@ void GraphicsSystem::Render(float timeStamp)
 	Shadow.Update();
 
 	// Geometry pass for G-buffer
-	DeferredRender.Fill_G_Buffer(view, proj);
+	DeferredRender.Fill_G_Buffer(view, proj, camera.width, camera.height);
 
 	BindLightSource(DeferredRender.GetLightShader());
 
 	// clear hdr FBO
+	// resize HDR size it may resize
+	HdrFBO.Init(camera.width, camera.height);
 	glBindFramebuffer(GL_FRAMEBUFFER, HdrFBO.GetFBO());
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -158,16 +159,11 @@ void GraphicsSystem::Render(float timeStamp)
 	PS.Draw(timeStamp, view, proj, HdrFBO.GetFBO());
 	glEnable(GL_CULL_FACE);
 
-	//skybox.Render(view, proj, HdrFBO.GetFBO());
 
 	Sky.Render(view, proj, HdrFBO.GetFBO());
 
-	// Forward Rendering
-	// Render transparent objects
-	//TransparentRenderer.Render(HdrFBO.GetFBO(), view, proj, HdrFBO.GetDepth());
-
 	// post processing
-	PostProcesser.Render(HdrFBO, postProcessType);
+	PostProcesser.Render(HdrFBO, postProcessType, camera.width, camera.height);
 }
 
 
@@ -181,7 +177,7 @@ bool GraphicsSystem::Destroy()
 
 	DeferredRender.Destroy();
 
-	TransparentRenderer.Destroy();
+	//TransparentRenderer.Destroy();
 
 	Sky.Destroy();
 	skybox.Destroy();
@@ -274,15 +270,7 @@ void GraphicsSystem::RenderUI(void)
 	}
 	ImGui::End();
 
-	ImGui::Begin("Normal");
-	{
-		ImGui::BeginChild("image");
-		ImVec2 wsize = ImGui::GetWindowSize();
 
-		ImGui::Image((ImTextureID)(UIntToPtr(DeferredRender.GetNormalRoughness())), wsize, ImVec2(0, 1), ImVec2(1, 0));
-		ImGui::EndChild();
-	}
-	ImGui::End();
 
 	ImGui::Begin("Shadow Map");
 	{
@@ -303,6 +291,9 @@ void GraphicsSystem::RenderUI(void)
 
 	ImGui::Begin("Render Configuration");
 	{
+		ImGui::Text("Application average %.3f ms/frame (%.1f FPS)",
+			1000.0 / double(ImGui::GetIO().Framerate), double(ImGui::GetIO().Framerate));
+
 		ImGui::Checkbox("Enable Debug Mode", &RenderingDebugMode);
 		ImGui::Checkbox("Visualize Normal Vec", &DebugRenderer.EnableNormalVisual);
 		ImGui::Checkbox("Enable PCF", &(DeferredRender.EnablePCF));
@@ -334,28 +325,6 @@ void GraphicsSystem::AdjustForWindowSize()
 {
 	camera.width = gsWidth;
 	camera.height = gsHeight;
-//	camera.UpdateMatrix();
-
-
-	glViewport(0, 0, gsWidth, gsHeight);
-
-	camera.Init();
-
-	Shadow.Init(gsWidth, gsHeight);
-
-	DeferredRender.Init(camera.width, camera.height);
-
-	HdrFBO.Init(camera.width, camera.height);
-
-	TransparentRenderer.Init(camera.width, camera.height);
-
-	skybox.Init();
-
-	Sky.initialize();
-	
-	PostProcesser.Init(camera.width, camera.height);
-	
-	DebugRenderer.Init(&camera);
 
 	MenuSystem.AdjustForWindowSize();
 }

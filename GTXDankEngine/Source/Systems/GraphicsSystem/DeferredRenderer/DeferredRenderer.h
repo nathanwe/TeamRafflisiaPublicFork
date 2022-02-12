@@ -22,9 +22,12 @@ public:
 	DeferredRenderer& operator= (const DeferredRenderer&) = delete;
 
 	bool Init(unsigned int gBufferWidth, unsigned int gBufferHeight);
+
+	
+
 	void Destroy();
 
-	void Fill_G_Buffer(glm::mat4 view, glm::mat4 projection);
+	void Fill_G_Buffer(glm::mat4 view, glm::mat4 projection, unsigned int gBufferWidth, unsigned int gBufferHeight);
 	void Render(glm::vec3 camPos, Shadow& shadow, Shader* shader);
 
 	void Render(glm::vec3 camPos, Shadow& shadow, GLuint fbo);
@@ -62,6 +65,8 @@ private:
 	void Bind_G_Buffer(Shader* shader);
 
 	void Fill_G_BufferRender(Material* mat, VQS* transform, Model* model);
+
+	void RecreateG_Buffer(unsigned int gBufferWidth, unsigned int gBufferHeight);
 };
 
 
