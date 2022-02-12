@@ -38,7 +38,7 @@ void MenuSystem::Init()
             else
             {
                 prevMenu = -1;
-                glfwSetCursorPos(engine.window, (engine.GraphicsSys.gsWidth / 2), (engine.GraphicsSys.gsHeight / 2));
+                glfwSetCursorPos(engine.window, (engine.GraphicsSys.camera.width / 2), (engine.GraphicsSys.camera.height / 2));
             }
         }
     );
@@ -108,7 +108,7 @@ void MenuSystem::ResetMenus()
     display = !display;
     prevMenu = -1;
 	engine.setPauseMenuMode(display);
-    glfwSetCursorPos(engine.window, (engine.GraphicsSys.gsWidth / 2), (engine.GraphicsSys.gsHeight / 2));
+    glfwSetCursorPos(engine.window, (engine.GraphicsSys.camera.width / 2), (engine.GraphicsSys.camera.height / 2));
 }
 
 

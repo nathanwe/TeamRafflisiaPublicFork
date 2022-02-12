@@ -131,10 +131,10 @@ void MenuButton::Draw(Shader& shader)
 
 void MenuButton::SetVertices()
 {
-    xPos        = relativePos.first    ? position.x   * float(engine.GraphicsSys.gsWidth)   : position.x;
-    yPos        = relativePos.second   ? position.y   * float(engine.GraphicsSys.gsHeight)  : position.y;
-    btnWidth    = relativeDimns.first  ? dimensions.x * float(engine.GraphicsSys.gsWidth)   : dimensions.x;
-    btnHeight   = relativeDimns.second ? dimensions.y * float(engine.GraphicsSys.gsHeight)  : dimensions.y;
+    xPos        = relativePos.first    ? position.x   * float(engine.GraphicsSys.camera.width)   : position.x;
+    yPos        = relativePos.second   ? position.y   * float(engine.GraphicsSys.camera.height)  : position.y;
+    btnWidth    = relativeDimns.first  ? dimensions.x * float(engine.GraphicsSys.camera.width)   : dimensions.x;
+    btnHeight   = relativeDimns.second ? dimensions.y * float(engine.GraphicsSys.camera.height)  : dimensions.y;
 
     for (int i = 0; i < 4; ++i)
     {
@@ -142,8 +142,8 @@ void MenuButton::SetVertices()
         /// set position
         /// since window goes from bottom to top [-1,1] and we work from top to bottom
         /// y-value must be flipped to reflect the correct orientation
-        quadVerticesColorTexture[startIdx]    =  (xPos + btnWidth  / 2 * (i % 2 == 0 ? -1.0f : 1.0f) - float(engine.GraphicsSys.gsWidth)  / 2.0f) / (float(engine.GraphicsSys.gsWidth)  / 2.0f);
-        quadVerticesColorTexture[startIdx+1]  = -(yPos + btnHeight / 2 * (i / 2 == 0 ? -1.0f : 1.0f) - float(engine.GraphicsSys.gsHeight) / 2.0f) / (float(engine.GraphicsSys.gsHeight) / 2.0f);
+        quadVerticesColorTexture[startIdx]    =  (xPos + btnWidth  / 2 * (i % 2 == 0 ? -1.0f : 1.0f) - float(engine.GraphicsSys.camera.width)  / 2.0f) / (float(engine.GraphicsSys.camera.width)  / 2.0f);
+        quadVerticesColorTexture[startIdx+1]  = -(yPos + btnHeight / 2 * (i / 2 == 0 ? -1.0f : 1.0f) - float(engine.GraphicsSys.camera.height) / 2.0f) / (float(engine.GraphicsSys.camera.height) / 2.0f);
         /// set color
         quadVerticesColorTexture[startIdx+2]  = rgbTint.r;
         quadVerticesColorTexture[startIdx+3]  = rgbTint.g;

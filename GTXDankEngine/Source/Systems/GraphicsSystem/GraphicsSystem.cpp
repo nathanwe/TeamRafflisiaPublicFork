@@ -27,7 +27,7 @@ void GraphicsSystem::InitWindow()
 	// 400 is for the UI
 	// will get removed when we have the UI system
 	//pWindow = glfwCreateWindow(WIDTH + 400, HEIGHT, "GTX Dank AF Engine", NULL, NULL);
-	pWindow = glfwCreateWindow(gsWidth, gsHeight, "GTX Dank AF Engine", NULL, NULL);
+	pWindow = glfwCreateWindow(camera.width, camera.height, "GTX Dank AF Engine", NULL, NULL);
 	engine.window = pWindow;
 	glfwSetInputMode(pWindow, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
@@ -62,11 +62,11 @@ bool GraphicsSystem::Init()
 	// back face culling
 	glEnable(GL_CULL_FACE);
 
-	glViewport(0, 0, gsWidth, gsHeight);
-
 	camera.Init();
 
-	Shadow.Init(gsWidth, gsHeight);
+	glViewport(0, 0, camera.width, camera.height);
+
+	Shadow.Init(camera.width, camera.height);
 
 	DeferredRender.Init(camera.width, camera.height);
 
@@ -104,11 +104,11 @@ void GraphicsSystem::Update(float timeStamp)
 	/// check if window has been resized
 	int nWidth, nHeight;
 	glfwGetWindowSize(engine.window, &nWidth, &nHeight);
-	if (gsWidth != nWidth || gsHeight != nHeight)
+	if (camera.width != nWidth || camera.height != nHeight)
 	{
-		gsWidth = nWidth;
-		gsHeight = nHeight;
-		AdjustForWindowSize();
+		camera.width = nWidth;
+		camera.height = nHeight;
+		MenuSystem.AdjustForWindowSize();
 	}
 	
 
@@ -320,14 +320,6 @@ void GraphicsSystem::RenderUI(void)
 	ImGui::End();
 }
 
-
-void GraphicsSystem::AdjustForWindowSize()
-{
-	camera.width = gsWidth;
-	camera.height = gsHeight;
-
-	MenuSystem.AdjustForWindowSize();
-}
 
 
 
