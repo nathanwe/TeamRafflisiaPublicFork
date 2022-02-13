@@ -32,6 +32,8 @@ public:
     void Setup();
 
     void SetTexture(std::string background);
+    
+    void AdjustForWindowSize();
 
 /// parameters
 public:

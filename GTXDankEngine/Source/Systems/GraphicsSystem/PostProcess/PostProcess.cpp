@@ -28,7 +28,7 @@ void PostProcess::Destroy()
 
 
 
-void PostProcess::Render(const FBO& fbo, PostProcessType type)
+void PostProcess::Render(const FBO& fbo, PostProcessType type, unsigned int width, unsigned int height)
 {
 	if (type == PostProcessType::STANDARD)
 	{

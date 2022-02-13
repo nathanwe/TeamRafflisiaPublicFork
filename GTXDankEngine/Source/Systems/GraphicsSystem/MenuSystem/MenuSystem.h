@@ -31,6 +31,8 @@ public:
 
     void ToggleDisplay();
 
+    void AdjustForWindowSize();
+
 /// parameters
 public:
 

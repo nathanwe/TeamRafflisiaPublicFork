@@ -22,9 +22,12 @@ public:
 	DeferredRenderer& operator= (const DeferredRenderer&) = delete;
 
 	bool Init(unsigned int gBufferWidth, unsigned int gBufferHeight);
+
+	
+
 	void Destroy();
 
-	void Fill_G_Buffer(glm::mat4 view, glm::mat4 projection);
+	void Fill_G_Buffer(glm::mat4 view, glm::mat4 projection, unsigned int gBufferWidth, unsigned int gBufferHeight);
 	void Render(glm::vec3 camPos, Shadow& shadow, Shader* shader);
 
 	void Render(glm::vec3 camPos, Shadow& shadow, GLuint fbo);
@@ -35,6 +38,8 @@ public:
 	inline unsigned int GetNormalRoughness() { return G_NormalRoughness; }
 	inline unsigned int GetAlbedoMetallic() { return G_AlbedoMetallic; }
 	inline unsigned int GetDepth() {return RboDepth; }
+
+	void Recreate_G_Buffer(unsigned int gBufferWidth, unsigned int gBufferHeight);
 
 	float CelFraction = 1.0;
 	bool EnablePCF = true;

@@ -38,7 +38,7 @@ void MenuSystem::Init()
             else
             {
                 prevMenu = -1;
-                glfwSetCursorPos(engine.window, (WIDTH / 2), (HEIGHT / 2));
+                glfwSetCursorPos(engine.window, (engine.GraphicsSys.camera.width / 2), (engine.GraphicsSys.camera.height / 2));
             }
         }
     );
@@ -74,7 +74,7 @@ bool MenuSystem::SetCurrentMenu(std::string menuName)
 
     if (menus.find(menuName) == menus.end())
     {
-        LOG_WARN("Trying to view unknonw menu {0}", menuName);
+        LOG_WARN("Trying to view unknown menu {0}", menuName);
         return false;
     }
     
@@ -108,14 +108,22 @@ void MenuSystem::ResetMenus()
     display = !display;
     prevMenu = -1;
 	engine.setPauseMenuMode(display);
-    glfwSetCursorPos(engine.window, (WIDTH / 2), (HEIGHT / 2));
+    glfwSetCursorPos(engine.window, (engine.GraphicsSys.camera.width / 2), (engine.GraphicsSys.camera.height / 2));
 }
 
 
 void MenuSystem::ToggleDisplay()
 {
     display = !display;
+    prevMenu = -1;
     engine.setPauseMenuMode(display);
+}
+
+
+void MenuSystem::AdjustForWindowSize()
+{
+    for (auto [_, m] : menus)
+        m->AdjustForWindowSize();
 }
 
 

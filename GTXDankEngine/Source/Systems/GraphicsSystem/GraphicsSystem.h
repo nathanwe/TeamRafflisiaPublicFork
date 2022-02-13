@@ -77,7 +77,7 @@ private:
 
 	void DebugDraw();
 
-	
+	void RendererFboResize(unsigned int width, unsigned int height);
 
 	void SetSunDir(glm::vec3 dir);
 
@@ -94,7 +94,7 @@ private:
 	// post process and forward rendering FBO
 	FBO HdrFBO;
 
-	OIT TransparentRenderer;
+	//OIT TransparentRenderer;
 
 	PostProcess PostProcesser;
 

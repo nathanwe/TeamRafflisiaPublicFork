@@ -16,6 +16,16 @@ bool DeferredRenderer::Init(unsigned int gBufferWidth, unsigned int gBufferHeigh
 	Fill_G_BufferShader = new Shader("Source/Shaders/DeferredRenderer/Fill_G_Buffer.shader");
 	CelShader = new Shader("Source/Shaders/DeferredRenderer/Cel.shader");
 
+	Recreate_G_Buffer(gBufferWidth, gBufferHeight);
+
+	return true;
+}
+
+
+
+
+void DeferredRenderer::Recreate_G_Buffer(unsigned int gBufferWidth, unsigned int gBufferHeight)
+{
 	// Create G buffer
 	// G buffer has one FBO and 3 color attachments
 	// G buffer has one depth attachment
@@ -35,9 +45,10 @@ bool DeferredRenderer::Init(unsigned int gBufferWidth, unsigned int gBufferHeigh
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 		LOG_ERROR("G buffer failed to create.");
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-	return true;
 }
+
+
+
 
 
 void DeferredRenderer::Destroy()
@@ -108,7 +119,7 @@ void DeferredRenderer::Bind_G_Buffer(Shader* shader)
 }
 
 
-void DeferredRenderer::Fill_G_Buffer(glm::mat4 view, glm::mat4 projection) 
+void DeferredRenderer::Fill_G_Buffer(glm::mat4 view, glm::mat4 projection, unsigned int gBufferWidth, unsigned int gBufferHeight)
 {
 	glBindFramebuffer(GL_FRAMEBUFFER, G_Buffer);     // Bind to G-Buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
