@@ -474,13 +474,13 @@
     <None Include="..\Platformer\Assets\Scripts\DoHoneySlimeThings.lua">
       <Filter>Platformer\Scripts</Filter>
     </None>
-    <None Include="..\Platformer\Assets\Scripts\DoFaithPlateThings.lua">
-      <Filter>Platformer\Scripts</Filter>
-    </None>
     <None Include="Source\Shaders\PostProcess\Neon.shader">
       <Filter>Resource Files\Shaders\PostProcess</Filter>
     </None>
     <None Include="..\Platformer\Assets\Scripts\DoGoalThings.lua">
+      <Filter>Platformer\Scripts</Filter>
+    </None>
+    <None Include="..\Platformer\Assets\Scripts\DoLauncherThings.lua">
       <Filter>Platformer\Scripts</Filter>
     </None>
   </ItemGroup>

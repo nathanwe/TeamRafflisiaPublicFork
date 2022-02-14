@@ -1,44 +1,44 @@
---FaithPlatethings
+--Launcherthings
 local imguiControledEntity = -1
 local velX = {}
 local velY = {}
 local velz = {}
-function SaveFaithPlates( levelnum )
+function SaveLaunchers( levelnum )
 	levelstr = string.format("%i", levelnum)
-	SaveIntFloatTableAsJson(velX, "/Assets/Levels/Level" .. levelstr .."FaithPlateVelXSave.json")
-	SaveIntFloatTableAsJson(velY, "/Assets/Levels/Level" .. levelstr .."FaithPlateVelYSave.json")
-	SaveIntFloatTableAsJson(velZ, "/Assets/Levels/Level" .. levelstr .."FaithPlateVelZSave.json")
-	--SaveIntFloatTableAsJson(directions, "/Assets/Levels/Level" .. levelstr .."FaithPlateDirectionSave.json")
+	SaveIntFloatTableAsJson(velX, "/Assets/Levels/Level" .. levelstr .."LauncherVelXSave.json")
+	SaveIntFloatTableAsJson(velY, "/Assets/Levels/Level" .. levelstr .."LauncherVelYSave.json")
+	SaveIntFloatTableAsJson(velZ, "/Assets/Levels/Level" .. levelstr .."LauncherVelZSave.json")
+	--SaveIntFloatTableAsJson(directions, "/Assets/Levels/Level" .. levelstr .."LauncherDirectionSave.json")
 end
 
-function LoadFaithPlates( levelnum )
+function LoadLaunchers( levelnum )
 	levelstr = string.format("%i", levelnum)
-	velX = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."FaithPlateVelXSave.json")
-	velY = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."FaithPlateVelYSave.json")
-	velZ = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."FaithPlateVelZSave.json")
-	--directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."FaithPlateDirectionSave.json")
+	velX = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."LauncherVelXSave.json")
+	velY = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."LauncherVelYSave.json")
+	velZ = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."LauncherVelZSave.json")
+	--directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."LauncherDirectionSave.json")
 end
 
-function ClearFaithPlates()
+function ClearLaunchers()
 	velX = {}
 	velY = {}
 	velZ = {}
 end
 
-function DestroyFaithPlate(e)
+function DestroyLauncher(e)
 	velX[e] = nil
 	velY[e] = nil
 	velZ[e] = nil
 end
 
-function UpdateFaithPlate(dt, e)
+function UpdateLauncher(dt, e)
 	
 end
 
-function HandleEventFaithPlate(eventData)
+function HandleEventLauncher(eventData)
 
 	if eventData.type == 16 then
-		ImguiText("FaithPlate")
+		ImguiText("Launcher")
 		ImguiControledFloat(0, "x", velX[eventData.e1])
 		ImguiControledFloat(1, "y", velY[eventData.e1])
 		ImguiControledFloat(2, "z", velZ[eventData.e1])
@@ -79,6 +79,6 @@ end
 
 
 
-function HandleEventPerEntityFaithPlate(e, eventData)
+function HandleEventPerEntityLauncher(e, eventData)
 
 end

@@ -315,7 +315,7 @@ void GraphicsSystem::RenderUI(void)
 	{
 		ImGui::Checkbox("Third Person", &camera.thirdPerson);
 		ImGui::SliderFloat("Offset", &camera.thirdPersonOffset, 0.f, 20.f);
-		ImGui::Checkbox("Follow Pokeball", &camera.objectTrack);
+		ImGui::Checkbox("Follow Player", &camera.objectTrack);
 	}
 	ImGui::End();
 }

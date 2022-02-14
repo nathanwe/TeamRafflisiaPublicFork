@@ -113,9 +113,9 @@
     <None Include="..\Platformer\Assets\Scripts\Camera.lua" />
     <None Include="..\Platformer\Assets\Scripts\CategoryList.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoBlockThings.lua" />
-    <None Include="..\Platformer\Assets\Scripts\DoFaithPlateThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoGoalThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoHoneySlimeThings.lua" />
+    <None Include="..\Platformer\Assets\Scripts\DoLauncherThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoPlateThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoPlayerThings.lua" />
     <None Include="..\SandBox1\Assets\audio\Master.bank" />

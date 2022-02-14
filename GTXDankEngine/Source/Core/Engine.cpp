@@ -54,16 +54,6 @@ bool Engine::Init()
 	Framerate = std::make_shared<FramerateController>();
 	Framerate->Init(60);
 
-	//temp: for game object factory demo
-	//CommandSys.GetCommand("Attack3").SetActionToExecute([&]()
-	//	{
-	//		Entity newBall = GameObjectFac.CreateObject("POKEBALL");
-	//		auto* trans = TransformComponentPool.GetComponentByEntity(newBall);
-	//		trans->transform.position.x += rand() % 5;
-	//		trans->transform.position.y += rand() % 5;
-	//		trans->transform.position.z += rand() % 5;
-	//	});
-
 	//-----------------------------------------------------------------------
 	if (!DoGameLogicScriptSys.Init(std::string("Assets/Scripts/DoEverything.lua"))) LOG_ERROR("Game Logic Script System failed to init.");
 	if (!MenuSys.Init("Assets/Scripts/Menu.lua")) LOG_ERROR("Menu System failed to init.");

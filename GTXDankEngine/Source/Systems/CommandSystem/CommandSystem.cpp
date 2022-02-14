@@ -65,7 +65,7 @@ bool CommandSystem::Init()
 		setting.directionCommand.SetActionToExecute([&](auto dir, float scale)
 			{
 				Event ev = Event();
-				ev.type = EventType::MOVE_POKEBALL;
+				ev.type = EventType::MOVE_PLAYER;
 				ev.runPerEntity = true;
 				ev.thingsToEffect.insert(GameLogicCategories::PLAYER);
 				ev.floatData1 = engine.DeltaTime();
@@ -97,7 +97,7 @@ bool CommandSystem::Init()
 		engine.CommandSys.GetCommand("Space").SetActionToExecute([&]()
 			{
 				Event ev = Event();
-				ev.type = EventType::MOVE_POKEBALL;
+				ev.type = EventType::MOVE_PLAYER;
 				ev.thingsToEffect.insert(GameLogicCategories::PLAYER);
 				ev.floatData1 = engine.DeltaTime();
 				ev.stringData1 = "Space";
