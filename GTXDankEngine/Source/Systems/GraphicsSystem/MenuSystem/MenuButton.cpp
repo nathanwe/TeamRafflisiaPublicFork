@@ -281,7 +281,7 @@ void button_from_json(const ordered_json& j, MenuButton& menuBut)
         {
             menuBut.SetActionToExecute([&](){
                 engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
-                engine.SceneSys.LoadScene(0);
+                engine.SceneSys.LoadScene(1);
             });
         }
         /// in this case command is the name of the next menu
