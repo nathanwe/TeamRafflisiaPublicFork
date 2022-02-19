@@ -11,14 +11,14 @@ local hardcap = 40
 
 function SavePlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
-	SaveIntFloatTableAsJson(airTime, "/Assets/Levels/Level" .. levelstr .."PlayerAirTimeSave.json")
-	SaveIntFloatTableAsJson(decaying, "/Assets/Levels/Level" .. levelstr .."PlayerDecayingSave.json")
+	SaveIntFloatTableAsJson(airTime, "/Assets/Levels/Level" .. levelstr .."/PlayerAirTimeSave.json")
+	SaveIntFloatTableAsJson(decaying, "/Assets/Levels/Level" .. levelstr .."/PlayerDecayingSave.json")
 end
 
 function LoadPlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
-	airTime = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."PlayerAirTimeSave.json")
-	decaying = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."PlayerDecayingSave.json")
+	airTime = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."/PlayerAirTimeSave.json")
+	decaying = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."/PlayerDecayingSave.json")
 
 end
 

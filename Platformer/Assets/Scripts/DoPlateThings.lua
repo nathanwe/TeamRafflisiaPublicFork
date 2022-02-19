@@ -9,14 +9,10 @@ local pairs = {[0] = lv0Pairs, [1] = lv1Pairs, [2] = lv2Pairs, [3] = lv3Pairs}
 
 function SavePlates( levelnum )
 	levelstr = string.format("%i", levelnum)
-	--SaveIntFloatTableAsJson(timers, "/Assets/Levels/Level" .. levelstr .."PlateTimerSave.json")
-	--SaveIntFloatTableAsJson(directions, "/Assets/Levels/Level" .. levelstr .."PlateDirectionSave.json")
 end
 
 function LoadPlates( levelnum )
 	levelstr = string.format("%i", levelnum)
-	--timers = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."PlateTimerSave.json")
-	--directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."PlateDirectionSave.json")
 end
 
 function ClearPlates()

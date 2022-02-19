@@ -2,22 +2,18 @@
 local timers = {}
 local blockStatus = {}
 local imguiControledEntity = -1
---local totaloutblocks = {[1] = 0.0}
 
 function SaveBlocks( levelnum )
 	levelstr = string.format("%i", levelnum)
-	--SaveIntFloatTableAsJson(totaloutblocks, "/Assets/Levels/Level" .. levelstr .."BlockTotalSave.json")
-	SaveIntFloatTableAsJson(blockStatus, "/Assets/Levels/Level" .. levelstr .."BlockStatusSave.json")
+	SaveIntFloatTableAsJson(blockStatus, "/Assets/Levels/Level" .. levelstr .."/BlockStatusSave.json")
 end
 
 function LoadBlocks( levelnum )
 	levelstr = string.format("%i", levelnum)
-	--totaloutblocks = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."BlockTotalSave.json")
-	blockStatus = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."BlockStatusSave.json")
+	blockStatus = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."/BlockStatusSave.json")
 end
 
 function ClearBlocks()
-	--totaloutblocks = {[1] = 0.0 }
 	timers = {}
 	blockStatus = {}
 end

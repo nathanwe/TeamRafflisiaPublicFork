@@ -3,14 +3,10 @@ local imguiControledEntity = -1
 
 function SaveGoals( levelnum )
 	levelstr = string.format("%i", levelnum)
-	--SaveIntFloatTableAsJson(bouncyness, "/Assets/Levels/Level" .. levelstr .."GoalBouncynessSave.json")
-	--SaveIntFloatTableAsJson(directions, "/Assets/Levels/Level" .. levelstr .."GoalDirectionSave.json")
 end
 
 function LoadGoals( levelnum )
 	levelstr = string.format("%i", levelnum)
-	--bouncyness = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."GoalBouncynessSave.json")
-	--directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."GoalDirectionSave.json")
 end
 
 function ClearGoals()

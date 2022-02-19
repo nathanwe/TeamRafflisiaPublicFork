@@ -4,14 +4,12 @@ local bouncyness = {}
 local pitch=1.0
 function SaveHoneySlimes( levelnum )
 	levelstr = string.format("%i", levelnum)
-	SaveIntFloatTableAsJson(bouncyness, "/Assets/Levels/Level" .. levelstr .."HoneySlimeBouncynessSave.json")
-	--SaveIntFloatTableAsJson(directions, "/Assets/Levels/Level" .. levelstr .."HoneySlimeDirectionSave.json")
+	SaveIntFloatTableAsJson(bouncyness, "/Assets/Levels/Level" .. levelstr .."/HoneySlimeBouncynessSave.json")
 end
 
 function LoadHoneySlimes( levelnum )
 	levelstr = string.format("%i", levelnum)
-	bouncyness = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."HoneySlimeBouncynessSave.json")
-	--directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."HoneySlimeDirectionSave.json")
+	bouncyness = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."/HoneySlimeBouncynessSave.json")
 end
 
 function ClearHoneySlimes()

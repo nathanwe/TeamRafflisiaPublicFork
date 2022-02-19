@@ -16,8 +16,15 @@ extern Engine engine;
 
 bool SceneSystem::Init()
 {
-    auto* handle = SerializationResourceManager.GetResourceHandleNoThread(GAME_PATH + std::string("Assets/Levels/level.json"));
-    levels = handle->GetPointer()->data;
+    
+    for (int i = 0; i < MAX_LEVELS; ++i)
+    {
+        auto* handle = SerializationResourceManager.GetResourceHandleNoThread(GAME_PATH + std::string("Assets/Levels/Level")+ std::to_string(i) + std::string("/level.json"));
+        levels.push_back(handle->GetPointer()->data);
+        //auto* handle = SerializationResourceManager.GetResourceHandleNoThread(GAME_PATH + std::string("Assets/Levels/level.json"));
+        //levels.push_back(handle->GetPointer()->data[std::to_string(i)]);
+    }
+    
 
     LoadScene(-1);
 
@@ -75,10 +82,10 @@ void SceneSystem::SaveCurrentLevel()
         levelJson[entity] = engine.GameObjectFac.SerializeObject(entity);
     }
 
-    levels[std::to_string(currentLevel)] = levelJson;
+    levels[currentLevel] = levelJson;
 
-    std::ofstream outputStream(GAME_PATH + std::string("Assets/Levels/level.json"));
-    outputStream << levels.dump(2);
+    std::ofstream outputStream(GAME_PATH + std::string("Assets/Levels/Level") + std::to_string(currentLevel) + std::string("/level.json"));
+    outputStream << levels[currentLevel].dump(2);
 
     Event ev = Event(true);
     ev.type = EventType::SAVE_LUA;
@@ -96,10 +103,10 @@ void SceneSystem::SaveAsNewLevel()
     }
 
     int newLevel = static_cast<int>(levels.size());
-    levels[std::to_string(levels.size())] = levelJson;
+    levels.push_back(levelJson);
 
-    std::ofstream outputStream(GAME_PATH + std::string("Assets/Levels/level.json"));
-    outputStream << levels.dump(2);
+    std::ofstream outputStream(GAME_PATH + std::string("Assets/Levels/Level") + std::to_string(newLevel) + std::string("/level.json"));
+    outputStream << levels[newLevel].dump(2);
 
     Event ev = Event(true);
     ev.type = EventType::SAVE_LUA;
@@ -119,10 +126,11 @@ void SceneSystem::Update(float dt)
         {
             engine.GraphicsSys.GetMenuSystem().SetCurrentMenu("Main");
             engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
+            return;
         }
 
         currentLevel = levelToLoad;
-        ordered_json levelJson = levels[std::to_string(currentLevel)];
+        ordered_json levelJson =levels[currentLevel];
 
         for (auto itr = levelJson.begin(); itr != levelJson.end(); ++itr)
         {

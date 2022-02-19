@@ -5,18 +5,16 @@ local velY = {}
 local velz = {}
 function SaveLaunchers( levelnum )
 	levelstr = string.format("%i", levelnum)
-	SaveIntFloatTableAsJson(velX, "/Assets/Levels/Level" .. levelstr .."LauncherVelXSave.json")
-	SaveIntFloatTableAsJson(velY, "/Assets/Levels/Level" .. levelstr .."LauncherVelYSave.json")
-	SaveIntFloatTableAsJson(velZ, "/Assets/Levels/Level" .. levelstr .."LauncherVelZSave.json")
-	--SaveIntFloatTableAsJson(directions, "/Assets/Levels/Level" .. levelstr .."LauncherDirectionSave.json")
+	SaveIntFloatTableAsJson(velX, "/Assets/Levels/Level" .. levelstr .."/LauncherVelXSave.json")
+	SaveIntFloatTableAsJson(velY, "/Assets/Levels/Level" .. levelstr .."/LauncherVelYSave.json")
+	SaveIntFloatTableAsJson(velZ, "/Assets/Levels/Level" .. levelstr .."/LauncherVelZSave.json")
 end
 
 function LoadLaunchers( levelnum )
 	levelstr = string.format("%i", levelnum)
-	velX = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."LauncherVelXSave.json")
-	velY = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."LauncherVelYSave.json")
-	velZ = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."LauncherVelZSave.json")
-	--directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."LauncherDirectionSave.json")
+	velX = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."/LauncherVelXSave.json")
+	velY = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."/LauncherVelYSave.json")
+	velZ = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."/LauncherVelZSave.json")
 end
 
 function ClearLaunchers()

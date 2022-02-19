@@ -27,9 +27,10 @@ public:
 
 private:
 	
-	ordered_json levels;
+	std::vector<ordered_json> levels;
 	int currentLevel = 0;
 	int levelToLoad = 0;
 	bool shouldLoadLevel = false;
+	int MAX_LEVELS = 6; //TODO MAKE DYNAMIC
 };
 #endif // !SCENESYSTEM_H

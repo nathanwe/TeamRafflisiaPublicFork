@@ -5,14 +5,10 @@ local spawn = false
 
 function SaveBalls( levelnum )
 	levelstr = string.format("%i", levelnum)
-	--SaveIntFloatTableAsJson(timers, "/Assets/Levels/Level" .. levelstr .."BallTimerSave.json")
-	--SaveIntFloatTableAsJson(directions, "/Assets/Levels/Level" .. levelstr .."BallDirectionSave.json")
 end
 
 function LoadBalls( levelnum )
 	levelstr = string.format("%i", levelnum)
-	--timers = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."BallTimerSave.json")
-	--directions = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."BallDirectionSave.json")
 	ent = CreateEntity("ball")
 	LOG_INFO("PlayercontrolledBall")
 end
