@@ -17,12 +17,10 @@ extern Engine engine;
 bool SceneSystem::Init()
 {
     
-    for (int i = 0; i < MAX_LEVELS; ++i)
+    for (int i = 0; std::filesystem::exists(GAME_PATH + std::string("Assets/Levels/Level") + std::to_string(i) + std::string("/level.json")); ++i)
     {
         auto* handle = SerializationResourceManager.GetResourceHandleNoThread(GAME_PATH + std::string("Assets/Levels/Level")+ std::to_string(i) + std::string("/level.json"));
         levels.push_back(handle->GetPointer()->data);
-        //auto* handle = SerializationResourceManager.GetResourceHandleNoThread(GAME_PATH + std::string("Assets/Levels/level.json"));
-        //levels.push_back(handle->GetPointer()->data[std::to_string(i)]);
     }
     
 
@@ -63,13 +61,19 @@ void SceneSystem::LoadCurrentLevel()
 
 void SceneSystem::LoadNextLevel()
 {
-    currentLevel++;
+    if (currentLevel < levels.size()-2)
+    {
+        currentLevel++;
+    }
     LoadScene(currentLevel);
 }
 
 void SceneSystem::LoadPreviousLevel()
 {
-    currentLevel--;
+    if (currentLevel > 0)
+    {
+        currentLevel--;
+    }
     LoadScene(currentLevel);
 }
 
