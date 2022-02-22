@@ -81,6 +81,34 @@ function HandleEventPlayer(eventData)
 		imguiControledEntity = eventData.e1
 	end
 	if eventData.type == 12 then
+		if airTime[eventData.e1] > 0.5 then
+			x,y,z = GetPosition(eventData.e1)
+			dx,dy,dz = GetMovementDirection(eventData.e1)
+			dist = GetRadius(eventData.e1)
+			nx,ny,nz = GetPlaneNormal(eventData.e2)
+
+			if nx then
+				x = x - nx * dist
+			end
+			if ny then
+				y = y - ny * dist
+			end
+			if nz then
+				z = z - nz * dist
+			end
+
+			if dx then
+				dx = -dx
+			end
+			if dy then
+				dy = -dy
+			end
+			if dz then
+				dz = -dz
+			end
+
+			SendParticleEvent(2,x,y,z,dx,dy,dz,"")
+		end
 		airTime[eventData.e1] = 0
 		types = {}
 		--print("types of other object")

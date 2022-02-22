@@ -111,7 +111,10 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "SetCameraStatic", lua_SetCameraStatic);
     lua_register(L, "SetCameraStaticScene", lua_SetCameraStaticScene);
     lua_register(L, "SetAudioEventPosition", lua_SetAudioEventPosition);
-    
+    lua_register(L, "SendParticleEvent", lua_SendParticleEvent);
+    lua_register(L, "GetRadius", lua_GetRadius);
+    lua_register(L, "GetPlaneNormal", lua_GetPlaneNormal);
+    lua_register(L, "GetMovementDirection", lua_GetMovementDirection);
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));
     lua_getglobal(L, "Init");

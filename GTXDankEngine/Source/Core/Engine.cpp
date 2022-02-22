@@ -154,33 +154,33 @@ void Engine::Destroy()
 {
 	// Destroy all systems in reverse order
 	//
-	if (!PhysicsSys.Destroy()) LOG_ERROR("Physics System failed to destory properly.");
+	if (!PhysicsSys.Destroy()) LOG_ERROR("Physics System failed to destroy properly.");
 	//
 
-	if (!CommandSys.Destroy()) LOG_ERROR("Command System failed to destory properly.");
-	if (!UISys.Destroy()) LOG_ERROR("Graphics System failed to destory properly.");
+	if (!CommandSys.Destroy()) LOG_ERROR("Command System failed to destroy properly.");
+	if (!UISys.Destroy()) LOG_ERROR("Graphics System failed to destroy properly.");
 
-	if (!GraphicsSys.Destroy()) LOG_ERROR("Graphics System failed to destory properly.");
+	if (!GraphicsSys.Destroy()) LOG_ERROR("Graphics System failed to destroy properly.");
 	if (!AudioSys.Destroy())
 	{
-		LOG_ERROR("Audio System failed to destory properly.");
+		LOG_ERROR("Audio System failed to destroy properly.");
 	}
 	
 	if (!DoGameLogicScriptSys.Destroy())
 	{
-		LOG_ERROR("GameLogic System failed to destory properly.");
+		LOG_ERROR("GameLogic System failed to destroy properly.");
 	}
 	if (!MenuSys.Destroy())
 	{
-		LOG_ERROR("Menu System failed to destory properly.");
+		LOG_ERROR("Menu System failed to destroy properly.");
 	}
 	if (!CameraControlSys.Destroy())
 	{
-		LOG_ERROR("Camera System failed to destory properly.");
+		LOG_ERROR("Camera System failed to destroy properly.");
 	}
 	if (!LevelEditorSys.Destroy())
 	{
-		LOG_ERROR("Level Editor System failed to destory properly.");
+		LOG_ERROR("Level Editor System failed to destroy properly.");
 	}
 
 	ScriptResourceManager.Destroy();
@@ -191,17 +191,17 @@ void Engine::Destroy()
 	
 	/*
 	
-	if (!PhysicsSystem.Destroy()) LOG_ERROR("Physics System failed to destory properly.");
+	if (!PhysicsSystem.Destroy()) LOG_ERROR("Physics System failed to destroy properly.");
 
-	if (!FrameRateSystem.Destroy) LOG_ERROR("FrameRate System failed to destory properly.")
+	if (!FrameRateSystem.Destroy) LOG_ERROR("FrameRate System failed to destroy properly.")
 
 	......
 
-	if (!EntitySystem.Destroy) LOG_ERROR("Entity system failed to desotyr properly");
+	if (!EntitySystem.Destroy) LOG_ERROR("Entity system failed to destroy properly");
 
-	if (!ResourceSystem.Desotry()) LOG_ERROR("Resource System failed to destory properly.");
+	if (!ResourceSystem.Desotry()) LOG_ERROR("Resource System failed to destroy properly.");
 
-	if (!MemorySystem.Destroy()) LOG_ERROR("Memory System failed to destory properly.");
+	if (!MemorySystem.Destroy()) LOG_ERROR("Memory System failed to destroy properly.");
 
 	*/
 

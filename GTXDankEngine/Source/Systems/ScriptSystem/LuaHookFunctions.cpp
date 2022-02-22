@@ -1172,3 +1172,77 @@ int lua_SetAudioEventPosition(lua_State* L)
     return 0;
 }
 
+
+
+
+int lua_SendParticleEvent(lua_State* L)
+{
+    ParticleSystem& PS = engine.GraphicsSys.GetParticleSystem();
+    PS.ActivateParticles(
+        lua_tonumber(L, 1),
+        glm::vec3(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4)),
+        glm::vec3(lua_tonumber(L, 5), lua_tonumber(L, 6), lua_tonumber(L, 7)),
+        lua_tostring(L,8)
+    );
+    return 0;
+}
+
+
+int lua_GetRadius(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    ColliderComponent* ce = ColliderComponentPool.GetComponentByEntity(e);
+
+    if (ce == nullptr)
+        lua_pushnumber(L, 0);
+    else
+        lua_pushnumber(L, ce->NarrowPhase.radius);
+    return 1;
+}
+
+
+int lua_GetMovementDirection(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    MovingBodyComponent* me = MovingBodyComponentPool.GetComponentByEntity(e);
+
+    if (me == nullptr)
+    {
+        lua_pushnumber(L, 0);
+        lua_pushnumber(L, 0);
+        lua_pushnumber(L, 0);
+    }
+    else
+    {
+        glm::vec3 direction = me->getVelocity();
+        direction = glm::normalize(direction);
+        lua_pushnumber(L, direction.x);
+        lua_pushnumber(L, direction.y);
+        lua_pushnumber(L, direction.z);
+    }
+    return 3;
+}
+
+
+int lua_GetPlaneNormal(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    ColliderComponent* ce = ColliderComponentPool.GetComponentByEntity(e);
+
+    if (ce == nullptr)
+    {
+        lua_pushnumber(L, 0);
+        lua_pushnumber(L, 0);
+        lua_pushnumber(L, 0);
+    }
+    else
+    {
+        glm::vec3 normal = ce->NarrowPhase.normal;
+        lua_pushnumber(L, normal.x);
+        lua_pushnumber(L, normal.y);
+        lua_pushnumber(L, normal.z);
+    }
+    return 3;
+}
+
+

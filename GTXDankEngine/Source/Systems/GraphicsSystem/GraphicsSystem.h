@@ -62,6 +62,7 @@ public:
 
 
 	MenuSystem& GetMenuSystem() { return MenuSystem; };
+	ParticleSystem& GetParticleSystem() { return PS; };
 
 
 private:

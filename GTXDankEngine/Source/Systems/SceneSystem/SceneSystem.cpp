@@ -151,6 +151,8 @@ void SceneSystem::Update(float dt)
         // For Physics
         engine.PhysicsSys.UpdatePosition();
         engine.PhysicsSys.UpdateColliders();
+
+        engine.GraphicsSys.GetParticleSystem().ResetEmitters();
     }
     shouldLoadLevel = false;
 }
