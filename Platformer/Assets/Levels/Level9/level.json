@@ -124,67 +124,9 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 26.299999237060547,
-        "y": 10.119000434875488,
-        "z": 36.130001068115234
-      },
-      "scale": {
-        "x": 3.0199999809265137,
-        "y": 3.0199999809265137,
-        "z": 3.0859999656677246
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 1.0
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/rock/albedo.png",
-      "MetallicPath": "../Platformer/Assets/Textures/rock/metallic.png",
-      "Alpha": 1.0
-    },
-    "COLLIDER": {
-      "Shape": 2,
-      "MinPoint": {
-        "x": -3.0,
-        "y": -3.0,
-        "z": -3.0
-      },
-      "MaxPoint": {
-        "x": 3.0,
-        "y": 3.0,
-        "z": 3.0
-      }
-    },
-    "STILL_BODY": {
-      "Shape": 2,
-      "MinPoint": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "MaxPoint": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
-      }
-    },
-    "TAG": {
-      "uniqueName": "Cube",
-      "category": "Cube"
-    }
-  },
-  {
-    "MODEL": {
-      "path": "../Platformer/Assets/models/Cube.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": 11.246000289916992,
+        "x": 24.525999069213867,
         "y": 17.618999481201172,
-        "z": 42.0
+        "z": 35.86000061035156
       },
       "scale": {
         "x": 3.0199999809265137,
@@ -239,93 +181,11 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": 25.0,
-        "y": 17.06999969482422,
-        "z": 35.0
-      },
-      "scale": {
-        "x": 3.0199999809265137,
-        "y": 3.0199999809265137,
-        "z": 3.0859999656677246
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.2923717200756073,
-        "w": 0.9563047289848328
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
-      "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0
-    },
-    "COLLIDER": {
-      "Shape": 1,
-      "Normal": {
-        "x": -0.559192955493927,
-        "y": 0.8290376663208008,
-        "z": 0.0
-      },
-      "Magnitude": 0.17184829711914063
-    },
-    "STILL_BODY": {
-      "Shape": 1,
-      "Normal": {
-        "x": -0.5590000152587891,
-        "y": 0.8289999961853027,
-        "z": 0.0
-      },
-      "Magnitude": -5.689000129699707
-    },
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": 18.239999771118164,
-        "y": 8.468999862670898,
-        "z": 39.2400016784668
-      },
-      "scale": {
-        "x": 4.0,
-        "y": 6.0,
-        "z": 4.0
-      },
-      "rotation": {
-        "x": 0.5,
-        "y": 0.49999985098838806,
-        "z": 0.5,
-        "w": 0.5000002384185791
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/arrow.jpg",
-      "MetallicPath": "../Platformer/Assets/Textures/rock/metallic.png",
-      "Alpha": 1.0
-    },
-    "TAG": {
-      "uniqueName": "DownArrow",
-      "category": ""
-    }
-  },
-  {
-    "MODEL": {
       "path": "../Platformer/Assets/models/Cube.obj"
     },
     "TRANSFORM": {
       "position": {
-        "x": 18.0,
+        "x": 24.790000915527344,
         "y": 2.0,
         "z": 37.0
       },
@@ -438,54 +298,6 @@
     }
   },
   {
-    "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/placeholder_platforms.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": 14.479999542236328,
-        "y": 15.0,
-        "z": 1.0099999904632568
-      },
-      "scale": {
-        "x": 7.0,
-        "y": 3.0199999809265137,
-        "z": 7.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.7069846987724304,
-        "z": 0.0,
-        "w": 0.7072288393974304
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Honey Base Color.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/Cube Specular.png",
-      "Alpha": 1.0
-    },
-    "COLLIDER": {
-      "Shape": 1,
-      "Normal": {
-        "x": 0.0,
-        "y": 1.0,
-        "z": 0.0
-      },
-      "Magnitude": 15.0
-    },
-    "STILL_BODY": {
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "GAME_LOGIC": [
-      "PLAYER_PROJECTILE"
-    ],
-    "TAG": {
-      "uniqueName": "Slope1",
-      "category": "Slope"
-    }
-  },
-  {
     "TAG": {
       "uniqueName": "",
       "category": ""
@@ -497,8 +309,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 13.696720123291016,
-        "y": 17.93357276916504,
+        "x": 39.34775161743164,
+        "y": 9.133200645446777,
         "z": 1.0
       },
       "scale": {
@@ -509,8 +321,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": -0.7229208946228027,
-        "w": 0.6909307837486267
+        "z": 0.8141449093818665,
+        "w": 0.5806617736816406
       }
     },
     "MATERIAL": {
@@ -528,8 +340,8 @@
       "Gravity": true,
       "Mass": 5.0,
       "Velocity": {
-        "x": 1.401298464324817e-45,
-        "y": -0.6597708463668823,
+        "x": 0.008085966110229492,
+        "y": -0.5740736126899719,
         "z": 1.401298464324817e-45
       },
       "Accelereation": {
@@ -574,54 +386,6 @@
     }
   },
   {
-    "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/button.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": 35.599998474121094,
-        "y": 15.0,
-        "z": 1.0099999904632568
-      },
-      "scale": {
-        "x": 7.0,
-        "y": 3.0199999809265137,
-        "z": 7.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 1.0
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Trampoline Base Color.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/Button Specular.png",
-      "Alpha": 1.0
-    },
-    "COLLIDER": {
-      "Shape": 1,
-      "Normal": {
-        "x": 0.0,
-        "y": 1.0,
-        "z": 0.0
-      },
-      "Magnitude": 15.0
-    },
-    "STILL_BODY": {
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "GAME_LOGIC": [
-      "GOAL_ZONE"
-    ],
-    "TAG": {
-      "uniqueName": "FaithPlate",
-      "category": "FaithPlate"
-    }
-  },
-  {
     "TAG": {
       "uniqueName": "",
       "category": ""
@@ -681,8 +445,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": -23.333887100219727,
-        "y": -34.87083053588867,
+        "x": -1270.5750732421875,
+        "y": -36877.07421875,
         "z": 35.0
       },
       "scale": {
@@ -693,8 +457,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": -0.9188797473907471,
-        "w": 0.3945377469062805
+        "z": -0.2409675270318985,
+        "w": 0.9705331921577454
       }
     },
     "MATERIAL": {
@@ -713,7 +477,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": -15.103309631347656,
-        "y": -33.110069274902344,
+        "y": -858.979248046875,
         "z": 0.0
       },
       "Accelereation": {
@@ -731,6 +495,54 @@
     "TAG": {
       "uniqueName": "ball",
       "category": "ball"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../GTXDankEngine/Assets/Models/button.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 35.599998474121094,
+        "y": 15.0,
+        "z": 1.0099999904632568
+      },
+      "scale": {
+        "x": 7.0,
+        "y": 3.0199999809265137,
+        "z": 7.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.13052619993686676,
+        "w": 0.9914448857307434
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Trampoline Base Color.png",
+      "MetallicPath": "../GTXDankEngine/Assets/Textures/Button Specular.png",
+      "Alpha": 1.0
+    },
+    "COLLIDER": {
+      "Shape": 1,
+      "Normal": {
+        "x": -0.2588190734386444,
+        "y": 0.9659258127212524,
+        "z": 0.0
+      },
+      "Magnitude": 5.274928092956543
+    },
+    "STILL_BODY": {
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "GAME_LOGIC": [
+      "GOAL_ZONE"
+    ],
+    "TAG": {
+      "uniqueName": "FaithPlate",
+      "category": "FaithPlate"
     }
   }
 ]

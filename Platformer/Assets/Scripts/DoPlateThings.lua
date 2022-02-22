@@ -6,7 +6,10 @@ local lv1Pairs = {[18] = 7}
 local lv2Pairs = {[10] = 3}
 local lv3Pairs = {[10] = 3}
 local lv6Pairs = {[8] = 3}
-local pairs = {[0] = lv0Pairs, [1] = lv1Pairs, [2] = lv2Pairs, [3] = lv3Pairs, [6] = lv6Pairs}
+local lv7Pairs = {[8] = 3}
+local lv8Pairs = {[8] = 3}
+local lv9Pairs = {[8] = 3}
+local pairs = {[0] = lv0Pairs, [1] = lv1Pairs, [2] = lv2Pairs, [3] = lv3Pairs, [6] = lv6Pairs, [7] = lv7Pairs, [8] = lv8Pairs, [9] = lv9Pairs}
 
 function SavePlates( levelnum )
 	levelstr = string.format("%i", levelnum)
