@@ -384,9 +384,6 @@
     <None Include="..\Platformer\Assets\Levels\gameObjects.json">
       <Filter>Platformer\Levels</Filter>
     </None>
-    <None Include="..\Platformer\Assets\Levels\level.json">
-      <Filter>Platformer\Levels</Filter>
-    </None>
     <None Include="..\TopDownFighter\Assets\Levels\gameObjects.json">
       <Filter>TopDownFighter\Levels</Filter>
     </None>
@@ -482,6 +479,9 @@
     </None>
     <None Include="..\Platformer\Assets\Scripts\DoLauncherThings.lua">
       <Filter>Platformer\Scripts</Filter>
+    </None>
+    <None Include="..\Platformer\Assets\Levels\Level0\level.json">
+      <Filter>Platformer\Levels</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
