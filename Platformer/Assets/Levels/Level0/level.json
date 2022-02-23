@@ -498,7 +498,7 @@
     "TRANSFORM": {
       "position": {
         "x": 13.696720123291016,
-        "y": 17.93357276916504,
+        "y": 17.933576583862305,
         "z": 1.0
       },
       "scale": {
@@ -529,7 +529,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 1.401298464324817e-45,
-        "y": -0.6597708463668823,
+        "y": -1.6028074026107788,
         "z": 1.401298464324817e-45
       },
       "Accelereation": {
@@ -550,27 +550,61 @@
     }
   },
   {
+    "MODEL": {
+      "path": "../GTXDankEngine/Assets/Models/Ball.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 24.215999603271484,
+        "y": 34.200347900390625,
+        "z": 35.0
+      },
+      "scale": {
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Friend Base Color.png",
+      "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
+      "Alpha": 1.0
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 2.930000066757202
+    },
+    "MOVING_BODY": {
+      "Elasticity": 0.3499999940395355,
+      "Friction": 0.0,
+      "Gravity": true,
+      "Mass": 5.0,
+      "Velocity": {
+        "x": 0.0,
+        "y": -17.236783981323242,
+        "z": 0.0
+      },
+      "Accelereation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "CollisionType": 0,
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "GAME_LOGIC": [
+      "PLATFORMER_BALL"
+    ],
     "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
+      "uniqueName": "ball",
+      "category": "ball"
     }
   },
   {
@@ -619,118 +653,6 @@
     "TAG": {
       "uniqueName": "FaithPlate",
       "category": "FaithPlate"
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  null,
-  null,
-  null,
-  null,
-  null,
-  null,
-  {
-    "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/Ball.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": -23.333887100219727,
-        "y": -34.87083053588867,
-        "z": 35.0
-      },
-      "scale": {
-        "x": 3.0,
-        "y": 3.0,
-        "z": 3.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": -0.9188797473907471,
-        "w": 0.3945377469062805
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Friend Base Color.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0
-    },
-    "COLLIDER": {
-      "Shape": 0,
-      "Radius": 2.930000066757202
-    },
-    "MOVING_BODY": {
-      "Elasticity": 0.3499999940395355,
-      "Friction": 0.0,
-      "Gravity": true,
-      "Mass": 5.0,
-      "Velocity": {
-        "x": -15.103309631347656,
-        "y": -33.110069274902344,
-        "z": 0.0
-      },
-      "Accelereation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "CollisionType": 0,
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "GAME_LOGIC": [
-      "PLATFORMER_BALL"
-    ],
-    "TAG": {
-      "uniqueName": "ball",
-      "category": "ball"
     }
   }
 ]

@@ -245,6 +245,7 @@ int lua_GetExampleData(lua_State* L)
 
 int lua_AddToVQS(lua_State* L)
 {
+    float x, y, z = 0;
     Entity e = static_cast<Entity>(lua_tonumber(L, 1));
     float amountToAddx = static_cast<float>(lua_tonumber(L, 2));
     float amountToAddy = static_cast<float>(lua_tonumber(L, 3));
@@ -253,9 +254,31 @@ int lua_AddToVQS(lua_State* L)
     if (trans != nullptr)
     {
         trans->transform.position.x += amountToAddx;
+        x = trans->transform.position.x;
         trans->transform.position.y += amountToAddy;
+        y = trans->transform.position.y;
         trans->transform.position.z += amountToAddz;
+        z = trans->transform.position.z;
     }
+    else
+    {
+        LOG_ERROR("Transform not found");
+    }
+    MovingBodyComponent* mov = MovingBodyComponentPool.GetComponentByEntity(e);
+    if (mov != nullptr)
+    {
+        mov->rigidBody.position.x = x;
+        mov->rigidBody.position.y = y;
+        mov->rigidBody.position.z = z;
+    }
+    StillBodyComponent* sti = StillBodyComponentPool.GetComponentByEntity(e);
+    if (sti != nullptr)
+    {
+        sti->position.x = x;
+        sti->position.y = y;
+        sti->position.z = z;
+    }
+    engine.PhysicsSys.UpdateSingleCollider(e);
     return 0;
 
 }
@@ -460,6 +483,21 @@ int lua_SetPosition(lua_State* L)
     {
         LOG_ERROR("Transform not found");
     }
+    MovingBodyComponent* mov = MovingBodyComponentPool.GetComponentByEntity(e);
+    if (mov != nullptr)
+    {
+        mov->rigidBody.position.x = x;
+        mov->rigidBody.position.y = y;
+        mov->rigidBody.position.z = z;
+    }
+    StillBodyComponent* sti = StillBodyComponentPool.GetComponentByEntity(e);
+    if (sti != nullptr)
+    {
+        sti->position.x = x;
+        sti->position.y = y;
+        sti->position.z = z;
+    }
+    engine.PhysicsSys.UpdateSingleCollider(e);
     return 0;
 }
 
@@ -808,7 +846,7 @@ int lua_GetGamePath(lua_State* L)
     return 1;
 }
 
-float imguifloats[3] = { 0.0f, 0.0f, 0.0f };
+float imguifloats[99] = {0.0f};
 
 int lua_ImguiControledFloat(lua_State* L)
 {

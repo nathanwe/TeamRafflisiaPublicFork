@@ -60,9 +60,9 @@ function HandleEventPlate(eventData)
 		if lvPairs[eventData.e1] ~= nil then --if on the list
 			if blockStatus[lvPairs[eventData.e1]] == 0 then  -- if its in
 				AddToVQS(lvPairs[eventData.e1], 0, 0, -6) --push it out
-				blockStatus[lvPairs[eventData.e1]] = 1 --mark it out
 				PlayAudioEvent("PlateActivate")
 			end
+			blockStatus[lvPairs[eventData.e1]] = 1 --mark it out
 		end
 	end
 end

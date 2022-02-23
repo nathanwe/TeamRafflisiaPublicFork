@@ -106,9 +106,10 @@ void Engine::Run()
 				SceneSys.Update(dt);
 				PhysicsSys.Update(dt);
 				DoGameLogicScriptSys.Update(dt);
-				//update physics after lua changes stuff
-				PhysicsSys.UpdatePosition();
-				PhysicsSys.UpdateColliders();
+				//update physics after lua changes stuff 
+				// EDIT: now lua directly modifes the physics
+				//PhysicsSys.UpdatePosition();
+				//PhysicsSys.UpdateColliders();
 
 				CameraControlSys.Update(dt);
 			}
