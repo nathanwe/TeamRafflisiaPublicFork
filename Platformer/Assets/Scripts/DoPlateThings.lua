@@ -2,14 +2,13 @@
 local imguiControledEntity = -1
 local blockStatus = {} -- not the blockStatus from doblockthings, that does nothing now
 local lv0Pairs = {[11] = 4}
-local lv1Pairs = {[18] = 7}
-local lv2Pairs = {[10] = 3}
-local lv3Pairs = {[10] = 3}
-local lv6Pairs = {[8] = 3}
-local lv7Pairs = {[8] = 3}
-local lv8Pairs = {[8] = 3}
-local lv9Pairs = {[8] = 3}
-local pairs = {[0] = lv0Pairs, [1] = lv1Pairs, [2] = lv2Pairs, [3] = lv3Pairs, [6] = lv6Pairs, [7] = lv7Pairs, [8] = lv8Pairs, [9] = lv9Pairs}
+local lv3Pairs = {[8] = 3}
+local lv4Pairs = {[8] = 3}
+local lv5Pairs = {[18] = 7}
+local lv6Pairs = {[10] = 3}
+local lv7Pairs = {[10] = 3}
+
+local pairs = {[0] = lv0Pairs, [3] = lv3Pairs, [4] = lv4Pairs, [5] = lv5Pairs, [6] = lv6Pairs, [7] = lv7Pairs}
 
 function SavePlates( levelnum )
 	levelstr = string.format("%i", levelnum)
