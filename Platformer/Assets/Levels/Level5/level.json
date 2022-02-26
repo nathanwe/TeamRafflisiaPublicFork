@@ -204,7 +204,12 @@
       "category": "Cube"
     }
   },
-  null,
+  {
+    "TAG": {
+      "uniqueName": "",
+      "category": ""
+    }
+  },
   {
     "MODEL": {
       "path": "../Platformer/Assets/models/Cube.obj"
@@ -373,7 +378,12 @@
       "category": ""
     }
   },
-  null,
+  {
+    "TAG": {
+      "uniqueName": "",
+      "category": ""
+    }
+  },
   {
     "MODEL": {
       "path": "../GTXDankEngine/Assets/Models/placeholder_platforms.obj"
@@ -505,7 +515,7 @@
     "TRANSFORM": {
       "position": {
         "x": 13.696720123291016,
-        "y": 17.930700302124023,
+        "y": 17.93320083618164,
         "z": 1.0
       },
       "scale": {
@@ -536,7 +546,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -0.6609472036361694,
+        "y": -0.5740712881088257,
         "z": 0.0
       },
       "Accelereation": {
@@ -604,5 +614,68 @@
       "category": "Slope"
     }
   },
-  null
+  {
+    "TAG": {
+      "uniqueName": "",
+      "category": ""
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../GTXDankEngine/Assets/Models/Ball.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 24.0,
+        "y": -50.0,
+        "z": 35.0
+      },
+      "scale": {
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Friend Base Color.png",
+      "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
+      "Alpha": 1.0
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 2.930000066757202
+    },
+    "MOVING_BODY": {
+      "Elasticity": 0.3499999940395355,
+      "Friction": 0.0,
+      "Gravity": true,
+      "Mass": 5.0,
+      "Velocity": {
+        "x": 0.0,
+        "y": -17.236783981323242,
+        "z": 0.0
+      },
+      "Accelereation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "CollisionType": 0,
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "GAME_LOGIC": [
+      "PLATFORMER_BALL"
+    ],
+    "TAG": {
+      "uniqueName": "ball",
+      "category": "ball"
+    }
+  }
 ]
