@@ -61,7 +61,7 @@ void SceneSystem::LoadCurrentLevel()
 
 void SceneSystem::LoadNextLevel()
 {
-    if (currentLevel < levels.size()-2)
+    if (currentLevel < levels.size()-1)
     {
         currentLevel++;
     }

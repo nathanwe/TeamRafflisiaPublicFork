@@ -111,7 +111,7 @@
     <None Include="..\FPS\Assets\Scripts\DoLionThings.lua" />
     <None Include="..\FPS\Assets\Scripts\DoPlayerThings.lua" />
     <None Include="..\Platformer\Assets\Levels\gameObjects.json" />
-    <None Include="..\Platformer\Assets\Levels\level.json" />
+    <None Include="..\Platformer\Assets\Levels\Level0\level.json" />
     <None Include="..\Platformer\Assets\Scripts\Camera.lua" />
     <None Include="..\Platformer\Assets\Scripts\CategoryList.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoBlockThings.lua" />
