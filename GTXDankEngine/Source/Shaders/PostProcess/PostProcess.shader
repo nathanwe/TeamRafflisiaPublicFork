@@ -17,7 +17,6 @@ void main() {
 #version 330 core
 
 uniform sampler2D Scene;
-uniform sampler2D CrossHair;
 uniform bool HasHDR;
 uniform float exposure;
 
@@ -27,33 +26,11 @@ in vec2 TexCoords;
 out vec4 FragColor;
 
 
-vec4 GetCrossHairTexel()
-{
-    return texture(CrossHair, 8 * TexCoords + vec2(4.5));
-}
-
 
 
 void main()
 {
-    //------------------------------------------------------------------------------------------------------
-    // This chunk of code is a hack for implementing crossHair
-    // It involves manual Blending(alpha test), UV manipulationa and UV check
-    vec4 CrossHair = GetCrossHairTexel();
-    if (CrossHair.a > 0.1)
-    {
-        vec2 test = 8 * TexCoords + vec2(4.5);
-        if ((TexCoords.x > 0.45 && TexCoords.x < 0.55) && (TexCoords.y > 0.45 && TexCoords.y < 0.55))
-        {
-            FragColor = CrossHair;
-            return;
-        }
-    }
-
-    //-------------------------------------------------------------------------------------------------------
-
-
-
+    
     // Gamma correction and HDR
     if (HasHDR)
     {

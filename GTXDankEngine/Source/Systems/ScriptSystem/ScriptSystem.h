@@ -133,6 +133,12 @@ int lua_SetCameraStatic(lua_State* L);
 int lua_SetCameraStaticScene(lua_State* L);
 
 
+int lua_SendParticleEvent(lua_State* L);
+int lua_GetRadius(lua_State* L);
+int lua_GetMovementDirection(lua_State* L);
+int lua_GetPlaneNormal(lua_State* L);
+
+
 
 class LuaFile
 {

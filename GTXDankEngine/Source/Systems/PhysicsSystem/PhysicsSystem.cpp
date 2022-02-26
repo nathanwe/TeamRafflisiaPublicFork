@@ -276,13 +276,12 @@ void PhysicsSystem::Integrate(MovingBodyComponent* movingBody, float dt)
 
 }
 
-void PhysicsSystem::UpdateColliders()
+void PhysicsSystem::UpdateSingleCollider(Entity e)
 {
-	for (const auto& [colliderEntity, colliderComponent] : ColliderComponentPool.componentList)
+	auto colliderComponent = ColliderComponentPool.GetComponentByEntity(e);
+	auto transformComponent = TransformComponentPool.GetComponentByEntity(e);
+	if (colliderComponent != nullptr && transformComponent != nullptr)
 	{
-		/*if (rigidBodyComponent->bodyType == Body_Type::STATIC)
-			continue;*/
-		auto transformComponent = TransformComponentPool.GetComponentByEntity(colliderEntity);
 		colliderComponent->setPostion(transformComponent->transform.position);
 
 		if (colliderComponent->NarrowPhase.shape == Shape::SPHERE)
@@ -341,6 +340,14 @@ void PhysicsSystem::UpdateColliders()
 		{
 
 		}
+	}
+}
+
+void PhysicsSystem::UpdateColliders()
+{
+	for (const auto& [colliderEntity, colliderComponent] : ColliderComponentPool.componentList)
+	{
+		UpdateSingleCollider(colliderEntity);	
 	}
 }
 

@@ -76,12 +76,6 @@ void PostProcess::StandardPostProcessing(const FBO& fbo)
 
 	Standard->setTexture("Scene", fbo.GetColorAttachment());
 
-	// get cross hair from reource manager
-	ResourceHandle<Texture>* crossHair = TextureResourceManger.GetResourceHandle("Assets/Textures/CrossHair.png");
-
-	// bind cross hair texture
-	Standard->setTexture("CrossHair", crossHair->GetPointer()->GetID());
-
 	Quad().Draw(*Standard);
 
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);

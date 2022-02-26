@@ -22,10 +22,13 @@ public:
 	void Update(float timeStamp);
 	void UpdatePosition();
 
+	void UpdateSingleCollider(Entity e);
 	void UpdateColliders();
 	void UpdateMovingColliders();
 
 	void Integrate(MovingBodyComponent* movingBody, float dt);
+
+	
 
 	void DetectCollision(float dt);
 
