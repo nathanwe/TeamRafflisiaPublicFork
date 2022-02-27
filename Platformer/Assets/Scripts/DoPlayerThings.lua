@@ -7,7 +7,7 @@ local jumpspeed = 25
 local decay = 200
 local maxspeed = 35
 local hardcap = 40
-local losing = nil
+losingPlayer = nil
 
 
 function SavePlayers( levelnum )
@@ -20,7 +20,7 @@ function LoadPlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
 	airTime = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."/PlayerAirTimeSave.json")
 	decaying = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."/PlayerDecayingSave.json")
-
+	losingPlayer = nil
 end
 
 function ClearPlayers()
@@ -38,8 +38,8 @@ function UpdatePlayer(dt, e)
 	end
 	airTime[e] = airTime[e] + dt
 	--update losing
-	if losing ~= nil then
-		losing = losing - dt
+	if losingPlayer ~= nil then
+		losingPlayer = losingPlayer - dt
 	end
 
 	--roll
@@ -74,11 +74,11 @@ function UpdatePlayer(dt, e)
 	AddPhysicsVelocity(e, 0, dt * -50, 0)
 	
 	--AddPhysicsVelocity(e, -data.velocity.x*(1-decay), 0, 0)
-	if losing == nil and data.position.y < -20 then
-		losing = 5
+	if losingPlayer == nil and data.position.y < -20 and winningGoal == nil then
+		losingPlayer = 5
 	end
-		if losing ~= nil and losing < 0 then
-		losing = nil
+		if losingPlayer ~= nil and losingPlayer < 0 then
+		losingPlayer = nil
 		RestartLevel()
 	end
 end
@@ -94,7 +94,7 @@ function HandleEventPlayer(eventData)
 			--directions[imguiControledEntity] = GetImguiControledFloat(1)
 			imguiControledEntity = -1
 		end
-		if losing ~= nil then
+		if losingPlayer ~= nil then
 			DrawText("YOU LOSE!", 4.5, 0,350, 150,0,0)
 		end
 	end
