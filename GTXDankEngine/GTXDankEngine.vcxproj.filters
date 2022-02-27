@@ -313,6 +313,15 @@
     <Filter Include="Source Files\Systems\ProfileSystem\PhysicsSystem\RayCasting">
       <UniqueIdentifier>{dd9a2a15-c23d-4688-85aa-a6844ed512be}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Systems\GraphicsSystem\TextRenderer">
+      <UniqueIdentifier>{c0a497e8-4fbe-4115-bc1a-00e850df6d5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Systems\GraphicsSystem\TextRenderer">
+      <UniqueIdentifier>{18ea0e3e-d03f-4459-8aff-feec7ac71c61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Shaders\GeneralUIRenderer">
+      <UniqueIdentifier>{38055b55-bcdf-4f18-8882-04c72eb5a563}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="Skybox.shader">
@@ -480,8 +489,8 @@
     <None Include="..\Platformer\Assets\Scripts\DoLauncherThings.lua">
       <Filter>Platformer\Scripts</Filter>
     </None>
-    <None Include="..\Platformer\Assets\Levels\Level0\level.json">
-      <Filter>Platformer\Levels</Filter>
+    <None Include="Source\Shaders\GeneralUIRenderer\TextRenderer.shader">
+      <Filter>Resource Files\Shaders\GeneralUIRenderer</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -722,6 +731,9 @@
     <ClInclude Include="Source\Systems\GraphicsSystem\MenuSystem\MenuSystem.h">
       <Filter>Header Files\Systems\GraphicsSystem\MenuSystem</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\GraphicsSystem\TextRenderer\TextRenderer.h">
+      <Filter>Header Files\Systems\GraphicsSystem\TextRenderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -936,6 +948,9 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\ScriptSystem\ScriptSystem.cpp">
       <Filter>Source Files\Systems\ScriptSystem</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\GraphicsSystem\TextRenderer\TextRenderer.cpp">
+      <Filter>Source Files\Systems\GraphicsSystem\TextRenderer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

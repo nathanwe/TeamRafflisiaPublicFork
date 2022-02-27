@@ -109,6 +109,7 @@ int lua_SetPostProcess(lua_State* L);
 
 int lua_LoadNextLevel(lua_State* L);
 int lua_RestartGame(lua_State* L);
+int lua_RestartLevel(lua_State* L);
 int lua_GetLevelNumber(lua_State* L);
 int lua_LOG_INFO(lua_State* L);
 int lua_LOG_ERROR(lua_State* L);
@@ -131,6 +132,7 @@ int lua_SetBGMPitch(lua_State* L);
 
 int lua_SetCameraStatic(lua_State* L);
 int lua_SetCameraStaticScene(lua_State* L);
+int lua_DrawText(lua_State* L);
 
 
 int lua_SendParticleEvent(lua_State* L);

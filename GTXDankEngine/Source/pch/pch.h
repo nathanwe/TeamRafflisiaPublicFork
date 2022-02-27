@@ -20,6 +20,10 @@
 #include <glm/gtx/vector_angle.hpp>
 #include <glm/gtx/quaternion.hpp>
 
+/// freetype - text rendering
+#include <ft2build.h>
+#include FT_FREETYPE_H
+
 
 // profiling-----------------------------------------------------
 #include <spdlog/spdlog.h>

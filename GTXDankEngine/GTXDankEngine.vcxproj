@@ -68,7 +68,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>fmod_vc.lib;fmodstudio_vc.lib;glfw3.lib;opengl32.lib;assimp-vc142-mtd.lib;lua54.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fmod_vc.lib;fmodstudio_vc.lib;glfw3.lib;opengl32.lib;assimp-vc142-mtd.lib;lua54.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\lib\;$(SolutionDir)Libraries\lib\yaml\Debug\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -94,7 +94,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <AdditionalDependencies>lua54.lib;glfw3.lib;opengl32.lib;assimp-vc142-mtd.lib;fmod_vc.lib;fmodstudio_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>lua54.lib;glfw3.lib;opengl32.lib;assimp-vc142-mtd.lib;fmod_vc.lib;fmodstudio_vc.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)Libraries\lib\;$(SolutionDir)Libraries\lib\yaml\Release\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>msvcrtd;LIBCMT;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <IgnoreAllDefaultLibraries>
@@ -148,6 +148,7 @@
     <None Include="Source\Shaders\DebugRender\NormalVec.shader" />
     <None Include="Source\Shaders\DeferredRenderer\Cel.shader" />
     <None Include="Source\Shaders\DeferredRenderer\Fill_G_Buffer.shader" />
+    <None Include="Source\Shaders\GeneralUIRenderer\TextRenderer.shader" />
     <None Include="Source\Shaders\LightSource.shader" />
     <None Include="Source\Shaders\MenuRenderer\UIMenuShader.shader" />
     <None Include="Source\Shaders\OIT\CompositionPass.shader" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Source\Systems\GraphicsSystem\MenuSystem\Menu.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\MenuSystem\MenuButton.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\MenuSystem\MenuSystem.h" />
+    <ClInclude Include="Source\Systems\GraphicsSystem\TextRenderer\TextRenderer.h" />
     <ClInclude Include="Source\Systems\PhysicsSystem\Raycasting\Raycasting.h" />
     <ClInclude Include="Source\Systems\LevelEditorSystem\LevelEditorSystem.h" />
     <ClInclude Include="Source\Components\AudioComponent\AudioBus.h" />
@@ -247,6 +249,7 @@
     <ClCompile Include="Source\Systems\GraphicsSystem\MenuSystem\Menu.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\MenuSystem\MenuButton.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\MenuSystem\MenuSystem.cpp" />
+    <ClCompile Include="Source\Systems\GraphicsSystem\TextRenderer\TextRenderer.cpp" />
     <ClCompile Include="Source\Systems\PhysicsSystem\Raycasting\Raycasting.cpp" />
     <ClCompile Include="Source\Components\TagComponent\TagComponent.cpp" />
     <ClCompile Include="Source\Core\Pathfinder.cpp" />

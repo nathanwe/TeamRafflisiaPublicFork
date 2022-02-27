@@ -1,5 +1,6 @@
 --Goalthings
 local imguiControledEntity = -1
+local winning = nil;
 
 function SaveGoals( levelnum )
 	levelstr = string.format("%i", levelnum)
@@ -18,7 +19,13 @@ function DestroyGoal(e)
 end
 
 function UpdateGoal(dt, e)
-	
+	if winning ~= nil  then
+		winning = winning -dt
+	end
+	if winning ~= nil and winning < 0 then
+		winning = nil
+		LoadNextLevel()
+	end
 end
 
 function HandleEventGoal(eventData)
@@ -35,10 +42,14 @@ function HandleEventGoal(eventData)
 			--directions[imguiControledEntity] = GetImguiControledFloat(1)
 			imguiControledEntity = -1
 		end
+		if winning ~= nil then
+			DrawText("YOU WIN!", 5, 50,350, 0,150,0)
+		end
 	end
 	if eventData.type == 12 then
 		LOG_INFO("you win loading next level")
-		LoadNextLevel()
+		winning = 5
+		--LoadNextLevel()
 	end
 end
 

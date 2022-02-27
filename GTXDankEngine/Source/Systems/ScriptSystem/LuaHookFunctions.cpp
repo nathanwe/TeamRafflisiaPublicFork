@@ -1086,6 +1086,12 @@ int lua_RestartGame(lua_State* L)
 	return 0;
 }
 
+int lua_RestartLevel(lua_State* L)
+{
+    engine.SceneSys.LoadScene(engine.SceneSys.GetCurrentLevel());
+    return 0;
+}
+
 int lua_GetLevelNumber(lua_State* L)
 {
     lua_pushnumber(L, engine.SceneSys.GetCurrentLevel());
@@ -1200,6 +1206,15 @@ int lua_SetCameraStaticScene(lua_State* L)
         lua_tonumber(L, 5),
         lua_tonumber(L, 6)
     );
+    return 0;
+}
+
+int lua_DrawText(lua_State* L)
+{
+    //string, scale, posx, pos, r, g, b 
+    engine.GraphicsSys.DrawCustomText(std::string(lua_tostring(L, 1)), lua_tonumber(L, 2),
+        glm::vec2(lua_tonumber(L, 3), lua_tonumber(L, 4)),
+        glm::vec3(lua_tonumber(L, 5), lua_tonumber(L, 6), lua_tonumber(L, 7)));
     return 0;
 }
 

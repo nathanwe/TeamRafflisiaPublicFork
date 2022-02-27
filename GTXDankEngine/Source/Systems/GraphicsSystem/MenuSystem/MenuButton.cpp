@@ -166,7 +166,7 @@ void MenuButton::Setup()
     //VertexBuffer vbo(&quadVerticesColorTexture[0], quadVerticesColorTexture.size() * sizeof(Vertex));
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, quadVerticesColorTexture.size() * sizeof(float) * (2 + 4 + 2), quadVerticesColorTexture.data(), GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, quadVerticesColorTexture.size() * sizeof(float), quadVerticesColorTexture.data(), GL_STATIC_DRAW);
 
 
 

@@ -93,6 +93,7 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "SetPostProcess", lua_SetPostProcess);
 	lua_register(L, "LoadNextLevel", lua_LoadNextLevel);
     lua_register(L, "RestartGame", lua_RestartGame);
+    lua_register(L, "RestartLevel", lua_RestartLevel);
     lua_register(L, "GetLevelNumber", lua_GetLevelNumber);
     lua_register(L, "LOG_INFO", lua_LOG_INFO);
     lua_register(L, "LOG_ERROR", lua_LOG_ERROR);
@@ -111,6 +112,7 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "SetCameraStatic", lua_SetCameraStatic);
     lua_register(L, "SetCameraStaticScene", lua_SetCameraStaticScene);
     lua_register(L, "SetAudioEventPosition", lua_SetAudioEventPosition);
+    lua_register(L, "DrawText", lua_DrawText);
     lua_register(L, "SendParticleEvent", lua_SendParticleEvent);
     lua_register(L, "GetRadius", lua_GetRadius);
     lua_register(L, "GetPlaneNormal", lua_GetPlaneNormal);

@@ -93,6 +93,11 @@ bool GraphicsSystem::Init()
 
 	MenuSystem.Init();
 
+	TextRenderer.Init("Assets/Fonts/arial.ttf");
+//	TextRenderer.Init("fonts/arial.ttf");
+	textShader = new Shader("Source/Shaders/GeneralUIRenderer/TextRenderer.shader");
+	textShader->setMat4("projection", glm::ortho(0.0f,float(WIDTH),0.0f,float(HEIGHT)));
+
 	return true;
 }
 
@@ -129,6 +134,8 @@ void GraphicsSystem::Update(float timeStamp)
 	else DebugDraw();
 	
 	MenuSystem.Draw();
+
+//	TextRenderer.RenderText(*textShader, "Hello, World!", WIDTH / 2 - 100, HEIGHT / 2 - 50, 1.3, glm::vec3(1.0,0,0));
 }
 
 
@@ -332,3 +339,11 @@ void GraphicsSystem::RendererFboResize(unsigned int width, unsigned int height)
 	// change fbo
 	PostProcesser.Resize(width, height);
 }
+
+
+void GraphicsSystem::DrawCustomText(std::string text, float scale, glm::vec2 pos, glm::vec3 color)
+{
+	TextRenderer.RenderText(*textShader, text, pos.x, pos.y, scale, color);
+}
+
+

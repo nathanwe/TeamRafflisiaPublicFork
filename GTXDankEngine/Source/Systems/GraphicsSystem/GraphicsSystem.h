@@ -16,6 +16,7 @@
 #include "Sky/Sky.h"
 #include "MenuSystem/MenuSystem.h"
 #include "MenuSystem/Menu.h"
+#include "TextRenderer/TextRenderer.h"
 
 
 
@@ -64,6 +65,8 @@ public:
 	MenuSystem& GetMenuSystem() { return MenuSystem; };
 	ParticleSystem& GetParticleSystem() { return PS; };
 
+	void DrawCustomText(const std::string text, float scale, glm::vec2 pos, glm::vec3 color);
+
 
 private:
 	void InitGLFW();
@@ -81,6 +84,8 @@ private:
 	void RendererFboResize(unsigned int width, unsigned int height);
 
 	void SetSunDir(glm::vec3 dir);
+
+	void DrawText(const std::string text, float scale, glm::vec2 pos, glm::vec3 color);
 
 
 private:
@@ -108,5 +113,8 @@ private:
 	PostProcessType postProcessType;
 
 	MenuSystem MenuSystem;
+
+	TextRenderer TextRenderer;
+	Shader* textShader;
 };
 #endif // !GRAPHICSSYSTEM_H

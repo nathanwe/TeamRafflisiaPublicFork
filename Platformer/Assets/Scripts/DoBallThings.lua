@@ -40,7 +40,6 @@ end
 
 
 function UpdateBall(dt, e)
-
 	x,y,z = GetPosition(e)
 	--print("UpdateBall", e, y)
 	--if y < 0 then

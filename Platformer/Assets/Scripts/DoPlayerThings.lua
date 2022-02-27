@@ -7,6 +7,7 @@ local jumpspeed = 25
 local decay = 200
 local maxspeed = 35
 local hardcap = 40
+local losing = nil
 
 
 function SavePlayers( levelnum )
@@ -36,6 +37,11 @@ function UpdatePlayer(dt, e)
 		airTime[e] = 0 
 	end
 	airTime[e] = airTime[e] + dt
+	--update losing
+	if losing ~= nil then
+		losing = losing - dt
+	end
+
 	--roll
 	data = {}
 	data = GetRigidData(e)
@@ -68,17 +74,29 @@ function UpdatePlayer(dt, e)
 	AddPhysicsVelocity(e, 0, dt * -50, 0)
 	
 	--AddPhysicsVelocity(e, -data.velocity.x*(1-decay), 0, 0)
-
-	
-	
-
-
+	if losing == nil and data.position.y < -20 then
+		losing = 5
+	end
+		if losing ~= nil and losing < 0 then
+		losing = nil
+		RestartLevel()
+	end
 end
 
 function HandleEventPlayer(eventData)
 	if eventData.type == 16 then
 		ImguiText("Player")
 		imguiControledEntity = eventData.e1
+	end
+	if eventData.type == 17 then
+		if imguiControledEntity ~= -1 then
+			--bouncyness[imguiControledEntity] = GetImguiControledFloat(0)
+			--directions[imguiControledEntity] = GetImguiControledFloat(1)
+			imguiControledEntity = -1
+		end
+		if losing ~= nil then
+			DrawText("YOU LOSE!", 4.5, 0,350, 150,0,0)
+		end
 	end
 	if eventData.type == 12 then
 		if airTime[eventData.e1] > 0.5 then

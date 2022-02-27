@@ -121,7 +121,6 @@ void Engine::Run()
 		TextureResourceManger.Update(0);
 		
 		AudioSys.Update(0);
-		
 		GraphicsSys.Update(DeltaTime());
 		UISys.Update(DeltaTime());
 
