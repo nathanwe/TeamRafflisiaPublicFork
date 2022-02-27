@@ -13,6 +13,9 @@ Menu::Menu()
 buttons(std::map<std::string, MenuButton*>()),
 vertices(std::vector<float>(4 * (2 + 2))), indices({ 0,1,2, 1,2,3 })
 {
+    /// for slider testing
+    //sliders["basic"] = new MenuSlider("BGM Volume", glm::vec2(400, 700), glm::vec2(600, 15));
+    //sliders["basic"]->SetDivision(10);
 }
 
 Menu::~Menu()
@@ -49,6 +52,31 @@ MenuButton* Menu::GetButton(std::string name)
     }
     return fButton;
 }
+
+MenuSlider* Menu::AddSlider(std::string name,
+    glm::vec2 position, glm::vec2 dimensions)
+{
+    if (sliders.find(name) == sliders.end())
+        sliders[name] = new MenuSlider(name, position, dimensions);
+    else
+        LOG_WARN("Attempt to override an existing slider {0}", name);
+    return sliders[name];
+}
+
+MenuSlider* Menu::GetSlider(std::string name)
+{
+    MenuSlider* fSlider = nullptr;
+    if (sliders.find(name) == sliders.end())
+    {
+        LOG_WARN("No slider with name {0}", name);
+    }
+    else
+    {
+        fSlider = sliders[name];
+    }
+    return fSlider;
+}
+
 
 void Menu::Setup()
 {
@@ -96,6 +124,10 @@ void Menu::Setup()
     /// setup all of the buttons
     for (auto& [_,mb] : buttons)
         mb->Setup();
+
+    /// setup all of the sliders
+    for (auto& [_,ms] : sliders)
+        ms->Setup();
 }
 
 
@@ -125,10 +157,16 @@ void Menu::Draw(Shader& shader)
         shader.unBind();
     }
 
+    /// draw all of the buttons
     for (auto& [_,mb] : buttons)
     {
         mb->Draw(shader);
     }
+
+    
+    /// draw all of the sliders
+    for (auto& [_,ms] : sliders)
+        ms->Draw();
 }
 
 

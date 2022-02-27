@@ -4,9 +4,13 @@
             "x": "center",
             "y": 500
         },
-        "Size": {
+        "Button Size": {
             "x": 200,
             "y": 80
+        },
+        "Slider Size": {
+            "x": 600,
+            "y": 15
         },
 
         "Background": "Assets/Textures/Continue_test.png",
@@ -15,9 +19,48 @@
             "Texture": "Assets/Textures/Continue_test.png",
             "Command": "Start"
         },
+        "Options":
+        {
+            "Texture": "Assets/Textures/Options_test.png",
+            "Command": "Options"
+        },
         "Exit": {
             "Texture": "Assets/Textures/Exit_test.png",
             "Command": "Exit"
+        }
+    },
+
+    
+
+    "Options": {
+        "First": {
+            "x": 100,
+            "y": 30 
+        },
+        "Button Size": {
+            "x": 120,
+            "y": 50 
+        },
+        "Slider Size": {
+            "x": 600,
+            "y": 15
+        },
+
+        "Background": "Assets/Textures/Continue_test.png",
+
+        "BGM Volume":
+        {
+            "Slider": true,
+            "Parts": 10
+        },
+        "SFX Volume":
+        {
+            "Slider": true,
+            "Parts": 10
+        },
+        "Back": {
+            "Texture": "Assets/Textures/Exit_test.png",
+            "Command": "Back"
         }
     },
 
@@ -28,9 +71,13 @@
             "x": 100,
             "y": 30 
         },
-        "Size": {
+        "Button Size": {
             "x": 120,
             "y": 50 
+        },
+        "Slider Size": {
+            "x": 600,
+            "y": 15
         },
 
         "Pause": {
@@ -62,11 +109,23 @@
             "x": 100,
             "y": 30 
         },
-        "Size": {
+        "Button Size": {
             "x": 120,
             "y": 50 
         },
+        "Slider Size": {
+            "x": 600,
+            "y": 15
+        },
 
+        "BGM Volume":
+        {
+            "Slider": true
+        },
+        "SFX Volume":
+        {
+            "Slider": true
+        },
         "Back": {
             "Texture": "Assets/Textures/Exit_test.png",
             "Command": "Back"
@@ -79,9 +138,13 @@
             "x": 100,
             "y": 30 
         },
-        "Size": {
+        "Button Size": {
             "x": 120,
             "y": 50 
+        },
+        "Slider Size": {
+            "x": 600,
+            "y": 15
         },
         
         "Options2Deep": {
@@ -98,11 +161,15 @@
     "Options2Deep": {
         "First": {
             "x": 100,
-            "y": 30 
+            "y": 30
         },
-        "Size": {
+        "Button Size": {
             "x": 120,
             "y": 50 
+        },
+        "Slider Size": {
+            "x": 600,
+            "y": 15
         },
 
         "Back": {

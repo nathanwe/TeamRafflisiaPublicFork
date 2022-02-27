@@ -128,31 +128,32 @@ void SceneSystem::Update(float dt)
     {
         if (levelToLoad == -1)
         {
-            engine.GraphicsSys.GetMenuSystem().SetCurrentMenu("Main");
             engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
-            return;
+            engine.GraphicsSys.GetMenuSystem().SetCurrentMenu("Main");
         }
-
-        currentLevel = levelToLoad;
-        ordered_json levelJson =levels[currentLevel];
-
-        for (auto itr = levelJson.begin(); itr != levelJson.end(); ++itr)
+        else
         {
-            ordered_json j = itr.value();
-            Entity entity = engine.GameObjectFac.CreateObjectFromJson(j);
+            currentLevel = levelToLoad;
+            ordered_json levelJson = levels[currentLevel];
+
+            for (auto itr = levelJson.begin(); itr != levelJson.end(); ++itr)
+            {
+                ordered_json j = itr.value();
+                Entity entity = engine.GameObjectFac.CreateObjectFromJson(j);
+            }
+
+            Event ev = Event(true);
+            ev.type = EventType::LOAD_LUA;
+            ev.intData1 = currentLevel;
+            engine.DoGameLogicScriptSys.HandleEvent(ev);
+            engine.CameraControlSys.HandleEvent(ev);
+
+            // For Physics
+            engine.PhysicsSys.UpdatePosition();
+            engine.PhysicsSys.UpdateColliders();
+
+            engine.GraphicsSys.GetParticleSystem().ResetEmitters();
         }
-
-        Event ev = Event(true);
-        ev.type = EventType::LOAD_LUA;
-        ev.intData1 = currentLevel;
-        engine.DoGameLogicScriptSys.HandleEvent(ev);
-        engine.CameraControlSys.HandleEvent(ev);
-
-        // For Physics
-        engine.PhysicsSys.UpdatePosition();
-        engine.PhysicsSys.UpdateColliders();
-
-        engine.GraphicsSys.GetParticleSystem().ResetEmitters();
     }
     shouldLoadLevel = false;
 }

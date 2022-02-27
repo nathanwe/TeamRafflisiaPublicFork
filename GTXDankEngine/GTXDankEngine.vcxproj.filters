@@ -496,6 +496,9 @@
     <None Include="..\Platformer\Assets\Scripts\DoHomeSenderThings.lua">
       <Filter>Platformer\Scripts</Filter>
     </None>
+    <None Include="Source\Shaders\MenuRenderer\SliderPointerShader.shader">
+      <Filter>Resource Files\Shaders\MenuRenderer</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">
@@ -738,6 +741,9 @@
     <ClInclude Include="Source\Systems\GraphicsSystem\TextRenderer\TextRenderer.h">
       <Filter>Header Files\Systems\GraphicsSystem\TextRenderer</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Systems\GraphicsSystem\MenuSystem\MenuSlider.h">
+      <Filter>Header Files\Systems\GraphicsSystem\MenuSystem</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\utils\Log.cpp">
@@ -955,6 +961,9 @@
     </ClCompile>
     <ClCompile Include="Source\Systems\GraphicsSystem\TextRenderer\TextRenderer.cpp">
       <Filter>Source Files\Systems\GraphicsSystem\TextRenderer</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Systems\GraphicsSystem\MenuSystem\MenuSlider.cpp">
+      <Filter>Source Files\Systems\GraphicsSystem\MenuSystem</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
