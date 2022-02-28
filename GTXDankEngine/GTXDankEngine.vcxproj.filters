@@ -492,6 +492,10 @@
     <None Include="Source\Shaders\GeneralUIRenderer\TextRenderer.shader">
       <Filter>Resource Files\Shaders\GeneralUIRenderer</Filter>
     </None>
+    <None Include="..\Platformer\Assets\Levels\Level0\level.json" />
+    <None Include="..\Platformer\Assets\Scripts\DoHomeSenderThings.lua">
+      <Filter>Platformer\Scripts</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\utils\Log.h">

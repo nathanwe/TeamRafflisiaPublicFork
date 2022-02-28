@@ -43,7 +43,7 @@
   },
   {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/placeholder_platforms.obj"
+      "path": "../Platformer/Assets/Models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -64,7 +64,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/PlatformBaseColor.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/PlatformBaseColor.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0
     },
@@ -88,7 +88,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
+      "path": "../Platformer/Assets/Models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -109,7 +109,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Gradient Background.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Gradient Background.png",
       "MetallicPath": "../Platformer/Assets/Textures/wall/metallic.png",
       "Alpha": 1.0
     },
@@ -120,7 +120,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/Cube.obj"
+      "path": "../Platformer/Assets/Models/Cube.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -181,7 +181,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
+      "path": "../Platformer/Assets/Models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -231,7 +231,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
+      "path": "../Platformer/Assets/Models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -263,7 +263,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/Cube.obj"
+      "path": "../Platformer/Assets/Models/Cube.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -333,7 +333,7 @@
   },
   {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/placeholder_platforms.obj"
+      "path": "../Platformer/Assets/Models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -355,7 +355,7 @@
     },
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/Cube Specular.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Cube Specular.png",
       "Alpha": 1.0
     },
     "COLLIDER": {
@@ -393,7 +393,7 @@
   },
   {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/Ball.obj"
+      "path": "../Platformer/Assets/Models/Ball.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -414,8 +414,8 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Hero Base Color.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Hero Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
       "Alpha": 1.0
     },
     "COLLIDER": {
@@ -475,7 +475,7 @@
   },
   {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/button.obj"
+      "path": "../Platformer/Assets/Models/button.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -497,7 +497,7 @@
     },
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Trampoline Base Color.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/Button Specular.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Button Specular.png",
       "Alpha": 1.0
     },
     "COLLIDER": {
@@ -586,7 +586,7 @@
   null,
   {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/button.obj"
+      "path": "../Platformer/Assets/Models/button.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -608,7 +608,7 @@
     },
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Trampoline Base Color.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/Button Specular.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Button Specular.png",
       "Alpha": 1.0
     },
     "COLLIDER": {
@@ -634,7 +634,7 @@
   },
   {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/button.obj"
+      "path": "../Platformer/Assets/Models/button.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -656,7 +656,7 @@
     },
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Trampoline Base Color.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/Button Specular.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Button Specular.png",
       "Alpha": 1.0
     },
     "COLLIDER": {
@@ -683,7 +683,7 @@
   null,
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
+      "path": "../Platformer/Assets/Models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -729,7 +729,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
+      "path": "../Platformer/Assets/Models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -775,7 +775,7 @@
   },
   {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/button.obj"
+      "path": "../Platformer/Assets/Models/button.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -797,7 +797,7 @@
     },
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Trampoline Base Color.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/Button Specular.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Button Specular.png",
       "Alpha": 1.0
     },
     "COLLIDER": {
@@ -823,7 +823,7 @@
   },
   {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/Ball.obj"
+      "path": "../Platformer/Assets/Models/Ball.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -844,8 +844,8 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Friend Base Color.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
       "Alpha": 1.0
     },
     "COLLIDER": {

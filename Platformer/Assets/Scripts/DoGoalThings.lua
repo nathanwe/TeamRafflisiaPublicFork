@@ -12,11 +12,11 @@ function LoadGoals( levelnum )
 end
 
 function ClearGoals()
-	--bouncyness = {}
+	--cooldown = {}
 end
 
 function DestroyGoal(e)
-	--bouncyness[e] = nil
+	--cooldown[e] = nil
 end
 
 function UpdateGoal(dt, e)
@@ -32,13 +32,13 @@ function HandleEventGoal(eventData)
 
 	if eventData.type == 16 then
 		ImguiText("Goal")
-		--ImguiControledFloat(0, "bouncyness", bouncyness[eventData.e1])
+		--ImguiControledFloat(0, "cooldown", cooldown[eventData.e1])
 		imguiControledEntity = eventData.e1
 
 	end
 	if eventData.type == 17 then
 		if imguiControledEntity ~= -1 then
-			--bouncyness[imguiControledEntity] = GetImguiControledFloat(0)
+			--cooldown[imguiControledEntity] = GetImguiControledFloat(0)
 			--directions[imguiControledEntity] = GetImguiControledFloat(1)
 			imguiControledEntity = -1
 		end

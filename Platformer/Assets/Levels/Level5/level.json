@@ -39,7 +39,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/Cube.obj"
+      "path": "../Platformer/Assets/Models/Cube.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -71,7 +71,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/Cube.obj"
+      "path": "../Platformer/Assets/Models/Cube.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -92,7 +92,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Gradient Background.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Gradient Background.png",
       "MetallicPath": "../Platformer/Assets/Textures/wall/metallic.png",
       "Alpha": 1.0
     },
@@ -109,7 +109,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/Cube.obj"
+      "path": "../Platformer/Assets/Models/Cube.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -167,7 +167,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/Cube.obj"
+      "path": "../Platformer/Assets/Models/Cube.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -212,7 +212,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/Cube.obj"
+      "path": "../Platformer/Assets/Models/Cube.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -264,7 +264,7 @@
   },
   {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/placeholder_platforms.obj"
+      "path": "../Platformer/Assets/Models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -322,7 +322,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/Cube.obj"
+      "path": "../Platformer/Assets/Models/Cube.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -386,7 +386,7 @@
   },
   {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/placeholder_platforms.obj"
+      "path": "../Platformer/Assets/Models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -407,8 +407,8 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/PlatformBaseColor.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/PlatformSpecular.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/PlatformBaseColor.png",
+      "MetallicPath": "../Platformer/Assets/Textures/PlatformSpecular.png",
       "Alpha": 1.0
     },
     "COLLIDER": {
@@ -432,7 +432,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
+      "path": "../Platformer/Assets/Models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -464,7 +464,7 @@
   },
   {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/placeholder_platforms.obj"
+      "path": "../Platformer/Assets/Models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -485,8 +485,8 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/PlatformBaseColor.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/PlatformSpecular.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/PlatformBaseColor.png",
+      "MetallicPath": "../Platformer/Assets/Textures/PlatformSpecular.png",
       "Alpha": 1.0
     },
     "COLLIDER": {
@@ -510,7 +510,7 @@
   },
   {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/Ball.obj"
+      "path": "../Platformer/Assets/Models/Ball.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -531,8 +531,8 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Hero Base Color.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Hero Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
       "Alpha": 1.0
     },
     "COLLIDER": {
@@ -568,7 +568,7 @@
   },
   {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/placeholder_platforms.obj"
+      "path": "../Platformer/Assets/Models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -622,7 +622,7 @@
   },
   {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/Ball.obj"
+      "path": "../Platformer/Assets/Models/Ball.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -643,8 +643,8 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Friend Base Color.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
       "Alpha": 1.0
     },
     "COLLIDER": {

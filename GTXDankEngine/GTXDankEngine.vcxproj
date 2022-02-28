@@ -116,6 +116,7 @@
     <None Include="..\Platformer\Assets\Scripts\CategoryList.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoBlockThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoGoalThings.lua" />
+    <None Include="..\Platformer\Assets\Scripts\DoHomeSenderThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoHoneySlimeThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoLauncherThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoPlateThings.lua" />

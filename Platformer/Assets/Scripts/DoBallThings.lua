@@ -80,11 +80,7 @@ function HandleEventBall(eventData)
 	if eventData.type == 19 then
 		--LOG_INFO("pressed key")
 		if eventData.stringData1 == "Space" then
-			for index,value in pairs(homeX) do
-				--LOG_INFO("moved" .. homeX[index] .. homeY[index] .. homeZ[index])
-				SetPosition(index, homeX[index], homeY[index], homeZ[index])
-				SetPhysicsVelocity(index, homeVelX[index], homeVelY[index], homeVelZ[index])
-			end
+			GoHomesBall()
 		end
 	end
 end
@@ -97,3 +93,11 @@ function HandleEventPerEntityBall(e, eventData)
 end
 
 --custom functions
+
+function GoHomesBall()
+	for index,value in pairs(homeX) do
+		--LOG_INFO("moved" .. homeX[index] .. homeY[index] .. homeZ[index])
+		SetPosition(index, homeX[index], homeY[index], homeZ[index])
+		SetPhysicsVelocity(index, homeVelX[index], homeVelY[index], homeVelZ[index])
+	end
+end
