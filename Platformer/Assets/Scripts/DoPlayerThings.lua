@@ -78,7 +78,6 @@ function UpdatePlayer(dt, e)
 		losingPlayer = 5
 	end
 		if losingPlayer ~= nil and losingPlayer < 0 then
-		losingPlayer = nil
 		RestartLevel()
 	end
 end

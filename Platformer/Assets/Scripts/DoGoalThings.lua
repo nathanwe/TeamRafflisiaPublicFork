@@ -24,7 +24,6 @@ function UpdateGoal(dt, e)
 		winningGoal = winningGoal -dt
 	end
 	if winningGoal ~= nil and winningGoal < 0 then
-		winningGoal = nil
 		LoadNextLevel()
 	end
 end
