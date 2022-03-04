@@ -120,11 +120,13 @@
 
         "BGM Volume":
         {
-            "Slider": true
+            "Slider": true,
+            "Parts": 10
         },
         "SFX Volume":
         {
-            "Slider": true
+            "Slider": true,
+            "Parts": 10
         },
         "Back": {
             "Texture": "Assets/Textures/Exit_test.png",
