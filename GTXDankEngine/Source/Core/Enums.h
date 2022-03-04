@@ -68,7 +68,9 @@ enum GameLogicCategories
 	MOVING_PLATFORM = 5,
 	GUN = 6,
 	PLATFORMER_BALL = 7,
-	MAX_CATEGORIES = 8
+	GLIDE = 8,
+	WIND = 9,
+	MAX_CATEGORIES = 10
 };
 
 NLOHMANN_JSON_SERIALIZE_ENUM(GameLogicCategories, {

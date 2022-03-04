@@ -115,12 +115,15 @@
     <None Include="..\Platformer\Assets\Scripts\Camera.lua" />
     <None Include="..\Platformer\Assets\Scripts\CategoryList.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoBlockThings.lua" />
+    <None Include="..\Platformer\Assets\Scripts\DoGlideThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoGoalThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoHomeSenderThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoHoneySlimeThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoLauncherThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoPlateThings.lua" />
     <None Include="..\Platformer\Assets\Scripts\DoPlayerThings.lua" />
+    <None Include="..\Platformer\Assets\Scripts\DoTranslateThings.lua" />
+    <None Include="..\Platformer\Assets\Scripts\DoWindThings.lua" />
     <None Include="..\SandBox1\Assets\audio\Master.bank" />
     <None Include="..\SandBox1\Assets\audio\Master.strings.bank" />
     <None Include="..\SandBox1\Assets\Configs\commands.json" />

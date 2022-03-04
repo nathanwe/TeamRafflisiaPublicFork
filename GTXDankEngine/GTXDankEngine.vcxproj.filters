@@ -489,6 +489,13 @@
     <None Include="..\Platformer\Assets\Scripts\DoLauncherThings.lua">
       <Filter>Platformer\Scripts</Filter>
     </None>
+    <None Include="..\Platformer\Assets\Scripts\DoTranslateThings.lua">
+      <Filter>Platformer\Scripts</Filter>
+    </None>
+    <None Include="..\Platformer\Assets\Scripts\DoGlideThings.lua">
+      <Filter>Platformer\Scripts</Filter>
+    </None>
+    <None Include="..\Platformer\Assets\Scripts\DoWindThings.lua">
     <None Include="Source\Shaders\GeneralUIRenderer\TextRenderer.shader">
       <Filter>Resource Files\Shaders\GeneralUIRenderer</Filter>
     </None>

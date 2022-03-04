@@ -91,7 +91,7 @@ public:
 	 ~ResourceManager();
 
 	bool Init();
-	bool Init(std::string defaultResourcePath);
+	bool Init(std::string);
 	void Update(float dt);
 	bool Destroy();
 
@@ -102,6 +102,7 @@ private:
 	std::unordered_map<std::string, ResourceHandle<ResourceType>> resources;
 	std::list<std::string> updatingResources;
 	ResourceType* defaultResource;
+	std::string defaultResourcePath;
 	std::thread threadName;
 	std::condition_variable cv;
 	std::mutex mutex;
@@ -124,22 +125,29 @@ inline ResourceHandle<ResourceType>* ResourceManager<ResourceType>::GetResourceH
 	}
 	else
 	{
-		resources.insert(std::pair<std::string,
-			ResourceHandle<ResourceType>>(filepath,
-				ResourceHandle<ResourceType>(defaultResource, filepath, ResourceState::UNLOADED)));
-
-		updatingResources.push_back(filepath);
-		auto handle = resources.find(filepath);
-		if (handle != resources.end())
+		if (std::filesystem::exists(filepath))
 		{
-			return &(handle->second);
+			resources.insert(std::pair<std::string,
+				ResourceHandle<ResourceType>>(filepath,
+					ResourceHandle<ResourceType>(defaultResource, filepath, ResourceState::UNLOADED)));
+
+			updatingResources.push_back(filepath);
+			auto handle = resources.find(filepath);
+			if (handle != resources.end())
+			{
+				return &(handle->second);
+			}
+			else
+			{
+				LOG_ERROR("cant find just added resource");
+				return &(handle->second);
+			}
 		}
 		else
 		{
-			LOG_ERROR("cant find just added resource");
-			return &(handle->second);
+			LOG_ERROR("file {} does not exist", filepath);
+			return GetResourceHandle(defaultResourcePath);
 		}
-
 	}
 }
 
@@ -193,13 +201,14 @@ inline bool ResourceManager<ResourceType>::Init()
 }
 
 template<class ResourceType>
-inline bool ResourceManager<ResourceType>::Init(std::string defaultResourcePath)
+inline bool ResourceManager<ResourceType>::Init(std::string _defaultResourcePath)
 {
-	defaultResource = new ResourceType(defaultResourcePath);
+	defaultResource = new ResourceType(_defaultResourcePath);
+	defaultResourcePath = _defaultResourcePath;
 	defaultResource->OnLoad();
 	resources.insert(std::pair<std::string,
-		ResourceHandle<ResourceType>>(defaultResourcePath,
-			ResourceHandle<ResourceType>(defaultResource, defaultResourcePath, ResourceState::LOADED)));
+		ResourceHandle<ResourceType>>(_defaultResourcePath,
+			ResourceHandle<ResourceType>(defaultResource, _defaultResourcePath, ResourceState::LOADED)));
 	threadName = std::thread(&ResourceManager::ThreadlyUpdateHandles, this);
 	return false;
 }
