@@ -77,7 +77,7 @@ void TextRenderer::Init(std::string fontPath)
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
 
-    /// VBO & IBO
+    /// VBO
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, NULL, GL_STATIC_DRAW);
@@ -112,6 +112,7 @@ void TextRenderer::RenderText(Shader& textShader, std::string text, float x, flo
         float wdth = ch.size.x * scale;
         float hght = ch.size.y * scale;
         std::vector<float> vertices = {
+            /// CLOCKWISE
             xpos,        ypos + hght, 0, 0,   /// bottom left
             xpos,        ypos,        0, 1,   /// top left
             xpos + wdth, ypos,        1, 1,   /// top right

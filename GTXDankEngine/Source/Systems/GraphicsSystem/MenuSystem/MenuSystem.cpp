@@ -97,7 +97,6 @@ void MenuSystem::Draw()
 {
     if (!currentMenu.empty() && menus.find(currentMenu) != menus.end() && display)
     {
-        bool isom1 = currentMenu.compare("OptionsMenu1") == 0;
         menus[currentMenu]->Draw(*menuShader);
     }
 }

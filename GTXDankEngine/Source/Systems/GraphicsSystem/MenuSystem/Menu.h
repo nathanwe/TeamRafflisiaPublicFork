@@ -9,6 +9,7 @@
 #include "../utils/SerializationHelper.h"
 
 #include "MenuButton.h"
+#include "MenuSlider.h"
 
 
 class Shader;
@@ -24,9 +25,12 @@ public:
     MenuButton* AddButton(std::string name,
         glm::vec2 position,   std::pair<bool, bool> isPosRelative,
         glm::vec2 dimensions, std::pair<bool, bool> isDimRelative,
-        glm::vec4 rgba);
-    
+        glm::vec4 rgba);    
     MenuButton* GetButton(std::string name);
+    
+    MenuSlider* AddSlider(std::string name,
+        glm::vec2 position, glm::vec2 dimensions);
+    MenuSlider* GetSlider(std::string name);
 
     void Draw(Shader& shader);
     void Setup();
@@ -44,6 +48,7 @@ private:
 /// parameters
 private:
     std::map<std::string, MenuButton*> buttons;
+    std::map<std::string, MenuSlider*> sliders;
     
     /// values for drawing the menu background
     std::vector<float> vertices;
@@ -58,9 +63,10 @@ private:
 
 inline void from_json(const ordered_json& j, Menu& menu)
 {
-    glm::vec2 commonDmns, startPnt;
+    glm::vec2 buttonDmns, sliderDmns, startPnt;
     bool isCenter = false;
-    from_json(j["Size"], commonDmns);
+    from_json(j["Button Size"], buttonDmns);
+    from_json(j["Slider Size"], sliderDmns);
 
     if (j["First"]["x"].is_number())
         from_json(j["First"], startPnt);
@@ -80,17 +86,32 @@ inline void from_json(const ordered_json& j, Menu& menu)
 
     for (auto itr = j.begin(); itr != j.end(); itr = std::next(itr))
     {
-        if (itr.key().compare("Size") == 0 || itr.key().compare("First") == 0 ||
+        if (itr.key().compare("Button Size") == 0 || itr.key().compare("First") == 0 || itr.key().compare("Slider Size") == 0 ||
             itr.key().compare("Background") == 0)
             continue;
 
-        auto nButton = menu.AddButton(itr.key(),
-            startPnt, std::make_pair(isCenter, false),
-            commonDmns, std::make_pair(false, false),
-            glm::vec4(0)
-        );
-        startPnt.y += commonDmns.y + 10;
-        from_json(itr.value(), *nButton);
+        bool isSlider = false;
+        if (itr.value().find("Slider") != itr.value().end())
+            from_json(itr.value()["Slider"], isSlider);
+        
+        if (!isSlider)
+        {
+            auto nButton = menu.AddButton(itr.key(),
+                startPnt, std::make_pair(isCenter, false),
+                buttonDmns, std::make_pair(false, false),
+                glm::vec4(0)
+            );
+            from_json(itr.value(), *nButton);
+        }
+        else
+        {
+            auto nSlider = menu.AddSlider(itr.key(),
+                //startPnt - buttonDmns/2.0f + sliderDmns/2.0f,
+                startPnt + glm::vec2((sliderDmns.x-buttonDmns.x)/2.0f, 0),
+                sliderDmns);
+            from_json(itr.value(), *nSlider);
+        }
+        startPnt.y += buttonDmns.y + 10;
     }
 }
 

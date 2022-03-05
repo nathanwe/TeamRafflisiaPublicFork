@@ -154,6 +154,7 @@
     <None Include="Source\Shaders\DeferredRenderer\Fill_G_Buffer.shader" />
     <None Include="Source\Shaders\GeneralUIRenderer\TextRenderer.shader" />
     <None Include="Source\Shaders\LightSource.shader" />
+    <None Include="Source\Shaders\MenuRenderer\SliderPointerShader.shader" />
     <None Include="Source\Shaders\MenuRenderer\UIMenuShader.shader" />
     <None Include="Source\Shaders\OIT\CompositionPass.shader" />
     <None Include="Source\Shaders\OIT\TransparentPass.shader" />
@@ -171,6 +172,7 @@
     <ClInclude Include="Source\Components\PhysicsComponent\SpecialBodyComponent.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\MenuSystem\Menu.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\MenuSystem\MenuButton.h" />
+    <ClInclude Include="Source\Systems\GraphicsSystem\MenuSystem\MenuSlider.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\MenuSystem\MenuSystem.h" />
     <ClInclude Include="Source\Systems\GraphicsSystem\TextRenderer\TextRenderer.h" />
     <ClInclude Include="Source\Systems\PhysicsSystem\Raycasting\Raycasting.h" />
@@ -252,6 +254,7 @@
     <ClCompile Include="Source\Components\PhysicsComponent\SpecialBodyComponent.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\MenuSystem\Menu.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\MenuSystem\MenuButton.cpp" />
+    <ClCompile Include="Source\Systems\GraphicsSystem\MenuSystem\MenuSlider.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\MenuSystem\MenuSystem.cpp" />
     <ClCompile Include="Source\Systems\GraphicsSystem\TextRenderer\TextRenderer.cpp" />
     <ClCompile Include="Source\Systems\PhysicsSystem\Raycasting\Raycasting.cpp" />
