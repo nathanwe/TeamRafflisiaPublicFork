@@ -49,12 +49,14 @@ public:
 	//void PlayEvent(EventID);
 	void StopEvent(const char* strEventName, bool bImmediate = false);
 	void StopEvent(EventID, bool bImmediate = false);
+	void PauseEvent(EventID id, bool isPaused);
 	//void PauseEvent(const char* strEventName, bool bImmediate = false);
 	//void PauseEvent(EventID, bool bImmediate = false);
 	float GetEventInstanceParameter(EventID id, const char* parameter_name);
 	void SetEventInstanceParameter(EventID id, const char* parameter_name, float value);
 	bool IsEventPlaying(EventID) const;
 
+	static FMOD_RESULT F_CALLBACK CallBack(FMOD_STUDIO_EVENT_CALLBACK_TYPE type, FMOD_STUDIO_EVENTINSTANCE* event, void* param);
 	//void LoadSound(const char* strSoundName, bool b3d = true, bool bLooping = false, bool bus = 0, bool bStream = false);
 	//void UnLoadSound(const char* strSoundName);
 
@@ -69,7 +71,6 @@ public:
 	//void Set3dListenerAndOrientation(const glm::vec3& vPos = glm::vec3(0));
 	//int fmodPlaySound(const char* strSoundName, const glm::vec3& vPos = glm::vec3(0), float fVolumedB = 0.0f);
 	//void StopChannel(int nChannelId);
-	
 
 	//void GetEventParameter(const char* strEventName, const char* strEventParameter, float* parameter);
 	//void SetEventParameter(const char* strEventName, const char* strParameterName, float fValue);
@@ -90,9 +91,9 @@ public:
 	void TryPlayWaitingList();
 
 	const char* FindWord(const char* word);
+
 	
 public:
-
 	FMOD_RESULT result;
 
 	FMOD::System* coreSystem;
@@ -124,6 +125,9 @@ public:
 
 	bool BGMMuted;
 	bool SFXMuted;
+
+	static bool isAudioEventRelease;
+	//static std::vector<int> stoppedEventIDs;
 	//scripts just directly touch these values between 1-10
 	int BGMVolume = 5;
 	int SFXVolume = 5;

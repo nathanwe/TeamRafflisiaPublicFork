@@ -8,12 +8,26 @@
 
 extern Engine engine;
 
+bool AudioSystem::isAudioEventRelease = false;
+//std::vector<int> stoppedEventIDs;
+
 template <typename T1, typename T2,typename T3>
 T2 IsKeyInMap(std::map<T1, T2, T3>map, T1 key)
 {
     auto mapIter = map.find(key);
     if (mapIter != map.end()) { return mapIter->second; }
     return nullptr;
+}
+
+FMOD_RESULT F_CALLBACK AudioSystem::CallBack(FMOD_STUDIO_EVENT_CALLBACK_TYPE type, FMOD_STUDIO_EVENTINSTANCE* event, void* param)
+{
+    isAudioEventRelease = true;
+    //FMOD::Studio::EventInstance* instance = (FMOD::Studio::EventInstance*)event;
+    //if (type == FMOD_STUDIO_EVENT_CALLBACK_STOPPED)
+    //{
+    //    ERRCHECK(instance->release());
+    //}
+    return FMOD_OK;
 }
 
 bool AudioSystem::Init()
@@ -48,7 +62,8 @@ bool AudioSystem::Init()
 
     //EventID a = PlayEvent("event:/JumpSFX");
     //Set3DAudioEventPos(a, glm::vec3(20.0f, 40.0f, -80.0f));
-   
+    isAudioEventRelease = false;
+
 	return true;
 }
 void AudioSystem::LoadBank(const char* bank_filename, FMOD_STUDIO_LOAD_BANK_FLAGS flags)
@@ -109,39 +124,62 @@ void AudioSystem::UnloadBus(const char* bus_filename)
 }
 
 void AudioSystem::Update(float timeStamp)
-{ 
+{
     PROFILE_THIS("Audio Update");
 
     Set3dListenerAndOrientation(engine.GraphicsSys.camera);
     //MuteAll();
     //if (SFXMuted && BGMMuted) { return; }
 
-    std::vector<ChannelMap::iterator> pStoppedChannels;
-    for (auto it = channelMaps.begin(), itEnd = channelMaps.end(); it != itEnd; ++it)
+    //std::vector<ChannelMap::iterator> pStoppedChannels;
+    //for (auto it = channelMaps.begin(), itEnd = channelMaps.end(); it != itEnd; ++it)
+    //{
+    //    bool bIsPlaying = false;
+    //    it->second->isPlaying(&bIsPlaying);
+    //    if (!bIsPlaying)
+    //    {
+    //        pStoppedChannels.push_back(it);
+    //    }
+    //}
+    //for (auto& it : pStoppedChannels)
+    //{
+    //    channelMaps.erase(it);
+    //}
+
+    if (isAudioEventRelease)
     {
-        bool bIsPlaying = false;
-        it->second->isPlaying(&bIsPlaying);
-        if (!bIsPlaying)
+        std::vector<int> stopID;
+
+        for (auto it = eventInstanceMaps.begin(), itEnd = eventInstanceMaps.end(); it != itEnd; it++)
         {
-            pStoppedChannels.push_back(it);
+            FMOD_STUDIO_PLAYBACK_STATE state;
+            //printf("%d", eventInstanceMaps.size());
+            ERRCHECK(it->second->second->getPlaybackState(&state));
+
+            if (state == FMOD_STUDIO_PLAYBACK_STOPPED)
+            {
+
+                stopID.push_back(it->first);
+            }
         }
-    }
-    for (auto& it : pStoppedChannels)
-    {
-        channelMaps.erase(it);
-    }
+        for (auto& it : stopID)
+        {
+            eventInstanceMaps[it]->second->release();
+            delete(eventInstanceMaps[it]);
+            eventInstanceMaps.erase(it);
+        }
 
-    //TryPlayWaitingList();
+        stopID.clear();
 
+        isAudioEventRelease = false;
+        //TryPlayWaitingList();
+    }
 
     SetBusVolume("Bus:/BGMBus", static_cast<float>(BGMVolume));
     SetBusVolume("Bus:/SFXBus", static_cast<float>(SFXVolume));
 
-  
-    //printf(" %f, % f, %f", engine.GraphicsSys.camera.Position.x, engine.GraphicsSys.camera.Position.y, engine.GraphicsSys.camera.Position.z);
-
     ERRCHECK(fmodStudioSystem->update());
-    
+
 }
 void AudioSystem::TryPlayWaitingList() 
 {
@@ -192,6 +230,7 @@ EventID AudioSystem::PlayEvent(const char* event_filename)
     //ELSE create an instance of the description
     FMOD::Studio::EventInstance* pEventInstance = NULL;
     ERRCHECK(pEventDescription->createInstance(&pEventInstance));
+    pEventInstance->setCallback(CallBack,FMOD_STUDIO_EVENT_CALLBACK_STOPPED);
 
     //IF successfully created, store it in map, then play it, and return its ID
     if (pEventInstance) {
@@ -202,6 +241,16 @@ EventID AudioSystem::PlayEvent(const char* event_filename)
     }
 
     return -1;
+}
+
+void AudioSystem::PauseEvent(EventID id,bool isPaused)
+{
+    //IF eventInstance isn't in the map, then return
+    auto pEventPair = IsKeyInMap(eventInstanceMaps, id);
+    if (!pEventPair) { return; }
+
+    //ELSE Pause the Instance 
+    ERRCHECK(pEventPair->second->setPaused(isPaused));
 }
 void AudioSystem::StopEvent(const char* event_filename, bool bImmediate)
 {
@@ -242,6 +291,7 @@ bool AudioSystem::IsEventPlaying(EventID id) const
     }
     return false;
 }
+
 float AudioSystem::GetEventInstanceParameter(EventID id, const char* parameter_name)
 {
     //IF eventInstance isn't in the map, then return
@@ -273,17 +323,6 @@ void AudioSystem::SetBusMuted(const char* bus_name, bool isMuted)
 {
     if (!IsKeyInMap(busMaps, bus_name)) { return; }
     ERRCHECK(busMaps[bus_name]->setMute(isMuted)); 
-
-    //FMOD::DSP* DSP1;
-    //FMOD_DSP_PARAMETER_DESC* desc;
-    //int DSPs,param;
-    //ERRCHECK(busMaps["Bus:/BGMBus"]->getChannelGroup(&BGM));
-    //BGM->getDSP(0, &DSP1); 
-    //DSP1->getda
-    //ERRCHECK(DSP1->getNumParameters(&param));
-    //DSP1->getParameterInfo(0, &desc);
-    //BGM->addDSP(0, pitchShift);
-    //pitchShift->setParameterFloat(0, 1.2);
 }
 void AudioSystem::SetBusVolume(FMOD::Studio::Bus* bus, float fVolumedB)
 {
