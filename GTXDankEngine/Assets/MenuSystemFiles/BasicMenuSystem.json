@@ -80,22 +80,35 @@
             "y": 15
         },
 
-        "Pause": {
+        "Continue": {
             "Texture": "Assets/Textures/Continue_test.png",
             "Command": "Continue"
         },
-        "Options1": {
-            "Texture": "Assets/Textures/Options_test.png",
-            "Command": "Options1"
+        "Restart": {
+            "Texture": "Assets/Textures/Continue_test.png",
+            "Command": "Restart"
         },
-        "Options2": {
+        "PauseOptions": {
+            "Texture": "Assets/Textures/Options_test.png",
+            "Command": "PauseOptions"
+        },
+        "NextLevel": {
             "Color": {
-                "x": 0,
-                "y": 255,
+                "x": 255,
+                "y": 0,
                 "z": 0,
                 "w": 1
             },
-            "Command": "Options2"
+            "Command": "Next level"
+        },
+        "PrevLevel": {
+            "Color": {
+                "x": 0,
+                "y": 0,
+                "z": 255,
+                "w": 1
+            },
+            "Command": "Prev level"
         },
         "Exit": {
             "Texture": "Assets/Textures/Exit_test.png",
@@ -104,7 +117,7 @@
     },
 
 
-    "Options1": {
+    "PauseOptions": {
         "First": {
             "x": 100,
             "y": 30 

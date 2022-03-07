@@ -284,6 +284,27 @@ void button_from_json(const ordered_json& j, MenuButton& menuBut)
                 engine.SceneSys.LoadScene(1);
             });
         }
+        else if (command.compare("Next level") == 0)
+        {
+            menuBut.SetActionToExecute([&](){
+                engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
+                engine.SceneSys.LoadNextLevel();
+            });
+        }
+        else if (command.compare("Prev level") == 0)
+        {
+            menuBut.SetActionToExecute([&](){
+                engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
+                engine.SceneSys.LoadPreviousLevel();
+            });
+        }
+        else if (command.compare("Restart") == 0)
+        {
+            menuBut.SetActionToExecute([&](){
+                engine.SceneSys.LoadScene(engine.SceneSys.GetCurrentLevel());
+                engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
+            });
+        }
         /// in this case command is the name of the next menu
         else
         {
