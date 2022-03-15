@@ -120,7 +120,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/Models/Cube.obj"
+      "path": "../Platformer/Assets/Models/Goal.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -131,18 +131,18 @@
       "scale": {
         "x": 2.0,
         "y": 1.0,
-        "z": 3.0
+        "z": 2.0
       },
       "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 1.0
+        "x": -0.5001394748687744,
+        "y": -0.4998605251312256,
+        "z": 0.5001394748687744,
+        "w": -0.4998605251312256
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
-      "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+      "AlbedoPath": "Assets/Textures/Goal Base Color.png",
+      "MetallicPath": "Assets/Textures/Goal Specular.png",
       "Alpha": 1.0
     },
     "COLLIDER": {
@@ -200,8 +200,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 39.39749526977539,
-        "y": 9.133200645446777,
+        "x": 39.525062561035156,
+        "y": 9.133201599121094,
         "z": 1.0
       },
       "scale": {
@@ -212,8 +212,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.8093823790550232,
-        "w": 0.5872820019721985
+        "z": 0.8093546628952026,
+        "w": 0.5873202085494995
       }
     },
     "MATERIAL": {
@@ -232,7 +232,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.008085966110229492,
-        "y": -0.5740717649459839,
+        "y": -0.5740706920623779,
         "z": 1.401298464324817e-45
       },
       "Accelereation": {
@@ -259,7 +259,7 @@
     "TRANSFORM": {
       "position": {
         "x": 24.215999603271484,
-        "y": -57.1624870300293,
+        "y": -2058.77587890625,
         "z": 35.0
       },
       "scale": {
@@ -290,7 +290,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -46.029605865478516,
+        "y": -205.2392120361328,
         "z": 0.0
       },
       "Accelereation": {
@@ -317,7 +317,7 @@
     "TRANSFORM": {
       "position": {
         "x": 24.215999603271484,
-        "y": -35.504878997802734,
+        "y": -1958.1553955078125,
         "z": 35.0
       },
       "scale": {
@@ -348,7 +348,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -41.0699577331543,
+        "y": -200.279541015625,
         "z": 0.0
       },
       "Accelereation": {

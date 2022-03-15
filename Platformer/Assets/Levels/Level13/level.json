@@ -321,7 +321,7 @@
     },
     {
       "MODEL": {
-        "path": "../Platformer/Assets/Models/Cube.obj"
+        "path": "../Platformer/Assets/Models/Goal.obj"
       },
       "TRANSFORM": {
         "position": {
@@ -342,8 +342,8 @@
         }
       },
       "MATERIAL": {
-        "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
-        "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+        "AlbedoPath": "Assets/Textures/Goal Base Color.png",
+        "MetallicPath": "Assets/Textures/Goal Specular.png",
         "Alpha": 1.0
       },
       "COLLIDER": {
