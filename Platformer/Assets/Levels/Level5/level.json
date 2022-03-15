@@ -322,29 +322,29 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/Models/Cube.obj"
+      "path": "../Platformer/Assets/Models/Goal.obj"
     },
     "TRANSFORM": {
       "position": {
         "x": 18.0,
-        "y": 2.0,
-        "z": 37.0
+        "y": 3.0,
+        "z": 33.68000030517578
       },
       "scale": {
         "x": 2.0,
         "y": 1.0,
-        "z": 3.0
+        "z": 2.0
       },
       "rotation": {
         "x": 0.0,
-        "y": 0.0,
+        "y": 0.7069846987724304,
         "z": 0.0,
-        "w": 1.0
+        "w": 0.7072288393974304
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
-      "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+      "AlbedoPath": "Assets/Textures/Goal Base Color.png",
+      "MetallicPath": "Assets/Textures/Goal Specular.png",
       "Alpha": 1.0
     },
     "COLLIDER": {
@@ -468,7 +468,7 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 14.479999542236328,
+        "x": 33.349998474121094,
         "y": 15.0,
         "z": 1.0099999904632568
       },
@@ -514,7 +514,7 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 13.696720123291016,
+        "x": 32.72700119018555,
         "y": 17.93320083618164,
         "z": 1.0
       },
@@ -546,7 +546,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -0.5740712881088257,
+        "y": -0.5740721225738525,
         "z": 0.0
       },
       "Accelereation": {
@@ -627,7 +627,7 @@
     "TRANSFORM": {
       "position": {
         "x": 24.0,
-        "y": -50.0,
+        "y": -725.002685546875,
         "z": 35.0
       },
       "scale": {
@@ -658,7 +658,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -17.236783981323242,
+        "y": -117.35314178466797,
         "z": 0.0
       },
       "Accelereation": {

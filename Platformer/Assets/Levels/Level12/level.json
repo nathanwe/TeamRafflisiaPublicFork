@@ -263,7 +263,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/Models/Cube.obj"
+      "path": "../Platformer/Assets/Models/Goal.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -274,18 +274,18 @@
       "scale": {
         "x": 2.0,
         "y": 1.0,
-        "z": 3.0
+        "z": 2.0
       },
       "rotation": {
         "x": 0.0,
-        "y": 0.0,
+        "y": 0.7069846987724304,
         "z": 0.0,
-        "w": 1.0
+        "w": 0.7072288393974304
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
-      "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+      "AlbedoPath": "Assets/Textures/Goal Base Color.png",
+      "MetallicPath": "Assets/Textures/Goal Specular.png",
       "Alpha": 1.0
     },
     "COLLIDER": {
@@ -397,8 +397,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 27.5255184173584,
-        "y": 9.133200645446777,
+        "x": 28.076663970947266,
+        "y": 9.133201599121094,
         "z": 0.9999999403953552
       },
       "scale": {
@@ -409,8 +409,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.7265856266021729,
-        "w": 0.6870759129524231
+        "z": 0.7261269688606262,
+        "w": 0.6875606775283813
       }
     },
     "MATERIAL": {
@@ -429,7 +429,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.2294309139251709,
-        "y": -0.5740740299224854,
+        "y": -0.5740691423416138,
         "z": 5.493976829029634e-09
       },
       "Accelereation": {
@@ -827,8 +827,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 45.6693000793457,
-        "y": -643.1598510742188,
+        "x": 57.346317291259766,
+        "y": -945.3455810546875,
         "z": 35.0
       },
       "scale": {
@@ -839,8 +839,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": -0.9431783556938171,
-        "w": 0.3322869837284088
+        "z": -0.9477823972702026,
+        "w": 0.31891778111457825
       }
     },
     "MATERIAL": {
@@ -859,7 +859,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 4.860937118530273,
-        "y": -113.43112182617188,
+        "y": -137.45330810546875,
         "z": 0.0
       },
       "Accelereation": {

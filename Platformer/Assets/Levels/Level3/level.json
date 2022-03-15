@@ -181,29 +181,29 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/Models/Cube.obj"
+      "path": "../Platformer/Assets/Models/Goal.obj"
     },
     "TRANSFORM": {
       "position": {
         "x": 24.790000915527344,
         "y": 2.0,
-        "z": 37.0
+        "z": 33.349998474121094
       },
       "scale": {
         "x": 2.0,
         "y": 1.0,
-        "z": 3.0
+        "z": 2.0
       },
       "rotation": {
         "x": 0.0,
-        "y": 0.0,
+        "y": 0.7069846987724304,
         "z": 0.0,
-        "w": 1.0
+        "w": 0.7072288393974304
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
-      "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
+      "AlbedoPath": "Assets/Textures/Goal Base Color.png",
+      "MetallicPath": "Assets/Textures/Goal Specular.png",
       "Alpha": 1.0
     },
     "COLLIDER": {
@@ -309,8 +309,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 6.24777889251709,
-        "y": 9.133201599121094,
+        "x": 30.190353393554688,
+        "y": 9.133200645446777,
         "z": 1.0
       },
       "scale": {
@@ -321,8 +321,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.8125735521316528,
-        "w": 0.5828586220741272
+        "z": 0.8125643134117126,
+        "w": 0.5828715562820435
       }
     },
     "MATERIAL": {
@@ -340,8 +340,8 @@
       "Gravity": true,
       "Mass": 5.0,
       "Velocity": {
-        "x": 3.336495876312256,
-        "y": -0.57407146692276,
+        "x": 0.0027265548706054688,
+        "y": -0.5740695595741272,
         "z": 3.26309717024742e-08
       },
       "Accelereation": {
@@ -476,7 +476,7 @@
     "TRANSFORM": {
       "position": {
         "x": 24.0,
-        "y": -140.3719024658203,
+        "y": -1248.02587890625,
         "z": 35.0
       },
       "scale": {
@@ -507,7 +507,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -57.22981643676758,
+        "y": -159.40231323242188,
         "z": 0.0
       },
       "Accelereation": {
