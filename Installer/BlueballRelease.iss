@@ -23,7 +23,7 @@ AppPublisher=DigiPen Institute of Technology
 AppPublisherURL=http://www.digipen.edu/
 AppSupportURL=http://www.digipen.edu/
 ;AppUpdatesURL={#MyAppURL}
-DefaultDirName=C:\Digipen\{#MyAppName}
+DefaultDirName={userdocs}\Digipen\{#MyAppName}
 DefaultGroupName=DigiPen\{#MyAppName}
 ;DisableProgramGroupPage=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
@@ -60,6 +60,7 @@ Source: "Platformer\*"; DestDir: "{app}\Platformer"; Flags: ignoreversion recurs
 Source: "GTXDankEngine\assimp-vc142-mtd.dll"; DestDir: "{app}\Platformer"; Flags: ignoreversion
 Source: "GTXDankEngine\fmod.dll"; DestDir: "{app}\Platformer"; Flags: ignoreversion
 Source: "GTXDankEngine\fmodstudio.dll"; DestDir: "{app}\Platformer"; Flags: ignoreversion
+Source: "GTXDankEngine\freetype.dll"; DestDir: "{app}\Platformer"; Flags: ignoreversion
 Source: "GTXDankEngine\Assets\*";  DestDir: "{app}\Platformer\Assets"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "GTXDankEngine\Assets\*";  DestDir: "{app}\GTXDankEngine\Assets"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "GTXDankEngine\Source\Shaders\*"; DestDir: "{app}\Platformer\Source\Shaders"; Flags: ignoreversion recursesubdirs createallsubdirs
