@@ -94,7 +94,7 @@ function HandleEventPlayer(eventData)
 			imguiControledEntity = -1
 		end
 		if losingPlayer ~= nil then
-			DrawText("YOU LOSE!", 4.5, 0,350, 150,0,0)
+			DrawText("YOU LOSE", 4.5, 15,350, 150,0,0)
 		end
 	end
 	if eventData.type == 12 then

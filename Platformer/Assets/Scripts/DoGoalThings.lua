@@ -43,7 +43,7 @@ function HandleEventGoal(eventData)
 			imguiControledEntity = -1
 		end
 		if winningGoal ~= nil then
-			DrawText("YOU WIN!", 5, 50,350, 0,150,0)
+			DrawText("YOU WIN", 5, 75,350, 0,150,0)
 		end
 	end
 	if eventData.type == 12 then
