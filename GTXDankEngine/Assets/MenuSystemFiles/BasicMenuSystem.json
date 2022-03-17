@@ -5,27 +5,27 @@
             "y": 500
         },
         "Button Size": {
-            "x": 200,
-            "y": 80
+            "x": 240,
+            "y": 100
         },
         "Slider Size": {
             "x": 600,
             "y": 15
         },
 
-        "Background": "Assets/Textures/Continue_test.png",
+        "Background": "Assets/Textures/B2TW_mainMenu.png",
 
         "Start": {
-            "Texture": "Assets/Textures/Continue_test.png",
+            "Texture": "Assets/Textures/Start_button.png",
             "Command": "Start"
         },
         "Options":
         {
-            "Texture": "Assets/Textures/Options_test.png",
+            "Texture": "Assets/Textures/Options_button.png",
             "Command": "Options"
         },
         "Exit": {
-            "Texture": "Assets/Textures/Exit_test.png",
+            "Texture": "Assets/Textures/Exit_button.png",
             "Command": "Exit"
         }
     },
@@ -46,7 +46,7 @@
             "y": 15
         },
 
-        "Background": "Assets/Textures/Continue_test.png",
+        "Background": "Assets/Textures/B2TW_mainMenu.png",
 
         "BGM Volume":
         {
@@ -59,7 +59,7 @@
             "Parts": 10
         },
         "Back": {
-            "Texture": "Assets/Textures/Exit_test.png",
+            "Texture": "Assets/Textures/Back_button.png",
             "Command": "Back"
         }
     },
@@ -81,37 +81,27 @@
         },
 
         "Continue": {
-            "Texture": "Assets/Textures/Continue_test.png",
+            "Texture": "Assets/Textures/Continue_button.png",
             "Command": "Continue"
         },
         "Restart": {
-            "Texture": "Assets/Textures/Continue_test.png",
+            "Texture": "Assets/Textures/Restart_button.png",
             "Command": "Restart"
         },
         "PauseOptions": {
-            "Texture": "Assets/Textures/Options_test.png",
+            "Texture": "Assets/Textures/Options_button.png",
             "Command": "PauseOptions"
         },
         "NextLevel": {
-            "Color": {
-                "x": 255,
-                "y": 0,
-                "z": 0,
-                "w": 1
-            },
+            "Texture": "Assets/Textures/Next_button.png",
             "Command": "Next level"
         },
         "PrevLevel": {
-            "Color": {
-                "x": 0,
-                "y": 0,
-                "z": 255,
-                "w": 1
-            },
+            "Texture": "Assets/Textures/Prev_button.png",
             "Command": "Prev level"
         },
         "Exit": {
-            "Texture": "Assets/Textures/Exit_test.png",
+            "Texture": "Assets/Textures/Exit_button.png",
             "Command": "Exit"
         }
     },
@@ -142,7 +132,7 @@
             "Parts": 10
         },
         "Back": {
-            "Texture": "Assets/Textures/Exit_test.png",
+            "Texture": "Assets/Textures/Back_button.png",
             "Command": "Back"
         }
     },
@@ -163,11 +153,11 @@
         },
         
         "Options2Deep": {
-            "Texture": "Assets/Textures/Options_test.png",
+            "Texture": "Assets/Textures/Options_button.png",
             "Command": "Options2Deep"
         },
         "Back": {
-            "Texture": "Assets/Textures/Exit_test.png",
+            "Texture": "Assets/Textures/Exit_button.png",
             "Command": "Back"
         }
     },
@@ -188,7 +178,7 @@
         },
 
         "Back": {
-            "Texture": "Assets/Textures/Exit_test.png",
+            "Texture": "Assets/Textures/Exit_button.png",
             "Command": "Back"
         }
     }
