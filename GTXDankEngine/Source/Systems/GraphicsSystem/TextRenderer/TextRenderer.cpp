@@ -97,8 +97,64 @@ void TextRenderer::Init(std::string fontPath)
 void TextRenderer::RenderText(Shader& textShader, std::string text, float x, float y, float scale, glm::vec3 color)
 {
 
-    textShader.setVec3("textColor", color);
+    /// Draw outline first
+    textShader.setVec3("textColor", glm::vec3(0));
+    float outScale = (scale*100.0f + 30.0f) / 100.0f;
+    float startx = x;
+    // iterate through all characters
+    for (auto& c : text)
+    {
+        Character ch = characters[c];
 
+        textShader.setTexture("text", ch.textureID);
+
+        /// setup vertices and indices
+        float xpos = startx + ch.bearing.x * outScale;
+        float ypos = y + (ch.bearing.y - ch.size.y) * outScale;
+        float wdth = ch.size.x * outScale;
+        float hght = ch.size.y * outScale;
+        std::vector<float> vertices = {
+            /// CLOCKWISE
+            xpos,        ypos + hght, 0, 0,   /// bottom left
+            xpos,        ypos,        0, 1,   /// top left
+            xpos + wdth, ypos,        1, 1,   /// top right
+
+            xpos,        ypos + hght, 0, 0,   /// bottom left
+            xpos + wdth, ypos,        1, 1,   /// top right
+            xpos + wdth, ypos + hght, 1, 0    /// bottom right      
+        };
+
+        /// bind vertex values
+        glBindBuffer(GL_ARRAY_BUFFER, VBO);
+        glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(float), vertices.data());
+        glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+
+        // draw button
+        textShader.Bind();
+        glBindVertexArray(VAO);
+        glDisable(GL_DEPTH_TEST);
+
+        glEnable(GL_CULL_FACE);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        
+        glDrawArrays(GL_TRIANGLES, 0, 6);
+
+        glDisable(GL_BLEND);
+        glDisable(GL_CULL_FACE);
+
+        glEnable(GL_DEPTH_TEST);
+        glBindVertexArray(0);
+        textShader.unBind();
+
+        startx += (ch.advance >> 6) * outScale - 5;
+    }
+
+
+
+    /// Draw text above outline second
+    textShader.setVec3("textColor", color);
     // iterate through all characters
     for (auto& c : text)
     {
@@ -146,10 +202,7 @@ void TextRenderer::RenderText(Shader& textShader, std::string text, float x, flo
         glBindVertexArray(0);
         textShader.unBind();
 
-        x += (ch.advance >> 6) * scale;
+        x += (ch.advance >> 6) * scale + 5;
     }
-//    glBindVertexArray(0);
-//    glBindTexture(GL_TEXTURE_2D, 0);
-//    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 

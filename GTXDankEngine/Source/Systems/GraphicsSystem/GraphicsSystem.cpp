@@ -93,7 +93,7 @@ bool GraphicsSystem::Init()
 
 	MenuSystem.Init();
 
-	TextRenderer.Init("Assets/Fonts/arial.ttf");
+	TextRenderer.Init("Assets/Fonts/HeyYou.otf");
 //	TextRenderer.Init("fonts/arial.ttf");
 	textShader = new Shader("Source/Shaders/GeneralUIRenderer/TextRenderer.shader");
 	textShader->setMat4("projection", glm::ortho(0.0f,float(WIDTH),0.0f,float(HEIGHT)));
