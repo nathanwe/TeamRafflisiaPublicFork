@@ -291,12 +291,12 @@
   },
   "ball": {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/Ball.obj"
+      "path": "Assets/Defaults/Sphere.obj"
     },
     "TRANSFORM": {
       "position": {
-        "x": 24.215999603271484,
-        "y": 34.200347900390625,
+        "x": 24.0,
+        "y": 34.0,
         "z": 35.0
       },
       "scale": {
@@ -307,15 +307,13 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.0,
-        "w": 1.0
+        "z": 0.1372372955083847,
+        "w": 0.9905381798744202
       }
     },
     "MATERIAL": {
       "AlbedoPath": "../GTXDankEngine/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
-      "NormalPath": "../Platformer/Assets/models/PokemonBall/normal.jpg",
-      "RoughnessPath": "../Platformer/Assets/models/PokemonBall/roughness.jpg",
       "Alpha": 1.0
     },
     "COLLIDER": {
@@ -328,8 +326,8 @@
       "Gravity": true,
       "Mass": 5.0,
       "Velocity": {
-        "x": 0.0,
-        "y": -17.236783981323242,
+        "x": -11.832018852233887,
+        "y": -130.03175354003906,
         "z": 0.0
       },
       "Accelereation": {
