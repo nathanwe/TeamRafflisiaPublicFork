@@ -42,16 +42,16 @@ public:
 
 inline void to_json(ordered_json& j, const Collider& collider) {
 	to_json(j["Shape"], collider.shape);
-	if (collider.shape == Shape::SPHERE)
+	if (collider.shape == Shape::SPHERE || collider.shape == Shape::NIL)
 	{
 		to_json(j["Radius"], collider.radius);
 	}	
-	else if (collider.shape == Shape::PLANE)
+	else if (collider.shape == Shape::PLANE || collider.shape == Shape::NIL)
 	{
 		to_json(j["Normal"], collider.normal);
 		to_json(j["Magnitude"], collider.magnitude);
 	}
-	else if (collider.shape == Shape::AABB)
+	else if (collider.shape == Shape::AABB || collider.shape == Shape::NIL)
 	{
 		to_json(j["MinPoint"], collider.minPoint);
 		to_json(j["MaxPoint"], collider.maxPoint);

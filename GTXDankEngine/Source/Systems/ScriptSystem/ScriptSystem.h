@@ -77,6 +77,8 @@ int lua_SetRotation(lua_State* L);
 int lua_AddRotation(lua_State* L);
 int lua_SetRotationEuler(lua_State* L);
 int lua_SetRotationFromDirection(lua_State* L);
+int lua_GetWireFrame(lua_State* L);
+int lua_SetWireFrame(lua_State* L);
 int lua_SetGamePath(lua_State* L);
 int lua_SaveIntFloatTableAsJson(lua_State* L);
 int lua_LoadIntFloatTableFromJson(lua_State* L);
@@ -96,6 +98,7 @@ int lua_SendEvent(lua_State* L);
 int lua_AddPhysicsVelocity(lua_State* L);
 int lua_SetPhysicsAcceleration(lua_State* L);
 int lua_AddPhysicsAcceleration(lua_State* L);
+int lua_SetColliderShape(lua_State* L);
 
 
 int lua_GetCameraOrientation(lua_State* L);

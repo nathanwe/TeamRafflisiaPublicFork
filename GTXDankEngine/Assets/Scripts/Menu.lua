@@ -60,14 +60,7 @@ function Update(dt)
 		IntSliderImgui("SFX Volume", SFXVolumeLocation, 1, 10)
 		local playSfxPressed = ButtonImgui("SFX test", 100, 50);
 		if playSfxPressed then
-			--local AudioEventTable = {}
-			--AudioEventTable["type"] = 9
-			--AudioEventTable["stringData1"] = "JumpSFX.wav"
-			--AudioEventTable["floatData1"] = 1.0
-			--AudioEventTable["floatData2"] = 1.0
-			--AudioEventTable["floatData3"] = 1.0
-			--AudioEventTable["floatData4"] = 1.0
-			--SendAudioEvent(AudioEventTable)
+
 			local ID = PlayAudioEvent("BallJump")
 			SetAudioEventPosition(ID,20.0,40.0,-80.0)
 			local ID2 = PlayAudioEvent("JumpSFX")
@@ -75,7 +68,10 @@ function Update(dt)
 			--local ID3 = PlayAudioEvent("J")
 			--SetAudioEventPosition(ID3,30.0,40.0,-80.0)
 		end
-	
+		local nextPressed = ButtonImgui("Next Level", 100, 50);
+		if nextPressed then
+			LoadNextLevel()
+		end
 		ResetControl();
 		ControlMenu()
 
