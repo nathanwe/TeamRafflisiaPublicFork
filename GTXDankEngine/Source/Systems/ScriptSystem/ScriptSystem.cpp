@@ -68,6 +68,8 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "AddRotation", lua_AddRotation);
     lua_register(L, "SetRotationEuler", lua_SetRotationEuler);
     lua_register(L, "SetRotationFromDirection", lua_SetRotationFromDirection);
+    lua_register(L, "GetWireFrame", lua_GetWireFrame);
+    lua_register(L, "SetWireFrame", lua_SetWireFrame);
     lua_register(L, "SetGamePath", lua_SetGamePath);
     lua_register(L, "SaveIntFloatTableAsJson", lua_SaveIntFloatTableAsJson);
     lua_register(L, "LoadIntFloatTableFromJson", lua_LoadIntFloatTableFromJson);
@@ -84,6 +86,7 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "AddPhysicsVelocity", lua_AddPhysicsVelocity);
     lua_register(L, "SetPhysicsAcceleration", lua_SetPhysicsAcceleration);
     lua_register(L, "AddPhysicsAcceleration", lua_AddPhysicsAcceleration);
+    lua_register(L, "SetColliderShape", lua_SetColliderShape);
     lua_register(L, "GetCameraOrientation", lua_GetCameraOrientation);
     lua_register(L, "Set3rdPersonDistance", lua_Set3rdPersonDistance);
     lua_register(L, "UpdatePhysicsCollider", lua_UpdatePhysicsCollider);

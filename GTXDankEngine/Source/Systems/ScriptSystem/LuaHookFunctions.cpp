@@ -791,6 +791,30 @@ int lua_SetRotationFromDirection(lua_State* L)
     return 0;
 }
 
+int lua_GetWireFrame(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    bool answer = false;
+    MaterialComponent* mat = MaterialComponentPool.GetComponentByEntity(e);
+    if (mat != nullptr)
+    {
+        answer = mat->material.wireMode;
+    }
+    lua_pushboolean(L, answer);
+    return 1;
+}
+
+int lua_SetWireFrame(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    MaterialComponent* mat = MaterialComponentPool.GetComponentByEntity(e);
+    if (mat != nullptr)
+    {
+        mat->material.wireMode = lua_toboolean(L,2);
+    }
+    return 0;
+}
+
 int lua_SetGamePath(lua_State* L)
 {
     GAME_PATH = lua_tostring(L, 1);
@@ -1017,6 +1041,17 @@ int lua_AddPhysicsAcceleration(lua_State* L)
     else
     {
         LOG_ERROR("body not found");
+    }
+    return 0;
+}
+
+int lua_SetColliderShape(lua_State* L)
+{
+    Entity e = static_cast<Entity>(lua_tointeger(L, 1));
+    ColliderComponent* col = ColliderComponentPool.GetComponentByEntity(e);
+    if (col != nullptr)
+    {
+        col->NarrowPhase.shape = static_cast<Shape>(lua_tointeger(L, 2));
     }
     return 0;
 }

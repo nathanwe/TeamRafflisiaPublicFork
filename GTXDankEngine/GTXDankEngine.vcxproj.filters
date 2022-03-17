@@ -496,6 +496,8 @@
       <Filter>Platformer\Scripts</Filter>
     </None>
     <None Include="..\Platformer\Assets\Scripts\DoWindThings.lua">
+            <Filter>Platformer\Scripts</Filter>
+    </None>
     <None Include="Source\Shaders\GeneralUIRenderer\TextRenderer.shader">
       <Filter>Resource Files\Shaders\GeneralUIRenderer</Filter>
     </None>

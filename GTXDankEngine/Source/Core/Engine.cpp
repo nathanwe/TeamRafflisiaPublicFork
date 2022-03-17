@@ -93,10 +93,14 @@ void Engine::Run()
 		
 		InputSys.Update();
 		CommandSys.Update();
-		
-		if (!pause)
+		if (pause)
 		{
-			accumulatedFrameDt += DeltaTime();
+			EntitySys.Update(0);
+			SceneSys.Update(0);
+		}
+		else
+		{
+			accumulatedFrameDt = std::min(accumulatedFrameDt + DeltaTime(), 1.0f);
 			float dt = Framerate->GetTargetFrameTime();
 			while (accumulatedFrameDt > 0)
 			{

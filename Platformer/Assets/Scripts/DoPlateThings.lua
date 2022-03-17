@@ -7,9 +7,8 @@ local lv4Pairs = {[8] = 3}
 local lv5Pairs = {[18] = 7}
 local lv6Pairs = {[10] = 3}
 local lv7Pairs = {[10] = 3}
-local lv104Pairs = {[12] = 21}
 
-local pairs = {[0] = lv0Pairs, [3] = lv3Pairs, [4] = lv4Pairs, [5] = lv5Pairs, [6] = lv6Pairs, [7] = lv7Pairs, [104] = lv104Pairs}
+local pairs = {[0] = lv0Pairs, [3] = lv3Pairs, [4] = lv4Pairs, [5] = lv5Pairs, [6] = lv6Pairs, [7] = lv7Pairs}
 
 function SavePlates( levelnum )
 	levelstr = string.format("%i", levelnum)
@@ -36,7 +35,8 @@ function UpdatePlate(dt, e)
 		--LOG_INFO("UpdatePlate blockStatus[e] = " .. blockStatus[e])
 		if blockStatus[e] <= 0 then
 			blockStatus[e] = 0
-			AddToVQS(e, 0, 0, 6)
+			SetColliderShape(e, 2)
+			SetWireFrame(e, false)
 		end
 	end
 end
@@ -63,7 +63,8 @@ function HandleEventPlate(eventData)
 		--LOG_INFO("box id" .. (pairs[GetLevelNumber()])[eventData.e1])
 		if lvPairs[eventData.e1] ~= nil then --if on the list
 			if blockStatus[lvPairs[eventData.e1]] == 0 then  -- if its in
-				AddToVQS(lvPairs[eventData.e1], 0, 0, -6) --push it out
+				SetColliderShape(lvPairs[eventData.e1], 3)
+				SetWireFrame(lvPairs[eventData.e1], true)
 				PlayAudioEvent("PlateActivate")
 			end
 			blockStatus[lvPairs[eventData.e1]] = 1 --mark it out
