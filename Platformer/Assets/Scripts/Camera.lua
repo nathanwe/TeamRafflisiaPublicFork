@@ -17,7 +17,7 @@ end
 function HandleEvent(thingsToEffect, eventData)
 	if eventData.type == 14 then
 		if post[eventData.intData1] == nil then
-			SetPostProcess(1)
+			SetPostProcess(2)
 		else
 			SetPostProcess(post[eventData.intData1])
 		end
