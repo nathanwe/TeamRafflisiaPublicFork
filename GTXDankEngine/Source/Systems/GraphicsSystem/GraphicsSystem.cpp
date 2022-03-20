@@ -116,6 +116,7 @@ void GraphicsSystem::Update(float timeStamp)
 
 		RendererFboResize(camera.width, camera.height);
 		MenuSystem.AdjustForWindowSize();
+		textShader->setMat4("projection", glm::ortho(0.0f, float(camera.width), 0.0f, float(camera.height)));
 	}
 	
 

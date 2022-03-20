@@ -99,7 +99,7 @@ void TextRenderer::RenderText(Shader& textShader, std::string text, float x, flo
 
     /// Draw outline first
     textShader.setVec3("textColor", glm::vec3(0));
-    float outScale = (scale*100.0f + 30.0f) / 100.0f;
+    float outScale = scale * 1.3f;
     float startx = x;
     // iterate through all characters
     for (auto& c : text)
@@ -148,7 +148,7 @@ void TextRenderer::RenderText(Shader& textShader, std::string text, float x, flo
         glBindVertexArray(0);
         textShader.unBind();
 
-        startx += (ch.advance >> 6) * outScale - 5;
+        startx += (ch.advance >> 6) * outScale;
     }
 
 
@@ -163,8 +163,8 @@ void TextRenderer::RenderText(Shader& textShader, std::string text, float x, flo
         textShader.setTexture("text", ch.textureID);
 
         /// setup vertices and indices
-        float xpos = x + ch.bearing.x * scale;
-        float ypos = y + (ch.bearing.y - ch.size.y) * scale;
+        float xpos = x + ch.bearing.x * outScale + 0.5f;
+        float ypos = y + (ch.bearing.y - ch.size.y) * outScale + 0.5f;
         float wdth = ch.size.x * scale;
         float hght = ch.size.y * scale;
         std::vector<float> vertices = {
@@ -202,7 +202,7 @@ void TextRenderer::RenderText(Shader& textShader, std::string text, float x, flo
         glBindVertexArray(0);
         textShader.unBind();
 
-        x += (ch.advance >> 6) * scale + 5;
+        x += (ch.advance >> 6) * outScale;
     }
 }
 

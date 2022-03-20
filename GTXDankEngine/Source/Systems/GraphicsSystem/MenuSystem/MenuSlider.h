@@ -25,6 +25,7 @@ public:
     void SetVertices();
     void SetPointerVertices();
     void SetPointerPosition();
+    void SetYPosition();
 
     void Setup();
 
