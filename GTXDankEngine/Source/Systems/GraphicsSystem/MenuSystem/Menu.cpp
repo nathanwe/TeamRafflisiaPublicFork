@@ -176,5 +176,10 @@ void Menu::AdjustForWindowSize()
     {
         mb->AdjustForWindowSize();
     }
+
+    for (auto& [_,ms] : sliders)
+    {
+        ms->AdjustForWindowSize();
+    }
 }
 

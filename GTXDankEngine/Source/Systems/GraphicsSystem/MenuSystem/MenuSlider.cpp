@@ -43,7 +43,7 @@ MenuSlider* MenuSlider::SetDimensions(glm::vec2 nDimensions)
 void MenuSlider::Draw()
 {
     /// Draw the name of the slider above the slider
-    engine.GraphicsSys.DrawCustomText(name.c_str(), (sldrHeight+5) / 100.0f, glm::vec2(xSliderPos-sldrWidth/2.0f, yCommonPos+sldrHeight), glm::vec3(0));
+    engine.GraphicsSys.DrawCustomText(name.c_str(), (sldrHeight+5) / 100.0f, glm::vec2(xSliderPos-sldrWidth/2.0f, yCommonPos+sldrHeight), glm::vec3(1));
 
 
     double xMPos, yMPos;
@@ -71,7 +71,7 @@ void MenuSlider::Draw()
             else
                 percentile = std::to_string(int(percent / part)+1);
         }
-        engine.GraphicsSys.DrawCustomText(percentile, (sldrHeight+5) / 100.0f, glm::vec2(xPointerPos-sldrHeight/2.0f, yCommonPos-sldrHeight-3), glm::vec3(0));
+        engine.GraphicsSys.DrawCustomText(percentile, (sldrHeight+5) / 100.0f, glm::vec2(xPointerPos-sldrHeight/2.0f, yCommonPos-sldrHeight-3), glm::vec3(1));
     }
 
     /// As soon as the mouse is released => communicate the results
@@ -119,7 +119,7 @@ void MenuSlider::Draw()
             else
                 percentile = std::to_string(int(percent / part)+1);
         }
-        engine.GraphicsSys.DrawCustomText(percentile, (sldrHeight+5) / 100.0f, glm::vec2(xPointerPos-sldrHeight/2.0f, yCommonPos-sldrHeight-3), glm::vec3(0));
+        engine.GraphicsSys.DrawCustomText(percentile, (sldrHeight+5) / 100.0f, glm::vec2(xPointerPos-sldrHeight/2.0f, yCommonPos-sldrHeight-3), glm::vec3(1));
 
 
         this->SetPointerPosition();
@@ -161,7 +161,7 @@ void MenuSlider::SetVertices()
 {
     sldrWidth = dimensions.x;
     sldrHeight = dimensions.y;
-    yCommonPos = engine.GraphicsSys.camera.height - position.y;
+    this->SetYPosition();
 
 
     xSliderPos = position.x;
@@ -177,6 +177,11 @@ void MenuSlider::SetVertices()
 
     /// setup pointer vertices
     SetPointerVertices();
+}
+
+void MenuSlider::SetYPosition()
+{
+    yCommonPos = engine.GraphicsSys.camera.height - position.y;
 }
 
 
