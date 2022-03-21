@@ -144,7 +144,7 @@ void MenuSlider::Draw()
 void MenuSlider::DrawPointer()
 {
     sliderShader->setVec2("centerLocation", glm::vec2(xPointerPos,yCommonPos));
-    auto ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Textures/SliderTexture.png");
+    auto ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Textures/SliderTextureRed.png");
     sliderShader->setTexture("txtr", ptrTxtr->GetPointer()->GetID());
     sliderShader->Bind();
     glBindVertexArray(pointerVAO);

@@ -34,7 +34,7 @@ void main()
     if (texCoordOut.x == -1)
     {
         /// rgb(56,56,56)
-        outColor = vec4(vec3(56.0/255.0), 1.0);
+        outColor = vec4(vec3(237.0,28.0,36.0)/255.0, 1.0);
     }
     else
     {
