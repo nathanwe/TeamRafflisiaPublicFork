@@ -47,6 +47,7 @@ function HandleEventGoal(eventData)
 		end
 	end
 	if eventData.type == 12 then
+		DeleteEntity(eventData.e2)
 		if losingPlayer == nil then
 			LOG_INFO("you win loading next level")
 			winningGoal = 5
