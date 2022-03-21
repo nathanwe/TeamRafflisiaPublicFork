@@ -40,7 +40,7 @@ end
 
 
 function UpdateBall(dt, e)
-	x,y,z = GetPosition(e)
+	--x,y,z = GetPosition(e)
 	--print("UpdateBall", e, y)
 	--if y < 0 then
 	--	ent = CreateEntity("ball")
@@ -50,6 +50,7 @@ function UpdateBall(dt, e)
 	data = {}
 	data = GetRigidData(e)
 	AddRotation(e, 0,0,-data.velocity.x*dt*20)
+	SetPhysicsVelocity(e, data.velocity.x,data.velocity.y,0)
 end
 
 function HandleEventBall(eventData)
@@ -89,6 +90,11 @@ end
 function HandleEventPerEntityBall(e, eventData)
 	if eventData.type == 7 then
 		DeleteEntity(e)
+	end
+	--no z
+	if eventData.type == 12 then
+		x,y,z = GetPhysicsVelocity(eventData.e1)
+		SetPhysicsVelocity(eventData.e1, x,y,0)
 	end
 end
 

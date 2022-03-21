@@ -66,7 +66,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/PlatformBaseColor.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 1,
@@ -111,7 +112,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/Gradient Background.png",
       "MetallicPath": "../Platformer/Assets/Textures/wall/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "TAG": {
       "uniqueName": "wall plane",
@@ -143,7 +145,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 2,
@@ -204,7 +207,8 @@
     "MATERIAL": {
       "AlbedoPath": "Assets/Textures/Goal Base Color.png",
       "MetallicPath": "Assets/Textures/Goal Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 2,
@@ -274,7 +278,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Cube Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 1,
@@ -320,7 +325,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 1,
@@ -374,7 +380,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/Hero Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,
@@ -504,7 +511,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Trampoline Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Button Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 1,
@@ -550,7 +558,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 2,
@@ -602,7 +611,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,
@@ -661,7 +671,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,
@@ -719,7 +730,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,
@@ -778,7 +790,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,
@@ -836,7 +849,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,
@@ -894,7 +908,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,
@@ -952,7 +967,8 @@
     "MATERIAL": {
       "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
       "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 2,

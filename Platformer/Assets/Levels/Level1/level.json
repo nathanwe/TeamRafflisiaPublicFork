@@ -66,7 +66,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/PlatformBaseColor.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 1,
@@ -111,7 +112,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/Gradient Background.png",
       "MetallicPath": "../Platformer/Assets/Textures/wall/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "TAG": {
       "uniqueName": "wall plane",
@@ -143,7 +145,8 @@
     "MATERIAL": {
       "AlbedoPath": "Assets/Textures/Goal Base Color.png",
       "MetallicPath": "Assets/Textures/Goal Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 2,
@@ -200,7 +203,7 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 39.525062561035156,
+        "x": 39.53504943847656,
         "y": 9.133201599121094,
         "z": 1.0
       },
@@ -212,14 +215,15 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.8093546628952026,
-        "w": 0.5873202085494995
+        "z": 0.8093408942222595,
+        "w": 0.5873391628265381
       }
     },
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/Hero Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,
@@ -232,7 +236,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.008085966110229492,
-        "y": -0.5740706920623779,
+        "y": -0.5740646123886108,
         "z": 1.401298464324817e-45
       },
       "Accelereation": {
@@ -259,7 +263,7 @@
     "TRANSFORM": {
       "position": {
         "x": 24.215999603271484,
-        "y": -2058.77587890625,
+        "y": -2321.315673828125,
         "z": 35.0
       },
       "scale": {
@@ -277,7 +281,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,
@@ -290,7 +295,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -205.2392120361328,
+        "y": -217.63771057128906,
         "z": 0.0
       },
       "Accelereation": {
@@ -317,7 +322,7 @@
     "TRANSFORM": {
       "position": {
         "x": 24.215999603271484,
-        "y": -1958.1553955078125,
+        "y": -2214.546142578125,
         "z": 35.0
       },
       "scale": {
@@ -335,7 +340,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,
@@ -348,7 +354,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -200.279541015625,
+        "y": -212.67803955078125,
         "z": 0.0
       },
       "Accelereation": {

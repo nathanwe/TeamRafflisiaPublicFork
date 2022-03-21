@@ -20,7 +20,6 @@ public:
 	
 	float Alpha;
 
-	//for level editor
 	bool wireMode;
 };
 
@@ -28,12 +27,14 @@ inline void to_json(ordered_json& j, const Material& material) {
 	to_json(j["AlbedoPath"], material.AlbedoPath);
 	to_json(j["MetallicPath"], material.MetallicPath);
 	to_json(j["Alpha"], material.Alpha);
+	to_json(j["wireMode"], material.wireMode);
 }
 
 inline void from_json(const ordered_json& j, Material& material) {
 	from_json(j["AlbedoPath"], material.AlbedoPath);
 	from_json(j["MetallicPath"], material.MetallicPath);
 	from_json(j["Alpha"], material.Alpha);
+	from_json(j["wireMode"], material.wireMode);
 }
 
 

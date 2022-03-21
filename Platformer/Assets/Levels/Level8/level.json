@@ -66,7 +66,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/wall/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/wall/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "TAG": {
       "uniqueName": "wall plane",
@@ -98,7 +99,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 1,
@@ -144,7 +146,8 @@
     "MATERIAL": {
       "AlbedoPath": "../GTXDankEngine/Assets/Textures/Hero Base Color.png",
       "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,
@@ -202,7 +205,8 @@
     "MATERIAL": {
       "AlbedoPath": "../GTXDankEngine/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,
@@ -260,7 +264,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 1,
@@ -306,7 +311,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 1,
@@ -352,7 +358,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 2,
@@ -405,7 +412,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 1,
@@ -453,7 +461,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 1,
@@ -499,7 +508,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 1,
@@ -547,7 +557,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 2,
@@ -599,7 +610,8 @@
     "MATERIAL": {
       "AlbedoPath": "Assets/Textures/Goal Base Color.png",
       "MetallicPath": "Assets/Textures/Goal Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 2,
