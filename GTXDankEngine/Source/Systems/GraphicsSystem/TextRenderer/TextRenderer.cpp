@@ -97,112 +97,169 @@ void TextRenderer::Init(std::string fontPath)
 void TextRenderer::RenderText(Shader& textShader, std::string text, float x, float y, float scale, glm::vec3 color)
 {
 
-    /// Draw outline first
-    textShader.setVec3("textColor", glm::vec3(0));
-    float outScale = scale * 1.3f;
-    float startx = x;
-    // iterate through all characters
-    for (auto& c : text)
+    /// if text is black => no outline needed
+    if (color == glm::vec3(0))
     {
-        Character ch = characters[c];
+        textShader.setVec3("textColor", color);
+        // iterate through all characters
+        for (auto& c : text)
+        {
+            Character ch = characters[c];
 
-        textShader.setTexture("text", ch.textureID);
+            textShader.setTexture("text", ch.textureID);
 
-        /// setup vertices and indices
-        float xpos = startx + ch.bearing.x * outScale;
-        float ypos = y + (ch.bearing.y - ch.size.y) * outScale;
-        float wdth = ch.size.x * outScale;
-        float hght = ch.size.y * outScale;
-        std::vector<float> vertices = {
-            /// CLOCKWISE
-            xpos,        ypos + hght, 0, 0,   /// bottom left
-            xpos,        ypos,        0, 1,   /// top left
-            xpos + wdth, ypos,        1, 1,   /// top right
+            /// setup vertices and indices
+            float xpos = x + ch.bearing.x * scale + 0.5f;
+            float ypos = y + (ch.bearing.y - ch.size.y) * scale + 0.5f;
+            float wdth = ch.size.x * scale;
+            float hght = ch.size.y * scale;
+            std::vector<float> vertices = {
+                /// CLOCKWISE
+                xpos,        ypos + hght, 0, 0,   /// bottom left
+                xpos,        ypos,        0, 1,   /// top left
+                xpos + wdth, ypos,        1, 1,   /// top right
 
-            xpos,        ypos + hght, 0, 0,   /// bottom left
-            xpos + wdth, ypos,        1, 1,   /// top right
-            xpos + wdth, ypos + hght, 1, 0    /// bottom right      
-        };
+                xpos,        ypos + hght, 0, 0,   /// bottom left
+                xpos + wdth, ypos,        1, 1,   /// top right
+                xpos + wdth, ypos + hght, 1, 0    /// bottom right      
+            };
 
-        /// bind vertex values
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(float), vertices.data());
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
+            /// bind vertex values
+            glBindBuffer(GL_ARRAY_BUFFER, VBO);
+            glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(float), vertices.data());
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 
-        // draw button
-        textShader.Bind();
-        glBindVertexArray(VAO);
-        glDisable(GL_DEPTH_TEST);
+            // draw button
+            textShader.Bind();
+            glBindVertexArray(VAO);
+            glDisable(GL_DEPTH_TEST);
 
-        glEnable(GL_CULL_FACE);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        
-        glDrawArrays(GL_TRIANGLES, 0, 6);
+            glEnable(GL_CULL_FACE);
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            
+            glDrawArrays(GL_TRIANGLES, 0, 6);
 
-        glDisable(GL_BLEND);
-        glDisable(GL_CULL_FACE);
+            glDisable(GL_BLEND);
+            glDisable(GL_CULL_FACE);
 
-        glEnable(GL_DEPTH_TEST);
-        glBindVertexArray(0);
-        textShader.unBind();
+            glEnable(GL_DEPTH_TEST);
+            glBindVertexArray(0);
+            textShader.unBind();
 
-        startx += (ch.advance >> 6) * outScale;
+            x += (ch.advance >> 6) * scale;
+        }
     }
-
-
-
-    /// Draw text above outline second
-    textShader.setVec3("textColor", color);
-    // iterate through all characters
-    for (auto& c : text)
+    else
     {
-        Character ch = characters[c];
+        /// Draw outline first
+        textShader.setVec3("textColor", glm::vec3(0));
+        float outScale = scale * 1.3f;
+        float startx = x;
+        // iterate through all characters
+        for (auto& c : text)
+        {
+            Character ch = characters[c];
 
-        textShader.setTexture("text", ch.textureID);
+            textShader.setTexture("text", ch.textureID);
 
-        /// setup vertices and indices
-        float xpos = x + ch.bearing.x * outScale + 0.5f;
-        float ypos = y + (ch.bearing.y - ch.size.y) * outScale + 0.5f;
-        float wdth = ch.size.x * scale;
-        float hght = ch.size.y * scale;
-        std::vector<float> vertices = {
-            /// CLOCKWISE
-            xpos,        ypos + hght, 0, 0,   /// bottom left
-            xpos,        ypos,        0, 1,   /// top left
-            xpos + wdth, ypos,        1, 1,   /// top right
+            /// setup vertices and indices
+            float xpos = startx + ch.bearing.x * outScale;
+            float ypos = y + (ch.bearing.y - ch.size.y) * outScale;
+            float wdth = ch.size.x * outScale;
+            float hght = ch.size.y * outScale;
+            std::vector<float> vertices = {
+                /// CLOCKWISE
+                xpos,        ypos + hght, 0, 0,   /// bottom left
+                xpos,        ypos,        0, 1,   /// top left
+                xpos + wdth, ypos,        1, 1,   /// top right
 
-            xpos,        ypos + hght, 0, 0,   /// bottom left
-            xpos + wdth, ypos,        1, 1,   /// top right
-            xpos + wdth, ypos + hght, 1, 0    /// bottom right      
-        };
+                xpos,        ypos + hght, 0, 0,   /// bottom left
+                xpos + wdth, ypos,        1, 1,   /// top right
+                xpos + wdth, ypos + hght, 1, 0    /// bottom right      
+            };
 
-        /// bind vertex values
-        glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(float), vertices.data());
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
+            /// bind vertex values
+            glBindBuffer(GL_ARRAY_BUFFER, VBO);
+            glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(float), vertices.data());
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 
-        // draw button
-        textShader.Bind();
-        glBindVertexArray(VAO);
-        glDisable(GL_DEPTH_TEST);
+            // draw button
+            textShader.Bind();
+            glBindVertexArray(VAO);
+            glDisable(GL_DEPTH_TEST);
 
-        glEnable(GL_CULL_FACE);
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        
-        glDrawArrays(GL_TRIANGLES, 0, 6);
+            glEnable(GL_CULL_FACE);
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            
+            glDrawArrays(GL_TRIANGLES, 0, 6);
 
-        glDisable(GL_BLEND);
-        glDisable(GL_CULL_FACE);
+            glDisable(GL_BLEND);
+            glDisable(GL_CULL_FACE);
 
-        glEnable(GL_DEPTH_TEST);
-        glBindVertexArray(0);
-        textShader.unBind();
+            glEnable(GL_DEPTH_TEST);
+            glBindVertexArray(0);
+            textShader.unBind();
 
-        x += (ch.advance >> 6) * outScale;
+            startx += (ch.advance >> 6) * outScale;
+        }
+
+
+
+        /// Draw text above outline second
+        textShader.setVec3("textColor", color);
+        // iterate through all characters
+        for (auto& c : text)
+        {
+            Character ch = characters[c];
+
+            textShader.setTexture("text", ch.textureID);
+
+            /// setup vertices and indices
+            float xpos = x + ch.bearing.x * outScale + 0.5f;
+            float ypos = y + (ch.bearing.y - ch.size.y) * outScale + 0.5f;
+            float wdth = ch.size.x * scale;
+            float hght = ch.size.y * scale;
+            std::vector<float> vertices = {
+                /// CLOCKWISE
+                xpos,        ypos + hght, 0, 0,   /// bottom left
+                xpos,        ypos,        0, 1,   /// top left
+                xpos + wdth, ypos,        1, 1,   /// top right
+
+                xpos,        ypos + hght, 0, 0,   /// bottom left
+                xpos + wdth, ypos,        1, 1,   /// top right
+                xpos + wdth, ypos + hght, 1, 0    /// bottom right      
+            };
+
+            /// bind vertex values
+            glBindBuffer(GL_ARRAY_BUFFER, VBO);
+            glBufferSubData(GL_ARRAY_BUFFER, 0, vertices.size() * sizeof(float), vertices.data());
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+
+            // draw button
+            textShader.Bind();
+            glBindVertexArray(VAO);
+            glDisable(GL_DEPTH_TEST);
+
+            glEnable(GL_CULL_FACE);
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            
+            glDrawArrays(GL_TRIANGLES, 0, 6);
+
+            glDisable(GL_BLEND);
+            glDisable(GL_CULL_FACE);
+
+            glEnable(GL_DEPTH_TEST);
+            glBindVertexArray(0);
+            textShader.unBind();
+
+            x += (ch.advance >> 6) * outScale;
+        }
     }
 }
 

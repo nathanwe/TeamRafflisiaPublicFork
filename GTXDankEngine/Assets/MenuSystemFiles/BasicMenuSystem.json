@@ -2,15 +2,11 @@
     "Main": {
         "First": {
             "x": "center",
-            "y": 500
+            "y": 430
         },
         "Button Size": {
             "x": 240,
             "y": 100
-        },
-        "Slider Size": {
-            "x": 600,
-            "y": 15
         },
 
         "Background": "Assets/Textures/B2TW_mainMenu.png",
@@ -18,6 +14,10 @@
         "Start": {
             "Texture": "Assets/Textures/Start_button.png",
             "Command": "Start"
+        },
+        "Level Select": {
+            "Texture": "Assets/Textures/Levels_button.png",
+            "Command": "Level Select"
         },
         "Options":
         {
@@ -27,6 +27,87 @@
         "Exit": {
             "Texture": "Assets/Textures/Exit_button.png",
             "Command": "Exit"
+        }
+    },
+
+
+    "Level Select": {
+        "First": {
+            "x": 100,
+            "y": 350 
+        },
+        "Button Size": {
+            "x": 120,
+            "y": 50 
+        },
+        
+        "Background": "Assets/Textures/B2TW_mainMenu.png",
+
+
+        "LEVEL 1": {
+            "Command": "LEVEL 1"
+        },
+        "LEVEL 2": {
+            "Command": "LEVEL 2"
+        },
+        "LEVEL 3": {
+            "Command": "LEVEL 3"
+        },
+        "LEVEL 4": {
+            "Command": "LEVEL 4"
+        },
+        
+
+        "LEVEL 5": {
+            "Position": {
+                "x": 240,
+                "y": 350
+            },
+            "Command": "LEVEL 5"
+        },
+        "LEVEL 6": {
+            "Command": "LEVEL 6"
+        },
+        "LEVEL 7": {
+            "Command": "LEVEL 7"
+        },
+        "LEVEL 8": {
+            "Command": "LEVEL 8"
+        },
+        
+        
+        "LEVEL 9": {
+            "Position": {
+                "x": 380,
+                "y": 350
+            },
+            "Command": "LEVEL 9"
+        },
+        "LEVEL 10": {
+            "Command": "LEVEL 10"
+        },
+        "LEVEL 11": {
+            "Command": "LEVEL 11"
+        },
+        "LEVEL 12": {
+            "Command": "LEVEL 12"
+        },
+
+        "LEVEL 13": {
+            "Position": {
+                "x": 520,
+                "y": 350
+            },
+            "Command": "LEVEL 13"
+        },
+
+        "Back": {
+            "Position": {
+                "x": "center",
+                "y": 700
+            },
+            "Texture": "Assets/Textures/Back_button.png",
+            "Command": "Back"
         }
     },
 
@@ -74,10 +155,6 @@
         "Button Size": {
             "x": 120,
             "y": 50 
-        },
-        "Slider Size": {
-            "x": 600,
-            "y": 15
         },
 
         "Continue": {
@@ -147,10 +224,6 @@
             "x": 120,
             "y": 50 
         },
-        "Slider Size": {
-            "x": 600,
-            "y": 15
-        },
         
         "Options2Deep": {
             "Texture": "Assets/Textures/Options_button.png",
@@ -171,10 +244,6 @@
         "Button Size": {
             "x": 120,
             "y": 50 
-        },
-        "Slider Size": {
-            "x": 600,
-            "y": 15
         },
 
         "Back": {
