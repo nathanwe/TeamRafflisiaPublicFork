@@ -97,6 +97,16 @@ void MenuSystem::Draw()
 {
     if (!currentMenu.empty() && menus.find(currentMenu) != menus.end() && display)
     {
+        if (currentMenu.compare("ExitMenu") == 0)
+        {
+            engine.GraphicsSys.DrawCustomText("ARE YOU SURE", 2.3f, glm::vec2(100,500), glm::vec3(237.0f,28.0f,36.0f)/255.0f);
+        }
+        else if (currentMenu.compare("B2MMenu") == 0)
+        {
+            engine.GraphicsSys.DrawCustomText("ARE YOU SURE", 2.3f, glm::vec2(100,620), glm::vec3(237.0f,28.0f,36.0f)/255.0f);
+            engine.GraphicsSys.DrawCustomText("BACK TO MAIN MENU", 1.8f, glm::vec2(23,470), glm::vec3(237.0f,28.0f,36.0f)/255.0f);
+            
+        }
         menus[currentMenu]->Draw(*menuShader);
     }
 }
