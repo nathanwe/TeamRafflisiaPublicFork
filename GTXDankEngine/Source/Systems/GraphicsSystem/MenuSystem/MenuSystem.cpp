@@ -97,6 +97,10 @@ void MenuSystem::Draw()
 {
     if (!currentMenu.empty() && menus.find(currentMenu) != menus.end() && display)
     {
+        if (currentMenu.compare("ExitMenu") == 0)
+        {
+            engine.GraphicsSys.DrawCustomText("ARE YOU SURE", 2.3f, glm::vec2(100,500), glm::vec3(237.0f,28.0f,36.0f)/255.0f);
+        }
         menus[currentMenu]->Draw(*menuShader);
     }
 }
