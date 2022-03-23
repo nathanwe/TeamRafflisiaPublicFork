@@ -180,7 +180,7 @@
         "MMenu":
         {
             "Texture": "Assets/Textures/MMenu_button.png",
-            "Command": "LEVEL -1"
+            "Command": "B2MMenu"
         },
         "Exit": {
             "Texture": "Assets/Textures/Exit_button.png",
@@ -201,6 +201,28 @@
 
         "YES": {
             "Command": "Exit"
+        },
+        "NO": {
+            "Position": {
+                "x": 640,
+                "y": 530
+            },
+            "Command": "Back"
+        }
+    },
+    "B2MMenu":
+    {
+        "First": {
+            "x": 360,
+            "y": 530
+        },
+        "Button Size": {
+            "x": 240,
+            "y": 100
+        },
+
+        "YES": {
+            "Command": "LEVEL -1"
         },
         "NO": {
             "Position": {
