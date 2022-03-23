@@ -207,6 +207,12 @@ void MenuButton::Execute()
 }
 
 
+void MenuButton::LoadLevel()
+{
+    engine.SceneSys.LoadScene(levelToLoad);
+}
+
+
 
 MenuButton* MenuButton::SetTexture(std::string texturePath)
 {
@@ -242,12 +248,19 @@ void button_from_json(const ordered_json& j, MenuButton& menuBut)
         menuBut.SetTexture(j["Texture"]);
         changed = true;
     }
+    else
     if (j.find("Color") != j.end())
     {
         glm::vec4 nColor;
         from_json(j["Color"], nColor);
         menuBut.SetColor(nColor);
         changed = true;
+    }
+    else
+    {
+        changed = true;
+        menuBut.SetTexture("Assets/Textures/ButtonBackground.png");
+        menuBut.named = true;
     }
 
     if (changed)
@@ -303,6 +316,15 @@ void button_from_json(const ordered_json& j, MenuButton& menuBut)
             menuBut.SetActionToExecute([&](){
                 engine.SceneSys.LoadScene(engine.SceneSys.GetCurrentLevel());
                 engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
+            });
+        }
+        /// in this case the command is the name of the next level
+        else if (command.substr(0, 6).compare("LEVEL ") == 0)
+        {
+            menuBut.levelToLoad = stoi(command.substr(6));
+            menuBut.SetActionToExecute([&](){
+                engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
+                menuBut.LoadLevel();
             });
         }
         /// in this case command is the name of the next menu

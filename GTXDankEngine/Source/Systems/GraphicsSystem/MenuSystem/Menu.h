@@ -66,7 +66,8 @@ inline void from_json(const ordered_json& j, Menu& menu)
     glm::vec2 buttonDmns, sliderDmns, startPnt;
     bool isCenter = false;
     from_json(j["Button Size"], buttonDmns);
-    from_json(j["Slider Size"], sliderDmns);
+    if (j.find("Slider Size") != j.end())
+        from_json(j["Slider Size"], sliderDmns);
 
     if (j["First"]["x"].is_number())
         from_json(j["First"], startPnt);
@@ -93,6 +94,24 @@ inline void from_json(const ordered_json& j, Menu& menu)
         bool isSlider = false;
         if (itr.value().find("Slider") != itr.value().end())
             from_json(itr.value()["Slider"], isSlider);
+
+        /// override position and dimensions when mentioned
+        if (itr.value().find("Position") != itr.value().end())
+        {
+            if (itr.value()["Position"]["x"].is_number())
+            {
+                from_json(itr.value()["Position"], startPnt);
+                isCenter = false;
+            }
+            else if (itr.value()["Position"]["x"].get<std::string>() == "center")
+            {
+                isCenter = true;
+                from_json(itr.value()["Position"]["y"], startPnt.y);
+                startPnt.x = 0.5f;
+            }
+        }
+        if (itr.value().find("Dimensions") != itr.value().end())
+            from_json(itr.value()["Dimensions"], buttonDmns);
         
         if (!isSlider)
         {

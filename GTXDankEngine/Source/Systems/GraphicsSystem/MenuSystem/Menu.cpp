@@ -7,6 +7,7 @@
 /// used to get WIDTH and HEIGHT
 #include "../Systems/GraphicsSystem/GraphicsSystem.h"
 
+extern Engine engine;
 
 Menu::Menu()
     :
@@ -158,9 +159,18 @@ void Menu::Draw(Shader& shader)
     }
 
     /// draw all of the buttons
-    for (auto& [_,mb] : buttons)
+    for (auto& [name, mb] : buttons)
     {
         mb->Draw(shader);
+        /// if named => draw name over button
+        if (mb->named)
+        {
+            const glm::vec2& pos  = mb->GetPosition();
+            const glm::vec2& dims = mb->GetDimensions();
+            glm::vec2 preCalc = pos-dims/2.0f + glm::vec2(10,40);
+            preCalc.y = engine.GraphicsSys.camera.height - preCalc.y;
+            engine.GraphicsSys.DrawCustomText(name, 0.43f, preCalc, glm::vec3(0));
+        }
     }
 
     

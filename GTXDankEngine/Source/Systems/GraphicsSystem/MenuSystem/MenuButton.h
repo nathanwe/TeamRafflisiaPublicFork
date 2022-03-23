@@ -49,9 +49,16 @@ public:
     
     void AdjustForWindowSize();
 
+    void LoadLevel();
+
 /// parameters
 public:
     std::string nMenu;
+
+    /// used when no texture or color given
+    /// draws text over the button
+    bool named = false;
+    int levelToLoad = -1;
 
 /// methods
 private:
