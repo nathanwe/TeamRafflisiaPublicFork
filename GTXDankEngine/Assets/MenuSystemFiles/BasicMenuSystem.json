@@ -26,7 +26,7 @@
         },
         "Exit": {
             "Texture": "Assets/Textures/Exit_button.png",
-            "Command": "Exit"
+            "Command": "ExitMenu"
         }
     },
 
@@ -177,9 +177,59 @@
             "Texture": "Assets/Textures/Prev_button.png",
             "Command": "Prev level"
         },
+        "MMenu":
+        {
+            "Texture": "Assets/Textures/MMenu_button.png",
+            "Command": "B2MMenu"
+        },
         "Exit": {
             "Texture": "Assets/Textures/Exit_button.png",
+            "Command": "ExitMenu"
+        }
+    },
+
+    "ExitMenu":
+    {
+        "First": {
+            "x": 360,
+            "y": 530
+        },
+        "Button Size": {
+            "x": 240,
+            "y": 100
+        },
+
+        "YES": {
             "Command": "Exit"
+        },
+        "NO": {
+            "Position": {
+                "x": 640,
+                "y": 530
+            },
+            "Command": "Back"
+        }
+    },
+    "B2MMenu":
+    {
+        "First": {
+            "x": 360,
+            "y": 530
+        },
+        "Button Size": {
+            "x": 240,
+            "y": 100
+        },
+
+        "YES": {
+            "Command": "LEVEL -1"
+        },
+        "NO": {
+            "Position": {
+                "x": 640,
+                "y": 530
+            },
+            "Command": "Back"
         }
     },
 
