@@ -404,14 +404,16 @@ void LevelEditorSystem::UpdateGUI()
 			if (collider != nullptr)
 			{
 				ImGui::InputInt("Shape", reinterpret_cast<int*>(&collider->NarrowPhase.shape));
-				if (collider->NarrowPhase.shape == Shape::SPHERE)
+				if (collider->NarrowPhase.shape == Shape::SPHERE || collider->NarrowPhase.shape == Shape::NIL)
 				{
+					ImGui::Text("Sphere");
 					ImGui::DragFloat("Radius", &collider->NarrowPhase.radius, 0.01f);
 					if (collider->NarrowPhase.radius < 0)
 						collider->NarrowPhase.radius = 0;
 				}
-				else if (collider->NarrowPhase.shape == Shape::PLANE)
+				if (collider->NarrowPhase.shape == Shape::PLANE || collider->NarrowPhase.shape == Shape::NIL)
 				{
+					ImGui::Text("Plane");
 					ImGui::DragFloat3("Normal", &collider->NarrowPhase.normal.x, 0.01f);
 					ImGui::DragFloat("Magnitude", &collider->NarrowPhase.magnitude, 0.01f);
 					ImGui::DragFloat3("p1", &collider->NarrowPhase.p1.x, 0.01f);
@@ -419,8 +421,9 @@ void LevelEditorSystem::UpdateGUI()
 					ImGui::DragFloat3("p3", &collider->NarrowPhase.p3.x, 0.01f);
 					ImGui::DragFloat3("p4", &collider->NarrowPhase.p4.x, 0.01f);
 				}
-				else if (collider->NarrowPhase.shape == Shape::AABB)
+				if (collider->NarrowPhase.shape == Shape::AABB || collider->NarrowPhase.shape == Shape::NIL)
 				{
+					ImGui::Text("AABB");
 					ImGui::DragFloat3("MinPoint", &collider->NarrowPhase.minPoint.x, 0.01f);
 					ImGui::DragFloat3("MaxPoint", &collider->NarrowPhase.maxPoint.x, 0.01f);
 				}
