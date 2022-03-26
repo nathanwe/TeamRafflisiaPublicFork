@@ -46,6 +46,7 @@ SetupIconFile=Installer\INSTALLERFILES\setup_icon.ico
 ; in the Program Files, or change the registry. This is done to allow installation on Sandbox
 ; or other intermediate directory
 PrivilegesRequired=none
+RestartIfNeededByRun=no
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
@@ -54,7 +55,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "GTXDankEngine\x64\Debug\{#MyAppExeName}"; DestDir: "{app}\Platformer"; Flags: ignoreversion
+Source: "GTXDankEngine\x64\Release\{#MyAppExeName}"; DestDir: "{app}\Platformer"; Flags: ignoreversion
 Source: "*"; DestDir: "{app}"; Flags: ignoreversion
 Source: "Platformer\*"; DestDir: "{app}\Platformer"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "GTXDankEngine\assimp-vc142-mtd.dll"; DestDir: "{app}\Platformer"; Flags: ignoreversion
@@ -73,6 +74,6 @@ Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\Platformer\{#MyAppExeName}
 Name: "{autodesktop}\{#MyAppName}"; Filename: "{app}\Platformer\{#MyAppExeName}"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\Platformer\VC_redist.x64.exe";    Parameters: /q /quiet /passive /silent /norestart /noreboot; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags:   ;StatusMsg: Installing Visual C++ {#CPlusPlusYearVersion} Redistributable...
+Filename: "{app}\Platformer\VC_redist.x64.exe";    Parameters: /q /quiet /passive /verysilent /norestart /noreboot; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags:   ;StatusMsg: Installing Visual C++ {#CPlusPlusYearVersion} Redistributable...
 Filename: "{app}\Platformer\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
