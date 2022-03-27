@@ -156,6 +156,9 @@ void Engine::Run()
 
 void Engine::Destroy()
 {
+	/// Save the last played level
+	SceneSys.SaveLastLevel();
+
 	// Destroy all systems in reverse order
 	//
 	if (!PhysicsSys.Destroy()) LOG_ERROR("Physics System failed to destroy properly.");

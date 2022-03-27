@@ -88,27 +88,34 @@ void MenuButton::Draw(Shader& shader)
 
     double xMPos, yMPos;
     glfwGetCursorPos(engine.window, &xMPos, &yMPos);
-    if (std::abs(xMPos - xPos) <= btnWidth/2.0f && std::abs(yMPos - yPos) <= btnHeight/2.0f)
+    if (active)
     {
-        if (engine.InputSys.IsLeftMousePressed())
+        if (std::abs(xMPos - xPos) <= btnWidth/2.0f && std::abs(yMPos - yPos) <= btnHeight/2.0f)
         {
-            shader.setVec3("shade", glm::vec3(0.6f,0.6f,0.6f));
-            readyToExecute = true;
+            if (engine.InputSys.IsLeftMousePressed())
+            {
+                shader.setVec3("shade", glm::vec3(0.6f,0.6f,0.6f));
+                readyToExecute = true;
+            }
+            else
+            {
+                shader.setVec3("shade", glm::vec3(0.93f, 0.93f, 0.93f));
+                if (readyToExecute)
+                {
+                    readyToExecute = false;
+                    this->Execute();
+                }
+            }
         }
         else
         {
-            shader.setVec3("shade", glm::vec3(0.93f, 0.93f, 0.93f));
-            if (readyToExecute)
-            {
-                readyToExecute = false;
-                this->Execute();
-            }
+            shader.setVec3("shade", glm::vec3(0.82f,0.82f,0.82f));
+            readyToExecute = false;
         }
     }
     else
     {
-        shader.setVec3("shade", glm::vec3(0.82f,0.82f,0.82f));
-        readyToExecute = false;
+        shader.setVec3("shade", glm::vec3(0.6f,0.6f,0.6f));
     }
 
     shader.setInt("haveTxtr", haveTexture);

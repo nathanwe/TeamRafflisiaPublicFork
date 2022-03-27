@@ -28,6 +28,16 @@ Menu::~Menu()
 }
 
 
+void Menu::DeactivateLevelButtons(int prevLevel)
+{
+    prevLevel++;
+    for (; prevLevel != buttons.size(); ++prevLevel)
+    {
+        buttons["LEVEL " + std::to_string(prevLevel)]->active = false;
+    }
+}
+
+
 MenuButton* Menu::AddButton(std::string name,
     glm::vec2 position,   std::pair<bool, bool> isPosRelative,
     glm::vec2 dimensions, std::pair<bool, bool> isDimRelative,
