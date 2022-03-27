@@ -168,7 +168,6 @@ void Menu::Draw(Shader& shader)
             const glm::vec2& pos  = mb->GetPosition();
             const glm::vec2& dims = mb->GetDimensions();
             glm::vec2 preCalc = pos-dims/2.0f + glm::vec2(10,40);
-            preCalc.y = engine.GraphicsSys.camera.height - preCalc.y;
             engine.GraphicsSys.DrawCustomText(name, 0.43f, preCalc, glm::vec3(0));
         }
     }

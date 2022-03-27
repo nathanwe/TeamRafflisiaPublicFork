@@ -344,7 +344,7 @@ void GraphicsSystem::RendererFboResize(unsigned int width, unsigned int height)
 
 void GraphicsSystem::DrawCustomText(std::string text, float scale, glm::vec2 pos, glm::vec3 color)
 {
-	TextRenderer.RenderText(*textShader, text, pos.x, pos.y, scale, color);
+	TextRenderer.RenderText(*textShader, text, pos.x, camera.height - pos.y, scale, color);
 }
 
 

@@ -116,7 +116,7 @@
     "Options": {
         "First": {
             "x": 100,
-            "y": 30 
+            "y": 45 
         },
         "Button Size": {
             "x": 120,
@@ -150,7 +150,7 @@
     "Pause": {
         "First": {
             "x": 100,
-            "y": 30 
+            "y": 45 
         },
         "Button Size": {
             "x": 120,
@@ -161,21 +161,11 @@
             "Texture": "Assets/Textures/Continue_button.png",
             "Command": "Continue"
         },
-        "Restart": {
-            "Texture": "Assets/Textures/Restart_button.png",
-            "Command": "Restart"
+        "AUDIO": {
+            "Command": "AudioOptions"
         },
-        "PauseOptions": {
-            "Texture": "Assets/Textures/Options_button.png",
-            "Command": "PauseOptions"
-        },
-        "NextLevel": {
-            "Texture": "Assets/Textures/Next_button.png",
-            "Command": "Next level"
-        },
-        "PrevLevel": {
-            "Texture": "Assets/Textures/Prev_button.png",
-            "Command": "Prev level"
+        "CHEATS": {
+            "Command": "CheatOptions"
         },
         "MMenu":
         {
@@ -234,10 +224,10 @@
     },
 
 
-    "PauseOptions": {
+    "AudioOptions": {
         "First": {
             "x": 100,
-            "y": 30 
+            "y": 45 
         },
         "Button Size": {
             "x": 120,
@@ -263,12 +253,40 @@
             "Command": "Back"
         }
     },
+
+    "CheatOptions": {
+        "First": {
+            "x": 100,
+            "y": 45 
+        },
+        "Button Size": {
+            "x": 120,
+            "y": 50 
+        },
+        
+        "Restart": {
+            "Texture": "Assets/Textures/Restart_button.png",
+            "Command": "Restart"
+        },
+        "NextLevel": {
+            "Texture": "Assets/Textures/Next_button.png",
+            "Command": "Next level"
+        },
+        "PrevLevel": {
+            "Texture": "Assets/Textures/Prev_button.png",
+            "Command": "Prev level"
+        },
+        "Back": {
+            "Texture": "Assets/Textures/Back_button.png",
+            "Command": "Back"
+        }
+    },
     
 
     "Options2": {
         "First": {
             "x": 100,
-            "y": 30 
+            "y": 45 
         },
         "Button Size": {
             "x": 120,
@@ -289,7 +307,7 @@
     "Options2Deep": {
         "First": {
             "x": 100,
-            "y": 30
+            "y": 45
         },
         "Button Size": {
             "x": 120,
