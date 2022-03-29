@@ -60,6 +60,9 @@ public:
     bool named = false;
     int levelToLoad = -1;
 
+    /// used by level buttons
+    bool active = true;
+
 /// methods
 private:
 

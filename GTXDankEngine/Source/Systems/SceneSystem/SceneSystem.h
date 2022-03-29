@@ -25,11 +25,16 @@ public:
 	bool Destroy();
 	int GetCurrentLevel();
 
+	void SaveLastLevel() const;
+
 private:
 	
 	std::vector<ordered_json> levels;
 	int currentLevel = 0;
 	int levelToLoad = 0;
 	bool shouldLoadLevel = false;
+
+	int lastSavedLevel = 1;
+
 };
 #endif // !SCENESYSTEM_H

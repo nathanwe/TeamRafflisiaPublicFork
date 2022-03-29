@@ -16,6 +16,17 @@ extern Engine engine;
 
 bool SceneSystem::Init()
 {
+    /// opens the file with the last played level
+    if (std::filesystem::exists(GAME_PATH + std::string("Assets/Levels/lastLevel")))
+    {
+        std::ifstream llFile(GAME_PATH + std::string("Assets/Levels/lastLevel"));
+        std::ostringstream interpolate;
+        interpolate << llFile.rdbuf();
+        lastSavedLevel = stoi(interpolate.str());
+    }
+
+    /// HARDCODED
+    engine.GraphicsSys.GetMenuSystem().GetMenu("Level Select")->DeactivateLevelButtons(lastSavedLevel);
     
     for (int i = 0; std::filesystem::exists(GAME_PATH + std::string("Assets/Levels/Level") + std::to_string(i) + std::string("/level.json")); ++i)
     {
@@ -36,6 +47,12 @@ bool SceneSystem::Init()
         });
 
 	return true;
+}
+
+void SceneSystem::SaveLastLevel() const
+{
+    std::ofstream llFile(GAME_PATH + std::string("Assets/Levels/lastLevel"));
+    llFile << lastSavedLevel;
 }
 
 void SceneSystem::UnloadScene()
@@ -126,6 +143,17 @@ void SceneSystem::Update(float dt)
     
     if (shouldLoadLevel)
     {
+        if (levelToLoad > lastSavedLevel)
+        {
+            /// HARDCODED
+            Menu* levelMenu = engine.GraphicsSys.GetMenuSystem().GetMenu("Level Select");
+            for (int i = lastSavedLevel; i <= levelToLoad; ++i)
+            {
+                levelMenu->GetButton("LEVEL " + std::to_string(i))->active = true;
+            }
+
+            lastSavedLevel = levelToLoad;
+        }
         if (levelToLoad == -1)
         {
             engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
