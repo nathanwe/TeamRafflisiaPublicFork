@@ -189,6 +189,10 @@ void Engine::Destroy()
 	{
 		LOG_ERROR("Level Editor System failed to destroy properly.");
 	}
+	if (!InputSys.Destroy())
+	{
+		LOG_ERROR("Input System failed to destroy properly.");
+	}
 
 	ScriptResourceManager.Destroy();
 	TextureResourceManger.Destroy();

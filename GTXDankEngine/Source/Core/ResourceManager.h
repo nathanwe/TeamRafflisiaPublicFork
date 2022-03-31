@@ -240,7 +240,7 @@ inline bool ResourceManager<ResourceType>::Destroy()
 	threadRunning = false;
 	std::unique_lock<std::mutex> inputUpdateLock(mutex);
 	cv.notify_one();
-	threadName.join();
+//	threadName.join();
 	
 	return true;
 	

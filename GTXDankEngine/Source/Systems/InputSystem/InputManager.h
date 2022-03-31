@@ -49,6 +49,8 @@ public:
 	bool IsControllerPressed(int controllerNo, int button);
 	bool IsControllerTriggered(int controllerNo, int button);
 	bool IsControllerReleased(int controllerNo, int button);
+
+	bool Destroy();
 public:
 	float deadzone = 0.1f;
 

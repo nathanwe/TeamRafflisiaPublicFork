@@ -33,6 +33,16 @@ InputManager::~InputManager() {
 	updateThread.join();
 }
 
+bool InputManager::Destroy()
+{
+	threadRunning = false;
+	std::unique_lock<std::mutex> inputUpdateLock(mtx);
+	cv.notify_one();
+//	threadName.join();
+	
+	return true;
+}
+
 void InputManager::Update()
 {
 	//LOG_INFO("Mouse Positions");
