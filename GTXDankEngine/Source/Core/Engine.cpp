@@ -216,7 +216,7 @@ void Engine::Destroy()
 
 	*/
 
-
+	LOG_INFO("Shutdown Properly");
 	Log::ShutDown();
 
 }

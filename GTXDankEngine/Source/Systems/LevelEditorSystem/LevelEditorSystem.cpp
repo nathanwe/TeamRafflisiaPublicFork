@@ -133,7 +133,7 @@ void LevelEditorSystem::Update(float timeStamp)
 
 bool LevelEditorSystem::Destroy()
 {
-	return false;
+	return true;
 }
 
 void LevelEditorSystem::UpdateGUI()
