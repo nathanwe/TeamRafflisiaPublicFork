@@ -24,7 +24,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 2,
@@ -78,7 +79,8 @@
       "MetallicPath": "../Platformer/Assets/Textures/rock/metallic.png",
       "NormalPath": "../Platformer/Assets/Textures/normal.png",
       "RoughnessPath": "../Platformer/Assets/Textures/rock/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "TAG": {
       "uniqueName": "DownArrow",
@@ -110,7 +112,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Trampoline Base Color.png",
       "MetallicPath": "../GTXDankEngine/Assets/Textures/Button Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 1,
@@ -158,7 +161,8 @@
     "MATERIAL": {
       "AlbedoPath": "Assets/Textures/Goal Base Color.png",
       "MetallicPath": "Assets/Textures/Goal Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 2,
@@ -210,7 +214,8 @@
     "MATERIAL": {
       "AlbedoPath": "../GTXDankEngine/Assets/Textures/Hero Base Color.png",
       "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,
@@ -268,7 +273,8 @@
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 1,
@@ -314,7 +320,8 @@
     "MATERIAL": {
       "AlbedoPath": "../GTXDankEngine/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0
+      "Alpha": 1.0,
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,

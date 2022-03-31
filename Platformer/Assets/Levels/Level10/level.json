@@ -2,9 +2,9 @@
   {
     "TRANSFORM": {
       "position": {
-        "x": 2.009999990463257,
-        "y": 9.255000114440918,
-        "z": -5.11899995803833
+        "x": 0.0,
+        "y": 8.925461769104004,
+        "z": -1.2186932563781738
       },
       "scale": {
         "x": 5.0,
@@ -43,64 +43,18 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/Models/placeholder_platforms.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": 0.0,
-        "y": 6.199999809265137,
-        "z": 0.0
-      },
-      "scale": {
-        "x": 50.0,
-        "y": 3.0199999809265137,
-        "z": 7.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 1.0
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/PlatformBaseColor.png",
-      "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0,
-      "wireMode": false
-    },
-    "COLLIDER": {
-      "Shape": 1,
-      "Normal": {
-        "x": 0.0,
-        "y": 1.0,
-        "z": 0.0
-      },
-      "Magnitude": 6.199999809265137
-    },
-    "STILL_BODY": {
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "TAG": {
-      "uniqueName": "BasePlayerPlatform",
-      "category": "Slope"
-    }
-  },
-  {
-    "MODEL": {
       "path": "../Platformer/Assets/Models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
-        "x": 1.559999942779541,
-        "y": 50.18000030517578,
-        "z": 39.2599983215332
+        "x": 0.0,
+        "y": 50.0,
+        "z": 20.0
       },
       "scale": {
-        "x": 50.37900161743164,
-        "y": 1.2330000400543213,
-        "z": 50.24700164794922
+        "x": 50.0,
+        "y": 1.0,
+        "z": 50.0
       },
       "rotation": {
         "x": -0.5000001192092896,
@@ -110,7 +64,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/Gradient Background.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/wall/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/wall/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -122,18 +76,18 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/Models/Cube.obj"
+      "path": "../Platformer/Assets/Models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
-        "x": 24.525999069213867,
-        "y": 17.618999481201172,
-        "z": 35.86000061035156
+        "x": 30.0,
+        "y": 0.0,
+        "z": 10.0
       },
       "scale": {
-        "x": 3.0199999809265137,
-        "y": 3.0199999809265137,
-        "z": 3.0859999656677246
+        "x": 20.0,
+        "y": 0.029999999329447746,
+        "z": 7.0
       },
       "rotation": {
         "x": 0.0,
@@ -143,43 +97,338 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
     },
     "COLLIDER": {
-      "Shape": 2,
-      "MinPoint": {
-        "x": -3.0,
-        "y": -3.0,
-        "z": -3.0
+      "Shape": 1,
+      "Normal": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
       },
-      "MaxPoint": {
+      "Magnitude": 0.0
+    },
+    "STILL_BODY": {
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "GAME_LOGIC": [],
+    "TAG": {
+      "uniqueName": "Slope1",
+      "category": "Slope"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "Assets/Defaults/Sphere.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 45.0,
+        "y": 2.9332010746002197,
+        "z": 10.0
+      },
+      "scale": {
         "x": 3.0,
         "y": 3.0,
         "z": 3.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": -0.11915723979473114,
+        "w": 0.9928753972053528
       }
     },
-    "STILL_BODY": {
-      "Shape": 2,
-      "MinPoint": {
+    "MATERIAL": {
+      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Hero Base Color.png",
+      "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 2.930000066757202
+    },
+    "MOVING_BODY": {
+      "Elasticity": 0.3499999940395355,
+      "Friction": 0.0,
+      "Gravity": true,
+      "Mass": 5.0,
+      "Velocity": {
+        "x": 0.0,
+        "y": -0.5740717649459839,
+        "z": 0.0
+      },
+      "Accelereation": {
         "x": 0.0,
         "y": 0.0,
         "z": 0.0
       },
-      "MaxPoint": {
-        "x": 1.0,
-        "y": 1.0,
-        "z": 1.0
+      "CollisionType": 0,
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "GAME_LOGIC": [
+      "PLAYER"
+    ],
+    "TAG": {
+      "uniqueName": "Player",
+      "category": "Player"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "Assets/Defaults/Sphere.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 38.70159912109375,
+        "y": 54.523677825927734,
+        "z": 10.0
+      },
+      "scale": {
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.608516275882721,
+        "w": 0.7935413718223572
       }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Friend Base Color.png",
+      "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 2.930000066757202
+    },
+    "MOVING_BODY": {
+      "Elasticity": 0.3499999940395355,
+      "Friction": 0.0,
+      "Gravity": true,
+      "Mass": 5.0,
+      "Velocity": {
+        "x": -2.873105049133301,
+        "y": -0.7266374826431274,
+        "z": 0.0
+      },
+      "Accelereation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "CollisionType": 0,
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "GAME_LOGIC": [
+      "PLATFORMER_BALL"
+    ],
+    "TAG": {
+      "uniqueName": "ball",
+      "category": "ball"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/plane.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 41.79999923706055,
+        "y": 52.31999969482422,
+        "z": 10.0
+      },
+      "scale": {
+        "x": 7.0,
+        "y": 3.0199999809265137,
+        "z": 4.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.13052619993686676,
+        "w": 0.9914448857307434
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 1,
+      "Normal": {
+        "x": -0.2588190734386444,
+        "y": 0.9659258127212524,
+        "z": 0.0
+      },
+      "Magnitude": 39.71860122680664
+    },
+    "STILL_BODY": {
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "GAME_LOGIC": [],
+    "TAG": {
+      "uniqueName": "Slope1",
+      "category": "Slope"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/plane.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 27.489999771118164,
+        "y": 50.25,
+        "z": 10.0
+      },
+      "scale": {
+        "x": 7.0,
+        "y": 1.0,
+        "z": 7.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 1,
+      "Normal": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "Magnitude": 50.25
+    },
+    "STILL_BODY": {
+      "Shape": 0,
+      "Radius": 1.0
     },
     "GAME_LOGIC": [
       "ENEMY"
     ],
     "TAG": {
-      "uniqueName": "1",
-      "category": "Cube"
+      "uniqueName": "Slope1",
+      "category": "Slope"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/plane.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 17.709999084472656,
+        "y": 47.04999923706055,
+        "z": 10.0
+      },
+      "scale": {
+        "x": 7.0,
+        "y": 3.0199999809265137,
+        "z": 4.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.13052619993686676,
+        "w": 0.9914448857307434
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 1,
+      "Normal": {
+        "x": -0.2588190734386444,
+        "y": 0.9659258127212524,
+        "z": 0.0
+      },
+      "Magnitude": 40.863121032714844
+    },
+    "STILL_BODY": {
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "GAME_LOGIC": [],
+    "TAG": {
+      "uniqueName": "Slope1",
+      "category": "Slope"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/plane.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 4.0,
+        "y": 45.34000015258789,
+        "z": 10.0
+      },
+      "scale": {
+        "x": 7.0,
+        "y": 3.0199999809265137,
+        "z": 7.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 1,
+      "Normal": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "Magnitude": 45.34000015258789
+    },
+    "STILL_BODY": {
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "GAME_LOGIC": [
+      "ENEMY"
+    ],
+    "TAG": {
+      "uniqueName": "Slope1",
+      "category": "Slope"
     }
   },
   {
@@ -188,13 +437,13 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 24.790000915527344,
-        "y": 2.0,
-        "z": 34.06999969482422
+        "x": -32.0,
+        "y": 34.380001068115234,
+        "z": 10.0
       },
       "scale": {
         "x": 2.0,
-        "y": 1.0,
+        "y": 0.800000011920929,
         "z": 2.0
       },
       "rotation": {
@@ -236,59 +485,36 @@
     }
   },
   {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
     "MODEL": {
-      "path": "../Platformer/Assets/Models/placeholder_platforms.obj"
+      "path": "../Platformer/Assets/models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
-        "x": 0.10000000149011612,
-        "y": 49.22999954223633,
-        "z": 1.0
+        "x": -14.130000114440918,
+        "y": 42.81999969482422,
+        "z": 10.0
       },
       "scale": {
-        "x": 7.0,
+        "x": 10.0,
         "y": 3.0199999809265137,
-        "z": 7.0
+        "z": 4.0
       },
       "rotation": {
-        "x": 1.0675503858692537e-07,
-        "y": -0.7069846987724304,
-        "z": 1.0675503858692537e-07,
-        "w": 0.7072288393974304
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
-      "MetallicPath": "../Platformer/Assets/Textures/Cube Specular.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
-      "wireMode": false
+      "wireMode": true
     },
     "COLLIDER": {
-      "Shape": 1,
-      "Normal": {
-        "x": -3.0194883038348053e-07,
-        "y": 1.0,
-        "z": 5.212541509536095e-11
-      },
-      "Magnitude": 49.22999954223633
+      "Shape": 3,
+      "Radius": 1.0
     },
     "STILL_BODY": {
       "Shape": 0,
@@ -302,13 +528,111 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/Models/plane.obj"
+      "path": "../Platformer/Assets/models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
-        "x": 14.479999542236328,
-        "y": 11.5600004196167,
-        "z": 1.0099999904632568
+        "x": 30.0,
+        "y": 16.0,
+        "z": 10.0
+      },
+      "scale": {
+        "x": 15.866000175476074,
+        "y": 1.0,
+        "z": 7.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.7071067690849304,
+        "w": 0.7071067690849304
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 1,
+      "Normal": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "Magnitude": 1.0
+    },
+    "STILL_BODY": {
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "GAME_LOGIC": [],
+    "TAG": {
+      "uniqueName": "Slope1",
+      "category": "Slope"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/plane.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": -4.599999904632568,
+        "y": 3.9000000953674316,
+        "z": 10.0
+      },
+      "scale": {
+        "x": 15.0,
+        "y": 3.0199999809265137,
+        "z": 7.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": -0.0,
+        "z": -0.13052619993686676,
+        "w": 0.9914448857307434
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
+      "Alpha": 1.0,
+      "wireMode": true
+    },
+    "COLLIDER": {
+      "Shape": 2,
+      "MinPoint": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "MaxPoint": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
+    },
+    "STILL_BODY": {
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "GAME_LOGIC": [],
+    "TAG": {
+      "uniqueName": "Slope1",
+      "category": "Slope"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/plane.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": -26.040000915527344,
+        "y": 7.800000190734863,
+        "z": 10.0
       },
       "scale": {
         "x": 7.0,
@@ -335,7 +659,7 @@
         "y": 1.0,
         "z": 0.0
       },
-      "Magnitude": 11.5600004196167
+      "Magnitude": 7.800000190734863
     },
     "STILL_BODY": {
       "Shape": 0,
@@ -350,203 +674,19 @@
     }
   },
   {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
     "MODEL": {
-      "path": "../Platformer/Assets/Models/Ball.obj"
+      "path": "../Platformer/Assets/models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
-        "x": 0.8941360712051392,
-        "y": -6.55068826675415,
-        "z": 0.0
+        "x": -12.819999694824219,
+        "y": 32.0,
+        "z": 10.0
       },
       "scale": {
-        "x": 3.0,
-        "y": 3.0,
-        "z": 3.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": -0.6885225176811218,
-        "w": 0.725214958190918
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/Hero Base Color.png",
-      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0,
-      "wireMode": false
-    },
-    "COLLIDER": {
-      "Shape": 0,
-      "Radius": 2.930000066757202
-    },
-    "MOVING_BODY": {
-      "Elasticity": 0.3499999940395355,
-      "Friction": 0.0,
-      "Gravity": true,
-      "Mass": 5.0,
-      "Velocity": {
-        "x": 0.0021982192993164063,
-        "y": -22.63678550720215,
-        "z": 0.0
-      },
-      "Accelereation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "CollisionType": 0,
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "GAME_LOGIC": [
-      "PLAYER"
-    ],
-    "TAG": {
-      "uniqueName": "Player",
-      "category": "Player"
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "TAG": {
-      "uniqueName": "",
-      "category": ""
-    }
-  },
-  {
-    "MODEL": {
-      "path": "../Platformer/Assets/Models/button.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": 35.599998474121094,
-        "y": 15.0,
-        "z": 1.0099999904632568
-      },
-      "scale": {
-        "x": 7.0,
+        "x": 80.0,
         "y": 3.0199999809265137,
         "z": 7.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.13052619993686676,
-        "w": 0.9914448857307434
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Trampoline Base Color.png",
-      "MetallicPath": "../Platformer/Assets/Textures/Button Specular.png",
-      "Alpha": 1.0,
-      "wireMode": false
-    },
-    "COLLIDER": {
-      "Shape": 1,
-      "Normal": {
-        "x": -0.2588190734386444,
-        "y": 0.9659258127212524,
-        "z": 0.0
-      },
-      "Magnitude": 5.274928092956543
-    },
-    "STILL_BODY": {
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "GAME_LOGIC": [],
-    "TAG": {
-      "uniqueName": "Slope1",
-      "category": "Slope"
-    }
-  },
-  {
-    "MODEL": {
-      "path": "../Platformer/Assets/Models/Cube.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": 9.0,
-        "y": 10.449999809265137,
-        "z": 41.0
-      },
-      "scale": {
-        "x": 2.5,
-        "y": 1.0,
-        "z": 2.5
       },
       "rotation": {
         "x": 0.0,
@@ -562,434 +702,24 @@
       "wireMode": false
     },
     "COLLIDER": {
-      "Shape": 2,
-      "MinPoint": {
-        "x": -2.5,
-        "y": -1.0,
-        "z": -2.5
-      },
-      "MaxPoint": {
-        "x": 2.5,
+      "Shape": 1,
+      "Normal": {
+        "x": 0.0,
         "y": 1.0,
-        "z": 2.5
-      }
+        "z": 0.0
+      },
+      "Magnitude": 32.0
     },
     "STILL_BODY": {
       "Shape": 0,
       "Radius": 1.0
     },
     "GAME_LOGIC": [
-      "GOAL_ZONE"
+      "ENEMY"
     ],
     "TAG": {
-      "uniqueName": "FaithPlate",
-      "category": "FaithPlate"
-    }
-  },
-  {
-    "MODEL": {
-      "path": "../Platformer/Assets/Models/Ball.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": -2019.021240234375,
-        "y": -69888.7578125,
-        "z": 35.0
-      },
-      "scale": {
-        "x": 3.0,
-        "y": 3.0,
-        "z": 3.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": -0.913145124912262,
-        "w": 0.4076346457004547
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
-      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0,
-      "wireMode": false
-    },
-    "COLLIDER": {
-      "Shape": 0,
-      "Radius": 2.930000066757202
-    },
-    "MOVING_BODY": {
-      "Elasticity": 0.3499999940395355,
-      "Friction": 0.0,
-      "Gravity": true,
-      "Mass": 5.0,
-      "Velocity": {
-        "x": -16.83310317993164,
-        "y": -1182.2666015625,
-        "z": 0.0
-      },
-      "Accelereation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "CollisionType": 0,
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "GAME_LOGIC": [
-      "PLATFORMER_BALL"
-    ],
-    "TAG": {
-      "uniqueName": "ball",
-      "category": "ball"
-    }
-  },
-  null,
-  {
-    "MODEL": {
-      "path": "../Platformer/Assets/Models/Ball.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": -352.9414367675781,
-        "y": -13608.4130859375,
-        "z": 35.0
-      },
-      "scale": {
-        "x": 3.0,
-        "y": 3.0,
-        "z": 3.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": -0.8973385095596313,
-        "w": 0.4413429796695709
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
-      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0,
-      "wireMode": false
-    },
-    "COLLIDER": {
-      "Shape": 0,
-      "Radius": 2.930000066757202
-    },
-    "MOVING_BODY": {
-      "Elasticity": 0.3499999940395355,
-      "Friction": 0.0,
-      "Gravity": true,
-      "Mass": 5.0,
-      "Velocity": {
-        "x": -6.639530181884766,
-        "y": -521.7763671875,
-        "z": 0.0
-      },
-      "Accelereation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "CollisionType": 0,
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "GAME_LOGIC": [
-      "PLATFORMER_BALL"
-    ],
-    "TAG": {
-      "uniqueName": "ball",
-      "category": "ball"
-    }
-  },
-  {
-    "MODEL": {
-      "path": "../Platformer/Assets/Models/Ball.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": -308.8250427246094,
-        "y": -10367.8896484375,
-        "z": 35.0
-      },
-      "scale": {
-        "x": 3.0,
-        "y": 3.0,
-        "z": 3.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.8620845079421997,
-        "w": 0.5067645311355591
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
-      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0,
-      "wireMode": false
-    },
-    "COLLIDER": {
-      "Shape": 0,
-      "Radius": 2.930000066757202
-    },
-    "MOVING_BODY": {
-      "Elasticity": 0.3499999940395355,
-      "Friction": 0.0,
-      "Gravity": true,
-      "Mass": 5.0,
-      "Velocity": {
-        "x": -6.631650924682617,
-        "y": -455.46551513671875,
-        "z": 0.0
-      },
-      "Accelereation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "CollisionType": 0,
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "GAME_LOGIC": [
-      "PLATFORMER_BALL"
-    ],
-    "TAG": {
-      "uniqueName": "ball",
-      "category": "ball"
-    }
-  },
-  null,
-  {
-    "MODEL": {
-      "path": "../Platformer/Assets/Models/Ball.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": -133.47164916992188,
-        "y": -2337.685791015625,
-        "z": 35.0
-      },
-      "scale": {
-        "x": 3.0,
-        "y": 3.0,
-        "z": 3.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": -0.06378956139087677,
-        "w": 0.9979633688926697
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
-      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0,
-      "wireMode": false
-    },
-    "COLLIDER": {
-      "Shape": 0,
-      "Radius": 2.930000066757202
-    },
-    "MOVING_BODY": {
-      "Elasticity": 0.3499999940395355,
-      "Friction": 0.0,
-      "Gravity": true,
-      "Mass": 5.0,
-      "Velocity": {
-        "x": -5.956679344177246,
-        "y": -216.39341735839844,
-        "z": 0.0
-      },
-      "Accelereation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "CollisionType": 0,
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "GAME_LOGIC": [
-      "PLATFORMER_BALL"
-    ],
-    "TAG": {
-      "uniqueName": "ball",
-      "category": "ball"
-    }
-  },
-  {
-    "MODEL": {
-      "path": "../Platformer/Assets/Models/Ball.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": -102.32227325439453,
-        "y": -200.55055236816406,
-        "z": 35.0
-      },
-      "scale": {
-        "x": 3.0,
-        "y": 3.0,
-        "z": 3.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": -0.9910465478897095,
-        "w": 0.13351677358150482
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
-      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0,
-      "wireMode": false
-    },
-    "COLLIDER": {
-      "Shape": 0,
-      "Radius": 2.930000066757202
-    },
-    "MOVING_BODY": {
-      "Elasticity": 0.3499999940395355,
-      "Friction": 0.0,
-      "Gravity": true,
-      "Mass": 5.0,
-      "Velocity": {
-        "x": -18.97001838684082,
-        "y": -65.81131744384766,
-        "z": 0.0
-      },
-      "Accelereation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "CollisionType": 0,
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "GAME_LOGIC": [
-      "PLATFORMER_BALL"
-    ],
-    "TAG": {
-      "uniqueName": "ball",
-      "category": "ball"
-    }
-  },
-  {
-    "MODEL": {
-      "path": "../Platformer/Assets/Models/Ball.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": -19.038969039916992,
-        "y": -7.23743200302124,
-        "z": 35.0
-      },
-      "scale": {
-        "x": 3.0,
-        "y": 3.0,
-        "z": 3.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.651023805141449,
-        "w": 0.7590572834014893
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
-      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
-      "Alpha": 1.0,
-      "wireMode": false
-    },
-    "COLLIDER": {
-      "Shape": 0,
-      "Radius": 2.930000066757202
-    },
-    "MOVING_BODY": {
-      "Elasticity": 0.3499999940395355,
-      "Friction": 0.0,
-      "Gravity": true,
-      "Mass": 5.0,
-      "Velocity": {
-        "x": -19.02791404724121,
-        "y": -21.745811462402344,
-        "z": 0.0
-      },
-      "Accelereation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0
-      },
-      "CollisionType": 0,
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "GAME_LOGIC": [
-      "PLATFORMER_BALL"
-    ],
-    "TAG": {
-      "uniqueName": "ball",
-      "category": "ball"
-    }
-  },
-  {
-    "MODEL": {
-      "path": "../Platformer/Assets/Models/Cube.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": 9.199999809265137,
-        "y": 0.4399999976158142,
-        "z": 37.0
-      },
-      "scale": {
-        "x": 2.0,
-        "y": 1.0,
-        "z": 3.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 1.0
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "Assets/Defaults/BlackPurpleChecker.png",
-      "MetallicPath": "Assets/Defaults/BlackPurpleChecker.png",
-      "Alpha": 1.0,
-      "wireMode": false
-    },
-    "COLLIDER": {
-      "Shape": 2,
-      "MinPoint": {
-        "x": -2.0,
-        "y": -1.0,
-        "z": -3.0
-      },
-      "MaxPoint": {
-        "x": 2.0,
-        "y": 1.0,
-        "z": 3.0
-      }
-    },
-    "STILL_BODY": {
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "TAG": {
-      "uniqueName": "Goal",
-      "category": "Goal"
+      "uniqueName": "Slope1",
+      "category": "Slope"
     }
   }
 ]
