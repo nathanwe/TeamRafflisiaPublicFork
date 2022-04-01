@@ -46,12 +46,12 @@ inline void to_json(ordered_json& j, const Collider& collider) {
 	{
 		to_json(j["Radius"], collider.radius);
 	}	
-	else if (collider.shape == Shape::PLANE || collider.shape == Shape::NIL)
+	if (collider.shape == Shape::PLANE || collider.shape == Shape::NIL)
 	{
 		to_json(j["Normal"], collider.normal);
 		to_json(j["Magnitude"], collider.magnitude);
 	}
-	else if (collider.shape == Shape::AABB || collider.shape == Shape::NIL)
+	if (collider.shape == Shape::AABB || collider.shape == Shape::NIL)
 	{
 		to_json(j["MinPoint"], collider.minPoint);
 		to_json(j["MaxPoint"], collider.maxPoint);
@@ -61,13 +61,15 @@ inline void to_json(ordered_json& j, const Collider& collider) {
 inline void from_json(const ordered_json& j, Collider& collider) {
 	collider.shape = static_cast<Shape>(j["Shape"]);
 	if (collider.shape == Shape::SPHERE || collider.shape == Shape::NIL)
+	{
 		from_json(j["Radius"], collider.radius);
-	else if (collider.shape == Shape::PLANE || collider.shape == Shape::NIL)
+	}		
+	if (collider.shape == Shape::PLANE || collider.shape == Shape::NIL)
 	{
 		from_json(j["Normal"], collider.normal);
 		from_json(j["Magnitude"], collider.magnitude);
 	}
-	else if (collider.shape == Shape::AABB || collider.shape == Shape::NIL)
+	if (collider.shape == Shape::AABB || collider.shape == Shape::NIL)
 	{
 		from_json(j["MinPoint"], collider.minPoint);
 		from_json(j["MaxPoint"], collider.maxPoint);

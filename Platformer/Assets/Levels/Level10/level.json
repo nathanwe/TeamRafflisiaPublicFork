@@ -513,7 +513,7 @@
       "wireMode": true
     },
     "COLLIDER": {
-      "Shape": 3,
+      "Shape": 0,
       "Radius": 1.0
     },
     "STILL_BODY": {

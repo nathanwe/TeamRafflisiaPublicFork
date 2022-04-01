@@ -1053,6 +1053,7 @@ int lua_SetColliderShape(lua_State* L)
     {
         col->NarrowPhase.shape = static_cast<Shape>(lua_tointeger(L, 2));
     }
+    engine.PhysicsSys.UpdateSingleCollider(e);
     return 0;
 }
 
