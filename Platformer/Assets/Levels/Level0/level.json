@@ -471,7 +471,7 @@
       "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Cube Specular.png",
       "Alpha": 1.0,
-      "wireMode": false
+      "wireMode": true
     },
     "COLLIDER": {
       "Shape": 1,
@@ -490,8 +490,8 @@
       "HOME_SENDER"
     ],
     "TAG": {
-      "uniqueName": "Slope1",
-      "category": "Slope"
+      "uniqueName": "BallHomeSender",
+      "category": "BallHomeSender"
     }
   },
   {
@@ -506,8 +506,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 9.184636116027832,
-        "y": 17.933202743530273,
+        "x": 3.965146780014038,
+        "y": 9.133200645446777,
         "z": 1.0
       },
       "scale": {
@@ -518,8 +518,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": -0.7128404974937439,
-        "w": 0.7013261914253235
+        "z": -0.7094473838806152,
+        "w": 0.7047584056854248
       }
     },
     "MATERIAL": {
@@ -539,7 +539,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": -1.6591767072677612,
-        "y": -0.5740663409233093,
+        "y": -0.5740711688995361,
         "z": 5.05246822157801e-09
       },
       "Accelereation": {
@@ -565,8 +565,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 0.9447895288467407,
-        "y": 2.0011682510375977,
+        "x": 2.6854841709136963,
+        "y": 2.2464897632598877,
         "z": 35.0
       },
       "scale": {
@@ -577,8 +577,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.10790935158729553,
-        "w": 0.9941607117652893
+        "z": 0.14291046559810638,
+        "w": 0.9897356033325195
       }
     },
     "MATERIAL": {
@@ -597,8 +597,8 @@
       "Gravity": true,
       "Mass": 5.0,
       "Velocity": {
-        "x": -12.79226303100586,
-        "y": -18.28494644165039,
+        "x": -12.128910064697266,
+        "y": -18.76410675048828,
         "z": 0.0
       },
       "Accelereation": {
