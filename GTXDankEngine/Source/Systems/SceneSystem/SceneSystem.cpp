@@ -35,7 +35,7 @@ bool SceneSystem::Init()
     }
     
 
-    LoadScene(-1);
+    LoadScene(0);
 
     engine.CommandSys.GetCommand("NextLevel").SetActionToExecute([&]()
         {
@@ -154,14 +154,16 @@ void SceneSystem::Update(float dt)
 
             lastSavedLevel = levelToLoad;
         }
-        if (levelToLoad == -1)
+
+        /// make sure cur level is updated
+        currentLevel = levelToLoad;
+        if (levelToLoad == 0)
         {
             engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
             engine.GraphicsSys.GetMenuSystem().SetCurrentMenu("Main");
         }
         else
         {
-            currentLevel = levelToLoad;
             ordered_json levelJson = levels[currentLevel];
 
             for (auto itr = levelJson.begin(); itr != levelJson.end(); ++itr)

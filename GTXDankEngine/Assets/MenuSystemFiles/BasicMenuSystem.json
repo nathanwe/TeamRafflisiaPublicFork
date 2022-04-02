@@ -212,7 +212,7 @@
         },
 
         "YES": {
-            "Command": "LEVEL -1"
+            "Command": "LEVEL 0"
         },
         "NO": {
             "Position": {

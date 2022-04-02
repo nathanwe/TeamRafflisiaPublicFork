@@ -7,6 +7,11 @@
 #include "../Components/TransformComponent/TransformComponent.h"
 #include "../PhysicsSystem/Raycasting/Raycasting.h"
 
+// Pause Menu activation on escape in release
+#include "../GraphicsSystem/MenuSystem/MenuSystem.h"
+
+//extern MenuSystem 
+
 extern Engine engine;
 
 
@@ -57,7 +62,7 @@ bool CommandSystem::Init()
 	setting = commandJson;
 
 	//special command: non-configurable
-	toggleMenuCommand.keyboardcode = GLFW_KEY_ESCAPE;
+	toggleMenuCommand.keyboardcode = GLFW_KEY_P;
 	toggleMenuCommand.gamepadCode = 7;
 	toggleMenuCommand.keyPressType = KeyPressType::Press;
 
@@ -124,8 +129,9 @@ void CommandSystem::Update(float timeStamp)
 {
 	PROFILE_THIS("Command Update");
 
+#ifdef _DEBUG
 	//toggle menu mode
-	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_ESCAPE) || engine.InputSys.IsControllerTriggered(0, 7))
+	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_P) || engine.InputSys.IsControllerTriggered(0, 7))
 	{
 		menuMode = !menuMode;
 		engine.setMenuMode(menuMode);
@@ -156,6 +162,7 @@ void CommandSystem::Update(float timeStamp)
 		// io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 		toggleMenuCommand.Execute();
 	}
+#endif // DEBUG
 
 	//waiting for control key update
 	if (pendingKeyUpdate)
@@ -201,16 +208,20 @@ void CommandSystem::Update(float timeStamp)
 		}
 	}
 
+#ifdef _DEBUG
 	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_F1))
 	{
 		editMode = !editMode;
 		engine.setEditMode(editMode);
 	}
+#endif // DEBUG
 	if (editMode)
 	{
 		return;
 	}
 
+
+#ifdef _DEBUG
 	//toggle debug mode
 	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_T))
 	{
@@ -218,7 +229,7 @@ void CommandSystem::Update(float timeStamp)
 		engine.setDebugMode(debugMode);
 		GetCommand("DebugMode").Execute();
 	}
-
+#endif // DEBUG
 	if (menuMode)
 	{
 		ExecuteUICommands();
@@ -323,10 +334,20 @@ void CommandSystem::ExecuteGameplayCommands()
 {
 	//command pattern applied here for every gameplay commands
 	setting.directionCommand.Execute();
+#ifdef _DEBUG
 	for (auto& [key, command] : setting.commands)
 	{
 		command.Execute();
 	}
+#else
+	for (auto& [key, command] : setting.commands)
+	{
+		if (key.compare("NextLevel") == 0 || key.compare("PreviousLevel") == 0)
+			continue;
+
+		command.Execute();
+	}
+#endif // DEBUG
 }
 
 void CommandSystem::ExecuteUICommands()

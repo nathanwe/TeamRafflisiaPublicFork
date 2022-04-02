@@ -86,10 +86,12 @@ bool GraphicsSystem::Init()
 
 	DebugRenderer.Init(&camera);
 
+#ifdef _DEBUG
 	engine.CommandSys.GetCommand("GraphicsDebugMode").SetActionToExecute([&]()
 		{
 			RenderingDebugMode = !RenderingDebugMode;
 		});
+#endif // DEBUG
 
 	MenuSystem.Init();
 

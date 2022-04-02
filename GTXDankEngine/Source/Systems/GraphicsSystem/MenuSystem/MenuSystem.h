@@ -33,6 +33,10 @@ public:
 
     void AdjustForWindowSize();
 
+    // Menu opening with Esc in release mode
+    bool GetDisplay();
+    void SetPrevMenu(int prevMenu);
+
 /// parameters
 public:
 

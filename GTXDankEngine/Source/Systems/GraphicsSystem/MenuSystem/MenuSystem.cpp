@@ -32,18 +32,21 @@ void MenuSystem::Init()
     engine.CommandSys.GetCommand("Pause").SetActionToExecute(
         [&]()
         {
-            ToggleDisplay();
-            if (display)
-                this->SetCurrentMenu("Pause");
-            else
+            if (engine.SceneSys.GetCurrentLevel() != 0)
             {
-                prevMenu = -1;
-                glfwSetCursorPos(engine.window, (engine.GraphicsSys.camera.width / 2), (engine.GraphicsSys.camera.height / 2));
+                ToggleDisplay();
+                if (display)
+                    this->SetCurrentMenu("Pause");
+                else
+                {
+                    prevMenu = -1;
+                    glfwSetCursorPos(engine.window, (engine.GraphicsSys.camera.width / 2), (engine.GraphicsSys.camera.height / 2));
+                }
             }
         }
     );
     Command& pCommand = engine.CommandSys.GetCommand("Pause");
-    pCommand.keyboardcode = GLFW_KEY_P;
+    pCommand.keyboardcode = GLFW_KEY_ESCAPE;
     pCommand.keyPressType = KeyPressType::Trigger;
 }
 
@@ -136,3 +139,12 @@ void MenuSystem::AdjustForWindowSize()
 }
 
 
+// Menu opening with Esc in release mode
+bool MenuSystem::GetDisplay()
+{
+    return this->display;
+}
+void MenuSystem::SetPrevMenu(int prevMenu)
+{
+    this->prevMenu = prevMenu;
+}
