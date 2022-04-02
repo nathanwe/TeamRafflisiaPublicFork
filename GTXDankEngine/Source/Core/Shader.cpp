@@ -26,7 +26,7 @@ ShaderProgramSource Shader::parseShader(const std::string& path)
     enum class ShaderMode {
         NONE = -1, VERTEX_MODE = 0, FRAGMENT_MODE = 1, GEOMETRY_MODE = 2, COMPUTE_MODE = 3
     };
-    std::fstream stream(path);
+    std::ifstream stream(path);
     std::string line;
 
     // 3 string streams, one for vertex shader, one for fragment shader, one for geometry shader
