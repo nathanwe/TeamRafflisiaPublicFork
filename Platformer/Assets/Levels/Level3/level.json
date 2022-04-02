@@ -259,9 +259,9 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": -26.719999313354492,
-        "y": 15.680000305175781,
-        "z": 1.1200000047683716
+        "x": -12.819999694824219,
+        "y": 15.0,
+        "z": 1.0
       },
       "scale": {
         "x": 7.0,
@@ -282,17 +282,13 @@
       "wireMode": false
     },
     "COLLIDER": {
-      "Shape": 2,
-      "MinPoint": {
-        "x": -6.0,
-        "y": -1.0,
-        "z": -1.0
-      },
-      "MaxPoint": {
-        "x": 7.5,
+      "Shape": 1,
+      "Normal": {
+        "x": -3.0194883038348053e-07,
         "y": 1.0,
-        "z": 2.0
-      }
+        "z": 5.212541509536095e-11
+      },
+      "Magnitude": 15.000003814697266
     },
     "STILL_BODY": {
       "Shape": 0,
@@ -318,7 +314,7 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 30.2081298828125,
+        "x": 30.198932647705078,
         "y": 9.133201599121094,
         "z": 1.0
       },
@@ -330,8 +326,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.8125412464141846,
-        "w": 0.5829036831855774
+        "z": 0.8125504851341248,
+        "w": 0.5828908681869507
       }
     },
     "MATERIAL": {
@@ -351,7 +347,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0027265548706054688,
-        "y": -0.5740705728530884,
+        "y": -0.5740647912025452,
         "z": 3.26309717024742e-08
       },
       "Accelereation": {
@@ -486,7 +482,7 @@
     "TRANSFORM": {
       "position": {
         "x": 24.0,
-        "y": -2493.67724609375,
+        "y": -1797.420654296875,
         "z": 35.0
       },
       "scale": {
@@ -518,7 +514,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -224.27908325195313,
+        "y": -190.74400329589844,
         "z": 0.0
       },
       "Accelereation": {
@@ -536,59 +532,6 @@
     "TAG": {
       "uniqueName": "ball",
       "category": "ball"
-    }
-  },
-  {
-    "MODEL": {
-      "path": "../Platformer/Assets/Models/placeholder_platforms.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": -13.600000381469727,
-        "y": 10.789999961853027,
-        "z": 1.0099999904632568
-      },
-      "scale": {
-        "x": 7.0,
-        "y": 3.0199999809265137,
-        "z": 7.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.7069846987724304,
-        "z": 0.0,
-        "w": 0.7072288393974304
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
-      "MetallicPath": "../Platformer/Assets/Textures/Cube Specular.png",
-      "Alpha": 1.0,
-      "wireMode": false
-    },
-    "COLLIDER": {
-      "Shape": 2,
-      "MinPoint": {
-        "x": -6.0,
-        "y": -1.0,
-        "z": -1.0
-      },
-      "MaxPoint": {
-        "x": 7.5,
-        "y": 1.0,
-        "z": 2.0
-      }
-    },
-    "STILL_BODY": {
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "GAME_LOGIC": [
-      "HOME_SENDER"
-    ],
-    "TAG": {
-      "uniqueName": "BallHomeSender",
-      "category": "BallHomeSender"
     }
   }
 ]

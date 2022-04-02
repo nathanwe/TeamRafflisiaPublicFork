@@ -45,9 +45,6 @@ function UpdatePlayer(dt, e)
 	--roll
 	data = {}
 	data = GetRigidData(e)
-	LOG_INFO("Rolling ".. data.velocity.x)
-	rw, rx, ry, rz = GetRotation(e)
-	LOG_INFO("angle rw " .. rw ..  "angle rx " ..rx.. "angle ry ".. ry.. "angle rz" .. rz)
 	AddRotation(e, 0,0,-data.velocity.x*dt*20)
 
 	if (decaying[e] == 1.0) then

@@ -203,9 +203,9 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 18.325927734375,
-        "y": 9.13320255279541,
-        "z": 0.9999492168426514
+        "x": 39.37722396850586,
+        "y": 9.133200645446777,
+        "z": 1.0
       },
       "scale": {
         "x": 3.0,
@@ -215,8 +215,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.832897424697876,
-        "w": 0.5534273982048035
+        "z": 0.818151593208313,
+        "w": 0.5750025510787964
       }
     },
     "MATERIAL": {
@@ -235,9 +235,9 @@
       "Gravity": true,
       "Mass": 5.0,
       "Velocity": {
-        "x": 0.0,
-        "y": -0.5740544199943542,
-        "z": 1.6294529814331327e-06
+        "x": 0.008085966110229492,
+        "y": -0.5740709900856018,
+        "z": 1.401298464324817e-45
       },
       "Accelereation": {
         "x": 0.0,
@@ -263,7 +263,7 @@
     "TRANSFORM": {
       "position": {
         "x": 24.215999603271484,
-        "y": -10147.75390625,
+        "y": -508.050537109375,
         "z": 35.0
       },
       "scale": {
@@ -295,7 +295,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -449.8411560058594,
+        "y": -98.10346984863281,
         "z": 0.0
       },
       "Accelereation": {
@@ -313,59 +313,6 @@
     "TAG": {
       "uniqueName": "ball",
       "category": "ball"
-    }
-  },
-  {
-    "MODEL": {
-      "path": "../Platformer/Assets/Models/placeholder_platforms.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": -13.600000381469727,
-        "y": 10.789999961853027,
-        "z": 1.0099999904632568
-      },
-      "scale": {
-        "x": 7.0,
-        "y": 3.0199999809265137,
-        "z": 7.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.7069846987724304,
-        "z": 0.0,
-        "w": 0.7072288393974304
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
-      "MetallicPath": "../Platformer/Assets/Textures/Cube Specular.png",
-      "Alpha": 1.0,
-      "wireMode": false
-    },
-    "COLLIDER": {
-      "Shape": 2,
-      "MinPoint": {
-        "x": -6.0,
-        "y": -1.0,
-        "z": -1.0
-      },
-      "MaxPoint": {
-        "x": 7.5,
-        "y": 1.0,
-        "z": 2.0
-      }
-    },
-    "STILL_BODY": {
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "GAME_LOGIC": [
-      "HOME_SENDER"
-    ],
-    "TAG": {
-      "uniqueName": "BallHomeSender",
-      "category": "BallHomeSender"
     }
   }
 ]
