@@ -745,6 +745,11 @@ int lua_AddRotation(lua_State* L)
         eulerAngle.y += y;
         eulerAngle.z += z;
         trans->transform.rotation = glm::quat(eulerAngle * glm::pi<float>() / 180.0f);
+        MovingBodyComponent* mov = MovingBodyComponentPool.GetComponentByEntity(e);
+        if (mov != nullptr)
+        {
+            mov->rigidBody.orientation = trans->transform.rotation;
+        }
     }
     else
     {
