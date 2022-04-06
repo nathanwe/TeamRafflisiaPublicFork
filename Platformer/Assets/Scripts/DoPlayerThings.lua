@@ -75,7 +75,7 @@ function UpdatePlayer(dt, e)
 	
 	--AddPhysicsVelocity(e, -data.velocity.x*(1-decay), 0, 0)
 	if losingPlayer == nil and data.position.y < -20 and winningGoal == nil then
-		losingPlayer = 5
+		losingPlayer = 99
 	end
 		if losingPlayer ~= nil and losingPlayer < 0 then
 		RestartLevel()
@@ -95,9 +95,10 @@ function HandleEventPlayer(eventData)
 		end
 		if losingPlayer ~= nil then
 			DrawText("TRY AGAIN", 3.25, 30,350, 150,0,0)
+			DrawText("Press Space", 1, 30,550, 150,0,0)
 		end
 	end
-	if eventData.type == 12 then
+	if eventData.type == 12 then --collison
 		if airTime[eventData.e1] > 0.5 then
 			x,y,z = GetPosition(eventData.e1)
 			dx,dy,dz = GetMovementDirection(eventData.e1)
@@ -137,6 +138,13 @@ function HandleEventPlayer(eventData)
 		else 
 			decaying[eventData.e1] = 0.0
 			--LOG_INFO("not decaying")
+		end
+	end
+	if eventData.type == 19 then
+		if eventData.stringData1 == "Space" then
+			if losingPlayer ~= nil then
+				losingPlayer = 0
+			end
 		end
 	end
 end
@@ -183,5 +191,6 @@ function HandleEventPerEntityPlayer(e, eventData)
 			AddPhysicsVelocity(e, -accel * eventData.floatData1, 0, 0)
 		end
 	end
+	
 end
 

@@ -44,15 +44,26 @@ function HandleEventGoal(eventData)
 		end
 		if winningGoal ~= nil then
 			DrawText("YOU WIN", 3.5, 75,350, 0,150,0)
+			DrawText("Press Space to Continue", 1, 75,550, 0,150,0)
 		end
 	end
 	if eventData.type == 12 then
 		DeleteEntity(eventData.e2)
 		if losingPlayer == nil then
 			LOG_INFO("you win loading next level")
-			winningGoal = 5
+			winningGoal = 99
 		end
 		--LoadNextLevel()
+	end
+	if eventData.type == 19 then
+		if eventData.stringData1 == "Space" then
+			GoHomesBall()
+		end
+		if eventData.stringData1 == "Space" then
+			if winningGoal ~= nil then
+				winningGoal = 0
+			end
+		end
 	end
 end
 

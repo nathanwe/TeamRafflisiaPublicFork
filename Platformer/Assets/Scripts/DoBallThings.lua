@@ -79,7 +79,10 @@ function HandleEventBall(eventData)
 		end
 	end
 	if eventData.type == 19 then
-		--LOG_INFO("pressed key")
+		LOG_INFO("pressed key")
+		LOG_INFO("stringData1: ".. eventData.stringData1)
+		LOG_INFO("floatData1: ".. eventData.floatData1)
+
 		if eventData.stringData1 == "Space" then
 			GoHomesBall()
 		end
