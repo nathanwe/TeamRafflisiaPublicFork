@@ -116,7 +116,7 @@
     "TRANSFORM": {
       "position": {
         "x": -10.0,
-        "y": 25.0,
+        "y": 45.0,
         "z": 37.33000183105469
       },
       "scale": {
@@ -221,7 +221,7 @@
     "TRANSFORM": {
       "position": {
         "x": 5.0,
-        "y": 17.790000915527344,
+        "y": 37.790000915527344,
         "z": 35.0
       },
       "scale": {
@@ -243,8 +243,24 @@
       "wireMode": true
     },
     "COLLIDER": {
-      "Shape": 0,
-      "Radius": 1.0
+      "Shape": 3,
+      "Radius": 1.0,
+      "Normal": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "Magnitude": 1.0,
+      "MinPoint": {
+        "x": -8.0,
+        "y": -3.0,
+        "z": -2.0
+      },
+      "MaxPoint": {
+        "x": 8.0,
+        "y": 3.0,
+        "z": 2.0
+      }
     },
     "STILL_BODY": {
       "Shape": 0,
@@ -265,7 +281,7 @@
     "TRANSFORM": {
       "position": {
         "x": 25.0,
-        "y": 30.0,
+        "y": 50.0,
         "z": 35.0
       },
       "scale": {
@@ -293,7 +309,7 @@
         "y": 0.8290376663208008,
         "z": 0.0
       },
-      "Magnitude": 10.891305923461914
+      "Magnitude": 27.472057342529297
     },
     "STILL_BODY": {
       "Shape": 0,
@@ -323,8 +339,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 18.0,
-        "y": 3.0,
+        "x": 22.0,
+        "y": 23.0,
         "z": 33.68000030517578
       },
       "scale": {
@@ -348,12 +364,12 @@
     "COLLIDER": {
       "Shape": 2,
       "MinPoint": {
-        "x": -2.0,
+        "x": -3.0,
         "y": -1.0,
         "z": -3.0
       },
       "MaxPoint": {
-        "x": 2.0,
+        "x": 3.0,
         "y": 1.0,
         "z": 3.0
       }
@@ -435,8 +451,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 18.239999771118164,
-        "y": 8.468999862670898,
+        "x": 22.0,
+        "y": 35.0,
         "z": 39.09000015258789
       },
       "scale": {
@@ -462,61 +478,15 @@
       "category": "DownArrow"
     }
   },
-  {
-    "MODEL": {
-      "path": "../Platformer/Assets/Models/placeholder_platforms.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": 33.349998474121094,
-        "y": 15.0,
-        "z": 1.0099999904632568
-      },
-      "scale": {
-        "x": 7.0,
-        "y": 3.0199999809265137,
-        "z": 7.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 1.0
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/PlatformBaseColor.png",
-      "MetallicPath": "../Platformer/Assets/Textures/PlatformSpecular.png",
-      "Alpha": 1.0,
-      "wireMode": false
-    },
-    "COLLIDER": {
-      "Shape": 1,
-      "Normal": {
-        "x": 0.0,
-        "y": 1.0,
-        "z": 0.0
-      },
-      "Magnitude": 15.0
-    },
-    "STILL_BODY": {
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "GAME_LOGIC": [],
-    "TAG": {
-      "uniqueName": "Slope1",
-      "category": "Slope"
-    }
-  },
+  null,
   {
     "MODEL": {
       "path": "../Platformer/Assets/Models/Ball.obj"
     },
     "TRANSFORM": {
       "position": {
-        "x": 35.05025863647461,
-        "y": 17.93320083618164,
+        "x": 12.90697956085205,
+        "y": 9.133201599121094,
         "z": 1.0
       },
       "scale": {
@@ -527,8 +497,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": -0.554639458656311,
-        "w": 0.8320907950401306
+        "z": 0.20707668364048004,
+        "w": 0.9783247113227844
       }
     },
     "MATERIAL": {
@@ -547,8 +517,8 @@
       "Gravity": true,
       "Mass": 5.0,
       "Velocity": {
-        "x": 1.663811445236206,
-        "y": -0.5740722417831421,
+        "x": 0.0,
+        "y": -0.5740712881088257,
         "z": 0.0
       },
       "Accelereation": {
@@ -629,8 +599,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 24.0,
-        "y": -6331.35546875,
+        "x": 125.31889343261719,
+        "y": -772.739501953125,
         "z": 35.0
       },
       "scale": {
@@ -640,16 +610,16 @@
       },
       "rotation": {
         "x": 0.0,
-        "y": 0.0,
-        "z": 0.0,
-        "w": 1.0
+        "y": -0.0,
+        "z": -0.9999974966049194,
+        "w": -0.0022366466000676155
       }
     },
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
       "Alpha": 1.0,
-      "wireMode": false
+      "wireMode": true
     },
     "COLLIDER": {
       "Shape": 0,
@@ -661,8 +631,8 @@
       "Gravity": true,
       "Mass": 5.0,
       "Velocity": {
-        "x": 0.0,
-        "y": -354.7369689941406,
+        "x": 9.200295448303223,
+        "y": -127.82300567626953,
         "z": 0.0
       },
       "Accelereation": {
