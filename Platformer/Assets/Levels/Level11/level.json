@@ -89,35 +89,49 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/Models/plane.obj"
+      "path": "../Platformer/Assets/models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
-        "x": 1.559999942779541,
-        "y": 50.18000030517578,
-        "z": 39.2599983215332
+        "x": 0.0,
+        "y": 43.0,
+        "z": 42.0
       },
       "scale": {
-        "x": 50.37900161743164,
-        "y": 1.2330000400543213,
-        "z": 50.24700164794922
+        "x": 30.0,
+        "y": 3.0199999809265137,
+        "z": 30.0
       },
       "rotation": {
-        "x": -0.5000001192092896,
-        "y": -0.49999991059303284,
-        "z": 0.49999991059303284,
-        "w": 0.5000001192092896
+        "x": 0.7071067690849304,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 0.7071067690849304
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/Gradient Background.png",
-      "MetallicPath": "../Platformer/Assets/Textures/wall/metallic.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
     },
+    "COLLIDER": {
+      "Shape": 1,
+      "Normal": {
+        "x": 0.0,
+        "y": 5.960465188081798e-08,
+        "z": 1.0
+      },
+      "Magnitude": 35.000003814697266
+    },
+    "STILL_BODY": {
+      "Shape": 0,
+      "Radius": 1.0
+    },
+    "GAME_LOGIC": [],
     "TAG": {
-      "uniqueName": "wall plane",
-      "category": ""
+      "uniqueName": "Slope1",
+      "category": "Slope"
     }
   },
   {
@@ -126,13 +140,13 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 1.9859999418258667,
-        "y": 50.308998107910156,
+        "x": 3.0,
+        "y": 46.0,
         "z": 35.0
       },
       "scale": {
-        "x": 4.0,
-        "y": 6.0,
+        "x": 5.0,
+        "y": 2.0,
         "z": 3.0
       },
       "rotation": {
@@ -149,8 +163,24 @@
       "wireMode": true
     },
     "COLLIDER": {
-      "Shape": 0,
-      "Radius": 1.0
+      "Shape": 3,
+      "Radius": 1.0,
+      "Normal": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "Magnitude": 1.0,
+      "MinPoint": {
+        "x": -5.0,
+        "y": -2.0,
+        "z": -3.0
+      },
+      "MaxPoint": {
+        "x": 5.0,
+        "y": 2.0,
+        "z": 3.0
+      }
     },
     "STILL_BODY": {
       "Shape": 2,
@@ -355,8 +385,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": -23.408061981201172,
-        "y": 9.133201599121094,
+        "x": -20.09200096130371,
+        "y": 9.133200645446777,
         "z": 1.0000001192092896
       },
       "scale": {
@@ -367,15 +397,15 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": -0.21558411419391632,
-        "w": 0.9764852523803711
+        "z": -0.24617724120616913,
+        "w": 0.9692248106002808
       }
     },
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/Hero Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
       "Alpha": 1.0,
-      "wireMode": false
+      "wireMode": true
     },
     "COLLIDER": {
       "Shape": 0,
@@ -387,9 +417,9 @@
       "Gravity": true,
       "Mass": 5.0,
       "Velocity": {
-        "x": 0.0023336410522460938,
-        "y": -0.5740705728530884,
-        "z": 5.167366339264845e-07
+        "x": 0.0,
+        "y": -0.5740722417831421,
+        "z": 5.556856876864913e-07
       },
       "Accelereation": {
         "x": 0.0,
@@ -722,18 +752,33 @@
       "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Trampoline Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Button Specular.png",
       "Alpha": 1.0,
-      "wireMode": false
+      "wireMode": true
     },
     "COLLIDER": {
-      "Shape": 0,
-      "Radius": 1.0
+      "Shape": 3,
+      "Radius": 1.0,
+      "Normal": {
+        "x": -0.6819983124732971,
+        "y": 0.731353759765625,
+        "z": -2.3092638912203256e-14
+      },
+      "Magnitude": 29.18608856201172,
+      "MinPoint": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+      },
+      "MaxPoint": {
+        "x": 1.0,
+        "y": 1.0,
+        "z": 1.0
+      }
     },
     "STILL_BODY": {
       "Shape": 0,
       "Radius": 1.0
     },
     "GAME_LOGIC": [
-      "ENEMY",
       "GOAL_ZONE"
     ],
     "TAG": {
@@ -749,8 +794,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 9.749717712402344,
-        "y": 39.15697479248047,
+        "x": 13.749988555908203,
+        "y": 34.330013275146484,
         "z": 35.0
       },
       "scale": {
@@ -761,8 +806,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.9995324611663818,
-        "w": 0.030576307326555252
+        "z": -0.9981487989425659,
+        "w": 0.06081874296069145
       }
     },
     "MATERIAL": {
@@ -782,7 +827,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": -15.0,
-        "y": 16.599777221679688,
+        "y": 19.799991607666016,
         "z": 0.0
       },
       "Accelereation": {
@@ -934,10 +979,17 @@
       "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
-      "wireMode": false
+      "wireMode": true
     },
     "COLLIDER": {
-      "Shape": 2,
+      "Shape": 3,
+      "Radius": 1.0,
+      "Normal": {
+        "x": 0.0,
+        "y": 1.0,
+        "z": 0.0
+      },
+      "Magnitude": 21.440000534057617,
       "MinPoint": {
         "x": 0.0,
         "y": 0.0,

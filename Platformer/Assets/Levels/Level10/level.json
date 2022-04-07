@@ -128,7 +128,7 @@
     "TRANSFORM": {
       "position": {
         "x": 45.0,
-        "y": 2.9332010746002197,
+        "y": 2.9332008361816406,
         "z": 10.0
       },
       "scale": {
@@ -160,7 +160,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -0.5740717649459839,
+        "y": -0.574072539806366,
         "z": 0.0
       },
       "Accelereation": {
@@ -186,8 +186,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 38.70159912109375,
-        "y": 54.523677825927734,
+        "x": 40.0,
+        "y": 55.96388626098633,
         "z": 10.0
       },
       "scale": {
@@ -198,8 +198,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.608516275882721,
-        "w": 0.7935413718223572
+        "z": 0.9131317138671875,
+        "w": 0.4076646864414215
       }
     },
     "MATERIAL": {
@@ -218,8 +218,8 @@
       "Gravity": true,
       "Mass": 5.0,
       "Velocity": {
-        "x": -2.873105049133301,
-        "y": -0.7266374826431274,
+        "x": 0.0,
+        "y": -2.166672945022583,
         "z": 0.0
       },
       "Accelereation": {
@@ -510,7 +510,7 @@
       "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
-      "wireMode": true
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,
@@ -557,11 +557,11 @@
     "COLLIDER": {
       "Shape": 1,
       "Normal": {
-        "x": 0.0,
-        "y": 1.0,
+        "x": -1.0,
+        "y": 5.960465188081798e-08,
         "z": 0.0
       },
-      "Magnitude": 1.0
+      "Magnitude": -29.999998092651367
     },
     "STILL_BODY": {
       "Shape": 0,

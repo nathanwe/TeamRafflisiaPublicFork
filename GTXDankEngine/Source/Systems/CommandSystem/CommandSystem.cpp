@@ -63,7 +63,7 @@ bool CommandSystem::Init()
 
 	//special command: non-configurable
 	toggleMenuCommand.keyboardcode = GLFW_KEY_P;
-	toggleMenuCommand.gamepadCode = 7;
+	toggleMenuCommand.gamepadCode = -1;
 	toggleMenuCommand.keyPressType = KeyPressType::Press;
 
 	//all below control functions should be called at script side
@@ -131,7 +131,7 @@ void CommandSystem::Update(float timeStamp)
 
 #ifdef _DEBUG
 	//toggle menu mode
-	if (engine.InputSys.IsKeyTriggered(GLFW_KEY_P) || engine.InputSys.IsControllerTriggered(0, 7))
+	if (engine.InputSys.IsKeyTriggered(toggleMenuCommand.keyboardcode) || engine.InputSys.IsControllerTriggered(0, toggleMenuCommand.gamepadCode))
 	{
 		menuMode = !menuMode;
 		engine.setMenuMode(menuMode);

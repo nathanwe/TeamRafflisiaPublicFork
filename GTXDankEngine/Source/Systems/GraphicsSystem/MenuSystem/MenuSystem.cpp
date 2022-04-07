@@ -47,6 +47,7 @@ void MenuSystem::Init()
     );
     Command& pCommand = engine.CommandSys.GetCommand("Pause");
     pCommand.keyboardcode = GLFW_KEY_ESCAPE;
+    pCommand.gamepadCode = 7;
     pCommand.keyPressType = KeyPressType::Trigger;
 }
 

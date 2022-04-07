@@ -140,6 +140,34 @@ function HandleEventPlayer(eventData)
 			--LOG_INFO("not decaying")
 		end
 	end
+
+	if eventData.type == 12 then	-- TODO invoking AddPhysicsVelocity causes the program to return "body not found"
+	    -- LOG_INFO("friction")
+		local fric = 20
+
+		local e = eventData.e1
+		local data = {}
+		data = GetRigidData(e)
+
+
+		if data.velocity.x > 0 then
+			if data.velocity.x - fric * eventData.floatData1 < 0 then
+				SetPhysicsVelocity(e, 0, data.velocity.y, data.velocity.z)
+			else
+				AddPhysicsVelocity(e, -fric * eventData.floatData1, 0, 0)
+			end
+		end
+
+		if data.velocity.x < 0 then
+			if data.velocity.x + fric * eventData.floatData1 > 0 then
+				SetPhysicsVelocity(e, 0, data.velocity.y, data.velocity.z)
+			else
+				AddPhysicsVelocity(e, fric * eventData.floatData1, 0, 0)
+			end
+		end
+		
+	end
+		
 	if eventData.type == 19 then
 		if eventData.stringData1 == "Space" then
 			if losingPlayer ~= nil then
@@ -147,6 +175,7 @@ function HandleEventPlayer(eventData)
 			end
 		end
 	end
+
 end
 
 
@@ -158,6 +187,7 @@ function HandleEventPerEntityPlayer(e, eventData)
 	if eventData.type == 7 then
 		DeleteEntity(e)
 	end
+
 	if eventData.type == 8 then
 		camerax, cameray, cameraz = GetCameraOrientation()
 		--print( "camera at", camerax, cameray, cameraz)
