@@ -6,6 +6,7 @@ local homeZ = {}
 local homeVelX = {}
 local homeVelY = {}
 local homeVelZ = {}
+local spaceRelease = 0
 
 
 function SaveBalls( levelnum )
@@ -51,6 +52,9 @@ function UpdateBall(dt, e)
 	data = GetRigidData(e)
 	AddRotation(e, 0,0,-data.velocity.x*dt*20)
 	SetPhysicsVelocity(e, data.velocity.x,data.velocity.y,0)
+
+	--if spaceRelease > 0 then LOG_INFO("ASDASDASDFSDFDSAG space pressed") end
+	spaceRelease = spaceRelease - 1
 end
 
 function HandleEventBall(eventData)
@@ -79,12 +83,19 @@ function HandleEventBall(eventData)
 		end
 	end
 	if eventData.type == 19 then
+		--[[
 		LOG_INFO("pressed key")
 		LOG_INFO("stringData1: ".. eventData.stringData1)
 		LOG_INFO("floatData1: ".. eventData.floatData1)
+		--]]
 
 		if eventData.stringData1 == "Space" then
-			GoHomesBall()
+			if spaceRelease <= 0 then
+				LOG_INFO("returning home")
+				LOG_INFO(spaceRelease)
+				GoHomesBall()
+			end
+			spaceRelease = 2
 		end
 	end
 end

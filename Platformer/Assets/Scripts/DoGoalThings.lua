@@ -57,7 +57,7 @@ function HandleEventGoal(eventData)
 	end
 	if eventData.type == 19 then
 		if eventData.stringData1 == "Space" then
-			GoHomesBall()
+			--GoHomesBall()
 		end
 		if eventData.stringData1 == "Space" then
 			if winningGoal ~= nil then
