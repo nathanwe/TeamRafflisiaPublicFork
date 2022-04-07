@@ -8,7 +8,10 @@ local decay = 200
 local maxspeed = 35
 local hardcap = 40
 losingPlayer = nil
-
+local levelTitles = {[1] = "LV1 WASD", [2] = "LV2 Space",
+	[3] = "LV3 The Button", [4] = "LV4 Bouncy Trampoline", [5] = "LV5 Slow and Steady",
+	[6] = "LV7 Through the Air", [7] = "LV7 The Cage", [8] = "LV8 Friction Physics",
+	[9] = "LV9 Go Fast!", [10] = "LV10 Stoplight", [11] = "LV11 Up The Stairs"}
 
 function SavePlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
@@ -93,9 +96,13 @@ function HandleEventPlayer(eventData)
 			--directions[imguiControledEntity] = GetImguiControledFloat(1)
 			imguiControledEntity = -1
 		end
+		levelnum = GetLevelNumber()
+		if levelTitles[levelnum] ~= nil then
+			DrawText(levelTitles[levelnum], 0.5, 10, 40, 254/255, 252/255, 208/255)
+		end
 		if losingPlayer ~= nil then
-			DrawText("TRY AGAIN", 3.25, 30,350, 150,0,0)
-			DrawText("Press Space", 1, 30,550, 150,0,0)
+			DrawText("TRY AGAIN", 3.25, 30,350, 150/255,0,0)
+			DrawText("Press Space", 1, 30,550, 150/255,0,0)
 		end
 	end
 	if eventData.type == 12 then --collison

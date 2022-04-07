@@ -43,14 +43,14 @@ function HandleEventGoal(eventData)
 			imguiControledEntity = -1
 		end
 		if winningGoal ~= nil then
-			DrawText("YOU WIN", 3.5, 75,350, 0,150,0)
-			DrawText("Press Space to Continue", 1, 75,550, 0,150,0)
+			DrawText("YOU WIN", 3.5, 75,350, 0,150/255,0)
+			DrawText("Press Space to Continue", 1, 75,550, 0,150/255,0)
 		end
 	end
 	if eventData.type == 12 then
 		DeleteEntity(eventData.e2)
 		if losingPlayer == nil then
-			LOG_INFO("you win loading next level")
+			--LOG_INFO("you win loading next level")
 			winningGoal = 99
 		end
 		--LoadNextLevel()

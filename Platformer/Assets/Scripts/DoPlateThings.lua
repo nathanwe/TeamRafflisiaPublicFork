@@ -93,7 +93,7 @@ function HandleEventPlate(eventData)
 			end
 			PlayAudioEvent("PlateActivate")
 		end
-		targetStatus[eventData.e1] = .3 --mark it out
+		targetStatus[eventData.e1] = 0.3 --mark it out
 	end
 end
 
