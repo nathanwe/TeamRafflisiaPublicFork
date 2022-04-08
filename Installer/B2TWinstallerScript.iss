@@ -67,7 +67,7 @@ SetupIconFile=.\INSTALLERFILES\setup_icon.ico
 ; in the Program Files, or change the registry. This is done to allow installation on Sandbox
 ; or other intermediate directory
 PrivilegesRequired=none
-;RestartIfNeededByRun= no
+
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
 
@@ -97,7 +97,7 @@ Source: ".\INSTALLERFILES\panel_image_*.bmp"; Flags: dontcopy
 
 ; The game directoy is exactly what you want your install directory in program files to look like
 Source: .\GAMEDIRECTORY\*; DestDir: {app}; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\GTXDankEngine\x64\Release\{#ApplicationName}.exe"; DestDir: "{app}\Platformer"; Flags: ignoreversion
+Source: "..\GTXDankEngine\x64\Release\GTXDankEngine.exe"; DestDir: "{app}\Platformer"; Flags: ignoreversion
 Source: "..\*"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\Platformer\*"; DestDir: "{app}\Platformer"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\GTXDankEngine\assimp-vc142-mtd.dll"; DestDir: "{app}\Platformer"; Flags: ignoreversion
@@ -109,7 +109,7 @@ Source: "..\GTXDankEngine\Assets\*";  DestDir: "{app}\GTXDankEngine\Assets"; Fla
 Source: "..\GTXDankEngine\Source\Shaders\*"; DestDir: "{app}\Platformer\Source\Shaders"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 ;Chris Onorati: You need to place any redists you want to install here under files, and then install them under the RUN section
-Source: ".\REDIST\VC_redist.x64.exe"; DestDir: {tmp}; Flags: deleteafterinstall   
+Source: ".\REDIST\VC_redist.x64.exe"; DestDir: {tmp}; Flags: deleteafterinstall
 
 ; This is the list of shortcuts that the installer will setup for you.
 ; Of note, this will create the uninstaller automatically.
@@ -120,7 +120,7 @@ Source: ".\REDIST\VC_redist.x64.exe"; DestDir: {tmp}; Flags: deleteafterinstall
 [Icons]
 Name: {group}\{#ApplicationName}; Filename: {app}\{#ApplicationName}.exe; WorkingDir: {app}; IconFilename: "{app}\icon.ico"
 Name: {group}\{cm:UninstallProgram,{#ApplicationName}}; Filename: {uninstallexe}
-Name: {commondesktop}\{#ApplicationName}; Filename: {app}\Platformer\{#ApplicationName}.exe; Tasks: desktopicon; WorkingDir: {app}; IconFilename: "{app}\icon.ico"
+Name: {commondesktop}\{#ApplicationName}; Filename: {app}\{#ApplicationName}.exe; Tasks: desktopicon; WorkingDir: {app}; IconFilename: "{app}\icon.ico"
 
 ; List of items to execute in the installer.
 ; Note that this needs to run all executables in their silent versions as required by the TCRs.
@@ -132,7 +132,7 @@ Name: {commondesktop}\{#ApplicationName}; Filename: {app}\Platformer\{#Applicati
 [Run]
 Filename: {tmp}\VC_redist.x64.exe; Parameters: /q /quiet /passive /silent /norestart /noreboot; StatusMsg: Installing Visual C++ {#CPlusPlusYearVersion} Redistributable...
 ;Filename: {tmp}\dxsetup.exe; Parameters: /Q; StatusMsg: Installing DirectX...
-Filename: {app}\Platformer\{#ApplicationName}.exe; Description: {cm:LaunchProgram,{#ApplicationName}}; Flags: nowait postinstall skipifsilent
+Filename: {app}\GTXDankEngine.exe; Description: {cm:LaunchProgram,{#ApplicationName}}; Flags: nowait postinstall skipifsilent
 
 [UninstallDelete]
 
