@@ -1123,7 +1123,7 @@ int lua_LoadNextLevel(lua_State* L)
 
 int lua_RestartGame(lua_State* L)
 {
-	engine.SceneSys.LoadScene(0);
+	engine.SceneSys.LoadScene(-1);
 	return 0;
 }
 

@@ -35,7 +35,7 @@ bool SceneSystem::Init()
     }
     
 
-    LoadScene(0);
+    LoadScene(-1);
 
     engine.CommandSys.GetCommand("NextLevel").SetActionToExecute([&]()
         {
@@ -157,7 +157,7 @@ void SceneSystem::Update(float dt)
 
         /// make sure cur level is updated
         currentLevel = levelToLoad;
-        if (levelToLoad == 0)
+        if (levelToLoad == -1)
         {
             engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
             engine.GraphicsSys.GetMenuSystem().SetCurrentMenu("Main");
