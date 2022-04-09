@@ -148,7 +148,7 @@ void Shader::shaderErrorInfo(unsigned int shader, unsigned int type)
         }
         else
         {
-            LOG_ERROR("ERROR: Compute Shader Compilation Error.", infoLog);
+            LOG_ERROR("File Name: {0} ERROR: Compute Shader Compilation Error. {1}", shaderFilePath, infoLog);
         }
     }
 }

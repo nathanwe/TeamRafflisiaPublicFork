@@ -121,18 +121,8 @@ function HandleEventPlayer(eventData)
 			if nz then
 				z = z - nz * dist
 			end
-
-			if dx then
-				dx = -dx
-			end
-			if dy then
-				dy = -dy
-			end
-			if dz then
-				dz = -dz
-			end
-
-			SendParticleEvent(2,x,y,z,dx,dy,dz,"")
+            --                 pos      dir   spr  part
+			--SendParticleEvent(2, x,y,z, dx,dy,dz, 1,   "")
 		end
 		airTime[eventData.e1] = 0
 		types = {}

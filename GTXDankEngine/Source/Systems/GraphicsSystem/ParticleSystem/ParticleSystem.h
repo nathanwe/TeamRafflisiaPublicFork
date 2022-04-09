@@ -29,13 +29,14 @@ enum DirectionType
 
 struct Particle
 {
-	Particle()
-		:position(gen_random(-1.0, 1.0), gen_random(-1.0, 1.0), gen_random(-1.0, 1.0)),
+	Particle(int nPartEmitterOwner)
+		:position(gen_random(0.0, 1.0), gen_random(0.0, 1.0), gen_random(0.0, 1.0)),
 		velocity(0.0f, gen_random(0.0, 1), gen_random(0.0, 1)),
 		currTime(0),
-		timeLimit(gen_random(0, 5.0)),
+		timeLimit(gen_random(0, 0.5)),
 		randVelocity(gen_random(0.5,2.5)),
-		randAngle(gen_random(-M_PI / 20.0f, M_PI / 20.0f))
+		randAngle(gen_random(-M_PI / 4.0f, M_PI / 4.0f)),
+		peOwner(nPartEmitterOwner)
 	{
 		//std::cout << "Particle position: " << position.x << ", " << position.y << std::endl;
 	}
@@ -45,8 +46,9 @@ struct Particle
 		velocity(gen_random(0.2, 1.5) * direction),
 		currTime(0),
 		timeLimit(gen_random(0, 5.0)),
-		randVelocity(gen_random(0.5,2.5)),
-		randAngle(gen_random(-M_PI / 20.0f, M_PI / 20.0f))
+		randVelocity(gen_random(0.5,25.0)),
+		randAngle(gen_random(-M_PI / 20.0f, M_PI / 20.0f)),
+		peOwner(-1)
 	{
 		//std::cout << "Particle position: " << position.x << ", " << position.y << std::endl;
 	}
@@ -60,6 +62,9 @@ struct Particle
 	bool alive = 0;
 	float randVelocity;
 	float randAngle;
+
+
+	int peOwner;
 };
 
 
@@ -74,12 +79,12 @@ public:
     //void Update(float deltaTime);
 
     /// used for simple burst effect and for constant emition
-    void Burst(glm::vec3& burstPosition, glm::vec3& burstDirection, std::string texturePath = "");
+    void Burst(glm::vec3& burstPosition, glm::vec3& burstDirection, float spread, std::string texturePath = "");
 
 
 	void Draw(float timeStamp, glm::mat4 view, glm::mat4 proj, unsigned int FBO);
 	void Destroy();
-	void Init(unsigned int nParticleAmount);
+	void Init(unsigned int nParticleAmount, int peNum);
 
 
 	void Disable();
@@ -93,7 +98,9 @@ public:
 	bool busy = false;
 
 	int particleAmount = 0;
+	float particleSpread = 1.0f;
 	
+	int particleEmitterNumber;
 
 /// methods
 private:
@@ -122,6 +129,9 @@ private:
 
     std::string particleTexture;
 	bool haveTexture = false;
+	
+    glm::vec3 color;
+	bool haveColor = false;
 
 
 };
@@ -141,7 +151,7 @@ public:
 	void Print();
 
 
-	void ActivateParticles(int numOfParticles, glm::vec3 nPosition, glm::vec3 nForce, std::string texturePath = "");
+	void ActivateParticles(int numOfParticles, glm::vec3 nPosition, glm::vec3 nForce, float spread, std::string texturePath = "");
 
 
 	void ResetEmitters();

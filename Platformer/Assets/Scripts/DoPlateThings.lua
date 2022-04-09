@@ -5,6 +5,7 @@ local target = {}
 local targetStatus = {}
 local defaultSolid = {}
 local targetSolidShape = {}
+local emitTimer = 0;
 
 
 function SavePlates( levelnum )
@@ -32,6 +33,7 @@ function DestroyPlate(e)
 end
 
 function UpdatePlate(dt, e)
+	
 	if targetStatus[e] == nil then
 		targetStatus[e] = 0
 	end
@@ -56,6 +58,14 @@ function UpdatePlate(dt, e)
 				SetWireFrame(target[e], true)
 			end
 		end
+	end
+	emitTimer = emitTimer + dt
+	--LOG_INFO("emitTimer"..emitTimer)
+	if emitTimer > 1 then
+		emitTimer = 0
+		x,y,z = GetPosition(e)
+		tx,ty,tz = GetPosition(target[e])
+		--SendParticleEvent(1,x,y,z,x-tx,y-ty,z-tz, 0.01, "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png")
 	end
 end
 
@@ -92,6 +102,9 @@ function HandleEventPlate(eventData)
 				SetWireFrame(target[eventData.e1], true)
 			end
 			PlayAudioEvent("PlateActivate")
+			x,y,z = GetPosition(eventData.e1)
+			tx,ty,tz = GetPosition(target[eventData.e1])
+			SendParticleEvent(1,x,y,z,(tx-x)*2,(ty-y)*2,(tz-z)*2, 0.01, "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png", 0.3)
 		end
 		targetStatus[eventData.e1] = 0.3 --mark it out
 	end

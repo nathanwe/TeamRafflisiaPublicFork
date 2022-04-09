@@ -12,7 +12,7 @@ struct Particle
 	float randVelocity;
 	float randAngle;
 
-//	float randScale;
+	int peOwner;
 };
 
 layout(std430, binding = 0) buffer ParticleData_t
@@ -78,7 +78,6 @@ void main() {
 
 	vec4 position = view * gl_in[0].gl_Position;
 	const float speed = vertex_speed[0];
-//	const float scale =  0.5;
 	const float scale =  10;
 
 	float size = 0.04 * scale;
@@ -104,24 +103,7 @@ void main() {
 		EmitVertex();
 	}
 
-//		gl_Position = projection * (position + vec4(-size, -size, 0.0, 0.0));
-//		n_particle_alpha = particle_alpha[0];
-//		EmitVertex();
-
-//		gl_Position = projection * (position + vec4(-size, size, 0.0, 0.0));
-//		n_particle_alpha = particle_alpha[1];
-//		EmitVertex();
-
-//		gl_Position = projection * (position + vec4(size, -size, 0.0, 0.0));
-//		n_particle_alpha = particle_alpha[2];
-//		EmitVertex();
-
-//		gl_Position = projection * (position + vec4(size, size, 0.0, 0.0));
-//		n_particle_alpha = particle_alpha[3];
-//		EmitVertex();
-
-		EndPrimitive();
-	//}
+	EndPrimitive();
 }
 
 
@@ -135,6 +117,9 @@ in vec2 uvCoords;
 uniform bool haveTxtr;
 uniform sampler2D txtr;
 
+uniform bool haveColor;
+uniform vec3 partColor;
+
 
 out vec4 FragColor;
 
@@ -142,10 +127,13 @@ void main() {
 
 	vec4 color;
 	
-//	vec4 color = vec4(0.6, 0.3, 0.0, 1.0);
 	if (haveTxtr)
 	{
 		color = texture(txtr, uvCoords);
+	}
+	else if (haveColor)
+	{
+		color = vec4(partColor, n_particle_alpha);
 	}
 	else
 	{

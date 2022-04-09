@@ -1276,7 +1276,8 @@ int lua_SendParticleEvent(lua_State* L)
         lua_tonumber(L, 1),
         glm::vec3(lua_tonumber(L, 2), lua_tonumber(L, 3), lua_tonumber(L, 4)),
         glm::vec3(lua_tonumber(L, 5), lua_tonumber(L, 6), lua_tonumber(L, 7)),
-        lua_tostring(L,8)
+        lua_tonumber(L,8),
+        lua_tostring(L,9)
     );
     return 0;
 }
