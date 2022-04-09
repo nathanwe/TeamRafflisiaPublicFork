@@ -215,7 +215,7 @@
         },
 
         "YES": {
-            "Command": "LEVEL 0"
+            "Command": "LEVEL -1"
         },
         "NO": {
             "Position": {
