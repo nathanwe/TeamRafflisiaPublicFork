@@ -24,10 +24,20 @@ void GraphicsSystem::InitGLFW()
 
 void GraphicsSystem::InitWindow()
 {
+
+#if _DEBUG
+	pWindow = glfwCreateWindow(camera.width, camera.height, "GTX Dank AF Engine", NULL, NULL);
+#else
+	GLFWmonitor* mMonitor = glfwGetPrimaryMonitor();
+	const GLFWvidmode* mode = glfwGetVideoMode(mMonitor);
+	camera.width = mode->width;
+	camera.height = mode->height;
+	pWindow = glfwCreateWindow(camera.width, camera.height, "B2TW", mMonitor, NULL);
+#endif // _DEBUG
+
 	// 400 is for the UI
 	// will get removed when we have the UI system
 	//pWindow = glfwCreateWindow(WIDTH + 400, HEIGHT, "GTX Dank AF Engine", NULL, NULL);
-	pWindow = glfwCreateWindow(camera.width, camera.height, "GTX Dank AF Engine", NULL, NULL);
 	engine.window = pWindow;
 	glfwSetInputMode(pWindow, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
@@ -98,7 +108,7 @@ bool GraphicsSystem::Init()
 	TextRenderer.Init("Assets/Fonts/HeyYou.otf");
 //	TextRenderer.Init("fonts/arial.ttf");
 	textShader = new Shader("Source/Shaders/GeneralUIRenderer/TextRenderer.shader");
-	textShader->setMat4("projection", glm::ortho(0.0f,float(WIDTH),0.0f,float(HEIGHT)));
+	textShader->setMat4("projection", glm::ortho(0.0f,float(camera.width),0.0f,float(camera.height)));
 
 	return true;
 }
