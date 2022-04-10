@@ -27,6 +27,9 @@ public:
 
 	void SaveLastLevel() const;
 
+	void PlayCredits();
+	void PlayLogo();
+
 private:
 	
 	std::vector<ordered_json> levels;

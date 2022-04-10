@@ -197,3 +197,14 @@ int SceneSystem::GetCurrentLevel()
 {
     return currentLevel;
 }
+
+
+void PlayCredits()
+{
+    
+}
+
+void PlayLogo()
+{
+    
+}
