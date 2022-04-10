@@ -120,6 +120,8 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "GetRadius", lua_GetRadius);
     lua_register(L, "GetPlaneNormal", lua_GetPlaneNormal);
     lua_register(L, "GetMovementDirection", lua_GetMovementDirection);
+    lua_register(L, "GetCameraWidth", lua_GetCameraWidth);
+    lua_register(L, "GetCameraHeight", lua_GetCameraHeight);
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));
     lua_getglobal(L, "Init");
