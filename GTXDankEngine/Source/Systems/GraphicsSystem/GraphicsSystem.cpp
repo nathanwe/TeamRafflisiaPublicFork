@@ -24,10 +24,16 @@ void GraphicsSystem::InitGLFW()
 
 void GraphicsSystem::InitWindow()
 {
+	GLFWmonitor* mMonitor = glfwGetPrimaryMonitor();
+	const GLFWvidmode* mode = glfwGetVideoMode(mMonitor);
+	camera.width = mode->width;
+	camera.width = mode->height;
+
 	// 400 is for the UI
 	// will get removed when we have the UI system
 	//pWindow = glfwCreateWindow(WIDTH + 400, HEIGHT, "GTX Dank AF Engine", NULL, NULL);
-	pWindow = glfwCreateWindow(camera.width, camera.height, "GTX Dank AF Engine", NULL, NULL);
+//	pWindow = glfwCreateWindow(camera.width, camera.height, "GTX Dank AF Engine", NULL, NULL);
+	pWindow = glfwCreateWindow(camera.width, camera.height, "B2TW", mMonitor, NULL);
 	engine.window = pWindow;
 	glfwSetInputMode(pWindow, GLFW_CURSOR, GLFW_CURSOR_HIDDEN);
 
