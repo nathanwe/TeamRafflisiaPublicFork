@@ -1340,4 +1340,16 @@ int lua_GetPlaneNormal(lua_State* L)
     return 3;
 }
 
+int lua_GetCameraWidth(lua_State* L)
+{
+    lua_pushnumber(L, engine.GraphicsSys.camera.width);
+    return 1;
+}
+
+int lua_GetCameraHeight(lua_State* L)
+{
+    lua_pushnumber(L, engine.GraphicsSys.camera.height);
+    return 1;
+}
+
 
