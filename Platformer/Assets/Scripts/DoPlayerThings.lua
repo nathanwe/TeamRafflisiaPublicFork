@@ -101,8 +101,8 @@ function HandleEventPlayer(eventData)
 			DrawText(levelTitles[levelnum], 0.5, 10, 40, 254/255, 252/255, 208/255)
 		end
 		if losingPlayer ~= nil then
-			DrawText("TRY AGAIN", 3.25, 30,350, 150/255,0,0)
-			DrawText("Press Space", 1, 30,550, 150/255,0,0)
+			DrawText("TRY AGAIN", 3.25, GetCameraWidth()/2-600,GetCameraHeight()/2-50, 150/255,0,0)
+			DrawText("Press Space", 1, GetCameraWidth()/2-250,GetCameraHeight()/2+90, 150/255,0,0)
 		end
 	end
 	if eventData.type == 12 then --collison
