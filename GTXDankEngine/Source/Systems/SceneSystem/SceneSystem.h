@@ -27,8 +27,8 @@ public:
 
 	void SaveLastLevel() const;
 
-	void PlayCredits();
-	void PlayLogo();
+	void PlayCredits(float dt);
+	void PlayLogo(float dt);
 
 private:
 	
@@ -38,6 +38,10 @@ private:
 	bool shouldLoadLevel = false;
 
 	int lastSavedLevel = 1;
+
+	float timer{0}, const maxTime{7};
+	std::vector<std::string> creditsText;
+	int curLine{0};
 
 };
 #endif // !SCENESYSTEM_H

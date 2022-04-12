@@ -25,6 +25,17 @@ bool SceneSystem::Init()
         lastSavedLevel = stoi(interpolate.str());
     }
 
+    /// load credits
+    if (std::filesystem::exists(std::string("Assets/Credits/credits")))
+    {
+        std::ifstream llFile(std::string("Assets/Credits/credits"));
+        std::string line;
+        while (std::getline(llFile,line))
+        {
+            creditsText.push_back(line);
+        }
+    }
+
     /// HARDCODED
     engine.GraphicsSys.GetMenuSystem().GetMenu("Level Select")->DeactivateLevelButtons(lastSavedLevel);
     
@@ -35,7 +46,7 @@ bool SceneSystem::Init()
     }
     
 
-    LoadScene(-1);
+    LoadScene(-3);
 
     engine.CommandSys.GetCommand("NextLevel").SetActionToExecute([&]()
         {
@@ -78,7 +89,7 @@ void SceneSystem::LoadCurrentLevel()
 
 void SceneSystem::LoadNextLevel()
 {
-    if (currentLevel < levels.size()-1)
+    if (currentLevel < int(levels.size()))
     {
         currentLevel++;
     }
@@ -141,9 +152,19 @@ void SceneSystem::Update(float dt)
 {
     PROFILE_THIS("Scene Update");
     
-    if (shouldLoadLevel)
+    if (!shouldLoadLevel && (currentLevel == -2 || currentLevel == -3))
     {
-        if (levelToLoad > lastSavedLevel)
+        PlayLogo(dt);
+        return;
+    }
+    if (!shouldLoadLevel && currentLevel == levels.size())
+    {
+        PlayCredits(dt);
+        return;
+    }
+    else if (shouldLoadLevel)
+    {
+        if (levelToLoad > lastSavedLevel && levelToLoad != levels.size())
         {
             /// HARDCODED
             Menu* levelMenu = engine.GraphicsSys.GetMenuSystem().GetMenu("Level Select");
@@ -157,7 +178,15 @@ void SceneSystem::Update(float dt)
 
         /// make sure cur level is updated
         currentLevel = levelToLoad;
-        if (levelToLoad == -1)
+        if (levelToLoad <= -2)
+        {
+            PlayLogo(dt);
+        }
+        else if (levelToLoad == levels.size())
+        {
+            PlayCredits(dt);
+        }
+        else if (levelToLoad == -1)
         {
             engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
             engine.GraphicsSys.GetMenuSystem().SetCurrentMenu("Main");
@@ -199,12 +228,46 @@ int SceneSystem::GetCurrentLevel()
 }
 
 
-void PlayCredits()
+void SceneSystem::PlayCredits(float dt)
 {
-    
+    timer += dt;
+    if (timer >= maxTime)
+    {
+        timer = 0.0f;
+        ++curLine;
+        if (curLine >= creditsText.size())
+        {
+            curLine = 0;
+            LoadScene(-1);
+            return;
+        }
+    }
+    std::string credit = creditsText[curLine];
+    std::replace(credit.begin(), credit.end(), '-', ' ');
+    std::stringstream ss(credit);
+    std::string name, role;
+    ss >> name; ss >> role;
+    engine.GraphicsSys.DrawCustomText(name, 2.3f, glm::vec2(engine.GraphicsSys.camera.width/2-400, 300), glm::vec3(1,0,0));
+    engine.GraphicsSys.DrawCustomText(role, 1.5f, glm::vec2(engine.GraphicsSys.camera.width/2-700, 440), glm::vec3(1,0,0));
 }
 
-void PlayLogo()
+void SceneSystem::PlayLogo(float dt)
 {
-    
+    timer += dt;
+    if (currentLevel == -2)
+    {
+        if (timer >= 10.0f)
+        {
+            timer = 0.0f;
+            LoadNextLevel();
+            return;
+        }
+        engine.GraphicsSys.DrawLogo();
+    }
+    else if (currentLevel == -3 && timer >= 3.0f)
+    {
+        timer = 0.0f;
+        LoadNextLevel();
+        return;
+    }
 }

@@ -32,7 +32,7 @@ void MenuSystem::Init()
     engine.CommandSys.GetCommand("Pause").SetActionToExecute(
         [&]()
         {
-            if (engine.SceneSys.GetCurrentLevel() != -1)
+            if (engine.SceneSys.GetCurrentLevel() > -1)
             {
                 ToggleDisplay();
                 if (display)

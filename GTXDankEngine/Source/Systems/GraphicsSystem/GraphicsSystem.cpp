@@ -110,6 +110,35 @@ bool GraphicsSystem::Init()
 	textShader = new Shader("Source/Shaders/GeneralUIRenderer/TextRenderer.shader");
 	textShader->setMat4("projection", glm::ortho(0.0f,float(camera.width),0.0f,float(camera.height)));
 
+
+	/// Initialize logo
+	logoShader = new Shader("Source/Shaders/MenuRenderer/SliderPointerShader.shader");
+    // VAO
+    glGenVertexArrays(1, &logoVAO);
+    glBindVertexArray(logoVAO);
+
+    unsigned int logoVBO;
+    // VBO
+    //VertexBuffer vbo(&quadVerticesColorTexture[0], quadVerticesColorTexture.size() * sizeof(Vertex));
+    glGenBuffers(1, &logoVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, logoVBO);
+    glBufferData(GL_ARRAY_BUFFER, logoVerts.size() * sizeof(float), logoVerts.data(), GL_STATIC_DRAW);
+
+    // vertex positions
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+    // vertex texture coordinates (-1,-1) to signify grey color
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+
+    glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+//    auto ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_WHITE.png");
+//    logoShader->setTexture("txtr", ptrTxtr->GetPointer()->GetID());
+	ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_RED_1024px.png");
+
 	return true;
 }
 
@@ -357,6 +386,25 @@ void GraphicsSystem::RendererFboResize(unsigned int width, unsigned int height)
 void GraphicsSystem::DrawCustomText(std::string text, float scale, glm::vec2 pos, glm::vec3 color)
 {
 	TextRenderer.RenderText(*textShader, text, pos.x, camera.height - pos.y, scale, color);
+}
+
+
+
+void GraphicsSystem::DrawLogo()
+{
+	logoShader->setMat4("projection", glm::ortho(0.0f,float(camera.width),0.0f,float(camera.height)));
+    logoShader->setVec2("centerLocation", glm::vec2(camera.width/2,camera.height/2));
+//	auto ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_WHITE_1024px.png");
+	logoShader->setTexture("txtr", ptrTxtr->GetPointer()->GetID());
+
+	logoShader->Bind();
+    glBindVertexArray(logoVAO);
+    glDisable(GL_DEPTH_TEST);
+//    glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, 0);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    glEnable(GL_DEPTH_TEST);
+    glBindVertexArray(0);
+    logoShader->unBind();
 }
 
 
