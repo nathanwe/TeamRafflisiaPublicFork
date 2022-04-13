@@ -21,7 +21,7 @@
 ;   5) Update the redistributables required for your game.
 [Setup]
 
-#define ApplicationName 'Ball 2 The Wall'
+#define ApplicationName 'Ball2TheWall'
 #define ApplicationVersion '0.0.0'
 #define CPlusPlusYearVersion '1999'
 
