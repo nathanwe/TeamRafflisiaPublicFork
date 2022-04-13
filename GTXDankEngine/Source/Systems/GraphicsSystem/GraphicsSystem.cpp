@@ -178,6 +178,10 @@ void GraphicsSystem::Update(float timeStamp)
 	MenuSystem.Draw();
 
 //	TextRenderer.RenderText(*textShader, "Hello, World!", WIDTH / 2 - 100, HEIGHT / 2 - 50, 1.3, glm::vec3(1.0,0,0));
+	if (drawLogo)
+	{
+		this->DrawLogo();
+	}
 }
 
 

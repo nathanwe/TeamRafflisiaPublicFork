@@ -67,6 +67,7 @@ public:
 
 	void DrawCustomText(const std::string text, float scale, glm::vec2 pos, glm::vec3 color);
 
+	bool drawLogo = false;
 	void DrawLogo();
 
 private:

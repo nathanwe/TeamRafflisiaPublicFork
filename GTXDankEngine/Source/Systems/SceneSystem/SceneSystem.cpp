@@ -259,10 +259,12 @@ void SceneSystem::PlayLogo(float dt)
         if (timer >= 10.0f)
         {
             timer = 0.0f;
+            engine.GraphicsSys.drawLogo = false;
             LoadNextLevel();
             return;
         }
-        engine.GraphicsSys.DrawLogo();
+        //engine.GraphicsSys.DrawLogo();
+        engine.GraphicsSys.drawLogo = true;
     }
     else if (currentLevel == -3 && timer >= 3.0f)
     {
