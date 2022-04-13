@@ -428,9 +428,20 @@ void GraphicsSystem::DrawCredits()
     std::stringstream ss(credit);
     std::string name, role;
     std::getline(ss, name, '-');
-    std::getline(ss, role, '-');
-    this->DrawCustomText(name, 2.3f, glm::vec2(camera.width/2-400, 300), glm::vec3(1,0,0));
-    this->DrawCustomText(role, 1.5f, glm::vec2(camera.width/2-700, 440), glm::vec3(1,0,0));
+	if (name.compare("Xingyu Brandon Wang") == 0 || name.compare("Kishore Kandasamy Balakrishnan") == 0 || name.compare("Theodore Sherman Sharygin") == 0)
+	{
+	    this->DrawCustomText(name, 1.0f, glm::vec2(camera.width/2-500, 200), glm::vec3(1,0,0));
+	}
+	else
+	{
+	    this->DrawCustomText(name, 1.4f, glm::vec2(camera.width/2-500, 200), glm::vec3(1,0,0));
+	}
+	float y = 440;
+    while(std::getline(ss, role, ','))
+	{
+	    this->DrawCustomText(role, 0.6f, glm::vec2(camera.width/2-300, y), glm::vec3(1,0,0));
+		y += 90;
+	}
 }
 
 
