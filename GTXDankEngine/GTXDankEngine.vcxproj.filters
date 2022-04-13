@@ -496,7 +496,7 @@
       <Filter>Platformer\Scripts</Filter>
     </None>
     <None Include="..\Platformer\Assets\Scripts\DoWindThings.lua">
-            <Filter>Platformer\Scripts</Filter>
+      <Filter>Platformer\Scripts</Filter>
     </None>
     <None Include="Source\Shaders\GeneralUIRenderer\TextRenderer.shader">
       <Filter>Resource Files\Shaders\GeneralUIRenderer</Filter>
@@ -507,6 +507,9 @@
     </None>
     <None Include="Source\Shaders\MenuRenderer\SliderPointerShader.shader">
       <Filter>Resource Files\Shaders\MenuRenderer</Filter>
+    </None>
+    <None Include="..\Platformer\Assets\Scripts\DoStarThings.lua">
+      <Filter>Platformer\Scripts</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
