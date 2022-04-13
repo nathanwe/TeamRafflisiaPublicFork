@@ -24,6 +24,11 @@
             "Texture": "Assets/Textures/Options_button.png",
             "Command": "Options"
         },
+        "CREDITS":
+        {
+            "Texture": "Assets/Textures/Credits_button.png",
+            "Command": "Credits"
+        },
         "Exit": {
             "Texture": "Assets/Textures/Exit_button.png",
             "Command": "ExitMenu"

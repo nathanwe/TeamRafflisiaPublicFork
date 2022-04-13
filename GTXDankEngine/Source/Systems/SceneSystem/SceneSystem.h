@@ -30,6 +30,8 @@ public:
 	void PlayCredits(float dt);
 	void PlayLogo(float dt);
 
+	int GetCreditsLevel() const { return levels.size(); };
+
 private:
 	
 	std::vector<ordered_json> levels;

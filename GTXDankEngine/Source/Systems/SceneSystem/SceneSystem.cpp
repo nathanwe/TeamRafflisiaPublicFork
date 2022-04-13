@@ -285,7 +285,7 @@ void SceneSystem::PlayLogo(float dt)
     timer += dt;
     if (currentLevel == -2)
     {
-        if (timer >= 7.0f)
+        if (timer >= 3.0f)
         {
             timer = 0.0f;
             engine.GraphicsSys.drawLogo = false;
@@ -297,7 +297,7 @@ void SceneSystem::PlayLogo(float dt)
     }
     else if (currentLevel == -3)
     {
-        if (timer >= 7.0f)
+        if (timer >= 3.0f)
         {
             timer = 0.0f;
             engine.GraphicsSys.drawCredits = false;
