@@ -184,6 +184,11 @@ void GraphicsSystem::Update(float timeStamp)
 	{
 		this->DrawLogo();
 	}
+
+	if (drawCredits)
+	{
+		this->DrawCredits();
+	}
 }
 
 
@@ -415,6 +420,17 @@ void GraphicsSystem::DrawLogo()
     glEnable(GL_DEPTH_TEST);
     glBindVertexArray(0);
     logoShader->unBind();
+}
+
+
+void GraphicsSystem::DrawCredits()
+{
+    std::stringstream ss(credit);
+    std::string name, role;
+    std::getline(ss, name, '-');
+    std::getline(ss, role, '-');
+    this->DrawCustomText(name, 2.3f, glm::vec2(camera.width/2-400, 300), glm::vec3(1,0,0));
+    this->DrawCustomText(role, 1.5f, glm::vec2(camera.width/2-700, 440), glm::vec3(1,0,0));
 }
 
 

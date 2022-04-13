@@ -69,6 +69,10 @@ public:
 
 	bool drawLogo = false;
 	void DrawLogo();
+	
+	bool drawCredits = false;
+	std::string credit;
+	void DrawCredits();
 
 private:
 	void InitGLFW();

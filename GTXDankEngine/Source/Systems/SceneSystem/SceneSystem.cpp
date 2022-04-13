@@ -180,10 +180,34 @@ void SceneSystem::Update(float dt)
         currentLevel = levelToLoad;
         if (levelToLoad <= -2)
         {
+
+            Event ev = Event(true);
+            ev.type = EventType::LOAD_LUA;
+            ev.intData1 = currentLevel;
+            engine.DoGameLogicScriptSys.HandleEvent(ev);
+            engine.CameraControlSys.HandleEvent(ev);
+
+            // For Physics
+            engine.PhysicsSys.UpdatePosition();
+            engine.PhysicsSys.UpdateColliders();
+
+            engine.GraphicsSys.GetParticleSystem().ResetEmitters();
             PlayLogo(dt);
         }
         else if (levelToLoad == levels.size())
         {
+
+            Event ev = Event(true);
+            ev.type = EventType::LOAD_LUA;
+            ev.intData1 = currentLevel;
+            engine.DoGameLogicScriptSys.HandleEvent(ev);
+            engine.CameraControlSys.HandleEvent(ev);
+
+            // For Physics
+            engine.PhysicsSys.UpdatePosition();
+            engine.PhysicsSys.UpdateColliders();
+
+            engine.GraphicsSys.GetParticleSystem().ResetEmitters();
             PlayCredits(dt);
         }
         else if (levelToLoad == -1)
@@ -238,17 +262,22 @@ void SceneSystem::PlayCredits(float dt)
         if (curLine >= creditsText.size())
         {
             curLine = 0;
+            engine.GraphicsSys.drawCredits = false;
             LoadScene(-1);
             return;
         }
     }
+    /*
     std::string credit = creditsText[curLine];
-    std::replace(credit.begin(), credit.end(), '-', ' ');
+//    std::replace(credit.begin(), credit.end(), '-', ' ');
     std::stringstream ss(credit);
     std::string name, role;
-    ss >> name; ss >> role;
+    std::getline(ss, name, '-');
+    std::getline(ss, role, '-');
     engine.GraphicsSys.DrawCustomText(name, 2.3f, glm::vec2(engine.GraphicsSys.camera.width/2-400, 300), glm::vec3(1,0,0));
-    engine.GraphicsSys.DrawCustomText(role, 1.5f, glm::vec2(engine.GraphicsSys.camera.width/2-700, 440), glm::vec3(1,0,0));
+    engine.GraphicsSys.DrawCustomText(role, 1.5f, glm::vec2(engine.GraphicsSys.camera.width/2-700, 440), glm::vec3(1,0,0));*/
+    engine.GraphicsSys.drawCredits = true;
+    engine.GraphicsSys.credit = creditsText[curLine];
 }
 
 void SceneSystem::PlayLogo(float dt)
