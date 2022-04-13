@@ -1,6 +1,7 @@
 --Goalthings
 local imguiControledEntity = -1
 winningGoal = nil;
+local isWin = false;
 
 function SaveGoals( levelnum )
 	levelstr = string.format("%i", levelnum)
@@ -9,6 +10,7 @@ end
 function LoadGoals( levelnum )
 	levelstr = string.format("%i", levelnum)
 	winningGoal = nil
+	isWin=false
 end
 
 function ClearGoals()
@@ -45,6 +47,10 @@ function HandleEventGoal(eventData)
 		if winningGoal ~= nil then
 			DrawText("YOU WIN", 3.5, GetCameraWidth()/2-500,GetCameraHeight()/2-50, 0,150/255,0)
 			DrawText("Press Space to Continue", 1, GetCameraWidth()/2-490,GetCameraHeight()/2+90, 0,150/255,0)
+			if isWin == false then
+				isWin=true
+				PlayAudioEvent("Win")
+			end
 		end
 	end
 	if eventData.type == 12 then

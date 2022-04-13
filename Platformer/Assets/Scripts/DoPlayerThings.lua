@@ -8,6 +8,7 @@ local decay = 200
 local maxspeed = 35
 local hardcap = 40
 losingPlayer = nil
+local isDead = false
 local levelTitles = {[1] = "LV1 WASD", [2] = "LV2 Space",
 	[3] = "LV3 The Button", [4] = "LV4 Bouncy Trampoline", [5] = "LV5 Slow and Steady",
 	[6] = "LV7 Through the Air", [7] = "LV7 The Cage", [8] = "LV8 Friction Physics",
@@ -24,6 +25,7 @@ function LoadPlayers( levelnum )
 	airTime = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."/PlayerAirTimeSave.json")
 	decaying = LoadIntFloatTableFromJson("/Assets/Levels/Level" .. levelstr .."/PlayerDecayingSave.json")
 	losingPlayer = nil
+	isDead = false
 end
 
 function ClearPlayers()
@@ -103,6 +105,10 @@ function HandleEventPlayer(eventData)
 		if losingPlayer ~= nil then
 			DrawText("TRY AGAIN", 3.25, GetCameraWidth()/2-600,GetCameraHeight()/2-50, 150/255,0,0)
 			DrawText("Press Space", 1, GetCameraWidth()/2-250,GetCameraHeight()/2+90, 150/255,0,0)
+			if isDead == false then
+				isDead = true
+				PlayAudioEvent("Dead")
+			end
 		end
 	end
 	if eventData.type == 12 then --collison
