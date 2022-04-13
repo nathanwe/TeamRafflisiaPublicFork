@@ -137,7 +137,9 @@ bool GraphicsSystem::Init()
 
 //    auto ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_WHITE.png");
 //    logoShader->setTexture("txtr", ptrTxtr->GetPointer()->GetID());
-	ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_RED_1024px.png");
+//	ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_WHITE_1024px.png");
+//	ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_WHITE.jpg");
+	ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPenLogoCORRECT.png");
 
 	return true;
 }
