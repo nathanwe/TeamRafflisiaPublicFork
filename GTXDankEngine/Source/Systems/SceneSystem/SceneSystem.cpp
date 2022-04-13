@@ -285,7 +285,7 @@ void SceneSystem::PlayLogo(float dt)
     timer += dt;
     if (currentLevel == -2)
     {
-        if (timer >= 10.0f)
+        if (timer >= 7.0f)
         {
             timer = 0.0f;
             engine.GraphicsSys.drawLogo = false;
@@ -295,10 +295,16 @@ void SceneSystem::PlayLogo(float dt)
         //engine.GraphicsSys.DrawLogo();
         engine.GraphicsSys.drawLogo = true;
     }
-    else if (currentLevel == -3 && timer >= 3.0f)
+    else if (currentLevel == -3)
     {
-        timer = 0.0f;
-        LoadNextLevel();
-        return;
+        if (timer >= 7.0f)
+        {
+            timer = 0.0f;
+            engine.GraphicsSys.drawCredits = false;
+            LoadNextLevel();
+            return;
+        }
+        engine.GraphicsSys.drawCredits = true;
+        engine.GraphicsSys.credit = "TEAM RAFFLESIA PRODUCTION";
     }
 }

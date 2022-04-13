@@ -428,9 +428,14 @@ void GraphicsSystem::DrawCredits()
     std::stringstream ss(credit);
     std::string name, role;
     std::getline(ss, name, '-');
-	if (name.compare("Xingyu Brandon Wang") == 0 || name.compare("Kishore Kandasamy Balakrishnan") == 0 || name.compare("Theodore Sherman Sharygin") == 0)
+	if (name.compare("Xingyu Brandon Wang") == 0 || name.compare("Kishore Kandasamy Balakrishnan") == 0
+		|| name.compare("Theodore Sherman Sharygin") == 0)
 	{
 	    this->DrawCustomText(name, 1.0f, glm::vec2(camera.width/2-500, 200), glm::vec3(1,0,0));
+	}
+	else if (name.compare("TEAM RAFFLESIA PRODUCTION") == 0)
+	{
+	    this->DrawCustomText(name, 1.5f, glm::vec2(camera.width/2-700, camera.height/2), glm::vec3(1,0,0));
 	}
 	else
 	{
