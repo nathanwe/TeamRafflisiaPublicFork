@@ -398,6 +398,10 @@ void GraphicsSystem::DrawCustomText(std::string text, float scale, glm::vec2 pos
 
 void GraphicsSystem::DrawLogo()
 {
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
 	logoShader->setMat4("projection", glm::ortho(0.0f,float(camera.width),0.0f,float(camera.height)));
     logoShader->setVec2("centerLocation", glm::vec2(camera.width/2,camera.height/2));
 //	auto ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_WHITE_1024px.png");
