@@ -31,7 +31,6 @@
 extern Engine engine;
 
 
-
 bool PhysicsSystem::Init()
 {
 	return true;
@@ -361,4 +360,104 @@ void PhysicsSystem::UpdateMovingColliders()
 		auto colliderComponent = ColliderComponentPool.GetComponentByEntity(colliderEntity);
 		colliderComponent->setPostion(transformComponent->transform.position);
 	}
+}
+
+/*
+ Static Collision Functions :
+	int StaticSphereToStaticSphere(glm::vec3* pCenter0, float Radius0, glm::vec3* pCenter1, float Radius1)
+	int StaticSphereToStacticPlane(glm::vec3* pCenter, float Radius, glm::vec3* normal, float magnitude, float& distanceFromSphereCenter)
+	int StaticAABBToStaticAABB(glm::vec3* p1, glm::vec3* max1, glm::vec3* min1, glm::vec3* p2, glm::vec3* max2, glm::vec3* min2)
+	int StaticSphereToStaticAABB(glm::vec3* pCenter0, float Radius0, glm::vec3* p1, glm::vec3* max1, glm::vec3* min1)
+	int StaticAABBToStaticPlane(glm::vec3* p1, glm::vec3* max1, glm::vec3* min1, glm::vec3* normal, float magnitude)
+*/
+
+bool PhysicsSystem::CheckCollision(ColliderComponent* c1, ColliderComponent* c2)
+{
+	bool out = false;
+	switch (c1->NarrowPhase.shape)
+	{
+	case (Shape::SPHERE):
+	{
+		switch (c2->NarrowPhase.shape)
+		{
+		case (Shape::SPHERE):
+		{
+			if (StaticSphereToStaticSphere(&c1->position, c1->NarrowPhase.radius, &c2->position, c2->NarrowPhase.radius) != 0)
+				out = true;
+			break;
+		}
+		case (Shape::AABB):
+		{
+			if (StaticSphereToStaticAABB(&c1->position, c1->NarrowPhase.radius, &c2->position, &c2->NarrowPhase.maxPoint, &c2->NarrowPhase.minPoint) != 0)
+				out = true;
+			break;
+		}
+		case (Shape::PLANE):
+		{
+			float temp = 0.0;
+			if (StaticSphereToStacticPlane(&c1->position, c1->NarrowPhase.radius, &c2->NarrowPhase.normal, c2->NarrowPhase.magnitude, temp) != 0)
+				out = true;
+			break;
+		}
+		default:
+			break;
+		}
+		return out;
+		break;
+	}
+	case (Shape::AABB):
+	{
+		switch (c2->NarrowPhase.shape)
+		{
+		case (Shape::SPHERE):
+		{
+			if (StaticSphereToStaticAABB(&c2->position, c2->NarrowPhase.radius, &c1->position, &c1->NarrowPhase.maxPoint, &c1->NarrowPhase.minPoint) != 0)
+				out = true;
+			break;
+		}
+		case (Shape::AABB):
+		{
+			if (StaticAABBToStaticAABB(&c1->position, &c1->NarrowPhase.maxPoint, &c1->NarrowPhase.minPoint, &c2->position, &c2->NarrowPhase.maxPoint, &c2->NarrowPhase.minPoint) != 0)
+				out = true;
+			break;
+		}
+		case (Shape::PLANE):
+		{
+			if (StaticAABBToStaticPlane(&c1->position, &c1->NarrowPhase.maxPoint, &c1->NarrowPhase.minPoint, &c2->NarrowPhase.normal, c2->NarrowPhase.magnitude) != 0)
+				out = true;
+			break;
+		}
+		default:
+			break;
+		}
+		return out;
+		break;
+	}
+	case (Shape::PLANE):
+	{
+		switch (c2->NarrowPhase.shape)
+		{
+		case (Shape::SPHERE):
+		{
+			float temp = 0.0;
+			if (StaticSphereToStacticPlane(&c2->position, c2->NarrowPhase.radius, &c1->NarrowPhase.normal, c1->NarrowPhase.magnitude, temp) != 0)
+				out = true;
+			break;
+		}
+		case (Shape::AABB):
+		{
+			if (StaticAABBToStaticPlane(&c2->position, &c2->NarrowPhase.maxPoint, &c2->NarrowPhase.minPoint, &c1->NarrowPhase.normal, c1->NarrowPhase.magnitude) != 0)
+				out = true;
+			break;
+		}
+		default:
+			break;
+		}
+		return out;
+	}
+	default:
+		break;
+	}
+
+	return out;
 }

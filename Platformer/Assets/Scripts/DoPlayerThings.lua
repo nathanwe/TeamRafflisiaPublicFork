@@ -11,7 +11,7 @@ losingPlayer = nil
 local isDead = false
 local levelTitles = {[1] = "LV1 WASD", [2] = "LV2 Space",
 	[3] = "LV3 The Button", [4] = "LV4 Bouncy Trampoline", [5] = "LV5 Slow and Steady",
-	[6] = "LV7 Through the Air", [7] = "LV7 The Cage", [8] = "LV8 Friction Physics",
+	[6] = "LV6 Through the Air", [7] = "LV7 The Cage", [8] = "LV8 Friction Physics",
 	[9] = "LV9 Go Fast!", [10] = "LV10 Stoplight", [11] = "LV11 Up The Stairs"}
 
 function SavePlayers( levelnum )
@@ -85,6 +85,8 @@ function UpdatePlayer(dt, e)
 		if losingPlayer ~= nil and losingPlayer < 0 then
 		RestartLevel()
 	end
+	-- 0 z
+	AddPhysicsVelocity(e,0,0,-data.velocity.z)
 end
 
 function HandleEventPlayer(eventData)

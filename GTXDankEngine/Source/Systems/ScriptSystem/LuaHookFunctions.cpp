@@ -1352,4 +1352,34 @@ int lua_GetCameraHeight(lua_State* L)
     return 1;
 }
 
+int lua_CheckCollision(lua_State* L)
+{
+    ColliderComponent* c1 = ColliderComponentPool.GetComponentByEntity(lua_tointeger(L, 1));
+    ColliderComponent* c2 = ColliderComponentPool.GetComponentByEntity(lua_tointeger(L, 2));
+    if (c1 != nullptr && c2 != nullptr)
+    {
+        return engine.PhysicsSys.CheckCollision(c1, c2);
+    }
+    return false;
+}
+
+int lua_CheckAnyCollision(lua_State* L)
+{
+    ColliderComponent* c1 = ColliderComponentPool.GetComponentByEntity(lua_tointeger(L, 1));
+    for (auto c2 : ColliderComponentPool.componentList)
+    {
+        if (c1 != nullptr && c2.second != nullptr && c1 != c2.second)
+        {
+            if (engine.PhysicsSys.CheckCollision(c1, c2.second))
+            {
+                LOG_INFO("checkany");
+                LOG_INFO(lua_tointeger(L, 1));
+                LOG_INFO(static_cast<int>(c2.first));
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
 

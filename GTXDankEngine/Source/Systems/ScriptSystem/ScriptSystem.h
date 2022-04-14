@@ -144,7 +144,8 @@ int lua_GetMovementDirection(lua_State* L);
 int lua_GetPlaneNormal(lua_State* L);
 int lua_GetCameraWidth(lua_State* L);
 int lua_GetCameraHeight(lua_State* L);
-
+int lua_CheckCollision(lua_State* L);
+int lua_CheckAnyCollision(lua_State* L);
 
 
 class LuaFile

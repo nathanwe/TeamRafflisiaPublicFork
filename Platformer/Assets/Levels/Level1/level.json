@@ -203,7 +203,7 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 39.53518295288086,
+        "x": 22.436012268066406,
         "y": 9.133201599121094,
         "z": 1.0
       },
@@ -215,8 +215,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.8093409538269043,
-        "w": 0.5873391032218933
+        "z": 0.6447593569755554,
+        "w": 0.7643856406211853
       }
     },
     "MATERIAL": {
@@ -236,8 +236,8 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -0.5740649700164795,
-        "z": 1.401298464324817e-45
+        "y": -0.5740669369697571,
+        "z": 0.0
       },
       "Accelereation": {
         "x": 0.0,
@@ -263,7 +263,7 @@
     "TRANSFORM": {
       "position": {
         "x": 24.215999603271484,
-        "y": -4606.1240234375,
+        "y": -52212.5390625,
         "z": 35.0
       },
       "scale": {
@@ -295,7 +295,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -305.0318908691406,
+        "y": -1022.27783203125,
         "z": 0.0
       },
       "Accelereation": {
@@ -321,8 +321,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 24.215999603271484,
-        "y": -4456.01220703125,
+        "x": 24.0,
+        "y": -17410.181640625,
         "z": 35.0
       },
       "scale": {
@@ -354,7 +354,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -300.0722351074219,
+        "y": -590.6656494140625,
         "z": 0.0
       },
       "Accelereation": {
@@ -380,8 +380,48 @@
     },
     "TRANSFORM": {
       "position": {
+        "x": 36.43899917602539,
+        "y": 11.093000411987305,
+        "z": -1.0399999618530273
+      },
+      "scale": {
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/Star Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 3.0
+    },
+    "GAME_LOGIC": [
+      "STAR"
+    ],
+    "TAG": {
+      "uniqueName": "Star",
+      "category": "Star"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/Star.obj"
+    },
+    "TRANSFORM": {
+      "position": {
         "x": -3.571000099182129,
-        "y": 20.94300079345703,
+        "y": 19.10300064086914,
         "z": -2.4600000381469727
       },
       "scale": {
@@ -404,11 +444,7 @@
     },
     "COLLIDER": {
       "Shape": 0,
-      "Radius": 2.930000066757202
-    },
-    "STILL_BODY": {
-      "Shape": 0,
-      "Radius": 1.0
+      "Radius": 3.0
     },
     "GAME_LOGIC": [
       "STAR"

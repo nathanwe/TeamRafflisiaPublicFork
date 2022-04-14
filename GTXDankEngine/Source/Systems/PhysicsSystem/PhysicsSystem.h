@@ -31,6 +31,7 @@ public:
 	
 
 	void DetectCollision(float dt);
+	bool CheckCollision(ColliderComponent* c1, ColliderComponent* c2);
 
 
 	bool Destroy();

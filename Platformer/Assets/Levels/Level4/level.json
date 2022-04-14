@@ -347,7 +347,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -0.5740716457366943,
+        "y": -0.5740697383880615,
         "z": 0.0
       },
       "Accelereation": {
@@ -495,7 +495,7 @@
     "TRANSFORM": {
       "position": {
         "x": 24.215999603271484,
-        "y": -668.950927734375,
+        "y": -2465.626708984375,
         "z": 35.0
       },
       "scale": {
@@ -514,7 +514,7 @@
       "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
       "Alpha": 1.0,
-      "wireMode": true
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,
@@ -527,7 +527,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -112.42562866210938,
+        "y": -220.2647705078125,
         "z": 0.0
       },
       "Accelereation": {
@@ -545,6 +545,46 @@
     "TAG": {
       "uniqueName": "ball",
       "category": "ball"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/Star.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": -3.571000099182129,
+        "y": 55.62300109863281,
+        "z": 9.100000381469727
+      },
+      "scale": {
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/Star Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 3.0
+    },
+    "GAME_LOGIC": [
+      "STAR"
+    ],
+    "TAG": {
+      "uniqueName": "Star",
+      "category": "Star"
     }
   }
 ]

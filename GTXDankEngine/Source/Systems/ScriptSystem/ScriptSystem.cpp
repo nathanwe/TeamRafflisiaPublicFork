@@ -122,6 +122,9 @@ bool ScriptSystem::Init(std::string filePath)
     lua_register(L, "GetMovementDirection", lua_GetMovementDirection);
     lua_register(L, "GetCameraWidth", lua_GetCameraWidth);
     lua_register(L, "GetCameraHeight", lua_GetCameraHeight);
+    lua_register(L, "CheckCollision", lua_CheckCollision);
+    lua_register(L, "CheckAnyCollision", lua_CheckAnyCollision);
+    
 
     bool out = CheckLua(L, luaL_dostring(L, fileHandle->GetPointer()->data.c_str()));
     lua_getglobal(L, "Init");

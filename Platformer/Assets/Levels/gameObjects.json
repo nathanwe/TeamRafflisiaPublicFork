@@ -295,6 +295,46 @@
       "category": "Slope"
     }
   },
+  "Star": {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/Star.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": -11.590999603271484,
+        "y": 26.232999801635742,
+        "z": -2.4600000381469727
+      },
+      "scale": {
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/Star Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
+      "Alpha": 1.0,
+      "wireMode": true
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 3.0
+    },
+    "GAME_LOGIC": [
+      "STAR"
+    ],
+    "TAG": {
+      "uniqueName": "Star",
+      "category": "Star"
+    }
+  },
   "ball": {
     "MODEL": {
       "path": "Assets/Defaults/Sphere.obj"

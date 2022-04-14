@@ -314,8 +314,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 30.198932647705078,
-        "y": 9.133201599121094,
+        "x": 30.198978424072266,
+        "y": 9.133200645446777,
         "z": 1.0
       },
       "scale": {
@@ -327,7 +327,7 @@
         "x": 0.0,
         "y": 0.0,
         "z": 0.8125504851341248,
-        "w": 0.5828908681869507
+        "w": 0.5828908085823059
       }
     },
     "MATERIAL": {
@@ -346,9 +346,9 @@
       "Gravity": true,
       "Mass": 5.0,
       "Velocity": {
-        "x": 0.0027265548706054688,
-        "y": -0.5740647912025452,
-        "z": 3.26309717024742e-08
+        "x": 0.0,
+        "y": -0.5740704536437988,
+        "z": 0.0
       },
       "Accelereation": {
         "x": 0.0,
@@ -482,7 +482,7 @@
     "TRANSFORM": {
       "position": {
         "x": 24.0,
-        "y": -1797.420654296875,
+        "y": -2625130.5,
         "z": 35.0
       },
       "scale": {
@@ -514,7 +514,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -190.74400329589844,
+        "y": -7243.47802734375,
         "z": 0.0
       },
       "Accelereation": {
@@ -532,6 +532,46 @@
     "TAG": {
       "uniqueName": "ball",
       "category": "ball"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/Star.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": -11.590999603271484,
+        "y": 26.232999801635742,
+        "z": -2.4600000381469727
+      },
+      "scale": {
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/Star Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 3.0
+    },
+    "GAME_LOGIC": [
+      "STAR"
+    ],
+    "TAG": {
+      "uniqueName": "Star",
+      "category": "Star"
     }
   }
 ]
