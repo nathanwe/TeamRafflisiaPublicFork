@@ -67,6 +67,12 @@ public:
 
 	void DrawCustomText(const std::string text, float scale, glm::vec2 pos, glm::vec3 color);
 
+	bool drawLogo = false;
+	void DrawLogo();
+	
+	bool drawCredits = false;
+	std::string credit;
+	void DrawCredits();
 
 private:
 	void InitGLFW();
@@ -86,7 +92,6 @@ private:
 	void SetSunDir(glm::vec3 dir);
 
 	void DrawText(const std::string text, float scale, glm::vec2 pos, glm::vec3 color);
-
 
 private:
 	Skybox skybox;
@@ -116,5 +121,15 @@ private:
 
 	TextRenderer TextRenderer;
 	Shader* textShader;
+
+	Shader* logoShader;
+	unsigned int logoVAO;
+	std::vector<float> logoVerts {-400,-100,0,0,
+			    				   400, 100,1,1,
+								  -400, 100,0,1,
+								  -400,-100,0,0,
+								   400,-100,1,0,
+								   400, 100,1,1 };
+	ResourceHandle<Texture>* ptrTxtr;
 };
 #endif // !GRAPHICSSYSTEM_H

@@ -24,6 +24,11 @@
             "Texture": "Assets/Textures/Options_button.png",
             "Command": "Options"
         },
+        "CREDITS":
+        {
+            "Texture": "Assets/Textures/Credits_button.png",
+            "Command": "Credits"
+        },
         "Exit": {
             "Texture": "Assets/Textures/Exit_button.png",
             "Command": "ExitMenu"
@@ -93,16 +98,6 @@
             "Command": "LEVEL 12"
         },
 
-        "LEVEL 13": {
-            "Position": {
-                "x": 520,
-                "y": 350
-            },
-            "Command": "LEVEL 13"
-        },
-        "LEVEL 14": {
-            "Command": "LEVEL 14"
-        },
 
         "Back": {
             "Position": {
@@ -119,7 +114,7 @@
     "Options": {
         "First": {
             "x": 100,
-            "y": 45 
+            "y": 100 
         },
         "Button Size": {
             "x": 120,
@@ -153,7 +148,7 @@
     "Pause": {
         "First": {
             "x": 100,
-            "y": 45 
+            "y": 100 
         },
         "Button Size": {
             "x": 120,
@@ -230,7 +225,7 @@
     "AudioOptions": {
         "First": {
             "x": 100,
-            "y": 45 
+            "y": 100 
         },
         "Button Size": {
             "x": 120,
@@ -260,7 +255,7 @@
     "CheatOptions": {
         "First": {
             "x": 100,
-            "y": 45 
+            "y": 100 
         },
         "Button Size": {
             "x": 120,
@@ -289,7 +284,7 @@
     "Options2": {
         "First": {
             "x": 100,
-            "y": 45 
+            "y": 100 
         },
         "Button Size": {
             "x": 120,
@@ -310,7 +305,7 @@
     "Options2Deep": {
         "First": {
             "x": 100,
-            "y": 45
+            "y": 100
         },
         "Button Size": {
             "x": 120,
