@@ -114,7 +114,7 @@
     "Options": {
         "First": {
             "x": 100,
-            "y": 45 
+            "y": 100 
         },
         "Button Size": {
             "x": 120,
@@ -148,7 +148,7 @@
     "Pause": {
         "First": {
             "x": 100,
-            "y": 45 
+            "y": 100 
         },
         "Button Size": {
             "x": 120,
@@ -225,7 +225,7 @@
     "AudioOptions": {
         "First": {
             "x": 100,
-            "y": 45 
+            "y": 100 
         },
         "Button Size": {
             "x": 120,
@@ -255,7 +255,7 @@
     "CheatOptions": {
         "First": {
             "x": 100,
-            "y": 45 
+            "y": 100 
         },
         "Button Size": {
             "x": 120,
@@ -284,7 +284,7 @@
     "Options2": {
         "First": {
             "x": 100,
-            "y": 45 
+            "y": 100 
         },
         "Button Size": {
             "x": 120,
@@ -305,7 +305,7 @@
     "Options2Deep": {
         "First": {
             "x": 100,
-            "y": 45
+            "y": 100
         },
         "Button Size": {
             "x": 120,
