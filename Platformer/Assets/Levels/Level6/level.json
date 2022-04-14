@@ -181,9 +181,7 @@
         "z": 1.0
       }
     },
-    "GAME_LOGIC": [
-      "ENEMY"
-    ],
+    "GAME_LOGIC": [],
     "TAG": {
       "uniqueName": "1",
       "category": "Cube"
@@ -299,7 +297,7 @@
       "AlbedoPath": "Assets/Textures/Goal Base Color.png",
       "MetallicPath": "Assets/Textures/Goal Specular.png",
       "Alpha": 1.0,
-      "wireMode": true
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 2,
@@ -412,7 +410,7 @@
     "TRANSFORM": {
       "position": {
         "x": 17.64443016052246,
-        "y": 9.133200645446777,
+        "y": 9.13467025756836,
         "z": 0.9999999403953552
       },
       "scale": {
@@ -444,7 +442,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -0.5740722417831421,
+        "y": -0.5582491159439087,
         "z": 3.840046058911639e-09
       },
       "Accelereation": {
@@ -848,8 +846,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 233.20423889160156,
-        "y": -12468.751953125,
+        "x": 258.6320495605469,
+        "y": -15220.357421875,
         "z": 35.0
       },
       "scale": {
@@ -860,8 +858,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.4504351019859314,
-        "w": 0.8928091526031494
+        "z": -0.9933921694755554,
+        "w": 0.11476915329694748
       }
     },
     "MATERIAL": {
@@ -881,7 +879,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 4.860937118530273,
-        "y": -499.2336120605469,
+        "y": -551.5440673828125,
         "z": 0.0
       },
       "Accelereation": {
