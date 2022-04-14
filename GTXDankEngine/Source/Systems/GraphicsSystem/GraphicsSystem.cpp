@@ -26,7 +26,7 @@ void GraphicsSystem::InitWindow()
 {
 
 #if _DEBUG
-	pWindow = glfwCreateWindow(camera.width, camera.height, "GTX Dank AF Engine", NULL, NULL);
+	pWindow = glfwCreateWindow(camera.width, camera.height, "Ball 2 The Wall", NULL, NULL);
 #else
 	GLFWmonitor* mMonitor = glfwGetPrimaryMonitor();
 	const GLFWvidmode* mode = glfwGetVideoMode(mMonitor);
