@@ -425,27 +425,42 @@ void GraphicsSystem::DrawLogo()
 
 void GraphicsSystem::DrawCredits()
 {
-    std::stringstream ss(credit);
-    std::string name, role;
-    std::getline(ss, name, '-');
-	if (name.compare("Xingyu Brandon Wang") == 0 || name.compare("Kishore Kandasamy Balakrishnan") == 0
-		|| name.compare("Theodore Sherman Sharygin") == 0)
+	std::stringstream ss(credit);
+	std::string name, role;
+	float y = 320;
+	float underScale = 1.2f;
+	int nextLine = 180;
+	int shift = 875;
+	
+	if (credit.find('-') != std::string::npos)
 	{
-	    this->DrawCustomText(name, 1.0f, glm::vec2(camera.width/2-500, 200), glm::vec3(1,0,0));
+		std::getline(ss, name, '-');
+		if (name.compare("Xingyu Brandon Wang") == 0 || name.compare("Kishore Kandasamy Balakrishnan") == 0
+			|| name.compare("Theodore Sherman Sharygin") == 0)
+		{
+			this->DrawCustomText(name, 1.0f, glm::vec2(camera.width/2-500, 200), glm::vec3(1,0,0));
+		}
+		else if (name.compare("TEAM RAFFLESIA PRODUCTION") == 0)
+		{
+			this->DrawCustomText(name, 1.5f, glm::vec2(camera.width/2-700, camera.height/2), glm::vec3(1,0,0));
+		}
+		else
+		{
+			this->DrawCustomText(name, 1.4f, glm::vec2(camera.width/2-500, 200), glm::vec3(1,0,0));
+		}
+		y = 440;
+		underScale = 0.6f;
+		nextLine = 90;
+		shift = 300;
 	}
-	else if (name.compare("TEAM RAFFLESIA PRODUCTION") == 0)
-	{
-	    this->DrawCustomText(name, 1.5f, glm::vec2(camera.width/2-700, camera.height/2), glm::vec3(1,0,0));
-	}
-	else
-	{
-	    this->DrawCustomText(name, 1.4f, glm::vec2(camera.width/2-500, 200), glm::vec3(1,0,0));
-	}
-	float y = 440;
+
     while(std::getline(ss, role, ','))
 	{
-	    this->DrawCustomText(role, 0.6f, glm::vec2(camera.width/2-300, y), glm::vec3(1,0,0));
-		y += 90;
+	    this->DrawCustomText(role, underScale, glm::vec2(camera.width/2-shift, y), glm::vec3(1,0,0));
+		if (role.compare("Hey You font found on") == 0 || role.compare("Thank you for playing our game") == 0)
+			y += 100;
+		else
+			y += nextLine;
 	}
 }
 

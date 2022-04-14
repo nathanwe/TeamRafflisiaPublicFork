@@ -98,16 +98,6 @@
             "Command": "LEVEL 12"
         },
 
-        "LEVEL 13": {
-            "Position": {
-                "x": 520,
-                "y": 350
-            },
-            "Command": "LEVEL 13"
-        },
-        "LEVEL 14": {
-            "Command": "LEVEL 14"
-        },
 
         "Back": {
             "Position": {
