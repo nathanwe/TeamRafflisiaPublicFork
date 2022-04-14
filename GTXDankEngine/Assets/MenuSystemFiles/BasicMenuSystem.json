@@ -135,12 +135,12 @@
         "BGM Volume":
         {
             "Slider": true,
-            "Parts": 10
+            "Parts": 11
         },
         "SFX Volume":
         {
             "Slider": true,
-            "Parts": 10
+            "Parts": 11
         },
         "Back": {
             "Texture": "Assets/Textures/Back_button.png",
