@@ -87,9 +87,9 @@ void MenuSlider::Draw()
                 percent = float(int(percent / part)) * part;
             this->SetPointerPosition();
             if (name == "BGM Volume")
-                engine.AudioSys.BGMVolume = int(percent / part)+1;
+                engine.AudioSys.BGMVolume = int(percent / part);
             else if (name == "SFX Volume")
-                engine.AudioSys.SFXVolume = int(percent / part)+1;
+                engine.AudioSys.SFXVolume = int(percent / part);
         }
     }
     else
@@ -115,9 +115,9 @@ void MenuSlider::Draw()
         {
             float curPart = percent / part;
             if (percent / part - float(int(percent / part)) > 0.5f)
-                percentile = std::to_string(int(percent / part)+2);
-            else
                 percentile = std::to_string(int(percent / part)+1);
+            else
+                percentile = std::to_string(int(percent / part));
         }
         engine.GraphicsSys.DrawCustomText(percentile, (sldrHeight+5) / 100.0f, glm::vec2(xPointerPos-sldrHeight/2.0f, engine.GraphicsSys.camera.height - yCommonPos+sldrHeight+7), glm::vec3(1));
 
