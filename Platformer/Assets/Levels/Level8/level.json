@@ -64,7 +64,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/wall/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Gradient Background.png",
       "MetallicPath": "../Platformer/Assets/Textures/wall/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -128,7 +128,7 @@
     "TRANSFORM": {
       "position": {
         "x": 34.4371337890625,
-        "y": -5.066798686981201,
+        "y": -5.0667948722839355,
         "z": 20.0
       },
       "scale": {
@@ -144,7 +144,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Hero Base Color.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Hero Base Color.png",
       "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -160,7 +160,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -0.5740710496902466,
+        "y": -0.5740276575088501,
         "z": 0.0
       },
       "Accelereation": {
@@ -204,7 +204,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -251,7 +251,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -300,7 +300,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -351,7 +351,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -402,7 +402,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -502,7 +502,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -686,7 +686,7 @@
     "TRANSFORM": {
       "position": {
         "x": 30.0,
-        "y": -65.54442596435547,
+        "y": -30196.509765625,
         "z": 35.0
       },
       "scale": {
@@ -702,7 +702,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Friend Base Color.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -718,7 +718,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -17.439882278442383,
+        "y": -776.3513793945313,
         "z": 0.0
       },
       "Accelereation": {
@@ -745,7 +745,7 @@
     "TRANSFORM": {
       "position": {
         "x": -7.0,
-        "y": -65.54442596435547,
+        "y": -30196.509765625,
         "z": 35.0
       },
       "scale": {
@@ -761,7 +761,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Friend Base Color.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -777,7 +777,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -17.439882278442383,
+        "y": -776.3513793945313,
         "z": 0.0
       },
       "Accelereation": {
@@ -820,7 +820,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -869,7 +869,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false

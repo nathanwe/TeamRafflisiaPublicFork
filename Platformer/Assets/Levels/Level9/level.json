@@ -64,7 +64,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/PlatformBaseColor.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -82,9 +82,7 @@
       "Shape": 0,
       "Radius": 1.0
     },
-    "GAME_LOGIC": [
-      "ENEMY"
-    ],
+    "GAME_LOGIC": [],
     "TAG": {
       "uniqueName": "BasePlayerPlatform",
       "category": "Slope"
