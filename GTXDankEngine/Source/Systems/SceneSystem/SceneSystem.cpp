@@ -170,7 +170,10 @@ void SceneSystem::Update(float dt)
             Menu* levelMenu = engine.GraphicsSys.GetMenuSystem().GetMenu("Level Select");
             for (int i = lastSavedLevel; i <= levelToLoad; ++i)
             {
-                levelMenu->GetButton("LEVEL " + std::to_string(i))->active = true;
+                if (levelMenu->GetButton("LEVEL " + std::to_string(i)) != nullptr)
+                {
+                    levelMenu->GetButton("LEVEL " + std::to_string(i))->active = true;
+                }
             }
 
             lastSavedLevel = levelToLoad;
