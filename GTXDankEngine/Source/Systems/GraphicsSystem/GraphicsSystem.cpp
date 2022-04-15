@@ -110,6 +110,37 @@ bool GraphicsSystem::Init()
 	textShader = new Shader("Source/Shaders/GeneralUIRenderer/TextRenderer.shader");
 	textShader->setMat4("projection", glm::ortho(0.0f,float(camera.width),0.0f,float(camera.height)));
 
+
+	/// Initialize logo
+	logoShader = new Shader("Source/Shaders/MenuRenderer/SliderPointerShader.shader");
+    // VAO
+    glGenVertexArrays(1, &logoVAO);
+    glBindVertexArray(logoVAO);
+
+    unsigned int logoVBO;
+    // VBO
+    //VertexBuffer vbo(&quadVerticesColorTexture[0], quadVerticesColorTexture.size() * sizeof(Vertex));
+    glGenBuffers(1, &logoVBO);
+    glBindBuffer(GL_ARRAY_BUFFER, logoVBO);
+    glBufferData(GL_ARRAY_BUFFER, logoVerts.size() * sizeof(float), logoVerts.data(), GL_STATIC_DRAW);
+
+    // vertex positions
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+    // vertex texture coordinates (-1,-1) to signify grey color
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+
+    glBindVertexArray(0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+//    auto ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_WHITE.png");
+//    logoShader->setTexture("txtr", ptrTxtr->GetPointer()->GetID());
+//	ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_WHITE_1024px.png");
+//	ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_WHITE.jpg");
+	ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPenLogoCORRECT.png");
+
 	return true;
 }
 
@@ -149,6 +180,15 @@ void GraphicsSystem::Update(float timeStamp)
 	MenuSystem.Draw();
 
 //	TextRenderer.RenderText(*textShader, "Hello, World!", WIDTH / 2 - 100, HEIGHT / 2 - 50, 1.3, glm::vec3(1.0,0,0));
+	if (drawLogo)
+	{
+		this->DrawLogo();
+	}
+
+	if (drawCredits)
+	{
+		this->DrawCredits();
+	}
 }
 
 
@@ -357,6 +397,71 @@ void GraphicsSystem::RendererFboResize(unsigned int width, unsigned int height)
 void GraphicsSystem::DrawCustomText(std::string text, float scale, glm::vec2 pos, glm::vec3 color)
 {
 	TextRenderer.RenderText(*textShader, text, pos.x, camera.height - pos.y, scale, color);
+}
+
+
+
+void GraphicsSystem::DrawLogo()
+{
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	logoShader->setMat4("projection", glm::ortho(0.0f,float(camera.width),0.0f,float(camera.height)));
+    logoShader->setVec2("centerLocation", glm::vec2(camera.width/2,camera.height/2));
+//	auto ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_WHITE_1024px.png");
+	logoShader->setTexture("txtr", ptrTxtr->GetPointer()->GetID());
+
+	logoShader->Bind();
+    glBindVertexArray(logoVAO);
+    glDisable(GL_DEPTH_TEST);
+//    glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, 0);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    glEnable(GL_DEPTH_TEST);
+    glBindVertexArray(0);
+    logoShader->unBind();
+}
+
+
+void GraphicsSystem::DrawCredits()
+{
+	std::stringstream ss(credit);
+	std::string name, role;
+	float y = 320;
+	float underScale = 1.2f;
+	int nextLine = 180;
+	int shift = 875;
+	
+	if (credit.find('-') != std::string::npos)
+	{
+		std::getline(ss, name, '-');
+		if (name.compare("Xingyu Brandon Wang") == 0 || name.compare("Kishore Kandasamy Balakrishnan") == 0
+			|| name.compare("Theodore Sherman Sharygin") == 0)
+		{
+			this->DrawCustomText(name, 1.0f, glm::vec2(camera.width/2-500, 200), glm::vec3(1,0,0));
+		}
+		else if (name.compare("TEAM RAFFLESIA PRODUCTION") == 0)
+		{
+			this->DrawCustomText(name, 1.5f, glm::vec2(camera.width/2-700, camera.height/2), glm::vec3(1,0,0));
+		}
+		else
+		{
+			this->DrawCustomText(name, 1.4f, glm::vec2(camera.width/2-500, 200), glm::vec3(1,0,0));
+		}
+		y = 440;
+		underScale = 0.6f;
+		nextLine = 90;
+		shift = 300;
+	}
+
+    while(std::getline(ss, role, ','))
+	{
+	    this->DrawCustomText(role, underScale, glm::vec2(camera.width/2-shift, y), glm::vec3(1,0,0));
+		if (role.compare("Hey You font found on") == 0 || role.compare("Thank you for playing our game") == 0)
+			y += 100;
+		else
+			y += nextLine;
+	}
 }
 
 

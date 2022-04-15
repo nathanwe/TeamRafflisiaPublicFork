@@ -325,6 +325,13 @@ void button_from_json(const ordered_json& j, MenuButton& menuBut)
                 engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
             });
         }
+        else if (command.compare("Credits") == 0)
+        {
+            menuBut.SetActionToExecute([&](){
+                engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
+                engine.SceneSys.LoadScene(engine.SceneSys.GetCreditsLevel());
+            });
+        }
         /// in this case the command is the name of the next level
         else if (command.substr(0, 6).compare("LEVEL ") == 0)
         {

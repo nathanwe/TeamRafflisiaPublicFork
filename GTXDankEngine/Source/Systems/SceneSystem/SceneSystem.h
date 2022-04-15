@@ -27,6 +27,11 @@ public:
 
 	void SaveLastLevel() const;
 
+	void PlayCredits(float dt);
+	void PlayLogo(float dt);
+
+	int GetCreditsLevel() const { return levels.size(); };
+
 private:
 	
 	std::vector<ordered_json> levels;
@@ -35,6 +40,10 @@ private:
 	bool shouldLoadLevel = false;
 
 	int lastSavedLevel = 1;
+
+	float timer{0}, const maxTime{7};
+	std::vector<std::string> creditsText;
+	int curLine{0};
 
 };
 #endif // !SCENESYSTEM_H

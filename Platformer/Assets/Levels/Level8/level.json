@@ -127,8 +127,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 34.4371337890625,
-        "y": -5.066798210144043,
+        "x": 37.83418655395508,
+        "y": -5.066798686981201,
         "z": 20.0
       },
       "scale": {
@@ -139,8 +139,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.8263290524482727,
-        "w": 0.5631875991821289
+        "z": 0.43228912353515625,
+        "w": 0.9017350673675537
       }
     },
     "MATERIAL": {
@@ -160,7 +160,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -0.574065625667572,
+        "y": -0.5740707516670227,
         "z": 0.0
       },
       "Accelereation": {
@@ -691,7 +691,7 @@
     "TRANSFORM": {
       "position": {
         "x": 30.0,
-        "y": -43734.296875,
+        "y": -5275.50439453125,
         "z": 35.0
       },
       "scale": {
@@ -723,7 +723,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -934.5689086914063,
+        "y": -323.19000244140625,
         "z": 0.0
       },
       "Accelereation": {
@@ -750,7 +750,7 @@
     "TRANSFORM": {
       "position": {
         "x": -7.0,
-        "y": -43734.296875,
+        "y": -5275.50439453125,
         "z": 35.0
       },
       "scale": {
@@ -782,7 +782,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -934.5689086914063,
+        "y": -323.19000244140625,
         "z": 0.0
       },
       "Accelereation": {
@@ -902,6 +902,46 @@
     "TAG": {
       "uniqueName": "1",
       "category": "Cube"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/Star.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": 51.939998626708984,
+        "y": 5.0,
+        "z": 20.0
+      },
+      "scale": {
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/Star Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 3.0
+    },
+    "GAME_LOGIC": [
+      "STAR"
+    ],
+    "TAG": {
+      "uniqueName": "Star",
+      "category": "Star"
     }
   }
 ]

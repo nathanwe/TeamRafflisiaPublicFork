@@ -410,7 +410,7 @@
     "TRANSFORM": {
       "position": {
         "x": 17.64443016052246,
-        "y": 9.13467025756836,
+        "y": 9.133200645446777,
         "z": 0.9999999403953552
       },
       "scale": {
@@ -442,8 +442,8 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -0.5582491159439087,
-        "z": 3.840046058911639e-09
+        "y": -0.5740721225738525,
+        "z": 0.0
       },
       "Accelereation": {
         "x": 0.0,
@@ -697,100 +697,8 @@
     }
   },
   null,
-  {
-    "MODEL": {
-      "path": "../Platformer/Assets/Models/plane.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": 14.890000343322754,
-        "y": 6.619999885559082,
-        "z": 32.5
-      },
-      "scale": {
-        "x": 7.0,
-        "y": 3.0199999809265137,
-        "z": 7.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": 0.0,
-        "z": 0.2503800094127655,
-        "w": 0.9681476354598999
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Honey Base Color.png",
-      "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0,
-      "wireMode": false
-    },
-    "COLLIDER": {
-      "Shape": 1,
-      "Normal": {
-        "x": -0.48480963706970215,
-        "y": 0.874619722366333,
-        "z": 0.0
-      },
-      "Magnitude": -1.4288334846496582
-    },
-    "STILL_BODY": {
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "GAME_LOGIC": [],
-    "TAG": {
-      "uniqueName": "Slope1",
-      "category": "Slope"
-    }
-  },
-  {
-    "MODEL": {
-      "path": "../Platformer/Assets/Models/plane.obj"
-    },
-    "TRANSFORM": {
-      "position": {
-        "x": -11.470000267028809,
-        "y": 6.619999885559082,
-        "z": 32.5
-      },
-      "scale": {
-        "x": 7.0,
-        "y": 3.0199999809265137,
-        "z": 7.0
-      },
-      "rotation": {
-        "x": 0.0,
-        "y": -0.0,
-        "z": -0.258819043636322,
-        "w": 0.9659258127212524
-      }
-    },
-    "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Honey Base Color.png",
-      "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
-      "Alpha": 1.0,
-      "wireMode": false
-    },
-    "COLLIDER": {
-      "Shape": 1,
-      "Normal": {
-        "x": 0.5,
-        "y": 0.8660253882408142,
-        "z": 0.0
-      },
-      "Magnitude": -0.0019121170043945313
-    },
-    "STILL_BODY": {
-      "Shape": 0,
-      "Radius": 1.0
-    },
-    "GAME_LOGIC": [],
-    "TAG": {
-      "uniqueName": "Slope1",
-      "category": "Slope"
-    }
-  },
+  null,
+  null,
   {
     "MODEL": {
       "path": "../Platformer/Assets/Models/button.obj"
@@ -846,8 +754,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 258.6320495605469,
-        "y": -15220.357421875,
+        "x": 290.26800537109375,
+        "y": -19022.158203125,
         "z": 35.0
       },
       "scale": {
@@ -858,8 +766,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": -0.9933921694755554,
-        "w": 0.11476915329694748
+        "z": -0.40638378262519836,
+        "w": 0.9137024879455566
       }
     },
     "MATERIAL": {
@@ -879,7 +787,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 4.860937118530273,
-        "y": -551.5440673828125,
+        "y": -616.6268310546875,
         "z": 0.0
       },
       "Accelereation": {
@@ -897,6 +805,46 @@
     "TAG": {
       "uniqueName": "ball",
       "category": "ball"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/Star.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": -23.22100067138672,
+        "y": 26.232999801635742,
+        "z": 35.0
+      },
+      "scale": {
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/Star Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 3.0
+    },
+    "GAME_LOGIC": [
+      "STAR"
+    ],
+    "TAG": {
+      "uniqueName": "Star",
+      "category": "Star"
     }
   }
 ]
