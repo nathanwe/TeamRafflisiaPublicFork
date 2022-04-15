@@ -118,9 +118,9 @@ Source: "..\GTXDankEngine\Source\Shaders\*"; DestDir: "{app}\Platformer\Source\S
 ;   {group} is the start menu location that the game will install shortcuts to.
 ;   {commondesktop} is your Windows desktop directory.
 [Icons]
-Name: {group}\{#ApplicationName}; Filename: {app}\{#ApplicationName}.exe; WorkingDir: {app}; IconFilename: "{app}\icon.ico"
+Name: {group}\{#ApplicationName}; Filename: {app}\Platformer\{#ApplicationName}.exe; WorkingDir: {app}\Platformer; IconFilename: "{app}\icon.ico"
 Name: {group}\{cm:UninstallProgram,{#ApplicationName}}; Filename: {uninstallexe}
-Name: {commondesktop}\{#ApplicationName}; Filename: {app}\Platformer\{#ApplicationName}.exe; Tasks: desktopicon; WorkingDir: {app}; IconFilename: "{app}\icon.ico"
+Name: {commondesktop}\{#ApplicationName}; Filename: {app}\Platformer\{#ApplicationName}.exe; Tasks: desktopicon; WorkingDir: {app}\Platformer; IconFilename: "{app}\icon.ico"
 
 ; List of items to execute in the installer.
 ; Note that this needs to run all executables in their silent versions as required by the TCRs.
