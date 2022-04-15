@@ -43,7 +43,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/Models/plane.obj"
+      "path": "../Platformer/Assets/models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -64,7 +64,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/wall/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Gradient Background.png",
       "MetallicPath": "../Platformer/Assets/Textures/wall/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -76,7 +76,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/Models/plane.obj"
+      "path": "../Platformer/Assets/models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -86,7 +86,7 @@
       },
       "scale": {
         "x": 25.0,
-        "y": 0.029999999329447746,
+        "y": 3.0179998874664307,
         "z": 4.0
       },
       "rotation": {
@@ -144,7 +144,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Hero Base Color.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Hero Base Color.png",
       "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -180,10 +180,15 @@
       "category": "Player"
     }
   },
-  null,
+  {
+    "TAG": {
+      "uniqueName": "",
+      "category": ""
+    }
+  },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
+      "path": "../Platformer/Assets/models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -193,7 +198,7 @@
       },
       "scale": {
         "x": 12.0,
-        "y": 3.0199999809265137,
+        "y": 1.5,
         "z": 4.0
       },
       "rotation": {
@@ -204,7 +209,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Trampoline Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -230,7 +235,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
+      "path": "../Platformer/Assets/models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -251,7 +256,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Honey Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -279,7 +284,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/Cube.obj"
+      "path": "../Platformer/Assets/models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -300,7 +305,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -330,7 +335,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/Cube.obj"
+      "path": "../Platformer/Assets/models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -351,7 +356,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Honey Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -381,7 +386,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/Cube.obj"
+      "path": "../Platformer/Assets/models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -402,7 +407,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Trampoline Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -434,7 +439,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
+      "path": "../Platformer/Assets/models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -481,7 +486,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/Cube.obj"
+      "path": "../Platformer/Assets/models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -491,7 +496,7 @@
       },
       "scale": {
         "x": 10.0,
-        "y": 1.0,
+        "y": 2.0,
         "z": 2.5
       },
       "rotation": {
@@ -502,7 +507,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Cube Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -534,7 +539,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
+      "path": "../Platformer/Assets/models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -544,7 +549,7 @@
       },
       "scale": {
         "x": 4.0,
-        "y": 3.0199999809265137,
+        "y": 1.0,
         "z": 4.0
       },
       "rotation": {
@@ -581,7 +586,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
+      "path": "../Platformer/Assets/models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -591,7 +596,7 @@
       },
       "scale": {
         "x": 4.0,
-        "y": 3.0199999809265137,
+        "y": 1.0,
         "z": 4.0
       },
       "rotation": {
@@ -702,7 +707,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Friend Base Color.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -761,7 +766,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Friend Base Color.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
       "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -799,7 +804,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
+      "path": "../Platformer/Assets/models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -820,7 +825,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
@@ -848,7 +853,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/Cube.obj"
+      "path": "../Platformer/Assets/models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -869,7 +874,7 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../Platformer/Assets/Textures/metal_Tex/albedo.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Cube Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
       "wireMode": false
