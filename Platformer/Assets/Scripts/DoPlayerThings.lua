@@ -11,8 +11,9 @@ losingPlayer = nil
 local isDead = false
 local levelTitles = {[1] = "LV1 WASD", [2] = "LV2 Space",
 	[3] = "LV3 The Button", [4] = "LV4 Bouncy Trampoline", [5] = "LV5 Slow and Steady",
-	[6] = "LV6 Through the Air", [7] = "LV7 The Cage", [8] = "LV8 Friction Physics",
-	[9] = "LV9 Go Fast!", [10] = "LV10 Stoplight", [11] = "LV11 Up The Stairs"}
+	[6] = "LV6 Through the Air", [7] = "LV7 The Cage", [8] = "LV8 Double Vision",
+	[9] = "LV9 Go Fast", [10] = "LV10 Stoplight", [11] = "LV11 Up The Stairs",
+	[12] = "LV12 Leap of Faith" }
 
 function SavePlayers( levelnum )
 	levelstr = string.format("%i", levelnum)
@@ -106,7 +107,7 @@ function HandleEventPlayer(eventData)
 		end
 		if losingPlayer ~= nil then
 			DrawText("TRY AGAIN", 3.25, GetCameraWidth()/2-600,GetCameraHeight()/2-50, 150/255,0,0)
-			DrawText("Press Space", 1, GetCameraWidth()/2-250,GetCameraHeight()/2+90, 150/255,0,0)
+			DrawText("Press Left Crtl", 1, GetCameraWidth()/2-250,GetCameraHeight()/2+90, 150/255,0,0)
 			if isDead == false then
 				isDead = true
 				PlayAudioEvent("Dead")
@@ -174,7 +175,8 @@ function HandleEventPlayer(eventData)
 	end
 		
 	if eventData.type == 19 then
-		if eventData.stringData1 == "Space" then
+		LOG_INFO(eventData.stringData1)
+		if eventData.stringData1 == "Ctrl" then
 			if losingPlayer ~= nil then
 				losingPlayer = 0
 			end

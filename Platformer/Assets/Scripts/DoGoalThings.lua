@@ -46,7 +46,7 @@ function HandleEventGoal(eventData)
 		end
 		if winningGoal ~= nil then
 			DrawText("YOU WIN", 3.5, GetCameraWidth()/2-500,GetCameraHeight()/2-50, 0,150/255,0)
-			DrawText("Press Space to Continue", 1, GetCameraWidth()/2-490,GetCameraHeight()/2+90, 0,150/255,0)
+			DrawText("Press Left Ctrl to Continue", 1, GetCameraWidth()/2-490,GetCameraHeight()/2+90, 0,150/255,0)
 			if isWin == false then
 				isWin=true
 				PlayAudioEvent("Win")
@@ -65,7 +65,7 @@ function HandleEventGoal(eventData)
 		if eventData.stringData1 == "Space" then
 			--GoHomesBall()
 		end
-		if eventData.stringData1 == "Space" then
+		if eventData.stringData1 == "Ctrl" then
 			if winningGoal ~= nil then
 				winningGoal = 0
 			end
