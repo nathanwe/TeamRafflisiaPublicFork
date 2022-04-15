@@ -90,7 +90,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/Models/plane.obj"
+      "path": "../Platformer/Assets/models/plane.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -129,7 +129,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
+      "path": "../Platformer/Assets/models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -302,7 +302,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
+      "path": "../Platformer/Assets/models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -349,7 +349,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
+      "path": "../Platformer/Assets/models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -739,7 +739,7 @@
   },
   {
     "MODEL": {
-      "path": "../Platformer/Assets/models/plane.obj"
+      "path": "../Platformer/Assets/models/placeholder_platforms.obj"
     },
     "TRANSFORM": {
       "position": {
