@@ -146,7 +146,7 @@
       "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
-      "wireMode": false
+      "wireMode": true
     },
     "COLLIDER": {
       "Shape": 3,
@@ -392,8 +392,8 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -0.5740698575973511,
-        "z": 5.339010566984825e-09
+        "y": -0.5740716457366943,
+        "z": 0.0
       },
       "Accelereation": {
         "x": 0.0,
@@ -949,8 +949,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 819.1640014648438,
-        "y": -50241.88671875,
+        "x": 675.6968994140625,
+        "y": -34075.22265625,
         "z": 35.0
       },
       "scale": {
@@ -961,8 +961,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": -0.8406966924667358,
-        "w": 0.541506290435791
+        "z": 0.6248394846916199,
+        "w": 0.7807532548904419
       }
     },
     "MATERIAL": {
@@ -982,7 +982,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 8.100240707397461,
-        "y": -1001.046142578125,
+        "y": -823.920166015625,
         "z": 0.0
       },
       "Accelereation": {
@@ -1016,7 +1016,7 @@
     "TRANSFORM": {
       "position": {
         "x": 24.215999603271484,
-        "y": -72158.8515625,
+        "y": -52464.96484375,
         "z": 35.0
       },
       "scale": {
@@ -1048,7 +1048,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -1200.1610107421875,
+        "y": -1023.07373046875,
         "z": 0.0
       },
       "Accelereation": {
@@ -1075,7 +1075,7 @@
     "TRANSFORM": {
       "position": {
         "x": 24.215999603271484,
-        "y": -59067.52734375,
+        "y": -41868.3125,
         "z": 35.0
       },
       "scale": {
@@ -1107,7 +1107,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -1059.33251953125,
+        "y": -882.2174072265625,
         "z": 0.0
       },
       "Accelereation": {
@@ -1125,6 +1125,46 @@
     "TAG": {
       "uniqueName": "ball",
       "category": "ball"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/Star.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": -8.361000061035156,
+        "y": 26.232999801635742,
+        "z": 35.0
+      },
+      "scale": {
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/Star Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 3.0
+    },
+    "GAME_LOGIC": [
+      "STAR"
+    ],
+    "TAG": {
+      "uniqueName": "Star",
+      "category": "Star"
     }
   }
 ]

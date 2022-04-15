@@ -166,7 +166,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -0.574070394039154,
+        "y": -0.574072003364563,
         "z": 0.0
       },
       "Accelereation": {
@@ -192,8 +192,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 159.37600708007813,
-        "y": -1075.7813720703125,
+        "x": 411.5630798339844,
+        "y": -6999.20751953125,
         "z": 10.0
       },
       "scale": {
@@ -204,8 +204,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.18003609776496887,
-        "w": 0.9836599826812744
+        "z": 0.7793968319892883,
+        "w": 0.6265305876731873
       }
     },
     "MATERIAL": {
@@ -225,7 +225,7 @@
       "Mass": 25.0,
       "Velocity": {
         "x": 25.0,
-        "y": -334.5861511230469,
+        "y": -838.9603271484375,
         "z": 0.0
       },
       "Accelereation": {
@@ -433,6 +433,88 @@
     "TAG": {
       "uniqueName": "Slope1",
       "category": "Slope"
+    }
+  },
+  null,
+  null,
+  {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/Star.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": -10.0,
+        "y": 22.0,
+        "z": 10.0
+      },
+      "scale": {
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/Star Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 3.0
+    },
+    "GAME_LOGIC": [
+      "STAR"
+    ],
+    "TAG": {
+      "uniqueName": "Star",
+      "category": "Star"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/Star.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": -10.0,
+        "y": 35.0,
+        "z": 10.0
+      },
+      "scale": {
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/Star Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 3.0
+    },
+    "GAME_LOGIC": [
+      "STAR"
+    ],
+    "TAG": {
+      "uniqueName": "Star",
+      "category": "Star"
     }
   }
 ]

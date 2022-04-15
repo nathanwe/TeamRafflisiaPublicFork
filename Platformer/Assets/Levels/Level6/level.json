@@ -146,7 +146,7 @@
       "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Slime Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/metal_Tex/metallic.png",
       "Alpha": 1.0,
-      "wireMode": false
+      "wireMode": true
     },
     "COLLIDER": {
       "Shape": 3,
@@ -442,8 +442,8 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -0.5740710496902466,
-        "z": 3.840046058911639e-09
+        "y": -0.5740721225738525,
+        "z": 0.0
       },
       "Accelereation": {
         "x": 0.0,
@@ -754,8 +754,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 284.1296081542969,
-        "y": -18251.716796875,
+        "x": 290.26800537109375,
+        "y": -19022.158203125,
         "z": 35.0
       },
       "scale": {
@@ -766,8 +766,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.8069310188293457,
-        "w": 0.5906456708908081
+        "z": -0.40638378262519836,
+        "w": 0.9137024879455566
       }
     },
     "MATERIAL": {
@@ -787,7 +787,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 4.860937118530273,
-        "y": -603.99853515625,
+        "y": -616.6268310546875,
         "z": 0.0
       },
       "Accelereation": {
@@ -805,6 +805,46 @@
     "TAG": {
       "uniqueName": "ball",
       "category": "ball"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/Star.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": -23.22100067138672,
+        "y": 26.232999801635742,
+        "z": 35.0
+      },
+      "scale": {
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/Star Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 3.0
+    },
+    "GAME_LOGIC": [
+      "STAR"
+    ],
+    "TAG": {
+      "uniqueName": "Star",
+      "category": "Star"
     }
   }
 ]

@@ -484,7 +484,7 @@
     "TRANSFORM": {
       "position": {
         "x": 12.90697956085205,
-        "y": 9.134088516235352,
+        "y": 9.133200645446777,
         "z": 1.0
       },
       "scale": {
@@ -516,7 +516,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -0.5639241933822632,
+        "y": -0.574070930480957,
         "z": 0.0
       },
       "Accelereation": {
@@ -597,8 +597,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 197.8612060546875,
-        "y": -2100.3720703125,
+        "x": 225.4535675048828,
+        "y": -2765.437255859375,
         "z": 35.0
       },
       "scale": {
@@ -609,8 +609,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": 0.9335712194442749,
-        "w": 0.3583919107913971
+        "z": -0.22852180898189545,
+        "w": 0.9735388159751892
       }
     },
     "MATERIAL": {
@@ -630,7 +630,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 9.200295448303223,
-        "y": -206.6707763671875,
+        "y": -236.66017150878906,
         "z": 0.0
       },
       "Accelereation": {
@@ -648,6 +648,46 @@
     "TAG": {
       "uniqueName": "ball",
       "category": "ball"
+    }
+  },
+  {
+    "MODEL": {
+      "path": "../Platformer/Assets/models/Star.obj"
+    },
+    "TRANSFORM": {
+      "position": {
+        "x": -2.940999984741211,
+        "y": 45.452999114990234,
+        "z": 35.0
+      },
+      "scale": {
+        "x": 3.0,
+        "y": 3.0,
+        "z": 3.0
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      }
+    },
+    "MATERIAL": {
+      "AlbedoPath": "../Platformer/Assets/Textures/Star Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
+      "Alpha": 1.0,
+      "wireMode": false
+    },
+    "COLLIDER": {
+      "Shape": 0,
+      "Radius": 3.0
+    },
+    "GAME_LOGIC": [
+      "STAR"
+    ],
+    "TAG": {
+      "uniqueName": "Star",
+      "category": "Star"
     }
   }
 ]

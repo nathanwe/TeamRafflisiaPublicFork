@@ -405,7 +405,7 @@
       "AlbedoPath": "../Platformer/Assets/Textures/Hero Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
       "Alpha": 1.0,
-      "wireMode": true
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 0,
@@ -418,8 +418,8 @@
       "Mass": 5.0,
       "Velocity": {
         "x": 0.0,
-        "y": -0.5740711688995361,
-        "z": 5.556856876864913e-07
+        "y": -0.574072003364563,
+        "z": 0.0
       },
       "Accelereation": {
         "x": 0.0,
@@ -752,7 +752,7 @@
       "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Trampoline Base Color.png",
       "MetallicPath": "../Platformer/Assets/Textures/Button Specular.png",
       "Alpha": 1.0,
-      "wireMode": true
+      "wireMode": false
     },
     "COLLIDER": {
       "Shape": 3,
@@ -794,8 +794,8 @@
     },
     "TRANSFORM": {
       "position": {
-        "x": 12.749907493591309,
-        "y": 35.616783142089844,
+        "x": 12.999930381774902,
+        "y": 35.30008316040039,
         "z": 35.0
       },
       "scale": {
@@ -806,8 +806,8 @@
       "rotation": {
         "x": 0.0,
         "y": 0.0,
-        "z": -0.9453657269477844,
-        "w": 0.32601162791252136
+        "z": 0.9066792130470276,
+        "w": 0.42182084918022156
       }
     },
     "MATERIAL": {
@@ -827,7 +827,7 @@
       "Mass": 5.0,
       "Velocity": {
         "x": -15.0,
-        "y": 18.999927520751953,
+        "y": 19.19994354248047,
         "z": 0.0
       },
       "Accelereation": {
