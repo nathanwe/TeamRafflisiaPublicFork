@@ -89,7 +89,7 @@
   },
   "FaithPlate": {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/button.obj"
+      "path": "../Platformer/Assets/Models/button.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -111,7 +111,7 @@
     },
     "MATERIAL": {
       "AlbedoPath": "../Platformer/Assets/Textures/baseArtAssets/Trampoline Base Color.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/Button Specular.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Button Specular.png",
       "Alpha": 1.0,
       "wireMode": false
     },
@@ -191,7 +191,7 @@
   },
   "Player": {
     "MODEL": {
-      "path": "../GTXDankEngine/Assets/Models/Ball.obj"
+      "path": "../Platformer/Assets/Models/Ball.obj"
     },
     "TRANSFORM": {
       "position": {
@@ -212,8 +212,8 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Hero Base Color.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Hero Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
       "Alpha": 1.0,
       "wireMode": false
     },
@@ -358,8 +358,8 @@
       }
     },
     "MATERIAL": {
-      "AlbedoPath": "../GTXDankEngine/Assets/Textures/Friend Base Color.png",
-      "MetallicPath": "../GTXDankEngine/Assets/Textures/Ball Specular.png",
+      "AlbedoPath": "../Platformer/Assets/Textures/Friend Base Color.png",
+      "MetallicPath": "../Platformer/Assets/Textures/Ball Specular.png",
       "Alpha": 1.0,
       "wireMode": false
     },

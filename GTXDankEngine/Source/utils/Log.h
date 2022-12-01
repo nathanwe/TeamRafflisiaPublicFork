@@ -18,7 +18,7 @@ class Log
 {
 public:
 	static std::shared_ptr<spdlog::logger>& GetLogger();
-	static void Init(const std::string& name = "GTXDank Engine", const std::string& format = "%^[%T] %n: %v%$");
+	static void Init(const std::string& name = "Ball2TheWall", const std::string& format = "%^[%T] %n: %v%$");
 	static void ShutDown();
 
 private:
