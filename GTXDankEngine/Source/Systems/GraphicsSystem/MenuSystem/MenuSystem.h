@@ -17,6 +17,8 @@ public:
     MenuSystem();
     ~MenuSystem();
 
+    void Pause();
+
     void Init();
 
     Menu* AddMenu(std::string menuName);

@@ -19,7 +19,30 @@ MenuSystem::~MenuSystem()
         delete m;
     menus.clear();
 }
-
+void MenuSystem::Pause()
+{
+    if (engine.SceneSys.GetCurrentLevel() > -1)
+    {
+        ToggleDisplay();
+        if (display)
+        {
+            for (auto it = engine.AudioSys.eventInstanceMaps.begin(), itEnd = engine.AudioSys.eventInstanceMaps.end(); it != itEnd; it++)
+            {
+                engine.AudioSys.PauseEvent(it->first, true);
+            }
+            this->SetCurrentMenu("Pause");
+        }
+        else
+        {
+            for (auto it = engine.AudioSys.eventInstanceMaps.begin(), itEnd = engine.AudioSys.eventInstanceMaps.end(); it != itEnd; it++)
+            {
+                engine.AudioSys.PauseEvent(it->first, false);
+            }
+            prevMenu = -1;
+            glfwSetCursorPos(engine.window, (engine.GraphicsSys.camera.width / 2), (engine.GraphicsSys.camera.height / 2));
+        }
+    }
+}
 void MenuSystem::Init()
 {
     menuShader = new Shader("Source/Shaders/MenuRenderer/UIMenuShader.shader");
@@ -32,17 +55,7 @@ void MenuSystem::Init()
     engine.CommandSys.GetCommand("Pause").SetActionToExecute(
         [&]()
         {
-            if (engine.SceneSys.GetCurrentLevel() > -1)
-            {
-                ToggleDisplay();
-                if (display)
-                    this->SetCurrentMenu("Pause");
-                else
-                {
-                    prevMenu = -1;
-                    glfwSetCursorPos(engine.window, (engine.GraphicsSys.camera.width / 2), (engine.GraphicsSys.camera.height / 2));
-                }
-            }
+            Pause();
         }
     );
     Command& pCommand = engine.CommandSys.GetCommand("Pause");

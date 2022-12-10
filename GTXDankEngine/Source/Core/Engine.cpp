@@ -92,7 +92,13 @@ void Engine::Run()
 		
 		
 		InputSys.Update();
+		
 		CommandSys.Update();
+		if (!pause && !glfwGetWindowAttrib(window, GLFW_FOCUSED))
+		{
+			GraphicsSys.GetMenuSystem().Pause();
+			
+		}
 		if (pause)
 		{
 			EntitySys.Update(0);

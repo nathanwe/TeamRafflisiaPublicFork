@@ -74,12 +74,12 @@ void Skybox::Init()
 {
 	std::vector<std::string> faces
 	{
-			GAME_PATH + "Assets/Textures/Skybox/sky/right.jpg",
-			GAME_PATH + "Assets/Textures/Skybox/sky/left.jpg",
-			GAME_PATH + "Assets/Textures/Skybox/sky/top.jpg",
-			GAME_PATH + "Assets/Textures/Skybox/sky/bottom.jpg",
-			GAME_PATH + "Assets/Textures/Skybox/sky/front.jpg",
-			GAME_PATH + "Assets/Textures/Skybox/sky/back.jpg"
+			//GAME_PATH + "Assets/Textures/Skybox/sky/right.jpg",
+			//GAME_PATH + "Assets/Textures/Skybox/sky/left.jpg",
+			//GAME_PATH + "Assets/Textures/Skybox/sky/top.jpg",
+			//GAME_PATH + "Assets/Textures/Skybox/sky/bottom.jpg",
+			//GAME_PATH + "Assets/Textures/Skybox/sky/front.jpg",
+			//GAME_PATH + "Assets/Textures/Skybox/sky/back.jpg"
 	};
 	Init(faces);
 }
