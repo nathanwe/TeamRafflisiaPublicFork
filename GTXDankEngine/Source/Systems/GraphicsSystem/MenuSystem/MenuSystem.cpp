@@ -30,7 +30,9 @@ void MenuSystem::Pause()
             {
                 engine.AudioSys.PauseEvent(it->first, true);
             }
+
             this->SetCurrentMenu("Pause");
+
         }
         else
         {
@@ -42,7 +44,8 @@ void MenuSystem::Pause()
             glfwSetCursorPos(engine.window, (engine.GraphicsSys.camera.width / 2), (engine.GraphicsSys.camera.height / 2));
         }
     }
-}
+ }
+
 void MenuSystem::Init()
 {
     menuShader = new Shader("Source/Shaders/MenuRenderer/UIMenuShader.shader");

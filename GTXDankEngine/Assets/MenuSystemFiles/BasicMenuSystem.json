@@ -1,39 +1,41 @@
 {
-    "Main": {
-        "First": {
-            "x": "center",
-            "y": 430
-        },
-        "Button Size": {
-            "x": 240,
-            "y": 100
-        },
-
-        "Background": "Assets/Textures/B2TW_mainMenu.png",
-
-        "Start": {
-            "Texture": "Assets/Textures/Start_button.png",
-            "Command": "Start"
-        },
-        "Level Select": {
-            "Texture": "Assets/Textures/Levels_button.png",
-            "Command": "Level Select"
-        },
-        "Options":
-        {
-            "Texture": "Assets/Textures/Options_button.png",
-            "Command": "Options"
-        },
-        "CREDITS":
-        {
-            "Texture": "Assets/Textures/Credits_button.png",
-            "Command": "Credits"
-        },
-        "Exit": {
-            "Texture": "Assets/Textures/Exit_button.png",
-            "Command": "ExitMenu"
-        }
+  "Main": {
+    "First": {
+      "x": "center",
+      "y": 500
     },
+    "Button Size": {
+      "x": 240,
+      "y": 100
+    },
+
+    "Background": "Assets/Textures/B2TW_mainMenu.png",
+
+    "Start": {
+      "Texture": "Assets/Textures/Start_button.png",
+      "Command": "Start"
+    },
+    "Level Select": {
+      "Texture": "Assets/Textures/Levels_button.png",
+      "Command": "Level Select"
+    },
+    "Options": {
+      "Texture": "Assets/Textures/Options_button.png",
+      "Command": "Options"
+    },
+    "HowToPlay": {
+      "Texture": "Assets/Textures/HowToPlay_button.png",
+      "Command": "HowToPlay"
+    },
+    "CREDITS": {
+      "Texture": "Assets/Textures/Credits_button.png",
+      "Command": "Credits"
+    },
+    "Exit": {
+      "Texture": "Assets/Textures/Exit_button.png",
+      "Command": "ExitMenu"
+    }
+  },
 
 
     "Level Select": {

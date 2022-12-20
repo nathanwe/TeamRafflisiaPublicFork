@@ -332,6 +332,14 @@ void button_from_json(const ordered_json& j, MenuButton& menuBut)
                 engine.SceneSys.LoadScene(engine.SceneSys.GetCreditsLevel());
             });
         }
+        else if (command.compare("HowToPlay") == 0)
+        {
+            menuBut.SetActionToExecute([&]()
+                {
+                    engine.GraphicsSys.GetMenuSystem().ToggleDisplay();
+                    engine.SceneSys.LoadScene(-4);
+                });
+        }
         /// in this case the command is the name of the next level
         else if (command.substr(0, 6).compare("LEVEL ") == 0)
         {

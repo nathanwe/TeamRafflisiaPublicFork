@@ -12,6 +12,7 @@
 #include "../ProfileSystem/ProfileSystem.h"
 
 
+
 extern Engine engine;
 
 bool SceneSystem::Init()
@@ -152,7 +153,7 @@ void SceneSystem::Update(float dt)
 {
     PROFILE_THIS("Scene Update");
     
-    if (!shouldLoadLevel && (currentLevel == -2 || currentLevel == -3))
+    if (!shouldLoadLevel && currentLevel <= -2)
     {
         PlayLogo(dt);
         return;
@@ -258,6 +259,13 @@ int SceneSystem::GetCurrentLevel()
 void SceneSystem::PlayCredits(float dt)
 {
     timer += dt;
+    if (engine.InputSys.IsAnyControllerTriggered() != -1
+        || engine.InputSys.IsAnyKeyTriggered() != -1
+        || engine.InputSys.IsLeftMouseTriggered()
+        || engine.InputSys.IsRightMouseTriggered())
+    {
+        timer += 7;
+    }
     if (timer >= maxTime)
     {
         timer = 0.0f;
@@ -286,8 +294,27 @@ void SceneSystem::PlayCredits(float dt)
 void SceneSystem::PlayLogo(float dt)
 {
     timer += dt;
+    if (engine.InputSys.IsAnyControllerTriggered() != -1
+        || engine.InputSys.IsAnyKeyTriggered() != -1
+        || engine.InputSys.IsLeftMouseTriggered()
+        || engine.InputSys.IsRightMouseTriggered())
+    {
+        timer += 3;
+    }
     if (currentLevel == -2)
     {
+        engine.GraphicsSys.drawFMODLogo = true;
+        if (timer >= 3.0f)
+        {
+            timer = 0.0f;
+            engine.GraphicsSys.drawFMODLogo = false;
+            LoadNextLevel();
+            return;
+        }
+    }
+    if (currentLevel == -3)
+    {
+        engine.GraphicsSys.drawLogo = true;
         if (timer >= 3.0f)
         {
             timer = 0.0f;
@@ -295,11 +322,23 @@ void SceneSystem::PlayLogo(float dt)
             LoadNextLevel();
             return;
         }
-        //engine.GraphicsSys.DrawLogo();
-        engine.GraphicsSys.drawLogo = true;
     }
-    else if (currentLevel == -3)
+    else if (currentLevel == -4)
     {
+        engine.GraphicsSys.drawHowToPlay = true;
+        if (engine.InputSys.IsAnyControllerTriggered() != -1
+            || engine.InputSys.IsAnyKeyTriggered() != -1
+            || engine.InputSys.IsLeftMouseTriggered()
+            || engine.InputSys.IsRightMouseTriggered())
+        {
+            timer = 0.0f;
+            engine.GraphicsSys.drawHowToPlay = false;
+            LoadScene(-1);
+            return;
+        }
+        /*
+        engine.GraphicsSys.drawCredits = true;
+        engine.GraphicsSys.credit = "TEAM RAFFLESIA PRODUCTION";
         if (timer >= 3.0f)
         {
             timer = 0.0f;
@@ -307,7 +346,6 @@ void SceneSystem::PlayLogo(float dt)
             LoadNextLevel();
             return;
         }
-        engine.GraphicsSys.drawCredits = true;
-        engine.GraphicsSys.credit = "TEAM RAFFLESIA PRODUCTION";
+        */
     }
 }

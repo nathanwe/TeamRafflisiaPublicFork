@@ -94,8 +94,26 @@ void Engine::Run()
 		InputSys.Update();
 		
 		CommandSys.Update();
+		if (SceneSys.GetCurrentLevel() <= -1)
+		{
+			if (!glfwGetWindowAttrib(window, GLFW_FOCUSED))
+			{
+				for (auto it = AudioSys.eventInstanceMaps.begin(), itEnd = AudioSys.eventInstanceMaps.end(); it != itEnd; it++)
+				{
+					AudioSys.PauseEvent(it->first, true);
+				}
+			}
+			else
+			{
+				for (auto it = AudioSys.eventInstanceMaps.begin(), itEnd = AudioSys.eventInstanceMaps.end(); it != itEnd; it++)
+				{
+					AudioSys.PauseEvent(it->first, false);
+				}
+			}
+		}
 		if (!pause && !glfwGetWindowAttrib(window, GLFW_FOCUSED))
 		{
+			
 			GraphicsSys.GetMenuSystem().Pause();
 			
 		}
@@ -111,7 +129,7 @@ void Engine::Run()
 			while (accumulatedFrameDt > 0)
 			{
 				accumulatedFrameDt -= dt;
-
+				
 				EntitySys.Update(dt);
 				SceneSys.Update(dt);
 				PhysicsSys.Update(dt);

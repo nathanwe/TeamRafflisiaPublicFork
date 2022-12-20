@@ -68,7 +68,11 @@ public:
 	void DrawCustomText(const std::string text, float scale, glm::vec2 pos, glm::vec3 color);
 
 	bool drawLogo = false;
+	bool drawFMODLogo = false;
+	bool drawHowToPlay = false;
 	void DrawLogo();
+	void DrawFMODLogo();
+	void DrawHowToPlay();
 	
 	bool drawCredits = false;
 	std::string credit;
@@ -131,5 +135,21 @@ private:
 								   400,-100,1,0,
 								   400, 100,1,1 };
 	ResourceHandle<Texture>* ptrTxtr;
+	unsigned int FMODVAO;
+	std::vector<float> FMODVerts{ -364,-96,0,0,
+								   364, 96,1,1,
+								  -364, 96,0,1,
+								  -364,-96,0,0,
+								   364,-96,1,0,
+								   364, 96,1,1 };
+	ResourceHandle<Texture>* FMODTxtr;
+	unsigned int howToPlayVAO;
+	std::vector<float> howToPlayVerts{ -598,-437,0,0,
+								   598, 437,1,1,
+								  -598, 437,0,1,
+								  -598,-437,0,0,
+								   598,-437,1,0,
+								   598, 437,1,1 };
+	ResourceHandle<Texture>* HowToPlayTxtr;
 };
 #endif // !GRAPHICSSYSTEM_H

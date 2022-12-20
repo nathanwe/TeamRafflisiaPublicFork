@@ -39,6 +39,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_0089563EF3F4426099E32C60B25DFC13"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_00D7BB02F2EE41B3A2E48ADF3B4B7D94"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2818,6 +2824,26 @@
             "TargetName" = "8:WindWindTimeSave.json"
             "Tag" = "8:"
             "Folder" = "8:_9A20707E96334E60B6DFDBF5BCE9DEB2"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0089563EF3F4426099E32C60B25DFC13"
+            {
+            "SourcePath" = "8:..\\GTXDankEngine\\Assets\\Credits\\FMOD_LOGOS\\FMOD Logo Black - White Background.png"
+            "TargetName" = "8:FMOD Logo Black - White Background.png"
+            "Tag" = "8:"
+            "Folder" = "8:_1A256CD6E47A475192C1A77CC081AD7F"
             "Condition" = "8:"
             "Transitive" = "11:FALSE"
             "Vital" = "11:TRUE"
@@ -11580,7 +11606,7 @@
         {
             "{3C67513D-01DD-4637-8A68-80971EB9504F}:_0F88B5A5790646549FCADE94235CD4C5"
             {
-            "DefaultLocation" = "8:[ProgramFilesFolder][Manufacturer]\\[ProductName]"
+            "DefaultLocation" = "8:[ProgramFilesFolder]\\DigiPen\\[ProductName]"
             "Name" = "8:#1925"
             "AlwaysCreate" = "11:FALSE"
             "Condition" = "8:"

@@ -135,11 +135,60 @@ bool GraphicsSystem::Init()
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
+	//init FMOD
+	// VAO
+	glGenVertexArrays(1, &FMODVAO);
+	glBindVertexArray(FMODVAO);
+
+	unsigned int FMODVBO;
+	// VBO
+	//VertexBuffer vbo(&quadVerticesColorTexture[0], quadVerticesColorTexture.size() * sizeof(Vertex));
+	glGenBuffers(1, &FMODVBO);
+	glBindBuffer(GL_ARRAY_BUFFER, FMODVBO);
+	glBufferData(GL_ARRAY_BUFFER, FMODVerts.size() * sizeof(float), FMODVerts.data(), GL_STATIC_DRAW);
+
+	// vertex positions
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+	// vertex texture coordinates (-1,-1) to signify grey color
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+
+	glBindVertexArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+	/// Initialize HowToPlay
+	//Shader = new Shader("Source/Shaders/MenuRenderer/SliderPointerShader.shader");
+	// VAO
+	glGenVertexArrays(1, &howToPlayVAO);
+	glBindVertexArray(howToPlayVAO);
+
+	unsigned int howToPlayVBO;
+	// VBO
+	//VertexBuffer vbo(&quadVerticesColorTexture[0], quadVerticesColorTexture.size() * sizeof(Vertex));
+	glGenBuffers(1, &howToPlayVBO);
+	glBindBuffer(GL_ARRAY_BUFFER, howToPlayVBO);
+	glBufferData(GL_ARRAY_BUFFER, howToPlayVerts.size() * sizeof(float), howToPlayVerts.data(), GL_STATIC_DRAW);
+
+	// vertex positions
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)0);
+	// vertex texture coordinates (-1,-1) to signify grey color
+	glEnableVertexAttribArray(1);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(float), (void*)(2 * sizeof(float)));
+
+	glBindVertexArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
 //    auto ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_WHITE.png");
 //    logoShader->setTexture("txtr", ptrTxtr->GetPointer()->GetID());
 //	ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_WHITE_1024px.png");
 //	ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_WHITE.jpg");
 	ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPenLogoCORRECT.png");
+	FMODTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/FMOD Logo Black - White Background.png");
+	HowToPlayTxtr = TextureResourceManger.GetResourceHandle("../Platformer/Assets/Textures/HowToPlay.png");
 
 	return true;
 }
@@ -183,6 +232,14 @@ void GraphicsSystem::Update(float timeStamp)
 	if (drawLogo)
 	{
 		this->DrawLogo();
+	}
+	if (drawFMODLogo)
+	{
+		this->DrawFMODLogo();
+	}
+	if (drawHowToPlay)
+	{
+		this->DrawHowToPlay();
 	}
 
 	if (drawCredits)
@@ -420,6 +477,48 @@ void GraphicsSystem::DrawLogo()
     glEnable(GL_DEPTH_TEST);
     glBindVertexArray(0);
     logoShader->unBind();
+}
+
+void GraphicsSystem::DrawFMODLogo()
+{
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	logoShader->setMat4("projection", glm::ortho(0.0f, float(camera.width), 0.0f, float(camera.height)));
+	logoShader->setVec2("centerLocation", glm::vec2(camera.width / 2, camera.height / 2));
+	//	auto ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_WHITE_1024px.png");
+	logoShader->setTexture("txtr", FMODTxtr->GetPointer()->GetID());
+
+	logoShader->Bind();
+	glBindVertexArray(FMODVAO);
+	glDisable(GL_DEPTH_TEST);
+	//    glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, 0);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glEnable(GL_DEPTH_TEST);
+	glBindVertexArray(0);
+	logoShader->unBind();
+}
+
+void GraphicsSystem::DrawHowToPlay()
+{
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	logoShader->setMat4("projection", glm::ortho(0.0f, float(camera.width), 0.0f, float(camera.height)));
+	logoShader->setVec2("centerLocation", glm::vec2(camera.width / 2, camera.height / 2));
+	//	auto ptrTxtr = TextureResourceManger.GetResourceHandle("Assets/Credits/DigiPen_WHITE_1024px.png");
+	logoShader->setTexture("txtr", HowToPlayTxtr->GetPointer()->GetID());
+
+	logoShader->Bind();
+	glBindVertexArray(howToPlayVAO);
+	glDisable(GL_DEPTH_TEST);
+	//    glDrawElements(GL_TRIANGLES, static_cast<GLsizei>(indices.size()), GL_UNSIGNED_INT, 0);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	glEnable(GL_DEPTH_TEST);
+	glBindVertexArray(0);
+	logoShader->unBind();
 }
 
 
