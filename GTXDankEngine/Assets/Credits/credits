@@ -8,9 +8,9 @@ Kishore Kandasamy Balakrishnan-Physics Programmer
 Theodore Sherman Sharygin-UI Programmer,UI Designer
 Gerald Lee-Engine Programmer
 Instructor,Faculty,Advisor-Eric Fleegal Jacobs
-Libraries-Assimp Copyright (c) 2006-2015 assimp team All rights reserved,FMOD Sound System © FireLight Technologies Pty Ltd (1998 – 2022),GLFW Copyright © 2002-2006 Marcus Geelnard Copyright © 2006-2019 Camilla Löwy,GLM Copyright (c) 2005 - G-Truc Creation,IMGUI The MIT License (MIT) Copyright (c) 2014-2021 Omar Cornut,KHR Copyright (c) 2008-2018 The Khronos Group Inc.
-Libraries continued-spdlog The MIT License (MIT) Copyright (c) 2016 Gabi Melman,stb MIT License Copyright (c) 2017 Sean Barrett,JSON https://github.com/nlohmann/json MIT License Copyright (c) 2013-2021 Niels Lohmann,FreeType Copyright 1996-2002, 2006 by David Turner, Robert Wilhelm, and Werner Lemberg,lua http://www.lua.org Copyright © 1994–2021 Lua.org, PUC-Rio.
+Libraries-Assimp Copyright (c) 2006-2015 assimp team All rights reserved,FMOD Sound System © FireLight Technologies Pty Ltd (1998 – 2022),GLFW Copyright © 2002-2006 Marcus Geelnard, Copyright © 2006-2019 Camilla Löwy,GLM Copyright (c) 2005 - G-Truc Creation,IMGUI The MIT License (MIT) Copyright (c) 2014-2021 Omar Cornut,KHR Copyright (c) 2008-2018 The Khronos Group Inc.
+Libraries continued-spdlog The MIT License (MIT) Copyright (c) 2016 Gabi Melman,stb MIT License Copyright (c) 2017 Sean Barrett,JSON https://github.com/nlohmann/json, MIT License Copyright (c) 2013-2021 Niels Lohmann,FreeType Copyright 1996-2002 2006, by David Turner Robert Wilhelm and Werner Lemberg,lua http://www.lua.org Copyright © 1994–2021 Lua.org, PUC-Rio.
 Textures and Models created in Blender,Audio implemented using FMOD Studio,Debug UI built with IMGUI
 Hey You font found on,1001fonts Website
-Created at Digipen, Institute of Technology-President Claude Comair,(c) 2022 DigiPen (USA) Corporation
+Created at Digipen,Institute of Technology,President Claude Comair,(c) 2022 DigiPen (USA) Corporation
 Thank you for playing our game,Ball 2 The Wall

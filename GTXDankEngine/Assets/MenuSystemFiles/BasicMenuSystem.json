@@ -2,7 +2,7 @@
   "Main": {
     "First": {
       "x": "center",
-      "y": 500
+      "y": 250
     },
     "Button Size": {
       "x": 240,
@@ -254,33 +254,33 @@
         }
     },
 
-    "CheatOptions": {
-        "First": {
-            "x": 100,
-            "y": 100 
-        },
-        "Button Size": {
-            "x": 120,
-            "y": 50 
-        },
-        
-        "Restart": {
-            "Texture": "Assets/Textures/Restart_button.png",
-            "Command": "Restart"
-        },
-        "NextLevel": {
-            "Texture": "Assets/Textures/Next_button.png",
-            "Command": "Next level"
-        },
-        "PrevLevel": {
-            "Texture": "Assets/Textures/Prev_button.png",
-            "Command": "Prev level"
-        },
-        "Back": {
-            "Texture": "Assets/Textures/Back_button.png",
-            "Command": "Back"
-        }
+  "CheatOptions": {
+    "First": {
+      "x": 100,
+      "y": 100
     },
+    "Button Size": {
+      "x": 120,
+      "y": 50
+    },
+    "PrevLevel": {
+      "Texture": "Assets/Textures/Prev_button.png",
+      "Command": "Prev level"
+    },
+    "Restart": {
+      "Texture": "Assets/Textures/Restart_button.png",
+      "Command": "Restart"
+    },
+    "NextLevel": {
+      "Texture": "Assets/Textures/Next_button.png",
+      "Command": "Next level"
+    },
+
+    "Back": {
+      "Texture": "Assets/Textures/Back_button.png",
+      "Command": "Back"
+    }
+  },
     
 
     "Options2": {
