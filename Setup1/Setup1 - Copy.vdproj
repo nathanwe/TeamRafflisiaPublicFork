@@ -3872,8 +3872,8 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1C0E837A8C88B330FB19678897FFD67C"
             {
-            "SourcePath" = "8:ucrtbase.dll"
-            "TargetName" = "8:ucrtbase.dll"
+            "SourcePath" = "8:ucrtbased.dll"
+            "TargetName" = "8:ucrtbased.dll"
             "Tag" = "8:"
             "Folder" = "8:_0108100B5D8741839119193D05279D3D"
             "Condition" = "8:"
@@ -7732,8 +7732,8 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_817285E22CEC73650627EF7032658E52"
             {
-            "SourcePath" = "8:VCRUNTIME140.dll"
-            "TargetName" = "8:VCRUNTIME140.dll"
+            "SourcePath" = "8:VCRUNTIME140D.dll"
+            "TargetName" = "8:VCRUNTIME140D.dll"
             "Tag" = "8:"
             "Folder" = "8:_0108100B5D8741839119193D05279D3D"
             "Condition" = "8:"
@@ -11092,8 +11092,8 @@
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_E3CD39EA436CA0603DD0DFDF39171C5A"
             {
-            "SourcePath" = "8:MSVCP140.dll"
-            "TargetName" = "8:MSVCP140.dll"
+            "SourcePath" = "8:MSVCP140D.dll"
+            "TargetName" = "8:MSVCP140D.dll"
             "Tag" = "8:"
             "Folder" = "8:_0108100B5D8741839119193D05279D3D"
             "Condition" = "8:"

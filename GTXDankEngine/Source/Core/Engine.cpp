@@ -72,6 +72,7 @@ bool Engine::Init()
 // Game loop
 void Engine::Run()
 {
+	
 	Framerate->BeginTotal();
 	
 

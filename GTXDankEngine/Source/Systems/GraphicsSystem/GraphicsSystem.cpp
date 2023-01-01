@@ -32,7 +32,7 @@ void GraphicsSystem::InitWindow()
 	const GLFWvidmode* mode = glfwGetVideoMode(mMonitor);
 	camera.width = mode->width;
 	camera.height = mode->height;
-	pWindow = glfwCreateWindow(camera.width, camera.height, "B2TW", mMonitor, NULL);
+	pWindow = glfwCreateWindow(camera.width, camera.height, "Ball 2 The Wall", mMonitor, NULL);
 #endif // _DEBUG
 
 	// 400 is for the UI
